@@ -3,10 +3,10 @@ export default function Home() {
     <div style={{ padding: '2rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <h1>Injured Workers Unite</h1>
       <p>
-        Welcome to Injured Workers Unite. This website is powered by Cloudflare Pages and has Web Analytics enabled.
+        Welcome to Injured Workers Unite - A digital sanctuary for injured workers and disability advocates.
       </p>
       <p>
-        <strong>Status:</strong> Cloudflare Web Analytics is now active on this site and tracking visitors.
+        <strong>Status:</strong> Site is live and operational.
       </p>
       <hr />
       <p style={{ fontSize: '0.9rem', color: '#666' }}>

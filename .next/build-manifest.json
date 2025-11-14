@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/UJUOuSUMXZVsHnz1qgdKk/_buildManifest.js",
-    "static/UJUOuSUMXZVsHnz1qgdKk/_ssgManifest.js"
+    "static/ALX8Qs1jlE1QDBgoIqxMM/_buildManifest.js",
+    "static/ALX8Qs1jlE1QDBgoIqxMM/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "rootMainFilesTree": {},
@@ -42,7 +42,7 @@
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/230-6f6dbb566cd5139b.js",
-      "static/chunks/pages/memetic-embassy-02da7bf5a75ae669.js"
+      "static/chunks/pages/memetic-embassy-f30b63dd0e01aab7.js"
     ]
   },
   "ampFirstPages": []

@@ -1098,29 +1098,38 @@ function MemeToolsSection() {
   const slogans = {
     general: [
       'They denied my claim, we deny their legitimacy',
-      'My body, my story, our solidarity',
+      'Disabled, poor, homeless, addicted—we are all worthy',
       'Injured not invisible',
       'Disability is not inability',
-      'Worker safety over corporate greed',
+      'Housing is a human right',
+      'Poverty is violence',
+      'Addiction is not a moral failure',
       'Our pain is political',
-      'Solidarity is our medicine',
+      'No one is disposable',
+      'From injury to homelessness: the system failed us',
+      'Solidarity across all struggles',
       'They silence us, we amplify each other',
-      'No worker left behind',
-      'Organize, resist, heal together'
+      'No worker, no person left behind',
+      'Survived work injury, facing homelessness',
+      'Recovery is resistance'
     ],
     captain: [
       'Screenshot everything, trust nothing',
-      'Your denial is documented',
+      'Your denial pushed me into poverty',
       'Receipts over rhetoric',
-      'Truth bombs incoming',
-      'Expose fraud, protect workers'
+      'Documented: From paycheck to homelessness',
+      'Expose fraud, protect the vulnerable',
+      'They denied coverage, I lost my home',
+      'My injury = Their profit = My poverty'
     ],
     sergeant: [
       'An injury to one is an injury to all',
-      'Isolated workers are vulnerable workers',
+      'Disabled, poor, addicted, injured—all united',
       'Collective power beats corporate lies',
-      'Solidarity is our superpower',
-      'Together we bargain, divided we beg'
+      'From shelters to picket lines: solidarity',
+      'Together we bargain, divided we beg',
+      'Homelessness is a workers\' issue',
+      'We organize the forgotten and discarded'
     ],
     lieutenant: [
       'Make memes, not excuses',
@@ -1131,24 +1140,30 @@ function MemeToolsSection() {
     ],
     major: [
       'Nothing about us without us',
-      'Accessibility is non-negotiable',
-      'Disability justice is worker justice',
-      'Your ableism is showing',
-      'Inclusion or shut it down'
+      'Accessibility for ALL: housed or unhoused',
+      'Disability justice is economic justice',
+      'Your ableism created my poverty',
+      'Inclusion or shut it down',
+      'Disabled and homeless by design',
+      'Benefits denied = Homelessness guaranteed'
     ],
     corporal: [
-      'Burnout is not a badge of honor',
-      'Self-care is community care',
-      'Rest is revolutionary',
-      'Healing is not selfish',
-      'You cannot pour from an empty cup'
+      'Addiction is a survival strategy',
+      'Self-care is impossible in poverty',
+      'Rest is revolutionary—if you can afford shelter',
+      'Healing requires housing',
+      'You cannot pour from an empty cup or empty wallet',
+      'Mental health crisis = Housing crisis',
+      'Recovery needs resources, not judgment'
     ],
     private: [
       'In data we trust',
-      'Numbers don\'t lie, insurance companies do',
-      'Statistical justice',
-      'Track, analyze, expose',
-      'Evidence-based resistance'
+      'Numbers don\'t lie: 40% injured workers face poverty',
+      'Statistical justice for the forgotten',
+      'Track evictions, analyze denials, expose systems',
+      'Evidence-based resistance',
+      'The data: Work injury → Poverty → Homelessness',
+      '65% of homeless had workplace injuries'
     ]
   };
 
@@ -1194,61 +1209,110 @@ function MemeToolsSection() {
       setup: 'Them: "It\'s just a few bad cases"',
       punchline: 'The data: *shows 73% denial rate*',
       category: 'Statistics'
+    },
+    {
+      id: 7,
+      character: 'captain',
+      setup: 'Society: "Just get a job"',
+      punchline: 'Disabled worker: "I got injured AT my job"',
+      category: 'Poverty'
+    },
+    {
+      id: 8,
+      character: 'major',
+      setup: 'Employer: "Why are you homeless?"',
+      punchline: 'Me: "You denied my workers comp claim"',
+      category: 'Homelessness'
+    },
+    {
+      id: 9,
+      character: 'corporal',
+      setup: 'Them: "Addiction is a choice"',
+      punchline: 'Chronic pain patients: *gestures at denied medical care*',
+      category: 'Addiction'
+    },
+    {
+      id: 10,
+      character: 'sergeant',
+      setup: 'System: "Pull yourself up by your bootstraps"',
+      punchline: 'Disabled, broke, and homeless: "What bootstraps?"',
+      category: 'Poverty'
+    },
+    {
+      id: 11,
+      character: 'private',
+      setup: 'News: "Why don\'t homeless people just work?"',
+      punchline: 'Stats: "Most were working when they got injured"',
+      category: 'Homelessness'
+    },
+    {
+      id: 12,
+      character: 'major',
+      setup: 'Landlord: "No housing vouchers accepted"',
+      punchline: 'Disabled worker: *becomes statistic*',
+      category: 'Homelessness'
     }
   ];
 
   const hashtagSuggestions = {
-    general: ['#InjuredWorkersUnite', '#WorkerRights', '#DisabilityJustice', '#WorkplaceInjury', '#Solidarity'],
-    captain: ['#ReceiptsReady', '#DocumentEverything', '#ExposeFraud', '#TruthMatters', '#WorkersTruth'],
-    sergeant: ['#WorkerPower', '#CollectiveAction', '#UnionStrong', '#AnInjuryToOne', '#OrganizeNow'],
-    lieutenant: ['#MemeWarfare', '#ViralTruth', '#MemesForChange', '#DigitalResistance', '#HumorAsWeapon'],
-    major: ['#AccessibilityMatters', '#DisabilityRights', '#NothingAboutUs', '#InclusionNow', '#ADACompliance'],
-    corporal: ['#SelfCareIsResistance', '#RestIsRevolutionary', '#BurnoutPrevention', '#HealingJustice', '#MentalHealthMatters'],
-    private: ['#DataDriven', '#StatisticalJustice', '#NumbersDontLie', '#EvidenceBased', '#ResearchForChange']
+    general: ['#InjuredWorkersUnite', '#DisabilityJustice', '#HousingIsARight', '#EndWorkplacePoverty', '#AddictionIsNotACrime', '#HomelessWorkers'],
+    captain: ['#ReceiptsReady', '#DenialCreatedPoverty', '#FromInjuryToHomelessness', '#DocumentTheSystem', '#WorkersInCrisis'],
+    sergeant: ['#SolidarityForAll', '#DisabledPoorUnited', '#HomelessWorkersOrganize', '#CollectiveLiberation', '#NoOneDisposable'],
+    lieutenant: ['#MemeWarfare', '#PovertyIsPolitical', '#HomelessnessIsViolence', '#AddictionStigmaKills', '#ViralSolidarity'],
+    major: ['#DisabilityJustice', '#AccessibleHousing', '#AbleismCreatedThis', '#DisabledAndHomeless', '#HousingForAll'],
+    corporal: ['#AddictionIsTrauma', '#PovertyKills', '#HealingNeedsHousing', '#MentalHealthCrisis', '#RecoveryNotJudgment'],
+    private: ['#InjuryToPoverty', '#HomelessnessData', '#WorkplaceToStreet', '#StatisticalViolence', '#TrackTheDenials']
   };
 
   const viralChallenges = [
     {
-      name: 'Show Your Receipts Challenge',
-      description: 'Post screenshots of denial letters, hostile emails, or gaslighting messages',
-      hashtag: '#ReceiptsChallenge',
+      name: 'From Paycheck to Poverty',
+      description: 'Share your story: How workplace injury led to poverty, homelessness, or financial crisis',
+      hashtag: '#PaycheckToPoverty',
       character: 'captain',
-      icon: '📸'
+      icon: '📉'
     },
     {
-      name: 'Solidarity Selfie',
-      description: 'Take a photo with your coworkers showing unity and tag other workplaces',
-      hashtag: '#SolidaritySelfie',
+      name: 'Homeless Workers Speak',
+      description: 'Amplify voices of workers who became homeless after injury or disability—their stories matter',
+      hashtag: '#HomelessWorkersSpeakOut',
       character: 'sergeant',
-      icon: '🤳'
+      icon: '📢'
     },
     {
-      name: 'Meme-a-Day Movement',
-      description: 'Create one worker rights meme every day for a week',
-      hashtag: '#MemeADayMovement',
+      name: 'Disability Poverty Pipeline',
+      description: 'Expose how disability denial creates poverty through memes, stories, and data',
+      hashtag: '#DisabilityToPoverty',
       character: 'lieutenant',
-      icon: '📅'
+      icon: '♿'
     },
     {
-      name: 'Accessibility Audit',
-      description: 'Document and share inaccessible aspects of your workplace',
-      hashtag: '#AccessibilityAudit',
+      name: 'Housing as Healthcare',
+      description: 'Show how lack of housing prevents recovery from injury, disability, and addiction',
+      hashtag: '#HousingIsHealthcare',
       character: 'major',
-      icon: '🔍'
+      icon: '🏠'
     },
     {
-      name: 'Rest Revolution',
-      description: 'Share photos of yourself resting unapologetically with captions about self-care',
-      hashtag: '#RestRevolution',
+      name: 'Addiction Truth Bomb',
+      description: 'Share how untreated pain, poverty, and trauma lead to addiction—end the stigma',
+      hashtag: '#AddictionTruthBomb',
       character: 'corporal',
-      icon: '😴'
+      icon: '💊'
     },
     {
-      name: 'Data Drop',
-      description: 'Share one shocking statistic about workplace injuries with sources',
-      hashtag: '#DataDrop',
+      name: 'Count the Forgotten',
+      description: 'Share statistics on injured workers in poverty, homeless shelters, and addiction treatment',
+      hashtag: '#CountTheForgotten',
       character: 'private',
       icon: '📊'
+    },
+    {
+      name: 'Show Your Receipts Challenge',
+      description: 'Post denial letters that pushed you into poverty or cost you housing',
+      hashtag: '#ReceiptsOfPoverty',
+      character: 'captain',
+      icon: '📸'
     }
   ];
 
@@ -1647,13 +1711,13 @@ function MemeToolsSection() {
               📊 Infographic Builder
             </h4>
             <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Create data-driven infographics to expose workplace injustice
+              Create data-driven infographics exposing how injuries lead to poverty, homelessness, and desperation
             </p>
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Title</label>
               <input
                 type="text"
-                placeholder="e.g., 'The Real Cost of Workplace Injuries'"
+                placeholder="e.g., 'From Workplace to Homeless Shelter: The Pipeline'"
                 value={infographicData.title}
                 onChange={(e) => setInfographicData({...infographicData, title: e.target.value})}
                 style={inputStyle}
@@ -1664,7 +1728,7 @@ function MemeToolsSection() {
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 1</label>
                 <input
                   type="text"
-                  placeholder="73% of claims denied"
+                  placeholder="40% fall into poverty"
                   value={infographicData.stat1}
                   onChange={(e) => setInfographicData({...infographicData, stat1: e.target.value})}
                   style={inputStyle}
@@ -1674,7 +1738,7 @@ function MemeToolsSection() {
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 2</label>
                 <input
                   type="text"
-                  placeholder="$30B in denied benefits"
+                  placeholder="65% homeless had work injury"
                   value={infographicData.stat2}
                   onChange={(e) => setInfographicData({...infographicData, stat2: e.target.value})}
                   style={inputStyle}
@@ -1684,7 +1748,7 @@ function MemeToolsSection() {
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 3</label>
                 <input
                   type="text"
-                  placeholder="2.8M workers injured yearly"
+                  placeholder="80% denied develop addiction"
                   value={infographicData.stat3}
                   onChange={(e) => setInfographicData({...infographicData, stat3: e.target.value})}
                   style={inputStyle}
@@ -1736,7 +1800,7 @@ function MemeToolsSection() {
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Quote</label>
               <textarea
-                placeholder="Enter a powerful quote from an injured worker..."
+                placeholder="e.g., 'I worked 20 years, got injured, lost my home. The system is designed to discard us.' - Homeless Former Worker"
                 value={quoteText}
                 onChange={(e) => setQuoteText(e.target.value)}
                 style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
@@ -1746,7 +1810,7 @@ function MemeToolsSection() {
               <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Attribution</label>
               <input
                 type="text"
-                placeholder="- Anonymous Injured Worker, 2025"
+                placeholder="- Disabled Worker in Poverty / Homeless Injured Worker / Person in Recovery"
                 value={quoteAuthor}
                 onChange={(e) => setQuoteAuthor(e.target.value)}
                 style={inputStyle}
@@ -1880,12 +1944,16 @@ function MemeToolsSection() {
               </h5>
               <div style={{ display: 'grid', gap: '1rem' }}>
                 {[
-                  'Me: "I need medical treatment"\nInsurance: "We\'ve decided you\'re fine"',
-                  'Boss: "We\'re like family here"\nAlso boss: *denies workers comp claim*',
-                  'Doctor: "I don\'t see any injury"\nMy body:',
-                  'HR: "We take safety seriously"\n*Looks at injury statistics*',
-                  'Me explaining my injury for the 47th time:',
-                  'Insurance company reading my claim:'
+                  'Landlord: "Why can\'t you pay rent?"\nMe: *gestures at denied disability claim*',
+                  'Society: "Just get clean"\nAddicted chronic pain patient: *points at denied medical care*',
+                  'Them: "Why are you homeless?"\nMe: "Your company injured me then fired me"',
+                  'System: "Pull yourself up"\nDisabled worker in poverty:',
+                  'Insurance: "Claim denied"\nMy bank account six months later:',
+                  'Boss after my injury: "We\'re family"\nSame boss when I need help:',
+                  'Me explaining how injury led to homelessness:',
+                  'Therapist: "Why don\'t you just rest?"\nMe working 3 jobs to avoid homelessness:',
+                  'Them: "Addiction is a choice"\nUntreated pain patients:',
+                  'Society: "Why don\'t homeless people work?"\nMost homeless people: *had jobs until injury*'
                 ].map((caption, idx) => (
                   <div 
                     key={idx}

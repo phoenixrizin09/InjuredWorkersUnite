@@ -23,6 +23,9 @@ jobs:
       - name: Monitor Ontario Legislature
         run: node scripts/monitoring/legislature.js
         continue-on-error: true
+      - name: Monitor Federal Bills
+        run: node scripts/monitoring/federal-bills.js
+        continue-on-error: true
       - name: Monitor WSIB
         run: node scripts/monitoring/wsib.js
         continue-on-error: true

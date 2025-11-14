@@ -38,52 +38,6 @@ export default function Home() {
           A Digital Sanctuary for Injured Workers, Disabled Persons, and Creative Resistance
         </p>
 
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2rem' }}>
-          <Link href="/the-eye" style={{
-            padding: '1rem 2rem',
-            background: 'linear-gradient(135deg, rgba(79, 172, 254, 0.3), rgba(0, 242, 254, 0.3))',
-            border: '2px solid #4facfe',
-            borderRadius: '50px',
-            color: 'white',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-            fontSize: '1.1rem',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 20px rgba(79, 172, 254, 0.4)',
-            transition: 'all 0.3s'
-          }}>
-            👁️ The EYE
-          </Link>
-          
-          <Link href="/memetic-embassy" style={{
-            padding: '1rem 2rem',
-            background: 'rgba(255,255,255,0.2)',
-            border: '2px solid white',
-            borderRadius: '50px',
-            color: 'white',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-            fontSize: '1.1rem',
-            backdropFilter: 'blur(10px)'
-          }}>
-            🏛️ Memetic Embassy
-          </Link>
-          
-          <Link href="/contact" style={{
-            padding: '1rem 2rem',
-            background: 'rgba(255,255,255,0.2)',
-            border: '2px solid white',
-            borderRadius: '50px',
-            color: 'white',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-            fontSize: '1.1rem',
-            backdropFilter: 'blur(10px)'
-          }}>
-            📧 Contact
-          </Link>
-        </div>
-
         <div style={{
           marginTop: '4rem',
           padding: '2rem',

@@ -401,7 +401,8 @@ export default function TheEye() {
               cursor: isScanning ? 'not-allowed' : 'pointer',
               transition: 'all 0.3s',
               boxShadow: isScanning ? 'none' : '0 0 20px rgba(79, 172, 254, 0.5)',
-              marginRight: '1rem'
+              marginRight: '1rem',
+              marginBottom: '1rem'
             }}
           >
             {isScanning ? '🔄 Scanning...' : '🔍 Initiate Deep Scan'}
@@ -418,9 +419,28 @@ export default function TheEye() {
             fontWeight: 'bold',
             textDecoration: 'none',
             transition: 'all 0.3s',
-            boxShadow: '0 0 20px rgba(255, 68, 68, 0.5)'
+            boxShadow: '0 0 20px rgba(255, 68, 68, 0.5)',
+            marginRight: '1rem',
+            marginBottom: '1rem'
           }}>
             🎯 Target Acquisition
+          </Link>
+          
+          <Link href="/automated-monitoring" style={{
+            display: 'inline-block',
+            padding: '1rem 3rem',
+            background: 'linear-gradient(135deg, #44ff88 0%, #00cc66 100%)',
+            border: 'none',
+            borderRadius: '50px',
+            color: 'white',
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            textDecoration: 'none',
+            transition: 'all 0.3s',
+            boxShadow: '0 0 20px rgba(68, 255, 136, 0.5)',
+            marginBottom: '1rem'
+          }}>
+            🤖 24/7 Monitoring
           </Link>
         </div>
       </div>

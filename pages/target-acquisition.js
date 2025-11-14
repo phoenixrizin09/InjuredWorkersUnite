@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Header from '../components/Header';
 
 export default function TargetAcquisition() {
   const [selectedTarget, setSelectedTarget] = useState(null);
@@ -119,6 +120,8 @@ export default function TargetAcquisition() {
   };
 
   return (
+    <>
+    <Header />
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%)',
@@ -380,5 +383,6 @@ export default function TargetAcquisition() {
         </div>
       </div>
     </div>
+    </>
   );
 }

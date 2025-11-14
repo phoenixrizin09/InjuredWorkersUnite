@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Header from '../components/Header';
 
 export default function TheEye() {
   const [activeScope, setActiveScope] = useState('provincial');
@@ -260,6 +261,8 @@ export default function TheEye() {
   };
 
   return (
+    <>
+    <Header />
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%)',
@@ -755,5 +758,6 @@ export default function TheEye() {
         }
       `}</style>
     </div>
+    </>
   );
 }

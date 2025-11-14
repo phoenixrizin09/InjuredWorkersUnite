@@ -11,6 +11,8 @@ export default function Contact() {
   };
 
   return (
+    <>
+    <Header />
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)', color: 'white', padding: '2rem' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <Link href="/" style={{ color: '#667eea', textDecoration: 'none', marginBottom: '2rem', display: 'inline-block' }}>
@@ -78,6 +80,7 @@ export default function Contact() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

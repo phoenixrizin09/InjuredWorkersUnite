@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import Header from '../components/Header';
 
 export default function Home() {
   return (
+    <>
+    <Header />
     <div style={{ 
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -99,5 +102,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }

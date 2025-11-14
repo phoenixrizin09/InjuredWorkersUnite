@@ -1,4 +1,4 @@
-name: The EYE - Daily Monitoring
+﻿name: The EYE Daily Monitoring
 
 on:
   schedule:
@@ -8,46 +8,35 @@ on:
 jobs:
   monitor-all-sources:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
       - name: Install dependencies
-        run: |
-          npm install cheerio node-fetch@2 diff
-      
+        run: npm install cheerio node-fetch@2 diff
       - name: Monitor Ontario Legislature
         run: node scripts/monitoring/legislature.js
         continue-on-error: true
-      
       - name: Monitor WSIB
         run: node scripts/monitoring/wsib.js
         continue-on-error: true
-      
       - name: Monitor Disability Benefits
         run: node scripts/monitoring/disability.js
         continue-on-error: true
-      
       - name: Monitor Corporate Filings
         run: node scripts/monitoring/corporate.js
         continue-on-error: true
-      
       - name: Monitor Lobbyist Registry
         run: node scripts/monitoring/lobbyists.js
         continue-on-error: true
-      
       - name: Generate Summary Report
         run: node scripts/monitoring/generate-report.js
-      
       - name: Commit monitoring data
         run: |
           git config user.name "The EYE Bot"
@@ -56,12 +45,11 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes detected"
           else
-            git commit -m "Automated monitoring update - $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Automated monitoring update"
             git push
           fi
-      
       - name: Send Daily Summary
         if: always()
         run: |
-          echo "Daily monitoring completed at $(date)"
-          echo "Check data/ folder for updated monitoring results"
+          echo "Daily monitoring completed"
+          echo "Check data/ folder for results"

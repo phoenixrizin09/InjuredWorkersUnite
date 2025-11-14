@@ -1,0 +1,278 @@
+import { useState } from 'react';
+import Link from 'next/link';
+
+export default function MemeticEmbassy() {
+  const [activeTab, setActiveTab] = useState('charter');
+
+  return (
+    <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: 'system-ui' }}>
+      {/* Hero Section */}
+      <section style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{ textAlign: 'center', zIndex: 1, padding: '2rem' }}>
+          <h1 style={{
+            fontSize: 'clamp(2rem, 6vw, 4rem)',
+            fontWeight: '900',
+            marginBottom: '1rem',
+            background: 'linear-gradient(45deg, #667eea, #764ba2)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            🏛️ THE MEMETIC EMBASSY
+          </h1>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '600px', margin: '0 auto 2rem', opacity: 0.9 }}>
+            A Digital Nation-State for the Injured, Disabled & Resistance
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button onClick={() => setActiveTab('charter')} style={buttonStyle}>
+              Our Charter
+            </button>
+            <button onClick={() => setActiveTab('passport')} style={buttonStyle}>
+              Get Passport
+            </button>
+            <button onClick={() => setActiveTab('squad')} style={buttonStyle}>
+              Denial Squad
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Sections */}
+      <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        {activeTab === 'charter' && <CharterSection />}
+        {activeTab === 'passport' && <PassportSection />}
+        {activeTab === 'squad' && <DenialSquadSection />}
+      </section>
+
+      {/* Navigation Footer */}
+      <footer style={{ padding: '2rem', textAlign: 'center', background: '#111', borderTop: '1px solid #333' }}>
+        <Link href="/" style={{ color: '#667eea', textDecoration: 'none' }}>
+          ← Back to Home
+        </Link>
+      </footer>
+    </div>
+  );
+}
+
+function CharterSection() {
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>🏛️ Embassy Charter</h2>
+      
+      <div style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
+        <h3 style={{ color: '#764ba2', marginTop: '2rem' }}>Article I: Sovereignty</h3>
+        <p>
+          The Memetic Embassy is a sovereign digital nation-state, operating under the principles of mutual aid, 
+          worker solidarity, and disability justice. We recognize no borders, no hierarchies, and no gatekeepers.
+        </p>
+
+        <h3 style={{ color: '#764ba2', marginTop: '2rem' }}>Article II: Citizenship</h3>
+        <p>
+          Citizenship is open to all injured workers, disabled persons, and allies who commit to our principles. 
+          Passports are issued freely, without discrimination or barrier.
+        </p>
+
+        <h3 style={{ color: '#764ba2', marginTop: '2rem' }}>Article III: Digital Rights</h3>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          <li>✊ Right to organize without retaliation</li>
+          <li>🛡️ Right to share stories without censorship</li>
+          <li>🎨 Right to create and distribute resistance media</li>
+          <li>🌐 Right to digital sanctuary from corporate surveillance</li>
+        </ul>
+
+        <h3 style={{ color: '#764ba2', marginTop: '2rem' }}>Article IV: The Denial Squad</h3>
+        <p>
+          Our memetic warriors - The Denial Squad - protect citizens from gaslighting, medical denial, 
+          and corporate propaganda through truth-telling, solidarity, and creative resistance.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function PassportSection() {
+  const [formData, setFormData] = useState({ name: '', story: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>🛂 Digital Passport</h2>
+      
+      {!submitted ? (
+        <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
+              Your Name (or alias)
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              style={inputStyle}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
+              Your Story (optional)
+            </label>
+            <textarea
+              value={formData.story}
+              onChange={(e) => setFormData({ ...formData, story: e.target.value })}
+              style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }}
+              placeholder="Share your journey, if you'd like..."
+            />
+          </div>
+
+          <button type="submit" style={{ ...buttonStyle, width: '100%', padding: '1rem' }}>
+            Request Citizenship ✊
+          </button>
+        </form>
+      ) : (
+        <div style={{ textAlign: 'center', padding: '3rem' }}>
+          <h3 style={{ fontSize: '2rem', color: '#667eea', marginBottom: '1rem' }}>Welcome, Citizen!</h3>
+          <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+            Your digital passport has been issued. You are now a citizen of The Memetic Embassy.
+          </p>
+          <div style={{
+            padding: '2rem',
+            background: '#16213e',
+            borderRadius: '10px',
+            border: '2px solid #667eea'
+          }}>
+            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+              Passport #{Math.floor(Math.random() * 10000)}
+            </p>
+            <p style={{ fontSize: '1.2rem' }}>Citizen: {formData.name}</p>
+            <p style={{ marginTop: '1rem', opacity: 0.8 }}>
+              "In solidarity, we resist. In community, we heal."
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DenialSquadSection() {
+  const squadMembers = [
+    {
+      name: 'Captain Truth-Teller',
+      role: 'Commander',
+      bio: 'Exposes medical gaslighting and insurance fraud with receipts',
+      emoji: '🎖️'
+    },
+    {
+      name: 'Sergeant Solidarity',
+      role: 'Organizer',
+      bio: 'Builds worker networks and mutual aid systems',
+      emoji: '🤝'
+    },
+    {
+      name: 'Lieutenant Meme-Maker',
+      role: 'Creative Director',
+      bio: 'Weaponizes humor against corporate propaganda',
+      emoji: '🎨'
+    },
+    {
+      name: 'Major Accessibility',
+      role: 'Inclusion Officer',
+      bio: 'Ensures no one is left behind in the fight',
+      emoji: '♿'
+    }
+  ];
+
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>⚔️ The Denial Squad</h2>
+      
+      <p style={{ fontSize: '1.2rem', marginBottom: '3rem', lineHeight: '1.8' }}>
+        Our memetic warriors fight back against denial, gaslighting, and erasure. They protect injured workers 
+        from corporate propaganda and medical gatekeeping through truth, solidarity, and creative resistance.
+      </p>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+        {squadMembers.map((member, idx) => (
+          <div key={idx} style={{
+            padding: '1.5rem',
+            background: '#16213e',
+            borderRadius: '10px',
+            border: '2px solid #667eea',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{member.emoji}</div>
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: '#764ba2' }}>
+              {member.name}
+            </h3>
+            <p style={{ fontSize: '0.9rem', color: '#667eea', marginBottom: '1rem' }}>
+              {member.role}
+            </p>
+            <p style={{ fontSize: '0.95rem', opacity: 0.9 }}>
+              {member.bio}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem',
+        background: '#0f3460',
+        borderRadius: '10px',
+        textAlign: 'center'
+      }}>
+        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Join The Squad</h3>
+        <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>
+          We need artists, organizers, storytellers, and advocates. Your skills matter. Your voice matters.
+        </p>
+        <Link href="/contact" style={{
+          display: 'inline-block',
+          padding: '0.8rem 2rem',
+          background: '#667eea',
+          color: 'white',
+          textDecoration: 'none',
+          borderRadius: '50px',
+          fontWeight: 'bold'
+        }}>
+          Get Involved →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+const buttonStyle = {
+  padding: '0.8rem 1.5rem',
+  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  border: 'none',
+  borderRadius: '50px',
+  color: 'white',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'transform 0.2s',
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '0.8rem',
+  background: '#0f3460',
+  border: '2px solid #667eea',
+  borderRadius: '8px',
+  color: 'white',
+  fontSize: '1rem',
+};

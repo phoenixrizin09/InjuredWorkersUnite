@@ -25,6 +25,18 @@
       "regex": "^/(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/memetic-embassy",
+      "regex": "^/memetic\\-embassy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/memetic\\-embassy(?:/)?$"
     }
   ],
   "dataRoutes": [],

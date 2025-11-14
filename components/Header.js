@@ -71,13 +71,13 @@ export default function Header() {
           gap: '6px',
           alignItems: 'center'
         }} className="nav-menu">
-          <Link href="/" style={navLinkStyle}>🏠</Link>
-          <Link href="/the-eye" style={navLinkStyle}>👁️</Link>
-          <Link href="/automated-monitoring" style={navLinkStyle}>🤖</Link>
-          <Link href="/target-acquisition" style={navLinkStyle}>🎯</Link>
-          <Link href="/alerts" style={navLinkStyle}>🚨</Link>
-          <Link href="/meme-gallery" style={navLinkStyle}>😂</Link>
-          <Link href="/contact" style={navLinkStyle}>📧</Link>
+          <Link href="/" style={navLinkStyle}>Home</Link>
+          <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
+          <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
+          <Link href="/target-acquisition" style={navLinkStyle}>Targets</Link>
+          <Link href="/alerts" style={navLinkStyle}>Alerts</Link>
+          <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>
+          <Link href="/contact" style={navLinkStyle}>Contact</Link>
         </nav>
 
         {/* Social Media & Donate */}
@@ -170,7 +170,9 @@ const navLinkStyle = {
   padding: '4px 8px',
   borderRadius: '5px',
   transition: 'all 0.3s ease',
-  fontSize: '20px',
+  fontSize: '12px',
+  fontFamily: 'monospace',
+  fontWeight: 'bold',
   background: 'rgba(255,255,255,0.05)',
   border: '1px solid rgba(0,255,255,0.3)',
   whiteSpace: 'nowrap',

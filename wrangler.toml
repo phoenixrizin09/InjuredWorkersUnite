@@ -1,0 +1,7 @@
+name = "injured-workers-unite"
+type = "javascript"
+compatibility_date = "2025-11-14"
+pages_build_output_dir = "out"
+
+[env.production]
+name = "injured-workers-unite"

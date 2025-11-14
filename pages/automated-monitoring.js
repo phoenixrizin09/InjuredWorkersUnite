@@ -120,7 +120,13 @@ export default function AutomatedMonitoring() {
       title: 'Bill 149 - ODSP Amendment Detected',
       detail: 'New clause added in committee: "Medical re-assessment required every 6 months." This will force 47,000 recipients into new eligibility reviews.',
       action: 'Auto-Generated: FOI request for committee testimony, media alert sent to 12 journalists, coalition notification to 34 orgs',
-      automated: true
+      automated: true,
+      sources: [
+        { name: 'Ontario Legislature - Bills', url: 'https://www.ola.org/en/legislative-business/bills' },
+        { name: 'Committee Hansard Archive', url: 'https://www.ola.org/en/legislative-business/committees' },
+        { name: 'Legislative Assembly API', url: 'https://www.ola.org/en/open-data' }
+      ],
+      dataSource: 'REAL: Can be scraped daily from Ontario Legislature website'
     },
     {
       severity: 'high',
@@ -129,7 +135,13 @@ export default function AutomatedMonitoring() {
       title: 'Manulife Quarterly Filing - Claim Reserve Reduction',
       detail: 'Q4 financials show $127M reduction in claim reserves. Statistical model predicts this requires 12-15% increase in denials to achieve.',
       action: 'Auto-Generated: Shareholder alert drafted, analyst questions prepared, short-seller research package queued',
-      automated: true
+      automated: true,
+      sources: [
+        { name: 'SEDAR+ (Canadian Securities)', url: 'https://www.sedarplus.ca/' },
+        { name: 'SEC EDGAR (US Filings)', url: 'https://www.sec.gov/edgar/searchedgar/companysearch' },
+        { name: 'Manulife Investor Relations', url: 'https://www.manulife.com/en/investors.html' }
+      ],
+      dataSource: 'REAL: Public filings available via SEDAR API, updated quarterly'
     },
     {
       severity: 'critical',
@@ -138,7 +150,14 @@ export default function AutomatedMonitoring() {
       title: 'Revolving Door Alert: WSIB Exec → Insurance Lobby',
       detail: 'Former WSIB VP of Claims (2020-2024) just joined Insurance Bureau of Canada as "Policy Director." During tenure, denial rates increased 34%.',
       action: 'Auto-Generated: Conflict of interest complaint, media dossier complete with full employment/decision history',
-      automated: true
+      automated: true,
+      sources: [
+        { name: 'LinkedIn Public Profiles', url: 'https://www.linkedin.com' },
+        { name: 'Insurance Bureau of Canada - About Us', url: 'http://www.ibc.ca/about-us' },
+        { name: 'WSIB Annual Reports', url: 'https://www.wsib.ca/en/annualreport' },
+        { name: 'Ontario Lobbyist Registry', url: 'https://www.oico.on.ca/home/lobbyist-registry' }
+      ],
+      dataSource: 'REAL: Cross-reference public announcements, LinkedIn, and lobbyist registry'
     },
     {
       severity: 'warning',
@@ -147,7 +166,13 @@ export default function AutomatedMonitoring() {
       title: 'Fraser Institute Funding Spike Detected',
       detail: 'Q3 donations up 340% from usual conservative donors. Historical pattern: funding spike → anti-social program report → legislative push within 6 months.',
       action: 'Auto-Generated: Preemptive counter-research commissioned, media relationships activated for rapid response',
-      automated: true
+      automated: true,
+      sources: [
+        { name: 'CRA Charity Database (T3010 Returns)', url: 'https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch?request_locale=en' },
+        { name: 'Fraser Institute Financial Statements', url: 'https://www.fraserinstitute.org/about-us' },
+        { name: 'Elections Canada - Political Contributions', url: 'https://www.elections.ca/content.aspx?section=fin&dir=oda&document=index&lang=e' }
+      ],
+      dataSource: 'REAL: CRA T3010 charity returns are public, updated annually'
     },
     {
       severity: 'high',
@@ -156,7 +181,13 @@ export default function AutomatedMonitoring() {
       title: 'WSIB Adjudicator Assignment Bias Detected',
       detail: 'Algorithm shows chronic pain claims 73% more likely to be assigned to 3 specific adjudicators (deny rate: 89%, 91%, 87%).',
       action: 'Auto-Generated: Statistical discrimination complaint drafted, class action threshold analysis shows 412 affected claimants',
-      automated: true
+      automated: true,
+      sources: [
+        { name: 'WSIB Freedom of Information', url: 'https://www.wsib.ca/en/freedom-information' },
+        { name: 'WSIB Appeals Database', url: 'https://www.wsib.ca/en/appeals' },
+        { name: 'Ontario Ombudsman', url: 'https://www.ombudsman.on.ca/' }
+      ],
+      dataSource: 'REAL: Requires FOI requests for claim data, then statistical analysis - 100% possible'
     }
   ];
 
@@ -401,8 +432,54 @@ export default function AutomatedMonitoring() {
                   <p style={{ margin: '1rem 0', color: '#ccc', lineHeight: '1.6' }}>
                     {alert.detail}
                   </p>
+                  
+                  {/* Data Sources */}
+                  {alert.sources && (
+                    <div style={{
+                      marginTop: '1rem',
+                      padding: '1rem',
+                      background: 'rgba(79, 172, 254, 0.05)',
+                      borderRadius: '10px',
+                      border: '1px solid #4facfe'
+                    }}>
+                      <strong style={{ color: '#4facfe', fontSize: '0.9rem' }}>📡 Data Sources:</strong>
+                      <div style={{ marginTop: '0.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        {alert.sources.map((src, i) => (
+                          <a
+                            key={i}
+                            href={src.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              padding: '0.4rem 0.8rem',
+                              background: 'rgba(79, 172, 254, 0.2)',
+                              border: '1px solid #4facfe',
+                              borderRadius: '15px',
+                              color: '#4facfe',
+                              textDecoration: 'none',
+                              fontSize: '0.8rem',
+                              transition: 'all 0.3s'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.background = 'rgba(79, 172, 254, 0.4)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.background = 'rgba(79, 172, 254, 0.2)';
+                            }}
+                          >
+                            🔗 {src.name}
+                          </a>
+                        ))}
+                      </div>
+                      <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#888', fontStyle: 'italic' }}>
+                        {alert.dataSource}
+                      </div>
+                    </div>
+                  )}
+                  
                   <div style={{
                     padding: '1rem',
+                    marginTop: '1rem',
                     background: 'rgba(68, 255, 136, 0.1)',
                     borderRadius: '10px',
                     borderLeft: '3px solid #44ff88'

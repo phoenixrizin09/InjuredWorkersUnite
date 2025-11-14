@@ -5,44 +5,44 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/alwt5_VzpICH_HoBN9lPD/_buildManifest.js",
-    "static/alwt5_VzpICH_HoBN9lPD/_ssgManifest.js"
+    "static/nexuXnEkAGoAf4GhuiWIA/_buildManifest.js",
+    "static/nexuXnEkAGoAf4GhuiWIA/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "rootMainFilesTree": {},
   "pages": {
     "/": [
-      "static/chunks/webpack-7662e6ad57887140.js",
+      "static/chunks/webpack-02183fcd2f587b63.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/230-6f6dbb566cd5139b.js",
       "static/chunks/pages/index-b3233dc781d2fbf5.js"
     ],
     "/_app": [
-      "static/chunks/webpack-7662e6ad57887140.js",
+      "static/chunks/webpack-02183fcd2f587b63.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/pages/_app-a7e6ea821c9827e6.js"
     ],
     "/_error": [
-      "static/chunks/webpack-7662e6ad57887140.js",
+      "static/chunks/webpack-02183fcd2f587b63.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/pages/_error-cf5db1610f7a1281.js"
     ],
     "/contact": [
-      "static/chunks/webpack-7662e6ad57887140.js",
+      "static/chunks/webpack-02183fcd2f587b63.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/230-6f6dbb566cd5139b.js",
       "static/chunks/pages/contact-cc8e1fd470d0e415.js"
     ],
     "/memetic-embassy": [
-      "static/chunks/webpack-7662e6ad57887140.js",
+      "static/chunks/webpack-02183fcd2f587b63.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/230-6f6dbb566cd5139b.js",
-      "static/chunks/pages/memetic-embassy-12c9f1c1d62f5c39.js"
+      "static/chunks/pages/memetic-embassy-cf517f37b2be3d81.js"
     ]
   },
   "ampFirstPages": []

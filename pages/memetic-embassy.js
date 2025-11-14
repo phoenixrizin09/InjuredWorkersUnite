@@ -229,69 +229,293 @@ function CharterSection() {
 }
 
 function PassportSection() {
-  const [formData, setFormData] = useState({ name: '', story: '' });
+  const [formData, setFormData] = useState({ name: '', story: '', role: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [passportNumber, setPassportNumber] = useState('');
+
+  const citizenBenefits = [
+    {
+      icon: '🛡️',
+      title: 'Legal Defense Network',
+      description: 'Access to pro bono lawyers and legal advocacy resources'
+    },
+    {
+      icon: '🤝',
+      title: 'Solidarity Network',
+      description: 'Connect with thousands of injured workers worldwide'
+    },
+    {
+      icon: '📚',
+      title: 'Resource Library',
+      description: 'Exclusive templates, guides, and educational materials'
+    },
+    {
+      icon: '🎨',
+      title: 'Meme Arsenal',
+      description: 'Custom memes and graphics featuring your citizenship'
+    },
+    {
+      icon: '💬',
+      title: 'Support Groups',
+      description: 'Moderated peer support and mental health resources'
+    },
+    {
+      icon: '📢',
+      title: 'Amplification',
+      description: 'Your story shared through our networks and platforms'
+    }
+  ];
+
+  const citizenTypes = [
+    {
+      type: 'Injured Worker',
+      icon: '⚒️',
+      description: 'You were injured on the job and are fighting for your rights',
+      color: '#667eea'
+    },
+    {
+      type: 'Disabled Person',
+      icon: '♿',
+      description: 'You live with disability and face systemic discrimination',
+      color: '#48c774'
+    },
+    {
+      type: 'Healthcare Survivor',
+      icon: '🏥',
+      description: 'You\'ve been harmed by medical gaslighting or denial',
+      color: '#f39c12'
+    },
+    {
+      type: 'Labor Organizer',
+      icon: '✊',
+      description: 'You organize workers and fight for collective power',
+      color: '#764ba2'
+    },
+    {
+      type: 'Solidarity Supporter',
+      icon: '💚',
+      description: 'You stand in solidarity with all injured workers',
+      color: '#2ecc71'
+    }
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const randomNum = Math.floor(Math.random() * 90000) + 10000;
+    setPassportNumber(`IWU-${randomNum}`);
     setSubmitted(true);
   };
 
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>🛂 Digital Passport</h2>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>🛂 Digital Citizenship Passport</h2>
+      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
+        Claim your citizenship in The Memetic Embassy. Join our community of resistance, solidarity, and healing.
+      </p>
       
       {!submitted ? (
-        <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-              Your Name (or alias)
-            </label>
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              style={inputStyle}
-              placeholder="Enter your name"
-              required
-            />
+        <>
+          {/* Citizen Type Selection */}
+          <div style={{ marginBottom: '3rem' }}>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>Who Are You?</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+              {citizenTypes.map((citizen, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setFormData({ ...formData, role: citizen.type })}
+                  style={{
+                    padding: '1.5rem',
+                    background: formData.role === citizen.type ? citizen.color : '#16213e',
+                    border: `2px solid ${citizen.color}`,
+                    borderRadius: '10px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s',
+                    transform: formData.role === citizen.type ? 'scale(1.05)' : 'scale(1)'
+                  }}
+                >
+                  <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'center' }}>{citizen.icon}</div>
+                  <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', textAlign: 'center', fontWeight: 'bold' }}>
+                    {citizen.type}
+                  </h4>
+                  <p style={{ fontSize: '0.8rem', opacity: 0.9, textAlign: 'center', lineHeight: '1.4' }}>
+                    {citizen.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-              Your Story (optional)
-            </label>
-            <textarea
-              value={formData.story}
-              onChange={(e) => setFormData({ ...formData, story: e.target.value })}
-              style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }}
-              placeholder="Share your journey, if you'd like..."
-            />
+          {/* Citizenship Benefits */}
+          <div style={{ marginBottom: '3rem', padding: '2rem', background: '#0f3460', borderRadius: '10px' }}>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#667eea' }}>
+              Citizenship Benefits
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+              {citizenBenefits.map((benefit, idx) => (
+                <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <div style={{ fontSize: '2rem' }}>{benefit.icon}</div>
+                  <div>
+                    <h4 style={{ fontSize: '1rem', marginBottom: '0.3rem', color: '#764ba2' }}>
+                      {benefit.title}
+                    </h4>
+                    <p style={{ fontSize: '0.85rem', opacity: 0.9, lineHeight: '1.4' }}>
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <button type="submit" style={{ ...buttonStyle, width: '100%', padding: '1rem' }}>
-            Request Citizenship ✊
-          </button>
-        </form>
+          {/* Application Form */}
+          <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#764ba2', textAlign: 'center' }}>
+              Apply for Citizenship
+            </h3>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
+                Name or Alias *
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                style={inputStyle}
+                placeholder="How should we call you?"
+                required
+              />
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
+                Your Story (Optional)
+              </label>
+              <textarea
+                value={formData.story}
+                onChange={(e) => setFormData({ ...formData, story: e.target.value })}
+                style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }}
+                placeholder="Share your journey if you'd like. Your story matters and helps build solidarity..."
+              />
+              <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>
+                Your story is kept confidential unless you choose to share it publicly.
+              </p>
+            </div>
+
+            <div style={{ 
+              padding: '1.5rem', 
+              background: '#16213e', 
+              borderRadius: '10px',
+              marginBottom: '1.5rem',
+              border: '2px solid #667eea'
+            }}>
+              <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: '#764ba2' }}>
+                📜 Citizen's Pledge
+              </h4>
+              <p style={{ fontSize: '0.95rem', lineHeight: '1.7', fontStyle: 'italic', opacity: 0.9 }}>
+                "I pledge to stand in solidarity with all who have been injured, denied, and dismissed. 
+                I will amplify marginalized voices, document injustice, and resist systems of oppression. 
+                I understand that our individual healing is tied to collective liberation. 
+                In community, we are stronger. In solidarity, we are unstoppable."
+              </p>
+            </div>
+
+            <button type="submit" style={{ ...buttonStyle, width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
+              ✊ Claim Citizenship
+            </button>
+          </form>
+        </>
       ) : (
-        <div style={{ textAlign: 'center', padding: '3rem' }}>
-          <h3 style={{ fontSize: '2rem', color: '#667eea', marginBottom: '1rem' }}>Welcome, Citizen!</h3>
-          <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎉</div>
+          <h3 style={{ fontSize: '2.2rem', color: '#667eea', marginBottom: '1rem' }}>
+            Welcome, Citizen {formData.name}!
+          </h3>
+          <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
             Your digital passport has been issued. You are now a citizen of The Memetic Embassy.
           </p>
+          
+          {/* Digital Passport Card */}
           <div style={{
+            maxWidth: '500px',
+            margin: '0 auto 2rem',
+            padding: '2rem',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            borderRadius: '15px',
+            border: '3px solid white',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+              <div>
+                <p style={{ fontSize: '0.8rem', opacity: 0.9, marginBottom: '0.3rem' }}>MEMETIC EMBASSY</p>
+                <p style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>DIGITAL PASSPORT</p>
+              </div>
+              <div style={{ fontSize: '3rem' }}>🛂</div>
+            </div>
+            
+            <div style={{ background: 'rgba(255,255,255,0.1)', padding: '1.5rem', borderRadius: '10px', marginBottom: '1rem' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>PASSPORT NUMBER</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'monospace' }}>{passportNumber}</p>
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>CITIZEN NAME</p>
+                <p style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{formData.name}</p>
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>CITIZEN TYPE</p>
+                <p style={{ fontSize: '1.1rem' }}>
+                  {citizenTypes.find(c => c.type === formData.role)?.icon} {formData.role || 'Solidarity Supporter'}
+                </p>
+              </div>
+              <div>
+                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>ISSUED</p>
+                <p style={{ fontSize: '1rem' }}>{new Date().toLocaleDateString()}</p>
+              </div>
+            </div>
+            
+            <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.9 }}>
+              "In solidarity, we resist. In community, we heal."
+            </p>
+          </div>
+
+          {/* Next Steps */}
+          <div style={{ 
+            maxWidth: '600px', 
+            margin: '0 auto',
             padding: '2rem',
             background: '#16213e',
             borderRadius: '10px',
-            border: '2px solid #667eea'
+            textAlign: 'left'
           }}>
-            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-              Passport #{Math.floor(Math.random() * 10000)}
-            </p>
-            <p style={{ fontSize: '1.2rem' }}>Citizen: {formData.name}</p>
-            <p style={{ marginTop: '1rem', opacity: 0.8 }}>
-              "In solidarity, we resist. In community, we heal."
-            </p>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              What's Next?
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, fontSize: '1rem' }}>
+              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
+                📚 Browse the <span style={{ color: '#667eea', fontWeight: 'bold' }}>Resource Library</span> for guides and templates
+              </li>
+              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
+                🎨 Create memes with the <span style={{ color: '#667eea', fontWeight: 'bold' }}>Denial Squad</span> characters
+              </li>
+              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
+                🤝 Join our <span style={{ color: '#667eea', fontWeight: 'bold' }}>Support Networks</span> and connect with others
+              </li>
+              <li style={{ padding: '0.7rem 0' }}>
+                📢 Share your passport on social media with #InjuredWorkersUnite
+              </li>
+            </ul>
+          </div>
+
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button 
+              onClick={() => setSubmitted(false)}
+              style={{ ...buttonStyle, background: '#16213e', border: '2px solid #667eea' }}
+            >
+              📥 Download Passport
+            </button>
+            <button style={buttonStyle}>
+              📱 Share on Social Media
+            </button>
           </div>
         </div>
       )}
@@ -847,39 +1071,180 @@ function ResourcesSection() {
 
 function MemeToolsSection() {
   const [memeText, setMemeText] = useState({ top: '', bottom: '' });
+  const [selectedCharacter, setSelectedCharacter] = useState('captain');
   const [sloganText, setSloganText] = useState('');
   const [generatedSlogan, setGeneratedSlogan] = useState('');
+  const [posterMessage, setPosterMessage] = useState('');
+  const [posterColor, setPosterColor] = useState('red');
+  const [activeTemplate, setActiveTemplate] = useState(null);
 
-  const slogans = [
-    'They denied my claim, we deny their legitimacy',
-    'My body, my story, our solidarity',
-    'Injured not invisible',
-    'Disability is not inability',
-    'Worker safety over corporate greed',
-    'Our pain is political',
-    'Solidarity is our medicine',
-    'They silence us, we amplify each other'
+  const characters = [
+    { id: 'captain', name: 'Captain Truth-Teller', emoji: '🎖️', color: '#667eea', tagline: 'RECEIPTS DON\'T LIE' },
+    { id: 'sergeant', name: 'Sergeant Solidarity', emoji: '🤝', color: '#48c774', tagline: 'UNITED WE STAND' },
+    { id: 'lieutenant', name: 'Lieutenant Meme-Maker', emoji: '🎨', color: '#764ba2', tagline: 'HUMOR IS RESISTANCE' },
+    { id: 'major', name: 'Major Accessibility', emoji: '♿', color: '#f39c12', tagline: 'ACCESS FOR ALL' },
+    { id: 'corporal', name: 'Corporal Care', emoji: '💚', color: '#2ecc71', tagline: 'REST IS RESISTANCE' },
+    { id: 'private', name: 'Private Receipts', emoji: '📊', color: '#3498db', tagline: 'DATA NEVER LIES' }
   ];
 
-  const generateSlogan = () => {
-    const random = slogans[Math.floor(Math.random() * slogans.length)];
+  const slogans = {
+    general: [
+      'They denied my claim, we deny their legitimacy',
+      'My body, my story, our solidarity',
+      'Injured not invisible',
+      'Disability is not inability',
+      'Worker safety over corporate greed',
+      'Our pain is political',
+      'Solidarity is our medicine',
+      'They silence us, we amplify each other',
+      'No worker left behind',
+      'Organize, resist, heal together'
+    ],
+    captain: [
+      'Screenshot everything, trust nothing',
+      'Your denial is documented',
+      'Receipts over rhetoric',
+      'Truth bombs incoming',
+      'Expose fraud, protect workers'
+    ],
+    sergeant: [
+      'An injury to one is an injury to all',
+      'Isolated workers are vulnerable workers',
+      'Collective power beats corporate lies',
+      'Solidarity is our superpower',
+      'Together we bargain, divided we beg'
+    ],
+    lieutenant: [
+      'Make memes, not excuses',
+      'Viral truth beats corporate propaganda',
+      'Laugh now, organize later',
+      'Humor is a weapon of the working class',
+      'One meme at a time, we change minds'
+    ],
+    major: [
+      'Nothing about us without us',
+      'Accessibility is non-negotiable',
+      'Disability justice is worker justice',
+      'Your ableism is showing',
+      'Inclusion or shut it down'
+    ],
+    corporal: [
+      'Burnout is not a badge of honor',
+      'Self-care is community care',
+      'Rest is revolutionary',
+      'Healing is not selfish',
+      'You cannot pour from an empty cup'
+    ],
+    private: [
+      'In data we trust',
+      'Numbers don\'t lie, insurance companies do',
+      'Statistical justice',
+      'Track, analyze, expose',
+      'Evidence-based resistance'
+    ]
+  };
+
+  const memeTemplates = [
+    {
+      id: 1,
+      character: 'captain',
+      setup: 'Insurance company: "There\'s no evidence"',
+      punchline: 'Me: *pulls out 47 screenshots*',
+      category: 'Documentation'
+    },
+    {
+      id: 2,
+      character: 'sergeant',
+      setup: 'Boss: "This is between you and me"',
+      punchline: 'Me: *CCs the entire department*',
+      category: 'Solidarity'
+    },
+    {
+      id: 3,
+      character: 'lieutenant',
+      setup: 'HR: "We\'re one big family"',
+      punchline: 'Also HR: *denies your injury claim*',
+      category: 'Hypocrisy'
+    },
+    {
+      id: 4,
+      character: 'major',
+      setup: 'Employer: "We value diversity"',
+      punchline: 'Disabled workers: "Where\'s the elevator?"',
+      category: 'Accessibility'
+    },
+    {
+      id: 5,
+      character: 'corporal',
+      setup: 'Society: "Rest is lazy"',
+      punchline: 'Chronically ill workers: "Rest is survival"',
+      category: 'Self-Care'
+    },
+    {
+      id: 6,
+      character: 'private',
+      setup: 'Them: "It\'s just a few bad cases"',
+      punchline: 'The data: *shows 73% denial rate*',
+      category: 'Statistics'
+    }
+  ];
+
+  const generateSlogan = (characterId = null) => {
+    const sloganSet = characterId ? slogans[characterId] : slogans.general;
+    const random = sloganSet[Math.floor(Math.random() * sloganSet.length)];
     setGeneratedSlogan(random);
   };
 
+  const getCharacterById = (id) => characters.find(char => char.id === id);
+  const selectedChar = getCharacterById(selectedCharacter);
+
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>🎨 Meme Warfare Tools</h2>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>🎨 Meme Warfare Arsenal</h2>
+      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
+        Create viral content featuring the Denial Squad. Choose your character, pick a template, or build from scratch.
+      </p>
+
+      {/* Character Selection */}
+      <div style={{ marginBottom: '3rem' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>Select Your Squad Member:</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
+          {characters.map(char => (
+            <div
+              key={char.id}
+              onClick={() => setSelectedCharacter(char.id)}
+              style={{
+                padding: '1rem',
+                background: selectedCharacter === char.id ? char.color : '#16213e',
+                border: `2px solid ${char.color}`,
+                borderRadius: '10px',
+                cursor: 'pointer',
+                textAlign: 'center',
+                transition: 'all 0.3s',
+                transform: selectedCharacter === char.id ? 'scale(1.05)' : 'scale(1)'
+              }}
+            >
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{char.emoji}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '0.3rem' }}>{char.name.split(' ')[0]}</div>
+              <div style={{ fontSize: '0.7rem', opacity: 0.8 }}>{char.tagline}</div>
+            </div>
+          ))}
+        </div>
+      </div>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
         {/* Meme Generator */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: '2px solid #667eea' }}>
+        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
           <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-            🖼️ Meme Generator
+            🖼️ Custom Meme Builder
           </h3>
+          <p style={{ fontSize: '0.9rem', marginBottom: '1rem', opacity: 0.8 }}>
+            Featuring: {selectedChar.name} {selectedChar.emoji}
+          </p>
           <div style={{ marginBottom: '1rem' }}>
             <input
               type="text"
-              placeholder="Top text"
+              placeholder="Setup / Top text"
               value={memeText.top}
               onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
               style={inputStyle}
@@ -888,7 +1253,7 @@ function MemeToolsSection() {
           <div style={{ marginBottom: '1rem' }}>
             <input
               type="text"
-              placeholder="Bottom text"
+              placeholder="Punchline / Bottom text"
               value={memeText.bottom}
               onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
               style={inputStyle}
@@ -898,66 +1263,89 @@ function MemeToolsSection() {
             background: '#0a0a0a',
             padding: '2rem',
             borderRadius: '8px',
-            minHeight: '200px',
+            minHeight: '250px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            border: `3px solid ${selectedChar.color}`
           }}>
-            <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center' }}>
-              {memeText.top || 'TOP TEXT'}
+            <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+              {memeText.top || 'ENTER YOUR SETUP TEXT'}
             </p>
-            <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>[Image would go here]</p>
-            <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center' }}>
-              {memeText.bottom || 'BOTTOM TEXT'}
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '5rem', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
+              <div style={{ fontSize: '0.9rem', color: selectedChar.color, fontWeight: 'bold' }}>
+                {selectedChar.name}
+              </div>
+            </div>
+            <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+              {memeText.bottom || 'ENTER YOUR PUNCHLINE'}
             </p>
           </div>
-          <button style={{ ...buttonStyle, width: '100%', marginTop: '1rem' }}>
-            Generate Meme
+          <button style={{ ...buttonStyle, width: '100%', marginTop: '1rem', background: selectedChar.color }}>
+            📥 Download Meme
           </button>
         </div>
 
         {/* Slogan Generator */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: '2px solid #667eea' }}>
+        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
           <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
             ✊ Slogan Generator
           </h3>
-          <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', opacity: 0.9 }}>
-            Generate powerful slogans for protests, social media, and solidarity campaigns.
+          <p style={{ marginBottom: '1rem', fontSize: '0.95rem', opacity: 0.9 }}>
+            Generate powerful slogans inspired by {selectedChar.name}
           </p>
-          <button onClick={generateSlogan} style={{ ...buttonStyle, width: '100%', marginBottom: '1.5rem' }}>
-            Generate Random Slogan
-          </button>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
+            <button 
+              onClick={() => generateSlogan(selectedCharacter)} 
+              style={{ ...buttonStyle, flex: 1, background: selectedChar.color, fontSize: '0.9rem' }}
+            >
+              {selectedChar.name.split(' ')[0]}'s Slogan
+            </button>
+            <button 
+              onClick={() => generateSlogan()} 
+              style={{ ...buttonStyle, flex: 1, fontSize: '0.9rem' }}
+            >
+              General
+            </button>
+          </div>
           {generatedSlogan && (
             <div style={{
               padding: '1.5rem',
               background: '#0f3460',
               borderRadius: '8px',
-              border: '2px solid #764ba2',
+              border: `2px solid ${selectedChar.color}`,
               marginBottom: '1.5rem'
             }}>
-              <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
+              <p style={{ fontSize: '1.15rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.6' }}>
                 "{generatedSlogan}"
               </p>
+              <button style={{ ...buttonStyle, width: '100%', marginTop: '1rem', fontSize: '0.85rem', padding: '0.5rem' }}>
+                📋 Copy to Clipboard
+              </button>
             </div>
           )}
           <div>
-            <p style={{ marginBottom: '0.5rem', fontSize: '0.9rem' }}>Popular Slogans:</p>
-            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.85rem', opacity: 0.8 }}>
-              {slogans.slice(0, 4).map((slogan, idx) => (
-                <li key={idx} style={{ padding: '0.3rem 0' }}>• {slogan}</li>
+            <p style={{ marginBottom: '0.5rem', fontSize: '0.9rem', color: selectedChar.color, fontWeight: 'bold' }}>
+              {selectedChar.name}'s Signature Slogans:
+            </p>
+            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.8rem', opacity: 0.8 }}>
+              {slogans[selectedCharacter].slice(0, 3).map((slogan, idx) => (
+                <li key={idx} style={{ padding: '0.3rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>• {slogan}</li>
               ))}
             </ul>
           </div>
         </div>
 
         {/* Poster Maker */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: '2px solid #667eea' }}>
+        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
           <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-            📢 Protest Poster Maker
+            📢 Protest Poster Designer
           </h3>
-          <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', opacity: 0.9 }}>
-            Create downloadable posters for rallies, strikes, and demonstrations.
+          <p style={{ marginBottom: '1rem', fontSize: '0.95rem', opacity: 0.9 }}>
+            Create posters featuring {selectedChar.name} for rallies and strikes.
           </p>
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
@@ -965,7 +1353,9 @@ function MemeToolsSection() {
             </label>
             <input
               type="text"
-              placeholder="Your message here"
+              placeholder={`e.g., "${selectedChar.tagline}"`}
+              value={posterMessage}
+              onChange={(e) => setPosterMessage(e.target.value)}
               style={inputStyle}
             />
           </div>
@@ -973,17 +1363,116 @@ function MemeToolsSection() {
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
               Color Scheme
             </label>
-            <select style={inputStyle}>
-              <option>Red & Black (Classic)</option>
-              <option>Purple & White (Unity)</option>
-              <option>Green & Yellow (Safety)</option>
-              <option>Blue & Silver (Professional)</option>
+            <select 
+              value={posterColor} 
+              onChange={(e) => setPosterColor(e.target.value)}
+              style={inputStyle}
+            >
+              <option value="red">Red & Black (Classic Revolution)</option>
+              <option value="purple">Purple & White (Unity)</option>
+              <option value="green">Green & Yellow (Worker Safety)</option>
+              <option value="blue">Blue & Silver (Professional)</option>
+              <option value="character">Character Color ({selectedChar.name})</option>
             </select>
           </div>
-          <button style={{ ...buttonStyle, width: '100%' }}>
-            Create Poster
+          <div style={{
+            background: posterColor === 'character' ? selectedChar.color : '#1a1a2e',
+            padding: '2rem',
+            borderRadius: '8px',
+            minHeight: '200px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '1rem',
+            border: '3px solid white'
+          }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{selectedChar.emoji}</div>
+            <p style={{ fontSize: '1.3rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+              {posterMessage || 'YOUR MESSAGE HERE'}
+            </p>
+            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>- {selectedChar.name}</p>
+          </div>
+          <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
+            📥 Download Poster (8.5x11")
           </button>
         </div>
+      </div>
+
+      {/* Meme Template Library */}
+      <div style={{ marginTop: '3rem' }}>
+        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#667eea' }}>📚 Pre-Made Meme Templates</h3>
+        <p style={{ fontSize: '1rem', marginBottom: '1.5rem', opacity: 0.9 }}>Click any template to customize it with your own text</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+          {memeTemplates
+            .filter(template => !selectedCharacter || template.character === selectedCharacter)
+            .map(template => {
+              const templateChar = getCharacterById(template.character);
+              return (
+                <div 
+                  key={template.id}
+                  onClick={() => {
+                    setMemeText({ top: template.setup, bottom: template.punchline });
+                    setSelectedCharacter(template.character);
+                    setActiveTemplate(template.id);
+                  }}
+                  style={{
+                    padding: '1.5rem',
+                    background: '#16213e',
+                    borderRadius: '10px',
+                    border: `2px solid ${activeTemplate === template.id ? templateChar.color : '#667eea'}`,
+                    cursor: 'pointer',
+                    transition: 'all 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '2rem' }}>{templateChar.emoji}</span>
+                    <span style={{ 
+                      fontSize: '0.7rem', 
+                      padding: '0.3rem 0.7rem', 
+                      background: templateChar.color,
+                      borderRadius: '15px'
+                    }}>
+                      {template.category}
+                    </span>
+                  </div>
+                  <div style={{ 
+                    background: '#0a0a0a', 
+                    padding: '1rem', 
+                    borderRadius: '8px',
+                    minHeight: '120px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}>
+                    <p style={{ fontSize: '0.95rem', marginBottom: '1rem', fontStyle: 'italic' }}>
+                      {template.setup}
+                    </p>
+                    <p style={{ fontSize: '0.95rem', fontWeight: 'bold', color: templateChar.color }}>
+                      {template.punchline}
+                    </p>
+                  </div>
+                  <button style={{ 
+                    ...buttonStyle, 
+                    width: '100%', 
+                    marginTop: '1rem', 
+                    background: templateChar.color,
+                    fontSize: '0.85rem',
+                    padding: '0.6rem'
+                  }}>
+                    Use This Template
+                  </button>
+                </div>
+              );
+            })}
+        </div>
+        {memeTemplates.filter(t => t.character === selectedCharacter).length === 0 && (
+          <p style={{ textAlign: 'center', opacity: 0.7, marginTop: '2rem' }}>
+            No templates for {selectedChar.name} yet. Be the first to create one!
+          </p>
+        )}
       </div>
 
       <div style={{

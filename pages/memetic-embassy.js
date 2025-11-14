@@ -1077,6 +1077,14 @@ function MemeToolsSection() {
   const [posterMessage, setPosterMessage] = useState('');
   const [posterColor, setPosterColor] = useState('red');
   const [activeTemplate, setActiveTemplate] = useState(null);
+  const [hashtags, setHashtags] = useState([]);
+  const [infographicData, setInfographicData] = useState({ title: '', stat1: '', stat2: '', stat3: '' });
+  const [quoteText, setQuoteText] = useState('');
+  const [quoteAuthor, setQuoteAuthor] = useState('');
+  const [threadTopic, setThreadTopic] = useState('');
+  const [threadPosts, setThreadPosts] = useState(['']);
+  const [gifCaption, setGifCaption] = useState('');
+  const [activeToolTab, setActiveToolTab] = useState('basic');
 
   const characters = [
     { id: 'captain', name: 'Captain Truth-Teller', emoji: '🎖️', color: '#667eea', tagline: 'RECEIPTS DON\'T LIE' },
@@ -1188,6 +1196,78 @@ function MemeToolsSection() {
       category: 'Statistics'
     }
   ];
+
+  const hashtagSuggestions = {
+    general: ['#InjuredWorkersUnite', '#WorkerRights', '#DisabilityJustice', '#WorkplaceInjury', '#Solidarity'],
+    captain: ['#ReceiptsReady', '#DocumentEverything', '#ExposeFraud', '#TruthMatters', '#WorkersTruth'],
+    sergeant: ['#WorkerPower', '#CollectiveAction', '#UnionStrong', '#AnInjuryToOne', '#OrganizeNow'],
+    lieutenant: ['#MemeWarfare', '#ViralTruth', '#MemesForChange', '#DigitalResistance', '#HumorAsWeapon'],
+    major: ['#AccessibilityMatters', '#DisabilityRights', '#NothingAboutUs', '#InclusionNow', '#ADACompliance'],
+    corporal: ['#SelfCareIsResistance', '#RestIsRevolutionary', '#BurnoutPrevention', '#HealingJustice', '#MentalHealthMatters'],
+    private: ['#DataDriven', '#StatisticalJustice', '#NumbersDontLie', '#EvidenceBased', '#ResearchForChange']
+  };
+
+  const viralChallenges = [
+    {
+      name: 'Show Your Receipts Challenge',
+      description: 'Post screenshots of denial letters, hostile emails, or gaslighting messages',
+      hashtag: '#ReceiptsChallenge',
+      character: 'captain',
+      icon: '📸'
+    },
+    {
+      name: 'Solidarity Selfie',
+      description: 'Take a photo with your coworkers showing unity and tag other workplaces',
+      hashtag: '#SolidaritySelfie',
+      character: 'sergeant',
+      icon: '🤳'
+    },
+    {
+      name: 'Meme-a-Day Movement',
+      description: 'Create one worker rights meme every day for a week',
+      hashtag: '#MemeADayMovement',
+      character: 'lieutenant',
+      icon: '📅'
+    },
+    {
+      name: 'Accessibility Audit',
+      description: 'Document and share inaccessible aspects of your workplace',
+      hashtag: '#AccessibilityAudit',
+      character: 'major',
+      icon: '🔍'
+    },
+    {
+      name: 'Rest Revolution',
+      description: 'Share photos of yourself resting unapologetically with captions about self-care',
+      hashtag: '#RestRevolution',
+      character: 'corporal',
+      icon: '😴'
+    },
+    {
+      name: 'Data Drop',
+      description: 'Share one shocking statistic about workplace injuries with sources',
+      hashtag: '#DataDrop',
+      character: 'private',
+      icon: '📊'
+    }
+  ];
+
+  const generateHashtags = () => {
+    const general = hashtagSuggestions.general;
+    const characterSpecific = hashtagSuggestions[selectedCharacter];
+    const combined = [...general.slice(0, 3), ...characterSpecific.slice(0, 3)];
+    setHashtags(combined);
+  };
+
+  const addThreadPost = () => {
+    setThreadPosts([...threadPosts, '']);
+  };
+
+  const updateThreadPost = (index, value) => {
+    const updated = [...threadPosts];
+    updated[index] = value;
+    setThreadPosts(updated);
+  };
 
   const generateSlogan = (characterId = null) => {
     const sloganSet = characterId ? slogans[characterId] : slogans.general;
@@ -1472,6 +1552,488 @@ function MemeToolsSection() {
           <p style={{ textAlign: 'center', opacity: 0.7, marginTop: '2rem' }}>
             No templates for {selectedChar.name} yet. Be the first to create one!
           </p>
+        )}
+      </div>
+
+      {/* Advanced Tools Section */}
+      <div style={{ marginTop: '3rem' }}>
+        <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#667eea' }}>🚀 Advanced Meme Warfare Tools</h3>
+        
+        {/* Tool Tabs */}
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          {['basic', 'hashtag', 'infographic', 'quote', 'thread', 'gif', 'challenge'].map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveToolTab(tab)}
+              style={{
+                padding: '0.6rem 1.2rem',
+                background: activeToolTab === tab ? selectedChar.color : '#16213e',
+                border: `2px solid ${selectedChar.color}`,
+                borderRadius: '25px',
+                color: 'white',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                fontWeight: activeToolTab === tab ? 'bold' : 'normal',
+                transition: 'all 0.3s'
+              }}
+            >
+              {tab === 'basic' && '📝 Basic'}
+              {tab === 'hashtag' && '# Hashtags'}
+              {tab === 'infographic' && '📊 Infographic'}
+              {tab === 'quote' && '💬 Quote Card'}
+              {tab === 'thread' && '🧵 Thread'}
+              {tab === 'gif' && '🎬 GIF Caption'}
+              {tab === 'challenge' && '🏆 Challenges'}
+            </button>
+          ))}
+        </div>
+
+        {/* Hashtag Generator */}
+        {activeToolTab === 'hashtag' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              # Hashtag Generator
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Generate optimized hashtags for {selectedChar.name}'s campaigns
+            </p>
+            <button 
+              onClick={generateHashtags}
+              style={{ ...buttonStyle, background: selectedChar.color, marginBottom: '1.5rem' }}
+            >
+              Generate Hashtags for {selectedChar.name.split(' ')[0]}
+            </button>
+            {hashtags.length > 0 && (
+              <div style={{
+                padding: '1.5rem',
+                background: '#0f3460',
+                borderRadius: '10px',
+                marginBottom: '1.5rem'
+              }}>
+                <p style={{ fontSize: '0.9rem', marginBottom: '1rem', opacity: 0.8 }}>Copy and paste these hashtags:</p>
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: selectedChar.color }}>
+                  {hashtags.join(' ')}
+                </p>
+                <button style={{ ...buttonStyle, marginTop: '1rem', fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                  📋 Copy All Hashtags
+                </button>
+              </div>
+            )}
+            <div style={{ marginTop: '2rem' }}>
+              <h5 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: '#667eea' }}>Trending Worker Rights Hashtags</h5>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {[...hashtagSuggestions.general, ...hashtagSuggestions[selectedCharacter]].map((tag, idx) => (
+                  <span key={idx} style={{
+                    padding: '0.5rem 1rem',
+                    background: '#0f3460',
+                    borderRadius: '20px',
+                    fontSize: '0.85rem',
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => navigator.clipboard?.writeText(tag)}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Infographic Builder */}
+        {activeToolTab === 'infographic' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              📊 Infographic Builder
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Create data-driven infographics to expose workplace injustice
+            </p>
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Title</label>
+              <input
+                type="text"
+                placeholder="e.g., 'The Real Cost of Workplace Injuries'"
+                value={infographicData.title}
+                onChange={(e) => setInfographicData({...infographicData, title: e.target.value})}
+                style={inputStyle}
+              />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 1</label>
+                <input
+                  type="text"
+                  placeholder="73% of claims denied"
+                  value={infographicData.stat1}
+                  onChange={(e) => setInfographicData({...infographicData, stat1: e.target.value})}
+                  style={inputStyle}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 2</label>
+                <input
+                  type="text"
+                  placeholder="$30B in denied benefits"
+                  value={infographicData.stat2}
+                  onChange={(e) => setInfographicData({...infographicData, stat2: e.target.value})}
+                  style={inputStyle}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 3</label>
+                <input
+                  type="text"
+                  placeholder="2.8M workers injured yearly"
+                  value={infographicData.stat3}
+                  onChange={(e) => setInfographicData({...infographicData, stat3: e.target.value})}
+                  style={inputStyle}
+                />
+              </div>
+            </div>
+            <div style={{
+              padding: '2rem',
+              background: selectedChar.color,
+              borderRadius: '10px',
+              minHeight: '300px',
+              marginBottom: '1rem'
+            }}>
+              <h3 style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '2rem' }}>
+                {infographicData.title || 'YOUR TITLE HERE'}
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                {[infographicData.stat1, infographicData.stat2, infographicData.stat3].map((stat, idx) => (
+                  <div key={idx} style={{
+                    padding: '1.5rem',
+                    background: 'rgba(255,255,255,0.2)',
+                    borderRadius: '10px',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
+                    <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{stat || 'STAT'}</p>
+                  </div>
+                ))}
+              </div>
+              <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.9rem' }}>
+                Source: {selectedChar.name}
+              </p>
+            </div>
+            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
+              📥 Download Infographic
+            </button>
+          </div>
+        )}
+
+        {/* Quote Card Maker */}
+        {activeToolTab === 'quote' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              💬 Quote Card Maker
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Create shareable quote cards featuring worker testimonials
+            </p>
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Quote</label>
+              <textarea
+                placeholder="Enter a powerful quote from an injured worker..."
+                value={quoteText}
+                onChange={(e) => setQuoteText(e.target.value)}
+                style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
+              />
+            </div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Attribution</label>
+              <input
+                type="text"
+                placeholder="- Anonymous Injured Worker, 2025"
+                value={quoteAuthor}
+                onChange={(e) => setQuoteAuthor(e.target.value)}
+                style={inputStyle}
+              />
+            </div>
+            <div style={{
+              padding: '3rem',
+              background: `linear-gradient(135deg, ${selectedChar.color} 0%, #1a1a2e 100%)`,
+              borderRadius: '10px',
+              minHeight: '250px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '1rem',
+              border: '3px solid white'
+            }}>
+              <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{selectedChar.emoji}</div>
+              <p style={{ fontSize: '1.3rem', fontStyle: 'italic', textAlign: 'center', marginBottom: '1.5rem', lineHeight: '1.6', maxWidth: '80%' }}>
+                "{quoteText || 'Your powerful quote will appear here...'}"
+              </p>
+              <p style={{ fontSize: '1rem', opacity: 0.9 }}>
+                {quoteAuthor || '- Attribution'}
+              </p>
+              <p style={{ fontSize: '0.8rem', marginTop: '2rem', opacity: 0.7 }}>
+                #InjuredWorkersUnite
+              </p>
+            </div>
+            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
+              📥 Download Quote Card
+            </button>
+          </div>
+        )}
+
+        {/* Thread Composer */}
+        {activeToolTab === 'thread' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              🧵 Twitter/X Thread Composer
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Build viral threads to tell your story and educate the masses
+            </p>
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Thread Topic</label>
+              <input
+                type="text"
+                placeholder="e.g., 'How insurance companies gaslight injured workers: a thread 🧵'"
+                value={threadTopic}
+                onChange={(e) => setThreadTopic(e.target.value)}
+                style={inputStyle}
+              />
+            </div>
+            {threadPosts.map((post, idx) => (
+              <div key={idx} style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                  Tweet {idx + 1}/10 {idx === 0 && '(Opening tweet)'}
+                </label>
+                <textarea
+                  placeholder={idx === 0 ? threadTopic || 'Start your thread...' : `Tweet ${idx + 1}...`}
+                  value={post}
+                  onChange={(e) => updateThreadPost(idx, e.target.value)}
+                  style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+                  maxLength={280}
+                />
+                <p style={{ fontSize: '0.75rem', opacity: 0.6, textAlign: 'right', marginTop: '0.3rem' }}>
+                  {post.length}/280 characters
+                </p>
+              </div>
+            ))}
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+              <button 
+                onClick={addThreadPost}
+                disabled={threadPosts.length >= 10}
+                style={{ 
+                  ...buttonStyle, 
+                  flex: 1, 
+                  background: threadPosts.length >= 10 ? '#666' : selectedChar.color,
+                  cursor: threadPosts.length >= 10 ? 'not-allowed' : 'pointer'
+                }}
+              >
+                ➕ Add Tweet ({threadPosts.length}/10)
+              </button>
+              <button style={{ ...buttonStyle, flex: 1 }}>
+                📋 Copy Thread
+              </button>
+            </div>
+            <div style={{ marginTop: '2rem', padding: '1rem', background: '#0f3460', borderRadius: '8px' }}>
+              <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem', fontWeight: 'bold', color: '#667eea' }}>
+                Thread Tips:
+              </p>
+              <ul style={{ fontSize: '0.85rem', opacity: 0.9, paddingLeft: '1.5rem' }}>
+                <li>Start with a hook that grabs attention</li>
+                <li>Use numbered tweets (1/10, 2/10, etc.)</li>
+                <li>Include the {selectedChar.emoji} emoji throughout</li>
+                <li>End with a call to action</li>
+                <li>Add relevant hashtags to the final tweet</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* GIF Caption Tool */}
+        {activeToolTab === 'gif' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              🎬 GIF Caption Generator
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
+              Create perfect captions for reaction GIFs about workplace injustice
+            </p>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                GIF Context (What's happening in the GIF?)
+              </label>
+              <textarea
+                placeholder="e.g., 'Person looking shocked and confused'"
+                value={gifCaption}
+                onChange={(e) => setGifCaption(e.target.value)}
+                style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+              />
+            </div>
+            <div style={{
+              padding: '2rem',
+              background: '#0f3460',
+              borderRadius: '10px',
+              marginBottom: '1.5rem'
+            }}>
+              <h5 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: selectedChar.color }}>
+                Caption Suggestions for {selectedChar.name}:
+              </h5>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                {[
+                  'Me: "I need medical treatment"\nInsurance: "We\'ve decided you\'re fine"',
+                  'Boss: "We\'re like family here"\nAlso boss: *denies workers comp claim*',
+                  'Doctor: "I don\'t see any injury"\nMy body:',
+                  'HR: "We take safety seriously"\n*Looks at injury statistics*',
+                  'Me explaining my injury for the 47th time:',
+                  'Insurance company reading my claim:'
+                ].map((caption, idx) => (
+                  <div 
+                    key={idx}
+                    style={{
+                      padding: '1rem',
+                      background: '#16213e',
+                      borderRadius: '8px',
+                      border: '1px solid rgba(102,126,234,0.3)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#1a2642'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#16213e'}
+                    onClick={() => setGifCaption(caption)}
+                  >
+                    <p style={{ fontSize: '0.9rem', whiteSpace: 'pre-line' }}>{caption}</p>
+                    <button style={{ 
+                      ...buttonStyle, 
+                      marginTop: '0.5rem', 
+                      padding: '0.4rem 0.8rem', 
+                      fontSize: '0.75rem',
+                      background: selectedChar.color
+                    }}>
+                      Use This Caption
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
+              📋 Copy Caption
+            </button>
+          </div>
+        )}
+
+        {/* Viral Challenges */}
+        {activeToolTab === 'challenge' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              🏆 Viral Challenge Campaigns
+            </h4>
+            <p style={{ fontSize: '0.95rem', marginBottom: '2rem', opacity: 0.9 }}>
+              Join or start viral challenges to build momentum and solidarity
+            </p>
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              {viralChallenges.filter(c => !selectedCharacter || c.character === selectedCharacter).map((challenge, idx) => (
+                <div 
+                  key={idx}
+                  style={{
+                    padding: '1.5rem',
+                    background: '#0f3460',
+                    borderRadius: '10px',
+                    border: `2px solid ${characters.find(ch => ch.id === challenge.character).color}`
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                    <div style={{ fontSize: '3rem' }}>{challenge.icon}</div>
+                    <div>
+                      <h5 style={{ fontSize: '1.3rem', color: characters.find(ch => ch.id === challenge.character).color }}>
+                        {challenge.name}
+                      </h5>
+                      <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>
+                        Led by {characters.find(ch => ch.id === challenge.character).name} {characters.find(ch => ch.id === challenge.character).emoji}
+                      </p>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.6' }}>
+                    {challenge.description}
+                  </p>
+                  <div style={{ 
+                    padding: '0.8rem 1.2rem', 
+                    background: characters.find(ch => ch.id === challenge.character).color,
+                    borderRadius: '8px',
+                    marginBottom: '1rem',
+                    fontFamily: 'monospace',
+                    fontSize: '1rem'
+                  }}>
+                    {challenge.hashtag}
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button style={{ 
+                      ...buttonStyle, 
+                      flex: 1, 
+                      background: characters.find(ch => ch.id === challenge.character).color 
+                    }}>
+                      🎯 Start Challenge
+                    </button>
+                    <button style={{ 
+                      ...buttonStyle, 
+                      flex: 1,
+                      background: '#16213e',
+                      border: `2px solid ${characters.find(ch => ch.id === challenge.character).color}`
+                    }}>
+                      📋 Copy Hashtag
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#0f3460', borderRadius: '10px' }}>
+              <h5 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: '#667eea' }}>
+                💡 How to Run a Successful Challenge:
+              </h5>
+              <ol style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.5rem', lineHeight: '1.8' }}>
+                <li>Post your own example first to show what you want</li>
+                <li>Tag 3-5 people to participate next</li>
+                <li>Use the challenge hashtag consistently</li>
+                <li>Engage with everyone who participates</li>
+                <li>Share the best submissions to amplify voices</li>
+                <li>Keep it going for at least 7 days</li>
+              </ol>
+            </div>
+          </div>
+        )}
+
+        {/* Basic Tools Info */}
+        {activeToolTab === 'basic' && (
+          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
+            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+              📝 All Meme Warfare Tools
+            </h4>
+            <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9 }}>
+              Select a tool category above to access powerful content creation features:
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+              {[
+                { icon: '#', title: 'Hashtag Generator', desc: 'Generate optimized hashtags for maximum reach' },
+                { icon: '📊', title: 'Infographic Builder', desc: 'Create data-driven visual content' },
+                { icon: '💬', title: 'Quote Card Maker', desc: 'Share powerful worker testimonials' },
+                { icon: '🧵', title: 'Thread Composer', desc: 'Build viral Twitter/X threads' },
+                { icon: '🎬', title: 'GIF Caption Tool', desc: 'Perfect captions for reaction GIFs' },
+                { icon: '🏆', title: 'Viral Challenges', desc: 'Start or join movement campaigns' }
+              ].map((tool, idx) => (
+                <div key={idx} style={{
+                  padding: '1.5rem',
+                  background: '#0f3460',
+                  borderRadius: '10px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{tool.icon}</div>
+                  <h5 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: selectedChar.color }}>
+                    {tool.title}
+                  </h5>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.9 }}>{tool.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
 

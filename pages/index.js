@@ -38,8 +38,107 @@ export default function Home() {
           A Digital Sanctuary for Injured Workers, Disabled Persons, and Creative Resistance
         </p>
 
+        {/* Feature Cards */}
         <div style={{
-          marginTop: '4rem',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          maxWidth: '1200px',
+          width: '100%',
+          marginBottom: '3rem'
+        }}>
+          <Link href="/the-eye" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(79, 172, 254, 0.5)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👁️</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>The EYE</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>AI-powered investigator tracking systemic abuse, policy changes, and corporate accountability.</p>
+            </div>
+          </Link>
+
+          <Link href="/automated-monitoring" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>24/7 Monitoring</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Automated tracking of provincial & federal bills, WSIB policies, disability benefits, and more.</p>
+            </div>
+          </Link>
+
+          <Link href="/target-acquisition" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎯</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Target Acquisition</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Track entities causing harm to workers and disabled persons. Evidence-based accountability.</p>
+            </div>
+          </Link>
+
+          <Link href="/alerts" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 100, 100, 0.5)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚨</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Live Alerts</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Real-time notifications of critical policy changes, new bills, and system updates.</p>
+            </div>
+          </Link>
+
+          <Link href="/meme-gallery" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>😂</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Meme Gallery</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Creative resistance through humor. Share and spread awareness with powerful memes.</p>
+            </div>
+          </Link>
+        </div>
+
+        <div style={{
           padding: '2rem',
           background: 'rgba(0,0,0,0.2)',
           borderRadius: '20px',

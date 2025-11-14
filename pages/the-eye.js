@@ -438,9 +438,27 @@ export default function TheEye() {
             textDecoration: 'none',
             transition: 'all 0.3s',
             boxShadow: '0 0 20px rgba(68, 255, 136, 0.5)',
+            marginRight: '1rem',
             marginBottom: '1rem'
           }}>
             🤖 24/7 Monitoring
+          </Link>
+          
+          <Link href="/alerts" style={{
+            display: 'inline-block',
+            padding: '1rem 3rem',
+            background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+            border: 'none',
+            borderRadius: '50px',
+            color: 'white',
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            textDecoration: 'none',
+            transition: 'all 0.3s',
+            boxShadow: '0 0 20px rgba(255, 107, 107, 0.5)',
+            marginBottom: '1rem'
+          }}>
+            🚨 Live Alerts
           </Link>
         </div>
       </div>

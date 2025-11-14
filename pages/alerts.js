@@ -1,0 +1,315 @@
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
+export default function AlertsPage() {
+  const [alerts, setAlerts] = useState([]);
+  const [filter, setFilter] = useState('all'); // all, critical, high, warning
+  const [sourceFilter, setSourceFilter] = useState('all');
+
+  useEffect(() => {
+    loadAlerts();
+    const interval = setInterval(loadAlerts, 30000); // Refresh every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  async function loadAlerts() {
+    try {
+      const response = await fetch('/data/alerts.json');
+      if (response.ok) {
+        const data = await response.json();
+        setAlerts(data);
+      }
+    } catch (error) {
+      console.log('No alerts yet');
+    }
+  }
+
+  const filteredAlerts = alerts.filter(alert => {
+    if (filter !== 'all' && alert.severity !== filter) return false;
+    if (sourceFilter !== 'all' && alert.source !== sourceFilter) return false;
+    return true;
+  });
+
+  const sources = ['all', ...new Set(alerts.map(a => a.source))];
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)',
+      color: '#fff',
+      padding: '40px 20px',
+      fontFamily: 'monospace'
+    }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        
+        {/* Header */}
+        <div style={{ 
+          background: 'linear-gradient(135deg, #00ffff 0%, #0088ff 100%)',
+          padding: '30px',
+          borderRadius: '15px',
+          marginBottom: '30px',
+          boxShadow: '0 0 30px rgba(0,255,255,0.3)'
+        }}>
+          <h1 style={{ margin: 0, fontSize: '48px', textShadow: '0 0 10px rgba(0,0,0,0.5)' }}>
+            👁️ LIVE ALERTS
+          </h1>
+          <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: 0.9 }}>
+            Real-time monitoring results • Updates every 30 seconds
+          </p>
+          <Link href="/the-eye" style={{ 
+            color: '#fff', 
+            textDecoration: 'underline',
+            fontSize: '16px',
+            marginTop: '10px',
+            display: 'inline-block'
+          }}>
+            ← Back to The EYE
+          </Link>
+        </div>
+
+        {/* Filters */}
+        <div style={{
+          background: 'rgba(255,255,255,0.05)',
+          padding: '20px',
+          borderRadius: '10px',
+          marginBottom: '20px',
+          display: 'flex',
+          gap: '20px',
+          flexWrap: 'wrap',
+          alignItems: 'center'
+        }}>
+          <div>
+            <strong>Severity:</strong>
+            {['all', 'critical', 'high', 'warning'].map(sev => (
+              <button
+                key={sev}
+                onClick={() => setFilter(sev)}
+                style={{
+                  padding: '8px 16px',
+                  margin: '0 5px',
+                  border: filter === sev ? '2px solid #00ffff' : '1px solid rgba(255,255,255,0.3)',
+                  background: filter === sev ? 'rgba(0,255,255,0.2)' : 'rgba(0,0,0,0.3)',
+                  color: '#fff',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  fontSize: '12px'
+                }}
+              >
+                {sev}
+              </button>
+            ))}
+          </div>
+          
+          <div>
+            <strong>Source:</strong>
+            {sources.map(src => (
+              <button
+                key={src}
+                onClick={() => setSourceFilter(src)}
+                style={{
+                  padding: '8px 16px',
+                  margin: '0 5px',
+                  border: sourceFilter === src ? '2px solid #00ffff' : '1px solid rgba(255,255,255,0.3)',
+                  background: sourceFilter === src ? 'rgba(0,255,255,0.2)' : 'rgba(0,0,0,0.3)',
+                  color: '#fff',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  fontSize: '12px'
+                }}
+              >
+                {src}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '15px',
+          marginBottom: '30px'
+        }}>
+          <StatCard 
+            label="Total Alerts" 
+            value={filteredAlerts.length}
+            color="#00ffff"
+          />
+          <StatCard 
+            label="Critical" 
+            value={alerts.filter(a => a.severity === 'critical').length}
+            color="#ff0000"
+          />
+          <StatCard 
+            label="High" 
+            value={alerts.filter(a => a.severity === 'high').length}
+            color="#ff8800"
+          />
+          <StatCard 
+            label="Warning" 
+            value={alerts.filter(a => a.severity === 'warning').length}
+            color="#ffcc00"
+          />
+        </div>
+
+        {/* Alerts List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          {filteredAlerts.length === 0 ? (
+            <div style={{
+              padding: '60px',
+              textAlign: 'center',
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: '10px',
+              fontSize: '18px'
+            }}>
+              {alerts.length === 0 ? (
+                <>
+                  <div style={{ fontSize: '48px', marginBottom: '20px' }}>👁️</div>
+                  <div>No alerts yet. The EYE is watching...</div>
+                  <div style={{ marginTop: '10px', opacity: 0.7, fontSize: '14px' }}>
+                    Run the GitHub Actions workflow or wait for daily monitoring
+                  </div>
+                </>
+              ) : (
+                <div>No alerts match your filters</div>
+              )}
+            </div>
+          ) : (
+            filteredAlerts.map((alert, idx) => (
+              <AlertCard key={idx} alert={alert} />
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ label, value, color }) {
+  return (
+    <div style={{
+      background: 'rgba(255,255,255,0.05)',
+      padding: '20px',
+      borderRadius: '10px',
+      border: `2px solid ${color}`,
+      boxShadow: `0 0 20px ${color}40`
+    }}>
+      <div style={{ fontSize: '32px', fontWeight: 'bold', color }}>{value}</div>
+      <div style={{ fontSize: '14px', opacity: 0.8, marginTop: '5px' }}>{label}</div>
+    </div>
+  );
+}
+
+function AlertCard({ alert }) {
+  const severityColors = {
+    critical: '#ff0000',
+    high: '#ff8800',
+    warning: '#ffcc00',
+    info: '#00ccff'
+  };
+
+  const color = severityColors[alert.severity] || '#00ccff';
+  
+  return (
+    <div style={{
+      background: 'rgba(255,255,255,0.05)',
+      border: `2px solid ${color}`,
+      borderRadius: '10px',
+      padding: '20px',
+      boxShadow: `0 0 20px ${color}30`,
+      transition: 'all 0.3s ease'
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+            <span style={{ fontSize: '24px' }}>{alert.emoji}</span>
+            <span style={{
+              background: color,
+              color: '#000',
+              padding: '4px 12px',
+              borderRadius: '5px',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              textTransform: 'uppercase'
+            }}>
+              {alert.severity}
+            </span>
+            <span style={{
+              background: 'rgba(255,255,255,0.2)',
+              padding: '4px 12px',
+              borderRadius: '5px',
+              fontSize: '12px'
+            }}>
+              {alert.source}
+            </span>
+            <span style={{
+              background: 'rgba(255,255,255,0.1)',
+              padding: '4px 12px',
+              borderRadius: '5px',
+              fontSize: '12px'
+            }}>
+              {alert.type}
+            </span>
+          </div>
+          
+          <h3 style={{ 
+            margin: '0 0 10px 0', 
+            fontSize: '20px',
+            color: '#fff'
+          }}>
+            {alert.title}
+          </h3>
+          
+          {alert.details && Object.keys(alert.details).length > 0 && (
+            <div style={{ 
+              display: 'flex', 
+              gap: '20px', 
+              fontSize: '14px',
+              opacity: 0.8,
+              marginTop: '10px'
+            }}>
+              {Object.entries(alert.details).map(([key, value]) => (
+                <div key={key}>
+                  <strong>{key}:</strong> {value}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        
+        <div style={{ 
+          fontSize: '12px', 
+          opacity: 0.6,
+          textAlign: 'right',
+          minWidth: '150px'
+        }}>
+          {new Date(alert.timestamp).toLocaleString()}
+        </div>
+      </div>
+      
+      {alert.url && (
+        <a 
+          href={alert.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            padding: '8px 16px',
+            background: color,
+            color: '#000',
+            textDecoration: 'none',
+            borderRadius: '5px',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            transition: 'transform 0.2s ease'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        >
+          🔗 View Source
+        </a>
+      )}
+    </div>
+  );
+}

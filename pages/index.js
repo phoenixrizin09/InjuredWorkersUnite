@@ -35,7 +35,7 @@ export default function Home() {
           A Digital Sanctuary for Injured Workers, Disabled Persons, and Creative Resistance
         </p>
 
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2rem' }}>
           <Link href="/memetic-embassy" style={{
             padding: '1rem 2rem',
             background: 'rgba(255,255,255,0.2)',
@@ -47,7 +47,21 @@ export default function Home() {
             fontSize: '1.1rem',
             backdropFilter: 'blur(10px)'
           }}>
-            Enter The Memetic Embassy ✊
+            🏛️ Memetic Embassy
+          </Link>
+          
+          <Link href="/contact" style={{
+            padding: '1rem 2rem',
+            background: 'rgba(255,255,255,0.2)',
+            border: '2px solid white',
+            borderRadius: '50px',
+            color: 'white',
+            textDecoration: 'none',
+            fontWeight: 'bold',
+            fontSize: '1.1rem',
+            backdropFilter: 'blur(10px)'
+          }}>
+            📧 Contact
           </Link>
         </div>
 

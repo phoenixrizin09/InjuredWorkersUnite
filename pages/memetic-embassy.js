@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Header from '../components/Header';
 
 export default function MemeticEmbassy() {
   const [activeTab, setActiveTab] = useState('charter');
 
   return (
+    <>
+    <Header />
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: 'system-ui' }}>
       {/* Hero Section */}
       <section style={{
@@ -66,6 +69,7 @@ export default function MemeticEmbassy() {
         </Link>
       </footer>
     </div>
+    </>
   );
 }
 

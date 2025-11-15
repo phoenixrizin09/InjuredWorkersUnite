@@ -678,6 +678,242 @@ export default function TheEye() {
           </div>
         </div>
 
+        {/* RABBIT HOLES - Deep Investigation Tools */}
+        <div style={{
+          marginTop: '3rem',
+          marginBottom: '3rem',
+          padding: '2rem',
+          background: 'rgba(255, 68, 68, 0.05)',
+          border: '2px solid #ff4444',
+          borderRadius: '15px'
+        }}>
+          <h2 style={{
+            fontSize: '2rem',
+            color: '#ff4444',
+            marginBottom: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}>
+            🕳️ RABBIT HOLES - Become Your Own Investigator
+          </h2>
+          <p style={{ color: '#ccc', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.6' }}>
+            Don't just trust The EYE—verify everything yourself. These tools let you dig deeper into the systems
+            that affect your life. Every link goes to official government databases where you can search records,
+            file FOI requests, track lobbying, and expose corruption.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            {/* FOI Request Tools */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ff4444'
+            }}>
+              <h3 style={{ color: '#ff4444', marginBottom: '1rem', fontSize: '1.2rem' }}>📄 Freedom of Information</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Request internal documents, meeting minutes, contracts, and decision records
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ontario.ca/page/how-make-freedom-information-request" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario FOI Request Guide
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Access to Information
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/freedom-information" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIB FOI Portal
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Court & Legal Searches */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ff8844'
+            }}>
+              <h3 style={{ color: '#ff8844', marginBottom: '1rem', fontSize: '1.2rem' }}>⚖️ Court Records Search</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Search court cases, class actions, tribunal decisions, and legal precedents
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ontariocourts.ca/en/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Courts Portal
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.tribunalsontario.ca/wsiat/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIAT Appeals Database
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canlii.org/en/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 CanLII - Canadian Legal Database
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.olrb.gov.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Labour Relations Board
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Corporate Registry Searches */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ffcc44'
+            }}>
+              <h3 style={{ color: '#ffcc44', marginBottom: '1rem', fontSize: '1.2rem' }}>🏢 Corporate Investigations</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track corporate structures, board members, financial filings, and ownership
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ic.gc.ca/app/scr/cc/CorporationsCanada/fdrlCrpSrch.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Corporations Search
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ontario.ca/page/search-business-name-or-register-your-business" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Business Registry
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.sedarplus.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 SEDAR+ (Securities Filings)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.sec.gov/edgar/searchedgar/companysearch" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 SEC EDGAR (US Companies)
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Lobbying & Political Money */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #44ff88'
+            }}>
+              <h3 style={{ color: '#44ff88', marginBottom: '1rem', fontSize: '1.2rem' }}>💰 Follow the Money</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track lobbying activities, political donations, and influence operations
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/vwRg" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Lobbyist Registry
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oico.on.ca/home/lobbyist-registry" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Lobbyist Registry
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.elections.ca/content.aspx?section=fin&dir=oda&document=index&lang=e" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Political Contributions
+                  </a>
+                </li>
+                <li>
+                  <a href="https://finances.elections.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Political Financing
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Charity & Think Tank Funding */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #4facfe'
+            }}>
+              <h3 style={{ color: '#4facfe', marginBottom: '1rem', fontSize: '1.2rem' }}>🎯 Expose Astroturf</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track think tank funding, charity finances, and fake grassroots groups
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch?request_locale=en" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 CRA Charity Database (T3010 Returns)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/revenue-agency/services/charities-giving/charities-listings.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Charity Listings & Status
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Open Data & Statistics */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #a855f7'
+            }}>
+              <h3 style={{ color: '#a855f7', marginBottom: '1rem', fontSize: '1.2rem' }}>📊 Data & Evidence</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Access government datasets, injury statistics, and demographic data
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://open.canada.ca/en/open-data" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Open Government Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="https://data.ontario.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Open Data
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/stats" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIB Injury Statistics
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: '2rem',
+            padding: '1.5rem',
+            background: 'rgba(255, 68, 68, 0.1)',
+            borderRadius: '10px',
+            textAlign: 'center'
+          }}>
+            <p style={{ color: '#ff4444', fontSize: '1rem', margin: 0, lineHeight: '1.8' }}>
+              <strong>🔥 POWER TIP:</strong> Cross-reference data from multiple sources. When you find something suspicious in
+              a corporate filing, check the lobbyist registry for meetings. When a politician claims something, verify it
+              against the actual bill text and committee testimony. <strong>Every rabbit hole connects to another.</strong>
+            </p>
+          </div>
+        </div>
+
         {/* Scan Button */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           {/* EYE Active Status */}

@@ -150,9 +150,18 @@ export default function Header() {
           }
           .nav-menu {
             display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+          }
+          .nav-menu a {
+            font-size: 10px !important;
+            padding: 3px 6px !important;
           }
           .social-icons {
             display: none !important;
+          }
+          .social-donate {
+            justify-content: center !important;
           }
         }
         @media (max-width: 1024px) {

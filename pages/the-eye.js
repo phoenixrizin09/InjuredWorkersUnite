@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 
@@ -9,6 +9,22 @@ export default function TheEye() {
   const [isScanning, setIsScanning] = useState(false);
   const [expandedCapability, setExpandedCapability] = useState(null);
   const [actionLog, setActionLog] = useState([]);
+  const [eyeActive, setEyeActive] = useState(true);
+
+  // Auto-start The EYE on page load
+  useEffect(() => {
+    // Initial scan when component mounts
+    handleScan();
+    
+    // Auto-refresh every 5 minutes
+    const interval = setInterval(() => {
+      if (eyeActive) {
+        handleScan();
+      }
+    }, 300000); // 5 minutes
+
+    return () => clearInterval(interval);
+  }, [activeScope, eyeActive]);
 
   const scopes = [
     { id: 'provincial', name: 'Provincial', icon: '🏛️' },
@@ -627,6 +643,21 @@ export default function TheEye() {
 
         {/* Scan Button */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          {/* EYE Active Status */}
+          <div style={{
+            display: 'inline-block',
+            padding: '0.75rem 1.5rem',
+            background: 'rgba(0, 255, 0, 0.1)',
+            border: '2px solid #00ff00',
+            borderRadius: '25px',
+            marginBottom: '1rem',
+            animation: 'pulse 2s infinite'
+          }}>
+            <span style={{ color: '#00ff00', fontWeight: 'bold', fontSize: '1rem' }}>
+              ● THE EYE IS ACTIVE - Auto-refreshing every 5 minutes
+            </span>
+          </div>
+          <br/>
           <button
             onClick={handleScan}
             disabled={isScanning}
@@ -647,7 +678,7 @@ export default function TheEye() {
               marginBottom: '1rem'
             }}
           >
-            {isScanning ? '🔄 Scanning...' : '🔍 Initiate Deep Scan'}
+            {isScanning ? '🔄 Scanning...' : '🔍 Manual Scan Now'}
           </button>
           
           <Link href="/target-acquisition" style={{

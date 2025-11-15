@@ -24,7 +24,7 @@ export default function TheEye() {
     }, 300000); // 5 minutes
 
     return () => clearInterval(interval);
-  }, [activeScope, eyeActive]);
+  }, [activeScope, activeCategory, eyeActive]);
 
   const scopes = [
     { id: 'local', name: 'Local (Municipal)', icon: '🏘️' },
@@ -377,7 +377,11 @@ export default function TheEye() {
   const handleScan = () => {
     setIsScanning(true);
     setTimeout(() => {
-      setInsights(mockInsights[activeScope] || []);
+      const scopeInsights = mockInsights[activeScope] || [];
+      const filtered = activeCategory === 'all' 
+        ? scopeInsights 
+        : scopeInsights.filter(insight => insight.category === activeCategory);
+      setInsights(filtered);
       setIsScanning(false);
     }, 2000);
   };

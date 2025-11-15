@@ -41,15 +41,16 @@ export default function Home() {
         {/* Feature Cards */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+          gap: '1rem',
           maxWidth: '1200px',
           width: '100%',
-          marginBottom: '3rem'
+          marginBottom: '3rem',
+          padding: '0 1rem'
         }}>
           <Link href="/the-eye" style={{ textDecoration: 'none' }}>
             <div style={{
-              padding: '2rem',
+              padding: 'clamp(1rem, 4vw, 2rem)',
               background: 'rgba(0,0,0,0.3)',
               borderRadius: '15px',
               backdropFilter: 'blur(10px)',
@@ -59,9 +60,9 @@ export default function Home() {
               color: 'white',
               height: '100%'
             }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👁️</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>The EYE</h3>
-              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>AI-powered investigator tracking systemic abuse, policy changes, and corporate accountability.</p>
+              <div style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1rem' }}>👁️</div>
+              <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0.5rem' }}>The EYE</h3>
+              <p style={{ opacity: 0.9, fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}>AI-powered investigator tracking systemic abuse, policy changes, and corporate accountability.</p>
             </div>
           </Link>
 

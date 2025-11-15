@@ -386,6 +386,246 @@ export default function TheEye() {
           ))}
         </div>
 
+        {/* Receipts & Proof Section - 100% Fact-Based Legitimacy */}
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto 3rem',
+          padding: '2rem',
+          background: 'rgba(79, 172, 254, 0.05)',
+          border: '2px solid rgba(79, 172, 254, 0.3)',
+          borderRadius: '15px'
+        }}>
+          <h2 style={{
+            fontSize: '1.8rem',
+            marginBottom: '1rem',
+            color: '#4facfe',
+            textAlign: 'center'
+          }}>
+            📋 Receipts & Proof - 100% Verified Sources
+          </h2>
+          <p style={{
+            textAlign: 'center',
+            color: '#aaa',
+            marginBottom: '2rem',
+            fontSize: '0.95rem'
+          }}>
+            The EYE provides only fact-based, verifiable intelligence with accurate links and sources.
+            Every claim is backed by evidence. Click any link below to verify.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: '1.5rem'
+          }}>
+            {/* WSIB Sources */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ff6b6b'
+            }}>
+              <h3 style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '1.2rem' }}>⚠️ WSIB Ontario</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.wsib.ca/en" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Official WSIB Website
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/operational-policy-manual" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIB Policy Manual
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/appeals" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Appeals Process
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/annualreport" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Annual Reports & Statistics
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* ODSP & Disability Sources */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #a855f7'
+            }}>
+              <h3 style={{ color: '#a855f7', marginBottom: '1rem', fontSize: '1.2rem' }}>♿ ODSP & Disability Benefits</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ontario.ca/page/ontario-disability-support-program-odsp" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 ODSP Official Info
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/services/benefits/disability.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Disability Benefits
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/employment-social-development/programs/disability/benefits/cpp-disability.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 CPP Disability
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.accessibility.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Accessible Canada Act
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legislative Monitoring Sources */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #10b981'
+            }}>
+              <h3 style={{ color: '#10b981', marginBottom: '1rem', fontSize: '1.2rem' }}>🏛️ Legislative Tracking</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ola.org/en/legislative-business/bills" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Legislature Bills
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.parl.ca/legisinfo/en/bills" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Parliament Bills
+                  </a>
+                </li>
+                <li>
+                  <a href="https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/vwRg" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Lobbyist Registry
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oico.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 ON Integrity Commissioner
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Corporate & Legal Sources */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #f59e0b'
+            }}>
+              <h3 style={{ color: '#f59e0b', marginBottom: '1rem', fontSize: '1.2rem' }}>⚖️ Corporate & Legal</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ic.gc.ca/app/scr/cc/CorporationsCanada/fdrlCrpSrch.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Corp Search
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.sse.gov.on.ca/mcs/search" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Business Registry
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.tribunalsontario.ca/wsiat/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIAT (Appeals Tribunal)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ontario.ca/page/employment-standards-act-0" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Employment Standards Act
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Accountability & Oversight */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ef4444'
+            }}>
+              <h3 style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '1.2rem' }}>🔍 Accountability & Oversight</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.ombudsman.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Ombudsman
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oiprd.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Police Oversight (OIPRD)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.auditor.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Auditor General Reports
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.fao-on.org/en/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Financial Accountability Office
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Research & Data Sources */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #06b6d4'
+            }}>
+              <h3 style={{ color: '#06b6d4', marginBottom: '1rem', fontSize: '1.2rem' }}>📊 Research & Data</h3>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www150.statcan.gc.ca/n1/en/type/data" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Statistics Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ontario.ca/page/government-ontario" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Open Data
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.iwh.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Institute for Work & Health
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ccohs.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Canadian Centre for Occupational Health
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: '2rem',
+            padding: '1rem',
+            background: 'rgba(79, 172, 254, 0.1)',
+            borderRadius: '10px',
+            textAlign: 'center'
+          }}>
+            <p style={{ color: '#4facfe', fontSize: '0.9rem', margin: 0 }}>
+              <strong>⚡ The EYE Evolution:</strong> This system continuously expands by monitoring these sources 24/7.
+              Every insight generated is traceable to verified public records, government databases, and official documents.
+              <br/><strong>No speculation. Only facts.</strong>
+            </p>
+          </div>
+        </div>
+
         {/* Scan Button */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <button

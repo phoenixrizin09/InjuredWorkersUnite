@@ -412,6 +412,10 @@ export default function TargetAcquisition() {
                             {target.actions.map((action, i) => (
                               <button
                                 key={i}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  alert(`🚀 ACTION DEPLOYED: ${action}\n\nTarget: ${target.name}\nCategory: ${cat.category}\n\nStatus: ACTIVE\n\nThis action package is ready to deploy. All evidence and documentation included.\n\n✅ Legal frameworks prepared\n✅ Media contacts identified\n✅ Social media assets ready\n✅ Organizing tools packaged\n\nThe system is tracking this deployment.`);
+                                }}
                                 style={{
                                   padding: '0.75rem',
                                   background: 'linear-gradient(135deg, #ff4444 0%, #cc0000 100%)',

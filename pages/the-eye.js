@@ -340,46 +340,6 @@ export default function TheEye() {
     ]
   };
 
-  const globalInsights = [
-    {
-      severity: 'critical',
-      category: 'workers',
-      title: 'Corporate Automation Impact',
-        description: 'Global pattern: AI-driven claim assessments reducing approval rates by 23%. Same algorithm (developed by US firm "RiskLogic AI") deployed in 47 countries. Algorithm audit reveals racial/disability bias.',
-        action: 'INTERNATIONAL LAWSUIT READY: EU GDPR violations documented, US civil rights violations filed, UN Human Rights Council complaint drafted, coordinated media release in 12 languages',
-        timestamp: '3 days ago',
-        actionButtons: ['File International Lawsuits', 'UN Human Rights Alert', 'Global Media Blitz']
-      },
-      {
-        severity: 'critical',
-        category: 'workers',
-        title: 'Gig Economy Rights Erosion',
-        description: 'Coordinated push across G7 nations to reclassify worker protections. Traced to single global strategy firm hired by Uber, Amazon, DoorDash. Internal documents leaked showing playbook.',
-        action: 'LEAK WEAPONIZED: 847-page strategy document shows illegal collusion, antitrust violations in multiple jurisdictions, whistleblower protection secured, simultaneous release to Guardian, NYT, Globe & Mail, Le Monde coordinated',
-        timestamp: '4 days ago',
-        actionButtons: ['Release The Leaks', 'Antitrust Filings', 'Whistleblower Protection']
-      },
-      {
-        severity: 'high',
-        category: 'poverty',
-        title: 'IMF Austerity Blueprint Detected',
-        description: 'IMF document recommends cutting disability programs in 23 countries including Canada. Pattern shows austerity always targets most vulnerable first.',
-        action: 'RESISTANCE COORDINATED: International coalition of 156 disability rights orgs ready to mobilize, IMF protest actions planned in 8 capitals, economic alternative framework published',
-        timestamp: '5 days ago',
-        actionButtons: ['Global Protest Day', 'Alternative Economic Framework', 'Target IMF']
-      },
-      {
-        severity: 'high',
-        category: 'homelessness',
-        title: 'Financialization of Housing - Global Conspiracy',
-        description: 'BlackRock, Vanguard, and State Street own controlling shares in top rental corps across G20. Coordinated rent increases detected using algorithmic price-fixing software.',
-        action: 'ECONOMIC WARFARE: Pension fund divestment campaign targeting $4.2T in assets, tenant union international forming, algorithmic price-fixing antitrust suits ready in 8 countries, squatter rights legal defense network activated',
-        timestamp: '6 days ago',
-        actionButtons: ['Divestment Campaign', 'Tenant Union International', 'Antitrust Barrage']
-      }
-    ]
-  };
-
   const handleScan = () => {
     setIsScanning(true);
     setTimeout(() => {
@@ -1656,8 +1616,8 @@ export default function TheEye() {
           50% { opacity: 0.7; transform: scale(1.05); }
         }
       `}</style>
-    </div>
-    <Footer />
-    </>
-  );
+      </div>
+      <Footer />
+      </>
+    );
 }

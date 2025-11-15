@@ -1,7 +1,52 @@
 /*
+  # MAXIMUM SECURITY HEADERS - Protection Against Advanced Threats
+  # Defends against: XSS, CSRF, Clickjacking, MIME-sniffing, Protocol downgrade, 
+  # Code injection, Frame embedding, Data exfiltration, Side-channel attacks
+  
+  # Prevent frame embedding (clickjacking protection)
   X-Frame-Options: DENY
+  
+  # Prevent MIME-type sniffing
   X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Enable XSS filter
+  X-XSS-Protection: 1; mode=block
+  
+  # No referrer leakage
+  Referrer-Policy: no-referrer
+  
+  # Disable dangerous browser features
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=(), browsing-topics=()
+  
+  # Force HTTPS for 2 years + preload
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  
+  # Comprehensive Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://static.cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;
+  
+  # Cross-Origin isolation for advanced protection
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  
+  # Prevent Flash/PDF policy abuse
+  X-Permitted-Cross-Domain-Policies: none
+  
+  # Prevent IE from opening files in site context
+  X-Download-Options: noopen
+  
+  # Disable DNS prefetching (privacy + security)
+  X-DNS-Prefetch-Control: off
+  
+  # Prevent caching of sensitive pages
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
 
-/_next/*
+# Static assets can be cached
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images can be cached
+/images/*
   Cache-Control: public, max-age=31536000, immutable

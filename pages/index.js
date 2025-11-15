@@ -83,6 +83,24 @@ export default function Home() {
             </div>
           </Link>
 
+          <Link href="/memetic-embassy" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '15px',
+              backdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+              color: 'white',
+              height: '100%'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🏛️</div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Memetic Embassy</h3>
+              <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Creative resistance through powerful narratives and viral storytelling. Amplify the truth.</p>
+            </div>
+          </Link>
+
           <Link href="/target-acquisition" style={{ textDecoration: 'none' }}>
             <div style={{
               padding: '2rem',

@@ -12,8 +12,7 @@ export default function TheEye() {
 
   const scopes = [
     { id: 'provincial', name: 'Provincial', icon: '🏛️' },
-    { id: 'canada', name: 'Canada-Wide', icon: '🍁' },
-    { id: 'global', name: 'Global', icon: '🌍' }
+    { id: 'canada', name: 'Federal (Canada-Wide)', icon: '🍁' }
   ];
 
   const categories = [

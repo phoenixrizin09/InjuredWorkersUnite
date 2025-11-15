@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function MemeGallery() {
   const [memes, setMemes] = useState([]);
@@ -159,6 +160,7 @@ export default function MemeGallery() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

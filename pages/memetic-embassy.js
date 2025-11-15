@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function MemeticEmbassy() {
   const [activeTab, setActiveTab] = useState('charter');
@@ -69,6 +70,7 @@ export default function MemeticEmbassy() {
         </Link>
       </footer>
     </div>
+    <Footer />
     </>
   );
 }

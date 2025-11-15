@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function AutomatedMonitoring() {
   const [monitoringActive, setMonitoringActive] = useState(false);
@@ -641,6 +642,7 @@ export default function AutomatedMonitoring() {
         }
       `}</style>
     </div>
+    <Footer />
     </>
   );
 }

@@ -79,6 +79,7 @@ export default function Header() {
           <Link href="/alerts" style={navLinkStyle}>Alerts</Link>
           <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>
           <Link href="/contact" style={navLinkStyle}>Contact</Link>
+          <Link href="/legal" style={navLinkStyle}>Legal</Link>
         </nav>
 
         {/* Social Media & Donate */}

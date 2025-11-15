@@ -14,16 +14,26 @@ export default function TargetAcquisition() {
         {
           name: 'Manulife Financial',
           threat: 'Critical',
-          evidence: ['AI claim denial rate +34% since 2023', 'Class action in BC ongoing', '$47M lobbying spend 2024'],
-          vulnerabilities: ['Stock price sensitive to ESG scores', 'Major government contracts up for renewal', 'CEO speaking at disability rights conference (irony)'],
-          actions: ['FOI Package Ready', 'Media Dossier Complete', 'Shareholder Alert Draft', 'Boycott Campaign Kit']
+          evidence: ['Publicly traded company - quarterly earnings show claim processing trends', 'Class action lawsuits are public court records', 'Lobbying registry tracks all government interactions'],
+          vulnerabilities: ['Stock price and ESG ratings publicly tracked', 'Government contracts subject to FOI', 'Public speaking engagements documented'],
+          actions: ['FOI Package Ready', 'Media Dossier Complete', 'Shareholder Alert Draft', 'Boycott Campaign Kit'],
+          sources: [
+            { name: 'Federal Corporations Search', url: 'https://www.ic.gc.ca/app/scr/cc/CorporationsCanada/fdrlCrpSrch.html' },
+            { name: 'BC Court Cases Search', url: 'https://www.bccourts.ca/' },
+            { name: 'Lobbyist Registry', url: 'https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/vwRg' }
+          ]
         },
         {
           name: 'Sun Life',
           threat: 'High',
-          evidence: ['Offshore claim assessment centers', 'Pattern of chronic pain denials', 'Undisclosed algorithmic bias'],
-          vulnerabilities: ['Pension fund exposure', 'Regulatory investigation BC', 'Brand reputation fragile'],
-          actions: ['Regulatory Complaint Ready', 'Pension Fund Alert', 'Media Investigation Kit']
+          evidence: ['Corporate structure and subsidiaries are public records', 'Insurance claim statistics available through regulators', 'Algorithm use must be disclosed under transparency laws'],
+          vulnerabilities: ['Pension fund holdings are publicly disclosed', 'Provincial insurance regulators publish investigation summaries', 'Brand reputation monitored through consumer protection'],
+          actions: ['Regulatory Complaint Ready', 'Pension Fund Alert', 'Media Investigation Kit'],
+          sources: [
+            { name: 'FSRA (Financial Services Regulatory Authority)', url: 'https://www.fsrao.ca/' },
+            { name: 'Federal Corporations', url: 'https://www.ic.gc.ca/app/scr/cc/CorporationsCanada/fdrlCrpSrch.html' },
+            { name: 'BC Financial Services Authority', url: 'https://www.bcfsa.ca/' }
+          ]
         }
       ]
     },
@@ -34,16 +44,26 @@ export default function TargetAcquisition() {
         {
           name: 'WSIB Ontario',
           threat: 'Critical',
-          evidence: ['Denial rates up 47% for chronic conditions', 'Private adjudicator contracts suspicious', '847 affected workers identified'],
-          vulnerabilities: ['Public accountability mechanisms', 'Ombudsman oversight', 'Election year pressure'],
-          actions: ['FOI Blitz (23 requests queued)', 'Ombudsman Complaint', 'Media Exposé Ready', 'Political Pressure Campaign']
+          evidence: ['Annual reports show claim statistics and denial rates', 'Adjudicator contracts subject to FOI', 'Appeals data published by WSIAT'],
+          vulnerabilities: ['Subject to Ombudsman oversight', 'Annual reporting requirements', 'Legislative committee scrutiny'],
+          actions: ['FOI Blitz (23 requests queued)', 'Ombudsman Complaint', 'Media Exposé Ready', 'Political Pressure Campaign'],
+          sources: [
+            { name: 'WSIB Annual Reports', url: 'https://www.wsib.ca/en/annualreport' },
+            { name: 'WSIAT Appeals', url: 'https://www.tribunalsontario.ca/wsiat/' },
+            { name: 'Ontario Ombudsman', url: 'https://www.ombudsman.on.ca/' }
+          ]
         },
         {
           name: 'ODSP - Ontario Disability',
           threat: 'High',
-          evidence: ['Adjudicator conflicts of interest', '6 decision-makers with corporate board positions', 'Eligibility tightening detected'],
-          vulnerabilities: ['Ethics Commissioner jurisdiction', 'Media attention high', 'Advocacy coalition strong'],
-          actions: ['Ethics Investigation', 'Coalition Mobilization', 'Legislative Pressure']
+          evidence: ['Adjudicator appointments are public records', 'Corporate board positions disclosed in conflict-of-interest filings', 'Policy changes announced through Ontario Legislature'],
+          vulnerabilities: ['Ethics Commissioner jurisdiction', 'Media access through FOI', 'Advocacy coalition strong'],
+          actions: ['Ethics Investigation', 'Coalition Mobilization', 'Legislative Pressure'],
+          sources: [
+            { name: 'ODSP Program Info', url: 'https://www.ontario.ca/page/ontario-disability-support-program-odsp' },
+            { name: 'Integrity Commissioner', url: 'https://www.oico.on.ca/' },
+            { name: 'Ontario Legislature', url: 'https://www.ola.org/' }
+          ]
         }
       ]
     },
@@ -54,16 +74,26 @@ export default function TargetAcquisition() {
         {
           name: 'Amazon Canada',
           threat: 'High',
-          evidence: ['Workplace injury rate 2x industry average', 'Union busting activities documented', 'Worker classification violations'],
-          vulnerabilities: ['Brand reputation critical', 'Government contracts pending', 'Holiday shopping season leverage'],
-          actions: ['Labour Board Complaints', 'Boycott Campaign', 'Media Investigation', 'Investor Alert']
+          evidence: ['Workplace injury statistics published by provincial labour boards', 'Union certification applications are public records', 'Labour violations documented in tribunal decisions'],
+          vulnerabilities: ['Brand reputation critical to consumer trust', 'Government procurement contracts subject to FOI', 'Seasonal shopping leverage'],
+          actions: ['Labour Board Complaints', 'Boycott Campaign', 'Media Investigation', 'Investor Alert'],
+          sources: [
+            { name: 'Ontario Labour Board', url: 'https://www.olrb.gov.on.ca/' },
+            { name: 'Employment Standards', url: 'https://www.ontario.ca/page/employment-standards-act' },
+            { name: 'Federal Corporations', url: 'https://www.ic.gc.ca/app/scr/cc/CorporationsCanada/fdrlCrpSrch.html' }
+          ]
         },
         {
           name: 'Uber/Lyft',
           threat: 'Critical',
-          evidence: ['Worker classification scheme', 'No injury coverage', 'Algorithmic wage theft patterns'],
+          evidence: ['Worker classification legal cases are public court records', 'Provincial insurance requirements documented', 'Driver organizing tracked through labour board filings'],
           vulnerabilities: ['Regulatory pressure mounting', 'Driver organizing accelerating', 'Public opinion shifting'],
-          actions: ['Class Action Framework', 'Regulatory Intervention', 'International Coordination']
+          actions: ['Class Action Framework', 'Regulatory Intervention', 'International Coordination'],
+          sources: [
+            { name: 'Ontario Court Decisions', url: 'https://www.ontariocourts.ca/en/' },
+            { name: 'WSIB Coverage', url: 'https://www.wsib.ca/en' },
+            { name: 'Labour Board Filings', url: 'https://www.olrb.gov.on.ca/' }
+          ]
         }
       ]
     },
@@ -74,9 +104,14 @@ export default function TargetAcquisition() {
         {
           name: 'Doug Ford (Ontario Premier)',
           threat: 'Critical',
-          evidence: ['ODSP cuts during inflation', 'WSIB board appointments suspicious', 'Corporate donor influence clear'],
-          vulnerabilities: ['Election 2026', 'Poll numbers weak on healthcare', 'Suburban voter concern'],
-          actions: ['Opposition Coordination', 'Voter Education Campaign', 'Donation Tracking Public Release']
+          evidence: ['ODSP rates published in provincial budget', 'WSIB board appointments are public records', 'Political donations tracked by Elections Ontario'],
+          vulnerabilities: ['Election 2026', 'Poll numbers public', 'Suburban voter concern'],
+          actions: ['Opposition Coordination', 'Voter Education Campaign', 'Donation Tracking Public Release'],
+          sources: [
+            { name: 'Ontario Budget', url: 'https://www.ontario.ca/page/budget' },
+            { name: 'Elections Ontario Finances', url: 'https://finances.elections.on.ca/' },
+            { name: 'Public Appointments', url: 'https://www.ontario.ca/page/public-appointments' }
+          ]
         }
       ]
     },
@@ -87,9 +122,14 @@ export default function TargetAcquisition() {
         {
           name: 'Fraser Institute',
           threat: 'High',
-          evidence: ['Anti-disability program rhetoric', 'Corporate funded think tank', 'Policy influence documented'],
-          vulnerabilities: ['Funding sources exposed', 'Academic credibility questioned', 'Public trust low'],
-          actions: ['Funding Exposé', 'Counter-Research Publication', 'Media Credibility Campaign']
+          evidence: ['Funding sources disclosed in charity tax filings', 'Research publications are publicly available', 'Media appearances and policy influence documented'],
+          vulnerabilities: ['Funding transparency required by CRA', 'Academic peer review', 'Public trust surveys'],
+          actions: ['Funding Exposé', 'Counter-Research Publication', 'Media Credibility Campaign'],
+          sources: [
+            { name: 'CRA Charity Search', url: 'https://www.canada.ca/en/revenue-agency/services/charities-giving/charities-listings.html' },
+            { name: 'Lobbyist Registry', url: 'https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/vwRg' },
+            { name: 'Fraser Institute Publications', url: 'https://www.fraserinstitute.org/' }
+          ]
         }
       ]
     }
@@ -355,6 +395,70 @@ export default function TargetAcquisition() {
                             ))}
                           </div>
                         </div>
+
+                        {/* RECEIPTS & PROOF - Verify Claims */}
+                        {target.sources && target.sources.length > 0 && (
+                          <div style={{
+                            marginTop: '1.5rem',
+                            padding: '1.5rem',
+                            background: 'rgba(46, 213, 115, 0.1)',
+                            borderRadius: '10px',
+                            border: '1px solid #2ed573'
+                          }}>
+                            <h4 style={{
+                              color: '#2ed573',
+                              fontSize: '1rem',
+                              marginBottom: '0.5rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.5rem'
+                            }}>
+                              🔒 VERIFY THIS TARGET
+                            </h4>
+                            <p style={{ fontSize: '0.75rem', color: '#aaa', marginBottom: '1rem' }}>
+                              All evidence can be verified through official government records:
+                            </p>
+                            <div style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: '0.5rem'
+                            }}>
+                              {target.sources.map((source, srcIdx) => (
+                                <a
+                                  key={srcIdx}
+                                  href={source.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    padding: '0.5rem',
+                                    background: 'rgba(46, 213, 115, 0.05)',
+                                    borderRadius: '5px',
+                                    color: '#2ed573',
+                                    textDecoration: 'none',
+                                    fontSize: '0.85rem',
+                                    transition: 'all 0.2s',
+                                    border: '1px solid rgba(46, 213, 115, 0.2)'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'rgba(46, 213, 115, 0.15)';
+                                    e.currentTarget.style.borderColor = '#2ed573';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'rgba(46, 213, 115, 0.05)';
+                                    e.currentTarget.style.borderColor = 'rgba(46, 213, 115, 0.2)';
+                                  }}
+                                >
+                                  <span style={{ fontSize: '1rem' }}>🔗</span>
+                                  <span style={{ flex: 1 }}>{source.name}</span>
+                                  <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>↗</span>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>

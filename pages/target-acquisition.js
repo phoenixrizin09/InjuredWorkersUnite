@@ -7,6 +7,7 @@ export default function TargetAcquisition() {
   const [trackingList, setTrackingList] = useState([]);
   const [lastVerified, setLastVerified] = useState(new Date().toLocaleString());
   const [lastVerified, setLastVerified] = useState(new Date().toLocaleString());
+  const [selectedAction, setSelectedAction] = useState(null);
 
   const targetCategories = [
     {
@@ -136,6 +137,351 @@ export default function TargetAcquisition() {
       ]
     }
   ];
+
+  const getActionDetails = (action, target, category) => {
+    const actionDetails = {
+      // Insurance Companies Actions
+      'FOI Package Ready': {
+        title: 'Freedom of Information Request Package',
+        details: [
+          '📋 Pre-written FOI requests for claim processing data',
+          '📊 Request templates for denial rate statistics by condition type',
+          '💰 Executive compensation vs. claim approval rates',
+          '🔍 Adjudicator training materials and guidelines',
+          '📑 Request for all communications with government officials'
+        ],
+        howTo: 'Submit through official FOI portal. Response required within 30 days. Appeal denials to Information Commissioner.',
+        links: ['https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy.html']
+      },
+      'Media Dossier Complete': {
+        title: 'Media Investigation Package',
+        details: [
+          '📰 Contact list: CBC Marketplace, CTV W5, Globe & Mail investigative team',
+          '📊 Claim denial statistics compiled from annual reports',
+          '💬 Anonymous whistleblower submission portals',
+          '🎥 Story pitch templates with compelling case studies',
+          '📱 Social media campaign hashtags and graphics ready'
+        ],
+        howTo: 'Email journalists directly. Provide data, not opinions. Offer real claimants willing to share stories. Follow up weekly.',
+        links: ['https://cbc.ca/news/gopublic']
+      },
+      'Shareholder Alert Draft': {
+        title: 'Shareholder Activism Package',
+        details: [
+          '💼 List of major institutional investors (pension funds, unions)',
+          '📊 ESG risk analysis showing reputational damage',
+          '📧 Email templates for shareholder resolutions',
+          '🎯 AGM preparation: questions to ask executives',
+          '📈 Stock price correlation with negative publicity data'
+        ],
+        howTo: 'Contact investor relations at pension funds. Attend AGMs. File shareholder proposals. Coordinate with ethical investment groups.',
+        links: ['https://www.sedarplus.ca/']
+      },
+      'Boycott Campaign Kit': {
+        title: 'Consumer Boycott Campaign',
+        details: [
+          '📱 Social media graphics and protest signs ready',
+          '✊ List of alternative insurance providers',
+          '📧 Email templates for employers to switch providers',
+          '🎯 Petition platform ready (Change.org, Leadnow)',
+          '📰 Sample press releases for local media'
+        ],
+        howTo: 'Launch social media campaign. Target corporate HR departments. Organize protests at headquarters. Track participation numbers.',
+        links: ['https://www.change.org/', 'https://leadnow.ca/']
+      },
+      'Regulatory Complaint Ready': {
+        title: 'Insurance Regulatory Complaint',
+        details: [
+          '📋 FSRA complaint form pre-filled with evidence',
+          '📊 Pattern analysis showing systemic unfair practices',
+          '👥 Multiple claimant testimonials documented',
+          '⚖️ Legal precedents for similar violations',
+          '📑 Request for regulatory investigation and audit'
+        ],
+        howTo: 'Submit to FSRA online portal. Include specific claim examples. Request formal investigation. Follow up monthly.',
+        links: ['https://www.fsrao.ca/consumers/how-make-complaint']
+      },
+      'Pension Fund Alert': {
+        title: 'Pension Fund Divestment Campaign',
+        details: [
+          '💼 List of union pension funds invested in target company',
+          '📊 Financial analysis showing ethical investment concerns',
+          '✉️ Template letters to pension fund trustees',
+          '🎯 Union locals to contact for support',
+          '📈 Alternative investment recommendations prepared'
+        ],
+        howTo: 'Contact pension fund trustees. Present at union meetings. Request divestment votes. Coordinate with labour councils.',
+        links: ['https://www.cppinvestments.com/', 'https://www.otpp.com/']
+      },
+      'Media Investigation Kit': {
+        title: 'Investigative Journalism Package',
+        details: [
+          '📰 Full dossier: court cases, regulatory violations, victim stories',
+          '🎥 Documentary filmmaker contacts ready',
+          '📊 Data visualization showing patterns of abuse',
+          '💬 Protected whistleblower testimonials',
+          '🔍 Timeline of systemic failures with evidence'
+        ],
+        howTo: 'Pitch to investigative units. Provide exclusive access to victims. Share FOI documents. Coordinate broadcast timing.',
+        links: ['https://www.cbc.ca/news/gopublic', 'https://www.thestar.com/about/newsroomguide.html']
+      },
+
+      // Government Agencies Actions
+      'FOI Blitz (23 requests queued)': {
+        title: 'Coordinated FOI Information Blitz',
+        details: [
+          '📋 23 targeted FOI requests ready to submit simultaneously',
+          '🎯 Requests covering: adjudicator training, claim algorithms, contractor costs',
+          '💰 Executive compensation and bonus structure requests',
+          '📊 Denial rates by injury type, age, gender, ethnicity',
+          '🔍 All complaints filed against WSIB in past 5 years'
+        ],
+        howTo: 'Submit all 23 requests same day to overwhelm resistance. Stagger follow-ups. Appeal all denials. Compile results into public report.',
+        links: ['https://www.ontario.ca/page/how-make-freedom-information-request']
+      },
+      'Ombudsman Complaint': {
+        title: 'Ombudsman Investigation Request',
+        details: [
+          '📋 Formal complaint documenting systemic failures',
+          '👥 100+ claimant experiences compiled',
+          '📊 Statistical analysis showing bias patterns',
+          '⚖️ Legal analysis of rights violations',
+          '🎯 Request for full systemic investigation'
+        ],
+        howTo: 'Submit detailed complaint online. Include pattern evidence, not individual cases. Request public report. Coordinate media coverage.',
+        links: ['https://www.ombudsman.on.ca/have-a-complaint/make-a-complaint']
+      },
+      'Media Exposé Ready': {
+        title: 'Major Media Investigation Launch',
+        details: [
+          '📰 Full investigative package for CBC/CTV/Globe & Mail',
+          '🎥 Video testimonials from 50+ injured workers',
+          '📊 Data analysis showing denial rate increases',
+          '💔 Human impact stories with medical documentation',
+          '⚖️ Legal expert commentary prepared'
+        ],
+        howTo: 'Coordinate simultaneous release across multiple outlets. Time for maximum political pressure. Prepare spokespeople. Plan follow-up stories.',
+        links: ['https://www.cbc.ca/news/gopublic']
+      },
+      'Political Pressure Campaign': {
+        title: 'Legislative Accountability Campaign',
+        details: [
+          '🏛️ MPP contact lists with voting records',
+          '📧 Constituent letter-writing campaign templates',
+          '🎯 Target ridings with high injured worker populations',
+          '📱 Social media campaign targeting politicians',
+          '✊ Coordinated lobby days at Queen\'s Park'
+        ],
+        howTo: 'Flood MPP offices with constituent calls. Organize Queen\'s Park rallies. Request legislative committee hearings. Track votes publicly.',
+        links: ['https://www.ola.org/en/members']
+      },
+      'Ethics Investigation': {
+        title: 'Integrity Commissioner Investigation',
+        details: [
+          '🔍 Conflict of interest allegations documented',
+          '💰 Financial disclosure analysis of decision-makers',
+          '🏢 Corporate connections mapped (adjudicators to insurance)',
+          '📋 Formal ethics complaint with evidence',
+          '⚖️ Request for investigation and public report'
+        ],
+        howTo: 'Submit complaint to Integrity Commissioner. Provide documented conflicts. Request public hearing. Coordinate media coverage of findings.',
+        links: ['https://www.oico.on.ca/']
+      },
+      'Coalition Mobilization': {
+        title: 'Advocacy Coalition Activation',
+        details: [
+          '✊ 50+ disability rights organizations contacted',
+          '📋 Coordinated action plan across all groups',
+          '🎯 Joint press conferences and rallies planned',
+          '📱 Social media amplification network ready',
+          '💪 United front demands prepared'
+        ],
+        howTo: 'Organize coalition meetings. Coordinate messaging. Plan simultaneous actions across Ontario. Share resources and tactics.',
+        links: ['https://www.aodaalliance.org/', 'https://disabilityrightsnow.ca/']
+      },
+      'Legislative Pressure': {
+        title: 'Legislative Reform Campaign',
+        details: [
+          '📜 Draft legislation prepared (rate increases, oversight)',
+          '🏛️ Opposition MPP sponsors identified',
+          '📊 Public polling showing voter support',
+          '✊ Coordinated constituent pressure on key MPPs',
+          '📰 Media campaign timed with legislative session'
+        ],
+        howTo: 'Meet with opposition critics. Present draft bills. Organize delegations to MPPs. Pack legislative committee hearings. Track bill progress.',
+        links: ['https://www.ola.org/en/legislative-business/bills']
+      },
+
+      // Corporations Actions
+      'Labour Board Complaints': {
+        title: 'Labour Board Legal Action',
+        details: [
+          '⚖️ Formal complaints ready for Ontario Labour Board',
+          '📋 Safety violation documentation compiled',
+          '👥 Worker testimonials with medical records',
+          '🎯 Pattern of systematic safety failures shown',
+          '💼 Request for workplace inspections and orders'
+        ],
+        howTo: 'File complaints with OLRB. Request urgent hearings. Coordinate with Ministry of Labour. Publicize violations.',
+        links: ['https://www.olrb.gov.on.ca/']
+      },
+      'Boycott Campaign': {
+        title: 'Consumer Boycott Movement',
+        details: [
+          '📱 #BoycottAmazon social media campaign ready',
+          '✊ Alternative shopping guide published',
+          '🎯 Target Prime Day and Black Friday',
+          '📰 Media partnerships for amplification',
+          '💪 Union and community organization coordination'
+        ],
+        howTo: 'Launch viral social media campaign. Organize protests at warehouses. Create alternative shopping campaigns. Track participation.',
+        links: ['https://www.fairwork.gov.au/']
+      },
+      'Media Investigation': {
+        title: 'Investigative Media Campaign',
+        details: [
+          '📰 Full dossier to CBC Marketplace, W5',
+          '🎥 Undercover footage and worker interviews',
+          '📊 Injury rate data vs. industry averages',
+          '💔 Human stories with medical documentation',
+          '⚖️ Legal expert analysis of violations'
+        ],
+        howTo: 'Pitch investigative units. Provide exclusive access. Coordinate timing with labour actions. Prepare spokespeople.',
+        links: ['https://www.cbc.ca/marketplace']
+      },
+      'Investor Alert': {
+        title: 'Investor Risk Alert Campaign',
+        details: [
+          '💼 ESG risk report for institutional investors',
+          '📊 Financial analysis of reputational damage risk',
+          '📧 Direct outreach to major shareholders',
+          '🎯 Target socially responsible investment funds',
+          '📈 Compile media coverage of scandals'
+        ],
+        howTo: 'Contact investor relations at pension funds. Present at shareholder meetings. File proxy resolutions. Track stock price impact.',
+        links: ['https://www.sec.gov/edgar']
+      },
+      'Class Action Framework': {
+        title: 'Class Action Lawsuit Preparation',
+        details: [
+          '⚖️ Legal framework for worker misclassification suit',
+          '👥 Plaintiff recruitment network established',
+          '💼 Law firms specializing in labour cases contacted',
+          '📊 Damages calculation methodology prepared',
+          '📋 Evidence package: contracts, pay stubs, schedules'
+        ],
+        howTo: 'Partner with class action law firms. Recruit plaintiffs through social media. Document evidence systematically. Coordinate media coverage.',
+        links: ['https://www.ontario.ca/page/class-action-lawsuits']
+      },
+      'Regulatory Intervention': {
+        title: 'Regulatory Enforcement Campaign',
+        details: [
+          '📋 Complaints to Ministry of Labour ready',
+          '🎯 Demand for workplace inspections',
+          '⚖️ Request for misclassification investigation',
+          '💰 Employment standards violations documented',
+          '📊 Pattern of systematic non-compliance shown'
+        ],
+        howTo: 'File formal complaints. Request ministry audits. Coordinate with unions. Publicize findings. Demand enforcement action.',
+        links: ['https://www.ontario.ca/page/employment-standards-act']
+      },
+      'International Coordination': {
+        title: 'Global Worker Solidarity Campaign',
+        details: [
+          '🌍 Coordination with gig worker unions worldwide',
+          '✊ Simultaneous protests in multiple countries',
+          '📱 Global social media campaign',
+          '💼 International labour organization involvement',
+          '📊 Comparative analysis of exploitation patterns'
+        ],
+        howTo: 'Connect with international labour organizations. Coordinate timing of actions. Share tactics and evidence. Amplify global message.',
+        links: ['https://www.ilo.org/']
+      },
+
+      // Politicians Actions
+      'Opposition Coordination': {
+        title: 'Political Opposition Strategy',
+        details: [
+          '🏛️ Meetings scheduled with NDP and Liberal critics',
+          '📋 Question Period questions drafted',
+          '🎯 Private member bills prepared',
+          '📊 Polling data showing voter concern',
+          '📰 Coordinated media strategy'
+        ],
+        howTo: 'Brief opposition MPPs weekly. Provide research and talking points. Coordinate question period. Draft legislation together.',
+        links: ['https://www.ola.org/en/members']
+      },
+      'Voter Education Campaign': {
+        title: 'Electoral Accountability Campaign',
+        details: [
+          '🗳️ Voter guide showing Ford\'s record on disability',
+          '📊 District-by-district impact analysis',
+          '🎯 Target swing ridings with high disabled population',
+          '📱 Social media ads campaign ready',
+          '✊ Door-to-door canvassing materials prepared'
+        ],
+        howTo: 'Launch 6 months before election. Focus on swing ridings. Use personal stories. Track polling shifts. Coordinate with advocacy groups.',
+        links: ['https://www.elections.on.ca/']
+      },
+      'Donation Tracking Public Release': {
+        title: 'Political Finance Transparency Report',
+        details: [
+          '💰 Complete analysis of PC Party donor connections',
+          '🏢 Corporate donors mapped to policy decisions',
+          '📊 Interactive database of donations published',
+          '📰 Media release with key findings',
+          '🎯 Social media campaign exposing connections'
+        ],
+        howTo: 'Compile Elections Ontario data. Create visualizations. Brief journalists. Time release for maximum impact. Update continuously.',
+        links: ['https://finances.elections.on.ca/']
+      },
+
+      // Lobbyists/Think Tanks Actions
+      'Funding Exposé': {
+        title: 'Think Tank Funding Investigation',
+        details: [
+          '💰 CRA charity filings analyzed',
+          '🏢 Corporate donor connections mapped',
+          '📊 Funding sources vs. policy positions shown',
+          '📰 Media investigation package prepared',
+          '🎯 Social media campaign exposing funding'
+        ],
+        howTo: 'Research T3010 charity returns. Map donors to policy advocacy. Create infographics. Pitch to journalists. Launch viral campaign.',
+        links: ['https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch']
+      },
+      'Counter-Research Publication': {
+        title: 'Evidence-Based Counter Report',
+        details: [
+          '📊 Peer-reviewed research contradicting claims',
+          '🎓 Academic partnerships established',
+          '📋 Comprehensive fact-check of their reports',
+          '📰 Media launch strategy prepared',
+          '🎯 Distribution to policymakers and media'
+        ],
+        howTo: 'Partner with universities. Conduct rigorous research. Publish in academic journals. Hold press conference. Distribute widely.',
+        links: ['https://www.fraserinstitute.org/']
+      },
+      'Media Credibility Campaign': {
+        title: 'Media Source Credibility Challenge',
+        details: [
+          '📰 Media advisory warning about bias',
+          '📊 Analysis of funding vs. policy positions',
+          '🎯 Direct outreach to journalists and editors',
+          '📋 Alternative expert sources provided',
+          '💬 Social media campaign questioning credibility'
+        ],
+        howTo: 'Brief journalists on funding sources. Provide alternative experts. Monitor media citations. Challenge false claims publicly.',
+        links: ['https://mediabiasfactcheck.com/']
+      }
+    };
+
+    return actionDetails[action] || {
+      title: action,
+      details: ['Action details coming soon...'],
+      howTo: 'Implementation strategy being developed.',
+      links: []
+    };
+  };
 
   const handleTrackTarget = (categoryName, target) => {
     const fullTarget = {
@@ -414,7 +760,8 @@ export default function TargetAcquisition() {
                                 key={i}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  alert(`🚀 ACTION DEPLOYED: ${action}\n\nTarget: ${target.name}\nCategory: ${cat.category}\n\nStatus: ACTIVE\n\nThis action package is ready to deploy. All evidence and documentation included.\n\n✅ Legal frameworks prepared\n✅ Media contacts identified\n✅ Social media assets ready\n✅ Organizing tools packaged\n\nThe system is tracking this deployment.`);
+                                  const details = getActionDetails(action, target, cat.category);
+                                  setSelectedAction({ action, target: target.name, category: cat.category, ...details });
                                 }}
                                 style={{
                                   padding: '0.75rem',
@@ -530,6 +877,172 @@ export default function TargetAcquisition() {
           </p>
         </div>
       </div>
+
+      {/* Action Details Modal */}
+      {selectedAction && (
+        <div 
+          onClick={() => setSelectedAction(null)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '2rem',
+            overflowY: 'auto'
+          }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+              borderRadius: '20px',
+              border: '2px solid #ff4444',
+              maxWidth: '800px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              padding: '2rem',
+              position: 'relative'
+            }}
+          >
+            <button
+              onClick={() => setSelectedAction(null)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: '#ff4444',
+                border: 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                color: 'white',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold'
+              }}
+            >
+              ×
+            </button>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '0.5rem 1rem',
+                background: '#ff4444',
+                borderRadius: '20px',
+                fontSize: '0.75rem',
+                fontWeight: 'bold',
+                marginBottom: '1rem'
+              }}>
+                🚀 ACTION PACKAGE
+              </span>
+              <h2 style={{ color: '#ff4444', fontSize: '2rem', margin: '0.5rem 0' }}>
+                {selectedAction.title}
+              </h2>
+              <p style={{ color: '#888', margin: '0.5rem 0' }}>
+                Target: <strong style={{ color: '#fff' }}>{selectedAction.target}</strong> • Category: {selectedAction.category}
+              </p>
+            </div>
+
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(255, 68, 68, 0.1)',
+              borderRadius: '15px',
+              border: '1px solid #ff4444',
+              marginBottom: '1.5rem'
+            }}>
+              <h3 style={{ color: '#ff8844', fontSize: '1.2rem', marginBottom: '1rem' }}>
+                📦 WHAT'S INCLUDED
+              </h3>
+              <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#ccc', lineHeight: '2' }}>
+                {selectedAction.details.map((detail, idx) => (
+                  <li key={idx}>{detail}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(79, 172, 254, 0.1)',
+              borderRadius: '15px',
+              border: '1px solid #4facfe',
+              marginBottom: '1.5rem'
+            }}>
+              <h3 style={{ color: '#4facfe', fontSize: '1.2rem', marginBottom: '1rem' }}>
+                🎯 HOW TO DEPLOY
+              </h3>
+              <p style={{ color: '#ccc', lineHeight: '1.8', margin: 0 }}>
+                {selectedAction.howTo}
+              </p>
+            </div>
+
+            {selectedAction.links && selectedAction.links.length > 0 && (
+              <div style={{
+                padding: '1.5rem',
+                background: 'rgba(46, 213, 115, 0.1)',
+                borderRadius: '15px',
+                border: '1px solid #2ed573'
+              }}>
+                <h3 style={{ color: '#2ed573', fontSize: '1.2rem', marginBottom: '1rem' }}>
+                  🔗 OFFICIAL RESOURCES
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {selectedAction.links.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.75rem 1rem',
+                        background: 'rgba(46, 213, 115, 0.1)',
+                        border: '1px solid #2ed573',
+                        borderRadius: '10px',
+                        color: '#2ed573',
+                        textDecoration: 'none',
+                        fontSize: '0.9rem',
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(46, 213, 115, 0.2)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(46, 213, 115, 0.1)';
+                      }}
+                    >
+                      🌐 {link}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div style={{
+              marginTop: '2rem',
+              padding: '1rem',
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', margin: 0 }}>
+                ⚠️ <strong>IMPORTANT:</strong> All actions use publicly available information and legal tactics. 
+                This is about transparency, accountability, and organized collective action.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
     </>
   );

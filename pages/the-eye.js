@@ -27,17 +27,24 @@ export default function TheEye() {
   }, [activeScope, eyeActive]);
 
   const scopes = [
+    { id: 'local', name: 'Local (Municipal)', icon: '🏘️' },
     { id: 'provincial', name: 'Provincial', icon: '🏛️' },
-    { id: 'canada', name: 'Federal (Canada-Wide)', icon: '🍁' }
+    { id: 'federal', name: 'Federal', icon: '🍁' }
   ];
 
   const categories = [
     { id: 'all', name: 'All Systems', icon: '👁️' },
-    { id: 'disabilities', name: 'Disabilities', icon: '♿' },
-    { id: 'poverty', name: 'Poverty', icon: '💰' },
-    { id: 'homelessness', name: 'Homelessness', icon: '🏠' },
-    { id: 'addictions', name: 'Addictions', icon: '💊' },
-    { id: 'workers', name: 'Injured Workers', icon: '⚠️' }
+    { id: 'workers', name: 'Workplace Injuries', icon: '⚠️' },
+    { id: 'disabilities', name: 'Disabilities & Chronic Illness', icon: '♿' },
+    { id: 'mental_health', name: 'Mental Health', icon: '🧠' },
+    { id: 'poverty', name: 'Poverty & Income Support', icon: '💰' },
+    { id: 'housing', name: 'Housing & Homelessness', icon: '🏠' },
+    { id: 'healthcare', name: 'Healthcare Access', icon: '🏥' },
+    { id: 'addictions', name: 'Addiction & Harm Reduction', icon: '💊' },
+    { id: 'employment', name: 'Employment & Labour Rights', icon: '💼' },
+    { id: 'legal', name: 'Legal Aid & Justice', icon: '⚖️' },
+    { id: 'education', name: 'Education & Accessibility', icon: '📚' },
+    { id: 'transportation', name: 'Transportation & Mobility', icon: '🚌' }
   ];
 
   const capabilities = [
@@ -128,6 +135,64 @@ export default function TheEye() {
   ];
 
   const mockInsights = {
+    local: [
+      {
+        severity: 'critical',
+        category: 'housing',
+        title: 'Municipal Shelter Wait Times at Record High',
+        description: 'Toronto shelter system reports 2,800+ people on waitlist. 65% have workplace injuries or disabilities. Average wait time now 8 months.',
+        action: 'MUNICIPAL DATA: City reports publicly available, shelter statistics documented, council meeting minutes show cuts',
+        timestamp: '1 hour ago',
+        actionButtons: ['City Reports', 'Council Minutes', 'Shelter Stats'],
+        sources: [
+          { name: 'Toronto Shelter Statistics', url: 'https://www.toronto.ca/community-people/housing-shelter/' },
+          { name: 'City Council Records', url: 'https://www.toronto.ca/city-government/council/' },
+          { name: 'Municipal Budget', url: 'https://www.toronto.ca/city-government/budget-finances/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'transportation',
+        title: 'Accessible Transit Cuts Proposed',
+        description: 'Municipal budget proposes 30% cut to Wheel-Trans service. 12,000 disabled residents affected. Public consultations show overwhelming opposition.',
+        action: 'CITY RECORDS: Budget documents public, consultation feedback documented, accessibility reports available',
+        timestamp: '3 hours ago',
+        actionButtons: ['View Budget', 'Consultation Results', 'Impact Analysis'],
+        sources: [
+          { name: 'TTC Budget Documents', url: 'https://www.ttc.ca/About_the_TTC/Commission_reports_and_information/index.jsp' },
+          { name: 'Wheel-Trans Info', url: 'https://www.ttc.ca/Wheel-Trans' },
+          { name: 'City Accessibility Plan', url: 'https://www.toronto.ca/city-government/accessibility-human-rights/accessibility-at-the-city-of-toronto/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'employment',
+        title: 'City Hiring Discrimination Against Disabled Workers',
+        description: 'Municipal hiring data shows disabled applicants 47% less likely to get interviews despite meeting qualifications. Human Rights complaint filed.',
+        action: 'PUBLIC DATA: FOI reveals hiring statistics, discrimination complaint public record, city ombudsman investigation ongoing',
+        timestamp: '6 hours ago',
+        actionButtons: ['Hiring Data', 'HR Complaint', 'Ombudsman Report'],
+        sources: [
+          { name: 'City Ombudsman', url: 'https://www.ombudsmantoronto.ca/' },
+          { name: 'FOI Request Portal', url: 'https://www.toronto.ca/city-government/accountability-operations-customer-service/access-city-information-or-records/' },
+          { name: 'Human Rights Tribunal', url: 'https://tribunalsontario.ca/hrto/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'healthcare',
+        title: 'Community Health Centre Closures Announced',
+        description: 'City funding cuts force 3 community health centres to close. These centres served 8,500 low-income and disabled residents with chronic conditions.',
+        action: 'RECEIPTS: City health reports, centre closure notices, patient impact studies all public',
+        timestamp: '12 hours ago',
+        actionButtons: ['Health Reports', 'Impact Studies', 'Funding Docs'],
+        sources: [
+          { name: 'Toronto Public Health', url: 'https://www.toronto.ca/community-people/health-wellness-care/' },
+          { name: 'Community Health Centres', url: 'https://www.allianceon.org/' },
+          { name: 'City Budget Health', url: 'https://www.toronto.ca/city-government/budget-finances/city-budget/' }
+        ]
+      }
+    ],
     provincial: [
       {
         severity: 'critical',
@@ -184,9 +249,23 @@ export default function TheEye() {
           { name: 'Integrity Commissioner', url: 'https://www.oico.on.ca/' },
           { name: 'AODA Standards', url: 'https://www.ontario.ca/laws/regulation/110191' }
         ]
+      },
+      {
+        severity: 'high',
+        category: 'mental_health',
+        title: 'Mental Health Wait Times Exceed Safe Limits',
+        description: 'Ontario Health reports show average wait for psychiatric care is 6-8 months. 40% of patients deteriorate while waiting. Suicidal patients wait weeks.',
+        action: 'OFFICIAL DATA: Health Quality Ontario reports, ministry statistics, coroner inquests all public',
+        timestamp: '10 hours ago',
+        actionButtons: ['Health Reports', 'Wait Time Data', 'Coroner Records'],
+        sources: [
+          { name: 'Ontario Health Quality', url: 'https://www.hqontario.ca/' },
+          { name: 'Mental Health Services', url: 'https://www.ontario.ca/page/get-mental-health-support' },
+          { name: 'Coroner Inquests', url: 'https://www.mcscs.jus.gov.on.ca/english/DeathInvestigations/Inquests/InquestsHome.html' }
+        ]
       }
     ],
-    canada: [
+    federal: [
       {
         severity: 'critical',
         category: 'poverty',
@@ -217,7 +296,7 @@ export default function TheEye() {
       },
       {
         severity: 'high',
-        category: 'homelessness',
+        category: 'housing',
         title: 'Housing Benefit Underfunded',
         description: 'Federal Auditor General finds Canada Housing Benefit reaches only 15% of eligible households. Funding insufficient to meet demand.',
         action: 'PROOF: AG Report 2024, program statistics, waitlist data all public',
@@ -241,6 +320,20 @@ export default function TheEye() {
           { name: 'Lobbyist Registry', url: 'https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/vwRg' },
           { name: 'Registry Reports', url: 'https://lobbycanada.gc.ca/app/secure/ocl/lrs/do/clntSmmr' },
           { name: 'Commissioner Reports', url: 'https://lobbycanada.gc.ca/en/reports-and-publications/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'healthcare',
+        title: 'Pharmacare Excludes Disability Medications',
+        description: 'Federal pharmacare legislation excludes many disability-specific medications. Chronic illness medications not covered despite advocacy.',
+        action: 'DOCUMENTED: Bill text public, committee testimony available, excluded medication lists documented',
+        timestamp: '4 days ago',
+        actionButtons: ['Read Bill', 'Excluded Meds', 'Committee Testimony'],
+        sources: [
+          { name: 'Pharmacare Legislation', url: 'https://www.parl.ca/legisinfo/en/bills' },
+          { name: 'Health Canada', url: 'https://www.canada.ca/en/health-canada.html' },
+          { name: 'Disability Advocacy Groups', url: 'https://www.ccd.ca/' }
         ]
       }
     ]
@@ -895,6 +988,201 @@ export default function TheEye() {
                     🔗 WSIB Injury Statistics
                   </a>
                 </li>
+                <li>
+                  <a href="https://www150.statcan.gc.ca/n1/en/type/data" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Statistics Canada Data
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Municipal/Local Government Tools */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ff6b6b'
+            }}>
+              <h3 style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '1.2rem' }}>🏘️ Municipal Deep Dive</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track city councils, local bylaws, transit authorities, and municipal decisions
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.toronto.ca/city-government/council/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Toronto City Council Records
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.toronto.ca/city-government/accountability-operations-customer-service/access-city-information-or-records/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Toronto FOI Portal
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ombudsmantoronto.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Toronto Ombudsman Complaints
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ttc.ca/About_the_TTC/Commission_reports_and_information/index.jsp" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 TTC Commission Reports
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.toronto.ca/city-government/budget-finances/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Toronto Budget Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Media & Press Monitoring */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #ffd93d'
+            }}>
+              <h3 style={{ color: '#ffd93d', marginBottom: '1rem', fontSize: '1.2rem' }}>📰 Media Intelligence</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track press releases, media statements, and how stories get spun
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://news.gc.ca/en/search/news" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal News Releases
+                  </a>
+                </li>
+                <li>
+                  <a href="https://news.ontario.ca/en" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario News Releases
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.wsib.ca/en/newsroom" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 WSIB Newsroom
+                  </a>
+                </li>
+                <li>
+                  <a href="https://archive.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Internet Archive (Wayback Machine)
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Academic Research & Studies */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #6bcf7f'
+            }}>
+              <h3 style={{ color: '#6bcf7f', marginBottom: '1rem', fontSize: '1.2rem' }}>📚 Research Evidence</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Access peer-reviewed research, policy studies, and expert analysis
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Google Scholar
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 PubMed Medical Research
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.iwh.on.ca/publications" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Institute for Work & Health
+                  </a>
+                </li>
+                <li>
+                  <a href="https://policycommons.net/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Policy Commons Database
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* International Comparisons */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #9b59b6'
+            }}>
+              <h3 style={{ color: '#9b59b6', marginBottom: '1rem', fontSize: '1.2rem' }}>🌍 Global Context</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Compare Canada's system to international standards and best practices
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.who.int/data" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 World Health Organization Data
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.un.org/development/desa/disabilities/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 UN Disability Rights
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ilo.org/global/statistics-and-databases/lang--en/index.htm" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 ILO Worker Statistics
+                  </a>
+                </li>
+                <li>
+                  <a href="https://data.oecd.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 OECD Data (Compare Countries)
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Watchdog & Accountability Tools */}
+            <div style={{
+              padding: '1.5rem',
+              background: 'rgba(0,0,0,0.3)',
+              borderRadius: '10px',
+              borderLeft: '4px solid #e74c3c'
+            }}>
+              <h3 style={{ color: '#e74c3c', marginBottom: '1rem', fontSize: '1.2rem' }}>👁️ Watchdog Tools</h3>
+              <p style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '1rem' }}>
+                Track government accountability, ombudsman reports, and oversight bodies
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.9rem', lineHeight: '2' }}>
+                <li>
+                  <a href="https://www.auditor.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Auditor General
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oag-bvg.gc.ca/internet/English/admin_e_41.html" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Federal Auditor General
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.ombudsman.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Ombudsman
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oico.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Ontario Integrity Commissioner
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oiprd.on.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Police Oversight (OIPRD)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.pbo-dpb.ca/en" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe', textDecoration: 'none' }}>
+                    🔗 Parliamentary Budget Officer
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -907,9 +1195,10 @@ export default function TheEye() {
             textAlign: 'center'
           }}>
             <p style={{ color: '#ff4444', fontSize: '1rem', margin: 0, lineHeight: '1.8' }}>
-              <strong>🔥 POWER TIP:</strong> Cross-reference data from multiple sources. When you find something suspicious in
-              a corporate filing, check the lobbyist registry for meetings. When a politician claims something, verify it
-              against the actual bill text and committee testimony. <strong>Every rabbit hole connects to another.</strong>
+              <strong>🔥 POWER TIP:</strong> Cross-reference EVERYTHING. When you find suspicious corporate filings, check the lobbyist registry for meetings.
+              When a politician claims something, verify it against actual bill text and committee testimony. Compare Canadian data to international standards using OECD/WHO databases.
+              Check municipal council minutes against provincial announcements. Use the Wayback Machine to see what they deleted. Track media spin with press release archives.
+              <strong>Every rabbit hole connects to another. Keep digging until you hit bedrock truth.</strong>
             </p>
           </div>
         </div>

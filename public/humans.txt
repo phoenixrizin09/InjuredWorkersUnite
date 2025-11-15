@@ -1,0 +1,69 @@
+/* TEAM */
+Creator: @PhoenixRizin09
+Contact: injuredworker34 [at] gmail.com
+Twitter: @Phoenixrizin09
+Facebook: facebook.com/profile.php?id=61551426728894
+Location: Ontario, Canada
+
+/* SITE */
+Last update: 2025/11/15
+Language: English
+Standards: HTML5, CSS3, JavaScript ES6+, Next.js 15, React 19
+Components: Next.js, React, Cloudflare Pages
+Software: VS Code, Git, GitHub
+
+/* PURPOSE */
+This website is an independent grassroots activist platform advocating for:
+- Disability rights and justice
+- Workers' rights and workplace safety
+- Social justice and government accountability
+- Fair treatment of injured workers
+- Adequate social assistance programs
+- Mental health support and access
+- Housing justice and healthcare access
+
+We are:
+✅ 100% Independent (no corporate funding)
+✅ 100% Transparent (all sources cited)
+✅ Zero tracking (we collect NO personal data)
+✅ Open source (code on GitHub: phoenixrizin09/InjuredWorkersUnite)
+✅ Evidence-based (every claim has verifiable sources)
+
+We are NOT:
+❌ A registered charity or non-profit
+❌ A legal service or law firm
+❌ A medical practice
+❌ Affiliated with any government agency
+❌ Funded by corporations or special interests
+❌ Providing professional advice of any kind
+
+/* LEGAL */
+All content is for educational and advocacy purposes only.
+See /legal for complete disclaimers, privacy policy, and terms.
+
+We collect NO personal information. We use NO tracking.
+Your privacy is absolute.
+
+/* TECHNOLOGY STACK */
+Framework: Next.js 15.5.2
+UI Library: React 19.0.0
+Hosting: Cloudflare Pages
+Deployment: Automatic from GitHub master branch
+Security: CSP, HSTS, X-Frame-Options, Permissions-Policy
+Repository: github.com/phoenixrizin09/InjuredWorkersUnite
+
+/* THANKS */
+To all injured workers fighting for justice.
+To all disabled persons demanding dignity.
+To all activists refusing to be silenced.
+To everyone who believes another world is possible.
+
+Solidarity forever. ✊
+
+/* VERIFICATION */
+Want to verify our claims? Everything is open source.
+Want to verify our privacy? Inspect the code on GitHub.
+Want to verify our sources? Every claim links to official documents.
+Want to verify our independence? We have no corporate sponsors.
+
+Transparency is our strength.

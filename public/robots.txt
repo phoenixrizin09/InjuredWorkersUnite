@@ -1,0 +1,32 @@
+# InjuredWorkersUnite - Activist Platform for Disability Rights
+# This site advocates for injured workers, disabled persons, and social justice in Canada
+# All content is public information and advocacy materials
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://injuredworkersunite.pages.dev/sitemap.xml
+
+# Block AI scrapers that don't respect robots.txt
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Important pages for indexing (legal transparency)
+# /legal - Comprehensive legal disclaimers and privacy policy
+# /the-eye - Government monitoring system
+# /target-acquisition - Strategic activism targets
+# /memetic-embassy - Meme creation tools
+# /contact - Contact information

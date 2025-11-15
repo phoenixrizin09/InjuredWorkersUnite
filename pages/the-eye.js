@@ -339,7 +339,12 @@ export default function TheEye() {
       }
     ]
   };
-        title: 'Corporate Automation Impact',
+
+  const globalInsights = [
+    {
+      severity: 'critical',
+      category: 'workers',
+      title: 'Corporate Automation Impact',
         description: 'Global pattern: AI-driven claim assessments reducing approval rates by 23%. Same algorithm (developed by US firm "RiskLogic AI") deployed in 47 countries. Algorithm audit reveals racial/disability bias.',
         action: 'INTERNATIONAL LAWSUIT READY: EU GDPR violations documented, US civil rights violations filed, UN Human Rights Council complaint drafted, coordinated media release in 12 languages',
         timestamp: '3 days ago',

@@ -7,7 +7,6 @@ export default function TargetAcquisition() {
   const [selectedTarget, setSelectedTarget] = useState(null);
   const [trackingList, setTrackingList] = useState([]);
   const [lastVerified, setLastVerified] = useState(new Date().toLocaleString());
-  const [lastVerified, setLastVerified] = useState(new Date().toLocaleString());
   const [selectedAction, setSelectedAction] = useState(null);
 
   const targetCategories = [

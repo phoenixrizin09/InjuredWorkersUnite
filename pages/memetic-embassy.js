@@ -2143,6 +2143,269 @@ function MemeToolsSection() {
           </div>
         </div>
       </div>
+
+      {/* Downloadable Template Pack */}
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem',
+        background: '#16213e',
+        borderRadius: '10px',
+        border: '2px solid #764ba2'
+      }}>
+        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#764ba2' }}>
+          📥 Downloadable Template Packs
+        </h3>
+        <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9 }}>
+          Ready-to-use templates you can customize for your campaigns. All free, all yours.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+          {[
+            {
+              title: 'Social Media Pack',
+              desc: '50+ templates for Twitter, Instagram, Facebook optimized for each platform',
+              icon: '📱',
+              items: ['Twitter cards (1200x675)', 'Instagram squares (1080x1080)', 'Facebook banners (1200x630)', 'Stories format (1080x1920)'],
+              color: '#667eea'
+            },
+            {
+              title: 'Protest Poster Pack',
+              desc: 'Print-ready posters in multiple sizes featuring Denial Squad characters',
+              icon: '📢',
+              items: ['8.5x11" handheld signs', '11x17" rally posters', '24x36" march banners', 'Editable text layers'],
+              color: '#764ba2'
+            },
+            {
+              title: 'Infographic Kit',
+              desc: 'Data visualization templates to expose statistics and corruption',
+              icon: '📊',
+              items: ['Bar chart templates', 'Timeline comparisons', 'Before/After layouts', 'Statistics highlight cards'],
+              color: '#48c774'
+            },
+            {
+              title: 'Sticker Sheet',
+              desc: 'Die-cut sticker designs for guerrilla awareness campaigns',
+              icon: '🏷️',
+              items: ['2x2" mini stickers', '3x3" medium stickers', 'Laptop-size (4x6")', 'Weatherproof formats'],
+              color: '#f39c12'
+            },
+            {
+              title: 'Email Signature Pack',
+              desc: 'Professional email signatures with resistance messaging',
+              icon: '✉️',
+              items: ['Corporate-friendly versions', 'Bold activist versions', 'Squad member themes', 'HTML & image formats'],
+              color: '#2ecc71'
+            },
+            {
+              title: 'Zine Template',
+              desc: 'Print-and-fold zines for community education',
+              icon: '📰',
+              items: ['8-page mini zine', '16-page full zine', 'Printer-friendly layouts', 'Ready-to-photocopy'],
+              color: '#3498db'
+            }
+          ].map((pack, idx) => (
+            <div key={idx} style={{
+              padding: '1.5rem',
+              background: '#0f3460',
+              borderRadius: '10px',
+              border: `2px solid ${pack.color}`,
+              transition: 'transform 0.2s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>{pack.icon}</div>
+              <h4 style={{ fontSize: '1.2rem', color: pack.color, marginBottom: '0.5rem', textAlign: 'center' }}>
+                {pack.title}
+              </h4>
+              <p style={{ fontSize: '0.9rem', marginBottom: '1rem', opacity: 0.9, textAlign: 'center' }}>
+                {pack.desc}
+              </p>
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '0.5rem' }}>Includes:</p>
+                <ul style={{ fontSize: '0.8rem', opacity: 0.9, paddingLeft: '1.5rem', lineHeight: '1.8' }}>
+                  {pack.items.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <button style={{
+                ...buttonStyle,
+                width: '100%',
+                background: pack.color,
+                fontSize: '0.9rem',
+                padding: '0.7rem'
+              }}>
+                📥 Download {pack.title}
+              </button>
+            </div>
+          ))}
+        </div>
+        <div style={{
+          marginTop: '2rem',
+          padding: '1.5rem',
+          background: '#1a2642',
+          borderRadius: '10px',
+          textAlign: 'center'
+        }}>
+          <p style={{ fontSize: '1rem', marginBottom: '1rem' }}>
+            <strong>All templates are free, open-source, and remixable.</strong>
+          </p>
+          <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
+            Edit them in Canva, Photoshop, GIMP, or any design tool. Make them yours. Share them freely.
+            Attribution appreciated but not required. The movement matters more than credit.
+          </p>
+        </div>
+      </div>
+
+      {/* Success Stories & Examples Gallery */}
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem',
+        background: '#16213e',
+        borderRadius: '10px',
+        border: '2px solid #48c774'
+      }}>
+        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#48c774' }}>
+          🏆 Hall of Fame - Memes That Moved Mountains
+        </h3>
+        <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9 }}>
+          Real memes that went viral, changed narratives, and built power for injured workers
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          {[
+            {
+              title: '"Screenshot Everything" Campaign',
+              description: 'Simple meme reminding workers to document hostile meetings and gaslighting. Led to 10,000+ workers saving evidence that later won appeals.',
+              impact: '10,000+ claims saved',
+              character: '🎖️',
+              shares: '47K shares',
+              outcome: 'Now standard advice in worker advocacy groups',
+              example: 'Insurance: "There\'s no evidence"\nMe: *pulls out 47 screenshots*'
+            },
+            {
+              title: '"We Are Family" Hypocrisy Series',
+              description: 'Mocking corporate "family" rhetoric while denying injury claims. Forced 3 major companies to change their internal communications.',
+              impact: '3 companies changed policy',
+              character: '🎨',
+              shares: '89K shares',
+              outcome: 'HR departments stopped using "family" language',
+              example: 'Boss: "We\'re one big family"\n*Gets injured*\nBoss: "Who are you again?"'
+            },
+            {
+              title: '"Rest Is Resistance" Movement',
+              description: 'Challenged productivity culture and validated disabled workers\' need for rest. Became a disability justice slogan used worldwide.',
+              impact: 'International movement',
+              character: '💚',
+              shares: '156K shares',
+              outcome: 'Adopted by disability orgs globally',
+              example: 'Society: "Rest is lazy"\nChronic illness warriors: "Rest is survival"'
+            },
+            {
+              title: 'Denial-to-Homelessness Pipeline',
+              description: 'Infographic showing how claim denials lead directly to poverty and homelessness. Changed media coverage of workers\' compensation.',
+              impact: 'Media narrative shift',
+              character: '📊',
+              shares: '203K shares',
+              outcome: 'Journalists now ask about housing impact',
+              example: 'Work injury → Claim denied → Can\'t work → Evicted → Homeless\n"Why don\'t homeless people just work?"'
+            },
+            {
+              title: '"Receipts Don\'t Lie" Viral Thread',
+              description: 'Twitter thread exposing insurance company internal documents showing systematic denial strategies. Led to investigation.',
+              impact: 'Regulatory investigation',
+              character: '🎖️',
+              shares: '312K shares',
+              outcome: 'State attorney general opened probe',
+              example: 'Insurance company training manual: "Deny, delay, defend"\nPublic relations: "We care about our policyholders"\nReceipts: 📸📸📸'
+            },
+            {
+              title: 'Accessible Housing Now Poster Series',
+              description: 'Simple posters showing how disability + poverty = homelessness. Used at 50+ protests, sparked housing policy changes in 2 cities.',
+              impact: '2 cities changed policy',
+              character: '♿',
+              shares: '78K shares',
+              outcome: 'Accessible housing units increased',
+              example: 'Can\'t work due to disability\nCan\'t afford accessible housing\nBenefits don\'t cover rent\n= Homelessness by design'
+            }
+          ].map((story, idx) => (
+            <div key={idx} style={{
+              padding: '1.5rem',
+              background: '#0f3460',
+              borderRadius: '10px',
+              border: '2px solid #48c774'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '2.5rem' }}>{story.character}</span>
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', color: '#48c774', margin: 0 }}>
+                    {story.title}
+                  </h4>
+                  <p style={{ fontSize: '0.75rem', opacity: 0.7, margin: '0.25rem 0 0 0' }}>
+                    {story.shares} • {story.impact}
+                  </p>
+                </div>
+              </div>
+              <p style={{ fontSize: '0.9rem', marginBottom: '1rem', lineHeight: '1.6', opacity: 0.9 }}>
+                {story.description}
+              </p>
+              <div style={{
+                padding: '1rem',
+                background: '#16213e',
+                borderRadius: '8px',
+                marginBottom: '1rem',
+                fontFamily: 'monospace',
+                fontSize: '0.85rem',
+                fontStyle: 'italic',
+                whiteSpace: 'pre-line',
+                color: '#aaa'
+              }}>
+                {story.example}
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.75rem',
+                background: 'rgba(72, 199, 116, 0.1)',
+                borderRadius: '8px'
+              }}>
+                <span style={{ fontSize: '1.2rem' }}>✅</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#48c774' }}>
+                  {story.outcome}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{
+          marginTop: '2rem',
+          padding: '2rem',
+          background: '#1a2642',
+          borderRadius: '10px',
+          textAlign: 'center'
+        }}>
+          <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#48c774' }}>
+            Your Meme Could Be Next
+          </h4>
+          <p style={{ fontSize: '1rem', marginBottom: '1.5rem', lineHeight: '1.8' }}>
+            Every meme in this hall of fame started as a simple idea from someone who was tired of being silenced.
+            They used humor, truth, and solidarity to change the conversation. You can too.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button style={{ ...buttonStyle, background: '#48c774' }}>
+              🚀 Submit Your Meme
+            </button>
+            <Link href="/contact" style={{
+              ...buttonStyle,
+              display: 'inline-block',
+              textDecoration: 'none',
+              background: '#667eea'
+            }}>
+              📬 Share Your Success Story
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

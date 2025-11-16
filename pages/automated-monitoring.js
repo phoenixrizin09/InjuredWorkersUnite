@@ -13,6 +13,56 @@ export default function AutomatedMonitoring() {
     { name: 'Manulife', category: 'Insurance', status: 'monitoring', lastScan: '30 min ago', alerts: 5 },
     { name: 'Doug Ford', category: 'Political', status: 'monitoring', lastScan: '1 hour ago', alerts: 1 }
   ]);
+  const [automationEngine, setAutomationEngine] = useState(null);
+  const [isAutomated, setIsAutomated] = useState(false);
+
+  // Initialize automation engine
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('../utils/automation-engine').then(module => {
+        const engine = module.automationEngine;
+        setAutomationEngine(engine);
+        const state = engine.initialize();
+        setIsAutomated(state.isActive);
+        setMonitoringActive(state.isActive);
+        
+        // Load targets from automation system
+        const engineTargets = engine.getTargets().map(t => ({
+          name: t.name,
+          category: t.category,
+          status: t.status || 'monitoring',
+          lastScan: new Date(t.lastSeen).toLocaleString(),
+          alerts: t.evidence?.length || 0
+        }));
+        
+        if (engineTargets.length > 0) {
+          setMonitoredTargets(engineTargets);
+        }
+        
+        // Listen for automation state changes
+        const checkInterval = setInterval(() => {
+          const currentState = engine.getStatus();
+          setIsAutomated(currentState.isActive);
+          setMonitoringActive(currentState.isActive);
+          
+          // Update targets
+          const updatedTargets = engine.getTargets().map(t => ({
+            name: t.name,
+            category: t.category,
+            status: t.status || 'monitoring',
+            lastScan: new Date(t.lastSeen).toLocaleString(),
+            alerts: t.evidence?.length || 0
+          }));
+          
+          if (updatedTargets.length > 0) {
+            setMonitoredTargets(updatedTargets);
+          }
+        }, 5000); // Check every 5 seconds
+        
+        return () => clearInterval(checkInterval);
+      });
+    }
+  }, []);
 
   const monitoringSources = [
     {

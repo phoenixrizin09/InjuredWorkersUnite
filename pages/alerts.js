@@ -7,12 +7,43 @@ export default function AlertsPage() {
   const [alerts, setAlerts] = useState([]);
   const [filter, setFilter] = useState('all'); // all, critical, high, warning
   const [sourceFilter, setSourceFilter] = useState('all');
+  const [automationEngine, setAutomationEngine] = useState(null);
+  const [isAutomated, setIsAutomated] = useState(false);
 
+  // Initialize automation engine
   useEffect(() => {
-    loadAlerts();
-    const interval = setInterval(loadAlerts, 30000); // Refresh every 30 seconds
-    return () => clearInterval(interval);
+    if (typeof window !== 'undefined') {
+      import('../utils/automation-engine').then(module => {
+        const engine = module.automationEngine;
+        setAutomationEngine(engine);
+        const state = engine.initialize();
+        setIsAutomated(state.isActive);
+        
+        // Load alerts from automation system
+        loadAlertsFromEngine(engine);
+        
+        // Listen for new alerts
+        engine.onAlert((newAlert) => {
+          setAlerts(prev => [newAlert, ...prev]);
+        });
+      });
+    }
   }, []);
+
+  // Real-time refresh
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (automationEngine) {
+        loadAlertsFromEngine(automationEngine);
+      }
+    }, 5000); // Refresh every 5 seconds
+    return () => clearInterval(interval);
+  }, [automationEngine]);
+
+  function loadAlertsFromEngine(engine) {
+    const engineAlerts = engine.getAlerts();
+    setAlerts(engineAlerts);
+  }
 
   async function loadAlerts() {
     try {
@@ -58,8 +89,21 @@ export default function AlertsPage() {
             👁️ LIVE ALERTS
           </h1>
           <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: 0.9 }}>
-            Real-time monitoring results • Updates every 30 seconds
+            Real-time monitoring results • Updates every 5 seconds {isAutomated && '• 🤖 AUTOMATED'}
           </p>
+          {isAutomated && (
+            <div style={{
+              marginTop: '15px',
+              padding: '10px 20px',
+              background: 'rgba(0, 255, 0, 0.2)',
+              borderRadius: '10px',
+              border: '1px solid rgba(0, 255, 0, 0.5)',
+              fontSize: '14px',
+              display: 'inline-block'
+            }}>
+              ✅ Automation Active • Alerts generated automatically from The EYE scans
+            </div>
+          )}
           <Link href="/the-eye" style={{ 
             color: '#fff', 
             textDecoration: 'underline',

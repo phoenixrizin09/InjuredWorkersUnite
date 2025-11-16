@@ -11,6 +11,30 @@ export default function TheEye() {
   const [expandedCapability, setExpandedCapability] = useState(null);
   const [actionLog, setActionLog] = useState([]);
   const [eyeActive, setEyeActive] = useState(true);
+  const [automationActive, setAutomationActive] = useState(false);
+  const [automationEngine, setAutomationEngine] = useState(null);
+
+  // Initialize automation engine
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('../utils/automation-engine').then(module => {
+        const engine = module.automationEngine;
+        setAutomationEngine(engine);
+        const state = engine.initialize();
+        setAutomationActive(state.isActive);
+        
+        // Listen for new alerts from automation
+        engine.onAlert((alert) => {
+          setActionLog(prev => [{
+            action: 'AUTO-DETECTED',
+            target: alert.title,
+            time: new Date().toLocaleTimeString(),
+            status: 'monitoring'
+          }, ...prev.slice(0, 19)]);
+        });
+      });
+    }
+  }, []);
 
   // Auto-start The EYE on page load
   useEffect(() => {
@@ -1175,6 +1199,87 @@ export default function TheEye() {
 
         {/* Scan Button */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          {/* AUTOMATION MASTER CONTROL */}
+          <div style={{
+            marginBottom: '2rem',
+            padding: '1.5rem',
+            background: automationActive 
+              ? 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 136, 0.1) 100%)'
+              : 'linear-gradient(135deg, rgba(255, 68, 68, 0.1) 0%, rgba(255, 136, 68, 0.1) 100%)',
+            border: `2px solid ${automationActive ? '#00ff00' : '#ff4444'}`,
+            borderRadius: '15px',
+            maxWidth: '900px',
+            margin: '0 auto 2rem auto'
+          }}>
+            <h3 style={{ 
+              color: automationActive ? '#00ff88' : '#ff6b6b', 
+              marginBottom: '1rem',
+              fontSize: '1.3rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{ animation: automationActive ? 'pulse 2s infinite' : 'none' }}>
+                {automationActive ? '🤖' : '⏸️'}
+              </span>
+              AUTOMATED INTELLIGENCE SYSTEM
+              <span style={{ animation: automationActive ? 'pulse 2s infinite' : 'none' }}>
+                {automationActive ? '🤖' : '⏸️'}
+              </span>
+            </h3>
+            <p style={{ color: '#aaa', fontSize: '0.9rem', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              {automationActive 
+                ? '✅ ALL SYSTEMS OPERATIONAL - The EYE scans every 5 minutes • Monitoring tracks all targets • Alerts fire automatically • Cross-system coordination active'
+                : '⚠️ AUTOMATION PAUSED - Click ACTIVATE to enable full automated intelligence gathering across all systems'
+              }
+            </p>
+            <button
+              onClick={() => {
+                if (automationEngine) {
+                  if (automationActive) {
+                    automationEngine.deactivate();
+                    setAutomationActive(false);
+                  } else {
+                    automationEngine.activate();
+                    setAutomationActive(true);
+                  }
+                }
+              }}
+              style={{
+                padding: '1rem 3rem',
+                background: automationActive
+                  ? 'linear-gradient(135deg, #ff4444 0%, #cc0000 100%)'
+                  : 'linear-gradient(135deg, #00ff88 0%, #00cc66 100%)',
+                border: 'none',
+                borderRadius: '50px',
+                color: 'white',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                boxShadow: automationActive 
+                  ? '0 0 30px rgba(255, 68, 68, 0.6)'
+                  : '0 0 30px rgba(0, 255, 136, 0.6)',
+                marginRight: '1rem',
+                marginBottom: '0.5rem'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              {automationActive ? '⏸️ DEACTIVATE AUTOMATION' : '▶️ ACTIVATE AUTOMATION'}
+            </button>
+            {automationActive && automationEngine && (
+              <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#888' }}>
+                📊 Active Alerts: {automationEngine.getAlerts().length} • 
+                🎯 Tracked Targets: {automationEngine.getTargets().length} • 
+                🔍 Last Scan: {automationEngine.getStatus().lastScan 
+                  ? new Date(automationEngine.getStatus().lastScan).toLocaleTimeString() 
+                  : 'Never'}
+              </div>
+            )}
+          </div>
+
           {/* EYE Active Status */}
           <div style={{
             display: 'inline-block',

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,6 +8,33 @@ export default function TargetAcquisition() {
   const [trackingList, setTrackingList] = useState([]);
   const [lastVerified, setLastVerified] = useState(new Date().toLocaleString());
   const [selectedAction, setSelectedAction] = useState(null);
+  const [automationEngine, setAutomationEngine] = useState(null);
+  const [isAutomated, setIsAutomated] = useState(false);
+
+  // Initialize automation engine
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('../utils/automation-engine').then(module => {
+        const engine = module.automationEngine;
+        setAutomationEngine(engine);
+        const state = engine.initialize();
+        setIsAutomated(state.isActive);
+        
+        // Load tracked targets from automation system
+        const engineTargets = engine.getTargets();
+        setTrackingList(engineTargets);
+        
+        // Update tracking list periodically
+        const updateInterval = setInterval(() => {
+          const currentTargets = engine.getTargets();
+          setTrackingList(currentTargets);
+          setLastVerified(new Date().toLocaleString());
+        }, 10000); // Update every 10 seconds
+        
+        return () => clearInterval(updateInterval);
+      });
+    }
+  }, []);
 
   const targetCategories = [
     {
@@ -890,8 +917,21 @@ export default function TargetAcquisition() {
             border: '2px solid #ff4444',
             borderRadius: '15px'
           }}>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#ff4444' }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#ff4444', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               🔴 ACTIVE TARGETS ({trackingList.length})
+              {isAutomated && (
+                <span style={{
+                  fontSize: '0.9rem',
+                  padding: '0.25rem 0.75rem',
+                  background: 'rgba(0, 255, 0, 0.2)',
+                  border: '1px solid #00ff00',
+                  borderRadius: '12px',
+                  color: '#00ff88',
+                  animation: 'pulse 2s infinite'
+                }}>
+                  🤖 AUTO-TRACKED
+                </span>
+              )}
             </h2>
             <div style={{ display: 'grid', gap: '1rem' }}>
               {trackingList.map((target, idx) => (
@@ -905,8 +945,14 @@ export default function TargetAcquisition() {
                     <div>
                       <h3 style={{ margin: '0 0 0.5rem 0', color: '#ff4444' }}>{target.name}</h3>
                       <p style={{ margin: 0, color: '#888', fontSize: '0.9rem' }}>
-                        {target.category} • Added: {target.addedDate}
+                        {target.category} • Added: {target.addedDate || (target.addedAt ? new Date(target.addedAt).toLocaleString() : 'Unknown')}
+                        {target.addedBy === 'AUTOMATION' && ' • 🤖 Auto-detected'}
                       </p>
+                      {target.evidence && target.evidence.length > 0 && (
+                        <p style={{ margin: '0.5rem 0 0 0', color: '#aaa', fontSize: '0.85rem' }}>
+                          📋 Evidence: {target.evidence.length} items • Last seen: {new Date(target.lastSeen).toLocaleTimeString()}
+                        </p>
+                      )}
                     </div>
                     <span style={{
                       padding: '0.25rem 0.75rem',

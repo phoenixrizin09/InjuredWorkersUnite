@@ -1,15 +1,15 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/alerts": "pages/alerts.html",
+  "/automated-monitoring": "pages/automated-monitoring.html",
   "/contact": "pages/contact.html",
   "/": "pages/index.html",
   "/legal": "pages/legal.html",
   "/meme-gallery": "pages/meme-gallery.html",
-  "/memetic-embassy": "pages/memetic-embassy.html",
-  "/automated-monitoring": "pages/automated-monitoring.html",
-  "/alerts": "pages/alerts.html",
-  "/the-eye": "pages/the-eye.html",
   "/target-acquisition": "pages/target-acquisition.html",
+  "/memetic-embassy": "pages/memetic-embassy.html",
+  "/the-eye": "pages/the-eye.html",
   "/404": "pages/404.html"
 }

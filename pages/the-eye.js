@@ -69,7 +69,15 @@ export default function TheEye() {
     { id: 'employment', name: 'Employment & Labour Rights', icon: '💼' },
     { id: 'legal', name: 'Legal Aid & Justice', icon: '⚖️' },
     { id: 'education', name: 'Education & Accessibility', icon: '📚' },
-    { id: 'transportation', name: 'Transportation & Mobility', icon: '🚌' }
+    { id: 'transportation', name: 'Transportation & Mobility', icon: '🚌' },
+    { id: 'indigenous', name: 'Indigenous Rights & Reconciliation', icon: '🪶' },
+    { id: 'racial_justice', name: 'Racial Justice & Anti-Discrimination', icon: '✊🏿' },
+    { id: 'gender_equality', name: 'Gender Equality & LGBTQ+ Rights', icon: '🏳️‍🌈' },
+    { id: 'environmental', name: 'Environmental Justice', icon: '🌍' },
+    { id: 'immigrant_refugee', name: 'Immigrant & Refugee Rights', icon: '🌐' },
+    { id: 'police_accountability', name: 'Police Accountability & Criminal Justice', icon: '👮' },
+    { id: 'food_security', name: 'Food Security & Food Justice', icon: '🍞' },
+    { id: 'digital_rights', name: 'Digital Rights & Privacy', icon: '🔐' }
   ];
 
   const capabilities = [
@@ -216,6 +224,118 @@ export default function TheEye() {
           { name: 'Community Health Centres', url: 'https://www.allianceon.org/' },
           { name: 'City Budget Health', url: 'https://www.toronto.ca/city-government/budget-finances/city-budget/' }
         ]
+      },
+      {
+        severity: 'high',
+        category: 'indigenous',
+        title: 'Toronto Lacks Indigenous Housing Strategy',
+        description: 'Despite 70,000+ Indigenous residents, Toronto has no dedicated Indigenous housing strategy. Indigenous people represent 15% of homeless population but only 2% of city residents.',
+        action: 'DOCUMENTED: Census data, homeless count statistics, city housing plan gaps identified',
+        timestamp: '1 day ago',
+        actionButtons: ['Census Data', 'Homeless Count', 'Housing Plans'],
+        sources: [
+          { name: 'Toronto Housing', url: 'https://www.toronto.ca/community-people/housing-shelter/' },
+          { name: 'Census Data', url: 'https://www12.statcan.gc.ca/census-recensement/' },
+          { name: 'Indigenous Affairs Office', url: 'https://www.toronto.ca/city-government/accountability-operations-customer-service/long-term-vision-plans-and-strategies/reconciliation-action-plan/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'racial_justice',
+        title: 'TTC Fare Evasion Enforcement Targets Black Riders',
+        description: 'TTC enforcement data shows Black riders receive 4x more fare evasion tickets than white riders. Ombudsman investigation confirms racial profiling.',
+        action: 'PUBLIC DATA: TTC enforcement statistics, Ombudsman report, racial demographics of citations',
+        timestamp: '2 days ago',
+        actionButtons: ['Enforcement Data', 'Ombudsman Report', 'Demographic Analysis'],
+        sources: [
+          { name: 'TTC Reports', url: 'https://www.ttc.ca/About_the_TTC/Commission_reports_and_information/index.jsp' },
+          { name: 'Toronto Ombudsman', url: 'https://www.ombudsmantoronto.ca/' },
+          { name: 'TTC Equity Report', url: 'https://www.ttc.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'environmental',
+        title: 'Toronto Port Expansion Despite Climate Emergency',
+        description: 'City council declares climate emergency in 2019, then approves Billy Bishop Airport expansion in 2024. Environmental assessment shows increased emissions.',
+        action: 'RECEIPTS: Council votes public, environmental assessment reports, climate plan contradictions documented',
+        timestamp: '3 days ago',
+        actionButtons: ['Council Votes', 'Environmental Assessment', 'Climate Plan'],
+        sources: [
+          { name: 'Toronto Council', url: 'https://www.toronto.ca/city-government/council/' },
+          { name: 'Environmental Assessments', url: 'https://www.toronto.ca/city-government/planning-development/environment-energy/' },
+          { name: 'Climate Action', url: 'https://www.toronto.ca/services-payments/water-environment/environmentally-friendly-city-initiatives/transformto/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'gender_equality',
+        title: 'Toronto Transit Safety Program Underfunded',
+        description: 'Despite reports of harassment on TTC, SafeTTC program receives only $2M of $15M requested. 87% of women report feeling unsafe on transit at night.',
+        action: 'DOCUMENTED: Budget documents, safety program requests, survey data public',
+        timestamp: '4 days ago',
+        actionButtons: ['Budget Analysis', 'Safety Surveys', 'Program Details'],
+        sources: [
+          { name: 'TTC Budget', url: 'https://www.ttc.ca/About_the_TTC/Commission_reports_and_information/Commission_meetings/2024/index.jsp' },
+          { name: 'Transit Safety', url: 'https://www.ttc.ca/Riding_the_TTC/Safety_and_Security/index.jsp' },
+          { name: 'City Safety Reports', url: 'https://www.toronto.ca/community-people/public-safety-alerts/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'police_accountability',
+        title: 'Toronto Police Budget Increases While Services Decline',
+        description: 'TPS budget increased to $1.2 billion (10% of city budget) while community response times increased. Defund activists cite misallocation.',
+        action: 'PUBLIC: City budget documents, response time statistics, community service cuts documented',
+        timestamp: '1 day ago',
+        actionButtons: ['Police Budget', 'Response Times', 'Service Analysis'],
+        sources: [
+          { name: 'Toronto Police Budget', url: 'https://www.tps.ca/organizational-chart/finance-and-administration/' },
+          { name: 'City Budget', url: 'https://www.toronto.ca/city-government/budget-finances/' },
+          { name: 'Police Oversight', url: 'https://www.tpsb.ca/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'immigrant_refugee',
+        title: 'City Refugee Services Overwhelmed',
+        description: 'Toronto shelter system houses 2,800 refugee claimants with no federal support. City declares emergency but federal government provides no funding.',
+        action: 'OFFICIAL: City emergency declaration, shelter occupancy data, federal-municipal correspondence',
+        timestamp: '2 days ago',
+        actionButtons: ['Emergency Declaration', 'Shelter Data', 'Funding Requests'],
+        sources: [
+          { name: 'Toronto Shelter System', url: 'https://www.toronto.ca/community-people/housing-shelter/homeless-help/' },
+          { name: 'City Council Reports', url: 'https://www.toronto.ca/city-government/council/' },
+          { name: 'Refugee Services', url: 'https://www.toronto.ca/community-people/housing-shelter/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'food_security',
+        title: 'Toronto Food Bank Usage Doubles',
+        description: 'Daily Bread Food Bank reports record 350,000 visits per month - double pre-pandemic levels. 40% are employed but wages insufficient.',
+        action: 'EVIDENCE: Food bank annual reports, usage statistics, client demographics public',
+        timestamp: '5 days ago',
+        actionButtons: ['Food Bank Report', 'Usage Data', 'Working Poor Stats'],
+        sources: [
+          { name: 'Daily Bread Food Bank', url: 'https://www.dailybread.ca/' },
+          { name: 'Toronto Food Policy', url: 'https://www.toronto.ca/community-people/health-wellness-care/health-inspections-monitoring/food-safety/' },
+          { name: 'North York Harvest', url: 'https://www.northyorkharvest.com/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'digital_rights',
+        title: 'Toronto Police Surveillance Cameras Expand Without Oversight',
+        description: 'TPS installed 1,200 new surveillance cameras in 2024 with no privacy impact assessment. Civil liberties groups challenge lack of transparency.',
+        action: 'PUBLIC: Camera locations FOI-able, policy documents available, CCLA legal challenge filed',
+        timestamp: '3 days ago',
+        actionButtons: ['Camera Locations', 'Privacy Policy', 'Legal Challenge'],
+        sources: [
+          { name: 'Toronto Police Surveillance', url: 'https://www.tps.ca/' },
+          { name: 'Ontario Privacy Commissioner', url: 'https://www.ipc.on.ca/' },
+          { name: 'CCLA', url: 'https://ccla.org/' }
+        ]
       }
     ],
     provincial: [
@@ -288,6 +408,118 @@ export default function TheEye() {
           { name: 'Mental Health Services', url: 'https://www.ontario.ca/page/get-mental-health-support' },
           { name: 'Coroner Inquests', url: 'https://www.mcscs.jus.gov.on.ca/english/DeathInvestigations/Inquests/InquestsHome.html' }
         ]
+      },
+      {
+        severity: 'critical',
+        category: 'indigenous',
+        title: 'Ontario Ignores Indigenous Drinking Water Crisis',
+        description: 'Six Ontario First Nations under boil water advisories for 5+ years. Provincial government refuses to fund infrastructure despite federal-provincial jurisdiction disputes.',
+        action: 'DOCUMENTED: Ontario Clean Water Agency reports, First Nation public health advisories, ministerial correspondence via FOI',
+        timestamp: '1 day ago',
+        actionButtons: ['Water Reports', 'Health Advisories', 'FOI Docs'],
+        sources: [
+          { name: 'Ontario First Nations', url: 'https://www.ontario.ca/page/ontario-first-nations' },
+          { name: 'Public Health Ontario', url: 'https://www.publichealthontario.ca/' },
+          { name: 'Environmental Commissioner', url: 'https://www.auditor.on.ca/en/content/environment/environreports.html' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'racial_justice',
+        title: 'Carding Data Shows Toronto Police Racial Bias',
+        description: 'Toronto Police Service data shows Black residents are 4x more likely to be stopped and questioned. 2024 data continues pattern despite "ban" on carding.',
+        action: 'PUBLIC DATA: TPS annual reports, Ontario Human Rights Commission analysis, civilian oversight reports',
+        timestamp: '12 hours ago',
+        actionButtons: ['TPS Data', 'OHRC Report', 'Oversight Board'],
+        sources: [
+          { name: 'Toronto Police Data', url: 'https://data.torontopolice.on.ca/' },
+          { name: 'Ontario Human Rights', url: 'http://www.ohrc.on.ca/' },
+          { name: 'Police Oversight', url: 'https://www.oiprd.on.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'environmental',
+        title: 'Greenbelt Land Swap Scandal',
+        description: 'Ontario Auditor General confirms Developer profits from Greenbelt removal: $8.3 billion. Political donations from developers: $1.2M. Integrity Commissioner investigation ongoing.',
+        action: 'OFFICIAL AUDIT: AG Report Nov 2023, land registry changes public, political donation records searchable',
+        timestamp: '3 days ago',
+        actionButtons: ['AG Report', 'Land Registry', 'Donation Records'],
+        sources: [
+          { name: 'Auditor General Report', url: 'https://www.auditor.on.ca/' },
+          { name: 'Integrity Commissioner', url: 'https://www.oico.on.ca/' },
+          { name: 'Elections Ontario Finances', url: 'https://finances.elections.on.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'gender_equality',
+        title: 'Ontario Pay Transparency Act Not Enforced',
+        description: 'Pay Transparency Act passed 2018, enforcement delayed indefinitely. Gender pay gap in Ontario remains 16.3% - highest in Canada.',
+        action: 'DOCUMENTED: Ministry of Labour reports, Stats Canada provincial wage data, enforcement status public',
+        timestamp: '2 days ago',
+        actionButtons: ['Labour Ministry', 'Wage Gap Data', 'Enforcement Status'],
+        sources: [
+          { name: 'Ontario Labour Ministry', url: 'https://www.ontario.ca/page/ministry-labour-immigration-training-skills-development' },
+          { name: 'Pay Transparency', url: 'https://www.ontario.ca/page/equal-pay' },
+          { name: 'Stats Canada Ontario', url: 'https://www150.statcan.gc.ca/n1/en/subjects/labour' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'immigrant_refugee',
+        title: 'Ontario Denies Healthcare to Undocumented Migrants',
+        description: 'Despite federal policy changes, Ontario continues to deny OHIP to undocumented residents. Legal clinics report 12,000+ denied access in 2024.',
+        action: 'EVIDENCE: Legal clinic reports, Ministry of Health policy documents, court cases challenging denials',
+        timestamp: '4 days ago',
+        actionButtons: ['Legal Clinic Data', 'OHIP Policy', 'Court Cases'],
+        sources: [
+          { name: 'Ontario Health Insurance', url: 'https://www.ontario.ca/page/apply-ohip-and-get-health-card' },
+          { name: 'Legal Aid Ontario', url: 'https://www.legalaid.on.ca/' },
+          { name: 'Ontario Court Cases', url: 'https://www.ontariocourts.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'police_accountability',
+        title: 'SIU Clears Police in 95% of Investigations',
+        description: 'Special Investigations Unit data shows only 5% of police shooting investigations result in charges. Pattern suggests systemic lack of accountability.',
+        action: 'PUBLIC STATS: SIU annual reports, case summaries public, conviction rates documented',
+        timestamp: '1 day ago',
+        actionButtons: ['SIU Reports', 'Case Data', 'Accountability Analysis'],
+        sources: [
+          { name: 'SIU Reports', url: 'https://www.siu.on.ca/' },
+          { name: 'Police Oversight', url: 'https://www.oiprd.on.ca/' },
+          { name: 'Ontario Ombudsman', url: 'https://www.ombudsman.on.ca/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'digital_rights',
+        title: 'Bill 28 Expands Surveillance in Schools',
+        description: 'Proposed legislation requires schools to install monitoring software on student devices. Privacy Commissioner raises concerns about charter violations.',
+        action: 'PUBLIC: Bill text available, committee hearings recorded, Privacy Commissioner submissions documented',
+        timestamp: '5 days ago',
+        actionButtons: ['Read Bill', 'Privacy Commissioner', 'Committee Testimony'],
+        sources: [
+          { name: 'Ontario Legislation', url: 'https://www.ola.org/en/legislative-business/bills' },
+          { name: 'Privacy Commissioner', url: 'https://www.ipc.on.ca/' },
+          { name: 'Education Committee', url: 'https://www.ola.org/en/legislative-business/committees' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'food_security',
+        title: 'Ontario Cuts Social Assistance Food Allowance',
+        description: 'OW and ODSP recipients receive $122/month basic needs allowance - unchanged since 2018. Food Bank usage among recipients up 78% since pandemic.',
+        action: 'OFFICIAL DATA: Ministry rates public, Food Banks Ontario reports, inflation data from Stats Canada',
+        timestamp: '3 days ago',
+        actionButtons: ['Current Rates', 'Food Bank Data', 'Inflation Analysis'],
+        sources: [
+          { name: 'Social Assistance Rates', url: 'https://www.ontario.ca/page/social-assistance' },
+          { name: 'Feed Ontario', url: 'https://feedontario.ca/' },
+          { name: 'Ontario Nutritious Food Basket', url: 'https://www.ontario.ca/page/nutritious-food-basket' }
+        ]
       }
     ],
     federal: [
@@ -359,6 +591,118 @@ export default function TheEye() {
           { name: 'Pharmacare Legislation', url: 'https://www.parl.ca/legisinfo/en/bills' },
           { name: 'Health Canada', url: 'https://www.canada.ca/en/health-canada.html' },
           { name: 'Disability Advocacy Groups', url: 'https://www.ccd.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'indigenous',
+        title: 'Clean Water Advisories Still Active in 27 First Nations',
+        description: 'Despite government promises, 27 First Nations communities across Canada remain under long-term drinking water advisories. Some advisories in place for 20+ years.',
+        action: 'DOCUMENTED: Government tracking website shows all active advisories, community names public, years under advisory documented',
+        timestamp: '1 day ago',
+        actionButtons: ['View Advisories', 'Government Tracker', 'Community Reports'],
+        sources: [
+          { name: 'ISC Water Advisories', url: 'https://www.sac-isc.gc.ca/eng/1506514143353/1533317130660' },
+          { name: 'Drinking Water Dashboard', url: 'https://www.sac-isc.gc.ca/eng/1614387350874/1614387380989' },
+          { name: 'Parliamentary Reports', url: 'https://www.ourcommons.ca/Committees/en/INAN' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'racial_justice',
+        title: 'RCMP Street Checks Data Shows Racial Bias',
+        description: 'Federal RCMP data reveals Black Canadians are 3x more likely to be street-checked than white Canadians. Indigenous people 5x more likely.',
+        action: 'PUBLIC DATA: Stats Canada reports, RCMP data releases, provincial policing statistics all documented',
+        timestamp: '2 days ago',
+        actionButtons: ['Stats Canada Report', 'RCMP Data', 'Provincial Stats'],
+        sources: [
+          { name: 'Statistics Canada - Police Data', url: 'https://www150.statcan.gc.ca/n1/en/type/data' },
+          { name: 'RCMP Reports', url: 'https://www.rcmp-grc.gc.ca/en/news-and-media' },
+          { name: 'Public Safety Canada', url: 'https://www.publicsafety.gc.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'immigrant_refugee',
+        title: 'Immigration Detention Without Trial Increasing',
+        description: 'CBSA detention statistics show 8,300 immigration detentions in 2024, including 156 children. No criminal charges, no trial, indefinite detention.',
+        action: 'DOCUMENTED: CBSA annual reports public, detention statistics released, ombudsman investigations ongoing',
+        timestamp: '12 hours ago',
+        actionButtons: ['CBSA Reports', 'Detention Stats', 'Ombudsman Files'],
+        sources: [
+          { name: 'CBSA Detention Statistics', url: 'https://www.cbsa-asfc.gc.ca/security-securite/detent/stat-eng.html' },
+          { name: 'Immigration Ombudsman', url: 'https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/ombudsperson.html' },
+          { name: 'Parliamentary Committee', url: 'https://www.ourcommons.ca/Committees/en/CIMM' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'environmental',
+        title: 'Federal Climate Targets vs. Fossil Fuel Subsidies',
+        description: 'Government commits to net-zero by 2050 while providing $18 billion in fossil fuel subsidies in 2024. Environment Commissioner report shows contradiction.',
+        action: 'RECEIPTS: Commissioner report public, budget documents show subsidies, G7 commitments documented',
+        timestamp: '1 day ago',
+        actionButtons: ['Commissioner Report', 'Budget Analysis', 'Subsidy Tracker'],
+        sources: [
+          { name: 'Commissioner of Environment', url: 'https://www.oag-bvg.gc.ca/internet/English/cesd_fs_e_921.html' },
+          { name: 'Federal Budget', url: 'https://www.budget.gc.ca/' },
+          { name: 'Fossil Fuel Subsidy Tracker', url: 'https://www.iisd.org/faq/unpacking-canadas-fossil-fuel-subsidies/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'gender_equality',
+        title: 'Pay Equity Legislation Not Enforced',
+        description: 'Federal Pay Equity Act passed in 2018, but enforcement delayed. Gender pay gap remains 13% in federally regulated industries.',
+        action: 'DOCUMENTED: Pay Equity Commissioner reports, Stats Canada wage data, enforcement timeline public',
+        timestamp: '3 days ago',
+        actionButtons: ['Commissioner Updates', 'Wage Gap Data', 'Enforcement Status'],
+        sources: [
+          { name: 'Pay Equity Commissioner', url: 'https://www.chrc-ccdp.gc.ca/en/about-human-rights/pay-equity' },
+          { name: 'Stats Canada Wages', url: 'https://www150.statcan.gc.ca/n1/en/subjects/labour/wages_salaries_and_earnings' },
+          { name: 'Status of Women Canada', url: 'https://women-gender-equality.canada.ca/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'digital_rights',
+        title: 'Bill C-26 Expands Surveillance Powers',
+        description: 'Proposed cybersecurity legislation grants government sweeping powers to access private communications without warrants in "national security" cases.',
+        action: 'PUBLIC: Bill text available, committee testimony recorded, privacy commissioner concerns documented',
+        timestamp: '5 days ago',
+        actionButtons: ['Read Bill C-26', 'Committee Testimony', 'Privacy Commissioner'],
+        sources: [
+          { name: 'LEGISinfo - Bill C-26', url: 'https://www.parl.ca/legisinfo/en/bill/44-1/c-26' },
+          { name: 'Privacy Commissioner', url: 'https://www.priv.gc.ca/en/' },
+          { name: 'OpenMedia Analysis', url: 'https://openmedia.org/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'police_accountability',
+        title: 'RCMP Misconduct Cases Surge, Transparency Lacking',
+        description: 'Civilian Review and Complaints Commission reports 2,847 misconduct complaints in 2024. Only 3% result in discipline. Most investigation details not public.',
+        action: 'DOCUMENTED: CRCC annual reports public, complaint statistics available, transparency gaps identified',
+        timestamp: '2 days ago',
+        actionButtons: ['CRCC Reports', 'Complaint Stats', 'Accountability Gaps'],
+        sources: [
+          { name: 'CRCC Reports', url: 'https://www.crcc-ccetp.gc.ca/en/publications-and-research' },
+          { name: 'RCMP Accountability', url: 'https://www.rcmp-grc.gc.ca/en/transparency-accountability' },
+          { name: 'Public Safety Committee', url: 'https://www.ourcommons.ca/Committees/en/SECU' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'food_security',
+        title: 'Food Bank Usage Hits Record High',
+        description: 'Food Banks Canada reports 2 million visits per month in 2024, up 50% from 2020. Federal food policy consultation process shows inaction.',
+        action: 'EVIDENCE: Food Banks Canada data public, provincial statistics available, federal policy gaps documented',
+        timestamp: '4 days ago',
+        actionButtons: ['Food Bank Report', 'Usage Statistics', 'Policy Analysis'],
+        sources: [
+          { name: 'Food Banks Canada', url: 'https://www.foodbankscanada.ca/' },
+          { name: 'Stats Canada Food Security', url: 'https://www150.statcan.gc.ca/n1/en/subjects/health/food_and_nutrition' },
+          { name: 'Agriculture Committee', url: 'https://www.ourcommons.ca/Committees/en/AGRI' }
         ]
       }
     ]

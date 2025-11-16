@@ -1704,7 +1704,7 @@ export default function TargetAcquisition() {
                   {selectedAction.links.map((link, idx) => (
                     <a
                       key={idx}
-                      href={link}
+                      href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -1725,7 +1725,7 @@ export default function TargetAcquisition() {
                         e.currentTarget.style.background = 'rgba(46, 213, 115, 0.1)';
                       }}
                     >
-                      🌐 {link}
+                      🌐 {link.name}
                     </a>
                   ))}
                 </div>

@@ -1140,7 +1140,7 @@ export default function TheEye() {
     }, 2000);
   };
 
-  const handleAction = (actionType, insightTitle) => {
+  const handleAction = (actionType, insightTitle, insight) => {
     const timestamp = new Date().toLocaleTimeString();
     setActionLog(prev => [{
       action: actionType,
@@ -1149,8 +1149,165 @@ export default function TheEye() {
       status: 'deployed'
     }, ...prev.slice(0, 9)]);
     
-    // Visual feedback
-    alert(`🚀 ACTION DEPLOYED: ${actionType}\n\nTarget: ${insightTitle}\n\nStatus: In Progress\n\nThe Eye is watching...`);
+    // Map action button text to relevant source URLs
+    const actionUrlMap = {
+      // Common action patterns
+      'City Reports': 'https://www.toronto.ca/',
+      'Council Minutes': 'https://www.toronto.ca/legdocs/',
+      'Shelter Stats': 'https://www.toronto.ca/city-government/data-research-maps/open-data/',
+      'View Budget': 'https://www.ontario.ca/page/ontario-budget',
+      'Consultation Results': 'https://www.ontario.ca/page/consultations',
+      'Impact Analysis': 'https://www.fao-on.org/en/',
+      'View WSIB Report': 'https://www.wsib.ca/en/annualreport',
+      'See Statistics': 'https://www.wsib.ca/en/stats',
+      'Appeal Success Rates': 'https://www.tribunalsontario.ca/wsiat/',
+      'AG Report': 'https://www.auditor.on.ca/',
+      'Poverty Data': 'https://www150.statcan.gc.ca/n1/en/subjects/income_pensions_spending_and_wealth',
+      'Inflation Analysis': 'https://www150.statcan.gc.ca/n1/en/subjects/prices_and_price_indexes',
+      'View Bill': 'https://www.ola.org/en/legislative-business/bills',
+      'Committee Records': 'https://www.ola.org/en/legislative-business/committees',
+      'Read Bill': 'https://www.ola.org/en/legislative-business/bills',
+      'View Compliance': 'https://www.ontario.ca/page/accessibility-laws',
+      'AODA Standards': 'https://www.ontario.ca/page/how-make-customer-service-accessible',
+      'Health Reports': 'https://www.ontario.ca/page/health-care-ontario',
+      'Wait Time Data': 'https://www.hqontario.ca/',
+      'Coroner Records': 'https://www.mcscs.jus.gov.on.ca/english/DeathInvestigations/office_coroner/publicationsandreports/OfficeoftheChiefCoroner.html',
+      'Water Reports': 'https://www.ontario.ca/page/drinking-water',
+      'Health Advisories': 'https://www.ontario.ca/page/health-care-ontario',
+      'FOI Docs': 'https://www.ontario.ca/page/how-make-freedom-information-request',
+      'TPS Data': 'https://data.torontopolice.on.ca/',
+      'OHRC Report': 'http://www.ohrc.on.ca/',
+      'Oversight Board': 'https://www.oiprd.on.ca/',
+      'Land Registry': 'https://www.ontario.ca/page/land-registration',
+      'Donation Records': 'https://finances.elections.on.ca/',
+      'Labour Ministry': 'https://www.ontario.ca/page/ministry-labour-immigration-training-skills-development',
+      'Wage Gap Data': 'https://www.ontario.ca/page/equal-pay',
+      'Enforcement Status': 'https://www.ontario.ca/page/employment-standards-act-0',
+      'Legal Clinic Data': 'https://www.legalaid.on.ca/',
+      'OHIP Policy': 'https://www.ontario.ca/page/apply-ohip-and-get-health-card',
+      'Court Cases': 'https://www.ontariocourts.ca/',
+      'SIU Reports': 'https://www.siu.on.ca/',
+      'Case Data': 'https://www.siu.on.ca/en/directors_report.php',
+      'Accountability Analysis': 'https://www.oiprd.on.ca/',
+      'Privacy Commissioner': 'https://www.ipc.on.ca/',
+      'Committee Testimony': 'https://www.ola.org/en/legislative-business/committees',
+      'Current Rates': 'https://www.ontario.ca/page/social-assistance',
+      'Food Bank Data': 'https://feedontario.ca/',
+      'Homeless Count': 'https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/street-needs-assessment/',
+      'Rental Data': 'https://www.cmhc-schl.gc.ca/en',
+      'BC Housing Reports': 'https://www.bchousing.org/',
+      'VPD Data': 'https://vpd.ca/',
+      'Advocacy Reports': 'https://bccla.org/',
+      'Council Records': 'https://council.vancouver.ca/',
+      'Alberta Works Rates': 'https://www.alberta.ca/income-support',
+      'Rental Market': 'https://www.cmhc-schl.gc.ca/en',
+      'Poverty Analysis': 'https://www150.statcan.gc.ca/',
+      'Lobbyist Registry': 'https://lobbycanada.gc.ca/',
+      'Council Votes': 'https://www.toronto.ca/legdocs/',
+      'Climate Plan': 'https://www.canada.ca/en/environment-climate-change.html',
+      'Eviction Data': 'https://tribunalsontario.ca/ltb/',
+      'Housing Offers': 'https://www.ontario.ca/page/housing-ontario',
+      'City Budget': 'https://www.toronto.ca/city-government/budget-finances/',
+      'Program Cuts': 'https://www.fao-on.org/en/',
+      'Indigenous Response': 'https://www.ontario.ca/page/indigenous-affairs',
+      'Justice Data': 'https://www.gov.mb.ca/justice/',
+      'Stats Canada': 'https://www150.statcan.gc.ca/',
+      'Human Rights Reports': 'https://www.chrc-ccdp.gc.ca/en',
+      'Hospital Stats': 'https://www.cihi.ca/en',
+      'City Updates': 'https://montreal.ca/en',
+      'Provincial Response': 'https://www.quebec.ca/en/',
+      'Federal Offers': 'https://www.canada.ca/',
+      'Incident Reports': 'https://www.ottawapolice.ca/',
+      'Safety Audits': 'https://ottawa.ca/',
+      'Advocacy Data': 'https://www.carc-cvrc.com/',
+      'Usage Stats': 'https://foodbankscanada.ca/',
+      'Client Demographics': 'https://www150.statcan.gc.ca/',
+      'Tribunal Decisions': 'https://www.tal.gouv.qc.ca/en',
+      'Renoviction Data': 'https://rclalq.qc.ca/',
+      'Tenant Advocacy': 'https://rclalq.qc.ca/',
+      'Police Board': 'https://www.halifax.ca/',
+      'Community Testimony': 'https://www.halifax.ca/home/news',
+      'Rights Complaints': 'https://nshumanrights.ca/',
+      'Environmental Assessment': 'https://www.canada.ca/en/environment-climate-change.html',
+      'Consultation Records': 'https://www.canada.ca/en/services/environment.html',
+      'Expert Reports': 'https://www.canada.ca/en/environment-climate-change.html',
+      'City Plans': 'https://www.quebec.ca/en/',
+      'Privacy Analysis': 'https://www.priv.gc.ca/en/',
+      'CAI Investigation': 'https://www.cai.gouv.qc.ca/',
+      'WorkSafeBC Stats': 'https://www.worksafebc.com/en/about-us/statistics',
+      'Appeal Data': 'https://www.wcat.bc.ca/',
+      'Denial Analysis': 'https://bcombudsperson.ca/',
+      'Representative Report': 'https://www.rcybc.ca/',
+      'UNDRIP Status': 'https://www2.gov.bc.ca/gov/content/governments/indigenous-people',
+      'First Nations Response': 'https://www.fns.bc.ca/',
+      'Provincial Rates': 'https://maytree.com/welfare-in-canada/',
+      'Cost Comparison': 'https://www150.statcan.gc.ca/',
+      'Private Contracts': 'https://www.albertahealthservices.ca/',
+      'Coalition Report': 'https://www.friendsofmedicare.org/',
+      'Emissions Data': 'https://www.canada.ca/en/environment-climate-change.html',
+      'Premier Statements': 'https://www.saskatchewan.ca/',
+      'Justice Statistics': 'https://www.gov.mb.ca/justice/',
+      'Corrections Data': 'https://www.csc-scc.gc.ca/',
+      'TRC Progress': 'https://www.rcaanc-cirnac.gc.ca/',
+      'Bill 31 Text': 'http://www.assnat.qc.ca/en/',
+      'Legal Analysis': 'https://rclalq.qc.ca/',
+      'Shelter Reports': 'https://www.quebec.ca/',
+      'Ombudsman': 'https://www.protecteurducitoyen.qc.ca/',
+      'Advocacy Response': 'https://rclalq.qc.ca/',
+      'Wait List Data': 'https://needafamilypractice.nshealth.ca/',
+      'Recruitment Stats': 'https://doctorsns.com/',
+      'Rural Health': 'https://www.nshealth.ca/',
+      'Policy Changes': 'https://www2.gnb.ca/content/gnb/en/departments/health.html',
+      'Service Cuts': 'https://www2.gnb.ca/content/gnb/en/departments/health.html',
+      'Legal Challenges': 'https://www.legalaid.nb.ca/',
+      'Review Report': 'https://www.rnc.gov.nl.ca/',
+      'RNC Response': 'https://www.gov.nl.ca/justice/',
+      'Advocacy Demands': 'https://endingviolencenl.ca/',
+      'First Nations': 'https://cyfn.ca/',
+      'Funding Status': 'https://www.sac-isc.gc.ca/',
+      'CMHC Data': 'https://www.cmhc-schl.gc.ca/',
+      'Housing Reports': 'https://www.nwthc.gov.nt.ca/',
+      'Food Security Data': 'https://www150.statcan.gc.ca/',
+      'Nutrition North': 'https://www.nutritionnorthcanada.gc.ca/',
+      'Price Comparison': 'https://www.nutritionnorthcanada.gc.ca/',
+      'Water Quality Data': 'https://www.princeedwardisland.ca/en/topic/water-quality',
+      'Well Testing': 'https://www.princeedwardisland.ca/en/topic/water-quality',
+      'Regulations': 'https://www.princeedwardisland.ca/en/topic/environment',
+      'Workforce Stats': 'https://www.ontario.ca/page/labour-market',
+      'Enforcement Data': 'https://www.ontario.ca/page/employment-standards-act-0',
+      'Hiring Data': 'https://www.ontario.ca/page/jobs-and-employment',
+      'HR Complaint': 'https://www.ombudsman.on.ca/',
+      'Ombudsman Report': 'https://www.ombudsman.on.ca/',
+      'Impact Studies': 'https://www.ontario.ca/page/health-care-ontario',
+      'Funding Docs': 'https://www.ontario.ca/page/ontario-budget',
+      'Census Data': 'https://www12.statcan.gc.ca/census-recensement/',
+      'Housing Plans': 'https://www.ontario.ca/page/housing-ontario',
+      'Demographic Analysis': 'https://www150.statcan.gc.ca/',
+      'Environmental Assessment': 'https://www.ontario.ca/page/environmental-assessments',
+      'Program Details': 'https://www.ontario.ca/page/government-ontario',
+      'Police Budget': 'https://www.tps.ca/',
+      'Response Times': 'https://www.tps.ca/',
+      'Service Analysis': 'https://www.tps.ca/',
+      'Emergency Declaration': 'https://www.toronto.ca/',
+      'Funding Requests': 'https://www.toronto.ca/city-government/budget-finances/',
+      'Usage Data': 'https://feedontario.ca/',
+      'Working Poor Stats': 'https://www150.statcan.gc.ca/',
+      'Camera Locations': 'https://www.toronto.ca/',
+      'Privacy Policy': 'https://www.ipc.on.ca/',
+      'Legal Challenge': 'https://ccla.org/'
+    };
+    
+    // If the action matches a known URL, open it
+    const url = actionUrlMap[actionType];
+    if (url) {
+      window.open(url, '_blank');
+    } else if (insight && insight.sources && insight.sources.length > 0) {
+      // If no specific match, open the first source from the insight
+      window.open(insight.sources[0].url, '_blank');
+    } else {
+      // Fallback: show helpful message
+      alert(`🚀 ACTION: ${actionType}\n\nTarget: ${insightTitle}\n\n📋 This action would typically:\n• Open relevant government databases\n• Access official reports and documents\n• Navigate to verification sources\n\n💡 TIP: Scroll down to "RECEIPTS & PROOF" section to verify all claims with official sources.`);
+    }
   };
 
   const getSeverityColor = (severity) => {
@@ -2387,7 +2544,7 @@ export default function TheEye() {
                         {insight.actionButtons.map((btnText, btnIdx) => (
                           <button
                             key={btnIdx}
-                            onClick={() => handleAction(btnText, insight.title)}
+                            onClick={() => handleAction(btnText, insight.title, insight)}
                             style={{
                               padding: '0.5rem 1rem',
                               background: 'linear-gradient(135deg, #ff4444 0%, #cc0000 100%)',

@@ -870,6 +870,364 @@ export default function TargetAcquisition() {
           </p>
         </div>
 
+        {/* ACTION PACKAGES OVERVIEW */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(255,68,68,0.1) 0%, rgba(255,68,68,0.05) 100%)',
+          border: '2px solid #ff4444',
+          borderRadius: '20px',
+          padding: '2rem',
+          marginBottom: '3rem'
+        }}>
+          <h2 style={{
+            color: '#ff4444',
+            fontSize: '2rem',
+            marginBottom: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            justifyContent: 'center'
+          }}>
+            <span>📦</span>
+            <span>READY TO DEPLOY: ACTION PACKAGES</span>
+          </h2>
+          <p style={{
+            textAlign: 'center',
+            color: '#ccc',
+            fontSize: '1.1rem',
+            marginBottom: '2rem',
+            maxWidth: '800px',
+            margin: '0 auto 2rem'
+          }}>
+            Everything you need to take direct action against targets. Each package includes evidence, strategy, templates, and coordination tools. Click any package below to see full details.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            {/* Investigation & Research Packages */}
+            <div style={{
+              background: 'rgba(79, 172, 254, 0.1)',
+              border: '2px solid #4facfe',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Investigation & Research',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Investigation & Research Packages',
+              details: [
+                '📄 FOI Package - 23+ pre-drafted requests targeting WSIB, ODSP, insurance companies',
+                '📰 Media Dossier - Complete press kits with evidence, sources, talking points',
+                '🔍 Deep Investigation Kit - Research templates, OSINT tools, source verification guides',
+                '📊 Data Analysis Package - Statistical tools, denial rate calculators, trend analysis',
+                '🎯 Evidence Collection System - Documentation templates, witness interview guides'
+              ],
+              howTo: 'These are intelligence-gathering tools. Use FOI packages to extract government data. Media dossiers help journalists investigate. Investigation kits provide research frameworks. All packages include step-by-step guides and legal templates.',
+              links: [
+                { name: 'Ontario FOI Portal', url: 'https://www.ontario.ca/page/how-make-freedom-information-request' },
+                { name: 'CanLII Legal Database', url: 'https://www.canlii.org/' },
+                { name: 'Federal Access to Information', url: 'https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy.html' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
+              <h3 style={{ color: '#4facfe', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Investigation & Research
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                FOI packages, media dossiers, investigation kits, data analysis tools, evidence collection systems
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(79, 172, 254, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#4facfe',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+
+            {/* Legal Action Packages */}
+            <div style={{
+              background: 'rgba(255, 136, 68, 0.1)',
+              border: '2px solid #ff8844',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Legal Action',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Legal Action Packages',
+              details: [
+                '⚖️ Class Action Lawsuit Kit - Plaintiff recruitment, evidence documentation, law firm partnerships',
+                '📋 Regulatory Complaint Templates - Pre-drafted complaints for FSRA, Ministry of Labour, provincial regulators',
+                '🏛️ Ombudsman Investigation Package - Systematic complaint filing, evidence coordination',
+                '📜 Human Rights Complaint Kit - OHRC/CHRC complaint templates, evidence requirements',
+                '⚡ Injunction Package - Emergency legal action templates for immediate harm prevention'
+              ],
+              howTo: 'Legal packages provide frameworks for formal action. Class action kits help organize plaintiffs. Regulatory complaints trigger government investigations. Ombudsman packages document systematic failures. All include legal templates and filing instructions.',
+              links: [
+                { name: 'Ontario Ombudsman', url: 'https://www.ombudsman.on.ca/' },
+                { name: 'FSRA Complaints', url: 'https://www.fsrao.ca/consumers/file-complaint' },
+                { name: 'Ontario Human Rights', url: 'http://www.ohrc.on.ca/' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚖️</div>
+              <h3 style={{ color: '#ff8844', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Legal Action
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Class action kits, regulatory complaints, ombudsman packages, human rights filings, injunction templates
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(255, 136, 68, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#ff8844',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+
+            {/* Public Pressure Packages */}
+            <div style={{
+              background: 'rgba(255, 204, 68, 0.1)',
+              border: '2px solid #ffcc44',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Public Pressure',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Public Pressure Campaign Packages',
+              details: [
+                '📢 Media Exposé Campaign - Press release templates, journalist contacts, interview prep',
+                '✊ Protest Coordination Kit - Logistics, messaging, legal observer training, safety protocols',
+                '📱 Social Media Blitz Package - Hashtag campaigns, viral content templates, influencer coordination',
+                '🎯 Boycott Campaign Kit - Target selection, messaging, pressure point identification, coordination tools',
+                '📧 Email/Call Campaign Templates - Pre-written scripts, target contact lists, tracking systems'
+              ],
+              howTo: 'Public pressure packages mobilize communities. Media campaigns get journalist attention. Protest kits handle logistics and safety. Social media blitzes create viral momentum. Boycott campaigns hit economic pressure points. All include coordination guides.',
+              links: [
+                { name: 'Canadian Press Gallery', url: 'https://www.presscouncil.ca/' },
+                { name: 'Know Your Rights (Protests)', url: 'https://ccla.org/know-your-rights/' },
+                { name: 'Digital Rights Guide', url: 'https://openmedia.org/' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📢</div>
+              <h3 style={{ color: '#ffcc44', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Public Pressure
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Media campaigns, protest coordination, social media blitzes, boycott kits, email/call campaigns
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(255, 204, 68, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#ffcc44',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+
+            {/* Political Pressure Packages */}
+            <div style={{
+              background: 'rgba(186, 85, 211, 0.1)',
+              border: '2px solid #ba55d3',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Political Pressure',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Political Pressure Packages',
+              details: [
+                '🏛️ Opposition Coordination Kit - MPP briefing materials, Question Period questions, legislative strategy',
+                '🗳️ Voter Education Campaign - District impact analysis, voter guides, electoral accountability tracking',
+                '💰 Donation Tracking Database - Political finance analysis, donor-policy connections, transparency reports',
+                '📋 Legislative Pressure Package - Private member bill templates, committee testimony prep',
+                '🎯 Riding-Level Organizing - Constituent pressure campaigns, town hall disruption, local media strategy'
+              ],
+              howTo: 'Political packages target elected officials. Opposition coordination provides ammunition to critics. Voter education campaigns shift electoral calculus. Donation tracking exposes corruption. Legislative packages push policy change. All include talking points and coordination tools.',
+              links: [
+                { name: 'Ontario Legislature', url: 'https://www.ola.org/' },
+                { name: 'Elections Ontario Finance', url: 'https://finances.elections.on.ca/' },
+                { name: 'Find Your MPP', url: 'https://www.ola.org/en/members/current' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🏛️</div>
+              <h3 style={{ color: '#ba55d3', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Political Pressure
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Opposition coordination, voter education, donation tracking, legislative pressure, riding-level organizing
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(186, 85, 211, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#ba55d3',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+
+            {/* Financial Pressure Packages */}
+            <div style={{
+              background: 'rgba(46, 213, 115, 0.1)',
+              border: '2px solid #2ed573',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Financial Pressure',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Financial Pressure Packages',
+              details: [
+                '💼 Shareholder Alert System - Pension fund pressure, ESG campaign coordination, proxy voting guides',
+                '🏦 Investor Relations Targeting - Quarterly earnings disruption, analyst briefing, credit rating pressure',
+                '💰 Insurance Premium Campaign - Rate increase exposure, actuarial data analysis, consumer advocacy',
+                '📊 Economic Impact Reports - Job loss documentation, community harm analysis, media distribution',
+                '🎯 Supply Chain Pressure - Vendor leverage identification, B2B relationship mapping, boycott coordination'
+              ],
+              howTo: 'Financial packages hit economic pressure points. Shareholder alerts leverage institutional investors. Investor relations targeting disrupts earnings. Premium campaigns expose rate gouging. Economic reports document community harm. Supply chain pressure isolates targets.',
+              links: [
+                { name: 'CPP Investments', url: 'https://www.cppinvestments.com/' },
+                { name: 'SEDAR+ Filings', url: 'https://www.sedarplus.ca/' },
+                { name: 'TSX Company Directory', url: 'https://www.tsx.com/' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>💰</div>
+              <h3 style={{ color: '#2ed573', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Financial Pressure
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Shareholder alerts, investor targeting, insurance campaigns, economic reports, supply chain pressure
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(46, 213, 115, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#2ed573',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+
+            {/* Counter-Intelligence Packages */}
+            <div style={{
+              background: 'rgba(255, 68, 68, 0.1)',
+              border: '2px solid #ff4444',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            onClick={() => setSelectedAction({
+              action: 'Counter-Intelligence',
+              target: 'Multiple',
+              category: 'Core Tools',
+              title: 'Counter-Intelligence Packages',
+              details: [
+                '🔍 Funding Exposé Kit - Think tank donor analysis, CRA filing research, influence mapping',
+                '📚 Counter-Research Package - Academic partnerships, peer-review coordination, fact-checking systems',
+                '📰 Media Credibility Campaign - Journalist education, bias exposure, alternative expert networks',
+                '🎯 Lobbyist Tracking System - Registry monitoring, meeting documentation, influence analysis',
+                '🛡️ Disinformation Defense - Rapid response templates, fact-check coordination, narrative control'
+              ],
+              howTo: 'Counter-intel packages defend against opposition. Funding exposés reveal dark money. Counter-research challenges false narratives. Media credibility campaigns educate journalists. Lobbyist tracking exposes influence. Disinformation defense protects movements.',
+              links: [
+                { name: 'Lobbyist Registry', url: 'https://lobbycanada.gc.ca/' },
+                { name: 'CRA Charity Search', url: 'https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch' },
+                { name: 'Ontario Lobbyist Registry', url: 'https://www.oico.on.ca/home/lobbyists-registration' }
+              ]
+            })}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🛡️</div>
+              <h3 style={{ color: '#ff4444', marginBottom: '0.75rem', fontSize: '1.3rem' }}>
+                Counter-Intelligence
+              </h3>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Funding exposés, counter-research, media credibility campaigns, lobbyist tracking, disinformation defense
+              </p>
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: 'rgba(255, 68, 68, 0.2)',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                color: '#ff4444',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                5 PACKAGES READY
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: '2rem',
+            padding: '1.5rem',
+            background: 'rgba(79, 172, 254, 0.05)',
+            border: '1px solid #4facfe',
+            borderRadius: '12px',
+            textAlign: 'center'
+          }}>
+            <p style={{ color: '#4facfe', margin: 0, fontSize: '1rem', lineHeight: '1.7' }}>
+              💡 <strong>35+ ACTION PACKAGES READY TO DEPLOY</strong><br/>
+              Each package includes detailed instructions, templates, legal frameworks, coordination tools, and verified sources. Click any category above to see what's included. Scroll down to see which packages apply to specific targets.
+            </p>
+          </div>
+        </div>
+
         {/* Real-Time Verification Banner */}
         <div style={{
           maxWidth: '1400px',

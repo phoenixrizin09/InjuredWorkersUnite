@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/_e2gVpcCYmpye2HcEMK91/_buildManifest.js",
-    "static/_e2gVpcCYmpye2HcEMK91/_ssgManifest.js"
+    "static/24nEx5YFZcy5MTJdiYJl9/_buildManifest.js",
+    "static/24nEx5YFZcy5MTJdiYJl9/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "rootMainFilesTree": {},
@@ -93,7 +93,7 @@
       "static/chunks/main-64dc93ea78f1f3b1.js",
       "static/chunks/230-6f6dbb566cd5139b.js",
       "static/chunks/995-64df6a8e9d305744.js",
-      "static/chunks/pages/the-eye-24dfb7107b50d595.js"
+      "static/chunks/pages/the-eye-830c3029d67ce258.js"
     ]
   },
   "ampFirstPages": []

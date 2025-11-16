@@ -8,8 +8,8 @@
   "/": "pages/index.html",
   "/legal": "pages/legal.html",
   "/meme-gallery": "pages/meme-gallery.html",
-  "/target-acquisition": "pages/target-acquisition.html",
   "/memetic-embassy": "pages/memetic-embassy.html",
+  "/target-acquisition": "pages/target-acquisition.html",
   "/the-eye": "pages/the-eye.html",
   "/404": "pages/404.html"
 }

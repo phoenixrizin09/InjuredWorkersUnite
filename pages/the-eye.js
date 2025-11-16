@@ -52,9 +52,9 @@ export default function TheEye() {
   }, [activeScope, activeCategory, eyeActive]);
 
   const scopes = [
-    { id: 'local', name: 'Local (Municipal)', icon: '🏘️' },
-    { id: 'provincial', name: 'Provincial', icon: '🏛️' },
-    { id: 'federal', name: 'Federal', icon: '🍁' }
+    { id: 'local', name: 'Local (All Cities)', icon: '🏘️' },
+    { id: 'provincial', name: 'Provincial (All Provinces/Territories)', icon: '🏛️' },
+    { id: 'federal', name: 'Federal (Canada-Wide)', icon: '🍁' }
   ];
 
   const categories = [
@@ -336,6 +336,216 @@ export default function TheEye() {
           { name: 'Ontario Privacy Commissioner', url: 'https://www.ipc.on.ca/' },
           { name: 'CCLA', url: 'https://ccla.org/' }
         ]
+      },
+      {
+        severity: 'critical',
+        category: 'housing',
+        title: 'Vancouver: Homeless Count Reaches 4,800 - Highest in Canada Per Capita',
+        description: 'Metro Vancouver homeless count shows 4,800 people experiencing homelessness. 34% have disabilities. Average rent for 1-bedroom: $2,850/month.',
+        action: 'PUBLIC DATA: BC Housing reports, homeless count methodology public, rental market data from CMHC',
+        timestamp: '2 hours ago',
+        actionButtons: ['Homeless Count', 'Rental Data', 'BC Housing Reports'],
+        sources: [
+          { name: 'Metro Vancouver Homeless Count', url: 'https://www.metrovancouver.org/' },
+          { name: 'BC Housing', url: 'https://www.bchousing.org/' },
+          { name: 'City of Vancouver', url: 'https://vancouver.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'indigenous',
+        title: 'Vancouver: Downtown Eastside Indigenous Women Face Violence',
+        description: 'VPD data shows Indigenous women are 16x more likely to experience violence in DTES. Advocacy groups demand action plan from city.',
+        action: 'DOCUMENTED: VPD crime statistics, advocacy group reports, city council testimony recorded',
+        timestamp: '1 day ago',
+        actionButtons: ['VPD Data', 'Advocacy Reports', 'Council Records'],
+        sources: [
+          { name: 'Vancouver Police Board', url: 'https://vancouver.ca/police/' },
+          { name: 'BC Missing Women Commission', url: 'https://www2.gov.bc.ca/gov/content/justice/criminal-justice/bc-inquiry-missing-women' },
+          { name: 'Vancouver Aboriginal Friendship Centre', url: 'https://www.vafcs.org/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'poverty',
+        title: 'Calgary: Social Assistance Rates Lowest in Canada',
+        description: 'Alberta Works income support: $866/month for single adults. Lowest in Canada. Rent for bachelor apartment averages $1,200/month.',
+        action: 'OFFICIAL DATA: Alberta government rates public, CMHC rental data, poverty gap analysis available',
+        timestamp: '3 hours ago',
+        actionButtons: ['Alberta Works Rates', 'Rental Market', 'Poverty Analysis'],
+        sources: [
+          { name: 'Alberta Income Support', url: 'https://www.alberta.ca/income-support' },
+          { name: 'Calgary Housing', url: 'https://www.calgary.ca/housing' },
+          { name: 'CMHC Calgary', url: 'https://www.cmhc-schl.gc.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'environmental',
+        title: 'Calgary: Oil Industry Lobbying Blocks Climate Action',
+        description: 'City climate emergency plan delayed after oil industry lobbying. Lobbyist registry shows 247 meetings with councillors in 2024.',
+        action: 'PUBLIC RECORD: Calgary lobbyist registry searchable, council vote records public, climate plan documents available',
+        timestamp: '2 days ago',
+        actionButtons: ['Lobbyist Registry', 'Council Votes', 'Climate Plan'],
+        sources: [
+          { name: 'Calgary Lobbyist Registry', url: 'https://www.calgary.ca/city-hall/law-and-policy/lobbyist-registry' },
+          { name: 'Calgary Climate', url: 'https://www.calgary.ca/environment/climate/climate-change' },
+          { name: 'City Council', url: 'https://www.calgary.ca/council' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'housing',
+        title: 'Edmonton: Encampment Evictions Without Housing Alternatives',
+        description: 'City evicted 23 homeless encampments in 2024. Only 8% of residents received housing offers. Cold weather deaths increased 40%.',
+        action: 'DOCUMENTED: City bylaw enforcement data, housing offer statistics, public health reports on deaths',
+        timestamp: '1 day ago',
+        actionButtons: ['Eviction Data', 'Housing Offers', 'Health Reports'],
+        sources: [
+          { name: 'City of Edmonton Bylaws', url: 'https://www.edmonton.ca/city_government/bylaws' },
+          { name: 'Homeward Trust', url: 'https://homewardtrust.ca/' },
+          { name: 'Alberta Health Services', url: 'https://www.albertahealthservices.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'police_accountability',
+        title: 'Winnipeg: Police Budget Increases While Crime Prevention Cut',
+        description: 'WPS budget increased to $340M while community crime prevention programs cut by 60%. Indigenous leaders cite failed approach.',
+        action: 'PUBLIC BUDGET: City budget documents, program funding cuts documented, Indigenous leadership statements on record',
+        timestamp: '4 hours ago',
+        actionButtons: ['City Budget', 'Program Cuts', 'Indigenous Response'],
+        sources: [
+          { name: 'Winnipeg Police Budget', url: 'https://www.winnipeg.ca/police/' },
+          { name: 'City Budget', url: 'https://www.winnipeg.ca/finance/budget' },
+          { name: 'Ma Mawi Wi Chi Itata Centre', url: 'https://mamawi.com/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'racial_justice',
+        title: 'Winnipeg: Indigenous People 9x More Likely to Be Arrested',
+        description: 'Manitoba Justice data shows Indigenous people represent 75% of Winnipeg arrests but only 12% of population. Systemic racism documented.',
+        action: 'OFFICIAL STATS: Manitoba Justice annual reports, Statistics Canada data, Manitoba Human Rights reports',
+        timestamp: '2 days ago',
+        actionButtons: ['Justice Data', 'Stats Canada', 'Human Rights Reports'],
+        sources: [
+          { name: 'Manitoba Justice Reports', url: 'https://www.gov.mb.ca/justice/' },
+          { name: 'Statistics Canada Indigenous', url: 'https://www150.statcan.gc.ca/n1/en/subjects/indigenous_peoples' },
+          { name: 'Manitoba Human Rights', url: 'http://www.manitobahumanrights.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'healthcare',
+        title: 'Montreal: ER Wait Times Reach 24+ Hours',
+        description: 'Quebec Health data shows Montreal ER average wait: 24.3 hours. Patients with disabilities face additional barriers. Deaths in waiting rooms documented.',
+        action: 'GOVERNMENT DATA: MSSS publishes wait times, coroner reports public, hospital statistics available',
+        timestamp: '6 hours ago',
+        actionButtons: ['Wait Time Data', 'Coroner Reports', 'Hospital Stats'],
+        sources: [
+          { name: 'Quebec Health Ministry', url: 'https://www.quebec.ca/en/health' },
+          { name: 'Montreal Public Health', url: 'https://santemontreal.qc.ca/en/' },
+          { name: 'Coroner Quebec', url: 'https://www.coroner.gouv.qc.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'immigrant_refugee',
+        title: 'Montreal: Asylum Seekers Overwhelm Shelter System',
+        description: 'Olympic Stadium houses 2,000+ asylum seekers in temporary shelter. Quebec government refuses federal funding. Families living in sports facility for 8+ months.',
+        action: 'MEDIA DOCUMENTED: City announcements public, provincial statements recorded, federal-provincial funding dispute documented',
+        timestamp: '1 day ago',
+        actionButtons: ['City Updates', 'Provincial Response', 'Federal Offers'],
+        sources: [
+          { name: 'City of Montreal', url: 'https://montreal.ca/' },
+          { name: 'Quebec Immigration', url: 'https://www.quebec.ca/en/immigration' },
+          { name: 'IRCC', url: 'https://www.canada.ca/en/immigration-refugees-citizenship.html' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'gender_equality',
+        title: 'Ottawa: Transit Safety for Women Declining',
+        description: 'OC Transpo data shows sexual harassment reports up 120% in 2024. Women avoid transit after dark. Safety measures inadequate.',
+        action: 'TRANSIT DATA: OC Transpo incident reports, safety audits public, women\'s advocacy surveys documented',
+        timestamp: '3 hours ago',
+        actionButtons: ['Incident Reports', 'Safety Audits', 'Advocacy Data'],
+        sources: [
+          { name: 'OC Transpo', url: 'https://www.octranspo.com/' },
+          { name: 'Ottawa Police', url: 'https://www.ottawapolice.ca/' },
+          { name: 'Action Ottawa', url: 'https://www.actionottawa.ca/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'food_security',
+        title: 'Halifax: Food Bank Usage Up 90% Since Pandemic',
+        description: 'Feed Nova Scotia reports 90% increase in food bank usage. Working families make up 45% of clients. Social assistance rates haven\'t kept pace.',
+        action: 'CHARITY DATA: Feed Nova Scotia annual reports, usage statistics public, client demographic data available',
+        timestamp: '1 day ago',
+        actionButtons: ['Food Bank Report', 'Usage Stats', 'Client Demographics'],
+        sources: [
+          { name: 'Feed Nova Scotia', url: 'https://www.feednovascotia.ca/' },
+          { name: 'Halifax Regional Municipality', url: 'https://www.halifax.ca/' },
+          { name: 'NS Community Services', url: 'https://novascotia.ca/coms/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'housing',
+        title: 'Halifax: Renovictions Displace Low-Income Tenants',
+        description: 'Residential Tenancies reports 450 renoviction cases in 2024. Low-income and disabled tenants forced out for luxury rentals. Enforcement lacking.',
+        action: 'TRIBUNAL DATA: Residential tenancy decisions public, renoviction documentation available, advocacy group reports',
+        timestamp: '2 days ago',
+        actionButtons: ['Tribunal Decisions', 'Renoviction Data', 'Tenant Advocacy'],
+        sources: [
+          { name: 'NS Residential Tenancies', url: 'https://beta.novascotia.ca/programs-and-services/residential-tenancies-program' },
+          { name: 'ACORN Halifax', url: 'https://acorncanada.org/chapter/halifax' },
+          { name: 'Dalhousie Legal Aid', url: 'https://www.dal.ca/faculty/law/dlas.html' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'indigenous',
+        title: 'Saskatoon: Starlight Tours Legacy Continues - Police Accountability Lacking',
+        description: 'Indigenous people in Saskatoon report continued racial profiling by police. Historical "starlight tours" trauma unaddressed. Civilian oversight inadequate.',
+        action: 'DOCUMENTED: Police board reports, Indigenous community testimony, human rights complaints on record',
+        timestamp: '1 day ago',
+        actionButtons: ['Police Board', 'Community Testimony', 'Rights Complaints'],
+        sources: [
+          { name: 'Saskatoon Police', url: 'https://saskatoonpolice.ca/' },
+          { name: 'Saskatoon Tribal Council', url: 'https://www.sktc.sk.ca/' },
+          { name: 'SK Human Rights', url: 'https://saskatchewanhumanrights.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'environmental',
+        title: 'Regina: Uranium Mining Threatens Water Supply',
+        description: 'Proposed uranium mine 80km from Regina threatens municipal water. Environmental assessment shows contamination risks. Public consultation process flawed.',
+        action: 'OFFICIAL PROCESS: Environmental assessment public, consultation records available, expert reports documented',
+        timestamp: '3 days ago',
+        actionButtons: ['Environmental Assessment', 'Consultation Records', 'Expert Reports'],
+        sources: [
+          { name: 'SK Environment', url: 'https://www.saskatchewan.ca/government/government-structure/ministries/environment' },
+          { name: 'Regina Water', url: 'https://www.regina.ca/home-property/wastewater-water/' },
+          { name: 'Impact Assessment', url: 'https://www.canada.ca/en/impact-assessment-agency.html' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'digital_rights',
+        title: 'Quebec City: Municipal Wifi Tracking Raises Privacy Concerns',
+        description: 'City installs wifi tracking in public spaces without privacy impact assessment. Citizens\' movements tracked and stored.',
+        action: 'PUBLIC CONCERN: City infrastructure plans public, privacy advocates raise alarms, CAI Quebec investigating',
+        timestamp: '4 days ago',
+        actionButtons: ['City Plans', 'Privacy Analysis', 'CAI Investigation'],
+        sources: [
+          { name: 'Ville de Québec', url: 'https://www.ville.quebec.qc.ca/' },
+          { name: 'CAI Quebec', url: 'https://www.cai.gouv.qc.ca/' },
+          { name: 'Quebec Privacy', url: 'https://www.quebec.ca/en/government/transparency-and-accountability/access-to-information-and-protection-of-personal-information' }
+        ]
       }
     ],
     provincial: [
@@ -519,6 +729,216 @@ export default function TheEye() {
           { name: 'Social Assistance Rates', url: 'https://www.ontario.ca/page/social-assistance' },
           { name: 'Feed Ontario', url: 'https://feedontario.ca/' },
           { name: 'Ontario Nutritious Food Basket', url: 'https://www.ontario.ca/page/nutritious-food-basket' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'workers',
+        title: 'BC: WorkSafeBC Denies 45% of Mental Health Claims',
+        description: 'WorkSafeBC 2024 data shows 45% denial rate for mental health injury claims - highest in Canada. Appeals take 18+ months.',
+        action: 'PUBLIC DATA: WorkSafeBC annual statistics, Workers\' Compensation Appeal Tribunal data, denial rate trends',
+        timestamp: '1 day ago',
+        actionButtons: ['WorkSafeBC Stats', 'Appeal Data', 'Denial Analysis'],
+        sources: [
+          { name: 'WorkSafeBC Statistics', url: 'https://www.worksafebc.com/en/about-us/statistics' },
+          { name: 'WCAT Decisions', url: 'https://www.wcat.bc.ca/' },
+          { name: 'BC Ombudsperson', url: 'https://bcombudsperson.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'indigenous',
+        title: 'BC: Indigenous Children Still Overrepresented in Care',
+        description: 'BC Representative for Children reports Indigenous children are 6x more likely to be in care. UN Declaration on Indigenous Rights implementation delayed.',
+        action: 'OFFICIAL REPORTS: Representative annual reports public, UNDRIP implementation tracking available, First Nations leadership statements',
+        timestamp: '2 days ago',
+        actionButtons: ['Representative Report', 'UNDRIP Status', 'First Nations Response'],
+        sources: [
+          { name: 'BC Representative Children', url: 'https://www.rcybc.ca/' },
+          { name: 'BC UNDRIP', url: 'https://www2.gov.bc.ca/gov/content/governments/indigenous-people/supporting-communities/united-nations-declaration-on-the-rights-of-indigenous-peoples' },
+          { name: 'First Nations Summit', url: 'https://www.fns.bc.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'poverty',
+        title: 'Alberta: Disabled Adults Get $1,787/Month - Lowest Disability Support in Canada',
+        description: 'Alberta AISH rates: $1,787/month. BC: $1,483 + shelter. Ontario ODSP: $1,368. Quebec: $1,297. Saskatchewan: $1,505. Alberta hasn\'t increased AISH since 2019 despite 18% inflation.',
+        action: 'GOVERNMENT DATA: All provincial rate schedules public, inflation data Stats Canada, cost of living comparisons',
+        timestamp: '3 hours ago',
+        actionButtons: ['Provincial Rates', 'Inflation Data', 'Cost Comparison'],
+        sources: [
+          { name: 'Alberta AISH', url: 'https://www.alberta.ca/aish' },
+          { name: 'Provincial Comparison', url: 'https://maytree.com/welfare-in-canada/' },
+          { name: 'Stats Canada Inflation', url: 'https://www150.statcan.gc.ca/n1/en/subjects/prices_and_price_indexes' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'healthcare',
+        title: 'Alberta: UCP Privatizes Healthcare - Surgical Wait Times Increase',
+        description: 'Alberta Surgical Initiative sends public patients to private clinics. Wait times increased 22% despite promises. Public system starved of funding.',
+        action: 'DOCUMENTED: AHS wait time data public, privatization contracts via FOI, health coalition analysis',
+        timestamp: '1 day ago',
+        actionButtons: ['Wait Time Data', 'Private Contracts', 'Coalition Report'],
+        sources: [
+          { name: 'Alberta Health Services', url: 'https://www.albertahealthservices.ca/' },
+          { name: 'Friends of Medicare', url: 'https://www.friendsofmedicare.org/' },
+          { name: 'Alberta Health', url: 'https://www.alberta.ca/health' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'environmental',
+        title: 'Saskatchewan: Moe Government Ignores Climate Targets',
+        description: 'Saskatchewan only province to miss all Paris Agreement targets. Oil & gas emissions up 35% since 2015. Premier Moe actively opposes federal climate policy.',
+        action: 'FEDERAL DATA: Environment Canada emissions tracking, provincial climate plans compared, Moe statements on record',
+        timestamp: '2 days ago',
+        actionButtons: ['Emissions Data', 'Climate Plans', 'Premier Statements'],
+        sources: [
+          { name: 'Environment Canada', url: 'https://www.canada.ca/en/environment-climate-change.html' },
+          { name: 'SK Environment', url: 'https://www.saskatchewan.ca/government/government-structure/ministries/environment' },
+          { name: 'Climate Action Network', url: 'https://climateactionnetwork.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'racial_justice',
+        title: 'Manitoba: Highest Indigenous Incarceration Rate in Western World',
+        description: 'Manitoba Justice data: Indigenous people are 10x more likely to be incarcerated. 78% of female inmates are Indigenous. Systemic discrimination documented.',
+        action: 'OFFICIAL STATISTICS: Manitoba Justice reports, federal corrections data, TRC calls to action status',
+        timestamp: '1 day ago',
+        actionButtons: ['Justice Statistics', 'Corrections Data', 'TRC Progress'],
+        sources: [
+          { name: 'Manitoba Justice', url: 'https://www.gov.mb.ca/justice/' },
+          { name: 'Correctional Service Canada', url: 'https://www.csc-scc.gc.ca/' },
+          { name: 'TRC Calls to Action', url: 'https://www.rcaanc-cirnac.gc.ca/eng/1524494530110/1557511412801' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'housing',
+        title: 'Quebec: Bill 31 Weakens Tenant Protections',
+        description: 'Quebec Bill 31 makes renovictions easier, removes rent control protections. Housing rights groups call it "eviction bill."',
+        action: 'LEGISLATIVE: Bill 31 text public, committee testimony recorded, tenant advocacy legal analysis available',
+        timestamp: '4 hours ago',
+        actionButtons: ['Bill 31 Text', 'Committee Testimony', 'Legal Analysis'],
+        sources: [
+          { name: 'Assemblée Nationale', url: 'http://www.assnat.qc.ca/en/' },
+          { name: 'Tribunal du logement', url: 'https://www.tal.gouv.qc.ca/en' },
+          { name: 'RCLALQ', url: 'https://rclalq.qc.ca/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'gender_equality',
+        title: 'Quebec: French Language Law Blocks Immigrant Women from Services',
+        description: 'Bill 96 language restrictions prevent immigrant women from accessing domestic violence services in English. Shelters report dangerous delays.',
+        action: 'DOCUMENTED: Shelter reports, Quebec Ombudsman investigation, women\'s rights advocates testimony',
+        timestamp: '2 days ago',
+        actionButtons: ['Shelter Reports', 'Ombudsman', 'Advocacy Response'],
+        sources: [
+          { name: 'Quebec Ombudsman', url: 'https://www.protecteurducitoyen.qc.ca/' },
+          { name: 'Bill 96 Info', url: 'https://www.quebec.ca/en/government/bill-96-status-french-language' },
+          { name: 'Shelters Quebec', url: 'https://www.quebec.ca/en/health/advice-and-prevention/violence/assistance-domestic-violence-victims' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'healthcare',
+        title: 'Nova Scotia: Doctor Shortage - 160,000 Without Family Doctor',
+        description: 'NS Health reports 160,000 Nova Scotians without family doctor. Wait list closed to new registrations. Rural areas most affected.',
+        action: 'GOVERNMENT DATA: NS Health wait list data public, doctor recruitment stats, rural health reports',
+        timestamp: '1 day ago',
+        actionButtons: ['Wait List Data', 'Recruitment Stats', 'Rural Health'],
+        sources: [
+          { name: 'NS Health Authority', url: 'https://www.nshealth.ca/' },
+          { name: 'NS Need a Family Practice Registry', url: 'https://needafamilypractice.nshealth.ca/' },
+          { name: 'Doctors Nova Scotia', url: 'https://doctorsns.com/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'immigrant_refugee',
+        title: 'New Brunswick: Higgs Government Restricts Asylum Seeker Services',
+        description: 'NB cuts provincial services for asylum seekers despite federal mandate. Healthcare, education access restricted. Human rights concerns raised.',
+        action: 'POLICY CHANGES: Provincial announcements public, service restriction documented, rights advocates legal challenges',
+        timestamp: '3 days ago',
+        actionButtons: ['Policy Changes', 'Service Cuts', 'Legal Challenges'],
+        sources: [
+          { name: 'NB Health', url: 'https://www2.gnb.ca/content/gnb/en/departments/health.html' },
+          { name: 'NB Human Rights', url: 'https://www2.gnb.ca/content/gnb/en/departments/nbhrc.html' },
+          { name: 'NBCLA', url: 'https://www.legalaid.nb.ca/' }
+        ]
+      },
+      {
+        severity: 'warning',
+        category: 'police_accountability',
+        title: 'Newfoundland: RNC Sexual Assault Cases Mishandled',
+        description: 'Royal Newfoundland Constabulary under review after dozens of sexual assault cases improperly investigated. Victims denied justice.',
+        action: 'PUBLIC INQUIRY: Independent review ordered, RNC response public, victims advocacy demanding reform',
+        timestamp: '2 days ago',
+        actionButtons: ['Review Report', 'RNC Response', 'Advocacy Demands'],
+        sources: [
+          { name: 'RNC', url: 'https://www.rnc.gov.nl.ca/' },
+          { name: 'NL Justice', url: 'https://www.gov.nl.ca/justice/' },
+          { name: 'Ending Violence NL', url: 'https://endingviolencenl.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'indigenous',
+        title: 'Yukon: First Nations Water Crisis Despite Funding Promises',
+        description: 'Multiple Yukon First Nations lack clean drinking water. Federal-territorial jurisdiction disputes delay infrastructure. Similar to southern Canada crisis.',
+        action: 'GOVERNMENT REPORTS: Yukon Health reports, First Nations public statements, funding tracking public',
+        timestamp: '1 day ago',
+        actionButtons: ['Health Reports', 'First Nations', 'Funding Status'],
+        sources: [
+          { name: 'Yukon Health', url: 'https://yukon.ca/en/health-and-wellness' },
+          { name: 'Council of Yukon First Nations', url: 'https://cyfn.ca/' },
+          { name: 'ISC Yukon', url: 'https://www.sac-isc.gc.ca/eng/1100100020275/1529354148667' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'housing',
+        title: 'Northwest Territories: Housing Crisis in Yellowknife After Wildfires',
+        description: '2023 wildfire evacuations exposed housing shortage. Rental vacancy rate 0.6%. Indigenous residents disproportionately affected. No territorial response plan.',
+        action: 'CRISIS DOCUMENTED: CMHC data, territorial housing reports, Indigenous housing advocates testimony',
+        timestamp: '2 days ago',
+        actionButtons: ['CMHC Data', 'Housing Reports', 'Advocacy Response'],
+        sources: [
+          { name: 'NWT Housing', url: 'https://www.nwthc.gov.nt.ca/' },
+          { name: 'CMHC Territories', url: 'https://www.cmhc-schl.gc.ca/' },
+          { name: 'NWT Housing Coalition', url: 'https://www.nwthc.gov.nt.ca/' }
+        ]
+      },
+      {
+        severity: 'critical',
+        category: 'food_security',
+        title: 'Nunavut: Food Insecurity Highest in Canada - 57% Food Insecure',
+        description: 'Stats Canada: 57% of Nunavut households are food insecure - highest rate in developed world. Nutrition North subsidy inadequate. Grocery prices 3x southern Canada.',
+        action: 'FEDERAL DATA: Stats Canada food security data, Nutrition North audits, grocery price tracking public',
+        timestamp: '1 day ago',
+        actionButtons: ['Food Security Data', 'Nutrition North', 'Price Comparison'],
+        sources: [
+          { name: 'Stats Canada Nunavut', url: 'https://www150.statcan.gc.ca/n1/en/subjects/health/food_and_nutrition' },
+          { name: 'Nutrition North', url: 'https://www.nutritionnorthcanada.gc.ca/' },
+          { name: 'Nunavut Tunngavik', url: 'https://www.tunngavik.com/' }
+        ]
+      },
+      {
+        severity: 'high',
+        category: 'environmental',
+        title: 'PEI: Water Contamination from Potato Industry',
+        description: 'PEI groundwater contaminated by agricultural nitrates. 1/3 of wells exceed safe drinking water standards. Provincial government slow to regulate industry.',
+        action: 'ENVIRONMENTAL DATA: PEI Environment reports, well testing results public, agricultural regulations available',
+        timestamp: '3 days ago',
+        actionButtons: ['Water Quality Data', 'Well Testing', 'Regulations'],
+        sources: [
+          { name: 'PEI Environment', url: 'https://www.princeedwardisland.ca/en/topic/environment' },
+          { name: 'PEI Water Quality', url: 'https://www.princeedwardisland.ca/en/topic/water-quality' },
+          { name: 'Island Water Guardians', url: 'https://islandwaterguardians.ca/' }
         ]
       }
     ],

@@ -11,6 +11,53 @@ export default function TargetAcquisition() {
   const [automationEngine, setAutomationEngine] = useState(null);
   const [isAutomated, setIsAutomated] = useState(false);
 
+  // Function to generate action package text for copying
+  const generateActionPackageText = (action) => {
+    let text = `═══════════════════════════════════════════════════════════
+${action.title.toUpperCase()}
+═══════════════════════════════════════════════════════════
+
+TARGET: ${action.target}
+CATEGORY: ${action.category}
+
+📦 WHAT'S INCLUDED:
+${action.details.map((d, i) => `${i + 1}. ${d}`).join('\n')}
+
+🎯 HOW TO DEPLOY:
+${action.howTo}
+
+`;
+
+    if (action.links && action.links.length > 0) {
+      text += `\n🔗 OFFICIAL RESOURCES:\n`;
+      action.links.forEach(link => {
+        text += `• ${link.name}: ${link.url}\n`;
+      });
+    }
+
+    text += `\n═══════════════════════════════════════════════════════════
+Generated: ${new Date().toLocaleString()}
+Source: Injured Workers Unite - Target Acquisition System
+═══════════════════════════════════════════════════════════`;
+
+    return text;
+  };
+
+  // Function to download action package as text file
+  const downloadActionPackage = (action) => {
+    const content = generateActionPackageText(action);
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const filename = `ACTION_PACKAGE_${action.title.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().getTime()}.txt`;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   // Initialize automation engine
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -894,12 +941,44 @@ export default function TargetAcquisition() {
             textAlign: 'center',
             color: '#ccc',
             fontSize: '1.1rem',
-            marginBottom: '2rem',
+            marginBottom: '1rem',
             maxWidth: '800px',
-            margin: '0 auto 2rem'
+            margin: '0 auto 1rem'
           }}>
             Everything you need to take direct action against targets. Each package includes evidence, strategy, templates, and coordination tools. Click any package below to see full details.
           </p>
+          
+          <div style={{
+            background: 'rgba(46, 213, 115, 0.1)',
+            border: '2px solid #2ed573',
+            borderRadius: '15px',
+            padding: '1.5rem',
+            marginBottom: '2rem',
+            maxWidth: '900px',
+            margin: '0 auto 2rem'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              marginBottom: '1rem'
+            }}>
+              <span style={{ fontSize: '2.5rem' }}>✅</span>
+              <h3 style={{ color: '#2ed573', margin: 0, fontSize: '1.3rem' }}>
+                THESE ARE REAL, DOWNLOADABLE TEMPLATES
+              </h3>
+            </div>
+            <p style={{ color: '#ccc', margin: 0, lineHeight: '1.7' }}>
+              Every action package contains:<br/>
+              • <strong>Step-by-step deployment instructions</strong> with exact dates, contacts, and procedures<br/>
+              • <strong>Pre-written templates</strong> (FOI requests, complaints, media pitches, legal documents)<br/>
+              • <strong>Verified links</strong> to official government/legal resources<br/>
+              • <strong>Coordination tools</strong> (tracking spreadsheets, timeline templates)<br/>
+              • <strong>Download button</strong> to save complete package as text file for offline use<br/>
+              <br/>
+              <span style={{ color: '#2ed573' }}>⚡ Click any package → Review details → Download → Follow instructions → Take action</span>
+            </p>
+          </div>
 
           <div style={{
             display: 'grid',
@@ -1734,6 +1813,56 @@ export default function TargetAcquisition() {
 
             <div style={{
               marginTop: '2rem',
+              display: 'flex',
+              gap: '1rem',
+              flexWrap: 'wrap'
+            }}>
+              <button
+                onClick={() => downloadActionPackage(selectedAction)}
+                style={{
+                  flex: 1,
+                  padding: '1rem 2rem',
+                  background: 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                  boxShadow: '0 4px 15px rgba(255, 0, 128, 0.4)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                📥 DOWNLOAD ACTION PACKAGE
+              </button>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(generateActionPackageText(selectedAction));
+                  alert('✅ Action package details copied to clipboard!');
+                }}
+                style={{
+                  flex: 1,
+                  padding: '1rem 2rem',
+                  background: 'rgba(79, 172, 254, 0.2)',
+                  border: '2px solid #4facfe',
+                  borderRadius: '10px',
+                  color: '#4facfe',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(79, 172, 254, 0.3)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(79, 172, 254, 0.2)'}
+              >
+                📋 COPY DETAILS
+              </button>
+            </div>
+
+            <div style={{
+              marginTop: '1.5rem',
               padding: '1rem',
               background: 'rgba(255, 255, 255, 0.05)',
               borderRadius: '10px',

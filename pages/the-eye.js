@@ -2667,29 +2667,7 @@ export default function TheEye() {
               marginBottom: '1rem'
             }}
           >
-            {isScanning ? '🔄 Scanning...' : '🔍 Manual Scan Now'}
-          </button>
-          
-          <button
-            onClick={loadRealData}
-            style={{
-              padding: '1rem 3rem',
-              background: 'linear-gradient(135deg, #ff0080 0%, #ff6600 100%)',
-              border: 'none',
-              borderRadius: '50px',
-              color: 'white',
-              fontSize: '1.1rem',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              transition: 'all 0.3s',
-              boxShadow: '0 0 20px rgba(255, 0, 128, 0.5)',
-              marginRight: '1rem',
-              marginBottom: '1rem'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            📥 LOAD REAL DATA (Documented Canadian Corruption)
+            {isScanning ? '🔄 Scanning...' : '🔍 Refresh Real Data'}
           </button>
           
           <Link href="/target-acquisition" style={{

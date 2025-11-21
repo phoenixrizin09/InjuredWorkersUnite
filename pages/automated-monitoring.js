@@ -29,15 +29,31 @@ export default function AutomatedMonitoring() {
         // Load targets from automation system
         const engineTargets = engine.getTargets().map(t => ({
           name: t.name,
-          category: t.category,
+          category: t.type || t.category || 'Unknown',
           status: t.status || 'monitoring',
-          lastScan: new Date(t.lastSeen).toLocaleString(),
-          alerts: t.evidence?.length || 0
+          lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
+          alerts: t.related_issues?.length || t.evidence_count || 0
         }));
         
         if (engineTargets.length > 0) {
           setMonitoredTargets(engineTargets);
         }
+        
+        // Listen for real data loaded event
+        window.addEventListener('real-data-loaded', (event) => {
+          const { targets: realTargets, stats } = event.detail;
+          console.log('📡 MONITORING: Loaded', realTargets.length, 'REAL targets');
+          
+          const formattedTargets = realTargets.map(t => ({
+            name: t.name,
+            category: t.type || 'Unknown',
+            status: t.status || 'monitoring',
+            lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
+            alerts: t.related_issues?.length || t.evidence_count || 0
+          }));
+          
+          setMonitoredTargets(formattedTargets);
+        });
         
         // Listen for automation state changes
         const checkInterval = setInterval(() => {
@@ -48,10 +64,10 @@ export default function AutomatedMonitoring() {
           // Update targets
           const updatedTargets = engine.getTargets().map(t => ({
             name: t.name,
-            category: t.category,
+            category: t.type || t.category || 'Unknown',
             status: t.status || 'monitoring',
-            lastScan: new Date(t.lastSeen).toLocaleString(),
-            alerts: t.evidence?.length || 0
+            lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
+            alerts: t.related_issues?.length || t.evidence_count || 0
           }));
           
           if (updatedTargets.length > 0) {

@@ -26,6 +26,13 @@ export default function AlertsPage() {
         engine.onAlert((newAlert) => {
           setAlerts(prev => [newAlert, ...prev]);
         });
+        
+        // Listen for real data loaded event
+        window.addEventListener('real-data-loaded', (event) => {
+          const { alerts: realAlerts } = event.detail;
+          console.log('🚨 ALERTS PAGE: Loaded', realAlerts.length, 'REAL alerts');
+          setAlerts(realAlerts);
+        });
       });
     }
   }, []);

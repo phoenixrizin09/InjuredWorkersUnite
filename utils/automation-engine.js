@@ -4,6 +4,8 @@
  * Real-time processing and cross-system coordination
  */
 
+import { initializeWithRealData, generateRealAlerts, generateRealTargets } from './real-data-generator';
+
 // Automation state stored in localStorage for persistence
 const AUTOMATION_KEY = 'iwu_automation_state';
 const ALERTS_KEY = 'iwu_active_alerts';
@@ -15,15 +17,39 @@ export class AutomationEngine {
     this.isActive = false;
     this.scanInterval = null;
     this.alertListeners = [];
+    this.realDataLoaded = false;
   }
 
   // Initialize automation on app load
   initialize() {
+    // Load REAL data if not already loaded
+    this.loadRealDataIfNeeded();
+    
     const state = this.loadState();
     if (state.autoStart) {
       this.activate();
     }
     return state;
+  }
+  
+  // Load real documented Canadian corruption data - ALWAYS load on initialization
+  loadRealDataIfNeeded() {
+    if (typeof window === 'undefined') return;
+    
+    // ALWAYS load real data - we want to display all documented corruption
+    const result = initializeWithRealData();
+    this.realDataLoaded = true;
+    console.log('✅ REAL DATA LOADED:', result.message);
+    console.log('📊 Alerts:', result.alerts.length);
+    console.log('🎯 Targets:', result.targets.length);
+    console.log('📈 Stats:', result.stats);
+    
+    // Emit event so all pages can update
+    window.dispatchEvent(new CustomEvent('real-data-loaded', {
+      detail: { alerts: result.alerts, targets: result.targets, stats: result.stats }
+    }));
+    
+    return result;
   }
 
   // Activate full automation

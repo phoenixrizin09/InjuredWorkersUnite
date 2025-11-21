@@ -71,6 +71,14 @@ Source: Injured Workers Unite - Target Acquisition System
         const engineTargets = engine.getTargets();
         setTrackingList(engineTargets);
         
+        // Listen for real data loaded event
+        window.addEventListener('real-data-loaded', (event) => {
+          const { targets: realTargets } = event.detail;
+          console.log('🎯 TARGET ACQUISITION: Loaded', realTargets.length, 'REAL targets');
+          setTrackingList(realTargets);
+          setLastVerified(new Date().toLocaleString());
+        });
+        
         // Update tracking list periodically
         const updateInterval = setInterval(() => {
           const currentTargets = engine.getTargets();

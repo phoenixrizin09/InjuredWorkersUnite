@@ -72,6 +72,7 @@ export default function Header() {
           alignItems: 'center'
         }} className="nav-menu">
           <Link href="/" style={navLinkStyle}>Home</Link>
+          <Link href="/about" style={navLinkStyle}>About</Link>
           <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
           <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
           <Link href="/memetic-embassy" style={navLinkStyle}>Embassy</Link>

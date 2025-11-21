@@ -105,6 +105,11 @@ export default function Footer() {
               margin: 0
             }}>
               <li style={{ marginBottom: '10px' }}>
+                <Link href="/about" style={footerLinkStyle}>
+                  ℹ️ About Us
+                </Link>
+              </li>
+              <li style={{ marginBottom: '10px' }}>
                 <Link href="/the-eye" style={footerLinkStyle}>
                   👁️ The EYE (Monitoring)
                 </Link>

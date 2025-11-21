@@ -13,8 +13,27 @@ export default function TheEye() {
   const [eyeActive, setEyeActive] = useState(true);
   const [automationActive, setAutomationActive] = useState(false);
   const [automationEngine, setAutomationEngine] = useState(null);
+  const [eyeProcessor, setEyeProcessor] = useState(null);
+  const [criticalReports, setCriticalReports] = useState([]);
+  const [monitoringStats, setMonitoringStats] = useState({
+    documentsProcessed: 0,
+    corruptionDetected: 0,
+    constitutionalViolations: 0,
+    humanRightsBreaches: 0,
+    criticalFindings: 0
+  });
 
-  // Initialize automation engine
+  // Initialize THE EYE v2.0 processor
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('../utils/the-eye-v2-processor').then(module => {
+        setEyeProcessor(module);
+        console.log('👁️ THE EYE v2.0 processor loaded and ready');
+      });
+    }
+  }, []);
+
+  // Initialize automation engine and connect to THE EYE
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('../utils/automation-engine').then(module => {
@@ -32,9 +51,75 @@ export default function TheEye() {
             status: 'monitoring'
           }, ...prev.slice(0, 19)]);
         });
+        
+        console.log('👁️ THE EYE connected to automation engine - 24/7 monitoring active');
       });
     }
   }, []);
+
+  // Start 24/7 monitoring with source connectors
+  useEffect(() => {
+    if (typeof window !== 'undefined' && eyeProcessor) {
+      import('../utils/source-connectors').then(module => {
+        const sourceMonitor = module.sourceMonitor;
+        
+        // Start monitoring all sources
+        sourceMonitor.startMonitoring({
+          keywords: ['WSIB', 'ODSP', 'CPP-D', 'injured worker', 'disability', 'claim denial', 
+                     'discrimination', 'Indigenous rights', 'Charter violation', 'corruption'],
+          sources: ['all']
+        });
+        
+        // Process incoming data with THE EYE v2.0
+        window.addEventListener('source-data', async (event) => {
+          try {
+            const report = await eyeProcessor.processDocument({
+              raw_text: JSON.stringify(event.detail.data),
+              source_type: event.detail.source,
+              fetch_date: new Date().toISOString()
+            });
+            
+            // Update stats
+            setMonitoringStats(prev => ({
+              documentsProcessed: prev.documentsProcessed + 1,
+              corruptionDetected: prev.corruptionDetected + report.CorruptionFindings.length,
+              constitutionalViolations: prev.constitutionalViolations + report.ConstitutionViolations.length,
+              humanRightsBreaches: prev.humanRightsBreaches + report.HumanRightsBreaches.length,
+              criticalFindings: prev.criticalFindings + (report.RiskAssessment.priority === 'CRITICAL' ? 1 : 0)
+            }));
+            
+            // Store critical reports
+            if (report.RiskAssessment.priority === 'CRITICAL') {
+              setCriticalReports(prev => [report, ...prev.slice(0, 9)]);
+              
+              // Create alert in automation engine
+              if (automationEngine) {
+                automationEngine.createAlert({
+                  severity: 'critical',
+                  title: `THE EYE: ${report.title}`,
+                  description: `Risk: ${report.RiskAssessment.overall_risk_score}/100 | ${report.CorruptionFindings.length} corruption findings`,
+                  action: report.RecommendedActions[0]?.description || 'Review findings'
+                });
+              }
+              
+              // Add to action log
+              setActionLog(prev => [{
+                action: '🔴 CRITICAL FINDING',
+                target: report.title,
+                time: new Date().toLocaleTimeString(),
+                status: 'immediate_action'
+              }, ...prev.slice(0, 19)]);
+            }
+            
+          } catch (error) {
+            console.error('THE EYE processing error:', error);
+          }
+        });
+        
+        console.log('👁️ THE EYE: 24/7 monitoring started - watching all sources');
+      });
+    }
+  }, [eyeProcessor, automationEngine]);
 
   // Auto-start The EYE on page load
   useEffect(() => {
@@ -1367,23 +1452,260 @@ export default function TheEye() {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text'
           }}>
-            THE EYE
+            THE EYE v2.0
           </h1>
           <p style={{
             fontSize: '1.2rem',
             color: '#888',
             marginBottom: '0.5rem'
           }}>
-            Global Investigator AI
+            Incorruptible Evidence-Driven Investigative Intelligence
           </p>
           <p style={{
-            fontSize: '0.9rem',
-            color: '#666',
-            fontStyle: 'italic'
+            fontSize: '1rem',
+            color: '#ff0080',
+            fontWeight: '700',
+            fontStyle: 'italic',
+            marginTop: '1rem',
+            textShadow: '0 0 10px rgba(255, 0, 128, 0.5)'
           }}>
-            The All-Seeing Strategist • Your Oracle • Competitive Advantage
+            THE EYE SEES ALL • THE EYE FORGETS NOTHING • THE EYE NEVER SLEEPS
           </p>
         </div>
+
+        {/* THE EYE v2.0 Monitoring Dashboard */}
+        <div style={{
+          background: 'rgba(0,0,0,0.4)',
+          border: '2px solid #ff0080',
+          borderRadius: '15px',
+          padding: '1.5rem',
+          marginBottom: '2rem',
+          boxShadow: '0 0 20px rgba(255, 0, 128, 0.3)'
+        }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '1rem'
+          }}>
+            <h2 style={{
+              fontSize: '1.3rem',
+              color: '#ff0080',
+              margin: 0
+            }}>
+              🔴 24/7 MONITORING STATUS
+            </h2>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{
+                display: 'inline-block',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                background: eyeActive ? '#44ff88' : '#ff4444',
+                animation: eyeActive ? 'pulse 2s infinite' : 'none',
+                boxShadow: eyeActive ? '0 0 10px #44ff88' : 'none'
+              }}></span>
+              <span style={{ 
+                color: eyeActive ? '#44ff88' : '#ff4444',
+                fontWeight: '700',
+                fontSize: '0.9rem'
+              }}>
+                {eyeActive ? 'ACTIVE' : 'OFFLINE'}
+              </span>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+            gap: '1rem',
+            marginBottom: '1rem'
+          }}>
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '900', color: '#4facfe' }}>
+                {monitoringStats.documentsProcessed}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.25rem' }}>
+                Documents Analyzed
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '900', color: '#ff0080' }}>
+                {monitoringStats.corruptionDetected}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.25rem' }}>
+                Corruption Findings
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '900', color: '#ff8c00' }}>
+                {monitoringStats.constitutionalViolations}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.25rem' }}>
+                Charter Violations
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '900', color: '#ffd700' }}>
+                {monitoringStats.humanRightsBreaches}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.25rem' }}>
+                Human Rights Breaches
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              borderRadius: '10px',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '900', color: '#ff4444' }}>
+                {monitoringStats.criticalFindings}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '0.25rem' }}>
+                CRITICAL Alerts
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'flex',
+            gap: '0.75rem',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <Link href="/the-eye-v2-demo" style={{
+              padding: '0.75rem 1.5rem',
+              background: 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '25px',
+              textDecoration: 'none',
+              fontWeight: '700',
+              fontSize: '0.9rem',
+              display: 'inline-block',
+              boxShadow: '0 4px 15px rgba(255, 0, 128, 0.4)',
+              transition: 'all 0.3s'
+            }}>
+              🔬 Launch THE EYE Demo
+            </Link>
+            <Link href="/automated-monitoring" style={{
+              padding: '0.75rem 1.5rem',
+              background: 'rgba(79, 172, 254, 0.2)',
+              color: '#4facfe',
+              border: '2px solid #4facfe',
+              borderRadius: '25px',
+              textDecoration: 'none',
+              fontWeight: '700',
+              fontSize: '0.9rem',
+              display: 'inline-block',
+              transition: 'all 0.3s'
+            }}>
+              📡 24/7 Monitoring
+            </Link>
+            <Link href="/target-acquisition" style={{
+              padding: '0.75rem 1.5rem',
+              background: 'rgba(255, 68, 68, 0.2)',
+              color: '#ff4444',
+              border: '2px solid #ff4444',
+              borderRadius: '25px',
+              textDecoration: 'none',
+              fontWeight: '700',
+              fontSize: '0.9rem',
+              display: 'inline-block',
+              transition: 'all 0.3s'
+            }}>
+              🎯 Target Dossiers
+            </Link>
+          </div>
+        </div>
+
+        {/* Critical Reports Section */}
+        {criticalReports.length > 0 && (
+          <div style={{
+            background: 'rgba(255,0,0,0.1)',
+            border: '2px solid #ff0000',
+            borderRadius: '15px',
+            padding: '1.5rem',
+            marginBottom: '2rem',
+            animation: 'pulse 2s infinite'
+          }}>
+            <h2 style={{
+              fontSize: '1.3rem',
+              color: '#ff0000',
+              marginBottom: '1rem'
+            }}>
+              🚨 CRITICAL FINDINGS (IMMEDIATE ACTION REQUIRED)
+            </h2>
+            <div style={{
+              display: 'grid',
+              gap: '1rem'
+            }}>
+              {criticalReports.slice(0, 3).map((report, idx) => (
+                <div key={idx} style={{
+                  background: 'rgba(0,0,0,0.3)',
+                  padding: '1rem',
+                  borderRadius: '10px',
+                  borderLeft: '4px solid #ff0000'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'start',
+                    marginBottom: '0.5rem'
+                  }}>
+                    <strong style={{ color: '#ff0000', fontSize: '1.1rem' }}>
+                      {report.title}
+                    </strong>
+                    <span style={{
+                      padding: '0.25rem 0.75rem',
+                      background: '#ff0000',
+                      borderRadius: '12px',
+                      fontSize: '0.75rem',
+                      fontWeight: '700'
+                    }}>
+                      {report.RiskAssessment.overall_risk_score}/100
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#aaa', marginBottom: '0.5rem' }}>
+                    🔴 {report.CorruptionFindings.length} corruption findings • 
+                    ⚖️ {report.ConstitutionViolations.length} Charter violations • 
+                    👥 {report.HumanRightsBreaches.length} human rights breaches
+                  </div>
+                  {report.RecommendedActions[0] && (
+                    <div style={{ fontSize: '0.9rem', color: '#4facfe', marginTop: '0.5rem' }}>
+                      ⚡ Next: {report.RecommendedActions[0].description}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Scope Selector */}
         <div style={{

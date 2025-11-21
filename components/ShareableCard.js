@@ -285,7 +285,7 @@ export function CorruptionStatCard({ title, value, source, description }) {
       <div style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem' }}>
         {title}
       </div>
-      <div style={{ fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.95' }}>
+      <div style={{ fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.95 }}>
         {description}
       </div>
       <div style={{ fontSize: '0.85rem', opacity: 0.8, borderTop: '1px solid rgba(255, 255, 255, 0.3)', paddingTop: '0.75rem' }}>

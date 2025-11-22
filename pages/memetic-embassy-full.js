@@ -62,7 +62,7 @@ export default function MemeticEmbassyFull() {
       favorite_phrase: '"The employer says you seemed fine, so..."',
       visual: 'Suit, blindfold made from policy manuals, giant rubber stamp that says APPROVED (for employers only)',
       backstory: 'Never met an employer statement he didn\'t trust. Once approved a claim that said "worker injured by unicorn attack" because the employer filled out the form. Has literally never read a medical report.',
-      meme_potential: 'CRITICAL - "Employer: *lie* / WSIB: seems legit" format
+      meme_potential: 'CRITICAL - "Employer: *lie* / WSIB: seems legit" format'
     },
     {
       id: 'doctor-files',

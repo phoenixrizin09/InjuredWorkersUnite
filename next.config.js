@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Temporarily disable static export for development
-  // output: 'export',
+  output: 'export',
   images: {
     unoptimized: true,
   },

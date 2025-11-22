@@ -31,9 +31,27 @@ export default function MemeticEmbassy() {
           }}>
             🏛️ THE MEMETIC EMBASSY
           </h1>
-          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '600px', margin: '0 auto 2rem', opacity: 0.9 }}>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '600px', margin: '0 auto 1rem', opacity: 0.9 }}>
             A Digital Nation-State for the Injured, Disabled & Resistance
           </p>
+          
+          <Link href="/memetic-embassy-full" style={{
+            display: 'inline-block',
+            padding: '1rem 2rem',
+            background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+            border: '3px solid #fff',
+            borderRadius: '15px',
+            color: '#000',
+            textDecoration: 'none',
+            fontSize: '1.3rem',
+            fontWeight: 'bold',
+            marginBottom: '2rem',
+            boxShadow: '0 0 30px rgba(255,0,255,0.6)',
+            animation: 'pulse 2s infinite'
+          }}>
+            🌐 ENTER THE FULL MEMETIC EMBASSY EXPERIENCE 🌐
+          </Link>
+          
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => setActiveTab('charter')} style={getTabStyle(activeTab === 'charter')}>
               Our Charter

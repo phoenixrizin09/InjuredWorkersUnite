@@ -75,6 +75,7 @@ export default function Header() {
           <Link href="/about" style={navLinkStyle}>About</Link>
           <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
           <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
+          <Link href="/legislative-tracking" style={navLinkStyle}>Bills</Link>
           <Link href="/memetic-embassy" style={navLinkStyle}>Embassy</Link>
           <Link href="/target-acquisition" style={navLinkStyle}>Targets</Link>
           <Link href="/alerts" style={navLinkStyle}>Alerts</Link>

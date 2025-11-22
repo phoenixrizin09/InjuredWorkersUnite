@@ -69,20 +69,26 @@ Source: Injured Workers Unite - Target Acquisition System
         
         // Load tracked targets from automation system
         const engineTargets = engine.getTargets();
-        setTrackingList(engineTargets);
+        const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+        const combinedTargets = [...engineTargets, ...billTargets];
+        setTrackingList(combinedTargets);
         
         // Listen for real data loaded event
         window.addEventListener('real-data-loaded', (event) => {
           const { targets: realTargets } = event.detail;
-          console.log('🎯 TARGET ACQUISITION: Loaded', realTargets.length, 'REAL targets');
-          setTrackingList(realTargets);
+          const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+          const combined = [...realTargets, ...billTargets];
+          console.log('🎯 TARGET ACQUISITION: Loaded', combined.length, 'REAL targets (including legislative)');
+          setTrackingList(combined);
           setLastVerified(new Date().toLocaleString());
         });
         
         // Update tracking list periodically
         const updateInterval = setInterval(() => {
           const currentTargets = engine.getTargets();
-          setTrackingList(currentTargets);
+          const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+          const combined = [...currentTargets, ...billTargets];
+          setTrackingList(combined);
           setLastVerified(new Date().toLocaleString());
         }, 10000); // Update every 10 seconds
         

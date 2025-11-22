@@ -581,6 +581,268 @@ export class AutomationEngine {
   getScanHistory() {
     return this.loadScanHistory();
   }
+
+  // LEGISLATIVE TRACKING INTEGRATION
+  getTrackedBills() {
+    if (typeof window === 'undefined') return [];
+    const tracked = localStorage.getItem('tracked_bills');
+    return tracked ? JSON.parse(tracked) : this.generateInitialBills();
+  }
+
+  generateInitialBills() {
+    return [
+      // ONTARIO PROVINCIAL BILLS
+      {
+        id: 'ON_BILL_124', jurisdiction: 'Ontario', level: 'Provincial', bill_number: 'Bill 124',
+        title: 'Protecting a Sustainable Public Sector for Future Generations Act',
+        status: 'Struck Down by Courts', threat_level: 'critical',
+        description: 'Wage cap for public sector workers including nurses - ruled unconstitutional',
+        introduced: '2019-06-05', last_action: 'Struck down November 2022',
+        affects: ['nurses', 'teachers', 'public sector workers', 'disability support workers'],
+        charter_violations: ['Section 2(d) - Freedom of Association'],
+        our_position: 'OPPOSED - Union busting', action_taken: 'Legal challenge successful',
+        url: 'https://www.ola.org/en/legislative-business/bills/parliament-42/session-1/bill-124'
+      },
+      {
+        id: 'ON_BILL_175', jurisdiction: 'Ontario', level: 'Provincial', bill_number: 'Bill 175',
+        title: 'Connecting People to Home and Community Care Act',
+        status: 'Active', threat_level: 'critical',
+        description: 'Healthcare privatization - allowing for-profit home care',
+        introduced: '2023-10-25', last_action: 'Royal Assent',
+        affects: ['seniors', 'disabled', 'home care workers', 'chronically ill'],
+        charter_violations: ['Section 7 - Right to Life (reduced care quality)'],
+        our_position: 'OPPOSED - Privatization of healthcare', action_taken: 'Public opposition campaign',
+        url: 'https://www.ola.org/en/legislative-business/bills/parliament-43/session-1/bill-175'
+      },
+      {
+        id: 'ON_AUTISM_PROGRAM', jurisdiction: 'Ontario', level: 'Provincial', bill_number: 'Watch: Autism Program',
+        title: 'Ontario Autism Program Needs-Based Model', status: 'Watching', threat_level: 'critical',
+        description: '50,000+ autistic children on waitlist - families wait years for support',
+        introduced: null, last_action: 'Ongoing waitlist crisis',
+        affects: ['autistic children', 'autistic adults', 'families'],
+        charter_violations: ['Section 15 - Equality Rights', 'Section 7 - Right to Life'],
+        our_position: 'DEMAND FULL FUNDING', action_taken: 'Parent advocacy groups organizing',
+        url: 'https://www.ontario.ca/page/ontario-autism-program'
+      },
+      {
+        id: 'ON_POTENTIAL_OW_CUTS', jurisdiction: 'Ontario', level: 'Provincial', bill_number: 'Watch: Budget 2025',
+        title: 'Ontario Works Rate Freeze (Predicted)', status: 'Watching', threat_level: 'critical',
+        description: 'Ford government may freeze OW rates again - $733/month already starvation',
+        introduced: null, last_action: 'Budget expected Spring 2025',
+        affects: ['230,000 Ontario Works recipients', 'working poor', 'disabled awaiting ODSP'],
+        charter_violations: ['Section 7 - Right to Life'],
+        our_position: 'PRE-EMPTIVE OPPOSITION', action_taken: 'Monitoring, preparing campaign'
+      },
+      // FEDERAL BILLS
+      {
+        id: 'FED_BILL_C35', jurisdiction: 'Federal', level: 'Federal', bill_number: 'Bill C-35',
+        title: 'Canada Disability Benefit Act', status: 'Passed', threat_level: 'medium',
+        description: 'New federal disability benefit - but amount NOT YET SET (regulations pending)',
+        introduced: '2021-06-22', last_action: 'Royal Assent June 2023',
+        affects: ['all disabled Canadians', 'working-age disabled', 'ODSP/AISH recipients'],
+        charter_violations: [],
+        our_position: 'SUPPORT WITH CONCERNS - Amount must match poverty line',
+        action_taken: 'Advocacy for adequate rates ($2,200/month minimum)',
+        url: 'https://www.parl.ca/legisinfo/en/bill/44-1/c-35'
+      },
+      {
+        id: 'FED_UNDRIP', jurisdiction: 'Federal', level: 'Federal', bill_number: 'Bill C-15',
+        title: 'United Nations Declaration on the Rights of Indigenous Peoples Act',
+        status: 'Passed', threat_level: 'medium',
+        description: 'UNDRIP implementation - but water advisories continue, TRC calls ignored',
+        introduced: '2020-12-03', last_action: 'Royal Assent June 2021',
+        affects: ['Indigenous peoples', 'First Nations', 'Métis', 'Inuit'],
+        charter_violations: [],
+        our_position: 'SUPPORT BUT MONITORING - Implementation crucial',
+        action_taken: 'Indigenous leaders watching for real action'
+      },
+      {
+        id: 'FED_MENTAL_HEALTH_TRANSFER', jurisdiction: 'Federal', level: 'Federal',
+        bill_number: 'Watch: Mental Health Transfer',
+        title: 'Federal Mental Health Transfer to Provinces', status: 'Watching', threat_level: 'high',
+        description: '$198B health transfer includes mental health - but provinces spending on private care instead',
+        introduced: null, last_action: 'Bilateral agreements signed 2023',
+        affects: ['all Canadians with mental illness', 'PTSD', 'addiction'],
+        charter_violations: ['Section 7 - Right to Security (inadequate access)'],
+        our_position: 'DEMAND ACCOUNTABILITY - Track provincial spending',
+        action_taken: 'Advocacy for public mental health expansion'
+      },
+      {
+        id: 'FED_VETERANS_BACKLOG', jurisdiction: 'Federal', level: 'Federal',
+        bill_number: 'Watch: VAC Claims Processing',
+        title: 'Veterans Affairs Claims Backlog Crisis', status: 'Watching', threat_level: 'critical',
+        description: '36,000+ disability claims backlogged - veterans wait 2+ years while dying',
+        introduced: null, last_action: 'Ongoing crisis',
+        affects: ['veterans', 'RCMP', 'military with PTSD', 'service-related disabilities'],
+        charter_violations: ['Section 7 - Right to Security', 'Section 15 - Equality'],
+        our_position: 'DEMAND IMMEDIATE ACTION', action_taken: 'Veterans groups lobbying Parliament'
+      },
+      // MUNICIPAL/LOCAL BILLS
+      {
+        id: 'TORONTO_ENCAMPMENT_EVICTIONS', jurisdiction: 'Toronto', level: 'Municipal',
+        bill_number: 'City Policy', title: 'Homeless Encampment Evictions',
+        status: 'Active', threat_level: 'critical',
+        description: 'Toronto forcibly evicting homeless disabled people with no housing alternatives',
+        introduced: null, last_action: 'Ongoing evictions',
+        affects: ['homeless disabled', 'mental illness', 'addiction', 'refugees'],
+        charter_violations: ['Section 7 - Right to Life', 'Section 15 - Equality'],
+        our_position: 'OPPOSED - Housing first, not enforcement',
+        action_taken: 'Legal challenges, direct support'
+      },
+      {
+        id: 'WATCH_MAID_EXPANSION', jurisdiction: 'Federal', level: 'Federal',
+        bill_number: 'Bill C-7 / C-39', title: 'Medical Assistance in Dying (MAiD) Expansion',
+        status: 'Active', threat_level: 'critical',
+        description: 'MAiD offered to disabled people denied proper support - poverty-driven deaths',
+        introduced: '2021-02-24', last_action: 'Mental illness expansion delayed to 2027',
+        affects: ['disabled Canadians', 'mental illness', 'chronic pain', 'veterans'],
+        charter_violations: ['Section 7 - Right to Life', 'Section 15 - Equality'],
+        our_position: 'CRITICAL CONCERN - Support first, not death',
+        action_taken: 'UN investigation, disability rights advocacy'
+      }
+    ];
+  }
+
+  // Convert bills to insights format for THE EYE
+  convertBillsToInsights() {
+    const bills = this.getTrackedBills();
+    return bills.map(bill => ({
+      id: bill.id,
+      title: `LEGISLATIVE: ${bill.bill_number} - ${bill.title}`,
+      scope: bill.level === 'Municipal' ? 'local' : bill.level === 'Provincial' ? 'provincial' : 'federal',
+      category: this.categorizeBill(bill),
+      severity: bill.threat_level,
+      source: bill.jurisdiction,
+      timestamp: Date.now(),
+      description: bill.description,
+      evidence: {
+        type: 'legislation',
+        bill_number: bill.bill_number,
+        status: bill.status,
+        affects: bill.affects,
+        charter_violations: bill.charter_violations,
+        our_position: bill.our_position,
+        action_taken: bill.action_taken,
+        url: bill.url
+      },
+      confidence: bill.status === 'Active' || bill.status === 'Watching' ? 95 : 85
+    }));
+  }
+
+  categorizeBill(bill) {
+    const desc = bill.description.toLowerCase();
+    const affects = bill.affects.join(' ').toLowerCase();
+    
+    if (desc.includes('wsib') || affects.includes('worker')) return 'workers';
+    if (desc.includes('odsp') || desc.includes('disability') || affects.includes('disabled')) return 'disabilities';
+    if (desc.includes('mental') || affects.includes('ptsd')) return 'mental_health';
+    if (desc.includes('poverty') || desc.includes('ontario works')) return 'poverty';
+    if (desc.includes('housing') || desc.includes('homeless')) return 'housing';
+    if (desc.includes('health') || desc.includes('care')) return 'healthcare';
+    if (affects.includes('indigenous')) return 'indigenous_rights';
+    if (affects.includes('veterans')) return 'veterans';
+    if (affects.includes('autistic')) return 'autism';
+    return 'social_justice';
+  }
+
+  // Convert bills to targets
+  convertBillsToTargets() {
+    const bills = this.getTrackedBills();
+    const targets = [];
+    
+    bills.forEach(bill => {
+      if (bill.our_position.includes('OPPOSED') || bill.threat_level === 'critical') {
+        // Extract responsible entity
+        const entity = this.extractResponsibleEntity(bill);
+        if (entity && !targets.find(t => t.name === entity.name)) {
+          targets.push(entity);
+        }
+      }
+    });
+    
+    return targets;
+  }
+
+  extractResponsibleEntity(bill) {
+    if (bill.jurisdiction === 'Ontario' && bill.level === 'Provincial') {
+      return {
+        id: `target_ontario_government`,
+        name: 'Ontario Provincial Government',
+        type: 'government',
+        jurisdiction: 'Provincial',
+        corruption_score: 85,
+        active_violations: [bill.bill_number],
+        priority: 'critical',
+        evidence_count: 1,
+        last_updated: Date.now()
+      };
+    } else if (bill.level === 'Federal') {
+      return {
+        id: `target_federal_government`,
+        name: 'Federal Government of Canada',
+        type: 'government',
+        jurisdiction: 'Federal',
+        corruption_score: 75,
+        active_violations: [bill.bill_number],
+        priority: 'high',
+        evidence_count: 1,
+        last_updated: Date.now()
+      };
+    } else if (bill.level === 'Municipal') {
+      return {
+        id: `target_${bill.jurisdiction.toLowerCase()}_municipal`,
+        name: `${bill.jurisdiction} Municipal Government`,
+        type: 'government',
+        jurisdiction: 'Municipal',
+        corruption_score: 70,
+        active_violations: [bill.bill_number],
+        priority: 'high',
+        evidence_count: 1,
+        last_updated: Date.now()
+      };
+    }
+    return null;
+  }
+
+  // Convert bills to alerts
+  convertBillsToAlerts() {
+    const bills = this.getTrackedBills();
+    return bills
+      .filter(bill => bill.status === 'Active' || bill.status === 'Watching' || bill.threat_level === 'critical')
+      .map(bill => ({
+        id: bill.id,
+        title: `${bill.bill_number}: ${bill.title}`,
+        severity: bill.threat_level,
+        category: this.categorizeBill(bill),
+        scope: bill.level === 'Municipal' ? 'local' : bill.level === 'Provincial' ? 'provincial' : 'federal',
+        description: bill.description,
+        affected_count: this.estimateAffectedCount(bill),
+        financial_impact: 'To be determined based on final regulations',
+        charter_violations: bill.charter_violations,
+        timestamp: Date.now(),
+        source: `${bill.jurisdiction} Legislature`,
+        url: bill.url || `https://www.ola.org/en/legislative-business/bills`,
+        status: bill.status,
+        action_required: bill.our_position,
+        target_entity: {
+          name: `${bill.jurisdiction} ${bill.level} Government`,
+          type: 'government',
+          jurisdiction: bill.jurisdiction
+        }
+      }));
+  }
+
+  estimateAffectedCount(bill) {
+    const affects = bill.affects.join(' ').toLowerCase();
+    if (affects.includes('all canadians')) return '38 million+ Canadians';
+    if (affects.includes('all disabled')) return '6.2 million disabled Canadians';
+    if (affects.includes('indigenous')) return '1.8 million Indigenous peoples';
+    if (affects.includes('veterans')) return '461,000 veterans';
+    if (affects.includes('autistic')) return '50,000+ on waitlist';
+    if (affects.includes('ontario works')) return '230,000 recipients';
+    if (affects.includes('homeless')) return 'Thousands of vulnerable people';
+    return bill.affects.join(', ');
+  }
 }
 
 // Singleton instance

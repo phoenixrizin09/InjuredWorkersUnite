@@ -1237,6 +1237,9 @@ export default function TheEye() {
       // Get real alerts from automation engine
       const realAlerts = automationEngine?.getAlerts('all') || [];
       
+      // Get legislative bills as insights
+      const legislativeInsights = automationEngine?.convertBillsToInsights() || [];
+      
       // Convert real alerts to insights format and filter by scope/category
       const convertedInsights = realAlerts.map(alert => ({
         severity: alert.severity,
@@ -1250,23 +1253,41 @@ export default function TheEye() {
         targetEntity: alert.targetEntity
       }));
       
+      // Convert legislative insights to display format
+      const convertedLegislative = legislativeInsights.map(bill => ({
+        severity: bill.severity,
+        category: bill.category,
+        title: bill.title,
+        description: bill.description,
+        action: `${bill.evidence.our_position} | ${bill.evidence.action_taken || 'Monitoring'}`,
+        timestamp: new Date(bill.timestamp).toLocaleTimeString(),
+        actionButtons: bill.evidence.url ? ['View Bill', 'Track Status', 'Take Action'] : ['Track Status', 'Take Action'],
+        sources: bill.evidence.url ? [bill.evidence.url] : [],
+        targetEntity: bill.evidence.status,
+        legislativeBadge: `${bill.evidence.bill_number} - ${bill.evidence.status}`,
+        charterViolations: bill.evidence.charter_violations
+      }));
+      
       // Also include mock insights for additional context
       const scopeInsights = mockInsights[activeScope] || [];
-      const allInsights = [...convertedInsights, ...scopeInsights];
+      const allInsights = [...convertedInsights, ...convertedLegislative, ...scopeInsights];
       
-      // Filter by category
-      const filtered = activeCategory === 'all' 
-        ? allInsights 
-        : allInsights.filter(insight => insight.category === activeCategory);
+      // Filter by category and scope
+      const filtered = allInsights.filter(insight => {
+        const categoryMatch = activeCategory === 'all' || insight.category === activeCategory;
+        const scopeMatch = !insight.scope || insight.scope === activeScope || activeScope === 'all';
+        return categoryMatch && scopeMatch;
+      });
       
       setInsights(filtered);
       
       // Update monitoring stats with current insights
       const criticalCount = filtered.filter(i => i.severity === 'critical').length;
       const highCount = filtered.filter(i => i.severity === 'high').length;
+      const legislativeCount = convertedLegislative.length;
       
       setMonitoringStats(prev => ({
-        documentsProcessed: prev.documentsProcessed + filtered.length,
+        documentsProcessed: prev.documentsProcessed + filtered.length + legislativeCount,
         corruptionDetected: prev.corruptionDetected + highCount,
         constitutionalViolations: prev.constitutionalViolations + criticalCount,
         humanRightsBreaches: prev.humanRightsBreaches + Math.floor(criticalCount * 0.7),
@@ -2916,20 +2937,50 @@ export default function TheEye() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'start',
-                    marginBottom: '1rem'
+                    marginBottom: '1rem',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem'
                   }}>
                     <div>
-                      <span style={{
-                        display: 'inline-block',
-                        padding: '0.25rem 0.75rem',
-                        background: getSeverityColor(insight.severity),
-                        borderRadius: '12px',
-                        fontSize: '0.75rem',
-                        fontWeight: 'bold',
-                        marginBottom: '0.5rem'
-                      }}>
-                        {insight.severity.toUpperCase()}
-                      </span>
+                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                        <span style={{
+                          display: 'inline-block',
+                          padding: '0.25rem 0.75rem',
+                          background: getSeverityColor(insight.severity),
+                          borderRadius: '12px',
+                          fontSize: '0.75rem',
+                          fontWeight: 'bold'
+                        }}>
+                          {insight.severity.toUpperCase()}
+                        </span>
+                        {insight.legislativeBadge && (
+                          <span style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            borderRadius: '12px',
+                            fontSize: '0.75rem',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                          }}>
+                            📜 {insight.legislativeBadge}
+                          </span>
+                        )}
+                        {insight.charterViolations && insight.charterViolations.length > 0 && (
+                          <span style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            background: 'rgba(255, 0, 0, 0.3)',
+                            border: '1px solid #ff0000',
+                            borderRadius: '12px',
+                            fontSize: '0.75rem',
+                            fontWeight: 'bold',
+                            color: '#ff6666'
+                          }}>
+                            ⚠️ CHARTER VIOLATION
+                          </span>
+                        )}
+                      </div>
                       <h3 style={{
                         margin: '0.5rem 0',
                         fontSize: '1.3rem'

@@ -27,12 +27,16 @@ export default function AutomatedMonitoring() {
         setMonitoringActive(state.isActive);
         
         // Load targets from automation system
-        const engineTargets = engine.getTargets().map(t => ({
+        const baseTargets = engine.getTargets();
+        const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+        const allTargets = [...baseTargets, ...billTargets];
+        
+        const engineTargets = allTargets.map(t => ({
           name: t.name,
           category: t.type || t.category || 'Unknown',
           status: t.status || 'monitoring',
           lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
-          alerts: t.related_issues?.length || t.evidence_count || 0
+          alerts: t.related_issues?.length || t.evidence_count || t.active_violations?.length || 0
         }));
         
         if (engineTargets.length > 0) {
@@ -42,14 +46,16 @@ export default function AutomatedMonitoring() {
         // Listen for real data loaded event
         window.addEventListener('real-data-loaded', (event) => {
           const { targets: realTargets, stats } = event.detail;
-          console.log('📡 MONITORING: Loaded', realTargets.length, 'REAL targets');
+          const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+          const allTargets = [...realTargets, ...billTargets];
+          console.log('📡 MONITORING: Loaded', allTargets.length, 'REAL targets (including legislative)');
           
-          const formattedTargets = realTargets.map(t => ({
+          const formattedTargets = allTargets.map(t => ({
             name: t.name,
             category: t.type || 'Unknown',
             status: t.status || 'monitoring',
             lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
-            alerts: t.related_issues?.length || t.evidence_count || 0
+            alerts: t.related_issues?.length || t.evidence_count || t.active_violations?.length || 0
           }));
           
           setMonitoredTargets(formattedTargets);
@@ -62,12 +68,16 @@ export default function AutomatedMonitoring() {
           setMonitoringActive(currentState.isActive);
           
           // Update targets
-          const updatedTargets = engine.getTargets().map(t => ({
+          const baseTargets = engine.getTargets();
+          const billTargets = engine.convertBillsToTargets ? engine.convertBillsToTargets() : [];
+          const allTargets = [...baseTargets, ...billTargets];
+          
+          const updatedTargets = allTargets.map(t => ({
             name: t.name,
             category: t.type || t.category || 'Unknown',
             status: t.status || 'monitoring',
             lastScan: t.last_updated ? new Date(t.last_updated).toLocaleString() : 'Just now',
-            alerts: t.related_issues?.length || t.evidence_count || 0
+            alerts: t.related_issues?.length || t.evidence_count || t.active_violations?.length || 0
           }));
           
           if (updatedTargets.length > 0) {

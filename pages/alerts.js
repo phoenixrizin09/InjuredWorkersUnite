@@ -49,7 +49,9 @@ export default function AlertsPage() {
 
   function loadAlertsFromEngine(engine) {
     const engineAlerts = engine.getAlerts();
-    setAlerts(engineAlerts);
+    const billAlerts = engine.convertBillsToAlerts ? engine.convertBillsToAlerts() : [];
+    const combinedAlerts = [...engineAlerts, ...billAlerts];
+    setAlerts(combinedAlerts);
   }
 
   async function loadAlerts() {

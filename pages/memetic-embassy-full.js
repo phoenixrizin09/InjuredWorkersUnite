@@ -16,6 +16,10 @@ export default function MemeticEmbassyFull() {
   const [citizenshipClaimed, setCitizenshipClaimed] = useState(false);
   const [selectedHabitat, setSelectedHabitat] = useState(null);
   const [spicyLevel, setSpicyLevel] = useState('medium');
+  const [memeText, setMemeText] = useState({ top: '', bottom: '' });
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedCharacterForMeme, setSelectedCharacterForMeme] = useState(null);
+  const [userMemes, setUserMemes] = useState([]);
 
   useEffect(() => {
     // Check if user already has citizenship
@@ -23,6 +27,12 @@ export default function MemeticEmbassyFull() {
       const citizenship = localStorage.getItem('memetic_embassy_citizenship');
       if (citizenship) {
         setCitizenshipClaimed(true);
+      }
+      
+      // Load user's created memes
+      const savedMemes = localStorage.getItem('memetic_embassy_user_memes');
+      if (savedMemes) {
+        setUserMemes(JSON.parse(savedMemes));
       }
     }
   }, []);
@@ -422,6 +432,149 @@ export default function MemeticEmbassyFull() {
       template: spicyVersions[nextLevel],
       style: nextLevel
     });
+  };
+
+  const downloadMeme = (memeData) => {
+    // Create a canvas to generate the meme image
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 600;
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Add character emoji if selected
+    if (memeData.character) {
+      ctx.font = 'bold 150px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(memeData.character.emoji, canvas.width / 2, 200);
+    }
+
+    // Top text
+    if (memeData.topText) {
+      ctx.font = 'bold 50px Impact';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3;
+      ctx.textAlign = 'center';
+      ctx.strokeText(memeData.topText, canvas.width / 2, 100);
+      ctx.fillText(memeData.topText, canvas.width / 2, 100);
+    }
+
+    // Bottom text
+    if (memeData.bottomText) {
+      ctx.font = 'bold 50px Impact';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3;
+      ctx.textAlign = 'center';
+      ctx.strokeText(memeData.bottomText, canvas.width / 2, 550);
+      ctx.fillText(memeData.bottomText, canvas.width / 2, 550);
+    }
+
+    // Template text (center)
+    if (memeData.template && !memeData.topText && !memeData.bottomText) {
+      ctx.font = 'bold 40px Impact';
+      ctx.fillStyle = '#00ffff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3;
+      ctx.textAlign = 'center';
+      
+      // Word wrap
+      const words = memeData.template.split(' ');
+      let line = '';
+      let y = 300;
+      
+      words.forEach((word, i) => {
+        const testLine = line + word + ' ';
+        const metrics = ctx.measureText(testLine);
+        
+        if (metrics.width > 700 && i > 0) {
+          ctx.strokeText(line, canvas.width / 2, y);
+          ctx.fillText(line, canvas.width / 2, y);
+          line = word + ' ';
+          y += 50;
+        } else {
+          line = testLine;
+        }
+      });
+      
+      ctx.strokeText(line, canvas.width / 2, y);
+      ctx.fillText(line, canvas.width / 2, y);
+    }
+
+    // Watermark
+    ctx.font = 'bold 20px Arial';
+    ctx.fillStyle = '#ff00ff';
+    ctx.textAlign = 'right';
+    ctx.fillText('InjuredWorkersUnite.pages.dev', canvas.width - 10, canvas.height - 10);
+
+    // Download
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `memetic-embassy-${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  };
+
+  const shareToSocial = (platform, memeText) => {
+    const text = encodeURIComponent(memeText + '\n\n#InjuredWorkersUnite #MemeticEmbassy #DisabilityRights');
+    const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+    
+    const urls = {
+      twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
+      reddit: `https://reddit.com/submit?url=${url}&title=${text}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+    };
+
+    if (urls[platform]) {
+      window.open(urls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+
+  const saveMemeToGallery = (memeData) => {
+    const newMeme = {
+      id: Date.now(),
+      ...memeData,
+      created: new Date().toISOString()
+    };
+
+    const updated = [...userMemes, newMeme];
+    setUserMemes(updated);
+    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+    
+    alert('🎨 Meme saved to your gallery!');
+  };
+
+  const createCustomMeme = () => {
+    if (!memeText.top && !memeText.bottom && !selectedCharacterForMeme) {
+      alert('Add some text or select a character!');
+      return;
+    }
+
+    const memeData = {
+      topText: memeText.top,
+      bottomText: memeText.bottom,
+      character: selectedCharacterForMeme,
+      template: selectedTemplate
+    };
+
+    downloadMeme(memeData);
+    saveMemeToGallery(memeData);
+  };
+
+  const deleteMeme = (memeId) => {
+    const updated = userMemes.filter(m => m.id !== memeId);
+    setUserMemes(updated);
+    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
   };
 
   return (
@@ -1156,6 +1309,464 @@ export default function MemeticEmbassyFull() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* SECTION 6: MEME CREATOR STUDIO */}
+        <div style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #000033 0%, #330066 100%)',
+        }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎨 MEME CREATOR STUDIO 🎨
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.5rem',
+              color: '#00ffff',
+              marginBottom: '3rem'
+            }}>
+              Create, Download, and Share Your Masterpieces
+            </p>
+
+            {/* CUSTOM MEME BUILDER */}
+            <div style={{
+              background: 'rgba(255,0,255,0.1)',
+              border: '3px solid #ff00ff',
+              borderRadius: '20px',
+              padding: '3rem',
+              marginBottom: '3rem'
+            }}>
+              <h3 style={{
+                fontSize: '2rem',
+                color: '#ff00ff',
+                marginBottom: '2rem',
+                textAlign: 'center'
+              }}>
+                🖼️ Build Your Own Meme
+              </h3>
+
+              {/* Character Selector */}
+              <div style={{ marginBottom: '2rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '1.3rem',
+                  color: '#00ffff',
+                  marginBottom: '1rem',
+                  fontWeight: 'bold'
+                }}>
+                  Select a Denial Squad Character (Optional):
+                </label>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '1rem'
+                }}>
+                  {denialSquad.map(character => (
+                    <button
+                      key={character.id}
+                      onClick={() => setSelectedCharacterForMeme(character)}
+                      style={{
+                        padding: '1rem',
+                        background: selectedCharacterForMeme?.id === character.id ? 
+                          'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)' : 
+                          'rgba(0,0,0,0.5)',
+                        border: selectedCharacterForMeme?.id === character.id ? 
+                          '3px solid #fff' : 
+                          '2px solid #ff00ff',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '1.1rem',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                    >
+                      <div style={{ fontSize: '3rem' }}>{character.emoji}</div>
+                      <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                        {character.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Text Inputs */}
+              <div style={{ marginBottom: '2rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '1.3rem',
+                  color: '#00ffff',
+                  marginBottom: '1rem',
+                  fontWeight: 'bold'
+                }}>
+                  Top Text:
+                </label>
+                <input
+                  type="text"
+                  value={memeText.top}
+                  onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
+                  placeholder="Enter top text..."
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    fontSize: '1.2rem',
+                    background: 'rgba(0,0,0,0.7)',
+                    border: '2px solid #ff00ff',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontFamily: 'Impact, sans-serif'
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: '2rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '1.3rem',
+                  color: '#00ffff',
+                  marginBottom: '1rem',
+                  fontWeight: 'bold'
+                }}>
+                  Bottom Text:
+                </label>
+                <input
+                  type="text"
+                  value={memeText.bottom}
+                  onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
+                  placeholder="Enter bottom text..."
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    fontSize: '1.2rem',
+                    background: 'rgba(0,0,0,0.7)',
+                    border: '2px solid #ff00ff',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontFamily: 'Impact, sans-serif'
+                  }}
+                />
+              </div>
+
+              {/* Template Selector */}
+              <div style={{ marginBottom: '2rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '1.3rem',
+                  color: '#00ffff',
+                  marginBottom: '1rem',
+                  fontWeight: 'bold'
+                }}>
+                  Or Choose a Template:
+                </label>
+                <select
+                  value={selectedTemplate || ''}
+                  onChange={(e) => setSelectedTemplate(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    fontSize: '1.1rem',
+                    background: 'rgba(0,0,0,0.7)',
+                    border: '2px solid #ff00ff',
+                    borderRadius: '10px',
+                    color: '#fff'
+                  }}
+                >
+                  <option value="">-- Select Template --</option>
+                  {memeCategories.map(cat => (
+                    cat.examples.map((ex, i) => (
+                      <option key={`${cat.category}-${i}`} value={ex}>
+                        {cat.category}: {ex.substring(0, 50)}...
+                      </option>
+                    ))
+                  ))}
+                </select>
+              </div>
+
+              {/* Preview */}
+              {(memeText.top || memeText.bottom || selectedCharacterForMeme || selectedTemplate) && (
+                <div style={{
+                  background: '#000',
+                  border: '3px solid #00ffff',
+                  borderRadius: '10px',
+                  padding: '2rem',
+                  marginBottom: '2rem',
+                  textAlign: 'center',
+                  minHeight: '300px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  <h4 style={{ color: '#00ffff', marginBottom: '1rem' }}>Preview:</h4>
+                  {memeText.top && (
+                    <div style={{
+                      fontSize: '2.5rem',
+                      fontFamily: 'Impact, sans-serif',
+                      color: '#fff',
+                      textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                      marginBottom: '1rem'
+                    }}>
+                      {memeText.top}
+                    </div>
+                  )}
+                  {selectedCharacterForMeme && (
+                    <div style={{ fontSize: '8rem', margin: '1rem 0' }}>
+                      {selectedCharacterForMeme.emoji}
+                    </div>
+                  )}
+                  {selectedTemplate && !memeText.top && !memeText.bottom && (
+                    <div style={{
+                      fontSize: '1.8rem',
+                      fontFamily: 'Impact, sans-serif',
+                      color: '#00ffff',
+                      textShadow: '2px 2px 0 #000',
+                      padding: '1rem'
+                    }}>
+                      {selectedTemplate}
+                    </div>
+                  )}
+                  {memeText.bottom && (
+                    <div style={{
+                      fontSize: '2.5rem',
+                      fontFamily: 'Impact, sans-serif',
+                      color: '#fff',
+                      textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                      marginTop: '1rem'
+                    }}>
+                      {memeText.bottom}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Create Button */}
+              <button
+                onClick={createCustomMeme}
+                style={{
+                  width: '100%',
+                  padding: '1.5rem',
+                  background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+                  border: '3px solid #fff',
+                  borderRadius: '15px',
+                  color: '#000',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  animation: 'pulse 2s infinite'
+                }}
+              >
+                🎨 CREATE & DOWNLOAD MEME 🎨
+              </button>
+
+              {/* Share Buttons */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gap: '1rem',
+                marginTop: '2rem'
+              }}>
+                <button
+                  onClick={() => shareToSocial('twitter', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
+                  style={{
+                    padding: '1rem',
+                    background: '#1DA1F2',
+                    border: 'none',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  🐦 Twitter
+                </button>
+                <button
+                  onClick={() => shareToSocial('facebook', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
+                  style={{
+                    padding: '1rem',
+                    background: '#1877F2',
+                    border: 'none',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  📘 Facebook
+                </button>
+                <button
+                  onClick={() => shareToSocial('reddit', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
+                  style={{
+                    padding: '1rem',
+                    background: '#FF4500',
+                    border: 'none',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  🤖 Reddit
+                </button>
+                <button
+                  onClick={() => shareToSocial('linkedin', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
+                  style={{
+                    padding: '1rem',
+                    background: '#0A66C2',
+                    border: 'none',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  💼 LinkedIn
+                </button>
+              </div>
+            </div>
+
+            {/* USER MEME GALLERY */}
+            {userMemes.length > 0 && (
+              <div style={{
+                background: 'rgba(0,255,255,0.1)',
+                border: '3px solid #00ffff',
+                borderRadius: '20px',
+                padding: '3rem'
+              }}>
+                <h3 style={{
+                  fontSize: '2rem',
+                  color: '#00ffff',
+                  marginBottom: '2rem',
+                  textAlign: 'center'
+                }}>
+                  🖼️ Your Meme Gallery ({userMemes.length})
+                </h3>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                  gap: '2rem'
+                }}>
+                  {userMemes.map(meme => (
+                    <div
+                      key={meme.id}
+                      style={{
+                        background: 'rgba(0,0,0,0.7)',
+                        border: '2px solid #ff00ff',
+                        borderRadius: '10px',
+                        padding: '1.5rem',
+                        position: 'relative'
+                      }}
+                    >
+                      <div style={{
+                        background: '#000',
+                        borderRadius: '5px',
+                        padding: '1rem',
+                        marginBottom: '1rem',
+                        minHeight: '150px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center'
+                      }}>
+                        {meme.topText && (
+                          <div style={{
+                            fontSize: '1.5rem',
+                            fontFamily: 'Impact, sans-serif',
+                            color: '#fff',
+                            textShadow: '2px 2px 0 #000'
+                          }}>
+                            {meme.topText}
+                          </div>
+                        )}
+                        {meme.character && (
+                          <div style={{ fontSize: '4rem', margin: '0.5rem 0' }}>
+                            {meme.character.emoji}
+                          </div>
+                        )}
+                        {meme.template && (
+                          <div style={{
+                            fontSize: '1.2rem',
+                            color: '#00ffff',
+                            marginTop: '0.5rem'
+                          }}>
+                            {meme.template.substring(0, 100)}
+                          </div>
+                        )}
+                        {meme.bottomText && (
+                          <div style={{
+                            fontSize: '1.5rem',
+                            fontFamily: 'Impact, sans-serif',
+                            color: '#fff',
+                            textShadow: '2px 2px 0 #000',
+                            marginTop: '0.5rem'
+                          }}>
+                            {meme.bottomText}
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div style={{
+                        fontSize: '0.9rem',
+                        color: '#888',
+                        marginBottom: '1rem'
+                      }}>
+                        Created: {new Date(meme.created).toLocaleString()}
+                      </div>
+
+                      <div style={{
+                        display: 'flex',
+                        gap: '1rem'
+                      }}>
+                        <button
+                          onClick={() => downloadMeme(meme)}
+                          style={{
+                            flex: 1,
+                            padding: '0.8rem',
+                            background: '#00ffff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            color: '#000',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          💾 Download
+                        </button>
+                        <button
+                          onClick={() => deleteMeme(meme.id)}
+                          style={{
+                            padding: '0.8rem 1.5rem',
+                            background: '#ff0000',
+                            border: 'none',
+                            borderRadius: '5px',
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

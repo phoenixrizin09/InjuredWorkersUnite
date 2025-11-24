@@ -4,142 +4,16 @@
     "date": "2025-11-24",
     "category": "The EYE",
     "emoji": "👁️",
-    "title": "The EYE: Your 24/7 Watchdog for Justice",
-    "excerpt": "Meet The EYE - our flagship AI-powered investigative monitoring system that never sleeps. This revolutionary tool tracks systemic abuse, policy changes, and corporate accountability across 12 comprehensive categories at local, provincial, and federal levels.",
+    "title": "What is The Eye v2.0?",
+    "excerpt": "The Eye v2.0 reads documents and finds corruption, human rights violations, and illegal government actions. Upload a document, get a detailed report showing what's wrong and what laws were broken.",
     "keyFeatures": [
-      "Real-time monitoring of government policies and corporate actions",
-      "12 comprehensive categories from Workers' Rights to Community Resources",
-      "11 specialized 'Rabbit Holes' for deep investigation",
-      "Evidence-based tracking with verifiable sources",
-      "Multi-level surveillance: Municipal, Provincial, and Federal"
+      "Upload any document (government report, policy, news)",
+      "Finds corruption and Charter violations",
+      "Shows what laws were broken",
+      "Based on real Canadian law",
+      "Free to use"
     ],
-    "ctaText": "Explore The EYE →",
-    "ctaLink": "/the-eye"
-  },
-  {
-    "id": 2,
-    "date": "2025-11-23",
-    "category": "Monitoring",
-    "emoji": "🤖",
-    "title": "Automated 24/7 Monitoring: Never Miss a Change",
-    "excerpt": "Our automated monitoring system operates on a 5-minute refresh cycle, ensuring you're always informed about critical changes affecting injured workers and disabled persons. Budget announcements, policy shifts, and corporate filings - we track it all.",
-    "keyFeatures": [
-      "5-minute refresh cycle for real-time updates",
-      "Provincial & federal bill tracking",
-      "WSIB policy change alerts",
-      "Corporate filing surveillance",
-      "Statistical anomaly detection",
-      "Revolving door monitoring (officials moving to private sector)"
-    ],
-    "ctaText": "View Live Monitoring →",
-    "ctaLink": "/automated-monitoring"
-  },
-  {
-    "id": 3,
-    "date": "2025-11-22",
-    "category": "Target Acquisition",
-    "emoji": "🎯",
-    "title": "Target Acquisition: Evidence-Based Accountability",
-    "excerpt": "Strategic identification and tracking of entities causing harm to workers and disabled persons. Each target comes with ultra-detailed action packages including verifiable evidence, step-by-step deployment guides, and ready-to-use templates.",
-    "keyFeatures": [
-      "Insurance corporations (Manulife, Sun Life)",
-      "Government agencies (WSIB, ODSP)",
-      "Exploitative employers (Amazon, gig economy)",
-      "Court dockets with exact dates and page numbers",
-      "Contact information for officials and media",
-      "Ready-to-deploy action templates"
-    ],
-    "ctaText": "View Targets →",
-    "ctaLink": "/target-acquisition"
-  },
-  {
-    "id": 4,
-    "date": "2025-11-21",
-    "category": "Memetic Embassy",
-    "emoji": "🏛️",
-    "title": "Memetic Embassy: Creative Resistance Through Storytelling",
-    "excerpt": "Fighting injustice doesn't always require legal briefs and formal complaints. Sometimes the most powerful weapon is a viral meme. Our Memetic Embassy provides tools and templates for creative resistance that spreads truth faster than bureaucracy can suppress it.",
-    "keyFeatures": [
-      "Meme templates designed for activism",
-      "Viral storytelling strategies",
-      "Examples and inspiration gallery",
-      "Tools for amplifying truth",
-      "Creative resistance frameworks",
-      "Community-shared content"
-    ],
-    "ctaText": "Enter the Embassy →",
-    "ctaLink": "/memetic-embassy"
-  },
-  {
-    "id": 5,
-    "date": "2025-11-20",
-    "category": "Alerts",
-    "emoji": "🚨",
-    "title": "Live Alerts: Critical Updates in Real-Time",
-    "excerpt": "Don't wait for the news cycle to catch up. Our live alert system notifies you immediately when critical policy changes, new bills, or system updates affect injured workers and disabled persons. Knowledge is power, and timing is everything.",
-    "keyFeatures": [
-      "Real-time policy change notifications",
-      "New bill alerts (provincial & federal)",
-      "WSIB system updates",
-      "Benefit change announcements",
-      "Critical deadline reminders",
-      "Emergency action alerts"
-    ],
-    "ctaText": "View Live Alerts →",
-    "ctaLink": "/alerts"
-  },
-  {
-    "id": 6,
-    "date": "2025-11-19",
-    "category": "Meme Gallery",
-    "emoji": "😂",
-    "title": "Meme Gallery: Humor as a Weapon Against Injustice",
-    "excerpt": "Laughter is resistance. Our Meme Gallery showcases creative, shareable content that exposes systemic failures while building community solidarity. These aren't just jokes - they're truth bombs wrapped in humor that people actually share.",
-    "keyFeatures": [
-      "Curated collection of activist memes",
-      "Easy sharing across social platforms",
-      "Community contributions welcome",
-      "Issues-focused humor",
-      "Viral-ready formats",
-      "Regular updates with fresh content"
-    ],
-    "ctaText": "Browse Memes →",
-    "ctaLink": "/meme-gallery"
-  },
-  {
-    "id": 7,
-    "date": "2025-11-18",
-    "category": "Legislative Tracking",
-    "emoji": "📜",
-    "title": "Legislative Tracking: Know What's Coming Before It Hits",
-    "excerpt": "Bills don't appear overnight - they have a lifecycle. Our legislative tracking system monitors every stage from introduction to royal assent, giving you time to organize, advocate, and resist harmful legislation before it becomes law.",
-    "keyFeatures": [
-      "Provincial bill tracking (all stages)",
-      "Federal legislation monitoring",
-      "Bill impact analysis for disabled persons",
-      "Historical voting records",
-      "Committee hearing schedules",
-      "Automated status updates"
-    ],
-    "ctaText": "Track Legislation →",
-    "ctaLink": "/legislative-tracking"
-  },
-  {
-    "id": 8,
-    "date": "2025-11-17",
-    "category": "Legal Framework",
-    "emoji": "⚖️",
-    "title": "Legal Framework: Your Protection, Our Transparency",
-    "excerpt": "In a world where corporations hide behind legal fine print, we do the opposite. Our comprehensive legal framework protects both users and operators with complete transparency. Zero tracking, zero data collection, 100% privacy guaranteed.",
-    "keyFeatures": [
-      "Complete legal disclaimer protecting users",
-      "Privacy policy with ZERO tracking",
-      "Full transparency about operations",
-      "Clear terms of use",
-      "WCAG 2.1 AA accessibility compliance",
-      "Open-source verification available"
-    ],
-    "ctaText": "Read Legal Docs →",
-    "ctaLink": "/legal"
+    "ctaText": "Try The Eye →",
+    "ctaLink": "/the-eye-v2-demo"
   }
 ]

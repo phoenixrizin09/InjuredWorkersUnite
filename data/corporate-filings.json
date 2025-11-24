@@ -1,0 +1,38 @@
+[
+  {
+    "company": "Manulife",
+    "symbol": "MFC",
+    "lastChecked": "2025-11-24T17:57:16.636Z",
+    "recentFilings": [
+      {
+        "type": "Quarterly Report",
+        "date": "2025-11-24",
+        "summary": "Check SEDAR+ manually for actual filings"
+      }
+    ]
+  },
+  {
+    "company": "Sun Life",
+    "symbol": "SLF",
+    "lastChecked": "2025-11-24T17:57:16.641Z",
+    "recentFilings": [
+      {
+        "type": "Quarterly Report",
+        "date": "2025-11-24",
+        "summary": "Check SEDAR+ manually for actual filings"
+      }
+    ]
+  },
+  {
+    "company": "Great-West Lifeco",
+    "symbol": "GWO",
+    "lastChecked": "2025-11-24T17:57:16.642Z",
+    "recentFilings": [
+      {
+        "type": "Quarterly Report",
+        "date": "2025-11-24",
+        "summary": "Check SEDAR+ manually for actual filings"
+      }
+    ]
+  }
+]

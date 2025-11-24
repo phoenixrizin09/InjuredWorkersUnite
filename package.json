@@ -13,7 +13,9 @@
     "blog:preview": "echo 'Blog posts:' && node -p 'require(\"./public/data/blog-posts.json\").slice(0,3).map(p => `${p.date}: ${p.title}`).join(\"\\n\")'"
   },
   "dependencies": {
+    "cheerio": "^1.1.2",
     "next": "^15.0.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

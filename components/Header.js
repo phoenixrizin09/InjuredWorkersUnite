@@ -74,6 +74,7 @@ export default function Header() {
           <Link href="/" style={navLinkStyle}>Home</Link>
           <Link href="/about" style={navLinkStyle}>About</Link>
           <Link href="/blog" style={navLinkStyle}>Blog</Link>
+          <Link href="/eye-oracle" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)', color: '#000', fontWeight: 'bold'}}>👁️ Oracle</Link>
           <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
           <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
           <Link href="/legislative-tracking" style={navLinkStyle}>Bills</Link>

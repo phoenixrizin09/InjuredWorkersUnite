@@ -163,7 +163,8 @@ export default function Home() {
           background: 'rgba(0,0,0,0.2)',
           borderRadius: '20px',
           maxWidth: '600px',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'blur(10px)',
+          marginBottom: '2rem'
         }}>
           <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>What We Stand For</h3>
           <ul style={{ textAlign: 'left', lineHeight: '1.8', listStyle: 'none', padding: 0 }}>
@@ -172,6 +173,48 @@ export default function Home() {
             <li>🎨 Creative Resistance & Memetic Warfare</li>
             <li>🌐 Digital Sovereignty & Mutual Aid</li>
           </ul>
+        </div>
+
+        {/* Blog Teaser */}
+        <div style={{
+          padding: '2rem',
+          background: 'linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(255,107,107,0.1) 100%)',
+          borderRadius: '20px',
+          maxWidth: '800px',
+          backdropFilter: 'blur(10px)',
+          border: '2px solid rgba(0,255,255,0.3)',
+          textAlign: 'center'
+        }}>
+          <h3 style={{ 
+            fontSize: '1.8rem', 
+            marginBottom: '1rem',
+            background: 'linear-gradient(135deg, #00ffff 0%, #ff6b6b 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            📰 Feature Spotlight Blog
+          </h3>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            marginBottom: '1.5rem',
+            lineHeight: '1.6'
+          }}>
+            Daily deep dives into our powerful tools and features. Learn how each component works to fight for justice.
+          </p>
+          <Link href="/blog" style={{
+            display: 'inline-block',
+            padding: '0.75rem 2rem',
+            background: 'linear-gradient(135deg, #00ffff 0%, #0088ff 100%)',
+            color: '#000',
+            textDecoration: 'none',
+            borderRadius: '25px',
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            boxShadow: '0 0 20px rgba(0,255,255,0.5)',
+            transition: 'all 0.3s ease'
+          }}>
+            Read the Blog →
+          </Link>
         </div>
       </div>
     </div>

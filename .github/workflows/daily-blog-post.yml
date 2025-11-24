@@ -1,0 +1,50 @@
+name: Generate Daily Blog Post
+
+on:
+  schedule:
+    # Run every day at 9:00 AM UTC (4:00 AM EST / 5:00 AM EDT)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate daily blog post
+        run: node scripts/generate-daily-blog-post.js
+      
+      - name: Check for changes
+        id: check-changes
+        run: |
+          git diff --quiet public/data/blog-posts.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/data/blog-posts.json
+          git commit -m "🤖 Auto-generated daily blog post [skip ci]"
+          git push
+      
+      - name: Log completion
+        run: |
+          if [ "${{ steps.check-changes.outputs.changed }}" == "true" ]; then
+            echo "✅ Daily blog post generated and committed"
+          else
+            echo "ℹ️ No new post generated (already published today)"
+          fi

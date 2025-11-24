@@ -8,7 +8,9 @@
     "dev:client": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "blog:generate": "node scripts/generate-daily-blog-post.js",
+    "blog:preview": "echo 'Blog posts:' && node -p 'require(\"./public/data/blog-posts.json\").slice(0,3).map(p => `${p.date}: ${p.title}`).join(\"\\n\")'"
   },
   "dependencies": {
     "next": "^15.0.0",

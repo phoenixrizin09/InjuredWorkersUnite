@@ -274,6 +274,49 @@ export default function About() {
                   </span>
                 </div>
 
+                {/* Affiliations */}
+                <div style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  marginBottom: '1.5rem',
+                  flexWrap: 'wrap'
+                }}>
+                  <a 
+                    href="https://www.speakersschool.ca/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: 'rgba(50, 205, 50, 0.15)',
+                      border: '1px solid #32CD32',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '20px',
+                      fontSize: '0.85rem',
+                      color: '#32CD32',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    🎓 Alumni & Board Member — Speakers School
+                  </a>
+                  <a 
+                    href="http://thunderbayinjuredworkers.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: 'rgba(255, 215, 0, 0.15)',
+                      border: '1px solid #FFD700',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '20px',
+                      fontSize: '0.85rem',
+                      color: '#FFD700',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    ⚡ Injured Worker & Board Member — TBDIWSG
+                  </a>
+                </div>
+
                 <div style={{
                   fontSize: '1rem',
                   lineHeight: '1.8',

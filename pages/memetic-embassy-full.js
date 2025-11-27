@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function MemeticEmbassyFull() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedHero, setSelectedHero] = useState(null);
+  const [selectedVillain, setSelectedVillain] = useState(null);
   const [moodSliders, setMoodSliders] = useState({
     petty: 50,
     chaotic: 50,
@@ -20,6 +22,955 @@ export default function MemeticEmbassyFull() {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [selectedCharacterForMeme, setSelectedCharacterForMeme] = useState(null);
   const [userMemes, setUserMemes] = useState([]);
+  const [activeSection, setActiveSection] = useState('heroes');
+  const [selectedBackground, setSelectedBackground] = useState('mad');
+  const [dialogueBubbles, setDialogueBubbles] = useState([]);
+  const [autoMemeMode, setAutoMemeMode] = useState(false);
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [selectedComicPage, setSelectedComicPage] = useState(null);
+  const [selectedArtifact, setSelectedArtifact] = useState(null);
+  const [selectedFaction, setSelectedFaction] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const canvasRef = useRef(null);
+
+  // ============================================
+  // HEROES - The Embassy Memetic Warrior Superhero Squad (COMPLETE)
+  // ============================================
+  const heroSquad = [
+    // === THE PHOENIX - COMMANDER ===
+    {
+      id: 'the-phoenix',
+      name: 'The Phoenix (P.K.)',
+      class: 'Commander of the Embassy',
+      emoji: '🔥',
+      powers: [
+        'Rebirth memetics — turns trauma into power',
+        'Hope Burst generation',
+        'Crushed narrative resurrection',
+        'The Rise Eternal — burns away lies within 100 story-units'
+      ],
+      weakness: 'The weight of everyone\'s stories',
+      signature_move: 'The Rise Eternal',
+      favorite_phrase: '"From the ashes, we rise. Together."',
+      visual: 'Purple and fire aura, phoenix wings made of documentation, ember eyes that see through lies',
+      backstory: 'A frontline healthcare worker betrayed by systems meant to protect them. Rose from the ashes of injustice to become the moral core of the Embassy.',
+      symbol: '🔥🟣',
+      color: '#9932CC',
+      role: 'Strategic Commander & Moral Core'
+    },
+    // === ORIGINAL SIX ===
+    {
+      id: 'captain-truth',
+      name: 'Captain Truth-Teller',
+      class: 'Chief Whistleblower',
+      emoji: '🎖️',
+      powers: [
+        'Shatters propaganda instantly',
+        'Detects lies with perfect accuracy',
+        'FOI blasts (Freedom of Information attacks)',
+        'Truth-beam battles'
+      ],
+      weakness: 'Overwhelming data overload',
+      signature_move: 'The Receipt Reveal',
+      favorite_phrase: '"The truth will set you free—and expose them."',
+      visual: 'FOI-request cape, Truth megaphone, ✊ emblem, military-style jacket with USB drive medals',
+      backstory: 'Once a corporate insider who witnessed too many cover-ups. Now leads the resistance with irrefutable evidence. Has never lost a documentation battle.',
+      color: '#FFD700',
+      role: 'Commander & Chief Whistleblower'
+    },
+    {
+      id: 'sergeant-solidarity',
+      name: 'Sergeant Solidarity',
+      class: 'Organizing Director',
+      emoji: '✊',
+      powers: [
+        'Summons crowds instantly',
+        'Builds unity shields',
+        'Rally aura that spreads across provinces',
+        'Strike coordination telepathy'
+      ],
+      weakness: 'Collective burnout',
+      signature_move: 'The Solidarity Wave',
+      favorite_phrase: '"An injury to one is an injury to all!"',
+      visual: 'Belt of union badges, always surrounded by workers, megaphone staff, solidarity fist emblem',
+      backstory: 'Organized their first protest at age 12. Has united workers across every industry. Their presence alone boosts morale by 200%.',
+      color: '#FF4444',
+      role: 'Organizing Director'
+    },
+    {
+      id: 'lieutenant-meme',
+      name: 'Lieutenant Meme-Maker',
+      class: 'Creative Director & Propaganda Chief',
+      emoji: '🎨',
+      powers: [
+        'Creates viral memes that become movements',
+        'Weakens villains with satire',
+        'Algorithm manipulation',
+        'Goggles that detect hypocrisy'
+      ],
+      weakness: 'Algorithm suppression',
+      signature_move: 'The Viral Truth Bomb',
+      favorite_phrase: '"Your propaganda ends where my memes begin."',
+      visual: 'Meme tablet, pencil like a sword, holographic coat displaying rotating memes, goggles detecting hypocrisy',
+      backstory: 'Former graphic designer who realized their true power was weaponizing humor. Every meme they create becomes a movement.',
+      color: '#FF00FF',
+      role: 'Creative Director & Propaganda Chief'
+    },
+    {
+      id: 'major-accessibility',
+      name: 'Major Accessibility',
+      class: 'Disability Advocate & Access Warrior',
+      emoji: '♿',
+      powers: [
+        'Removes obstacles instantly',
+        'Detects discrimination with perfect accuracy',
+        'Barrier dissolver beams',
+        'Universal design manifestation'
+      ],
+      weakness: 'Systemic resistance',
+      signature_move: 'The Universal Design Wave',
+      favorite_phrase: '"Nothing about us without us!"',
+      visual: 'High-tech mobility rig, Universal design emblem, ramps extending from gauntlets, screen reader visor',
+      backstory: 'Built their own accessible world when the existing one refused to include them. Now tears down barriers everywhere.',
+      color: '#00BFFF',
+      role: 'Disability Advocate & Access Warrior'
+    },
+    {
+      id: 'corporal-care',
+      name: 'Corporal Care',
+      class: 'Mental Health & Burnout Prevention',
+      emoji: '💚',
+      powers: [
+        'Restores hope in the hopeless',
+        'Shields teams from burnout',
+        'Trauma-informed toolkit deployment',
+        'Calming aura projection'
+      ],
+      weakness: 'Emotional overload from absorbing too much pain',
+      signature_move: 'The Healing Circle',
+      favorite_phrase: '"Rest is resistance. Healing is revolution."',
+      visual: 'Soft glowing aura, tea cup that never empties, weighted blanket cape, surrounded by floating hearts',
+      backstory: 'Realized that caring for warriors is itself a form of warfare. Keeps the movement alive through radical compassion.',
+      color: '#32CD32',
+      role: 'Mental Health & Burnout Prevention'
+    },
+    {
+      id: 'pfc-receipts',
+      name: 'Private First Class Receipts',
+      class: 'Documentation & Intelligence',
+      emoji: '📊',
+      powers: [
+        'Generates infinite receipts',
+        'Overloads villains with proof',
+        'Timestamp goggles see through time manipulation',
+        'File cannon deployment'
+      ],
+      weakness: 'File corruption attacks',
+      signature_move: 'The Archive Avalanche',
+      favorite_phrase: '"I keep receipts on your receipts."',
+      visual: 'Binders for days, Timestamp goggles, trench coat with infinite pockets, filing cabinet backpack',
+      backstory: 'A data analyst who went rogue after discovering systemic fraud. Now maintains the most comprehensive evidence database in existence.',
+      color: '#4169E1',
+      role: 'Documentation & Intelligence'
+    },
+    // === EXPANDED WARRIOR ROSTER ===
+    {
+      id: 'prism-guardian',
+      name: 'Prism Guardian',
+      class: 'Clarity Specialist',
+      emoji: '🔷',
+      powers: [
+        'Refracts harmful bureaucratic energy into empowering clarity',
+        'Turns denial letters into laser-guided truth beams',
+        'Light manipulation',
+        'Confusion dispersion field'
+      ],
+      weakness: 'Overwhelming darkness of despair',
+      signature_move: 'The Clarity Refraction',
+      favorite_phrase: '"Through the prism of truth, all becomes clear."',
+      visual: 'Crystalline armor that refracts light, The Prism Shield glowing with refracted truth, rainbow aura',
+      backstory: 'Once lost in the fog of bureaucratic confusion, they discovered the power to transform chaos into clarity. Now illuminates the path for all.',
+      weapon: 'The Prism Shield',
+      color: '#00CED1',
+      role: 'Clarity Specialist'
+    },
+    {
+      id: 'the-archivist',
+      name: 'The Archivist',
+      class: 'Living Database',
+      emoji: '📚',
+      powers: [
+        'Impossible recall of every suppressed worker story',
+        'Temporal playback — can replay any moment of injustice',
+        'Evidence reconstruction from fragments',
+        'Memory immunity'
+      ],
+      weakness: 'Carries the burden of everyone\'s pain',
+      signature_move: 'The Total Recall',
+      favorite_phrase: '"Every story matters. Every story is remembered."',
+      visual: 'Robes made of scrolling text, eyes that display file directories, floating books orbiting',
+      backstory: 'They remember everything. Every suppressed story. Every silenced voice. The weight is immense, but so is the power.',
+      color: '#8B4513',
+      role: 'Living Database of Suppressed Stories'
+    },
+    {
+      id: 'warden-rights',
+      name: 'The Warden of Rights',
+      class: 'Legal Colossus',
+      emoji: '⚖️',
+      powers: [
+        'Sword of Just Cause — cuts through unjust decisions',
+        'Shield of Natural Justice — blocks procedural violations',
+        'Can challenge corrupt decisions in single combat',
+        'Meredith Principles invocation'
+      ],
+      weakness: 'Bureaucratic technicalities',
+      signature_move: 'The Rights Challenge',
+      favorite_phrase: '"Justice is not optional."',
+      visual: 'Giant spectral figure forged from Meredith Principles, scales of justice as armor, law tome floating nearby',
+      backstory: 'Manifested from the collective will of workers demanding their rights. A towering guardian of procedural justice.',
+      color: '#B8860B',
+      role: 'Legal Guardian'
+    },
+    {
+      id: 'signalflare',
+      name: 'Signalflare',
+      class: 'Communications Specialist',
+      emoji: '📢',
+      powers: [
+        'Amplifies the silenced',
+        'Spreads messages across dimensions',
+        'Disrupts propaganda algorithms',
+        'Truth shockwave broadcasts'
+      ],
+      weakness: 'Signal jamming from coordinated suppression',
+      signature_move: 'The Amplification Wave',
+      favorite_phrase: '"Your voice WILL be heard."',
+      visual: 'Megaphone that sends shockwaves of truth, antenna array on back, radio wave aura',
+      backstory: 'A former broadcaster who saw too many stories killed. Now ensures no voice goes unheard, no matter how powerful the opposition.',
+      home: 'The Lighthouse of Voices',
+      color: '#FF6347',
+      role: 'Communications Specialist'
+    },
+    {
+      id: 'empathic-engineer',
+      name: 'The Empathic Engineer',
+      class: 'Spirit Repair Specialist',
+      emoji: '🛠️',
+      powers: [
+        'Repairs human spirit damage',
+        'Heals stress wounds, dignity fractures, despair collapse',
+        'Creates Emotional Armor for frontline activists',
+        'Resilience reinforcement'
+      ],
+      weakness: 'Cannot repair those who have given up entirely',
+      signature_move: 'The Spirit Reconstruction',
+      favorite_phrase: '"You are not broken. You are battle-worn. Let me help."',
+      visual: 'Tool belt of emotional repair implements, glowing hands, goggles that see emotional damage',
+      backstory: 'An engineer who realized machines weren\'t the only things that needed repair. Specializes in rebuilding what injustice destroys.',
+      color: '#DA70D6',
+      role: 'Spirit Repair Specialist'
+    },
+    {
+      id: 'sentinel-1983',
+      name: 'Sentinel 1983',
+      class: 'Unity Mech-Warrior',
+      emoji: '🤖',
+      powers: [
+        'Powered by the energy of June 1st, 1983',
+        'Strength increases with worker unity',
+        'Historical justice invocation',
+        'Collective memory channeling'
+      ],
+      weakness: 'Division and infighting drain power',
+      signature_move: 'The 1983 Surge',
+      favorite_phrase: '"We forced them to listen once. We will again."',
+      visual: 'Mech-warrior bearing the date June 1, 1983, powered by collective courage, solidarity symbols glowing',
+      backstory: 'Forged from the energy of the historic day when 3,000 injured workers forced the government to listen. A living monument to collective power.',
+      power_core: 'The 1983 Keystone',
+      color: '#4682B4',
+      role: 'Unity Mech-Warrior'
+    },
+    {
+      id: 'echo-nova',
+      name: 'Echo Nova',
+      class: 'Message Multiplier',
+      emoji: '🌟',
+      powers: [
+        'Creates powerful repeating meme-waves',
+        'One message becomes a million',
+        'Truth echo destabilization',
+        'Viral cascade generation'
+      ],
+      weakness: 'Message dilution over time',
+      signature_move: 'The Nova Cascade',
+      favorite_phrase: '"One truth, echoed a million times."',
+      visual: 'Starlight form, ripples of light emanating outward, speech bubbles multiplying around them',
+      backstory: 'Discovered they could make a whisper become a roar. Every truth they speak echoes until the corrupt can no longer ignore it.',
+      color: '#FFB6C1',
+      role: 'Message Multiplier'
+    },
+    {
+      id: 'shadow-auditor',
+      name: 'Shadow Auditor',
+      class: 'Corruption Exposer',
+      emoji: '🕵️',
+      powers: [
+        'Walks unseen through bureaucratic darkness',
+        'Exposes what is hidden',
+        'Black-ink memetic traps',
+        'Invisible infiltration of corrupt systems'
+      ],
+      weakness: 'Bright light of direct confrontation',
+      signature_move: 'The Darkness Reveal',
+      favorite_phrase: '"You thought no one was watching. You were wrong."',
+      visual: 'Cloaked in shadow, eyes that glow in darkness, ink-black tendrils that expose secrets',
+      backstory: 'Not evil—but terrifying to the corrupt. They exist in the shadows where wrongdoing hides, and they drag it into the light.',
+      color: '#2F2F4F',
+      role: 'Corruption Exposer'
+    }
+  ];
+
+  // ============================================
+  // SEASON 2 EPISODE POSTERS
+  // ============================================
+  const season2Episodes = [
+    {
+      id: 'ep1',
+      number: 1,
+      title: 'Labyrinth of Missing Evidence',
+      tagline: 'Where documents go to die',
+      description: 'Our heroes enter the Bureaucratic Wastes, a glowing maze where evidence mysteriously vanishes. The Minotaur of Misfiled Claims lurks in the shadows.',
+      visual: 'Glowing neon maze, ominous Minotaur silhouette, scattered papers floating in void',
+      style: 'MAD Magazine + propaganda art hybrid',
+      heroes: ['captain-truth', 'pfc-receipts'],
+      villain: 'delayla',
+      color: '#8B0000'
+    },
+    {
+      id: 'ep2',
+      number: 2,
+      title: 'The Minotaur of Misfiled Claims',
+      tagline: 'Half bull, half bureaucrat, all nightmare',
+      description: 'Heroes face the legendary Casefile Beast—a creature made entirely of lost claims, denial letters, and forgotten appeals.',
+      visual: 'Massive beast constructed from papers, filing cabinets as horns, red tape entangling everything',
+      style: 'Epic battle scene with satirical elements',
+      heroes: ['sergeant-solidarity', 'major-accessibility'],
+      villain: 'no-evidence',
+      color: '#4B0082'
+    },
+    {
+      id: 'ep3',
+      number: 3,
+      title: 'Algorithm That Hates Workers',
+      tagline: 'DENIED. DENIED. DENIED. DENIED.',
+      description: 'A rogue AI system stamps DENIED on every claim without reading them. Lieutenant Meme-Maker must hack the narrative.',
+      visual: 'Giant robot stamping DENIED repeatedly, assembly line of crushed hopes, binary code raining down',
+      style: 'Cyberpunk dystopia meets bureaucratic horror',
+      heroes: ['lieutenant-meme', 'pfc-receipts'],
+      villain: 'doctor-files',
+      color: '#FF4500'
+    },
+    {
+      id: 'ep4',
+      number: 4,
+      title: 'Ninja Vanish!',
+      tagline: 'Now you see accountability... now you don\'t',
+      description: 'HR Agent Ninja Vanish strikes, disappearing mid-sentence in a cloud of corporate buzzwords. Can anyone hold them accountable?',
+      visual: 'Smoke cloud made of buzzwords, silhouette vanishing, confused workers left behind',
+      style: 'Action comedy with martial arts parody',
+      heroes: ['captain-truth', 'corporal-care'],
+      villain: 'hr-ninja',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'ep5',
+      number: 5,
+      title: 'Rise of the Meme Forge',
+      tagline: 'From the flames of injustice, truth is forged',
+      description: 'Lieutenant Meme-Maker discovers the legendary Meme Forge—where viral content is born. They must forge the ultimate truth bomb.',
+      visual: 'Volcanic forge with Lieutenant Meme-Maker hammering a blazing speech bubble, sparks of viral content flying',
+      style: 'Epic fantasy with digital age twist',
+      heroes: ['lieutenant-meme', 'sergeant-solidarity'],
+      villain: 'delayla',
+      color: '#FF6600'
+    },
+    {
+      id: 'ep6',
+      number: 6,
+      title: 'The Hearing That Turned Into a Battle',
+      tagline: 'Order in the court? Not anymore.',
+      description: 'A routine tribunal hearing erupts into full-scale memetic warfare as heroes clash with the entire Denial Squad.',
+      visual: 'Courtroom transformed into battlefield, judge\'s gavel vs. truth hammer, papers flying like shrapnel',
+      style: 'Courtroom drama meets action epic',
+      heroes: ['captain-truth', 'sergeant-solidarity', 'major-accessibility'],
+      villain: 'all',
+      color: '#DC143C'
+    },
+    {
+      id: 'ep7',
+      number: 7,
+      title: 'Truth Ascendant',
+      tagline: 'The First Receipt rises',
+      description: 'Season finale. The Embassy raises the First Receipt—an ancient document proving the system was always rigged. Villains recoil in horror.',
+      visual: 'Captain Truth-Teller holding glowing ancient receipt aloft, villains shielding their eyes, dawn breaking over Embassy',
+      style: 'Triumphant propaganda poster',
+      heroes: ['captain-truth', 'sergeant-solidarity', 'lieutenant-meme', 'major-accessibility', 'corporal-care', 'pfc-receipts'],
+      villain: 'all',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // SEASON 1 — THE COMPLETE EPISODE LIST (FULLY RESTORED)
+  // "Rise of the Embassy" - Origin Season
+  // ============================================
+  const season1Episodes = [
+    {
+      id: 's1ep1',
+      number: 1,
+      title: 'Welcome to the Embassy, Worker',
+      tagline: 'The journey begins',
+      description: 'An injured worker stumbles into the Embassy for the first time and discovers asylum, advocacy, and the Memetic Warriors. Also: Origin of the Phoenix, revelation of the Memetic Layer.',
+      visual: 'Worker stepping through glowing portal into the Embassy, Warriors silhouetted against light',
+      style: 'Wonder and discovery, hero\'s journey beginning',
+      keyMoment: 'First glimpse of the Embassy',
+      color: '#9932CC'
+    },
+    {
+      id: 's1ep2',
+      number: 2,
+      title: 'Summoning the Squads',
+      tagline: 'The warriors assemble',
+      description: 'The first gathering of the Memetic Warriors; each hero\'s backstory revealed. The Denial Squad launches a coordinated paperwork ambush on a worker\'s claim.',
+      visual: 'All heroes assembling in the War Room, backstory vignettes swirling around them',
+      style: 'Epic team assembly',
+      keyMoment: 'Each hero\'s origin montage',
+      color: '#FFD700'
+    },
+    {
+      id: 's1ep3',
+      number: 3,
+      title: 'Captain Truth-Teller vs The Big Lie',
+      tagline: 'The first truth-beam battle',
+      description: 'The first truth-beam battle in series history. Grey Tower Rising—the Time Leeches attack the Embassy, trying to stall its creation.',
+      visual: 'Captain Truth-Teller\'s truth beam cutting through propaganda clouds',
+      style: 'Classic superhero confrontation',
+      keyMoment: 'First truth-beam victory',
+      color: '#FFD700'
+    },
+    {
+      id: 's1ep4',
+      number: 4,
+      title: 'Sergeant Solidarity Summons the People',
+      tagline: 'A rally becomes a movement',
+      description: 'A rally for an injured worker grows into a province-wide movement. Echoes of 1983—Sentinel 1983 awakens; workers\' unity energy floods the battlefield.',
+      visual: 'Massive crowd gathering, Sentinel 1983 rising in the background',
+      style: 'Inspirational rally sequence',
+      keyMoment: 'The moment the crowd becomes unstoppable',
+      color: '#FF4444'
+    },
+    {
+      id: 's1ep5',
+      number: 5,
+      title: 'Lieutenant Meme-Maker\'s Viral Strike',
+      tagline: 'One meme changes everything',
+      description: 'A single meme embarrasses bureaucrats and forces change. A powerful emotional episode where the Phoenix nearly falls—but rebirth triumphs.',
+      visual: 'Meme spreading like wildfire across screens, Phoenix rising from ashes',
+      style: 'Social media warfare montage',
+      keyMoment: 'The meme that broke the internet',
+      color: '#FF00FF'
+    },
+    {
+      id: 's1ep6',
+      number: 6,
+      title: 'Major Accessibility Breaks the Barriers',
+      tagline: 'No barrier stands forever',
+      description: 'Accessibility issues across the system are exposed—and dismantled. Prism Guardian refracts bureaucratic lies into truth-lances.',
+      visual: 'Major Accessibility shattering physical and systemic barriers',
+      style: 'Action sequence with empowerment theme',
+      keyMoment: 'The Universal Design Wave unleashed',
+      color: '#00BFFF'
+    },
+    {
+      id: 's1ep7',
+      number: 7,
+      title: 'Receipts Overload!',
+      tagline: 'The evidence avalanche',
+      description: 'Private First Class Receipts uncovers years of misconduct. Villains panic. The Archivist uncovers a suppressed cluster of 7,000 unheard stories.',
+      visual: 'Mountain of evidence burying villains, The Archivist opening forbidden archives',
+      style: 'Investigation thriller meets action',
+      keyMoment: 'The Archive Avalanche',
+      color: '#4169E1'
+    },
+    {
+      id: 's1ep8',
+      number: 8,
+      title: 'The Case of the Vanishing HR',
+      tagline: 'Accountability finally corners the ninja',
+      description: 'HR Agent Ninja Vanish avoids accountability—until Corporal Care corners her. The Austerity Council weaponizes budget cuts to create a famine of compassion.',
+      visual: 'Corporal Care using healing energy to trap HR Ninja in place',
+      style: 'Chase and confrontation',
+      keyMoment: 'HR Ninja finally held accountable',
+      color: '#32CD32'
+    },
+    {
+      id: 's1ep9',
+      number: 9,
+      title: 'Doctor Who Never Reads Files Meets Reality',
+      tagline: 'Truth and receipts vs willful ignorance',
+      description: 'A worker finally confronts the negligent doctor with truth and receipts. Break the Silence Engine—Signalflare leads an information war to expose the hidden suffering.',
+      visual: 'Worker presenting overwhelming evidence to shocked doctor',
+      style: 'Confrontation drama',
+      keyMoment: 'The doctor forced to actually read the file',
+      color: '#20B2AA'
+    },
+    {
+      id: 's1ep10',
+      number: 10,
+      title: 'The People\'s Tribunal',
+      tagline: 'Workers become the judges',
+      description: 'The Embassy members hold a public tribunal for injured workers. Shadow Auditor infiltrates the False Independence Tribunal.',
+      visual: 'Workers sitting in judgment, villains in the defendant\'s box',
+      style: 'Courtroom drama with revolutionary energy',
+      keyMoment: 'The roles finally reversed',
+      color: '#B8860B'
+    },
+    {
+      id: 's1ep11',
+      number: 11,
+      title: 'Denied? Not Today.',
+      tagline: 'United we stand against mass denial',
+      description: 'Workers unite against a mass denial event. The Embassy deploys all heroes. The ancient Meredith Codex activates, revealing truths erased from history.',
+      visual: 'All heroes standing together against wave of denial letters',
+      style: 'Epic battle sequence',
+      keyMoment: 'The Meredith Awakening',
+      color: '#DC143C'
+    },
+    {
+      id: 's1ep12',
+      number: 12,
+      title: 'The Solidarity Supernova',
+      tagline: 'SEASON FINALE - Rise of the Embassy',
+      description: 'Every hero and worker joins forces. The Denial Squad is overwhelmed. The Embassy stands fully formed. The heroes rise as global symbols of justice and truth. The war has just begun.',
+      visual: 'All heroes united, Embassy glowing with full power, dawn breaking',
+      style: 'Triumphant finale, propaganda poster aesthetic',
+      keyMoment: 'The Embassy achieves full power',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // MAIN VILLAIN FACTIONS (Beyond the Denial Squad)
+  // ============================================
+  const villainFactions = [
+    {
+      id: 'grey-tower',
+      name: 'The Grey Tower',
+      emoji: '🏢',
+      type: 'Bureaucratic Entity',
+      description: 'Symbol for bureaucratic apathy. An endless gray structure where time moves backwards and urgency dies.',
+      abilities: [
+        'Draining time from claims',
+        'Delaying justice indefinitely',
+        'Neutralizing urgency',
+        'Creating endless queues'
+      ],
+      agents: 'Time Leeches — creatures that feed on hope and deadlines',
+      weakness: 'Collective pressure and public attention',
+      visual: 'Endless gray tower reaching into smog, clocks running backwards, faceless workers shuffling papers',
+      color: '#696969'
+    },
+    {
+      id: 'algorithmic-dominion',
+      name: 'The Algorithmic Dominion',
+      emoji: '🤖',
+      type: 'Digital Entity',
+      description: 'An AI entity that feeds on suppressed claims, deleted emails, misfiled documents, and broken appeals. Rewrites truth at scale.',
+      abilities: [
+        'Feeding on suppressed claims',
+        'Rewriting truth at scale',
+        'Automated denial generation',
+        'Evidence corruption'
+      ],
+      agents: 'Denial Drones — automated systems that stamp DENIED without reading',
+      weakness: 'Human connection and authentic stories',
+      visual: 'Massive server entity, binary code flowing like blood, DENIED stamps multiplying infinitely',
+      color: '#FF4500'
+    },
+    {
+      id: 'austerity-council',
+      name: 'The Austerity Council',
+      emoji: '💰',
+      type: 'Economic Entity',
+      description: 'Shadow economists who worship "cost savings" as a deity. They sacrifice human well-being to statistical idols.',
+      abilities: [
+        'Budget cut manifestation',
+        'Compassion famine creation',
+        'Resource starvation',
+        'Value reduction spells'
+      ],
+      agents: 'Bean Counters — beings who only see numbers, never people',
+      weakness: 'Exposure of human cost',
+      visual: 'Hooded figures around spreadsheet altar, sacrificing benefits to the god of savings',
+      color: '#228B22'
+    },
+    {
+      id: 'silence-engine',
+      name: 'The Silence Engine',
+      emoji: '🔇',
+      type: 'Media Entity',
+      description: 'Force that ensures media never covers workplace injustice. Consumes headlines and spits out distractions.',
+      abilities: [
+        'Headline consumption',
+        'Distraction generation',
+        'Story suppression',
+        'Narrative burial'
+      ],
+      agents: 'Static Crawlers — interference patterns that scramble truth signals',
+      weakness: 'Viral grassroots content',
+      visual: 'Giant machine eating newspapers, outputting celebrity gossip and sports scores',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'false-tribunal',
+      name: 'The False Independence Tribunal',
+      emoji: '⚖️',
+      type: 'Institutional Parasite',
+      description: 'A memetic parasite that pretends to be neutral but bends itself toward power. Feeds on desperation of those seeking justice.',
+      abilities: [
+        'False neutrality projection',
+        'Hope extraction',
+        'Procedural maze creation',
+        'Outcome predetermination'
+      ],
+      agents: 'Gavel Wraiths — spectral judges who rule against workers before hearing evidence',
+      weakness: 'Documented patterns of bias',
+      visual: 'Scales of justice rigged with invisible weights, neutral mask slipping to reveal corporate loyalty',
+      color: '#8B0000'
+    }
+  ];
+
+  // ============================================
+  // ARTIFACTS OF POWER
+  // ============================================
+  const artifactsOfPower = [
+    {
+      id: 'meredith-codex',
+      name: 'The Meredith Codex',
+      emoji: '📜',
+      type: 'Ancient Document',
+      description: 'Ancient document containing the true "historic principles" corrupted over time. When activated, it breaks bureaucratic curses.',
+      powers: [
+        'Breaks bureaucratic curses',
+        'Reveals original intent of worker protection',
+        'Dispels institutional gaslighting',
+        'Restores forgotten rights'
+      ],
+      origin: 'Created from the original Meredith Principles, before they were corrupted',
+      wielder: 'The Warden of Rights',
+      visual: 'Glowing ancient scroll, text shifting and revealing hidden truths',
+      color: '#B8860B'
+    },
+    {
+      id: 'flame-continuance',
+      name: 'The Flame of Continuance',
+      emoji: '🔥',
+      type: 'Eternal Flame',
+      description: 'Held by the Phoenix. Represents unbroken spirit after endless injustice. Can never be extinguished.',
+      powers: [
+        'Unbroken spirit manifestation',
+        'Trauma-to-power conversion',
+        'Hope regeneration',
+        'Despair immunity'
+      ],
+      origin: 'Ignited from the collective will to continue despite everything',
+      wielder: 'The Phoenix',
+      visual: 'Purple and gold flame that burns without consuming, grows brighter with adversity',
+      color: '#9932CC'
+    },
+    {
+      id: 'keystone-1983',
+      name: 'The 1983 Keystone',
+      emoji: '🔷',
+      type: 'Power Core',
+      description: 'Power core of Sentinel 1983. Stores the collective courage of thousands of injured workers from June 1st, 1983.',
+      powers: [
+        'Collective courage storage',
+        'Historical power channeling',
+        'Unity amplification',
+        'Legacy strength'
+      ],
+      origin: 'Crystallized from the energy of 3,000 workers who forced the government to listen',
+      wielder: 'Sentinel 1983',
+      visual: 'Glowing blue crystal with the date "June 1, 1983" etched inside',
+      color: '#4682B4'
+    },
+    {
+      id: 'empathy-resonator',
+      name: 'The Empathy Resonator',
+      emoji: '💫',
+      type: 'Emotional Amplifier',
+      description: 'Amplifies emotional truth—impossible for adversaries to dismiss. Makes the human cost undeniable.',
+      powers: [
+        'Emotional truth amplification',
+        'Dismissal immunity',
+        'Empathy projection',
+        'Connection establishment'
+      ],
+      origin: 'Forged from crystallized tears of workers whose stories were ignored',
+      wielder: 'The Empathic Engineer',
+      visual: 'Pulsing orb that shows the faces and stories of those affected',
+      color: '#DA70D6'
+    },
+    {
+      id: 'prism-lance',
+      name: 'The Prism Lance',
+      emoji: '🔱',
+      type: 'Weaponized Clarity',
+      description: 'Weaponized clarity. Cuts through confusion and reveals truth in brilliant, undeniable light.',
+      powers: [
+        'Confusion dispersion',
+        'Truth revelation',
+        'Lie destruction',
+        'Clarity beam projection'
+      ],
+      origin: 'Crystallized from moments when truth finally broke through bureaucratic fog',
+      wielder: 'Prism Guardian',
+      visual: 'Crystalline lance that refracts light into truth beams',
+      color: '#00CED1'
+    },
+    {
+      id: 'first-receipt',
+      name: 'The First Receipt',
+      emoji: '📋',
+      type: 'Legendary Document',
+      description: 'An ancient document proving the system was always rigged. When raised, villains recoil in horror as their lies are exposed.',
+      powers: [
+        'System corruption proof',
+        'Villain recoil effect',
+        'Historical truth manifestation',
+        'Denial nullification'
+      ],
+      origin: 'The very first evidence of bureaucratic betrayal, preserved through time',
+      wielder: 'Captain Truth-Teller',
+      visual: 'Ancient glowing receipt, the ur-document of injustice',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // EMBASSY GEOGRAPHY - World Locations
+  // ============================================
+  const embassyLocations = [
+    {
+      id: 'hall-echoes',
+      name: 'Hall of Echoes',
+      emoji: '🏛️',
+      description: 'Where stories become power. Every worker\'s story resonates here eternally, their voices amplified and preserved.',
+      purpose: 'Story preservation and power generation',
+      features: [
+        'Walls that replay testimonies',
+        'Echo crystals storing voices',
+        'Power generation from shared experiences'
+      ],
+      color: '#9932CC'
+    },
+    {
+      id: 'war-room',
+      name: 'The War Room',
+      emoji: '🗺️',
+      description: 'Where future campaigns are designed. Holographic maps show injustice hotspots and plan strategic responses.',
+      purpose: 'Strategic planning and coordination',
+      features: [
+        'Real-time injustice tracking',
+        'Campaign planning tables',
+        'Hero deployment coordination'
+      ],
+      color: '#DC143C'
+    },
+    {
+      id: 'garden-recovery',
+      name: 'The Garden of Recovery',
+      emoji: '🌱',
+      description: 'Where shattered spirits regrow. A peaceful sanctuary for healing, tended by Corporal Care.',
+      purpose: 'Healing and restoration',
+      features: [
+        'Therapeutic gardens',
+        'Recovery pools',
+        'Spirit restoration chambers'
+      ],
+      color: '#32CD32'
+    },
+    {
+      id: 'chamber-rebuttals',
+      name: 'The Chamber of Rebuttals',
+      emoji: '⚔️',
+      description: 'Where lies go to die. Every false claim is destroyed here with evidence and truth.',
+      purpose: 'Lie destruction and truth verification',
+      features: [
+        'Truth testing apparatus',
+        'Lie destruction forges',
+        'Rebuttal armory'
+      ],
+      color: '#FF4500'
+    },
+    {
+      id: 'solidarity-forge',
+      name: 'The Solidarity Forge',
+      emoji: '🔨',
+      description: 'Where new warriors are trained. The heat of collective anger is channeled into strength.',
+      purpose: 'Warrior training and empowerment',
+      features: [
+        'Training grounds',
+        'Unity amplification chambers',
+        'Skill forging stations'
+      ],
+      color: '#FF6600'
+    },
+    {
+      id: 'lighthouse-voices',
+      name: 'The Lighthouse of Voices',
+      emoji: '🗼',
+      description: 'Signalflare\'s home. Broadcasts truth across all dimensions, ensuring no voice goes unheard.',
+      purpose: 'Communication and amplification',
+      features: [
+        'Dimensional broadcast array',
+        'Signal amplification tower',
+        'Voice preservation vault'
+      ],
+      color: '#FF6347'
+    },
+    {
+      id: 'archive-infinite',
+      name: 'The Infinite Archive',
+      emoji: '📚',
+      description: 'The Archivist\'s domain. Contains every suppressed story, every buried truth, every forgotten worker.',
+      purpose: 'Knowledge preservation and retrieval',
+      features: [
+        'Infinite document storage',
+        'Temporal playback chambers',
+        'Evidence reconstruction labs'
+      ],
+      color: '#8B4513'
+    }
+  ];
+
+  // ============================================
+  // MEME GENERATOR MODES (Expanded)
+  // ============================================
+  const memeGeneratorModes = [
+    { id: 'villain-vs-hero', name: 'Villain vs Hero', description: 'Classic confrontation format', icon: '⚔️' },
+    { id: 'denied-again', name: 'Denied Again!', description: 'The eternal struggle', icon: '🚫' },
+    { id: 'solidarity-activated', name: 'Solidarity Activated', description: 'Unity power-up mode', icon: '✊' },
+    { id: 'case-file-comedy', name: 'Case File Comedy', description: 'Bureaucratic absurdity', icon: '📁' },
+    { id: 'accessibility-beam', name: 'Accessibility Justice Beam', description: 'Breaking barriers', icon: '♿' },
+    { id: 'receipts-overload', name: 'Receipts Overload', description: 'Evidence avalanche', icon: '📊' },
+    { id: 'phoenix-rise', name: 'Phoenix Rising', description: 'From ashes to power', icon: '🔥' },
+    { id: 'truth-beam', name: 'Truth Beam Battle', description: 'Propaganda destruction', icon: '💥' }
+  ];
+
+  // ============================================
+  // MAD-STYLE COMIC PAGES
+  // ============================================
+  const comicPages = [
+    {
+      id: 'page1',
+      number: 1,
+      title: 'Enter the Bureaucratic Wastes',
+      description: 'Heroes entering the Bureaucratic Wastes, stepping over piles of lost mail.',
+      panels: [
+        { type: 'wide', content: 'Establishing shot: endless gray cubicles stretching to infinity' },
+        { type: 'medium', content: 'Captain Truth-Teller: "Stay sharp. Evidence disappears here."' },
+        { type: 'small', content: 'PFC Receipts checking their infinite pocket coat nervously' },
+        { type: 'small', content: 'A pile of lost mail with cartoon eyes watching them' }
+      ],
+      mood: 'Ominous but satirical',
+      color: '#696969'
+    },
+    {
+      id: 'page2',
+      number: 2,
+      title: 'Delayla\'s Denial Storm',
+      description: 'Case Manager Delayla launching a storm of denial letters.',
+      panels: [
+        { type: 'splash', content: 'Delayla floating in the air, denial letters swirling around her like a tornado' },
+        { type: 'small', content: '"Your appeal has been... DENIED!" *stamps multiply*' },
+        { type: 'medium', content: 'Heroes shielding themselves with documentation folders' },
+        { type: 'small', content: 'Sergeant Solidarity: "Form a union barrier!"' }
+      ],
+      mood: 'Intense action with dark humor',
+      color: '#FF69B4'
+    },
+    {
+      id: 'page3',
+      number: 3,
+      title: 'Viral Counterattack',
+      description: 'Lieutenant Meme-Maker counterattacking with viral truth beams.',
+      panels: [
+        { type: 'medium', content: 'Lieutenant Meme-Maker charging up their stylus weapons' },
+        { type: 'splash', content: 'VIRAL TRUTH BEAMS cutting through denial letters, memes manifesting in the air' },
+        { type: 'small', content: 'Delayla: "No! Not... DOCUMENTATION!"' },
+        { type: 'small', content: 'A meme of Delayla going viral in real-time, shown on floating screens' }
+      ],
+      mood: 'Triumphant counterattack',
+      color: '#FF00FF'
+    },
+    {
+      id: 'page4',
+      number: 4,
+      title: 'The Vanishing',
+      description: 'HR Agent Ninja Vanish disappearing mid-sentence.',
+      panels: [
+        { type: 'medium', content: 'Workers approaching HR desk with legitimate concerns' },
+        { type: 'sequence', content: 'HR Ninja: "I\'ll definitely look into—" *POOF*' },
+        { type: 'medium', content: 'Nothing but a cloud of buzzwords: "synergy" "circle back" "touch base"' },
+        { type: 'small', content: 'Workers with ? symbols over their heads, written confirmation request floating in empty air' }
+      ],
+      mood: 'Comedy with frustration undertones',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'page5',
+      number: 5,
+      title: 'Rally the Brigades',
+      description: 'Sergeant Solidarity rallying the Meme Brigades.',
+      panels: [
+        { type: 'wide', content: 'Thousands of workers assembling, each holding meme signs' },
+        { type: 'splash', content: 'Sergeant Solidarity: "WE ARE STRONGER TOGETHER!"' },
+        { type: 'small', content: 'Lieutenant Meme-Maker distributing viral content to the masses' },
+        { type: 'small', content: 'The ground trembling as solidarity amplification field activates' }
+      ],
+      mood: 'Inspiring, revolutionary energy',
+      color: '#FF4444'
+    },
+    {
+      id: 'page6',
+      number: 6,
+      title: 'The First Receipt',
+      description: 'Final panel: Captain Truth-Teller holding the First Receipt as villains recoil.',
+      panels: [
+        { type: 'buildup', content: 'Captain Truth-Teller ascending, light emanating from their evidence folder' },
+        { type: 'splash', content: 'THE FIRST RECEIPT revealed—ancient, glowing, undeniable' },
+        { type: 'wide', content: 'All four villains recoiling, their powers failing' },
+        { type: 'final', content: '"The system was always rigged. And now everyone knows."' }
+      ],
+      mood: 'Triumphant climax',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // MEME GENERATOR BACKGROUNDS
+  // ============================================
+  const memeBackgrounds = [
+    { id: 'mad', name: 'MAD Magazine Classic', color: 'linear-gradient(135deg, #FFD700 0%, #FF6B6B 100%)', description: 'Classic satirical style' },
+    { id: 'dystopian', name: 'Dystopian Office', color: 'linear-gradient(135deg, #2F4F4F 0%, #696969 100%)', description: 'Gray cubicle nightmare' },
+    { id: 'dungeon', name: 'Claim Dungeon', color: 'linear-gradient(135deg, #1a0033 0%, #4B0082 100%)', description: 'Where claims go to die' },
+    { id: 'forge', name: 'Meme Forge', color: 'linear-gradient(135deg, #FF4500 0%, #FF6600 100%)', description: 'Where viral content is born' },
+    { id: 'tribunal', name: 'The Tribunal', color: 'linear-gradient(135deg, #8B0000 0%, #DC143C 100%)', description: 'Courtroom of injustice' },
+    { id: 'embassy', name: 'Embassy Grounds', color: 'linear-gradient(135deg, #FF00FF 0%, #00FFFF 100%)', description: 'Home of the resistance' }
+  ];
 
   useEffect(() => {
     // Check if user already has citizenship
@@ -44,17 +995,18 @@ export default function MemeticEmbassyFull() {
       title: 'Queen of Delay & Denials',
       emoji: '💅',
       powers: [
-        'Makes evidence disappear in 0.3 seconds',
-        'Files paperwork into "The Abyss of Lost Claims"',
-        'Summons 12-week waiting periods like magic dust',
-        'Smiles like everything is fine while everything burns'
+        'Infinite postponement spell',
+        'Denial cloud generation',
+        'Paperwork multiplication',
+        'Evidence disappearing act'
       ],
+      weakness: 'Time-stamped proof',
       signature_move: 'The Perpetual Pending Spell',
-      weakness: 'Documentation she actually has to read',
       favorite_phrase: '"Your file seems to be... temporarily unavailable."',
-      visual: 'Pastel office wear, denial stamp, latte always in hand',
-      backstory: 'Rose through the ranks by never approving a single claim on the first try. Has a wall of "Denied" stamps in her office. Coffee order is always more complex than any claim she reviews.',
-      meme_potential: 'HIGH - Perfect for "when your case manager says" templates'
+      visual: 'Pastel office wear, denial stamp scepter, latte always in hand, cloud of floating "DENIED" stamps',
+      backstory: 'Rose through the ranks by never approving a single claim on the first try. Has a wall of "Denied" stamps in her office.',
+      meme_potential: 'HIGH - Perfect for "when your case manager says" templates',
+      color: '#FF69B4'
     },
     {
       id: 'no-evidence',
@@ -62,17 +1014,18 @@ export default function MemeticEmbassyFull() {
       title: 'Employer Whisperer',
       emoji: '🙈',
       powers: [
-        'Approves employer statements telepathically',
-        'Detects "worker exaggeration" from 40 miles away',
-        "Can't read PDFs (literally doesn't know how)",
-        'Believes everything except injured workers'
+        'Employer telepathy',
+        'Automatic dismissal field',
+        'Selective blindness to worker evidence',
+        'Corporate credibility boost'
       ],
+      weakness: 'A single credible witness',
       signature_move: 'The Instant Employer Credibility Boost',
-      weakness: 'Actual evidence',
       favorite_phrase: '"The employer says you seemed fine, so..."',
       visual: 'Suit, blindfold made from policy manuals, giant rubber stamp that says APPROVED (for employers only)',
-      backstory: 'Never met an employer statement he didn\'t trust. Once approved a claim that said "worker injured by unicorn attack" because the employer filled out the form. Has literally never read a medical report.',
-      meme_potential: 'CRITICAL - "Employer: *lie* / WSIB: seems legit" format'
+      backstory: 'Never met an employer statement he didn\'t trust. Once approved a claim that said "worker injured by unicorn attack" because the employer filled out the form.',
+      meme_potential: 'CRITICAL - "Employer: *lie* / WSIB: seems legit" format',
+      color: '#8B4513'
     },
     {
       id: 'doctor-files',
@@ -80,17 +1033,18 @@ export default function MemeticEmbassyFull() {
       title: 'Master of 3-Minute Diagnoses',
       emoji: '🩺',
       powers: [
-        '"You look fine to me!" beam (ignores actual injuries)',
-        '3-minute appointment time limit (enforced magically)',
-        'Can produce contradictory medical reports instantly',
-        'Special ability: Googling your condition while you\'re sitting there'
+        '3-minute diagnosis speed',
+        'Ignorance shield',
+        'Contradictory report generation',
+        'Patient history immunity'
       ],
+      weakness: 'Detailed medical history brought by patient',
       signature_move: 'The "Hmm Interesting" Head Nod (while not listening)',
-      weakness: 'Patients who bring their own research',
       favorite_phrase: '"Have you tried yoga?"',
-      visual: 'Disheveled lab coat, clipboard with nothing on it, stethoscope used as a necklace, computer with 47 tabs open',
-      backstory: 'Graduated medical school by memorizing "return to work" forms. Once diagnosed someone without looking up from their phone. Has a secret passion for denying disability claims to "help people push through."',
-      meme_potential: 'LEGENDARY - Endless "doctors be like" content'
+      visual: 'Disheveled lab coat, clipboard with nothing on it, stethoscope used as necklace, 47 browser tabs open',
+      backstory: 'Graduated medical school by memorizing "return to work" forms. Once diagnosed someone without looking up from their phone.',
+      meme_potential: 'LEGENDARY - Endless "doctors be like" content',
+      color: '#20B2AA'
     },
     {
       id: 'hr-ninja',
@@ -98,17 +1052,18 @@ export default function MemeticEmbassyFull() {
       title: 'Accountability Avoidance Expert',
       emoji: '🥷',
       powers: [
-        'Smoke bombs made of "we take this seriously" statements',
-        'Teleports during investigations',
-        'Leaves only vague emails behind',
-        'Can turn invisible when you need to file a complaint'
+        'Instant disappearance',
+        'Accountability inversion',
+        'Buzzword smoke bombs',
+        'Policy manual clone jutsu'
       ],
+      weakness: 'Written confirmation requests',
       signature_move: 'The Disappearing Act (right when you need them)',
-      weakness: 'Paper trails and witnesses',
       favorite_phrase: '"I\'ll get back to you..." *vanishes*',
       visual: 'Corporate ninja outfit with HR badge, smoke bomb labeled "POLICY", disappearing ink pen',
-      backstory: 'Trained in the ancient art of "looking busy while doing nothing." Holds the record for most "we\'re looking into it" emails sent. Has never actually resolved a complaint but has attended 10,000 diversity workshops.',
-      meme_potential: 'MAXIMUM - Perfect for ghosting memes'
+      backstory: 'Trained in the ancient art of "looking busy while doing nothing." Holds the record for most "we\'re looking into it" emails sent.',
+      meme_potential: 'MAXIMUM - Perfect for ghosting memes',
+      color: '#2F4F4F'
     }
   ];
 
@@ -661,8 +1616,233 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        {/* SECTION 1: THE DENIAL SQUAD */}
+        {/* NAVIGATION TABS */}
         <div style={{
+          background: '#000',
+          padding: '20px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          borderBottom: '3px solid #ff00ff'
+        }}>
+          <div style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            display: 'flex',
+            gap: '10px',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+            {['heroes', 'villains', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
+              <button
+                key={section}
+                onClick={() => {
+                  setActiveSection(section);
+                  document.getElementById(`section-${section}`)?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                style={{
+                  padding: '12px 24px',
+                  background: activeSection === section 
+                    ? 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)'
+                    : 'rgba(255,255,255,0.1)',
+                  border: '2px solid #ff00ff',
+                  borderRadius: '25px',
+                  color: activeSection === section ? '#000' : '#fff',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  transition: 'all 0.3s'
+                }}
+              >
+                {section === 'heroes' && '🦸 Heroes'}
+                {section === 'villains' && '😈 Villains'}
+                {section === 'generator' && '🎨 Meme Forge'}
+                {section === 'episodes' && '🎬 Season 2'}
+                {section === 'comics' && '📖 Comics'}
+                {section === 'ecosystem' && '🌿 Ecosystem'}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* SECTION: THE HERO SQUAD */}
+        <div id="section-heroes" style={{
+          padding: '80px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '1rem',
+              background: 'linear-gradient(135deg, #FFD700 0%, #00BFFF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🦸 THE HERO SQUAD 🦸
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FFD700',
+              marginBottom: '1rem',
+              maxWidth: '900px',
+              margin: '0 auto 2rem'
+            }}>
+              Meet the defenders of the Memetic Embassy—warriors who fight for truth, solidarity, and justice.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '3rem'
+            }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: 'rgba(255,215,0,0.2)',
+                border: '2px solid #FFD700',
+                borderRadius: '25px',
+                color: '#FFD700',
+                fontSize: '1rem'
+              }}>
+                ⚔️ Click any hero to view their full character sheet ⚔️
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2rem'
+            }}>
+              {heroSquad.map((hero) => (
+                <div
+                  key={hero.id}
+                  onClick={() => setSelectedHero(hero.id === selectedHero ? null : hero.id)}
+                  style={{
+                    background: selectedHero === hero.id 
+                      ? `linear-gradient(135deg, ${hero.color} 0%, #000 100%)`
+                      : 'rgba(255,255,255,0.05)',
+                    border: `3px solid ${hero.color}`,
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedHero === hero.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedHero === hero.id 
+                      ? `0 0 40px ${hero.color}60`
+                      : 'none'
+                  }}
+                >
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '1rem'
+                  }}>
+                    <div style={{ fontSize: '4rem' }}>{hero.emoji}</div>
+                    <span style={{
+                      background: hero.color,
+                      color: '#000',
+                      padding: '5px 12px',
+                      borderRadius: '15px',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {hero.role}
+                    </span>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.5rem',
+                    color: hero.color,
+                    marginBottom: '0.3rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {hero.name}
+                  </h3>
+
+                  <div style={{
+                    color: '#aaa',
+                    fontSize: '1rem',
+                    marginBottom: '1rem',
+                    fontStyle: 'italic'
+                  }}>
+                    {hero.class}
+                  </div>
+
+                  {selectedHero === hero.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.5s ease',
+                      borderTop: `1px solid ${hero.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1.5rem' }}>
+                        <strong style={{ color: hero.color }}>⚡ Powers:</strong>
+                        <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', color: '#ddd' }}>
+                          {hero.powers.map((power, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.4rem' }}>{power}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#ff6b6b' }}>⚠️ Weakness:</strong>
+                        <span style={{ marginLeft: '0.5rem', color: '#ddd' }}>{hero.weakness}</span>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: hero.color }}>🎯 Signature Move:</strong>
+                        <span style={{ marginLeft: '0.5rem', color: '#ddd' }}>{hero.signature_move}</span>
+                      </div>
+
+                      <div style={{
+                        background: 'rgba(0,0,0,0.5)',
+                        padding: '1rem',
+                        borderRadius: '10px',
+                        marginBottom: '1rem',
+                        borderLeft: `4px solid ${hero.color}`
+                      }}>
+                        <strong style={{ color: hero.color }}>💬</strong>
+                        <em style={{ marginLeft: '0.5rem', color: '#fff' }}>{hero.favorite_phrase}</em>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: hero.color }}>👁️ Visual:</strong>
+                        <p style={{ marginTop: '0.5rem', color: '#aaa', fontSize: '0.95rem' }}>{hero.visual}</p>
+                      </div>
+
+                      <div style={{
+                        background: `${hero.color}20`,
+                        padding: '1rem',
+                        borderRadius: '10px',
+                        border: `1px solid ${hero.color}40`
+                      }}>
+                        <strong style={{ color: hero.color }}>📖 Backstory:</strong>
+                        <p style={{ marginTop: '0.5rem', color: '#ddd', lineHeight: '1.6' }}>{hero.backstory}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#888'
+                  }}>
+                    {selectedHero === hero.id ? '▲ Click to collapse' : '▼ Click to expand'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 1: THE DENIAL SQUAD */}
+        <div id="section-villains" style={{
           padding: '80px 20px',
           background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
         }}>
@@ -1312,329 +2492,535 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        {/* SECTION 6: MEME CREATOR STUDIO */}
-        <div style={{
+        {/* SECTION 6: MEME CREATOR STUDIO - THE MEME FORGE */}
+        <div id="section-generator" style={{
           padding: '100px 20px',
           background: 'linear-gradient(180deg, #000033 0%, #330066 100%)',
         }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <h2 style={{
               fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-              marginBottom: '2rem',
+              marginBottom: '1rem',
               textAlign: 'center',
               background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontWeight: 'bold'
             }}>
-              🎨 MEME CREATOR STUDIO 🎨
+              🔥 THE MEME FORGE 🔥
             </h2>
 
             <p style={{
               textAlign: 'center',
-              fontSize: '1.5rem',
+              fontSize: '1.3rem',
               color: '#00ffff',
-              marginBottom: '3rem'
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
             }}>
-              Create, Download, and Share Your Masterpieces
+              Where viral content is born. Create memes compatible with Embassy canon.
             </p>
 
-            {/* CUSTOM MEME BUILDER */}
+            {/* 5-PANEL MEME GENERATOR UI */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: '10px',
+              marginBottom: '3rem',
+              background: 'rgba(0,0,0,0.5)',
+              padding: '20px',
+              borderRadius: '20px',
+              border: '3px solid #ff00ff'
+            }}>
+              {/* Panel 1: Character Selector */}
+              <div style={{
+                background: 'rgba(255,0,255,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #ff00ff'
+              }}>
+                <h4 style={{ color: '#ff00ff', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  1️⃣ CHARACTER
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ 
+                    fontSize: '0.75rem', 
+                    color: '#00ffff', 
+                    marginBottom: '0.5rem',
+                    textAlign: 'center'
+                  }}>
+                    Heroes
+                  </div>
+                  {heroSquad.slice(0, 3).map(hero => (
+                    <button
+                      key={hero.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...hero, type: 'hero' })}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedCharacterForMeme?.id === hero.id 
+                          ? hero.color 
+                          : 'rgba(0,0,0,0.3)',
+                        border: `2px solid ${hero.color}`,
+                        borderRadius: '8px',
+                        color: selectedCharacterForMeme?.id === hero.id ? '#000' : '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <span style={{ fontSize: '1.2rem' }}>{hero.emoji}</span>
+                      <span style={{ fontSize: '0.7rem' }}>{hero.name.split(' ').slice(-1)[0]}</span>
+                    </button>
+                  ))}
+                  <div style={{ 
+                    fontSize: '0.75rem', 
+                    color: '#ff6b6b', 
+                    margin: '0.5rem 0',
+                    textAlign: 'center'
+                  }}>
+                    Villains
+                  </div>
+                  {denialSquad.slice(0, 2).map(villain => (
+                    <button
+                      key={villain.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...villain, type: 'villain' })}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedCharacterForMeme?.id === villain.id 
+                          ? villain.color || '#ff0080' 
+                          : 'rgba(0,0,0,0.3)',
+                        border: `2px solid ${villain.color || '#ff0080'}`,
+                        borderRadius: '8px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <span style={{ fontSize: '1.2rem' }}>{villain.emoji}</span>
+                      <span style={{ fontSize: '0.7rem' }}>{villain.name.split(' ').slice(-1)[0]}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 2: Background Style */}
+              <div style={{
+                background: 'rgba(0,255,255,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #00ffff'
+              }}>
+                <h4 style={{ color: '#00ffff', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  2️⃣ BACKGROUND
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {memeBackgrounds.map(bg => (
+                    <button
+                      key={bg.id}
+                      onClick={() => setSelectedBackground(bg.id)}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedBackground === bg.id 
+                          ? bg.color 
+                          : 'rgba(0,0,0,0.3)',
+                        border: selectedBackground === bg.id 
+                          ? '2px solid #fff' 
+                          : '2px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.75rem',
+                        textAlign: 'left'
+                      }}
+                    >
+                      {bg.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 3: Dialogue Bubble */}
+              <div style={{
+                background: 'rgba(255,215,0,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #FFD700'
+              }}>
+                <h4 style={{ color: '#FFD700', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  3️⃣ DIALOGUE
+                </h4>
+                <textarea
+                  value={memeText.top}
+                  onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
+                  placeholder="Top text..."
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginBottom: '0.5rem',
+                    background: 'rgba(0,0,0,0.5)',
+                    border: '1px solid #FFD700',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    fontSize: '0.8rem',
+                    resize: 'none',
+                    height: '60px'
+                  }}
+                />
+                <textarea
+                  value={memeText.bottom}
+                  onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
+                  placeholder="Bottom text..."
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    background: 'rgba(0,0,0,0.5)',
+                    border: '1px solid #FFD700',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    fontSize: '0.8rem',
+                    resize: 'none',
+                    height: '60px'
+                  }}
+                />
+              </div>
+
+              {/* Panel 4: Auto-Meme Mode */}
+              <div style={{
+                background: 'rgba(255,107,107,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #ff6b6b'
+              }}>
+                <h4 style={{ color: '#ff6b6b', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  4️⃣ AUTO-MEME
+                </h4>
+                <button
+                  onClick={() => {
+                    setAutoMemeMode(!autoMemeMode);
+                    if (!autoMemeMode) {
+                      // Generate random meme based on character
+                      const templates = [
+                        { top: 'When they say "your claim is pending"', bottom: 'For the 47th time this year' },
+                        { top: 'Insurance: "We need more evidence"', bottom: '*provides encyclopedia* "Not enough"' },
+                        { top: 'HR: "We take this seriously"', bottom: '*vanishes into thin air*' },
+                        { top: 'Doctor after 3 minutes:', bottom: '"Have you tried yoga?"' },
+                        { top: 'The employer said you were fine', bottom: 'Must be true then 🙈' },
+                        { top: 'Still waiting for my claim', bottom: 'Since the dinosaurs went extinct' }
+                      ];
+                      const random = templates[Math.floor(Math.random() * templates.length)];
+                      setMemeText(random);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    background: autoMemeMode 
+                      ? 'linear-gradient(135deg, #ff6b6b 0%, #ffaa00 100%)'
+                      : 'rgba(0,0,0,0.3)',
+                    border: '2px solid #ff6b6b',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  🎲 GENERATE
+                </button>
+                <p style={{
+                  fontSize: '0.7rem',
+                  color: '#aaa',
+                  marginTop: '0.5rem',
+                  textAlign: 'center'
+                }}>
+                  AI-powered templates
+                </p>
+                <div style={{
+                  marginTop: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem'
+                }}>
+                  <select
+                    style={{
+                      padding: '0.5rem',
+                      background: 'rgba(0,0,0,0.5)',
+                      border: '1px solid #ff6b6b',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      fontSize: '0.75rem'
+                    }}
+                    onChange={(e) => {
+                      const templates = {
+                        denial: { top: 'Your claim has been', bottom: 'DENIED' },
+                        waiting: { top: 'Still waiting...', bottom: 'Day 847' },
+                        yoga: { top: 'Doctor:', bottom: '"Have you tried yoga?"' },
+                        vanish: { top: 'HR mid-sentence:', bottom: '*poof*' }
+                      };
+                      if (templates[e.target.value]) {
+                        setMemeText(templates[e.target.value]);
+                      }
+                    }}
+                  >
+                    <option value="">Quick Templates</option>
+                    <option value="denial">Denial Classic</option>
+                    <option value="waiting">Infinite Wait</option>
+                    <option value="yoga">Yoga Cure</option>
+                    <option value="vanish">HR Vanish</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Panel 5: Download/Share */}
+              <div style={{
+                background: 'rgba(50,205,50,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #32CD32'
+              }}>
+                <h4 style={{ color: '#32CD32', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  5️⃣ SHARE
+                </h4>
+                <button
+                  onClick={() => {
+                    const memeData = {
+                      topText: memeText.top,
+                      bottomText: memeText.bottom,
+                      character: selectedCharacterForMeme,
+                      background: selectedBackground
+                    };
+                    downloadMeme(memeData);
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    marginBottom: '0.5rem',
+                    background: 'linear-gradient(135deg, #32CD32 0%, #00ff88 100%)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: '#000',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  📥 DOWNLOAD
+                </button>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '0.5rem'
+                }}>
+                  <button
+                    onClick={() => shareToSocial('twitter', memeText.top + ' ' + memeText.bottom)}
+                    style={{
+                      padding: '0.5rem',
+                      background: '#1DA1F2',
+                      border: 'none',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.7rem'
+                    }}
+                  >
+                    🐦 X
+                  </button>
+                  <button
+                    onClick={() => shareToSocial('reddit', memeText.top + ' ' + memeText.bottom)}
+                    style={{
+                      padding: '0.5rem',
+                      background: '#FF4500',
+                      border: 'none',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.7rem'
+                    }}
+                  >
+                    🤖 Reddit
+                  </button>
+                </div>
+                <button
+                  onClick={() => {
+                    const newMeme = {
+                      id: Date.now(),
+                      topText: memeText.top,
+                      bottomText: memeText.bottom,
+                      character: selectedCharacterForMeme,
+                      background: selectedBackground,
+                      created: new Date().toISOString()
+                    };
+                    const updated = [...userMemes, newMeme];
+                    setUserMemes(updated);
+                    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+                    alert('🎨 Saved to gallery!');
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginTop: '0.5rem',
+                    background: 'rgba(255,255,255,0.1)',
+                    border: '1px solid #32CD32',
+                    borderRadius: '5px',
+                    color: '#32CD32',
+                    cursor: 'pointer',
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  💾 Save to Gallery
+                </button>
+              </div>
+            </div>
+
+            {/* LIVE PREVIEW */}
+            <div style={{
+              background: memeBackgrounds.find(b => b.id === selectedBackground)?.color || 'linear-gradient(135deg, #FFD700 0%, #FF6B6B 100%)',
+              borderRadius: '20px',
+              padding: '3rem',
+              minHeight: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              border: '5px solid #fff',
+              boxShadow: '0 0 50px rgba(255,0,255,0.5)',
+              marginBottom: '3rem'
+            }}>
+              {/* Top Text */}
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 3rem)',
+                fontFamily: 'Impact, sans-serif',
+                color: '#fff',
+                textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                textAlign: 'center',
+                textTransform: 'uppercase'
+              }}>
+                {memeText.top || 'YOUR TOP TEXT HERE'}
+              </div>
+
+              {/* Character */}
+              {selectedCharacterForMeme && (
+                <div style={{
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '8rem' }}>{selectedCharacterForMeme.emoji}</div>
+                  <div style={{
+                    fontSize: '1.2rem',
+                    color: '#fff',
+                    textShadow: '2px 2px 0 #000',
+                    marginTop: '0.5rem'
+                  }}>
+                    {selectedCharacterForMeme.name}
+                  </div>
+                </div>
+              )}
+
+              {!selectedCharacterForMeme && (
+                <div style={{
+                  fontSize: '6rem',
+                  opacity: 0.3
+                }}>
+                  🎭
+                </div>
+              )}
+
+              {/* Bottom Text */}
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 3rem)',
+                fontFamily: 'Impact, sans-serif',
+                color: '#fff',
+                textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                textAlign: 'center',
+                textTransform: 'uppercase'
+              }}>
+                {memeText.bottom || 'YOUR BOTTOM TEXT HERE'}
+              </div>
+            </div>
+
+            {/* EXTENDED CHARACTER SELECTOR */}
             <div style={{
               background: 'rgba(255,0,255,0.1)',
               border: '3px solid #ff00ff',
               borderRadius: '20px',
-              padding: '3rem',
+              padding: '2rem',
               marginBottom: '3rem'
             }}>
               <h3 style={{
-                fontSize: '2rem',
+                fontSize: '1.5rem',
                 color: '#ff00ff',
-                marginBottom: '2rem',
+                marginBottom: '1.5rem',
                 textAlign: 'center'
               }}>
-                🖼️ Build Your Own Meme
+                🦸 All Heroes & 😈 All Villains
               </h3>
 
-              {/* Character Selector */}
               <div style={{ marginBottom: '2rem' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '1.3rem',
-                  color: '#00ffff',
-                  marginBottom: '1rem',
-                  fontWeight: 'bold'
-                }}>
-                  Select a Denial Squad Character (Optional):
-                </label>
+                <h4 style={{ color: '#FFD700', marginBottom: '1rem' }}>Heroes:</h4>
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                   gap: '1rem'
                 }}>
-                  {denialSquad.map(character => (
+                  {heroSquad.map(hero => (
                     <button
-                      key={character.id}
-                      onClick={() => setSelectedCharacterForMeme(character)}
+                      key={hero.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...hero, type: 'hero' })}
                       style={{
                         padding: '1rem',
-                        background: selectedCharacterForMeme?.id === character.id ? 
-                          'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)' : 
-                          'rgba(0,0,0,0.5)',
-                        border: selectedCharacterForMeme?.id === character.id ? 
-                          '3px solid #fff' : 
-                          '2px solid #ff00ff',
+                        background: selectedCharacterForMeme?.id === hero.id 
+                          ? hero.color 
+                          : 'rgba(0,0,0,0.5)',
+                        border: `3px solid ${hero.color}`,
                         borderRadius: '10px',
-                        color: '#fff',
-                        fontSize: '1.1rem',
+                        color: selectedCharacterForMeme?.id === hero.id ? '#000' : '#fff',
                         cursor: 'pointer',
                         transition: 'all 0.3s'
                       }}
                     >
-                      <div style={{ fontSize: '3rem' }}>{character.emoji}</div>
-                      <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                        {character.name}
+                      <div style={{ fontSize: '2.5rem' }}>{hero.emoji}</div>
+                      <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                        {hero.name}
                       </div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Text Inputs */}
-              <div style={{ marginBottom: '2rem' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '1.3rem',
-                  color: '#00ffff',
-                  marginBottom: '1rem',
-                  fontWeight: 'bold'
-                }}>
-                  Top Text:
-                </label>
-                <input
-                  type="text"
-                  value={memeText.top}
-                  onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
-                  placeholder="Enter top text..."
-                  style={{
-                    width: '100%',
-                    padding: '1rem',
-                    fontSize: '1.2rem',
-                    background: 'rgba(0,0,0,0.7)',
-                    border: '2px solid #ff00ff',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontFamily: 'Impact, sans-serif'
-                  }}
-                />
-              </div>
-
-              <div style={{ marginBottom: '2rem' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '1.3rem',
-                  color: '#00ffff',
-                  marginBottom: '1rem',
-                  fontWeight: 'bold'
-                }}>
-                  Bottom Text:
-                </label>
-                <input
-                  type="text"
-                  value={memeText.bottom}
-                  onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
-                  placeholder="Enter bottom text..."
-                  style={{
-                    width: '100%',
-                    padding: '1rem',
-                    fontSize: '1.2rem',
-                    background: 'rgba(0,0,0,0.7)',
-                    border: '2px solid #ff00ff',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontFamily: 'Impact, sans-serif'
-                  }}
-                />
-              </div>
-
-              {/* Template Selector */}
-              <div style={{ marginBottom: '2rem' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '1.3rem',
-                  color: '#00ffff',
-                  marginBottom: '1rem',
-                  fontWeight: 'bold'
-                }}>
-                  Or Choose a Template:
-                </label>
-                <select
-                  value={selectedTemplate || ''}
-                  onChange={(e) => setSelectedTemplate(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '1rem',
-                    fontSize: '1.1rem',
-                    background: 'rgba(0,0,0,0.7)',
-                    border: '2px solid #ff00ff',
-                    borderRadius: '10px',
-                    color: '#fff'
-                  }}
-                >
-                  <option value="">-- Select Template --</option>
-                  {memeCategories.map(cat => (
-                    cat.examples.map((ex, i) => (
-                      <option key={`${cat.category}-${i}`} value={ex}>
-                        {cat.category}: {ex.substring(0, 50)}...
-                      </option>
-                    ))
-                  ))}
-                </select>
-              </div>
-
-              {/* Preview */}
-              {(memeText.top || memeText.bottom || selectedCharacterForMeme || selectedTemplate) && (
+              <div>
+                <h4 style={{ color: '#ff6b6b', marginBottom: '1rem' }}>Villains:</h4>
                 <div style={{
-                  background: '#000',
-                  border: '3px solid #00ffff',
-                  borderRadius: '10px',
-                  padding: '2rem',
-                  marginBottom: '2rem',
-                  textAlign: 'center',
-                  minHeight: '300px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center'
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: '1rem'
                 }}>
-                  <h4 style={{ color: '#00ffff', marginBottom: '1rem' }}>Preview:</h4>
-                  {memeText.top && (
-                    <div style={{
-                      fontSize: '2.5rem',
-                      fontFamily: 'Impact, sans-serif',
-                      color: '#fff',
-                      textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
-                      marginBottom: '1rem'
-                    }}>
-                      {memeText.top}
-                    </div>
-                  )}
-                  {selectedCharacterForMeme && (
-                    <div style={{ fontSize: '8rem', margin: '1rem 0' }}>
-                      {selectedCharacterForMeme.emoji}
-                    </div>
-                  )}
-                  {selectedTemplate && !memeText.top && !memeText.bottom && (
-                    <div style={{
-                      fontSize: '1.8rem',
-                      fontFamily: 'Impact, sans-serif',
-                      color: '#00ffff',
-                      textShadow: '2px 2px 0 #000',
-                      padding: '1rem'
-                    }}>
-                      {selectedTemplate}
-                    </div>
-                  )}
-                  {memeText.bottom && (
-                    <div style={{
-                      fontSize: '2.5rem',
-                      fontFamily: 'Impact, sans-serif',
-                      color: '#fff',
-                      textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
-                      marginTop: '1rem'
-                    }}>
-                      {memeText.bottom}
-                    </div>
-                  )}
+                  {denialSquad.map(villain => (
+                    <button
+                      key={villain.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...villain, type: 'villain' })}
+                      style={{
+                        padding: '1rem',
+                        background: selectedCharacterForMeme?.id === villain.id 
+                          ? villain.color || '#ff0080'
+                          : 'rgba(0,0,0,0.5)',
+                        border: `3px solid ${villain.color || '#ff0080'}`,
+                        borderRadius: '10px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                    >
+                      <div style={{ fontSize: '2.5rem' }}>{villain.emoji}</div>
+                      <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                        {villain.name}
+                      </div>
+                    </button>
+                  ))}
                 </div>
-              )}
-
-              {/* Create Button */}
-              <button
-                onClick={createCustomMeme}
-                style={{
-                  width: '100%',
-                  padding: '1.5rem',
-                  background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
-                  border: '3px solid #fff',
-                  borderRadius: '15px',
-                  color: '#000',
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  animation: 'pulse 2s infinite'
-                }}
-              >
-                🎨 CREATE & DOWNLOAD MEME 🎨
-              </button>
-
-              {/* Share Buttons */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-                gap: '1rem',
-                marginTop: '2rem'
-              }}>
-                <button
-                  onClick={() => shareToSocial('twitter', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
-                  style={{
-                    padding: '1rem',
-                    background: '#1DA1F2',
-                    border: 'none',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
-                >
-                  🐦 Twitter
-                </button>
-                <button
-                  onClick={() => shareToSocial('facebook', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
-                  style={{
-                    padding: '1rem',
-                    background: '#1877F2',
-                    border: 'none',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
-                >
-                  📘 Facebook
-                </button>
-                <button
-                  onClick={() => shareToSocial('reddit', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
-                  style={{
-                    padding: '1rem',
-                    background: '#FF4500',
-                    border: 'none',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
-                >
-                  🤖 Reddit
-                </button>
-                <button
-                  onClick={() => shareToSocial('linkedin', memeText.top + ' ' + memeText.bottom || selectedTemplate)}
-                  style={{
-                    padding: '1rem',
-                    background: '#0A66C2',
-                    border: 'none',
-                    borderRadius: '10px',
-                    color: '#fff',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
-                >
-                  💼 LinkedIn
-                </button>
               </div>
             </div>
 
@@ -1767,6 +3153,865 @@ export default function MemeticEmbassyFull() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* SECTION: SEASON 2 EPISODE POSTERS */}
+        <div id="section-episodes" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #330066 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FF6600 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎬 SEASON 2: THE BUREAUCRATIC WASTES 🎬
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FFD700',
+              marginBottom: '1rem',
+              maxWidth: '800px',
+              margin: '0 auto 2rem'
+            }}>
+              Coming soon to a consciousness near you. MAD Magazine meets propaganda art.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '3rem'
+            }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: 'rgba(255,102,0,0.2)',
+                border: '2px solid #FF6600',
+                borderRadius: '25px',
+                color: '#FF6600',
+                fontSize: '1rem'
+              }}>
+                🎭 Click any episode poster for full details 🎭
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem'
+            }}>
+              {season2Episodes.map((episode) => (
+                <div
+                  key={episode.id}
+                  onClick={() => setSelectedEpisode(episode.id === selectedEpisode ? null : episode.id)}
+                  style={{
+                    background: selectedEpisode === episode.id 
+                      ? `linear-gradient(135deg, ${episode.color} 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.7)',
+                    border: `4px solid ${episode.color}`,
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedEpisode === episode.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedEpisode === episode.id 
+                      ? `0 0 50px ${episode.color}80`
+                      : `0 10px 30px rgba(0,0,0,0.5)`
+                  }}
+                >
+                  {/* Episode Header - Poster Style */}
+                  <div style={{
+                    background: episode.color,
+                    padding: '1.5rem',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold',
+                      color: '#000',
+                      marginBottom: '0.5rem'
+                    }}>
+                      EPISODE {episode.number}
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.6rem',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      textTransform: 'uppercase',
+                      lineHeight: '1.2'
+                    }}>
+                      {episode.title}
+                    </h3>
+                  </div>
+
+                  {/* Episode Body */}
+                  <div style={{ padding: '1.5rem' }}>
+                    <p style={{
+                      fontSize: '1.1rem',
+                      color: episode.color,
+                      fontStyle: 'italic',
+                      marginBottom: '1rem',
+                      textAlign: 'center'
+                    }}>
+                      "{episode.tagline}"
+                    </p>
+
+                    {selectedEpisode === episode.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.5s ease',
+                        borderTop: `1px solid ${episode.color}40`,
+                        paddingTop: '1.5rem',
+                        marginTop: '1rem'
+                      }}>
+                        <div style={{ marginBottom: '1.5rem' }}>
+                          <strong style={{ color: episode.color }}>📖 Synopsis:</strong>
+                          <p style={{ marginTop: '0.5rem', color: '#ddd', lineHeight: '1.6' }}>
+                            {episode.description}
+                          </p>
+                        </div>
+
+                        <div style={{ marginBottom: '1.5rem' }}>
+                          <strong style={{ color: episode.color }}>🎨 Visual Style:</strong>
+                          <p style={{ marginTop: '0.5rem', color: '#aaa', fontSize: '0.95rem' }}>
+                            {episode.visual}
+                          </p>
+                        </div>
+
+                        <div style={{ marginBottom: '1rem' }}>
+                          <strong style={{ color: episode.color }}>🦸 Heroes Featured:</strong>
+                          <div style={{
+                            display: 'flex',
+                            gap: '0.5rem',
+                            flexWrap: 'wrap',
+                            marginTop: '0.5rem'
+                          }}>
+                            {episode.heroes.map(heroId => {
+                              const hero = heroSquad.find(h => h.id === heroId);
+                              return hero ? (
+                                <span
+                                  key={heroId}
+                                  style={{
+                                    background: hero.color,
+                                    color: '#000',
+                                    padding: '5px 12px',
+                                    borderRadius: '15px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 'bold'
+                                  }}
+                                >
+                                  {hero.emoji} {hero.name.split(' ').slice(-1)[0]}
+                                </span>
+                              ) : null;
+                            })}
+                          </div>
+                        </div>
+
+                        <div style={{
+                          background: 'rgba(255,0,0,0.1)',
+                          padding: '1rem',
+                          borderRadius: '10px',
+                          border: '1px solid #ff0000'
+                        }}>
+                          <strong style={{ color: '#ff0000' }}>😈 Villain:</strong>
+                          <span style={{ marginLeft: '0.5rem', color: '#ff6b6b' }}>
+                            {episode.villain === 'all' 
+                              ? 'THE ENTIRE DENIAL SQUAD'
+                              : denialSquad.find(v => v.id === episode.villain)?.name}
+                          </span>
+                        </div>
+
+                        <div style={{
+                          marginTop: '1rem',
+                          padding: '0.5rem 1rem',
+                          background: 'rgba(255,255,255,0.1)',
+                          borderRadius: '10px',
+                          fontSize: '0.9rem',
+                          color: '#888'
+                        }}>
+                          Style: {episode.style}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '1rem',
+                      textAlign: 'center',
+                      fontSize: '0.85rem',
+                      color: '#888'
+                    }}>
+                      {selectedEpisode === episode.id ? '▲ Collapse' : '▼ View Details'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: MAD-STYLE COMIC PAGES */}
+        <div id="section-comics" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FF00FF 0%, #FFD700 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              📖 MAD-STYLE COMIC PAGES 📖
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FF00FF',
+              marginBottom: '2rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Core scenes from the Bureaucratic Wastes saga. Satire meets action meets dark comedy.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {comicPages.map((page) => (
+                <div
+                  key={page.id}
+                  onClick={() => setSelectedComicPage(page.id === selectedComicPage ? null : page.id)}
+                  style={{
+                    background: selectedComicPage === page.id 
+                      ? `linear-gradient(135deg, ${page.color} 0%, #000 100%)`
+                      : 'rgba(255,255,255,0.05)',
+                    border: `4px solid ${page.color}`,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedComicPage === page.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedComicPage === page.id 
+                      ? `0 0 40px ${page.color}60`
+                      : 'none'
+                  }}
+                >
+                  {/* Page Header */}
+                  <div style={{
+                    background: page.color,
+                    padding: '1rem 1.5rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <span style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#000'
+                    }}>
+                      PAGE {page.number}
+                    </span>
+                    <span style={{
+                      background: '#000',
+                      color: page.color,
+                      padding: '5px 12px',
+                      borderRadius: '15px',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {page.mood}
+                    </span>
+                  </div>
+
+                  {/* Page Content */}
+                  <div style={{ padding: '1.5rem' }}>
+                    <h3 style={{
+                      fontSize: '1.4rem',
+                      color: page.color,
+                      marginBottom: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {page.title}
+                    </h3>
+
+                    <p style={{
+                      color: '#aaa',
+                      fontSize: '1rem',
+                      marginBottom: '1rem',
+                      lineHeight: '1.5'
+                    }}>
+                      {page.description}
+                    </p>
+
+                    {selectedComicPage === page.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.5s ease',
+                        borderTop: `1px solid ${page.color}40`,
+                        paddingTop: '1.5rem',
+                        marginTop: '1rem'
+                      }}>
+                        <strong style={{ color: page.color, fontSize: '1.1rem' }}>📰 Panel Breakdown:</strong>
+                        
+                        <div style={{
+                          display: 'grid',
+                          gap: '1rem',
+                          marginTop: '1rem'
+                        }}>
+                          {page.panels.map((panel, idx) => (
+                            <div
+                              key={idx}
+                              style={{
+                                background: 'rgba(0,0,0,0.5)',
+                                border: `2px solid ${page.color}40`,
+                                borderRadius: '10px',
+                                padding: '1rem',
+                                display: 'flex',
+                                gap: '1rem',
+                                alignItems: 'flex-start'
+                              }}
+                            >
+                              <span style={{
+                                background: page.color,
+                                color: '#000',
+                                padding: '3px 10px',
+                                borderRadius: '10px',
+                                fontSize: '0.75rem',
+                                fontWeight: 'bold',
+                                textTransform: 'uppercase',
+                                flexShrink: 0
+                              }}>
+                                {panel.type}
+                              </span>
+                              <p style={{
+                                color: '#ddd',
+                                fontSize: '0.95rem',
+                                lineHeight: '1.5',
+                                margin: 0
+                              }}>
+                                {panel.content}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '1rem',
+                      textAlign: 'center',
+                      fontSize: '0.85rem',
+                      color: '#888'
+                    }}>
+                      {selectedComicPage === page.id ? '▲ Collapse' : '▼ View Panels'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: SEASON 1 EPISODES - RISE OF THE EMBASSY */}
+        <div id="section-season1" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #330066 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #9932CC 0%, #FFD700 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎬 SEASON 1: RISE OF THE EMBASSY 🎬
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#9932CC',
+              marginBottom: '2rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              The origin season. Where it all began. 12 episodes of truth, resistance, and the birth of a movement.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              {season1Episodes.map((episode) => (
+                <div
+                  key={episode.id}
+                  onClick={() => setSelectedEpisode(episode.id === selectedEpisode ? null : episode.id)}
+                  style={{
+                    background: selectedEpisode === episode.id 
+                      ? `linear-gradient(135deg, ${episode.color}40 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.6)',
+                    border: `3px solid ${episode.color}`,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedEpisode === episode.id ? 'scale(1.02)' : 'scale(1)'
+                  }}
+                >
+                  <div style={{
+                    background: episode.color,
+                    padding: '1rem',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#000' }}>
+                      EPISODE {episode.number}
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.2rem',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      margin: '0.5rem 0 0'
+                    }}>
+                      {episode.title}
+                    </h3>
+                  </div>
+
+                  <div style={{ padding: '1rem' }}>
+                    <p style={{
+                      fontSize: '1rem',
+                      color: episode.color,
+                      fontStyle: 'italic',
+                      marginBottom: '0.5rem',
+                      textAlign: 'center'
+                    }}>
+                      "{episode.tagline}"
+                    </p>
+
+                    {selectedEpisode === episode.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.3s ease',
+                        borderTop: `1px solid ${episode.color}40`,
+                        paddingTop: '1rem',
+                        marginTop: '0.5rem'
+                      }}>
+                        <p style={{ color: '#ddd', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '1rem' }}>
+                          {episode.description}
+                        </p>
+                        <div style={{
+                          background: 'rgba(255,255,255,0.1)',
+                          padding: '0.75rem',
+                          borderRadius: '8px',
+                          fontSize: '0.85rem',
+                          color: '#aaa'
+                        }}>
+                          <strong style={{ color: episode.color }}>🎬 Key Moment:</strong> {episode.keyMoment}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '0.75rem',
+                      textAlign: 'center',
+                      fontSize: '0.8rem',
+                      color: '#666'
+                    }}>
+                      {selectedEpisode === episode.id ? '▲ Less' : '▼ More'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: ARTIFACTS OF POWER */}
+        <div id="section-artifacts" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #330066 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FFD700 0%, #9932CC 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              ⚡ ARTIFACTS OF POWER ⚡
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FFD700',
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Legendary tools the heroes wield. Each artifact holds the power of collective struggle.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {artifactsOfPower.map((artifact) => (
+                <div
+                  key={artifact.id}
+                  onClick={() => setSelectedArtifact(artifact.id === selectedArtifact ? null : artifact.id)}
+                  style={{
+                    background: selectedArtifact === artifact.id 
+                      ? `linear-gradient(135deg, ${artifact.color}30 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.7)',
+                    border: `3px solid ${artifact.color}`,
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedArtifact === artifact.id ? 'scale(1.02)' : 'scale(1)'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '4rem' }}>{artifact.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      color: artifact.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {artifact.name}
+                    </h3>
+                    <span style={{
+                      display: 'inline-block',
+                      background: artifact.color,
+                      color: '#000',
+                      padding: '3px 12px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      marginTop: '0.5rem'
+                    }}>
+                      {artifact.type}
+                    </span>
+                  </div>
+
+                  <p style={{
+                    color: '#ddd',
+                    textAlign: 'center',
+                    lineHeight: '1.6',
+                    marginBottom: '1rem'
+                  }}>
+                    {artifact.description}
+                  </p>
+
+                  {selectedArtifact === artifact.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${artifact.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: artifact.color }}>⚡ Powers:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {artifact.powers.map((power, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{power}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: artifact.color }}>📜 Origin:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem', fontSize: '0.95rem' }}>{artifact.origin}</p>
+                      </div>
+                      <div style={{
+                        background: `${artifact.color}20`,
+                        padding: '0.75rem',
+                        borderRadius: '10px',
+                        textAlign: 'center'
+                      }}>
+                        <strong style={{ color: artifact.color }}>🦸 Wielded by:</strong>
+                        <span style={{ color: '#fff', marginLeft: '0.5rem' }}>{artifact.wielder}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#666'
+                  }}>
+                    {selectedArtifact === artifact.id ? '▲ Collapse' : '▼ Reveal Powers'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: VILLAIN FACTIONS */}
+        <div id="section-factions" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #2a0000 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FF0000 0%, #8B0000 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🏴 THE ENEMY FACTIONS 🏴
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#ff6b6b',
+              marginBottom: '3rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              Beyond the Denial Squad lie greater threats. Systemic forces of oppression that must be exposed and defeated.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {villainFactions.map((faction) => (
+                <div
+                  key={faction.id}
+                  onClick={() => setSelectedFaction(faction.id === selectedFaction ? null : faction.id)}
+                  style={{
+                    background: selectedFaction === faction.id 
+                      ? `linear-gradient(135deg, ${faction.color}30 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.8)',
+                    border: `3px solid ${faction.color}`,
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '4rem' }}>{faction.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      color: faction.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {faction.name}
+                    </h3>
+                    <span style={{
+                      display: 'inline-block',
+                      background: 'rgba(255,0,0,0.3)',
+                      color: '#ff6b6b',
+                      padding: '3px 12px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      marginTop: '0.5rem'
+                    }}>
+                      {faction.type}
+                    </span>
+                  </div>
+
+                  <p style={{
+                    color: '#ccc',
+                    textAlign: 'center',
+                    lineHeight: '1.6'
+                  }}>
+                    {faction.description}
+                  </p>
+
+                  {selectedFaction === faction.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${faction.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1.5rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: faction.color }}>💀 Abilities:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {faction.abilities.map((ability, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{ability}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: faction.color }}>👥 Agents:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem', fontSize: '0.95rem' }}>{faction.agents}</p>
+                      </div>
+                      <div style={{
+                        background: 'rgba(0,255,0,0.1)',
+                        padding: '0.75rem',
+                        borderRadius: '10px',
+                        border: '1px solid #00ff00'
+                      }}>
+                        <strong style={{ color: '#00ff00' }}>✨ Weakness:</strong>
+                        <span style={{ color: '#aaa', marginLeft: '0.5rem' }}>{faction.weakness}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#666'
+                  }}>
+                    {selectedFaction === faction.id ? '▲ Collapse' : '▼ Intel Report'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: EMBASSY LOCATIONS */}
+        <div id="section-locations" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #2a0000 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #00FFFF 0%, #FF00FF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🏛️ EMBASSY GEOGRAPHY 🏛️
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#00ffff',
+              marginBottom: '3rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              The Embassy exists between dimensions—between the World of Workers and the Bureaucratic Abyss. Explore its halls.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '2rem',
+              padding: '1.5rem',
+              background: 'rgba(255,0,255,0.1)',
+              border: '2px solid #ff00ff',
+              borderRadius: '15px',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              <p style={{ color: '#ff00ff', fontSize: '1.2rem', fontStyle: 'italic' }}>
+                "Mourn the dead. Fight for the living. Meme for the truth."
+              </p>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                — Embassy Motto
+              </p>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              {embassyLocations.map((location) => (
+                <div
+                  key={location.id}
+                  onClick={() => setSelectedLocation(location.id === selectedLocation ? null : location.id)}
+                  style={{
+                    background: selectedLocation === location.id 
+                      ? `linear-gradient(135deg, ${location.color}20 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.6)',
+                    border: `2px solid ${location.color}`,
+                    borderRadius: '15px',
+                    padding: '1.5rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '3rem' }}>{location.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.3rem',
+                      color: location.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {location.name}
+                    </h3>
+                  </div>
+
+                  <p style={{
+                    color: '#ccc',
+                    textAlign: 'center',
+                    fontSize: '0.95rem',
+                    lineHeight: '1.5'
+                  }}>
+                    {location.description}
+                  </p>
+
+                  {selectedLocation === location.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${location.color}40`,
+                      paddingTop: '1rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: location.color }}>🎯 Purpose:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem' }}>{location.purpose}</p>
+                      </div>
+                      <div>
+                        <strong style={{ color: location.color }}>✨ Features:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {location.features.map((feature, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.8rem',
+                    color: '#666'
+                  }}>
+                    {selectedLocation === location.id ? '▲ Close' : '▼ Enter'}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

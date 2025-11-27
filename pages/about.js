@@ -141,14 +141,100 @@ export default function About() {
               </div>
 
               <div style={{ marginTop: '1.5rem' }}>
+                {/* Photo */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  marginBottom: '2rem'
+                }}>
+                  <div style={{
+                    position: 'relative',
+                    width: '280px',
+                    height: '350px',
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    border: '4px solid #9932CC',
+                    boxShadow: '0 10px 40px rgba(153, 50, 204, 0.4), 0 0 60px rgba(255, 140, 0, 0.2)'
+                  }}>
+                    <img 
+                      src="/Lissa-speakers-school.jpg" 
+                      alt="Lissa Beaulieu speaking at Speakers School graduation"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center top'
+                      }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                      padding: '2rem 1rem 1rem',
+                      textAlign: 'center'
+                    }}>
+                      <span style={{ fontSize: '0.85rem', color: '#ccc' }}>
+                        📍 Speakers School Graduation
+                      </span>
+                    </div>
+                  </div>
+                  <a 
+                    href="https://www.speakersschool.ca/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{
+                      marginTop: '0.75rem',
+                      fontSize: '0.85rem',
+                      color: '#4facfe',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    🎓 Speakers School Canada →
+                  </a>
+                </div>
+
                 <h2 style={{
                   fontSize: '2rem',
                   color: '#4facfe',
-                  marginBottom: '1rem',
+                  marginBottom: '0.5rem',
                   fontWeight: '800'
                 }}>
                   Lissa Beaulieu
                 </h2>
+
+                {/* Phoenix Title */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  marginBottom: '1rem',
+                  background: 'linear-gradient(135deg, rgba(153, 50, 204, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%)',
+                  border: '2px solid #9932CC',
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '15px',
+                  width: 'fit-content'
+                }}>
+                  <span style={{ fontSize: '1.8rem' }}>🔥</span>
+                  <div>
+                    <div style={{
+                      fontSize: '1.1rem',
+                      fontWeight: 'bold',
+                      color: '#9932CC'
+                    }}>
+                      The Phoenix — Commander of the Embassy
+                    </div>
+                    <div style={{
+                      fontSize: '0.85rem',
+                      color: '#ff8c00',
+                      fontStyle: 'italic'
+                    }}>
+                      Strategic Commander & Moral Core
+                    </div>
+                  </div>
+                </div>
                 
                 <div style={{
                   display: 'flex',
@@ -227,6 +313,10 @@ export default function About() {
                   
                   <p style={{ marginTop: '1.5rem', marginBottom: '1rem' }}>
                     As a <strong style={{ color: '#4facfe' }}>meme & content creator</strong>, I use humor, truth, and viral media to expose corruption and build solidarity. Memes are weapons. Truth is our ammunition.
+                  </p>
+
+                  <p style={{ marginBottom: '1rem' }}>
+                    As <strong style={{ color: '#9932CC' }}>The Phoenix</strong>, I lead the <Link href="/memetic-embassy-full" style={{ color: '#ff00ff', textDecoration: 'underline' }}>Memetic Embassy</Link> — an interdimensional activist HQ where injured workers receive asylum, tools to fight back, and truth-based power. My abilities include <strong style={{ color: '#ff8c00' }}>Rebirth Memetics</strong> — turning trauma into power, generating Hope Bursts, and resurrecting crushed narratives. From the ashes, we rise. Together. 🔥
                   </p>
                 </div>
 

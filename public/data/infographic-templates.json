@@ -1,0 +1,377 @@
+{
+  "templates": [
+    {
+      "id": "injured-workers",
+      "name": "Injured Workers Rights",
+      "description": "Expose systemic barriers in workers' compensation systems",
+      "icon": "⚠️",
+      "category": "workers",
+      "titles": [
+        "THE SYSTEM ISN'T BROKEN — IT'S DESIGNED THIS WAY",
+        "DENIED. DELAYED. DEMORALIZED.",
+        "67% DENIED: The Mental Health Claim Crisis",
+        "FROM WORKER TO WARRIOR: Fighting for What's Ours",
+        "INJURED BUT NOT SILENCED: We Demand Justice"
+      ],
+      "statistics": [
+        { "value": "67%", "label": "Mental Health Claims DENIED by WSIB", "source": "WSIB Annual Report" },
+        { "value": "18 MO", "label": "Average Claim Processing Delay", "source": "Ombudsman Report 2023" },
+        { "value": "$1,308", "label": "Maximum Monthly ODSP Payment", "source": "Ontario Government" },
+        { "value": "48%", "label": "Below Poverty Line", "source": "Statistics Canada" }
+      ],
+      "quotes": [
+        "The system isn't broken—it's working exactly as designed.",
+        "I've been through the system. I've experienced firsthand how easy it is to fall through the cracks.",
+        "We don't ask for justice—we DEMAND it.",
+        "From the ashes, we rise. Together."
+      ],
+      "callsToAction": [
+        "Document everything. Know your rights. Fight back.",
+        "Join thousands of injured workers fighting for justice.",
+        "Share your story. Your voice matters.",
+        "File your FOI request TODAY."
+      ],
+      "colorPalette": {
+        "primary": "#FF0080",
+        "secondary": "#FF8C00",
+        "accent": "#00FFFF",
+        "background": "#0A0A0A",
+        "text": "#FFFFFF"
+      },
+      "icons": ["⚠️", "✊", "⚖️", "🚨", "📋", "🔥"]
+    },
+    {
+      "id": "disability-justice",
+      "name": "Disability Justice",
+      "description": "Advocating for dignity, accessibility, and equal rights",
+      "icon": "♿",
+      "category": "disability",
+      "titles": [
+        "NOTHING ABOUT US WITHOUT US",
+        "DISABILITY RIGHTS ARE HUMAN RIGHTS",
+        "ACCESSIBLE TO ALL: No Exceptions",
+        "BREAKING BARRIERS: The Fight for Inclusion",
+        "DIGNITY IS NOT NEGOTIABLE"
+      ],
+      "statistics": [
+        { "value": "22%", "label": "Canadians Living with Disability", "source": "Statistics Canada 2022" },
+        { "value": "2x", "label": "Higher Unemployment Rate", "source": "ESDC Report" },
+        { "value": "$9,000", "label": "Extra Annual Costs of Disability", "source": "Disability Tax Credit Study" },
+        { "value": "41%", "label": "Working-Age Adults with Disabilities in Poverty", "source": "CCDS" }
+      ],
+      "quotes": [
+        "Nothing about us without us.",
+        "Disability is not inability.",
+        "Accessibility is not a privilege—it's a right.",
+        "We are not broken. Society is.",
+        "My disability does not define my worth."
+      ],
+      "callsToAction": [
+        "Demand accessible spaces everywhere.",
+        "Support disability-led organizations.",
+        "Amplify disabled voices.",
+        "Report accessibility violations."
+      ],
+      "colorPalette": {
+        "primary": "#4FACFE",
+        "secondary": "#9932CC",
+        "accent": "#FFD700",
+        "background": "#1A1A2E",
+        "text": "#FFFFFF"
+      },
+      "icons": ["♿", "🛡️", "✊", "🌐", "💪", "🎯"]
+    },
+    {
+      "id": "elderly-rights",
+      "name": "Elder Rights & Dignity",
+      "description": "Protecting seniors from abuse, neglect, and exploitation",
+      "icon": "👴",
+      "category": "elderly",
+      "titles": [
+        "RESPECT YOUR ELDERS: Protect Their Rights",
+        "SENIORS DESERVE DIGNITY, NOT NEGLECT",
+        "AGING WITH DIGNITY: A Human Right",
+        "ELDER ABUSE: Breaking the Silence",
+        "CARE, NOT CRUELTY: Reform Long-Term Care"
+      ],
+      "statistics": [
+        { "value": "10%", "label": "Seniors Experience Elder Abuse", "source": "WHO Global Report" },
+        { "value": "4,000+", "label": "COVID Deaths in LTC Homes (Ontario)", "source": "Public Health Ontario" },
+        { "value": "1 in 6", "label": "Seniors Living in Poverty", "source": "Statistics Canada" },
+        { "value": "58%", "label": "LTC Homes Failed Inspections", "source": "Ontario Auditor General" }
+      ],
+      "quotes": [
+        "Our elders built this society. We owe them dignity.",
+        "Profit should never come before people.",
+        "Every senior deserves quality care.",
+        "Age is not a reason for abuse.",
+        "Long-term care, not long-term neglect."
+      ],
+      "callsToAction": [
+        "Report elder abuse: 1-866-299-1011",
+        "Demand publicly-funded long-term care.",
+        "Visit your local nursing home. Be a witness.",
+        "Support seniors in your community."
+      ],
+      "colorPalette": {
+        "primary": "#32CD32",
+        "secondary": "#FFD700",
+        "accent": "#FF6B6B",
+        "background": "#0D1117",
+        "text": "#FFFFFF"
+      },
+      "icons": ["👴", "👵", "🏥", "❤️", "🛡️", "📞"]
+    },
+    {
+      "id": "mental-health",
+      "name": "Mental Health Advocacy",
+      "description": "Breaking stigma and demanding accessible mental health care",
+      "icon": "🧠",
+      "category": "health",
+      "titles": [
+        "MENTAL HEALTH IS HEALTH",
+        "BREAK THE STIGMA: Start the Conversation",
+        "YOU ARE NOT ALONE: Mental Health Matters",
+        "CRISIS IN CARE: The Mental Health Emergency",
+        "HEALING IS NOT LINEAR: Support the Journey"
+      ],
+      "statistics": [
+        { "value": "1 in 5", "label": "Canadians Experience Mental Illness Yearly", "source": "CMHA" },
+        { "value": "28 Days", "label": "Average Wait for Psychiatric Care", "source": "CIHI" },
+        { "value": "75%", "label": "Mental Health Problems Start by Age 24", "source": "MHCC" },
+        { "value": "$51B", "label": "Annual Cost of Mental Illness in Canada", "source": "Mental Health Commission" }
+      ],
+      "quotes": [
+        "It's okay to not be okay.",
+        "Mental health is just as important as physical health.",
+        "You are more than your diagnosis.",
+        "Healing takes time. Be patient with yourself.",
+        "Asking for help is a sign of strength."
+      ],
+      "callsToAction": [
+        "Crisis Line: 1-833-456-4566",
+        "Check on your friends. Really check.",
+        "Demand funded mental health services.",
+        "Share your story. End the stigma."
+      ],
+      "colorPalette": {
+        "primary": "#8B5CF6",
+        "secondary": "#10B981",
+        "accent": "#F59E0B",
+        "background": "#1F2937",
+        "text": "#FFFFFF"
+      },
+      "icons": ["🧠", "💚", "🌱", "💪", "🤝", "🌟"]
+    },
+    {
+      "id": "housing-justice",
+      "name": "Housing Justice",
+      "description": "Fighting for affordable, accessible housing as a human right",
+      "icon": "🏠",
+      "category": "housing",
+      "titles": [
+        "HOUSING IS A HUMAN RIGHT",
+        "END THE HOUSING CRISIS NOW",
+        "HOMES, NOT PROFITS",
+        "EVICTION IS VIOLENCE",
+        "ACCESSIBLE HOUSING FOR ALL"
+      ],
+      "statistics": [
+        { "value": "235,000", "label": "Canadians Experience Homelessness Yearly", "source": "ESDC" },
+        { "value": "10+ Years", "label": "Average Wait for Subsidized Housing", "source": "Ontario Housing Registry" },
+        { "value": "47%", "label": "Renters Spending 30%+ on Housing", "source": "CMHC" },
+        { "value": "80%", "label": "New Rentals Unaffordable for Average Worker", "source": "Rentals.ca Report" }
+      ],
+      "quotes": [
+        "A home is not a luxury. It's a necessity.",
+        "Shelter is a human right, not a privilege.",
+        "No one should have to choose between rent and food.",
+        "Housing first. Everything else follows.",
+        "Eviction notices don't build communities."
+      ],
+      "callsToAction": [
+        "Know your tenant rights.",
+        "Demand rent control expansion.",
+        "Support community land trusts.",
+        "Report illegal evictions."
+      ],
+      "colorPalette": {
+        "primary": "#EF4444",
+        "secondary": "#3B82F6",
+        "accent": "#FBBF24",
+        "background": "#111827",
+        "text": "#FFFFFF"
+      },
+      "icons": ["🏠", "🔑", "📜", "✊", "🏗️", "❌"]
+    },
+    {
+      "id": "poverty-action",
+      "name": "Poverty & Economic Justice",
+      "description": "Fighting poverty wages and demanding living income",
+      "icon": "💰",
+      "category": "poverty",
+      "titles": [
+        "POVERTY IS A POLICY CHOICE",
+        "LIVING WAGE NOW",
+        "END POVERTY: It's Possible",
+        "NO ONE SHOULD WORK FULL-TIME AND STILL BE POOR",
+        "ECONOMIC DIGNITY FOR ALL"
+      ],
+      "statistics": [
+        { "value": "3.5M", "label": "Canadians Living in Poverty", "source": "Statistics Canada" },
+        { "value": "$1,308", "label": "Monthly ODSP (48% Below Poverty)", "source": "Ontario Government" },
+        { "value": "1 in 5", "label": "Children in Poverty in Some Regions", "source": "Campaign 2000" },
+        { "value": "$22.46", "label": "Living Wage Needed (vs $16.55 Minimum)", "source": "Ontario Living Wage Network" }
+      ],
+      "quotes": [
+        "Poverty is not a character flaw. It's a policy failure.",
+        "No one chooses poverty. Systems create it.",
+        "A living wage is a human right.",
+        "Wealth is a choice. So is poverty.",
+        "We can end poverty. We just have to choose to."
+      ],
+      "callsToAction": [
+        "Support basic income pilots.",
+        "Demand living wages, not minimum wages.",
+        "Contact your MPP about ODSP rates.",
+        "Volunteer at local food banks."
+      ],
+      "colorPalette": {
+        "primary": "#F97316",
+        "secondary": "#22C55E",
+        "accent": "#A855F7",
+        "background": "#18181B",
+        "text": "#FFFFFF"
+      },
+      "icons": ["💰", "📊", "✊", "🍞", "📈", "⚖️"]
+    },
+    {
+      "id": "indigenous-justice",
+      "name": "Indigenous Justice",
+      "description": "Truth, reconciliation, and Indigenous rights",
+      "icon": "🪶",
+      "category": "indigenous",
+      "titles": [
+        "LAND BACK: Indigenous Sovereignty Now",
+        "TRUTH BEFORE RECONCILIATION",
+        "MMIWG: No More Stolen Sisters",
+        "HONOR THE TREATIES",
+        "INDIGENOUS RIGHTS ARE HUMAN RIGHTS"
+      ],
+      "statistics": [
+        { "value": "4,000+", "label": "MMIWG Cases Documented", "source": "MMIWG Inquiry" },
+        { "value": "138", "label": "Boil Water Advisories on Reserves", "source": "ISC Canada" },
+        { "value": "30%", "label": "Indigenous Children in Foster Care", "source": "Statistics Canada" },
+        { "value": "11x", "label": "Higher Federal Incarceration Rate", "source": "Correctional Investigator" }
+      ],
+      "quotes": [
+        "This is Indigenous land. Always was. Always will be.",
+        "No more stolen sisters.",
+        "Reconciliation without justice is just a word.",
+        "We are still here. We are still strong.",
+        "Honor the treaties or give back the land."
+      ],
+      "callsToAction": [
+        "Learn whose land you're on.",
+        "Support Indigenous-led organizations.",
+        "Read the TRC Calls to Action.",
+        "Amplify Indigenous voices."
+      ],
+      "colorPalette": {
+        "primary": "#DC2626",
+        "secondary": "#CA8A04",
+        "accent": "#0D9488",
+        "background": "#1C1917",
+        "text": "#FFFFFF"
+      },
+      "icons": ["🪶", "🌍", "❤️", "✊", "🔥", "🌲"]
+    },
+    {
+      "id": "healthcare-access",
+      "name": "Healthcare Access",
+      "description": "Universal healthcare is a right, not a privilege",
+      "icon": "🏥",
+      "category": "health",
+      "titles": [
+        "HEALTHCARE IS A HUMAN RIGHT",
+        "SAVE PUBLIC HEALTHCARE",
+        "NO ONE SHOULD GO BANKRUPT FOR BEING SICK",
+        "STOP THE PRIVATIZATION",
+        "CARE OVER PROFITS"
+      ],
+      "statistics": [
+        { "value": "5.4M", "label": "Canadians Without Family Doctor", "source": "Statistics Canada" },
+        { "value": "20+ Hours", "label": "Average ER Wait Times (Peak)", "source": "Ontario Health" },
+        { "value": "$1,500", "label": "Average Out-of-Pocket Healthcare Costs", "source": "CIHI" },
+        { "value": "1 in 4", "label": "Skip Prescriptions Due to Cost", "source": "Angus Reid Institute" }
+      ],
+      "quotes": [
+        "Universal healthcare means everyone. No exceptions.",
+        "Profit has no place in patient care.",
+        "A healthy population is a productive population.",
+        "Healthcare is not a commodity.",
+        "Defend medicare like your life depends on it. It does."
+      ],
+      "callsToAction": [
+        "Oppose healthcare privatization.",
+        "Support pharmacare legislation.",
+        "Thank a healthcare worker today.",
+        "Write your MP about healthcare funding."
+      ],
+      "colorPalette": {
+        "primary": "#059669",
+        "secondary": "#2563EB",
+        "accent": "#DC2626",
+        "background": "#0F172A",
+        "text": "#FFFFFF"
+      },
+      "icons": ["🏥", "💊", "🩺", "❤️", "🛡️", "✊"]
+    }
+  ],
+  "designStyles": [
+    {
+      "id": "bold-activism",
+      "name": "Bold Activism",
+      "description": "High contrast, neon accents, maximum impact",
+      "features": ["Dark backgrounds", "Gradient text", "Large typography", "Neon glow effects"]
+    },
+    {
+      "id": "professional",
+      "name": "Professional Advocacy",
+      "description": "Clean, data-focused, trust-building",
+      "features": ["Light backgrounds", "Structured grids", "Blue tones", "Minimal decoration"]
+    },
+    {
+      "id": "grassroots",
+      "name": "Grassroots Movement",
+      "description": "Warm, human, community-focused",
+      "features": ["Textured backgrounds", "Hand-drawn elements", "Earth tones", "Vintage feel"]
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal Impact",
+      "description": "Clean, accessible, typography-driven",
+      "features": ["White space", "Single accent color", "Sans-serif fonts", "Simple icons"]
+    },
+    {
+      "id": "artistic",
+      "name": "Artistic Resistance",
+      "description": "Creative, expressive, memorable",
+      "features": ["Bold illustrations", "Mixed media", "Collage style", "Expressive type"]
+    }
+  ],
+  "accessibilityGuidelines": {
+    "minContrastRatio": "4.5:1",
+    "minFontSize": "16px",
+    "lineHeight": "1.5",
+    "maxLineLength": "80 characters",
+    "recommendations": [
+      "Never rely on color alone to convey meaning",
+      "Provide alt text for all images",
+      "Use clear, sans-serif fonts",
+      "Ensure sufficient spacing between elements",
+      "Test with screen readers",
+      "Provide high-contrast version option"
+    ]
+  }
+}

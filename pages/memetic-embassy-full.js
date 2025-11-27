@@ -1633,7 +1633,7 @@ export default function MemeticEmbassyFull() {
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}>
-            {['heroes', 'villains', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
+            {['heroes', 'villains', 'meme-tools', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
               <button
                 key={section}
                 onClick={() => {
@@ -1657,7 +1657,8 @@ export default function MemeticEmbassyFull() {
               >
                 {section === 'heroes' && '🦸 Heroes'}
                 {section === 'villains' && '😈 Villains'}
-                {section === 'generator' && '🎨 Meme Forge'}
+                {section === 'meme-tools' && '🎨 Meme Tools'}
+                {section === 'generator' && '⚡ Meme Forge'}
                 {section === 'episodes' && '🎬 Season 2'}
                 {section === 'comics' && '📖 Comics'}
                 {section === 'ecosystem' && '🌿 Ecosystem'}
@@ -1983,8 +1984,533 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
+        {/* SECTION: MEME WARFARE ARSENAL - MEME TOOLS */}
+        <div id="section-meme-tools" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #16213e 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎨 MEME WARFARE ARSENAL 🎨
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#667eea',
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Create viral content featuring the Embassy squad. Choose your character, pick a template, or build from scratch.
+            </p>
+
+            {/* Character Selection Grid */}
+            <div style={{ marginBottom: '3rem' }}>
+              <h3 style={{ 
+                fontSize: '1.8rem', 
+                marginBottom: '1.5rem', 
+                color: '#764ba2',
+                textAlign: 'center'
+              }}>
+                Select Your Squad Member
+              </h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {heroSquad.slice(0, 6).map(hero => (
+                  <div
+                    key={hero.id}
+                    onClick={() => setSelectedCharacterForMeme(hero.id)}
+                    style={{
+                      padding: '1.5rem',
+                      background: selectedCharacterForMeme === hero.id 
+                        ? `linear-gradient(135deg, ${hero.color} 0%, #000 100%)`
+                        : 'rgba(102,126,234,0.1)',
+                      border: `3px solid ${hero.color || '#667eea'}`,
+                      borderRadius: '15px',
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      transition: 'all 0.3s',
+                      transform: selectedCharacterForMeme === hero.id ? 'scale(1.05)' : 'scale(1)',
+                      boxShadow: selectedCharacterForMeme === hero.id 
+                        ? `0 0 30px ${hero.color}60`
+                        : 'none'
+                    }}
+                  >
+                    <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{hero.emoji}</div>
+                    <div style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '0.3rem' }}>
+                      {hero.name.split(' ')[0]}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                      {hero.favorite_phrase?.slice(1, 30)}...
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Main Tools Grid */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+              gap: '2rem',
+              marginBottom: '3rem'
+            }}>
+              {/* Custom Meme Builder */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #667eea' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+                  🖼️ Custom Meme Builder
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Create your own meme with custom text
+                </p>
+                <div style={{ marginBottom: '1rem' }}>
+                  <input
+                    type="text"
+                    placeholder="Setup / Top text"
+                    value={memeText.top}
+                    onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #667eea',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <input
+                    type="text"
+                    placeholder="Punchline / Bottom text"
+                    value={memeText.bottom}
+                    onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #667eea',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{
+                  background: '#0a0a0a',
+                  padding: '2rem',
+                  borderRadius: '15px',
+                  minHeight: '280px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  border: '3px solid #764ba2'
+                }}>
+                  <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+                    {memeText.top || 'ENTER YOUR SETUP TEXT'}
+                  </p>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '5rem', marginBottom: '0.5rem' }}>
+                      {heroSquad.find(h => h.id === selectedCharacterForMeme)?.emoji || '🎖️'}
+                    </div>
+                    <div style={{ fontSize: '0.9rem', color: '#667eea', fontWeight: 'bold' }}>
+                      {heroSquad.find(h => h.id === selectedCharacterForMeme)?.name || 'Select a Character'}
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+                    {memeText.bottom || 'ENTER YOUR PUNCHLINE'}
+                  </p>
+                </div>
+                <button style={{
+                  width: '100%',
+                  marginTop: '1.5rem',
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}>
+                  📥 Download Meme
+                </button>
+              </div>
+
+              {/* Slogan Generator */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #48c774' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#48c774' }}>
+                  ✊ Slogan Generator
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Generate powerful slogans for the movement
+                </p>
+                <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+                  <button 
+                    onClick={() => {
+                      const slogans = [
+                        'They denied my claim, we deny their legitimacy',
+                        'Injured not invisible',
+                        'Disability is not inability',
+                        'Our pain is political',
+                        'No one is disposable',
+                        'Screenshot everything, trust nothing',
+                        'Receipts over rhetoric',
+                        'An injury to one is an injury to all',
+                        'Nothing about us without us',
+                        'Rest is revolutionary'
+                      ];
+                      setGeneratedMeme(slogans[Math.floor(Math.random() * slogans.length)]);
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #48c774 0%, #2ecc71 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      minWidth: '150px'
+                    }}
+                  >
+                    ⚡ Generate Slogan
+                  </button>
+                </div>
+                {generatedMeme && (
+                  <div style={{
+                    padding: '2rem',
+                    background: 'linear-gradient(135deg, #48c774 0%, #2ecc71 100%)',
+                    borderRadius: '15px',
+                    textAlign: 'center',
+                    marginBottom: '1rem'
+                  }}>
+                    <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✊</div>
+                    <p style={{ fontSize: '1.4rem', fontWeight: 'bold', lineHeight: '1.6', color: '#000' }}>
+                      "{generatedMeme}"
+                    </p>
+                  </div>
+                )}
+                <div style={{ marginTop: '1.5rem' }}>
+                  <p style={{ fontSize: '0.9rem', color: '#48c774', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                    Popular Slogans:
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.85rem', opacity: 0.8 }}>
+                    <li style={{ padding: '0.4rem 0', borderBottom: '1px solid rgba(72,199,116,0.3)' }}>
+                      • From injury to homelessness: the system failed us
+                    </li>
+                    <li style={{ padding: '0.4rem 0', borderBottom: '1px solid rgba(72,199,116,0.3)' }}>
+                      • Solidarity across all struggles
+                    </li>
+                    <li style={{ padding: '0.4rem 0' }}>
+                      • Recovery is resistance
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Poster Designer */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #ff6b6b' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#ff6b6b' }}>
+                  📢 Protest Poster Designer
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Create posters for rallies and strikes
+                </p>
+                <div style={{ marginBottom: '1rem' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                    Main Message
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g., 'RECEIPTS DON'T LIE'"
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #ff6b6b',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%)',
+                  padding: '2.5rem',
+                  borderRadius: '15px',
+                  minHeight: '220px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
+                  border: '4px solid white'
+                }}>
+                  <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+                    {heroSquad.find(h => h.id === selectedCharacterForMeme)?.emoji || '✊'}
+                  </div>
+                  <p style={{ 
+                    fontSize: '1.5rem', 
+                    fontWeight: 'bold', 
+                    textAlign: 'center', 
+                    textTransform: 'uppercase',
+                    color: '#000'
+                  }}>
+                    YOUR MESSAGE HERE
+                  </p>
+                  <p style={{ fontSize: '0.9rem', marginTop: '0.5rem', color: '#000', opacity: 0.8 }}>
+                    - Embassy Warrior
+                  </p>
+                </div>
+                <button style={{
+                  width: '100%',
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}>
+                  📥 Download Poster (8.5x11")
+                </button>
+              </div>
+            </div>
+
+            {/* Hashtag Generator */}
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.5)',
+              borderRadius: '20px',
+              border: '3px solid #00ffff',
+              marginBottom: '3rem'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
+                # Hashtag Generator
+              </h3>
+              <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                Optimized hashtags for maximum reach
+              </p>
+              <div style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: '0.8rem',
+                marginBottom: '1.5rem'
+              }}>
+                {[
+                  '#InjuredWorkersUnite', '#DisabilityJustice', '#HousingIsARight',
+                  '#EndWorkplacePoverty', '#ReceiptsReady', '#SolidarityForAll',
+                  '#MemeWarfare', '#DisabledAndProud', '#WorkersRights',
+                  '#NoOneDisposable', '#RecoveryIsResistance', '#FromInjuryToAction'
+                ].map((tag, idx) => (
+                  <span 
+                    key={idx}
+                    onClick={() => navigator.clipboard?.writeText(tag)}
+                    style={{
+                      padding: '0.6rem 1.2rem',
+                      background: 'rgba(0,255,255,0.2)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '25px',
+                      fontSize: '0.95rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <button style={{
+                padding: '1rem 2rem',
+                background: 'linear-gradient(135deg, #00ffff 0%, #0099cc 100%)',
+                border: 'none',
+                borderRadius: '10px',
+                color: '#000',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}>
+                📋 Copy All Hashtags
+              </button>
+            </div>
+
+            {/* Viral Challenges */}
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.5)',
+              borderRadius: '20px',
+              border: '3px solid #ff00ff'
+            }}>
+              <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#ff00ff', textAlign: 'center' }}>
+                🏆 Viral Challenge Campaigns
+              </h3>
+              <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9, textAlign: 'center' }}>
+                Join or start viral challenges to build momentum and solidarity
+              </p>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {[
+                  {
+                    name: 'From Paycheck to Poverty',
+                    description: 'Share your story: How workplace injury led to poverty or financial crisis',
+                    hashtag: '#PaycheckToPoverty',
+                    icon: '📉',
+                    color: '#FFD700'
+                  },
+                  {
+                    name: 'Show Your Receipts',
+                    description: 'Post denial letters that pushed you into poverty or cost you housing',
+                    hashtag: '#ReceiptsOfPoverty',
+                    icon: '📸',
+                    color: '#FF4444'
+                  },
+                  {
+                    name: 'Housing as Healthcare',
+                    description: 'Show how lack of housing prevents recovery from injury and disability',
+                    hashtag: '#HousingIsHealthcare',
+                    icon: '🏠',
+                    color: '#48c774'
+                  },
+                  {
+                    name: 'Count the Forgotten',
+                    description: 'Share statistics on injured workers in poverty and homeless shelters',
+                    hashtag: '#CountTheForgotten',
+                    icon: '📊',
+                    color: '#3498db'
+                  }
+                ].map((challenge, idx) => (
+                  <div 
+                    key={idx}
+                    style={{
+                      padding: '1.5rem',
+                      background: 'rgba(255,0,255,0.1)',
+                      borderRadius: '15px',
+                      border: `2px solid ${challenge.color}`
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                      <div style={{ fontSize: '2.5rem' }}>{challenge.icon}</div>
+                      <div>
+                        <h4 style={{ fontSize: '1.2rem', color: challenge.color, marginBottom: '0.3rem' }}>
+                          {challenge.name}
+                        </h4>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5', opacity: 0.9 }}>
+                      {challenge.description}
+                    </p>
+                    <div style={{ 
+                      padding: '0.7rem 1rem', 
+                      background: challenge.color,
+                      borderRadius: '8px',
+                      marginBottom: '1rem',
+                      fontFamily: 'monospace',
+                      fontSize: '1rem',
+                      color: '#000',
+                      fontWeight: 'bold'
+                    }}>
+                      {challenge.hashtag}
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button style={{ 
+                        flex: 1,
+                        padding: '0.7rem',
+                        background: challenge.color,
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#000',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}>
+                        🎯 Start Challenge
+                      </button>
+                      <button style={{ 
+                        flex: 1,
+                        padding: '0.7rem',
+                        background: 'transparent',
+                        border: `2px solid ${challenge.color}`,
+                        borderRadius: '8px',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}>
+                        📋 Copy
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Link to Full Meme Tools */}
+            <div style={{
+              marginTop: '3rem',
+              padding: '2rem',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '15px',
+              textAlign: 'center'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>
+                🚀 Want More Advanced Tools?
+              </h3>
+              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#fff', opacity: 0.9 }}>
+                Visit the Memetic Embassy for the full Meme Warfare Arsenal with infographic builders, 
+                quote cards, thread composers, GIF captions, and downloadable template packs!
+              </p>
+              <Link href="/memetic-embassy" style={{
+                display: 'inline-block',
+                padding: '1rem 2rem',
+                background: '#000',
+                border: '3px solid #fff',
+                borderRadius: '25px',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: '1.1rem',
+                fontWeight: 'bold'
+              }}>
+                🏛️ Visit Full Memetic Embassy
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* SECTION 2: THE LIVING MEME ECOSYSTEM */}
-        <div style={{
+        <div id="section-ecosystem" style={{
           padding: '80px 20px',
           background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
         }}>

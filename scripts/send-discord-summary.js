@@ -66,8 +66,8 @@ async function main() {
     process.exit(1);
   }
 
-  // Get today's report (most recent)
-  const todayReport = reports.reports?.[0];
+  // Get today's report (most recent) - handle both array and object formats
+  const todayReport = Array.isArray(reports) ? reports[0] : (reports.reports?.[0] || reports);
   
   if (!todayReport) {
     console.log('⚠️ No reports found');
@@ -84,8 +84,8 @@ async function main() {
 
   // Build Discord embed
   const embed = {
-    title: '👁️ THE EYE ORACLE - Daily Intelligence Report',
-    description: todayReport.opening || 'The Eye sees all. The Oracle speaks truth.',
+    title: todayReport.headline || '👁️ THE EYE ORACLE - Daily Intelligence Report',
+    description: todayReport.quirkyIntro || todayReport.tldr || 'The Eye sees all. The Oracle speaks truth.',
     color: 0x667eea, // Purple-ish blue
     timestamp: new Date().toISOString(),
     thumbnail: {
@@ -98,14 +98,14 @@ async function main() {
         inline: true
       },
       {
-        name: '🎭 Mood',
-        value: todayReport.mood || 'Vigilant',
+        name: '🚨 Issues Found',
+        value: `${todayReport.violationCount || 0} violations`,
         inline: true
       },
       {
-        name: '⚡ Chaos Index',
-        value: todayReport.chaosIndex || 'Unknown',
-        inline: true
+        name: '📊 TL;DR',
+        value: (todayReport.tldr || 'Check the full report').substring(0, 200),
+        inline: false
       }
     ],
     footer: {
@@ -114,25 +114,16 @@ async function main() {
     }
   };
 
-  // Add headlines if available
-  if (todayReport.headlines && todayReport.headlines.length > 0) {
-    const headlineText = todayReport.headlines
-      .slice(0, 5)
-      .map((h, i) => `${i + 1}. ${h}`)
+  // Add top violations if available
+  if (todayReport.violations && todayReport.violations.length > 0) {
+    const topViolations = todayReport.violations
+      .slice(0, 3)
+      .map((v, i) => `${i + 1}. **${v.severity?.toUpperCase() || 'ALERT'}**: ${v.title?.substring(0, 80) || 'Issue detected'}`)
       .join('\n');
     
     embed.fields.push({
-      name: '📰 Today\'s Headlines',
-      value: headlineText || 'No headlines today',
-      inline: false
-    });
-  }
-
-  // Add rabbit hole tease
-  if (todayReport.rabbitHole) {
-    embed.fields.push({
-      name: '🐰 Rabbit Hole of the Day',
-      value: `**${todayReport.rabbitHole.title}**\n${todayReport.rabbitHole.teaser || 'Dive deeper...'}`,
+      name: '🔥 Top Issues Today',
+      value: topViolations || 'No critical issues',
       inline: false
     });
   }

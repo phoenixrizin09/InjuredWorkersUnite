@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Dynamic: set output based on environment
-  // - npm run dev / npm run build: API routes enabled
-  // - npm run build:static: Static export for Cloudflare Pages (no API routes)
-  ...(process.env.STATIC_EXPORT === 'true' ? { output: 'export' } : {}),
+  // Always use static export for Cloudflare Pages deployment
+  // CI environments and production always need static export
+  output: 'export',
   images: {
     unoptimized: true,
   },

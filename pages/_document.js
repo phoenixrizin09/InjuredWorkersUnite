@@ -4,9 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* SEO & Meta Tags */}
+        {/* SEO & Meta Tags - Note: viewport should be in _app.js or next.config.js */}
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="InjuredWorkersUnite - Independent activist platform advocating for disability rights, workers' rights, and social justice in Canada. Monitoring government accountability with verifiable facts and evidence." />
         <meta name="keywords" content="injured workers, disability rights, WSIB, ODSP, workers compensation, disability advocacy, social justice, Canada, Ontario, activism, government accountability" />
         <meta name="author" content="InjuredWorkersUnite - @PhoenixRizin09" />

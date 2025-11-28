@@ -49,21 +49,22 @@ export default function Home() {
           marginBottom: '3rem',
           padding: '0 1rem'
         }}>
-          <Link href="/the-eye" style={{ textDecoration: 'none' }}>
+          <Link href="/the-eye-oracle" style={{ textDecoration: 'none' }}>
             <div style={{
               padding: 'clamp(1rem, 4vw, 2rem)',
-              background: 'rgba(0,0,0,0.3)',
+              background: 'linear-gradient(135deg, rgba(255,107,107,0.3) 0%, rgba(0,255,255,0.3) 100%)',
               borderRadius: '15px',
               backdropFilter: 'blur(10px)',
-              border: '2px solid rgba(79, 172, 254, 0.5)',
+              border: '2px solid rgba(0, 255, 255, 0.7)',
               transition: 'all 0.3s',
               cursor: 'pointer',
               color: 'white',
-              height: '100%'
+              height: '100%',
+              boxShadow: '0 0 20px rgba(0,255,255,0.3)'
             }}>
               <div style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1rem' }}>👁️</div>
-              <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0.5rem' }}>The EYE</h3>
-              <p style={{ opacity: 0.9, fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}>AI-powered investigator tracking systemic abuse, policy changes, and corporate accountability.</p>
+              <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0.5rem' }}>THE EYE ORACLE</h3>
+              <p style={{ opacity: 0.9, fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}>Incorruptible Evidence-Driven Intelligence. 11 Rabbit Holes, Daily Reports, Legal Framework. THE EYE SEES ALL.</p>
             </div>
           </Link>
 

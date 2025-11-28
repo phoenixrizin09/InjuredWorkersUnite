@@ -1,1 +1,9 @@
-/* /index.html 200
+# Cloudflare Pages Redirects for InjuredWorkersUnite
+# Next.js static export - each page has its own HTML file
+
+# Legacy redirects - map old routes to new unified Eye Oracle
+/eye-oracle /the-eye-oracle 301
+/the-eye /the-eye-oracle 301
+
+# Handle 404s - let Cloudflare serve the 404.html
+/* /404.html 404

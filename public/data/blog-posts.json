@@ -1,19 +1,104 @@
 [
   {
-    "id": 1,
+    "id": 6,
+    "date": "2025-11-28",
+    "category": "Eye Oracle",
+    "emoji": "📰",
+    "title": "Eye Oracle: Daily Corruption Reports",
+    "excerpt": "Every day, we publish a report on real government corruption. All cases from official sources. Every claim has a link so you can verify it yourself.",
+    "keyFeatures": [
+      "New report published daily",
+      "Only real cases with official sources",
+      "Simple language, no jargon",
+      "Every claim has a verification link",
+      "Tells you what action to take"
+    ],
+    "ctaText": "Read Reports →",
+    "ctaLink": "/eye-oracle-reports"
+  },
+  {
+    "id": 5,
+    "date": "2025-11-27",
+    "category": "Investigation",
+    "emoji": "🐰",
+    "title": "Rabbit Holes: Become Your Own Investigator",
+    "excerpt": "Don't just trust The EYE—verify everything yourself. We've compiled 11 categories of official government databases where you can search records, file FOI requests, track lobbying, and expose corruption.",
+    "keyFeatures": [
+      "Freedom of Information request portals for every province",
+      "Lobbying registries - see who's buying influence",
+      "Court records and CanLII case law",
+      "All 12 Workers' Compensation Boards across Canada",
+      "Human Rights tribunals and Ombudsman offices"
+    ],
+    "ctaText": "Start Investigating →",
+    "ctaLink": "/the-eye-oracle"
+  },
+  {
+    "id": 4,
+    "date": "2025-11-26",
+    "category": "Rights",
+    "emoji": "⚖️",
+    "title": "Know Your Rights: Charter, CHRA, and UNCRPD",
+    "excerpt": "These are the laws that protect you. When bureaucrats violate your rights, knowing the specific sections gives you power. We break down the key protections in plain English.",
+    "keyFeatures": [
+      "Section 7: Your right to life, liberty and security",
+      "Section 15: Your right to be treated equally",
+      "13 prohibited grounds of discrimination under CHRA",
+      "UNCRPD: International disability rights Canada must follow",
+      "How to cite these in complaints and appeals"
+    ],
+    "ctaText": "Learn Your Rights →",
+    "ctaLink": "/the-eye-oracle"
+  },
+  {
+    "id": 3,
+    "date": "2025-11-25",
+    "category": "WCB",
+    "emoji": "👷",
+    "title": "All 12 Workers' Compensation Boards in Canada",
+    "excerpt": "Every province and territory has a WCB. We've compiled direct links to all of them, plus appeals tribunals and key resources for injured workers fighting for their benefits.",
+    "keyFeatures": [
+      "WSIB Ontario, WorkSafeBC, WCB Alberta, CNESST Quebec",
+      "All territorial WCBs including WSCC and Yukon",
+      "Appeals tribunal links for every jurisdiction",
+      "Key policies and procedures you need to know",
+      "How to file complaints and appeals"
+    ],
+    "ctaText": "Find Your WCB →",
+    "ctaLink": "/the-eye-oracle"
+  },
+  {
+    "id": 2,
     "date": "2025-11-24",
     "category": "The EYE",
     "emoji": "👁️",
-    "title": "What is The Eye v2.0?",
-    "excerpt": "The Eye v2.0 reads documents and finds corruption, human rights violations, and illegal government actions. Upload a document, get a detailed report showing what's wrong and what laws were broken.",
+    "title": "THE EYE ORACLE: Incorruptible Evidence-Driven Intelligence",
+    "excerpt": "THE EYE SEES ALL. THE EYE FORGETS NOTHING. THE EYE NEVER SLEEPS. Our unified system monitors government sources 24/7, translates legalese to plain English, and archives everything for transparency.",
     "keyFeatures": [
-      "Upload any document (government report, policy, news)",
-      "Finds corruption and Charter violations",
-      "Shows what laws were broken",
-      "Based on real Canadian law",
-      "Free to use"
+      "Monitors government APIs and open data portals 24/7",
+      "Translates legal jargon to plain English",
+      "Cross-references against Charter and human rights laws",
+      "Daily reports on violations and wrongdoings",
+      "30-day archive for permanent transparency"
     ],
-    "ctaText": "Try The Eye →",
-    "ctaLink": "/the-eye-v2-demo"
+    "ctaText": "Enter The Eye →",
+    "ctaLink": "/the-eye-oracle"
+  },
+  {
+    "id": 1,
+    "date": "2025-11-23",
+    "category": "Welcome",
+    "emoji": "✊",
+    "title": "Welcome to Injured Workers Unite",
+    "excerpt": "We're an independent activist platform fighting for disability rights, workers' rights, and social justice in Canada. 100% transparent, zero tracking, evidence-based advocacy.",
+    "keyFeatures": [
+      "No corporate influence - 100% independent",
+      "Every claim backed by official sources",
+      "Zero tracking or data collection",
+      "Built by injured workers, for injured workers",
+      "Free tools to fight back against the system"
+    ],
+    "ctaText": "Join the Movement →",
+    "ctaLink": "/about"
   }
 ]

@@ -324,15 +324,31 @@ export default function About() {
                   marginBottom: '2rem'
                 }}>
                   <p style={{ marginBottom: '1rem' }}>
-                    I am an injured worker living with permanent disabilities caused by workplace injuries sustained as a PSW (Personal Support Worker). My injuries include damage to my neck, shoulders, and entire spine down to my tailbone.
+                    I was a <strong style={{ color: '#4facfe' }}>PSW — Personal Support Worker</strong>. Rain, snow, or shine, we drive to each client's home to help with Personal Care and ADLs (Activities of Daily Living). It's physically and mentally demanding work. But it was my passion. It was my <em>life</em>.
                   </p>
                   
                   <p style={{ marginBottom: '1rem' }}>
-                    Currently navigating the <strong style={{ color: '#ff8c00' }}>WSIB appeals process</strong>, I advocate not only for myself but for all persons with disabilities who are trapped in a broken system designed to deny, delay, and demoralize.
+                    I was the energizer bunny — bubbly, hyper, always going. While working, I upgraded my education: biology, chemistry, statistics. I completed a sciences program at university, started the RPN program. I had <strong style={{ color: '#ff8c00' }}>plans</strong>. I had a <strong style={{ color: '#ff8c00' }}>future</strong>.
                   </p>
                   
                   <p style={{ marginBottom: '1rem' }}>
-                    I've been through the system. I've experienced firsthand how easy it is to <strong style={{ color: '#ff0080' }}>fall through the cracks</strong>. It took years to see the harsh realities we face:
+                    Then came the workplace injuries. And when COVID hit, PSW caseloads — already intense — became overwhelming. I averaged 10-12 hour days. Being a PSW means strenuous work, overexertion. But I loved my job. Every single day, I still think about my clients — they're filled with so much knowledge and wisdom. They helped shape who I am today.
+                  </p>
+                  
+                  <p style={{ marginBottom: '1rem', borderLeft: '3px solid #ff0080', paddingLeft: '1rem', background: 'rgba(255,0,128,0.1)', padding: '1rem', borderRadius: '0 10px 10px 0' }}>
+                    Before my injuries, I thought the system was there for you. I trusted it. <strong style={{ color: '#ff0080' }}>I was wrong.</strong>
+                  </p>
+                  
+                  <p style={{ marginBottom: '1rem' }}>
+                    Multiple Return to Work attempts. All failed. My body doesn't function the same way anymore. When I reached Maximum Medical Recovery, my employer let me go. <strong style={{ color: '#ff8c00' }}>WSIB denied my claim</strong> — deeming me able to work when my medical documentation says otherwise.
+                  </p>
+                  
+                  <p style={{ marginBottom: '1rem' }}>
+                    Becoming a permanently disabled worker changed my life in ways I still can't fully comprehend. Household chores, ADLs, personal care — things I once helped others with — have become difficult to manage myself. I do my best every day. But it's not the same.
+                  </p>
+                  
+                  <p style={{ marginBottom: '1rem' }}>
+                    This journey opened my eyes to the <strong style={{ color: '#4facfe' }}>realities so many struggle with daily</strong>:
                   </p>
                   
                   <ul style={{
@@ -355,11 +371,23 @@ export default function About() {
                   </ul>
                   
                   <p style={{ marginTop: '1.5rem', marginBottom: '1rem' }}>
-                    As a <strong style={{ color: '#4facfe' }}>meme & content creator</strong>, I use humor, truth, and viral media to expose corruption and build solidarity. Memes are weapons. Truth is our ammunition.
+                    Now I fight back. As a <strong style={{ color: '#4facfe' }}>meme & content creator</strong>, I use humor, truth, and viral media to expose corruption and build solidarity. Memes are weapons. Truth is our ammunition.
                   </p>
 
                   <p style={{ marginBottom: '1rem' }}>
-                    As <strong style={{ color: '#9932CC' }}>The Phoenix</strong>, I lead the <Link href="/memetic-embassy-full" style={{ color: '#ff00ff', textDecoration: 'underline' }}>Memetic Embassy</Link> — an interdimensional activist HQ where injured workers receive asylum, tools to fight back, and truth-based power. My abilities include <strong style={{ color: '#ff8c00' }}>Rebirth Memetics</strong> — turning trauma into power, generating Hope Bursts, and resurrecting crushed narratives. From the ashes, we rise. Together. 🔥
+                    As <strong style={{ color: '#9932CC' }}>The Phoenix</strong>, I lead the <Link href="/memetic-embassy-full" style={{ color: '#ff00ff', textDecoration: 'underline' }}>Memetic Embassy</Link> — an interdimensional activist HQ where injured workers receive asylum, tools to fight back, and truth-based power. My abilities include <strong style={{ color: '#ff8c00' }}>Rebirth Memetics</strong> — turning trauma into power, generating Hope Bursts, and resurrecting crushed narratives. 
+                  </p>
+                  
+                  <p style={{ 
+                    marginTop: '1.5rem',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    background: 'linear-gradient(135deg, rgba(255, 140, 0, 0.2) 0%, rgba(153, 50, 204, 0.2) 100%)',
+                    padding: '1rem',
+                    borderRadius: '10px',
+                    textAlign: 'center'
+                  }}>
+                    <span style={{ color: '#ff8c00' }}>From the ashes, we rise.</span> <span style={{ color: '#9932CC' }}>Together.</span> 🔥
                   </p>
                 </div>
 

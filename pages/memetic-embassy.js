@@ -59,6 +59,9 @@ export default function MemeticEmbassy() {
             <button onClick={() => setActiveTab('templates')} style={getTabStyle(activeTab === 'templates')}>
               📦 Template Packs
             </button>
+            <button onClick={() => setActiveTab('infographics')} style={getTabStyle(activeTab === 'infographics')}>
+              📊 Infographics
+            </button>
             <button onClick={() => setActiveTab('charter')} style={getTabStyle(activeTab === 'charter')}>
               📜 Charter
             </button>
@@ -76,6 +79,7 @@ export default function MemeticEmbassy() {
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
         {activeTab === 'tools' && <MemeToolsSection />}
         {activeTab === 'templates' && <TemplatePacksSection />}
+        {activeTab === 'infographics' && <InfographicsSection />}
         {activeTab === 'charter' && <CharterSection />}
         {activeTab === 'passport' && <PassportSection />}
         {activeTab === 'resources' && <ResourcesSection />}
@@ -597,6 +601,556 @@ function TemplatePacksSection() {
           fontWeight: 'bold'
         }}>
           🎨 Open Infographic Generator →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// INFOGRAPHICS SECTION - FULL INFOGRAPHIC GENERATOR
+// ============================================
+function InfographicsSection() {
+  const [selectedTemplate, setSelectedTemplate] = useState('workers-comp');
+  const [selectedStyle, setSelectedStyle] = useState('bold');
+  const [infographicData, setInfographicData] = useState({
+    title: '',
+    subtitle: '',
+    stat1: { value: '', label: '' },
+    stat2: { value: '', label: '' },
+    stat3: { value: '', label: '' },
+    stat4: { value: '', label: '' },
+    callToAction: '',
+    source: ''
+  });
+
+  const templates = [
+    {
+      id: 'workers-comp',
+      name: 'Workers Comp Crisis',
+      icon: '⚠️',
+      color: '#ff6b6b',
+      defaultData: {
+        title: 'THE WORKERS COMP CRISIS',
+        subtitle: 'By the Numbers',
+        stat1: { value: '73%', label: 'of initial claims denied' },
+        stat2: { value: '18 mo', label: 'average appeal wait time' },
+        stat3: { value: '$0', label: 'income while waiting' },
+        stat4: { value: '40%', label: 'fall into poverty' },
+        callToAction: 'Share this. Fight back.',
+        source: 'InjuredWorkersUnite.org'
+      }
+    },
+    {
+      id: 'disability-rights',
+      name: 'Disability Rights',
+      icon: '♿',
+      color: '#667eea',
+      defaultData: {
+        title: 'DISABILITY RIGHTS ARE HUMAN RIGHTS',
+        subtitle: 'The Reality of Living Disabled',
+        stat1: { value: '26%', label: 'of adults have a disability' },
+        stat2: { value: '2x', label: 'more likely to be unemployed' },
+        stat3: { value: '$28K', label: 'income gap vs non-disabled' },
+        stat4: { value: '61%', label: 'face discrimination at work' },
+        callToAction: 'Nothing About Us Without Us',
+        source: 'CDC, BLS Data'
+      }
+    },
+    {
+      id: 'housing-crisis',
+      name: 'Housing Crisis',
+      icon: '🏠',
+      color: '#48c774',
+      defaultData: {
+        title: 'FROM INJURY TO HOMELESSNESS',
+        subtitle: 'The Pipeline Nobody Talks About',
+        stat1: { value: '65%', label: 'of homeless had work injuries' },
+        stat2: { value: '3 mo', label: 'to lose housing after denial' },
+        stat3: { value: '$1,500', label: 'average rent vs $0 income' },
+        stat4: { value: '1 in 4', label: 'injured workers face eviction' },
+        callToAction: 'Housing Is Healthcare',
+        source: 'National Coalition for the Homeless'
+      }
+    },
+    {
+      id: 'corporate-greed',
+      name: 'Corporate Greed',
+      icon: '💰',
+      color: '#f39c12',
+      defaultData: {
+        title: 'CORPORATE PROFITS VS WORKER SAFETY',
+        subtitle: 'Follow the Money',
+        stat1: { value: '$68B', label: 'insurance industry profits' },
+        stat2: { value: '5,333', label: 'workers killed on job (2019)' },
+        stat3: { value: '2.8M', label: 'workplace injuries per year' },
+        stat4: { value: '82%', label: 'claims contested by employers' },
+        callToAction: 'Their Profits = Our Pain',
+        source: 'OSHA, BLS Data'
+      }
+    },
+    {
+      id: 'mental-health',
+      name: 'Mental Health Impact',
+      icon: '🧠',
+      color: '#9b59b6',
+      defaultData: {
+        title: 'THE MENTAL TOLL OF DENIAL',
+        subtitle: 'What They Don\'t Tell You',
+        stat1: { value: '3x', label: 'higher depression rates' },
+        stat2: { value: '67%', label: 'report PTSD symptoms' },
+        stat3: { value: '45%', label: 'develop substance issues' },
+        stat4: { value: '8x', label: 'higher suicide risk' },
+        callToAction: 'Mental Health Is Health',
+        source: 'Journal of Occupational Health'
+      }
+    },
+    {
+      id: 'systemic-failure',
+      name: 'System Failure',
+      icon: '⚙️',
+      color: '#e74c3c',
+      defaultData: {
+        title: 'THE SYSTEM IS DESIGNED TO FAIL YOU',
+        subtitle: 'It\'s Not a Bug, It\'s a Feature',
+        stat1: { value: '90%', label: 'denied on first attempt' },
+        stat2: { value: '3-5 yrs', label: 'full appeal process' },
+        stat3: { value: '$50K+', label: 'average legal costs' },
+        stat4: { value: '15%', label: 'give up before resolution' },
+        callToAction: 'Break the System',
+        source: 'Workers Comp Research Institute'
+      }
+    },
+    {
+      id: 'solidarity',
+      name: 'Solidarity Stats',
+      icon: '✊',
+      color: '#2ecc71',
+      defaultData: {
+        title: 'TOGETHER WE ARE STRONGER',
+        subtitle: 'The Power of Collective Action',
+        stat1: { value: '340%', label: 'more likely to win with support' },
+        stat2: { value: '47K+', label: 'workers in our network' },
+        stat3: { value: '12K', label: 'successful appeals with help' },
+        stat4: { value: '100%', label: 'worth fighting for' },
+        callToAction: 'Join the Movement',
+        source: 'InjuredWorkersUnite.org'
+      }
+    },
+    {
+      id: 'custom',
+      name: 'Custom Template',
+      icon: '✏️',
+      color: '#764ba2',
+      defaultData: {
+        title: 'YOUR TITLE HERE',
+        subtitle: 'Your Subtitle',
+        stat1: { value: '##%', label: 'Your statistic' },
+        stat2: { value: '##', label: 'Your statistic' },
+        stat3: { value: '##', label: 'Your statistic' },
+        stat4: { value: '##', label: 'Your statistic' },
+        callToAction: 'Your Call to Action',
+        source: 'Your Source'
+      }
+    }
+  ];
+
+  const styles = [
+    { id: 'bold', name: 'Bold Impact', desc: 'High contrast, attention-grabbing' },
+    { id: 'clean', name: 'Clean Modern', desc: 'Minimalist, professional' },
+    { id: 'dark', name: 'Dark Mode', desc: 'Dark background, neon accents' },
+    { id: 'gradient', name: 'Gradient Flow', desc: 'Colorful gradient backgrounds' },
+    { id: 'retro', name: 'Retro Activism', desc: 'Classic protest poster style' }
+  ];
+
+  const currentTemplate = templates.find(t => t.id === selectedTemplate);
+  const displayData = infographicData.title ? infographicData : currentTemplate?.defaultData;
+
+  const getStyleColors = () => {
+    switch (selectedStyle) {
+      case 'bold': return { bg: '#000', text: '#fff', accent: currentTemplate?.color };
+      case 'clean': return { bg: '#fff', text: '#333', accent: currentTemplate?.color };
+      case 'dark': return { bg: '#0a0a0a', text: '#fff', accent: '#00ffff' };
+      case 'gradient': return { bg: `linear-gradient(135deg, ${currentTemplate?.color} 0%, #000 100%)`, text: '#fff', accent: '#fff' };
+      case 'retro': return { bg: '#1a1a1a', text: '#ff6b6b', accent: '#ffd93d' };
+      default: return { bg: '#000', text: '#fff', accent: currentTemplate?.color };
+    }
+  };
+
+  const styleColors = getStyleColors();
+
+  const handleDownload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1080;
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    if (selectedStyle === 'gradient') {
+      const gradient = ctx.createLinearGradient(0, 0, 1080, 1080);
+      gradient.addColorStop(0, currentTemplate?.color || '#667eea');
+      gradient.addColorStop(1, '#000');
+      ctx.fillStyle = gradient;
+    } else {
+      ctx.fillStyle = styleColors.bg.includes('gradient') ? '#000' : styleColors.bg;
+    }
+    ctx.fillRect(0, 0, 1080, 1080);
+
+    // Border
+    ctx.strokeStyle = styleColors.accent;
+    ctx.lineWidth = 8;
+    ctx.strokeRect(20, 20, 1040, 1040);
+
+    // Title
+    ctx.fillStyle = styleColors.accent;
+    ctx.font = 'bold 64px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(displayData?.title || 'TITLE', 540, 120);
+
+    // Subtitle
+    ctx.fillStyle = styleColors.text;
+    ctx.font = '36px Arial';
+    ctx.fillText(displayData?.subtitle || 'Subtitle', 540, 180);
+
+    // Stats Grid
+    const stats = [displayData?.stat1, displayData?.stat2, displayData?.stat3, displayData?.stat4];
+    const positions = [
+      { x: 270, y: 350 }, { x: 810, y: 350 },
+      { x: 270, y: 650 }, { x: 810, y: 650 }
+    ];
+
+    stats.forEach((stat, idx) => {
+      if (stat) {
+        const pos = positions[idx];
+        // Stat value
+        ctx.fillStyle = styleColors.accent;
+        ctx.font = 'bold 96px Arial';
+        ctx.fillText(stat.value || '', pos.x, pos.y);
+        // Stat label
+        ctx.fillStyle = styleColors.text;
+        ctx.font = '28px Arial';
+        ctx.fillText(stat.label || '', pos.x, pos.y + 50);
+      }
+    });
+
+    // Call to Action
+    ctx.fillStyle = styleColors.accent;
+    ctx.font = 'bold 42px Arial';
+    ctx.fillText(displayData?.callToAction || '', 540, 900);
+
+    // Source
+    ctx.fillStyle = styleColors.text;
+    ctx.font = '24px Arial';
+    ctx.globalAlpha = 0.7;
+    ctx.fillText(displayData?.source || '', 540, 1000);
+    ctx.globalAlpha = 1;
+
+    // Watermark
+    ctx.font = '20px Arial';
+    ctx.fillText('#InjuredWorkersUnite', 540, 1040);
+
+    // Download
+    const link = document.createElement('a');
+    link.download = `infographic-${selectedTemplate}-${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
+
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
+        📊 Infographic Generator
+      </h2>
+      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9, lineHeight: '1.7' }}>
+        Create powerful, shareable infographics with real statistics. Choose a template, 
+        customize the data, and download for social media.
+      </p>
+
+      {/* Template Selection */}
+      <div style={{ marginBottom: '2rem' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+          1. Choose Template
+        </h3>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', 
+          gap: '1rem' 
+        }}>
+          {templates.map(template => (
+            <div
+              key={template.id}
+              onClick={() => {
+                setSelectedTemplate(template.id);
+                setInfographicData(template.defaultData);
+              }}
+              style={{
+                padding: '1rem',
+                background: selectedTemplate === template.id 
+                  ? `linear-gradient(135deg, ${template.color} 0%, #000 100%)`
+                  : '#16213e',
+                border: `2px solid ${template.color}`,
+                borderRadius: '10px',
+                cursor: 'pointer',
+                textAlign: 'center',
+                transition: 'all 0.3s',
+                transform: selectedTemplate === template.id ? 'scale(1.05)' : 'scale(1)'
+              }}
+            >
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{template.icon}</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{template.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Style Selection */}
+      <div style={{ marginBottom: '2rem' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+          2. Choose Style
+        </h3>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          {styles.map(style => (
+            <button
+              key={style.id}
+              onClick={() => setSelectedStyle(style.id)}
+              style={{
+                padding: '0.8rem 1.5rem',
+                background: selectedStyle === style.id 
+                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  : '#16213e',
+                border: '2px solid #667eea',
+                borderRadius: '25px',
+                color: 'white',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                fontWeight: selectedStyle === style.id ? 'bold' : 'normal'
+              }}
+            >
+              {style.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Data Customization */}
+      <div style={{ marginBottom: '2rem' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+          3. Customize Data (Optional)
+        </h3>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+          gap: '1rem' 
+        }}>
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Title</label>
+            <input
+              type="text"
+              placeholder={currentTemplate?.defaultData.title}
+              value={infographicData.title}
+              onChange={(e) => setInfographicData({...infographicData, title: e.target.value})}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: 'white',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Subtitle</label>
+            <input
+              type="text"
+              placeholder={currentTemplate?.defaultData.subtitle}
+              value={infographicData.subtitle}
+              onChange={(e) => setInfographicData({...infographicData, subtitle: e.target.value})}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: 'white',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+        </div>
+
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+          gap: '1rem',
+          marginTop: '1rem'
+        }}>
+          {[1, 2, 3, 4].map(num => (
+            <div key={num} style={{ 
+              padding: '1rem', 
+              background: '#0f3460', 
+              borderRadius: '10px',
+              border: `2px solid ${currentTemplate?.color}`
+            }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.85rem', color: currentTemplate?.color }}>
+                Stat {num}
+              </label>
+              <input
+                type="text"
+                placeholder={currentTemplate?.defaultData[`stat${num}`]?.value}
+                value={infographicData[`stat${num}`]?.value || ''}
+                onChange={(e) => setInfographicData({
+                  ...infographicData, 
+                  [`stat${num}`]: { ...infographicData[`stat${num}`], value: e.target.value }
+                })}
+                style={{
+                  width: '100%',
+                  padding: '0.5rem',
+                  background: '#16213e',
+                  border: '1px solid #667eea',
+                  borderRadius: '5px',
+                  color: 'white',
+                  fontSize: '1.2rem',
+                  fontWeight: 'bold',
+                  marginBottom: '0.5rem'
+                }}
+              />
+              <input
+                type="text"
+                placeholder={currentTemplate?.defaultData[`stat${num}`]?.label}
+                value={infographicData[`stat${num}`]?.label || ''}
+                onChange={(e) => setInfographicData({
+                  ...infographicData, 
+                  [`stat${num}`]: { ...infographicData[`stat${num}`], label: e.target.value }
+                })}
+                style={{
+                  width: '100%',
+                  padding: '0.5rem',
+                  background: '#16213e',
+                  border: '1px solid #667eea',
+                  borderRadius: '5px',
+                  color: 'white',
+                  fontSize: '0.85rem'
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Preview */}
+      <div style={{ marginBottom: '2rem' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+          4. Preview
+        </h3>
+        <div style={{
+          background: typeof styleColors.bg === 'string' && styleColors.bg.includes('gradient') 
+            ? styleColors.bg 
+            : styleColors.bg,
+          padding: '2rem',
+          borderRadius: '15px',
+          border: `4px solid ${styleColors.accent}`,
+          maxWidth: '600px',
+          margin: '0 auto',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ 
+            color: styleColors.accent, 
+            fontSize: '1.8rem', 
+            marginBottom: '0.5rem',
+            fontWeight: 'bold'
+          }}>
+            {displayData?.title}
+          </h2>
+          <p style={{ color: styleColors.text, fontSize: '1.1rem', marginBottom: '2rem' }}>
+            {displayData?.subtitle}
+          </p>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '1.5rem',
+            marginBottom: '2rem'
+          }}>
+            {[displayData?.stat1, displayData?.stat2, displayData?.stat3, displayData?.stat4].map((stat, idx) => (
+              <div key={idx} style={{ 
+                padding: '1rem', 
+                background: 'rgba(255,255,255,0.1)', 
+                borderRadius: '10px' 
+              }}>
+                <div style={{ 
+                  color: styleColors.accent, 
+                  fontSize: '2.5rem', 
+                  fontWeight: 'bold' 
+                }}>
+                  {stat?.value}
+                </div>
+                <div style={{ color: styleColors.text, fontSize: '0.9rem' }}>
+                  {stat?.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ 
+            color: styleColors.accent, 
+            fontSize: '1.3rem', 
+            fontWeight: 'bold',
+            marginBottom: '1rem'
+          }}>
+            {displayData?.callToAction}
+          </p>
+          <p style={{ color: styleColors.text, fontSize: '0.8rem', opacity: 0.7 }}>
+            Source: {displayData?.source}
+          </p>
+        </div>
+      </div>
+
+      {/* Download Button */}
+      <div style={{ textAlign: 'center' }}>
+        <button
+          onClick={handleDownload}
+          style={{
+            padding: '1.2rem 3rem',
+            background: `linear-gradient(135deg, ${currentTemplate?.color} 0%, #764ba2 100%)`,
+            border: 'none',
+            borderRadius: '50px',
+            color: 'white',
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            boxShadow: `0 4px 20px ${currentTemplate?.color}60`
+          }}
+        >
+          📥 Download Infographic (1080x1080)
+        </button>
+        <p style={{ marginTop: '1rem', fontSize: '0.9rem', opacity: 0.7 }}>
+          Perfect for Instagram, Facebook, and Twitter
+        </p>
+      </div>
+
+      {/* Link to Full Generator */}
+      <div style={{
+        marginTop: '2rem',
+        padding: '1.5rem',
+        background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)',
+        borderRadius: '15px',
+        textAlign: 'center'
+      }}>
+        <p style={{ fontSize: '1rem', color: '#000', marginBottom: '1rem' }}>
+          Want more options? Try our dedicated Infographic Generator page!
+        </p>
+        <Link href="/infographic-generator" style={{
+          display: 'inline-block',
+          padding: '0.8rem 1.5rem',
+          background: '#000',
+          borderRadius: '25px',
+          color: '#fff',
+          textDecoration: 'none',
+          fontWeight: 'bold'
+        }}>
+          🎨 Open Full Generator →
         </Link>
       </div>
     </div>

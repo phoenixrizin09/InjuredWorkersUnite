@@ -78,8 +78,7 @@ export default function Header() {
           <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
           <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
           <Link href="/legislative-tracking" style={navLinkStyle}>Bills</Link>
-          <Link href="/memetic-embassy" style={navLinkStyle}>Embassy</Link>
-          <Link href="/infographic-generator" style={{...navLinkStyle, background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)', color: '#000', fontWeight: 'bold'}}>📊 Infographics</Link>
+          <Link href="/memetic-embassy" style={{...navLinkStyle, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', fontWeight: 'bold'}}>🏛️ Embassy</Link>
           <Link href="/target-acquisition" style={navLinkStyle}>Targets</Link>
           <Link href="/alerts" style={navLinkStyle}>Alerts</Link>
           <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>

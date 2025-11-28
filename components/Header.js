@@ -74,8 +74,8 @@ export default function Header() {
           <Link href="/" style={navLinkStyle}>Home</Link>
           <Link href="/about" style={navLinkStyle}>About</Link>
           <Link href="/blog" style={navLinkStyle}>Blog</Link>
-          <Link href="/eye-oracle" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)', color: '#000', fontWeight: 'bold'}}>👁️ Oracle</Link>
-          <Link href="/the-eye" style={navLinkStyle}>The EYE</Link>
+          <Link href="/eye-oracle-reports" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)', color: '#000', fontWeight: 'bold'}}>👁️ Daily Reports</Link>
+          <Link href="/the-eye-oracle" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)', color: '#000', fontWeight: 'bold'}}>👁️ The Eye Oracle</Link>
           <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
           <Link href="/legislative-tracking" style={navLinkStyle}>Bills</Link>
           <Link href="/memetic-embassy" style={{...navLinkStyle, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', fontWeight: 'bold'}}>🏛️ Embassy</Link>

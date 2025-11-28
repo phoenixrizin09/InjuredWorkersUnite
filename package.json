@@ -1,18 +1,30 @@
 {
   "name": "injured-workers-unite",
-  "version": "1.0.0",
-  "description": "Digital nation-state sanctuary for injured workers, disabled persons, and creative resistance",
+  "version": "2.0.0",
+  "description": "Digital nation-state sanctuary for injured workers - THE EYE investigative system",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "dev:client": "next dev -p 3000",
     "build": "next build",
+    "build:static": "cross-env STATIC_EXPORT=true next build",
     "start": "next start",
     "lint": "next lint",
     "blog:generate": "node scripts/generate-daily-blog-post.js",
-    "blog:preview": "echo 'Blog posts:' && node -p 'require(\"./public/data/blog-posts.json\").slice(0,3).map(p => `${p.date}: ${p.title}`).join(\"\\n\")'"
+    "blog:preview": "echo 'Blog posts:' && node -p 'require(\"./public/data/blog-posts.json\").slice(0,3).map(p => `${p.date}: ${p.title}`).join(\"\\n\")'",
+    "eye:init": "node scripts/initialize-system.js",
+    "eye:scan": "node scripts/scan-government-data.js && node scripts/scan-legislation.js",
+    "eye:scan:gov": "node scripts/scan-government-data.js",
+    "eye:scan:bills": "node scripts/scan-legislation.js",
+    "eye:analyze": "node scripts/run-analysis-pipeline.js",
+    "eye:summary": "node scripts/generate-daily-summary.js",
+    "eye:notify": "node scripts/send-telegram-summary.js",
+    "eye:daily": "npm run eye:scan && npm run eye:analyze && npm run eye:summary && npm run eye:notify",
+    "eye:migrate": "node -e \"fetch('http://localhost:3000/api/migrate', {method:'POST'}).then(r=>r.json()).then(console.log)\"",
+    "oracle:generate": "node scripts/generate-eye-oracle-daily.js"
   },
   "dependencies": {
+    "archiver": "^6.0.1",
     "cheerio": "^1.1.2",
     "next": "^15.0.0",
     "node-fetch": "^3.3.2",
@@ -21,6 +33,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
+    "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.0",
     "wrangler": "^4.48.0"

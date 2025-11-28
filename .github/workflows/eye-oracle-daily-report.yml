@@ -1,0 +1,53 @@
+name: 👁️ Generate Daily Eye Oracle Report
+
+on:
+  schedule:
+    # Run at 6:00 AM EST (11:00 UTC) every day
+    - cron: '0 11 * * *'
+  workflow_dispatch: # Allow manual triggers
+
+permissions:
+  contents: write
+
+jobs:
+  generate-daily-report:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 👁️ Generate Eye Oracle Daily Report
+        run: node scripts/generate-eye-oracle-report.js
+        env:
+          TZ: America/Toronto
+      
+      - name: 📊 Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet public/data/eye-oracle-reports.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: 📤 Commit and push report
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "Eye Oracle Bot 👁️"
+          git add public/data/eye-oracle-reports.json
+          git commit -m "👁️ Daily Eye Oracle Report - $(date +'%Y-%m-%d')"
+          git push
+      
+      - name: ✅ Report Status
+        run: |
+          echo "═══════════════════════════════════════════════════"
+          echo "👁️ THE EYE ORACLE - Daily Report Generation Complete"
+          echo "═══════════════════════════════════════════════════"
+          echo "Date: $(date +'%Y-%m-%d %H:%M:%S %Z')"
+          echo "Report saved to: public/data/eye-oracle-reports.json"
+          echo "═══════════════════════════════════════════════════"

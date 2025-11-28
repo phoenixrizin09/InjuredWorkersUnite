@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * THE EYE v2.0 - Incorruptible Evidence-Driven Investigative Intelligence
+ * THE EYE ORACLE - Incorruptible Evidence-Driven Investigative Intelligence
  * ═══════════════════════════════════════════════════════════════════════════
  * 
  * An evidence-driven investigative AI system that exposes corruption,
@@ -23,6 +23,23 @@
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
+ * UTILITY FUNCTIONS
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * Escape special regex characters in a string
+ * This prevents regex injection and "Invalid regular expression" errors
+ * @param {string} string - The string to escape
+ * @returns {string} - The escaped string safe for use in RegExp
+ */
+function escapeRegExp(string) {
+  if (typeof string !== 'string') return '';
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
  * MAIN PROCESSOR - THE EYE ANALYSIS ENGINE
  * ═══════════════════════════════════════════════════════════════════════════
  * 
@@ -38,10 +55,39 @@
  */
 export async function processDocument(input) {
   const startTime = Date.now();
-  const text = input.raw_text || input.content || '';
+  
+  // Robust input validation
+  if (!input) {
+    throw new Error('THE EYE requires input to analyze');
+  }
+  
+  // Extract text from input - handle various input formats
+  let text = '';
+  if (typeof input === 'string') {
+    text = input;
+  } else if (typeof input === 'object') {
+    text = input.raw_text || input.content || input.text || '';
+    
+    // If input is still an object (not text), try to extract meaningful content
+    if (!text && input.title) {
+      text = `${input.title || ''} ${input.description || ''} ${input.summary || ''}`.trim();
+    }
+    
+    // Avoid processing raw JSON objects as text
+    if (!text || text.startsWith('{') || text.startsWith('[')) {
+      console.warn('THE EYE: Received JSON object instead of text content');
+      throw new Error('THE EYE requires text content, not raw JSON');
+    }
+  }
   
   if (!text || text.trim().length === 0) {
     throw new Error('THE EYE requires text content to analyze');
+  }
+  
+  // Ensure text is actually text, not stringified JSON
+  if (text.includes('"datasets":[') || text.includes('"jurisdiction"')) {
+    console.warn('THE EYE: Detected JSON string passed as text content');
+    throw new Error('THE EYE requires readable text content, not JSON data');
   }
   
   console.log('👁️ THE EYE: Initiating evidence-driven analysis...');
@@ -350,9 +396,14 @@ function extractEntities(text) {
 }
 
 function extractRole(text, name) {
-  const rolePattern = new RegExp(`${name}[,\\s]+((?:a|an|the)\\s+)?([a-z\\s]+?)(?=[,\\.\\n])`, 'i');
-  const match = text.match(rolePattern);
-  return match ? match[2].trim() : 'unknown';
+  try {
+    const escapedName = escapeRegExp(name);
+    const rolePattern = new RegExp(`${escapedName}[,\\s]+((?:a|an|the)\\s+)?([a-z\\s]+?)(?=[,\\.\\n])`, 'i');
+    const match = text.match(rolePattern);
+    return match ? match[2].trim() : 'unknown';
+  } catch (e) {
+    return 'unknown';
+  }
 }
 
 function mapRelationships(entities, text) {
@@ -361,15 +412,21 @@ function mapRelationships(entities, text) {
   // Simple relationship extraction between people and organizations
   entities.people?.forEach(person => {
     entities.organizations?.forEach(org => {
-      const pattern = new RegExp(`${person.full_name}[^.]{0,100}${org.name}`, 'i');
-      if (pattern.test(text)) {
-        relationships.push({
-          type: 'association',
-          from: person.full_name,
-          to: org.name,
-          confidence: 'medium',
-          evidence: extractContext(text, person.full_name, 100)
-        });
+      try {
+        const escapedPerson = escapeRegExp(person.full_name);
+        const escapedOrg = escapeRegExp(org.name);
+        const pattern = new RegExp(`${escapedPerson}[^.]{0,100}${escapedOrg}`, 'i');
+        if (pattern.test(text)) {
+          relationships.push({
+            type: 'association',
+            from: person.full_name,
+            to: org.name,
+            confidence: 'medium',
+            evidence: extractContext(text, person.full_name, 100)
+          });
+        }
+      } catch (e) {
+        // Skip if regex fails
       }
     });
   });
@@ -393,6 +450,8 @@ function extractClaims(text, entities) {
     const matches = text.match(pattern);
     if (matches) {
       matches.slice(0, 3).forEach(match => {
+        // Get a short keyword from the match for context extraction
+        const shortKeyword = match.substring(0, 50).split(/\s+/).slice(0, 5).join(' ');
         claims.push({
           claim_text: match.trim(),
           claim_type: type,
@@ -401,7 +460,7 @@ function extractClaims(text, entities) {
           date_of_event: extractDate(match) || 'unknown',
           supporting_evidence: {
             quote: match.substring(0, 200),
-            source_snippet: extractContext(text, match, 150)
+            source_snippet: extractContext(text, shortKeyword, 150)
           },
           evidence_strength: determineEvidenceStrength(match, type)
         });
@@ -535,9 +594,23 @@ function identifyCorruption(text, entities, claims, relationships) {
 function analyzeConstitutionalCompliance(text, claims, entities) {
   const violations = [];
   
+  // Charter Section 1: Reasonable Limits
+  if (/unreasonable|unjustifiable|disproportionate/gi.test(text) &&
+      /limit|restriction|infringement/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 1',
+      right: 'Reasonable Limits Analysis',
+      violation_type: 'unreasonable_limitation',
+      description: 'Potential unreasonable or unjustifiable limitation of rights',
+      evidence: extractContext(text, 'unreasonable', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 1 (Oakes Test)'
+    });
+  }
+  
   // Charter Section 2: Fundamental Freedoms
-  if (/freedom\s+of\s+(expression|speech|assembly|association)/gi.test(text) &&
-      /restrict|limit|prohibit|deny/gi.test(text)) {
+  if (/freedom\s+of\s+(expression|speech|assembly|association|religion|conscience|press)/gi.test(text) &&
+      /restrict|limit|prohibit|deny|suppress|censor/gi.test(text)) {
     violations.push({
       section: 'Charter Section 2',
       right: 'Fundamental Freedoms',
@@ -549,11 +622,39 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
     });
   }
   
+  // Charter Section 3: Democratic Rights
+  if (/vote|voting|election|electoral|ballot/gi.test(text) &&
+      /deny|prevent|suppress|restrict/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 3',
+      right: 'Democratic Rights',
+      violation_type: 'voter_suppression',
+      description: 'Potential denial or restriction of democratic rights',
+      evidence: extractContext(text, 'vote', 200),
+      severity: 'critical',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 3'
+    });
+  }
+  
+  // Charter Section 6: Mobility Rights
+  if (/mobility|relocat|travel|move\s+(freely|between)/gi.test(text) &&
+      /restrict|deny|prevent|barrier/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 6',
+      right: 'Mobility Rights',
+      violation_type: 'mobility_restriction',
+      description: 'Potential restriction of mobility rights',
+      evidence: extractContext(text, 'mobility', 200),
+      severity: 'medium',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 6'
+    });
+  }
+  
   // Charter Section 7: Life, Liberty, Security of Person
   const section7Keywords = [
-    /deny|denial|refuse|refusal/gi,
-    /medical\s+care|healthcare|treatment/gi,
-    /benefit|support|assistance/gi
+    /deny|denial|refuse|refusal|terminate|cut|reduce/gi,
+    /medical\s+care|healthcare|treatment|therapy|medication/gi,
+    /benefit|support|assistance|income|housing/gi
   ];
   
   if (section7Keywords.every(pattern => pattern.test(text))) {
@@ -561,34 +662,120 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
       section: 'Charter Section 7',
       right: 'Life, Liberty and Security of the Person',
       violation_type: 'denial_of_security',
-      description: 'Denial of essential medical care or benefits affecting security of person',
+      description: 'Denial of essential care or benefits affecting security of person',
       evidence: extractContext(text, 'medical', 200),
       severity: 'critical',
       legal_basis: 'Canadian Charter of Rights and Freedoms, s. 7'
     });
   }
   
+  // Section 7: Psychological Security
+  if (/mental\s+health|psychological|anxiety|stress|trauma|PTSD/gi.test(text) &&
+      /cause|inflict|exacerbate|worsen|harm/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 7',
+      right: 'Psychological Security of the Person',
+      violation_type: 'psychological_harm',
+      description: 'State action causing psychological harm',
+      evidence: extractContext(text, 'mental health', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 7 (Blencoe, G(J))'
+    });
+  }
+  
+  // Charter Section 8: Unreasonable Search and Seizure
+  if (/search|seizure|surveillance|privacy|personal\s+information/gi.test(text) &&
+      /unreasonable|without\s+consent|warrantless/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 8',
+      right: 'Freedom from Unreasonable Search and Seizure',
+      violation_type: 'privacy_violation',
+      description: 'Potential unreasonable search, seizure, or privacy violation',
+      evidence: extractContext(text, 'search', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 8'
+    });
+  }
+  
+  // Charter Section 9: Arbitrary Detention
+  if (/detention|detain|arrest|held|custody/gi.test(text) &&
+      /arbitrary|unlawful|without\s+cause/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 9',
+      right: 'Freedom from Arbitrary Detention',
+      violation_type: 'arbitrary_detention',
+      description: 'Potential arbitrary detention or imprisonment',
+      evidence: extractContext(text, 'detention', 200),
+      severity: 'critical',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 9'
+    });
+  }
+  
+  // Charter Section 10: Rights on Arrest
+  if (/arrest|detained|custody/gi.test(text) &&
+      /not\s+informed|no\s+access|denied\s+counsel|no\s+lawyer/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 10',
+      right: 'Rights on Arrest or Detention',
+      violation_type: 'denial_of_rights_on_arrest',
+      description: 'Denial of rights to counsel or to be informed of charges',
+      evidence: extractContext(text, 'arrest', 200),
+      severity: 'critical',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 10'
+    });
+  }
+  
+  // Charter Section 11: Legal Rights in Criminal Proceedings
+  if (/trial|proceeding|charge|accused|criminal/gi.test(text) &&
+      /delay|unreasonable|presumption|innocence|self.incrimination/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 11',
+      right: 'Legal Rights in Criminal Proceedings',
+      violation_type: 'criminal_proceeding_rights',
+      description: 'Potential violation of rights in criminal proceedings',
+      evidence: extractContext(text, 'trial', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 11'
+    });
+  }
+  
   // Charter Section 12: Cruel and Unusual Treatment
-  if (/cruel|inhumane|degrading|suffering/gi.test(text)) {
+  if (/cruel|inhumane|degrading|suffering|torture|abuse/gi.test(text)) {
     violations.push({
       section: 'Charter Section 12',
       right: 'Freedom from Cruel and Unusual Treatment',
       violation_type: 'cruel_treatment',
-      description: 'Potential cruel or unusual treatment',
+      description: 'Potential cruel or unusual treatment or punishment',
       evidence: extractContext(text, 'cruel', 200),
       severity: 'critical',
       legal_basis: 'Canadian Charter of Rights and Freedoms, s. 12'
     });
   }
   
+  // Charter Section 14: Right to Interpreter
+  if (/interpreter|language\s+barrier|translation|communicate/gi.test(text) &&
+      /deny|refused|unavailable|no\s+access/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 14',
+      right: 'Right to Interpreter',
+      violation_type: 'denial_of_interpreter',
+      description: 'Denial of interpreter services in proceedings',
+      evidence: extractContext(text, 'interpreter', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 14'
+    });
+  }
+  
   // Charter Section 15: Equality Rights
   const discriminationGrounds = [
     'disability', 'age', 'race', 'gender', 'Indigenous',
-    'sex', 'religion', 'national origin'
+    'sex', 'religion', 'national origin', 'ethnicity',
+    'sexual orientation', 'marital status', 'citizenship',
+    'mental disability', 'physical disability', 'colour'
   ];
   
   discriminationGrounds.forEach(ground => {
-    if (new RegExp(ground, 'gi').test(text) && /discriminat|unequal/gi.test(text)) {
+    if (new RegExp(ground, 'gi').test(text) && /discriminat|unequal|differential\s+treatment|adverse\s+effect/gi.test(text)) {
       violations.push({
         section: 'Charter Section 15',
         right: 'Equality Rights',
@@ -601,8 +788,36 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
     }
   });
   
+  // Section 15(2): Affirmative Action Analysis
+  if (/affirmative\s+action|employment\s+equity|designated\s+group/gi.test(text) &&
+      /challenge|reverse\s+discrimination|quota/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 15(2)',
+      right: 'Affirmative Action Programs',
+      violation_type: 'affirmative_action_challenge',
+      description: 'Challenge to or inadequacy of affirmative action programs',
+      evidence: extractContext(text, 'affirmative', 200),
+      severity: 'medium',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 15(2)'
+    });
+  }
+  
+  // Charter Section 24: Enforcement and Remedies
+  if (/remedy|enforcement|damages|compensation/gi.test(text) &&
+      /denied|refused|inadequate|no\s+recourse/gi.test(text)) {
+    violations.push({
+      section: 'Charter Section 24',
+      right: 'Enforcement and Remedies',
+      violation_type: 'denial_of_remedy',
+      description: 'Denial of appropriate Charter remedy',
+      evidence: extractContext(text, 'remedy', 200),
+      severity: 'high',
+      legal_basis: 'Canadian Charter of Rights and Freedoms, s. 24'
+    });
+  }
+  
   // Administrative Law: Procedural Fairness
-  if (/procedural\s+fairness|natural\s+justice|bias|reasonable\s+apprehension/gi.test(text)) {
+  if (/procedural\s+fairness|natural\s+justice|bias|reasonable\s+apprehension|audi\s+alteram/gi.test(text)) {
     violations.push({
       section: 'Administrative Law',
       right: 'Procedural Fairness',
@@ -610,13 +825,27 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
       description: 'Breach of procedural fairness or natural justice',
       evidence: extractContext(text, 'procedural fairness', 200),
       severity: 'high',
-      legal_basis: 'Administrative law principles'
+      legal_basis: 'Administrative law principles (Baker v. Canada)'
+    });
+  }
+  
+  // Administrative Law: Unreasonableness
+  if (/unreasonable|arbitrary|capricious|bad\s+faith/gi.test(text) &&
+      /decision|determination|ruling/gi.test(text)) {
+    violations.push({
+      section: 'Administrative Law',
+      right: 'Reasonable Decision-Making',
+      violation_type: 'unreasonable_decision',
+      description: 'Unreasonable or arbitrary administrative decision',
+      evidence: extractContext(text, 'unreasonable', 200),
+      severity: 'high',
+      legal_basis: 'Administrative law (Vavilov standard of review)'
     });
   }
   
   // Section 35: Indigenous Rights
-  if (/(Indigenous|First\s+Nations|Inuit|Métis)/gi.test(text) &&
-      /duty\s+to\s+consult|treaty\s+rights|aboriginal\s+rights/gi.test(text)) {
+  if (/(Indigenous|First\s+Nations|Inuit|Métis|aboriginal)/gi.test(text) &&
+      /duty\s+to\s+consult|treaty\s+rights|aboriginal\s+rights|title|self.government/gi.test(text)) {
     violations.push({
       section: 'Constitution Act Section 35',
       right: 'Aboriginal and Treaty Rights',
@@ -624,7 +853,34 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
       description: 'Potential violation of Indigenous rights or duty to consult',
       evidence: extractContext(text, 'Indigenous', 200),
       severity: 'critical',
-      legal_basis: 'Constitution Act, 1982, s. 35'
+      legal_basis: 'Constitution Act, 1982, s. 35 (Haida Nation, Tsilhqot\'in)'
+    });
+  }
+  
+  // Section 35: UNDRIP Alignment
+  if (/UNDRIP|free.*prior.*informed\s+consent|FPIC/gi.test(text)) {
+    violations.push({
+      section: 'UNDRIP Implementation',
+      right: 'Free, Prior and Informed Consent',
+      violation_type: 'undrip_violation',
+      description: 'Failure to obtain free, prior and informed consent',
+      evidence: extractContext(text, 'consent', 200),
+      severity: 'critical',
+      legal_basis: 'UN Declaration on the Rights of Indigenous Peoples (adopted by Canada)'
+    });
+  }
+  
+  // Constitution Act 1867: Division of Powers
+  if (/federal|provincial|jurisdiction|ultra\s+vires|constitutional\s+authority/gi.test(text) &&
+      /exceed|overstep|encroach/gi.test(text)) {
+    violations.push({
+      section: 'Constitution Act 1867',
+      right: 'Division of Powers',
+      violation_type: 'jurisdictional_overreach',
+      description: 'Potential ultra vires action or jurisdictional overreach',
+      evidence: extractContext(text, 'jurisdiction', 200),
+      severity: 'medium',
+      legal_basis: 'Constitution Act, 1867, ss. 91-92'
     });
   }
   
@@ -632,62 +888,246 @@ function analyzeConstitutionalCompliance(text, claims, entities) {
 }
 
 /**
- * 3️⃣ HUMAN RIGHTS ANALYSIS
- * Evaluate against Canadian Human Rights Act and provincial codes
+ * 3️⃣ HUMAN RIGHTS ANALYSIS - COMPREHENSIVE
+ * Evaluate against Canadian Human Rights Act, Provincial Codes, and Accessibility Laws
  */
 function analyzeHumanRights(text, claims, entities) {
   const breaches = [];
   
-  const prohibitedGrounds = [
-    { ground: 'disability', pattern: /disability|disabled|impairment/gi },
-    { ground: 'age', pattern: /age|elderly|senior|youth/gi },
-    { ground: 'race', pattern: /race|racial|racialized/gi },
-    { ground: 'national_origin', pattern: /national\s+origin|ethnicity|immigrant/gi },
-    { ground: 'sex', pattern: /sex|gender|women|men/gi },
-    { ground: 'family_status', pattern: /family\s+status|marital|parent/gi },
-    { ground: 'religion', pattern: /religion|religious\s+belief/gi },
-    { ground: 'sexual_orientation', pattern: /sexual\s+orientation|LGBTQ/gi }
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CANADIAN HUMAN RIGHTS ACT (CHRA) - Prohibited Grounds
+  // ═══════════════════════════════════════════════════════════════════════════
+  const chraGrounds = [
+    { ground: 'disability', pattern: /disability|disabled|impairment|mental\s+health|chronic\s+illness/gi },
+    { ground: 'age', pattern: /age|elderly|senior|youth|ageism/gi },
+    { ground: 'race', pattern: /race|racial|racialized|visible\s+minority/gi },
+    { ground: 'national_or_ethnic_origin', pattern: /national\s+origin|ethnic|ethnicity|immigrant|newcomer/gi },
+    { ground: 'colour', pattern: /colour|color|skin/gi },
+    { ground: 'religion', pattern: /religion|religious|creed|faith|belief/gi },
+    { ground: 'sex', pattern: /\bsex\b|gender|women|men|female|male/gi },
+    { ground: 'sexual_orientation', pattern: /sexual\s+orientation|gay|lesbian|bisexual|homosexual/gi },
+    { ground: 'gender_identity_or_expression', pattern: /gender\s+identity|transgender|trans|non.binary|gender\s+expression/gi },
+    { ground: 'marital_status', pattern: /marital\s+status|married|single|divorced|spouse/gi },
+    { ground: 'family_status', pattern: /family\s+status|parent|child\s+care|caregiver/gi },
+    { ground: 'genetic_characteristics', pattern: /genetic|DNA|hereditary/gi },
+    { ground: 'pardoned_conviction', pattern: /criminal\s+record|pardon|conviction|background\s+check/gi }
   ];
   
-  prohibitedGrounds.forEach(({ ground, pattern }) => {
-    if (pattern.test(text) && /discriminat|deny|refuse|exclude/gi.test(text)) {
+  chraGrounds.forEach(({ ground, pattern }) => {
+    if (pattern.test(text) && /discriminat|deny|refuse|exclude|harass|adverse\s+treatment/gi.test(text)) {
       breaches.push({
         legislation: 'Canadian Human Rights Act',
         ground_of_discrimination: ground,
-        description: `Potential discrimination based on ${ground}`,
+        description: `Potential discrimination based on ${ground.replace(/_/g, ' ')}`,
         evidence: extractContext(text, ground, 200),
         severity: 'high',
-        requires_complaint: true,
-        complaint_deadline: '1 year from incident'
+        complaint_body: 'Canadian Human Rights Commission',
+        complaint_deadline: '1 year from incident',
+        requires_complaint: true
       });
     }
   });
   
-  // Bill C-81 Accessible Canada Act
-  if (/accessibility|barrier|accommodation/gi.test(text) &&
-      /deny|fail|refuse/gi.test(text)) {
-    breaches.push({
-      legislation: 'Accessible Canada Act (Bill C-81)',
-      ground_of_discrimination: 'accessibility',
-      description: 'Failure to provide accessibility or reasonable accommodation',
-      evidence: extractContext(text, 'accessibility', 200),
-      severity: 'high',
-      requires_complaint: true,
-      complaint_deadline: '1 year from incident'
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ONTARIO HUMAN RIGHTS CODE
+  // ═══════════════════════════════════════════════════════════════════════════
+  const ontarioGrounds = [
+    { ground: 'citizenship', pattern: /citizenship|citizen|non.citizen/gi },
+    { ground: 'ancestry', pattern: /ancestry|ancestor|heritage/gi },
+    { ground: 'place_of_origin', pattern: /place\s+of\s+origin|born|birthplace/gi },
+    { ground: 'record_of_offences', pattern: /record\s+of\s+offences|criminal\s+record/gi },
+    { ground: 'receipt_of_public_assistance', pattern: /social\s+assistance|welfare|ODSP|OW|Ontario\s+Works/gi }
+  ];
+  
+  ontarioGrounds.forEach(({ ground, pattern }) => {
+    if (pattern.test(text) && /discriminat|deny|refuse|exclude/gi.test(text)) {
+      breaches.push({
+        legislation: 'Ontario Human Rights Code',
+        ground_of_discrimination: ground,
+        description: `Potential discrimination based on ${ground.replace(/_/g, ' ')}`,
+        evidence: extractContext(text, ground, 200),
+        severity: 'high',
+        complaint_body: 'Human Rights Tribunal of Ontario',
+        complaint_deadline: '1 year from incident',
+        requires_complaint: true
+      });
+    }
+  });
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BC HUMAN RIGHTS CODE
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/British\s+Columbia|BC|Vancouver|Victoria/gi.test(text)) {
+    const bcGrounds = [
+      { ground: 'physical_disability', pattern: /physical\s+disability|mobility|wheelchair/gi },
+      { ground: 'mental_disability', pattern: /mental\s+disability|mental\s+health|psychiatric/gi },
+      { ground: 'source_of_income', pattern: /source\s+of\s+income|income|PWD|disability\s+assistance/gi },
+      { ground: 'lawful_source_of_income', pattern: /lawful\s+source|income\s+assistance/gi }
+    ];
+    
+    bcGrounds.forEach(({ ground, pattern }) => {
+      if (pattern.test(text) && /discriminat|deny|refuse/gi.test(text)) {
+        breaches.push({
+          legislation: 'BC Human Rights Code',
+          ground_of_discrimination: ground,
+          description: `BC: Potential discrimination based on ${ground.replace(/_/g, ' ')}`,
+          evidence: extractContext(text, ground, 200),
+          severity: 'high',
+          complaint_body: 'BC Human Rights Tribunal',
+          complaint_deadline: '1 year from incident',
+          requires_complaint: true
+        });
+      }
     });
   }
   
-  // Economic discrimination
-  if (/low.income|poverty|financial\s+hardship/gi.test(text) &&
-      /deny|refuse|exclude/gi.test(text)) {
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ALBERTA HUMAN RIGHTS ACT
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/Alberta|Edmonton|Calgary/gi.test(text)) {
+    if (/source\s+of\s+income|AISH|income\s+support/gi.test(text) && /discriminat|deny|refuse/gi.test(text)) {
+      breaches.push({
+        legislation: 'Alberta Human Rights Act',
+        ground_of_discrimination: 'source_of_income',
+        description: 'Alberta: Potential discrimination based on source of income',
+        evidence: extractContext(text, 'income', 200),
+        severity: 'high',
+        complaint_body: 'Alberta Human Rights Commission',
+        complaint_deadline: '1 year from incident',
+        requires_complaint: true
+      });
+    }
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // HARASSMENT AND POISONED ENVIRONMENT
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/harass|hostile\s+environment|poisoned\s+environment|bullying|intimidat/gi.test(text)) {
     breaches.push({
-      legislation: 'Provincial Human Rights Code',
+      legislation: 'Human Rights Code (Harassment)',
+      ground_of_discrimination: 'harassment',
+      description: 'Harassment or poisoned environment',
+      evidence: extractContext(text, 'harass', 200),
+      severity: 'high',
+      complaint_body: 'Applicable Human Rights Commission/Tribunal',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DUTY TO ACCOMMODATE
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/accommodat|undue\s+hardship|reasonable\s+accommodation/gi.test(text) &&
+      /deny|fail|refuse|inadequate/gi.test(text)) {
+    breaches.push({
+      legislation: 'Duty to Accommodate',
+      ground_of_discrimination: 'failure_to_accommodate',
+      description: 'Failure to provide reasonable accommodation to point of undue hardship',
+      evidence: extractContext(text, 'accommodation', 200),
+      severity: 'high',
+      legal_test: 'Meiorin Test / BFOR Analysis',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ACCESSIBLE CANADA ACT (Bill C-81)
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/accessibility|barrier|accessible/gi.test(text) &&
+      /deny|fail|refuse|inaccessible|non.compliant/gi.test(text)) {
+    breaches.push({
+      legislation: 'Accessible Canada Act (Bill C-81)',
+      ground_of_discrimination: 'accessibility_barrier',
+      description: 'Failure to identify, remove, or prevent barriers to accessibility',
+      evidence: extractContext(text, 'accessibility', 200),
+      severity: 'high',
+      areas_covered: ['employment', 'built environment', 'ICT', 'communications', 'procurement', 'programs/services', 'transportation'],
+      complaint_body: 'Accessibility Commissioner',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ACCESSIBILITY FOR ONTARIANS WITH DISABILITIES ACT (AODA)
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/Ontario|AODA|accessibility\s+standard/gi.test(text) &&
+      /non.compliant|violat|fail|barrier/gi.test(text)) {
+    breaches.push({
+      legislation: 'Accessibility for Ontarians with Disabilities Act (AODA)',
+      ground_of_discrimination: 'aoda_non_compliance',
+      description: 'Non-compliance with AODA accessibility standards',
+      evidence: extractContext(text, 'AODA', 200),
+      severity: 'high',
+      standards: ['Customer Service', 'Information & Communications', 'Transportation', 'Employment', 'Design of Public Spaces'],
+      complaint_body: 'Ontario Accessibility Directorate',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SYSTEMIC DISCRIMINATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/systemic|structural|institutional|pattern|policy/gi.test(text) &&
+      /discriminat|barrier|adverse\s+impact/gi.test(text)) {
+    breaches.push({
+      legislation: 'Systemic Discrimination',
+      ground_of_discrimination: 'systemic',
+      description: 'Systemic or structural discrimination embedded in policies/practices',
+      evidence: extractContext(text, 'systemic', 200),
+      severity: 'critical',
+      remedy_type: 'Systemic remedy required',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // INTERSECTIONAL DISCRIMINATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  const groundsFound = [];
+  chraGrounds.forEach(({ ground, pattern }) => {
+    if (pattern.test(text)) groundsFound.push(ground);
+  });
+  
+  if (groundsFound.length >= 2 && /discriminat|deny|barrier/gi.test(text)) {
+    breaches.push({
+      legislation: 'Intersectional Discrimination',
+      ground_of_discrimination: 'intersectional',
+      description: `Intersectional discrimination based on multiple grounds: ${groundsFound.join(', ')}`,
+      evidence: extractContext(text, groundsFound[0], 200),
+      severity: 'critical',
+      grounds_involved: groundsFound,
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // RETALIATION / REPRISAL
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/retaliat|reprisal|punish|adverse\s+action|penalty/gi.test(text) &&
+      /complaint|report|claim|human\s+rights/gi.test(text)) {
+    breaches.push({
+      legislation: 'Protection from Retaliation',
+      ground_of_discrimination: 'retaliation',
+      description: 'Retaliation for making or supporting a human rights complaint',
+      evidence: extractContext(text, 'retaliat', 200),
+      severity: 'critical',
+      requires_complaint: true
+    });
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ECONOMIC/SOCIAL STATUS DISCRIMINATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (/low.income|poverty|financial\s+hardship|poor|homeless|socioeconomic/gi.test(text) &&
+      /deny|refuse|exclude|discriminat/gi.test(text)) {
+    breaches.push({
+      legislation: 'Social Condition Discrimination',
       ground_of_discrimination: 'economic_status',
-      description: 'Discrimination based on economic or social status',
+      description: 'Discrimination based on economic or social status/condition',
       evidence: extractContext(text, 'poverty', 200),
       severity: 'high',
-      requires_complaint: true,
-      complaint_deadline: '1 year from incident'
+      note: 'Protected in some provincial codes (Quebec, NB, NWT, Yukon)',
+      requires_complaint: true
     });
   }
   
@@ -695,14 +1135,54 @@ function analyzeHumanRights(text, claims, entities) {
 }
 
 /**
- * 4️⃣ UNCRPD ANALYSIS
- * Check compliance with UN Convention on Rights of Persons with Disabilities
+ * 4️⃣ UNCRPD ANALYSIS - COMPREHENSIVE
+ * Check compliance with ALL articles of UN Convention on Rights of Persons with Disabilities
+ * Canada ratified UNCRPD on March 11, 2010
  */
 function analyzeUNCRPD(text, claims, entities) {
   const breaches = [];
   
+  // Article 1: Purpose - Promote, protect, ensure full enjoyment of human rights
+  if (/disability|disabled/gi.test(text) && /purpose|objective|goal/gi.test(text) &&
+      /fail|violat|undermine/gi.test(text)) {
+    breaches.push({
+      article: 'Article 1',
+      right: 'Purpose - Full Enjoyment of Human Rights',
+      description: 'Failure to promote full and equal enjoyment of human rights by persons with disabilities',
+      evidence: extractContext(text, 'disability', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 3: General Principles
+  if (/dignity|autonomy|independence|non.discrimination|participation|inclusion|accessibility|respect\s+for\s+difference/gi.test(text) &&
+      /violat|breach|deny|fail/gi.test(text)) {
+    breaches.push({
+      article: 'Article 3',
+      right: 'General Principles',
+      description: 'Violation of UNCRPD general principles (dignity, autonomy, non-discrimination, inclusion)',
+      evidence: extractContext(text, 'dignity', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 4: General Obligations
+  if (/legislation|law|policy|program/gi.test(text) &&
+      /fail\s+to\s+(adopt|implement|modify|repeal)|discriminatory\s+(law|policy)/gi.test(text)) {
+    breaches.push({
+      article: 'Article 4',
+      right: 'General Obligations',
+      description: 'Failure to adopt or implement disability-inclusive legislation/policy',
+      evidence: extractContext(text, 'legislation', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
   // Article 5: Equality and Non-Discrimination
-  if (/disability|disabled/gi.test(text) && /discriminat|deny|exclude/gi.test(text)) {
+  if (/disability|disabled/gi.test(text) && /discriminat|deny|exclude|unequal/gi.test(text)) {
     breaches.push({
       article: 'Article 5',
       right: 'Equality and Non-Discrimination',
@@ -713,8 +1193,86 @@ function analyzeUNCRPD(text, claims, entities) {
     });
   }
   
+  // Article 6: Women with Disabilities
+  if (/women|female|girl/gi.test(text) && /disability|disabled/gi.test(text) &&
+      /discriminat|violat|multiple|intersectional/gi.test(text)) {
+    breaches.push({
+      article: 'Article 6',
+      right: 'Women with Disabilities',
+      description: 'Multiple/intersectional discrimination against women with disabilities',
+      evidence: extractContext(text, 'women', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 7: Children with Disabilities
+  if (/child|minor|youth|young\s+person/gi.test(text) && /disability|disabled/gi.test(text) &&
+      /rights|best\s+interest|voice|participation/gi.test(text)) {
+    breaches.push({
+      article: 'Article 7',
+      right: 'Children with Disabilities',
+      description: 'Failure to protect rights of children with disabilities',
+      evidence: extractContext(text, 'child', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 8: Awareness-Raising
+  if (/stigma|stereotype|prejudice|awareness|public\s+perception/gi.test(text) &&
+      /disability|disabled/gi.test(text)) {
+    breaches.push({
+      article: 'Article 8',
+      right: 'Awareness-Raising',
+      description: 'Failure to combat stereotypes, prejudices, harmful practices',
+      evidence: extractContext(text, 'stigma', 200),
+      severity: 'medium',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 9: Accessibility
+  if (/accessibility|accessible|barrier|inaccessible/gi.test(text) &&
+      /building|transport|information|communication|service/gi.test(text)) {
+    breaches.push({
+      article: 'Article 9',
+      right: 'Accessibility',
+      description: 'Failure to ensure accessibility of environment, transportation, information, services',
+      evidence: extractContext(text, 'accessibility', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 10: Right to Life
+  if (/life|death|dying|suicide|MAID/gi.test(text) && /disability|disabled/gi.test(text) &&
+      /coerce|pressure|safeguard/gi.test(text)) {
+    breaches.push({
+      article: 'Article 10',
+      right: 'Right to Life',
+      description: 'Threat to right to life of persons with disabilities',
+      evidence: extractContext(text, 'life', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 11: Situations of Risk and Humanitarian Emergencies
+  if (/emergency|disaster|risk|crisis|humanitarian/gi.test(text) && /disability|disabled/gi.test(text)) {
+    breaches.push({
+      article: 'Article 11',
+      right: 'Situations of Risk and Humanitarian Emergencies',
+      description: 'Failure to protect persons with disabilities in emergencies',
+      evidence: extractContext(text, 'emergency', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
   // Article 12: Equal Recognition Before the Law
-  if (/capacity|competence|decision.making/gi.test(text) && /deny|restrict/gi.test(text)) {
+  if (/capacity|competence|decision.making|guardian|substitute/gi.test(text) && 
+      /deny|restrict|remove|override/gi.test(text)) {
     breaches.push({
       article: 'Article 12',
       right: 'Equal Recognition Before the Law',
@@ -726,62 +1284,260 @@ function analyzeUNCRPD(text, claims, entities) {
   }
   
   // Article 13: Access to Justice
-  if (/legal\s+(aid|representation)|access\s+to\s+justice/gi.test(text) && /deny|barrier/gi.test(text)) {
+  if (/legal\s+(aid|representation)|access\s+to\s+justice|court|tribunal|hearing/gi.test(text) && 
+      /deny|barrier|inaccessible|accommodation/gi.test(text)) {
     breaches.push({
       article: 'Article 13',
       right: 'Access to Justice',
       description: 'Barriers to accessing justice for persons with disabilities',
-      evidence: extractContext(text, 'access to justice', 200),
+      evidence: extractContext(text, 'justice', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 14: Liberty and Security of Person
+  if (/detention|institutionalization|hospital|confined|restrain/gi.test(text) && 
+      /disability|mental\s+health/gi.test(text) && /unlawful|arbitrary|involuntary/gi.test(text)) {
+    breaches.push({
+      article: 'Article 14',
+      right: 'Liberty and Security of Person',
+      description: 'Unlawful or arbitrary detention based on disability',
+      evidence: extractContext(text, 'detention', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 15: Freedom from Torture and Cruel Treatment
+  if (/torture|cruel|inhuman|degrading|treatment|force|restraint|seclusion/gi.test(text) && 
+      /disability|disabled/gi.test(text)) {
+    breaches.push({
+      article: 'Article 15',
+      right: 'Freedom from Torture and Cruel Treatment',
+      description: 'Cruel, inhuman or degrading treatment of persons with disabilities',
+      evidence: extractContext(text, 'cruel', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 16: Freedom from Exploitation, Violence and Abuse
+  if (/exploit|violence|abuse|neglect|assault/gi.test(text) && /disability|disabled/gi.test(text)) {
+    breaches.push({
+      article: 'Article 16',
+      right: 'Freedom from Exploitation, Violence and Abuse',
+      description: 'Exploitation, violence or abuse against persons with disabilities',
+      evidence: extractContext(text, 'abuse', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 17: Protecting the Integrity of the Person
+  if (/integrity|consent|treatment|procedure|sterilization/gi.test(text) && 
+      /without\s+consent|force|coerce/gi.test(text) && /disability|disabled/gi.test(text)) {
+    breaches.push({
+      article: 'Article 17',
+      right: 'Protecting the Integrity of the Person',
+      description: 'Violation of physical or mental integrity without consent',
+      evidence: extractContext(text, 'integrity', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 18: Liberty of Movement and Nationality
+  if (/travel|movement|immigration|citizenship|nationality/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /deny|restrict|barrier/gi.test(text)) {
+    breaches.push({
+      article: 'Article 18',
+      right: 'Liberty of Movement and Nationality',
+      description: 'Restriction of movement or nationality rights based on disability',
+      evidence: extractContext(text, 'movement', 200),
       severity: 'high',
       canada_obligations: 'State party since 2010'
     });
   }
   
   // Article 19: Independent Living
-  if (/independent\s+living|community|institution/gi.test(text) && /force|segregat/gi.test(text)) {
+  if (/independent\s+living|community|institution|choice|where\s+to\s+live/gi.test(text) && 
+      /force|segregat|no\s+choice|mandatory/gi.test(text)) {
     breaches.push({
       article: 'Article 19',
       right: 'Living Independently and Being Included in the Community',
-      description: 'Forced institutionalization or segregation',
+      description: 'Forced institutionalization or denial of community living',
       evidence: extractContext(text, 'independent living', 200),
       severity: 'critical',
       canada_obligations: 'State party since 2010'
     });
   }
   
+  // Article 20: Personal Mobility
+  if (/mobility|wheelchair|assistive\s+(device|technology)|prosthetic/gi.test(text) && 
+      /deny|cost|afford|access/gi.test(text)) {
+    breaches.push({
+      article: 'Article 20',
+      right: 'Personal Mobility',
+      description: 'Barriers to personal mobility and assistive devices',
+      evidence: extractContext(text, 'mobility', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 21: Freedom of Expression and Access to Information
+  if (/information|communication|expression|accessible\s+format|sign\s+language/gi.test(text) && 
+      /inaccessible|barrier|deny|unavailable/gi.test(text)) {
+    breaches.push({
+      article: 'Article 21',
+      right: 'Freedom of Expression and Access to Information',
+      description: 'Barriers to accessible information and communication',
+      evidence: extractContext(text, 'information', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 22: Respect for Privacy
+  if (/privacy|personal\s+information|confidential|data/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /violat|breach|disclose/gi.test(text)) {
+    breaches.push({
+      article: 'Article 22',
+      right: 'Respect for Privacy',
+      description: 'Violation of privacy rights of persons with disabilities',
+      evidence: extractContext(text, 'privacy', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 23: Respect for Home and the Family
+  if (/family|marriage|parent|child|custody|adoption/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /discriminat|deny|remove|separate/gi.test(text)) {
+    breaches.push({
+      article: 'Article 23',
+      right: 'Respect for Home and the Family',
+      description: 'Discrimination in family matters based on disability',
+      evidence: extractContext(text, 'family', 200),
+      severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 24: Education
+  if (/education|school|learning|student|academic/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /exclude|segregat|deny|accommodation/gi.test(text)) {
+    breaches.push({
+      article: 'Article 24',
+      right: 'Education',
+      description: 'Denial of inclusive education or educational accommodations',
+      evidence: extractContext(text, 'education', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
   // Article 25: Health
-  if (/(medical\s+care|healthcare|treatment)/gi.test(text) && /deny|refuse|withhold/gi.test(text)) {
+  if (/(medical\s+care|healthcare|treatment|health\s+service)/gi.test(text) && 
+      /deny|refuse|withhold|discriminat|barrier/gi.test(text)) {
     breaches.push({
       article: 'Article 25',
       right: 'Health',
-      description: 'Denial of medical care or discriminatory health services',
-      evidence: extractContext(text, 'medical care', 200),
+      description: 'Denial of healthcare or discriminatory health services',
+      evidence: extractContext(text, 'health', 200),
       severity: 'critical',
       canada_obligations: 'State party since 2010'
     });
   }
   
   // Article 26: Habilitation and Rehabilitation
-  if (/rehabilitation|habilitation|therapy/gi.test(text) && /deny|terminate|cut/gi.test(text)) {
+  if (/rehabilitation|habilitation|therapy|physiotherapy|occupational\s+therapy/gi.test(text) && 
+      /deny|terminate|cut|reduce|wait/gi.test(text)) {
     breaches.push({
       article: 'Article 26',
       right: 'Habilitation and Rehabilitation',
-      description: 'Denial of rehabilitation services',
+      description: 'Denial or inadequacy of rehabilitation services',
       evidence: extractContext(text, 'rehabilitation', 200),
       severity: 'high',
       canada_obligations: 'State party since 2010'
     });
   }
   
+  // Article 27: Work and Employment
+  if (/work|employment|job|career|occupation|labour|labor/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /discriminat|barrier|deny|terminat|fire/gi.test(text)) {
+    breaches.push({
+      article: 'Article 27',
+      right: 'Work and Employment',
+      description: 'Employment discrimination or barriers for persons with disabilities',
+      evidence: extractContext(text, 'employment', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
   // Article 28: Adequate Standard of Living & Social Protection
-  if (/(benefit|support|assistance|income)/gi.test(text) &&
-      /(deny|reduce|cut|terminate|deem)/gi.test(text)) {
+  if (/(benefit|support|assistance|income|welfare|social\s+protection|housing|poverty)/gi.test(text) &&
+      /(deny|reduce|cut|terminate|deem|inadequate|poverty)/gi.test(text)) {
     breaches.push({
       article: 'Article 28',
       right: 'Adequate Standard of Living and Social Protection',
-      description: 'Denial or reduction of essential benefits forcing poverty',
+      description: 'Denial or reduction of benefits forcing poverty',
       evidence: extractContext(text, 'benefit', 200),
       severity: 'critical',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 29: Participation in Political and Public Life
+  if (/vote|voting|election|political|public\s+life|decision.making/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /barrier|inaccessible|exclude/gi.test(text)) {
+    breaches.push({
+      article: 'Article 29',
+      right: 'Participation in Political and Public Life',
+      description: 'Barriers to political participation for persons with disabilities',
+      evidence: extractContext(text, 'vote', 200),
+      severity: 'high',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 30: Participation in Cultural Life, Recreation, Sport
+  if (/culture|recreation|sport|leisure|tourism|art/gi.test(text) && 
+      /disability|disabled/gi.test(text) && /barrier|exclude|inaccessible/gi.test(text)) {
+    breaches.push({
+      article: 'Article 30',
+      right: 'Participation in Cultural Life, Recreation, Sport',
+      description: 'Exclusion from cultural, recreational, or sporting activities',
+      evidence: extractContext(text, 'culture', 200),
+      severity: 'medium',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 31: Statistics and Data Collection
+  if (/data|statistics|research|information/gi.test(text) && /disability|disabled/gi.test(text) &&
+      /lack|inadequate|no\s+data|invisible/gi.test(text)) {
+    breaches.push({
+      article: 'Article 31',
+      right: 'Statistics and Data Collection',
+      description: 'Failure to collect adequate disability data for policy development',
+      evidence: extractContext(text, 'data', 200),
+      severity: 'medium',
+      canada_obligations: 'State party since 2010'
+    });
+  }
+  
+  // Article 33: National Implementation and Monitoring
+  if (/monitoring|implementation|oversight|accountability/gi.test(text) && 
+      /disability|UNCRPD|convention/gi.test(text) && /fail|inadequate|weak/gi.test(text)) {
+    breaches.push({
+      article: 'Article 33',
+      right: 'National Implementation and Monitoring',
+      description: 'Inadequate implementation or monitoring of UNCRPD',
+      evidence: extractContext(text, 'monitoring', 200),
+      severity: 'high',
       canada_obligations: 'State party since 2010'
     });
   }
@@ -1238,19 +1994,40 @@ function generateActions(
   return actions;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// UTILITY FUNCTIONS
-// ═══════════════════════════════════════════════════════════════════════════
-
 function extractContext(text, keyword, contextLength = 200) {
-  const regex = new RegExp(keyword, 'gi');
-  const match = regex.exec(text);
-  if (!match) return '';
+  // Comprehensive input validation
+  if (!keyword) return '';
+  if (typeof keyword !== 'string') return '';
+  if (keyword.length > 100) return '';
+  if (keyword.length < 2) return '';
   
-  const start = Math.max(0, match.index - contextLength);
-  const end = Math.min(text.length, match.index + keyword.length + contextLength);
+  // Skip if keyword looks like JSON or contains problematic patterns
+  if (keyword.includes('{') || keyword.includes('[') || keyword.includes('"')) return '';
+  if (keyword.includes('http://') || keyword.includes('https://')) return '';
   
-  return '...' + text.substring(start, end).trim() + '...';
+  // Ensure text is a string
+  if (!text || typeof text !== 'string') return '';
+  
+  try {
+    // Escape special regex characters
+    const escapedKeyword = escapeRegExp(keyword);
+    
+    // Additional safety: if escaped keyword is empty or too long, skip
+    if (!escapedKeyword || escapedKeyword.length > 200) return '';
+    
+    const regex = new RegExp(escapedKeyword, 'gi');
+    const match = regex.exec(text);
+    if (!match) return '';
+    
+    const start = Math.max(0, match.index - contextLength);
+    const end = Math.min(text.length, match.index + keyword.length + contextLength);
+    
+    return '...' + text.substring(start, end).trim() + '...';
+  } catch (error) {
+    // If regex still fails, return empty string silently
+    console.warn('extractContext: Regex failed for keyword:', keyword.substring(0, 50));
+    return '';
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

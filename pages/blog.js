@@ -21,6 +21,7 @@ export default function Blog() {
 
   const categories = [
     'all',
+    'Eye Oracle Reports',
     'The EYE',
     'Monitoring',
     'Memetic Embassy',
@@ -72,6 +73,24 @@ export default function Blog() {
             }}>
               Daily deep dives into the powerful tools and features we've built to fight for justice
             </p>
+            
+            {/* Eye Oracle Reports Quick Link */}
+            <Link href="/eye-oracle-reports" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.75rem 1.5rem',
+              background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)',
+              color: '#000',
+              textDecoration: 'none',
+              borderRadius: '30px',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              marginBottom: '1.5rem',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              👁️ NEW: Daily Eye Oracle Reports - What They Did Today →
+            </Link>
             
             {/* Social Media Links */}
             <div style={{

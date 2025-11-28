@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,9 +9,65 @@ export default function AlertsPage() {
   const [sourceFilter, setSourceFilter] = useState('all');
   const [automationEngine, setAutomationEngine] = useState(null);
   const [isAutomated, setIsAutomated] = useState(false);
+  const [apiConnected, setApiConnected] = useState(false);
 
-  // Initialize automation engine
+  // Fetch alerts from API backend
+  const fetchApiAlerts = useCallback(async () => {
+    try {
+      const params = new URLSearchParams();
+      if (filter !== 'all') params.append('severity', filter);
+      params.append('limit', '100');
+      
+      const response = await fetch(`/api/alerts?${params}`);
+      if (response.ok) {
+        const data = await response.json();
+        setApiConnected(true);
+        if (data.alerts && data.alerts.length > 0) {
+          // Merge API alerts with local alerts
+          const apiAlerts = data.alerts.map(a => ({
+            ...a,
+            source: a.source || 'API Backend',
+            timestamp: a.timestamp || a.createdAt
+          }));
+          setAlerts(prev => {
+            const existingIds = new Set(prev.map(a => a.id));
+            const newAlerts = apiAlerts.filter(a => !existingIds.has(a.id));
+            return [...newAlerts, ...prev];
+          });
+        }
+        console.log('🚨 ALERTS: Connected to API backend');
+        return data;
+      }
+    } catch (error) {
+      console.log('🚨 ALERTS: Running in standalone mode (API not available)');
+      setApiConnected(false);
+    }
+    return null;
+  }, [filter]);
+
+  // Acknowledge alert via API
+  const acknowledgeAlert = useCallback(async (alertId) => {
+    try {
+      const response = await fetch(`/api/alerts/${alertId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ acknowledged: true })
+      });
+      if (response.ok) {
+        setAlerts(prev => prev.map(a => 
+          a.id === alertId ? { ...a, acknowledged: true } : a
+        ));
+        console.log('✅ Alert acknowledged:', alertId);
+      }
+    } catch (error) {
+      console.error('Failed to acknowledge alert:', error);
+    }
+  }, []);
+
+  // Initialize API connection and automation engine
   useEffect(() => {
+    fetchApiAlerts();
+    
     if (typeof window !== 'undefined') {
       import('../utils/automation-engine').then(module => {
         const engine = module.automationEngine;
@@ -35,23 +91,29 @@ export default function AlertsPage() {
         });
       });
     }
-  }, []);
+  }, [fetchApiAlerts]);
 
-  // Real-time refresh
+  // Real-time refresh - check API and local engine
   useEffect(() => {
     const interval = setInterval(() => {
+      fetchApiAlerts();
       if (automationEngine) {
         loadAlertsFromEngine(automationEngine);
       }
     }, 5000); // Refresh every 5 seconds
     return () => clearInterval(interval);
-  }, [automationEngine]);
+  }, [automationEngine, fetchApiAlerts]);
 
   function loadAlertsFromEngine(engine) {
     const engineAlerts = engine.getAlerts();
     const billAlerts = engine.convertBillsToAlerts ? engine.convertBillsToAlerts() : [];
     const combinedAlerts = [...engineAlerts, ...billAlerts];
-    setAlerts(combinedAlerts);
+    // Merge with existing alerts, avoiding duplicates
+    setAlerts(prev => {
+      const existingTitles = new Set(prev.map(a => a.title));
+      const newAlerts = combinedAlerts.filter(a => !existingTitles.has(a.title));
+      return [...newAlerts, ...prev];
+    });
   }
 
   async function loadAlerts() {
@@ -72,7 +134,7 @@ export default function AlertsPage() {
     return true;
   });
 
-  const sources = ['all', ...new Set(alerts.map(a => a.source))];
+  const sources = ['all', ...new Set(alerts.map(a => a.source).filter(Boolean))];
 
   return (
     <>
@@ -102,7 +164,7 @@ export default function AlertsPage() {
           <div style={{ color: '#4facfe', fontWeight: 'bold' }}>
             🔗 INTEGRATED SYSTEMS:
           </div>
-          <Link href="/the-eye" style={{
+          <Link href="/the-eye-oracle" style={{
             padding: '0.5rem 1rem',
             background: 'rgba(255, 0, 128, 0.2)',
             border: '1px solid #ff0080',
@@ -138,8 +200,23 @@ export default function AlertsPage() {
           }}>
             🎯 Target Dossiers
           </Link>
+          {apiConnected && (
+            <Link href="/admin" style={{
+              padding: '0.5rem 1rem',
+              background: 'rgba(46, 213, 115, 0.2)',
+              border: '1px solid #2ed573',
+              borderRadius: '8px',
+              color: '#2ed573',
+              textDecoration: 'none',
+              fontSize: '0.9rem',
+              fontWeight: '600'
+            }}>
+              🔧 Admin Dashboard
+            </Link>
+          )}
           <div style={{ color: '#2ed573', fontSize: '0.85rem', fontWeight: 'bold' }}>
             ✅ RECEIVING REAL-TIME ALERTS FROM ALL SOURCES
+            {apiConnected && ' • API CONNECTED'}
           </div>
         </div>
 
@@ -156,6 +233,7 @@ export default function AlertsPage() {
           </h1>
           <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: 0.9 }}>
             Real-time monitoring results • Updates every 5 seconds {isAutomated && '• 🤖 AUTOMATED'}
+            {apiConnected && ' • 🔌 API CONNECTED'}
           </p>
           {isAutomated && (
             <div style={{

@@ -116,21 +116,63 @@
 - Ministry of Health privatization contracts
 - Indigenous Services Canada water advisory reports
 
-### Victim Testimonial Database
-**Status**: Design phase  
-**Cost**: $0 (anonymous, no storage needed)
+### Victory Wall 🏆
+**Status**: Planned  
+**Cost**: $0
+
+**Purpose**: Document wins to build momentum and prove impact
+
+**Content Types**:
+- Policy reversals directly linked to our advocacy
+- Successful FOI requests that exposed corruption
+- Media coverage generated from our data
+- Legal victories using our evidence packages
+- Government responses to pressure campaigns
+- Benefit reinstatements after appeals
+
+**Features**:
+- Timeline of victories (oldest to newest)
+- Link each victory to the original alert/target
+- Shareable victory cards for social media
+- Impact metrics (money recovered, people helped)
+- "How We Won" breakdowns for replication
+
+---
+
+### Community Stories 📢
+**Status**: Planned  
+**Cost**: $0 (anonymous submission, moderated display)
 
 **Privacy-First Approach**:
-- Zero PII collected
-- Client-side encryption before submission
-- Pattern detection without storing stories
-- Aggregate statistics only
+- Anonymous submission form (no PII required)
+- Optional encrypted contact for follow-up
+- Moderation queue (human review before publishing)
+- Pattern detection without storing identifying details
+- Consent checkbox for public display
+
+**Story Categories**:
+- WSIB claim denials and appeals
+- ODSP/disability benefit struggles
+- Workplace injury experiences
+- Insurance company tactics
+- Successful appeals and what worked
+- Healthcare system failures
+
+**Features**:
+- Curated, verified stories only
+- Geographic tagging (city level only)
+- Link to relevant targets/alerts
+- "Similar Stories" clustering
+- Call-to-action for each story type
+- Export for legal/media use (with consent)
 
 **Use Cases**:
 - Identify systemic abuse patterns
-- Geographic clustering
+- Geographic clustering of harm
 - Match victims to existing targets
 - Generate class action leads
+- Provide human context to data
+- Build solidarity and reduce isolation
 
 ---
 

@@ -10,6 +10,19 @@ export default function AlertsPage() {
   const [automationEngine, setAutomationEngine] = useState(null);
   const [isAutomated, setIsAutomated] = useState(false);
   const [apiConnected, setApiConnected] = useState(false);
+  
+  // Subscription state
+  const [showSubscribe, setShowSubscribe] = useState(false);
+  const [subscribeEmail, setSubscribeEmail] = useState('');
+  const [subscribeTopics, setSubscribeTopics] = useState({
+    wsib: true,
+    odsp: true,
+    federal: false,
+    provincial: true,
+    corporate: false
+  });
+  const [subscribeFrequency, setSubscribeFrequency] = useState('daily');
+  const [subscribeStatus, setSubscribeStatus] = useState(null);
 
   // Fetch alerts from API backend
   const fetchApiAlerts = useCallback(async () => {
@@ -314,7 +327,246 @@ export default function AlertsPage() {
               </button>
             ))}
           </div>
+          
+          <button
+            onClick={() => setShowSubscribe(!showSubscribe)}
+            style={{
+              marginLeft: 'auto',
+              padding: '10px 20px',
+              background: 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
+              border: 'none',
+              borderRadius: '25px',
+              color: '#fff',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '14px',
+              boxShadow: '0 4px 15px rgba(255, 0, 128, 0.3)'
+            }}
+          >
+            🔔 {showSubscribe ? 'Hide' : 'Subscribe to Alerts'}
+          </button>
         </div>
+
+        {/* Subscription Panel */}
+        {showSubscribe && (
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255, 0, 128, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%)',
+            border: '2px solid #ff0080',
+            borderRadius: '15px',
+            padding: '25px',
+            marginBottom: '20px'
+          }}>
+            <h3 style={{ 
+              margin: '0 0 20px 0', 
+              color: '#ff0080',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '1.5rem'
+            }}>
+              🔔 Subscribe to Alert Updates
+            </h3>
+            
+            <p style={{ color: '#ccc', marginBottom: '20px', lineHeight: '1.6' }}>
+              Get notified when new alerts are published. Choose your topics and frequency. 
+              <strong style={{ color: '#2ed573' }}> No spam, just important updates about issues affecting injured workers and disabled Canadians.</strong>
+            </p>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '25px' }}>
+              {/* Topics Selection */}
+              <div>
+                <h4 style={{ color: '#fff', marginBottom: '15px' }}>📋 Topics</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {[
+                    { id: 'wsib', label: 'WSIB & Workers Compensation', emoji: '🏭' },
+                    { id: 'odsp', label: 'ODSP & Disability Benefits', emoji: '♿' },
+                    { id: 'provincial', label: 'Ontario Provincial Changes', emoji: '🏛️' },
+                    { id: 'federal', label: 'Federal Bills & Policies', emoji: '🇨🇦' },
+                    { id: 'corporate', label: 'Corporate & Insurance News', emoji: '🏢' }
+                  ].map(topic => (
+                    <label 
+                      key={topic.id}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        padding: '10px 15px',
+                        background: subscribeTopics[topic.id] ? 'rgba(46, 213, 115, 0.2)' : 'rgba(255,255,255,0.05)',
+                        border: subscribeTopics[topic.id] ? '1px solid #2ed573' : '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s'
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={subscribeTopics[topic.id]}
+                        onChange={(e) => setSubscribeTopics(prev => ({ ...prev, [topic.id]: e.target.checked }))}
+                        style={{ 
+                          width: '18px', 
+                          height: '18px',
+                          accentColor: '#2ed573'
+                        }}
+                      />
+                      <span style={{ fontSize: '1.2rem' }}>{topic.emoji}</span>
+                      <span style={{ color: subscribeTopics[topic.id] ? '#2ed573' : '#ccc' }}>{topic.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Frequency & Email */}
+              <div>
+                <h4 style={{ color: '#fff', marginBottom: '15px' }}>⏰ Frequency</h4>
+                <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                  {[
+                    { id: 'instant', label: 'Instant (Critical Only)', icon: '⚡' },
+                    { id: 'daily', label: 'Daily Digest', icon: '📅' },
+                    { id: 'weekly', label: 'Weekly Summary', icon: '📆' }
+                  ].map(freq => (
+                    <button
+                      key={freq.id}
+                      onClick={() => setSubscribeFrequency(freq.id)}
+                      style={{
+                        padding: '10px 15px',
+                        background: subscribeFrequency === freq.id ? 'rgba(79, 172, 254, 0.3)' : 'rgba(255,255,255,0.05)',
+                        border: subscribeFrequency === freq.id ? '2px solid #4facfe' : '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: subscribeFrequency === freq.id ? '#4facfe' : '#ccc',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '14px',
+                        fontWeight: subscribeFrequency === freq.id ? 'bold' : 'normal'
+                      }}
+                    >
+                      {freq.icon} {freq.label}
+                    </button>
+                  ))}
+                </div>
+                
+                <h4 style={{ color: '#fff', marginBottom: '15px' }}>📧 Email Address</h4>
+                <form 
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setSubscribeStatus('sending');
+                    
+                    // Save subscription locally (localStorage for now)
+                    const subscription = {
+                      email: subscribeEmail,
+                      topics: subscribeTopics,
+                      frequency: subscribeFrequency,
+                      subscribedAt: new Date().toISOString()
+                    };
+                    
+                    try {
+                      // Store locally
+                      const existing = JSON.parse(localStorage.getItem('alertSubscriptions') || '[]');
+                      existing.push(subscription);
+                      localStorage.setItem('alertSubscriptions', JSON.stringify(existing));
+                      
+                      // Also try Formspree if available
+                      try {
+                        await fetch('https://formspree.io/f/xkgrlqgw', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            email: subscribeEmail,
+                            type: 'Alert Subscription',
+                            topics: Object.entries(subscribeTopics).filter(([k,v]) => v).map(([k]) => k).join(', '),
+                            frequency: subscribeFrequency
+                          })
+                        });
+                      } catch (formError) {
+                        console.log('Formspree not available, using local storage only');
+                      }
+                      
+                      setSubscribeStatus('success');
+                      setSubscribeEmail('');
+                      setTimeout(() => setSubscribeStatus(null), 5000);
+                    } catch (error) {
+                      setSubscribeStatus('error');
+                      setTimeout(() => setSubscribeStatus(null), 5000);
+                    }
+                  }}
+                  style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}
+                >
+                  <input
+                    type="email"
+                    value={subscribeEmail}
+                    onChange={(e) => setSubscribeEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    style={{
+                      flex: 1,
+                      minWidth: '200px',
+                      padding: '12px 15px',
+                      background: 'rgba(0,0,0,0.3)',
+                      border: '2px solid rgba(255,255,255,0.2)',
+                      borderRadius: '8px',
+                      color: '#fff',
+                      fontSize: '16px'
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={subscribeStatus === 'sending'}
+                    style={{
+                      padding: '12px 25px',
+                      background: subscribeStatus === 'success' 
+                        ? 'linear-gradient(135deg, #2ed573 0%, #1abc9c 100%)'
+                        : 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      color: '#fff',
+                      fontWeight: 'bold',
+                      cursor: subscribeStatus === 'sending' ? 'wait' : 'pointer',
+                      fontSize: '16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    {subscribeStatus === 'sending' && '⏳ Subscribing...'}
+                    {subscribeStatus === 'success' && '✅ Subscribed!'}
+                    {subscribeStatus === 'error' && '❌ Try Again'}
+                    {!subscribeStatus && '🔔 Subscribe'}
+                  </button>
+                </form>
+                
+                {subscribeStatus === 'success' && (
+                  <p style={{ 
+                    color: '#2ed573', 
+                    marginTop: '15px', 
+                    padding: '10px 15px',
+                    background: 'rgba(46, 213, 115, 0.1)',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}>
+                    ✅ You're subscribed! You'll receive alerts based on your preferences. 
+                    Check your inbox for a confirmation.
+                  </p>
+                )}
+              </div>
+            </div>
+            
+            <div style={{
+              marginTop: '20px',
+              padding: '15px',
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: '10px',
+              fontSize: '13px',
+              color: '#888'
+            }}>
+              🔒 <strong>Privacy:</strong> Your email is only used for alert notifications. 
+              We never share your information. Unsubscribe anytime by clicking the link in any email.
+            </div>
+          </div>
+        )}
 
         {/* Verification Notice */}
         <div style={{

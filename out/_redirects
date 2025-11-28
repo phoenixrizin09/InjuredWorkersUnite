@@ -5,5 +5,5 @@
 /eye-oracle /the-eye-oracle 301
 /the-eye /the-eye-oracle 301
 
-# Handle 404s - let Cloudflare serve the 404.html
-/* /404.html 404
+# Note: Cloudflare Pages automatically serves 404.html for missing files
+# No catch-all redirect needed

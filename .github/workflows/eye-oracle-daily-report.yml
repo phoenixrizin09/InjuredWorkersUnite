@@ -43,6 +43,13 @@ jobs:
           git commit -m "👁️ Daily Eye Oracle Report - $(date +'%Y-%m-%d')"
           git push
       
+      - name: 💬 Send Discord Notification
+        if: steps.check_changes.outputs.changed == 'true'
+        run: node scripts/send-discord-summary.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        continue-on-error: true
+      
       - name: ✅ Report Status
         run: |
           echo "═══════════════════════════════════════════════════"

@@ -55,6 +55,13 @@ export default function About() {
       url: 'https://github.com/phoenixrizin09/InjuredWorkersUnite',
       color: '#333',
       description: 'Open-source advocacy tools'
+    },
+    {
+      name: 'Goodreads',
+      icon: '📚',
+      url: 'https://www.goodreads.com/user/show/bookwormliss8727',
+      color: '#553B08',
+      description: 'Book lover & reader — win free books!'
     }
   ];
 
@@ -457,6 +464,86 @@ export default function About() {
                   >
                     🚀 Visit 3mpwr App →
                   </a>
+                </div>
+
+                {/* Beyond Activism - Bookworm Section */}
+                <div style={{
+                  background: 'linear-gradient(135deg, rgba(85, 59, 8, 0.2) 0%, rgba(139, 90, 43, 0.15) 100%)',
+                  border: '2px solid #8B5A2B',
+                  borderRadius: '15px',
+                  padding: '1.5rem',
+                  marginTop: '1.5rem'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    marginBottom: '1rem'
+                  }}>
+                    <span style={{ fontSize: '2rem' }}>📚</span>
+                    <div>
+                      <h3 style={{
+                        fontSize: '1.3rem',
+                        color: '#DEB887',
+                        margin: 0,
+                        fontWeight: '700'
+                      }}>
+                        Beyond Activism: Bookworm Life
+                      </h3>
+                      <p style={{ margin: '0.25rem 0 0 0', color: '#888', fontSize: '0.9rem' }}>
+                        Because reading is self-care ✨
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <p style={{
+                    color: '#ccc',
+                    lineHeight: '1.7',
+                    marginBottom: '1rem',
+                    fontSize: '0.95rem'
+                  }}>
+                    When I'm not fighting for justice, you'll find me lost in a good book. Reading has always been my escape, my comfort, and my way to recharge. 
+                    <strong style={{ color: '#DEB887' }}> Did you know you can win FREE books on Goodreads?</strong> I've won so many times — all you have to do is enter giveaways and write a review after reading. It's amazing! 📖✨
+                  </p>
+                  
+                  <a
+                    href="https://www.goodreads.com/user/show/bookwormliss8727"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.75rem 1.5rem',
+                      background: 'linear-gradient(135deg, #553B08 0%, #8B5A2B 100%)',
+                      color: '#fff',
+                      textDecoration: 'none',
+                      borderRadius: '25px',
+                      fontWeight: 'bold',
+                      fontSize: '0.9rem',
+                      boxShadow: '0 4px 15px rgba(85, 59, 8, 0.4)',
+                      transition: 'all 0.3s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 6px 20px rgba(85, 59, 8, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = '0 4px 15px rgba(85, 59, 8, 0.4)';
+                    }}
+                  >
+                    📚 Find me on Goodreads →
+                  </a>
+                  
+                  <p style={{
+                    marginTop: '1rem',
+                    fontSize: '0.85rem',
+                    color: '#888',
+                    fontStyle: 'italic'
+                  }}>
+                    💡 Tip: Goodreads giveaways are free to enter. Just provide an honest review after reading!
+                  </p>
                 </div>
               </div>
             </div>

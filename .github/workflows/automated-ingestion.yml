@@ -56,13 +56,11 @@ jobs:
         env:
           DATA_DIR: ${{ github.workspace }}/data
       
-      - name: Send Telegram Summary
-        if: env.TELEGRAM_BOT_TOKEN != ''
-        run: node scripts/send-telegram-summary.js
+      - name: Send Discord Summary
+        if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
+        run: node scripts/send-discord-summary.js
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          DATA_DIR: ${{ github.workspace }}/data
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         continue-on-error: true
       
       - name: Commit updated data

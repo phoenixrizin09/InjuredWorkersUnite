@@ -48,11 +48,15 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes detected"
           else
-            git commit -m "Automated monitoring update"
+            git commit -m "👁️ Automated monitoring update"
             git push
           fi
-      - name: Send Daily Summary
+      - name: Send Discord Alert
+        if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
+        run: node scripts/send-discord-summary.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        continue-on-error: true
+      - name: Daily Summary
         if: always()
-        run: |
-          echo "Daily monitoring completed"
-          echo "Check data/ folder for results"
+        run: echo "✅ Daily monitoring completed - check data/ folder for results"

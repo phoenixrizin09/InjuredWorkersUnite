@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import fs from 'fs';
+import path from 'path';
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
@@ -14,7 +16,7 @@ import Footer from '../components/Footer';
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export default function MemeticEmbassy() {
+export default function MemeticEmbassy({ viralContent }) {
   const [activeTab, setActiveTab] = useState('tools');
 
   return (
@@ -114,11 +116,11 @@ export default function MemeticEmbassy() {
 
       {/* Content Sections */}
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        {activeTab === 'viral' && <TrendingViralSection />}
-        {activeTab === 'quickfire' && <QuickFireSection />}
+        {activeTab === 'viral' && <TrendingViralSection viralContent={viralContent} />}
+        {activeTab === 'quickfire' && <QuickFireSection viralContent={viralContent} />}
         {activeTab === 'tools' && <MemeToolsSection />}
-        {activeTab === 'templates' && <TemplatePacksSection />}
-        {activeTab === 'infographics' && <InfographicsSection />}
+        {activeTab === 'templates' && <TemplatePacksSection viralContent={viralContent} />}
+        {activeTab === 'infographics' && <InfographicsSection viralContent={viralContent} />}
         {activeTab === 'builder' && <CustomMemeBuilderSection />}
         {activeTab === 'slogans' && <SloganGeneratorSection />}
         {activeTab === 'advanced' && <AdvancedMemeWarfareSection />}
@@ -194,12 +196,13 @@ export default function MemeticEmbassy() {
 }
 
 // ============================================
-// 🔥 TRENDING VIRAL SECTION - HOT TAKES & READY-TO-SHARE
+// 🔥 TRENDING VIRAL SECTION - REAL DATA FROM EYE ORACLE + REDDIT
 // ============================================
-function TrendingViralSection() {
+function TrendingViralSection({ viralContent }) {
   const [copiedIndex, setCopiedIndex] = useState(null);
 
-  const viralTweets = [
+  // TIER 1: MEMETIC WEAPONS - Real viral tweets from Eye Oracle + Reddit
+  const viralTweets = viralContent?.content?.viral_tweets?.slice(0, 20) || [
     {
       text: "They denied my claim in 48 hours. My appeal has been 'pending' for 18 months. Make it make sense. 🤡",
       category: "🔥 SPICY",
@@ -2371,9 +2374,7 @@ function SloganGeneratorSection() {
       'Disability justice is climate justice',
       'Housing is healthcare',
       'Collective liberation or nothing',
-      'The future is accessible'
-    ]
-  };
+      'The future is accessible',
       'Community care > corporate profits',
       'Alone we beg. Together we demand.'
     ],
@@ -2788,3 +2789,43 @@ const inputStyle = {
   fontSize: '1rem',
   marginBottom: '1rem'
 };
+
+// Load real viral content from Eye Oracle + Reddit data
+export async function getStaticProps() {
+  try {
+    const viralPath = path.join(process.cwd(), 'public/data/viral-memes.json');
+    let viralContent = null;
+    
+    if (fs.existsSync(viralPath)) {
+      const viralData = fs.readFileSync(viralPath, 'utf8');
+      viralContent = JSON.parse(viralData);
+    }
+    
+    return {
+      props: {
+        viralContent: viralContent || {
+          content: {
+            viral_tweets: [],
+            meme_templates: [],
+            quickfire_slogans: [],
+            infographic_data: []
+          }
+        }
+      }
+    };
+  } catch (error) {
+    console.error('Error loading viral content:', error);
+    return {
+      props: {
+        viralContent: {
+          content: {
+            viral_tweets: [],
+            meme_templates: [],
+            quickfire_slogans: [],
+            infographic_data: []
+          }
+        }
+      }
+    };
+  }
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Injured Workers Unite - Blog</title>
+    <description>Daily features, tools, and updates for injured workers and disability rights activists</description>
+    <link>https://injuredworkersunite.pages.dev/blog</link>
+    <language>en-CA</language>
+    <lastBuildDate>Sat, 29 Nov 2025 03:14:37 GMT</lastBuildDate>
+    <atom:link href="https://injuredworkersunite.pages.dev/blog-rss.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Eye Oracle: Daily Corruption Reports</title>
+      <description>Every day, we publish a report on real government corruption. All cases from official sources. Every claim has a link so you can verify it yourself.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#6</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#6</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <category>Eye Oracle</category>
+    </item>
+    <item>
+      <title>Rabbit Holes: Become Your Own Investigator</title>
+      <description>Don&apos;t just trust The EYE—verify everything yourself. We&apos;ve compiled 11 categories of official government databases where you can search records, file FOI requests, track lobbying, and expose corruption.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#5</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#5</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <category>Investigation</category>
+    </item>
+    <item>
+      <title>Know Your Rights: Charter, CHRA, and UNCRPD</title>
+      <description>These are the laws that protect you. When bureaucrats violate your rights, knowing the specific sections gives you power. We break down the key protections in plain English.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#4</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#4</guid>
+      <pubDate>Wed, 26 Nov 2025 00:00:00 GMT</pubDate>
+      <category>Rights</category>
+    </item>
+    <item>
+      <title>All 12 Workers&apos; Compensation Boards in Canada</title>
+      <description>Every province and territory has a WCB. We&apos;ve compiled direct links to all of them, plus appeals tribunals and key resources for injured workers fighting for their benefits.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#3</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#3</guid>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+      <category>WCB</category>
+    </item>
+    <item>
+      <title>THE EYE ORACLE: Incorruptible Evidence-Driven Intelligence</title>
+      <description>THE EYE SEES ALL. THE EYE FORGETS NOTHING. THE EYE NEVER SLEEPS. Our unified system monitors government sources 24/7, translates legalese to plain English, and archives everything for transparency.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#2</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#2</guid>
+      <pubDate>Mon, 24 Nov 2025 00:00:00 GMT</pubDate>
+      <category>The EYE</category>
+    </item>
+    <item>
+      <title>Welcome to Injured Workers Unite</title>
+      <description>We&apos;re an independent activist platform fighting for disability rights, workers&apos; rights, and social justice in Canada. 100% transparent, zero tracking, evidence-based advocacy.</description>
+      <link>https://injuredworkersunite.pages.dev/blog#1</link>
+      <guid>https://injuredworkersunite.pages.dev/blog#1</guid>
+      <pubDate>Sun, 23 Nov 2025 00:00:00 GMT</pubDate>
+      <category>Welcome</category>
+    </item>
+  </channel>
+</rss>

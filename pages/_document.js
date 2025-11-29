@@ -11,6 +11,9 @@ export default function Document() {
         <meta name="author" content="InjuredWorkersUnite - @PhoenixRizin09" />
         <meta name="robots" content="index, follow" />
         
+        {/* Brave Rewards Creator Verification */}
+        <meta name="brave-rewards-verification" content="6b924d46f3c64bcd3d65daf1a9ced4fdd2e4c0e07bfa64c807ae845502853197" />
+        
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Injured Workers Unite - Disability Rights Activism" />
@@ -37,6 +40,56 @@ export default function Document() {
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "d0257041f40548068ae192704a20eaa1"}'
         ></script>
+        
+        {/* Structured Data - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Injured Workers Unite',
+              url: 'https://injuredworkersunite.pages.dev',
+              logo: 'https://injuredworkersunite.pages.dev/logo.png',
+              description: 'Independent activist platform advocating for disability rights, workers\' rights, and social justice in Canada.',
+              sameAs: [
+                'https://twitter.com/Phoenixrizin09',
+                'https://www.facebook.com/profile.php?id=61551426728894',
+                'https://www.instagram.com/PhoenixRizin09',
+                'https://www.tiktok.com/@PhoenixRizin09',
+                'https://www.youtube.com/@InjuredWorkersVideoCampaign',
+                'https://github.com/phoenixrizin09/InjuredWorkersUnite'
+              ],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                email: 'injuredworker34@gmail.com',
+                contactType: 'Customer Service'
+              },
+              foundingDate: '2023',
+              areaServed: 'CA',
+              keywords: 'disability rights, workers rights, WSIB, ODSP, social justice, Canada, activism'
+            })
+          }}
+        />
+        
+        {/* Structured Data - WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Injured Workers Unite',
+              url: 'https://injuredworkersunite.pages.dev',
+              description: '100% transparent, zero tracking, evidence-based advocacy for injured workers and disabled persons.',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://injuredworkersunite.pages.dev/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string'
+              }
+            })
+          }}
+        />
       </Head>
       <body>
         <Main />

@@ -12,17 +12,21 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
       
       - name: Install dependencies
         run: npm ci
+      
+      - name: Fetch real data from APIs
+        run: npm run fetch:real
+        continue-on-error: true
       
       - name: Generate daily blog post
         run: node scripts/generate-daily-blog-post.js
@@ -42,7 +46,7 @@ jobs:
           git push
       
       - name: Send Discord notification
-        if: steps.check-changes.outputs.changed == 'true' && secrets.DISCORD_WEBHOOK_URL != ''
+        if: steps.check-changes.outputs.changed == 'true'
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \

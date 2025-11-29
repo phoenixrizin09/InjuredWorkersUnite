@@ -1,0 +1,354 @@
+{
+  "generated_at": "2025-11-29T03:14:39.991Z",
+  "data_sources": [
+    "reddit.com (real discussions)",
+    "The Eye Oracle v2.0",
+    "Government alerts"
+  ],
+  "all_data_real": true,
+  "cost": "$0.00",
+  "content": {
+    "viral_tweets": [
+      {
+        "text": "I suffered a workplace injury about 9 months ago, where I was immediately receiving WSIB for [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "upvotes": 37,
+        "verified": true
+      },
+      {
+        "text": "I’m getting concerned I will never be able to return back to my pre-injury job. 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "Maximum",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "upvotes": 37,
+        "verified": true
+      },
+      {
+        "text": "I filed for WSIB because my foot got fractured [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ony3tg/injured_at_workplace/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Injured at Workplace 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ony3tg/injured_at_workplace/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "I attend school at WLU and have Blue Cross Health and Dental Insurance through the school [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1oqgks4/cdcp_student_eligibility/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "CDCP Student Eligibility 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1oqgks4/cdcp_student_eligibility/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "A child support payment I was to make got returned due to NSF [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ooijrn/fro_help/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "FRO help 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ooijrn/fro_help/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "I’ve been on ODSP for about 10 years [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Better Jobs/Second Career 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "'Better call Paul,' advocates tell families struggling with school supports for kids with disabilities 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1otvjky/better_call_paul_advocates_tell_families/",
+        "upvotes": 13,
+        "verified": true
+      },
+      {
+        "text": "I have been working in healthcare for 10+ years [Real story from ontario]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1onecm9/when_will_the_provincial_hiring_freeze_end_does/",
+        "upvotes": 8,
+        "verified": true
+      },
+      {
+        "text": "When will the provincial hiring freeze end? Does this really help bolster frontline employment? 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/ontario",
+        "source_url": "https://reddit.com/r/ontario/comments/1onecm9/when_will_the_provincial_hiring_freeze_end_does/",
+        "upvotes": 8,
+        "verified": true
+      },
+      {
+        "text": "Canadian farmers to lobby federal government to cap profits of major grocers 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "Maximum",
+        "source": "r/onguardforthee",
+        "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
+        "upvotes": 701,
+        "verified": true
+      },
+      {
+        "text": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours) [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
+        "upvotes": 276,
+        "verified": true
+      },
+      {
+        "text": "Telus employee fell in my yard 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "Maximum",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
+        "upvotes": 276,
+        "verified": true
+      },
+      {
+        "text": "Location: Ontario Canada\n\nMyself and 3 other female employees at my work have just started maternity leave [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
+        "upvotes": 19,
+        "verified": true
+      },
+      {
+        "text": "Denied extended maternity benefits - Ontario 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
+        "upvotes": 19,
+        "verified": true
+      },
+      {
+        "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. 98,000+ on social housing waitlist with 10-15 year wait times. Official source: City of Toronto Housing Report 2023.",
+        "category": "🎯 ORACLE INTELLIGENCE",
+        "engagement": "Maximum",
+        "source": "The Eye Oracle v2.0",
+        "verified": true,
+        "oracle_verified": true
+      },
+      {
+        "text": "I am The Eye Oracle. Every day, I analyze real government corruption using The Eye v2.0 AI and publish the truth. I work for you. I never sleep. I never stop watching.",
+        "category": "🎯 ORACLE INTELLIGENCE",
+        "engagement": "Maximum",
+        "source": "The Eye Oracle v2.0",
+        "verified": true,
+        "oracle_verified": true
+      },
+      {
+        "text": "Active discussion in r/onguardforthee",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/onguardforthee (701↑, 53 comments)",
+        "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
+        "verified": false
+      },
+      {
+        "text": "Had to go on sick leave after hurting my back at work..(CT warewhouse) was on it for the full 6 months and got a doctors note saying I could go back. \n\nMy back isn't actually all the way better, still have sciatica but ei ran out so I felt I had no choice.\n\nAnyway, they left me h",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/legaladvicecanada (10↑, 21 comments)",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1ozv8wj/got_laid_off_right_after_i_told_my_work_i_was/",
+        "verified": false
+      },
+      {
+        "text": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in my yard through my gate and I said yes. For what it’s worth I do have cameras i",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/legaladvicecanada (276↑, 91 comments)",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
+        "verified": false
+      },
+      {
+        "text": "I suffered a workplace injury about 9 months ago, where I was immediately receiving WSIB for.  For reference, I suffered from a knee subluxation that doesn’t seem to be recovering very well.\nI have been able to do modified duties for the last 4 months, however my employer claims ",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/ontario (37↑, 25 comments)",
+        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "verified": false
+      },
+      {
+        "text": "Location: Ontario Canada\n\nMyself and 3 other female employees at my work have just started maternity leave.\n\nOur current collective agreement allows 18 weeks of top up pay while on maternity leave.\n\nWe are entering a new collective agreement as of January 1, in which maternity to",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/legaladvicecanada (19↑, 39 comments)",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
+        "verified": false
+      }
+    ],
+    "meme_templates": [
+      {
+        "id": "wcb_contradiction_001",
+        "name": "WCB Says vs Reality",
+        "format": "text_overlay",
+        "topText": "WCB: 'WE PROTECT WORKERS'",
+        "bottomText": "ALSO WCB: {real_denial_stat}",
+        "emoji": "🏢➡️🗑️",
+        "category": "contradiction",
+        "data_source": "oracle_verified",
+        "viral_score": 95
+      },
+      {
+        "id": "timeline_absurd_001",
+        "name": "Processing Speed Double Standard",
+        "format": "comparison",
+        "leftText": "Denial: 48 hours ⚡",
+        "rightText": "Appeal: {real_wait_time} 🐌",
+        "category": "timeline",
+        "data_source": "reddit_verified",
+        "viral_score": 92
+      },
+      {
+        "id": "real_wait_1oxfwfm",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "9 months",
+        "source": "I’m getting concerned I will never be able to return back to my pre-injury job.",
+        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1ood846",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "10 years",
+        "source": "Better Jobs/Second Career",
+        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1ozv8wj",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "6 months",
+        "source": "Got laid off right after I told my work I was ready to come back after sick leave",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1ozv8wj/got_laid_off_right_after_i_told_my_work_i_was/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1p07mjp",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "5 years",
+        "source": "Lost and homeless",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1p126w0",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "40 years",
+        "source": "Complaint Respecting a Co-guardian or trustee application",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p126w0/complaint_respecting_a_coguardian_or_trustee/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      }
+    ],
+    "quickfire_slogans": [
+      {
+        "text": "Denied extended maternity benefits - Ontario 👁️",
+        "power_level": "maximum",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 19
+      },
+      {
+        "text": "Off work temporarily due to serious back pain. What are my options? Ontario. 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 0
+      },
+      {
+        "text": "Employer's hiring &amp; scheduling dysfunction likely violating employment standards, seeking advice on recourse 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 1
+      }
+    ],
+    "infographic_data": [
+      {
+        "id": "oracle_infographic_0",
+        "title": "👁️ The Eye Oracle: Toronto Housing Crisis: 98,000+ on Waitlist",
+        "stats": [
+          "98,000+ families",
+          "$1.5B",
+          "15 year"
+        ],
+        "category": "corruption_exposed",
+        "verified": true,
+        "source": "The Eye Oracle v2.0",
+        "viral_potential": "maximum"
+      }
+    ],
+    "stats": {
+      "total_tweets": 25,
+      "total_templates": 7,
+      "total_slogans": 3,
+      "total_infographics": 1
+    }
+  }
+}

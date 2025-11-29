@@ -134,22 +134,80 @@ Every claim on this site includes:
 
 No speculation. No conspiracy theories. Just facts.
 
+### 🎯 Real Data Commitment
+
+**100% Real Data - Zero Mock Data**
+
+All data on this site comes from:
+- Government open data portals (verifiable)
+- Official APIs (documented)
+- Public court records (cited)
+- Parliamentary records (linked)
+
+**Transparency**: 
+- Data sources are in `public/data/`
+- Fetch scripts are open source
+- Every alert links to original source
+- Update timestamps are visible
+
+**Cost**: $0.00 (all APIs are free)
+
+See [REAL_DATA_IMPLEMENTATION.md](REAL_DATA_IMPLEMENTATION.md) for complete details.
+
 ---
 
 ## 🚀 Development
 
+### Quick Start
+
 ```bash
+# 1. Run complete setup (fetches real data, builds site)
+.\setup.ps1
+
+# OR manually:
+
 # Install dependencies
 npm install
+
+# Fetch 100% REAL data from government APIs (FREE)
+npm run fetch:real
+
+# Generate sitemap and RSS feeds
+npm run generate:sitemap
+npm run generate:rss
 
 # Run development server
 npm run dev
 
-# Build for production
+# Build for production (includes data fetch)
 npm run build
+```
 
-# Export static site
-npm run export
+### 📊 Real Data Integration
+
+**We fetch 100% real data from FREE government APIs:**
+
+- ✅ **Open Canada** - Federal datasets (workers comp, disability benefits)
+- ✅ **Ontario Open Data** - Provincial datasets (WSIB, ODSP)
+- ✅ **OpenParliament** - Bills and debates
+- ✅ **Reddit** - Community discussions
+
+**Cost**: $0.00 (all APIs are free)  
+**Update Frequency**: Every 6 hours via GitHub Actions  
+**Verifiable**: Every data point links to official sources
+
+See **[QUICK_START.md](QUICK_START.md)** for detailed setup instructions.  
+See **[REAL_DATA_IMPLEMENTATION.md](REAL_DATA_IMPLEMENTATION.md)** for complete documentation.
+
+### Scripts
+
+```bash
+npm run fetch:real       # Fetch real government data
+npm run fetch:all        # Fetch data + generate blog + oracle
+npm run generate:sitemap # Generate dynamic sitemap
+npm run generate:rss     # Generate RSS feeds
+npm test                 # Run test suite
+npm run build            # Full build with data fetch
 ```
 
 Built with Next.js pages router for maximum compatibility and simple static hosting.

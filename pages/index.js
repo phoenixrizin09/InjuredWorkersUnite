@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import TransparencyBanner from '../components/TransparencyBanner';
 
 export default function Home() {
   return (
     <>
     <Header />
+    <TransparencyBanner />
     <div style={{ 
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

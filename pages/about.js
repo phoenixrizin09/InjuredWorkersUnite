@@ -59,7 +59,7 @@ export default function About() {
     {
       name: 'Goodreads',
       icon: '📚',
-      url: 'https://www.goodreads.com/user/show/bookwormliss8727',
+      url: 'https://www.goodreads.com/user/show/1581978-lissa',
       color: '#553B08',
       description: 'Book lover & reader — win free books!'
     }
@@ -507,7 +507,7 @@ export default function About() {
                   </p>
                   
                   <a
-                    href="https://www.goodreads.com/user/show/bookwormliss8727"
+                    href="https://www.goodreads.com/user/show/1581978-lissa"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{

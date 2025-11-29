@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-11-29T04:17:34.012Z",
+  "summary": {
+    "critical": 3,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "passed": 5
+  },
+  "issues": [
+    {
+      "severity": "CRITICAL",
+      "file": "pages/_document.js",
+      "issue": "Potential exposed API key or secret",
+      "matches": [
+        "token\": \"d0257041f40548068ae192704a20eaa1"
+      ],
+      "fix": "Move to environment variables (process.env.API_KEY)"
+    },
+    {
+      "severity": "CRITICAL",
+      "file": "scripts/generate-meme-alt-text-ai.js",
+      "issue": "Potential exposed API key or secret",
+      "matches": [
+        "TOKEN = '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"
+      ],
+      "fix": "Move to environment variables (process.env.API_KEY)"
+    },
+    {
+      "severity": "CRITICAL",
+      "file": "utils/free-api-connectors.js",
+      "issue": "Potential exposed API key or secret",
+      "matches": [
+        "api_key: 'https"
+      ],
+      "fix": "Move to environment variables (process.env.API_KEY)"
+    }
+  ],
+  "warnings": [
+    {
+      "severity": "WARNING",
+      "issue": ".gitignore missing important entries",
+      "missing": [
+        ".env.local"
+      ],
+      "fix": "Add these entries to .gitignore"
+    }
+  ],
+  "passed": [
+    "Security headers configured",
+    "Manual npm audit required",
+    "HTTPS enforcement via HSTS",
+    "Rate limiting detected in API routes",
+    "CORS configuration acceptable"
+  ],
+  "recommendations": [
+    "Run \"npm audit fix\" to address dependency vulnerabilities",
+    "Consider implementing rate limiting for API routes",
+    "Test security headers with securityheaders.com after deployment",
+    "Set up automated security scanning with GitHub Actions",
+    "Enable Dependabot for automated dependency updates",
+    "Review and rotate any API keys periodically",
+    "Implement monitoring for suspicious activity",
+    "Keep Next.js and dependencies up to date"
+  ]
+}

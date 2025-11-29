@@ -1,0 +1,37 @@
+{
+  "service": "UptimeRobot",
+  "url": "https://uptimerobot.com/",
+  "plan": "Free",
+  "features": [
+    "50 monitors (free)",
+    "5-minute check intervals",
+    "Email/SMS alerts",
+    "Public status pages",
+    "SSL certificate monitoring"
+  ],
+  "monitors": [
+    {
+      "name": "InjuredWorkersUnite - Homepage",
+      "type": "HTTP(s)",
+      "url": "https://59047984.injuredworkersunite-rsr.pages.dev",
+      "interval": "5 minutes"
+    },
+    {
+      "name": "InjuredWorkersUnite - API Health",
+      "type": "HTTP(s)",
+      "url": "https://59047984.injuredworkersunite-rsr.pages.dev/api/stats",
+      "interval": "5 minutes"
+    },
+    {
+      "name": "InjuredWorkersUnite - RSS Feed",
+      "type": "HTTP(s)",
+      "url": "https://59047984.injuredworkersunite-rsr.pages.dev/blog-rss.xml",
+      "interval": "15 minutes"
+    }
+  ],
+  "alerts": [
+    "Down for 2 minutes → Email notification",
+    "Down for 5 minutes → SMS notification (optional)",
+    "SSL certificate expires in 7 days → Email warning"
+  ]
+}

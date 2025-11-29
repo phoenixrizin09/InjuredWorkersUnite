@@ -1,0 +1,46 @@
+{
+  "analytics": {
+    "service": "Plausible Analytics",
+    "setup": [
+      "1. Visit https://plausible.io/",
+      "2. Sign up for free (or self-host)",
+      "3. Add site: injuredworkersunite.pages.dev",
+      "4. Script already added to Analytics.js component",
+      "5. Import Analytics component in pages/_app.js",
+      "6. View stats at https://plausible.io/injuredworkersunite.pages.dev"
+    ],
+    "cost": "$0/month (or $9/month for managed)",
+    "features": [
+      "No cookies needed",
+      "GDPR compliant",
+      "Lightweight (<1KB)",
+      "Real-time data",
+      "No personal data collection"
+    ]
+  },
+  "monitoring": {
+    "service": "UptimeRobot",
+    "setup": [
+      "1. Visit https://uptimerobot.com/",
+      "2. Sign up (free account)",
+      "3. Add monitor: HTTP(s) - https://59047984.injuredworkersunite-rsr.pages.dev",
+      "4. Set check interval: 5 minutes",
+      "5. Add email notification",
+      "6. Optional: Create public status page",
+      "7. Repeat for sitemap, RSS feeds, API endpoints"
+    ],
+    "cost": "$0/month",
+    "monitors": 3
+  },
+  "github_actions": {
+    "service": "GitHub Actions Monitoring",
+    "setup": [
+      "1. Workflow already created: .github/workflows/site-monitoring.yml",
+      "2. Commit and push to enable",
+      "3. Runs hourly automatically",
+      "4. Checks homepage, sitemap, RSS feeds, data freshness",
+      "5. View results: https://github.com/phoenixrizin09/InjuredWorkersUnite/actions"
+    ],
+    "cost": "$0/month (unlimited for public repos)"
+  }
+}

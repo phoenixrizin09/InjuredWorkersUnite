@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-11-29T03:36:23.428Z",
+  "summary": {
+    "totalIssues": 12,
+    "errors": 0,
+    "warnings": 12,
+    "filesScanned": 30
+  },
+  "issues": [
+    {
+      "severity": "WARNING",
+      "file": "pages/_app.js",
+      "issue": "Heading skip: h0 → h2",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/admin/index.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/alerts.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/blog.js",
+      "issue": "Heading skip: h2 → h4",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/contact.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/eye-oracle-reports.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/index.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/legislative-tracking.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/memetic-embassy-full.js",
+      "issue": "Heading skip: h2 → h4",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/memetic-embassy.js",
+      "issue": "Heading skip: h2 → h4",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/the-eye-oracle.js",
+      "issue": "Heading skip: h1 → h3",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    },
+    {
+      "severity": "WARNING",
+      "file": "pages/the-eye-oracle.js",
+      "issue": "Heading skip: h2 → h4",
+      "wcag": "WCAG 2.1 AAA 2.4.6"
+    }
+  ],
+  "fixes": [
+    {
+      "category": "Color Contrast",
+      "priority": "HIGH",
+      "wcag": "WCAG 2.1 AA 1.4.3",
+      "recommendation": "Verify all text has 4.5:1 contrast ratio (3:1 for large text)",
+      "tool": "Use Chrome DevTools Lighthouse or WebAIM Contrast Checker",
+      "action": "Manual verification required after deployment"
+    },
+    {
+      "category": "Keyboard Navigation",
+      "priority": "HIGH",
+      "wcag": "WCAG 2.1 A 2.1.1",
+      "recommendation": "All interactive elements must be keyboard accessible",
+      "implementation": "Ensure tabIndex, focus states, and Enter/Space handlers",
+      "testing": "Tab through entire site, verify all actions work without mouse"
+    },
+    {
+      "category": "Semantic HTML",
+      "priority": "MEDIUM",
+      "wcag": "WCAG 2.1 A 4.1.1",
+      "recommendation": "Use <nav>, <main>, <article>, <aside>, <header>, <footer>",
+      "benefit": "Improves screen reader navigation",
+      "status": "Review _document.js and major page components"
+    }
+  ],
+  "nextSteps": [
+    "Fix all ERROR severity issues immediately",
+    "Address WARNING issues before production",
+    "Test with screen reader (NVDA or JAWS)",
+    "Run Lighthouse accessibility audit",
+    "Verify keyboard navigation (Tab, Enter, Space, Arrows)",
+    "Check color contrast with WebAIM tool",
+    "Add skip navigation link",
+    "Ensure all forms have labels",
+    "Test at 200% zoom",
+    "Validate with WAVE browser extension"
+  ]
+}

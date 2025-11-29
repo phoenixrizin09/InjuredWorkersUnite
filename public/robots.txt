@@ -1,32 +1,26 @@
-# InjuredWorkersUnite - Activist Platform for Disability Rights
-# This site advocates for injured workers, disabled persons, and social justice in Canada
-# All content is public information and advocacy materials
+# Robots.txt for InjuredWorkersUnite
+# Updated: 2025-11-29
 
 User-agent: *
 Allow: /
 
-# Sitemap location
+# XML Sitemaps
 Sitemap: https://injuredworkersunite.pages.dev/sitemap.xml
 
-# Block AI scrapers that don't respect robots.txt
-User-agent: GPTBot
-Disallow: /
+# RSS Feeds
+Sitemap: https://injuredworkersunite.pages.dev/blog-rss.xml
+Sitemap: https://injuredworkersunite.pages.dev/oracle-rss.xml
+Sitemap: https://injuredworkersunite.pages.dev/alerts-rss.xml
 
-User-agent: ChatGPT-User
-Disallow: /
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
 
-User-agent: CCBot
-Disallow: /
+# Disallow admin areas (even though we don't have backend)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /out/
 
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-# Important pages for indexing (legal transparency)
-# /legal - Comprehensive legal disclaimers and privacy policy
-# /the-eye - Government monitoring system
-# /target-acquisition - Strategic activism targets
-# /memetic-embassy - Meme creation tools
-# /contact - Contact information
+# Allow all static assets
+Allow: /memes/
+Allow: /data/
+Allow: /.well-known/

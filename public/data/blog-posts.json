@@ -100,5 +100,95 @@
     ],
     "ctaText": "Join the Movement →",
     "ctaLink": "/about"
+  },
+  {
+    "id": "blog-1764387142109-0",
+    "title": "How The Eye Oracle Exposes Government Corruption with Real Data",
+    "slug": "eye-oracle-exposes-corruption-real-data",
+    "date": "2025-11-29",
+    "category": "The Eye Oracle",
+    "emoji": "👁️",
+    "excerpt": "Discover how our AI-powered investigation system analyzes 89+ government datasets to uncover systemic corruption patterns affecting injured workers.",
+    "content": "The Eye Oracle v2.0 represents a breakthrough in digital activism: an automated system that monitors government data 24/7 to expose corruption that harms injured workers and disabled persons.\n\n## What Makes The Eye Oracle Different\n\nUnlike traditional advocacy that relies on individual complaints, The Eye Oracle:\n- Analyzes 89+ real government datasets automatically\n- Monitors 24 Reddit communities for real worker stories\n- Tracks 20+ active Parliament bills\n- Updates every 6 hours with fresh data\n- Costs $0.00 (100% free APIs)\n\n## Real Data, Real Results\n\nEvery investigation is backed by verifiable government sources:\n- Open Canada Data Portal\n- Ontario Open Data\n- OpenParliament API\n- Reddit public discussions\n\nNo opinions. No guesswork. Just facts and evidence.\n\n## How It Works\n\n1. **Data Collection**: GitHub Actions fetch data every 6 hours\n2. **Analysis**: Pattern detection algorithms identify corruption indicators\n3. **Verification**: All claims link to official sources\n4. **Reporting**: Daily reports published automatically\n5. **Action**: Target acquisition system identifies responsible entities\n\n## Impact\n\nThe Eye sees patterns humans miss. By analyzing thousands of data points simultaneously, it reveals:\n- Policy contradictions\n- Processing delays\n- Denial rate patterns\n- Geographic disparities\n- Corruption risk scores\n\n## Get Involved\n\nVisit /the-eye-oracle to explore the latest investigations. Share findings on social media. Contact your representatives. The Eye provides the evidence—you provide the action.\n\nTogether, we make corruption visible. Together, we demand accountability.",
+    "author": "@PhoenixRizin09",
+    "readTime": "2 min read",
+    "tags": [
+      "The Eye Oracle",
+      "activism",
+      "workers rights",
+      "real data"
+    ]
+  },
+  {
+    "id": "blog-1764387142111-1",
+    "title": "Memetic Warfare: How Memes Fight for Workers' Rights",
+    "slug": "memetic-warfare-memes-workers-rights",
+    "date": "2025-11-30",
+    "category": "Memetic Embassy",
+    "emoji": "🏛️",
+    "excerpt": "Learn how viral content powered by real data amplifies the voices of injured workers and disabled persons across Canada.",
+    "content": "Memes aren't just entertainment—they're weapons of truth in the fight for workers' rights.\n\n## Why Memes Matter\n\nIn 280 characters or a single image, memes can:\n- Expose hypocrisy instantly\n- Spread truth virally\n- Bypass corporate media\n- Connect with younger audiences\n- Make complex issues accessible\n\n## The Memetic Embassy Arsenal\n\nOur tools generate viral content from REAL DATA:\n\n### Tier 1: Viral Tweets\n25+ ready-to-share tweets generated from:\n- Real Reddit worker stories (24 posts)\n- Eye Oracle corruption findings\n- Government alert data\n\n### Tier 2: Meme Templates\n7+ data-driven templates featuring:\n- Real wait times from Reddit posts\n- Actual denial statistics\n- Verified government contradictions\n\n### Tier 3: Infographic Data\nAuto-extracted statistics from Eye Oracle reports:\n- People affected (98,000+ on Toronto housing waitlist)\n- Dollar amounts ($1.5B homelessness costs)\n- Timeline absurdities (48-hour denials vs 18-month appeals)\n\n## Real Example\n\n**From Reddit**: \"I'm getting concerned I will never be able to return back to my pre-injury job.\"\n**Upvotes**: 39\n**Source**: r/ontario\n\nThis becomes a viral tweet that resonates because it's REAL.\n\n## Join the Memetic Resistance\n\nVisit /memetic-embassy to:\n1. Generate custom slogans\n2. Access meme templates\n3. Download viral content\n4. Share on social media\n\nEvery share amplifies truth. Every meme fights corruption.",
+    "author": "@PhoenixRizin09",
+    "readTime": "1 min read",
+    "tags": [
+      "Memetic Embassy",
+      "activism",
+      "workers rights",
+      "real data"
+    ]
+  },
+  {
+    "id": "blog-1764387142111-2",
+    "title": "100% Real Data: Why We Never Use Mock Content",
+    "slug": "100-percent-real-data-no-mock-content",
+    "date": "2025-12-01",
+    "category": "Transparency",
+    "emoji": "✅",
+    "excerpt": "Transparency is our foundation. Learn how we verify every piece of data and why we refuse to use fake examples.",
+    "content": "In an age of misinformation, we make one ironclad promise: ZERO MOCK DATA.\n\n## The Problem with Mock Data\n\nMany activist sites use \"sample data\" or \"example statistics.\" This:\n- Undermines credibility\n- Weakens legal arguments\n- Gives opponents ammunition\n- Betrays community trust\n\n## Our Standard\n\nEvery number, every story, every statistic comes from:\n\n1. **Government APIs** (4 sources, all free):\n   - open.canada.ca - Federal datasets\n   - data.ontario.ca - Provincial data\n   - openparliament.ca - Bills and debates\n   - reddit.com - Real community discussions\n\n2. **Verification Requirements**:\n   - Must link to original source\n   - Must include timestamp\n   - Must be publicly accessible\n   - Must update automatically\n\n3. **Transparency Measures**:\n   - All source code public on GitHub\n   - Data fetch logs visible\n   - API endpoints documented\n   - Cost always displayed ($0.00)\n\n## Current Data Stats\n\nAs of today:\n- **89 government datasets** actively monitored\n- **24 Reddit posts** from real injured workers\n- **20 Parliament bills** tracked\n- **12 active alerts** generated\n- **Updates**: Every 6 hours automatically\n- **Cost**: $0.00 (all APIs free)\n\n## How to Verify\n\nDon't trust us—verify yourself:\n\n1. Visit /alerts to see real-time data\n2. Click any source link to see original\n3. Check data-summary.json for timestamps\n4. Review our GitHub repository\n5. Run fetch scripts yourself\n\n## Why This Matters\n\nWhen you share our content, you're sharing FACTS, not opinions. When you cite our data, you're citing GOVERNMENT SOURCES, not activist claims.\n\nThis is why The Eye works. This is why we win.\n\nTruth is our weapon. Verification is our shield.",
+    "author": "@PhoenixRizin09",
+    "readTime": "2 min read",
+    "tags": [
+      "Transparency",
+      "activism",
+      "workers rights",
+      "real data"
+    ]
+  },
+  {
+    "id": "blog-1764387142111-3",
+    "title": "GitHub Actions: Automating the Fight for Justice",
+    "slug": "github-actions-automating-justice",
+    "date": "2025-12-02",
+    "category": "Tech",
+    "emoji": "🤖",
+    "excerpt": "Behind the scenes: How we use GitHub Actions to fetch data every 6 hours, update content automatically, and deploy changes—all for $0.00.",
+    "content": "Automation isn't just convenient—it's essential for effective activism.\n\n## The Challenge\n\nManual updates are:\n- Time-consuming\n- Error-prone\n- Inconsistent\n- Not scalable\n\n## The Solution: GitHub Actions\n\nWe use free GitHub Actions to:\n\n### 1. Auto-Fetch Data (Every 6 Hours)\n```yaml\nschedule:\n  - cron: \"0 */6 * * *\"  # Every 6 hours\n```\n\n**What it does**:\n- Fetches 89 government datasets\n- Collects 24+ Reddit discussions\n- Tracks 20 Parliament bills\n- Generates 12 real-time alerts\n- Updates all JSON files\n\n### 2. Auto-Generate Content\n- Daily blog posts\n- Weekly Eye Oracle reports\n- Viral meme content from real data\n- Dynamic sitemap\n- 3 RSS feeds\n\n### 3. Auto-Deploy Changes\n- Builds static site\n- Runs tests\n- Deploys to Cloudflare Pages\n- Updates within minutes\n\n## Cost: $0.00\n\nGitHub Actions provides:\n- 2,000 free minutes/month (private repos)\n- Unlimited for public repos\n- No credit card required\n- Enterprise-grade reliability\n\nOur usage: ~30 minutes/day = 100% free\n\n## Impact\n\n**Before automation**:\n- Manual updates took 2 hours/day\n- Data often stale\n- Human errors common\n- Limited scalability\n\n**After automation**:\n- Zero manual intervention\n- Data always fresh (max 6 hours old)\n- Perfect consistency\n- Scales infinitely\n\n## Lessons for Activists\n\nYou don't need expensive infrastructure to fight power. Free tools can:\n- Level the playing field\n- Sustain long-term campaigns\n- Scale without funding\n- Maintain 24/7 operations\n\n## Open Source\n\nOur entire automation setup is public:\n- `.github/workflows/` directory\n- All scripts documented\n- Copy and adapt freely\n- No permission needed\n\nThis is digital activism in 2025: automated, verified, unstoppable.",
+    "author": "@PhoenixRizin09",
+    "readTime": "2 min read",
+    "tags": [
+      "Tech",
+      "activism",
+      "workers rights",
+      "real data"
+    ]
+  },
+  {
+    "id": "blog-1764387142111-4",
+    "title": "Brave Rewards: How We Earn Passive Income Without Ads",
+    "slug": "brave-rewards-passive-income-no-ads",
+    "date": "2025-12-03",
+    "category": "Funding",
+    "emoji": "💰",
+    "excerpt": "Learn how we generate sustainable income for our activism without compromising privacy or using intrusive ads.",
+    "content": "Funding activism without corporate compromise is possible.\n\n## The Traditional Problem\n\nMost sites fund themselves through:\n- Invasive ads (privacy violation)\n- Corporate sponsorships (conflicts of interest)\n- Paywalls (excludes poor and disabled)\n- Data selling (unethical)\n\nAll of these betray the mission.\n\n## Our Approach: Brave Rewards\n\n**What it is**: Privacy-respecting browser tips\n\n**How it works**:\n1. Users browse with Brave Browser\n2. Brave shows privacy-respecting ads (optional)\n3. Users earn BAT tokens\n4. Users tip their favorite sites automatically\n5. We receive passive income\n\n**Key features**:\n- ✅ Zero tracking\n- ✅ No user data collected\n- ✅ Completely optional\n- ✅ No behavior change required\n- ✅ Crypto payments (private)\n\n## Income Potential\n\nConservative estimate:\n- 1,000 monthly visitors\n- 5% use Brave Browser (50 people)\n- 20% have auto-contribute enabled (10 people)\n- Average $5/month per contributor\n- **Result: $50/month passive income**\n\nOptimistic estimate (10,000 visitors):\n- **Result: $500/month**\n\n## Why This Works\n\n1. **Privacy-aligned**: No tracking or data collection\n2. **Optional**: Never required to access content\n3. **Fair**: Users choose to support\n4. **Sustainable**: Recurring monthly income\n5. **Crypto-based**: Can't be seized or frozen\n\n## Other Income Streams\n\nWe also accept:\n- Ko-fi donations (one-time or monthly)\n- GitHub Sponsors (developer community)\n- PayPal (traditional option)\n- Ethical affiliate links (relevant products only)\n\n## Transparency\n\nAll income goes to:\n- Hosting costs ($0 - Cloudflare is free)\n- Domain costs (~$12/year)\n- Development time\n- Content creation\n- Nothing else\n\nNo salaries. No corporate partnerships. No compromises.\n\n## For Other Activists\n\nSetup Brave Rewards:\n1. Sign up: creators.brave.com\n2. Add verification file to your site\n3. Wait for approval\n4. Start receiving tips\n\nIt takes 10 minutes. It costs nothing. It works.\n\nThis is how we sustain the fight.",
+    "author": "@PhoenixRizin09",
+    "readTime": "2 min read",
+    "tags": [
+      "Funding",
+      "activism",
+      "workers rights",
+      "real data"
+    ]
   }
 ]

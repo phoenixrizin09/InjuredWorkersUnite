@@ -1613,6 +1613,14 @@ export default function MemeticEmbassyFull() {
               🏠 A Safe Haven<br/>
               🔥 A Satire-Powered Liberation Project
             </p>
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#FFD700',
+              marginTop: '1.5rem',
+              fontWeight: 'bold'
+            }}>
+              🌐 injuredworkersunite.pages.dev
+            </p>
           </div>
         </div>
 
@@ -1673,6 +1681,25 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Memetic Magic Banner */}
+            <div style={{
+              background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+              padding: '1.5rem',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #fff',
+              animation: 'pulse 3s ease-in-out infinite'
+            }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✨🎭✨</div>
+              <h3 style={{ fontSize: '1.5rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                MEMETIC MAGIC ACTIVATED
+              </h3>
+              <p style={{ fontSize: '1rem', color: '#000', margin: 0, opacity: 0.9 }}>
+                Where satire becomes power • Where humor becomes resistance • Where memes become movements
+              </p>
+            </div>
+            
             <h2 style={{
               fontSize: 'clamp(2rem, 6vw, 4rem)',
               textAlign: 'center',
@@ -1768,10 +1795,22 @@ export default function MemeticEmbassyFull() {
                   <div style={{
                     color: '#aaa',
                     fontSize: '1rem',
-                    marginBottom: '1rem',
+                    marginBottom: '0.5rem',
                     fontStyle: 'italic'
                   }}>
                     {hero.class}
+                  </div>
+                  
+                  <div style={{
+                    background: 'rgba(255,0,255,0.2)',
+                    padding: '0.5rem',
+                    borderRadius: '8px',
+                    marginBottom: '1rem',
+                    border: '1px solid rgba(255,0,255,0.3)'
+                  }}>
+                    <span style={{ fontSize: '0.85rem', color: '#ff00ff', fontWeight: 'bold' }}>
+                      ✨ Memetic Power: {['LEGENDARY', 'EPIC', 'SUPREME'][Math.floor(Math.random() * 3)]}
+                    </span>
                   </div>
 
                   {selectedHero === hero.id && (
@@ -1848,6 +1887,25 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Memetic Magic Warning */}
+            <div style={{
+              background: 'linear-gradient(135deg, #ff0000 0%, #ff6b6b 100%)',
+              padding: '1.5rem',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #fff',
+              boxShadow: '0 0 30px rgba(255,0,0,0.5)'
+            }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️💀⚠️</div>
+              <h3 style={{ fontSize: '1.5rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                BUREAUCRATIC HORROR COMEDY ZONE
+              </h3>
+              <p style={{ fontSize: '1rem', color: '#000', margin: 0, opacity: 0.9 }}>
+                Satire so sharp it cuts through red tape • Parody so real it hurts • Villains you'll recognize instantly
+              </p>
+            </div>
+            
             <h2 style={{
               fontSize: 'clamp(2rem, 6vw, 4rem)',
               textAlign: 'center',
@@ -1957,6 +2015,16 @@ export default function MemeticEmbassyFull() {
                       </div>
 
                       <div style={{
+                        background: 'rgba(255,0,0,0.2)',
+                        border: '2px solid #ff0000',
+                        borderRadius: '10px',
+                        padding: '1rem',
+                        marginBottom: '1rem'
+                      }}>
+                        <strong style={{ color: '#ff0000' }}>⚠️ Memetic Threat Level:</strong> {['MAXIMUM', 'CRITICAL', 'EXTREME'][Math.floor(Math.random() * 3)]}
+                      </div>
+                      
+                      <div style={{
                         background: 'rgba(0,255,255,0.2)',
                         border: '2px solid #00ffff',
                         borderRadius: '10px',
@@ -1990,6 +2058,26 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #1a0033 0%, #16213e 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Memetic Magic Arsenal Banner */}
+            <div style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
+              textAlign: 'center',
+              border: '4px solid #ff00ff',
+              boxShadow: '0 0 40px rgba(102,126,234,0.6)'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎨✨🔮</div>
+              <h3 style={{ fontSize: '2rem', color: '#fff', fontWeight: 'bold', marginBottom: '1rem' }}>
+                THE MEMETIC FORGE
+              </h3>
+              <p style={{ fontSize: '1.2rem', color: '#fff', margin: 0, lineHeight: '1.7' }}>
+                Where ideas become weapons • Where truth becomes viral • Where resistance becomes art<br/>
+                <span style={{ fontSize: '1rem', opacity: 0.9 }}>Powered by satire, fueled by solidarity, unstoppable by design</span>
+              </p>
+            </div>
+            
             <h2 style={{
               fontSize: 'clamp(2.5rem, 7vw, 5rem)',
               marginBottom: '1rem',
@@ -2515,6 +2603,36 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: ECOSYSTEM CHAMBER */}
+            <div style={{
+              background: 'linear-gradient(135deg, #00ff88 0%, #00ffff 50%, #0088ff 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #00ff88',
+              boxShadow: '0 0 30px rgba(0,255,136,0.5), inset 0 0 30px rgba(0,255,255,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                🌱🔮 MEMETIC ECOSYSTEM CHAMBER ONLINE 🔮🌱
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#001a33',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                WHERE MEMES EVOLVE • MERGE • MUTATE • BUILD LORE
+              </div>
+            </div>
+
             <h2 style={{
               fontSize: 'clamp(2rem, 6vw, 4rem)',
               textAlign: 'center',
@@ -2558,6 +2676,10 @@ export default function MemeticEmbassyFull() {
                     padding: '2rem',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
+                    position: 'relative',
+                    boxShadow: selectedHabitat === habitat.id 
+                      ? '0 0 30px rgba(0,255,136,0.6), inset 0 0 20px rgba(0,255,255,0.2)' 
+                      : '0 5px 15px rgba(0,255,136,0.3)',
                     transform: selectedHabitat === habitat.id ? 'scale(1.05)' : 'scale(1)'
                   }}
                 >
@@ -3229,16 +3351,22 @@ export default function MemeticEmbassyFull() {
                   onClick={() => {
                     setAutoMemeMode(!autoMemeMode);
                     if (!autoMemeMode) {
-                      // Generate random meme based on character
-                      const templates = [
-                        { top: 'When they say "your claim is pending"', bottom: 'For the 47th time this year' },
-                        { top: 'Insurance: "We need more evidence"', bottom: '*provides encyclopedia* "Not enough"' },
-                        { top: 'HR: "We take this seriously"', bottom: '*vanishes into thin air*' },
-                        { top: 'Doctor after 3 minutes:', bottom: '"Have you tried yoga?"' },
-                        { top: 'The employer said you were fine', bottom: 'Must be true then 🙈' },
-                        { top: 'Still waiting for my claim', bottom: 'Since the dinosaurs went extinct' }
+                      // Generate VIRAL random meme based on character
+                      const viralTemplates = [
+                        { top: 'WCB: "WE NEED MORE EVIDENCE"', bottom: 'ME: *PROVIDES 47 REPORTS* 🤡' },
+                        { top: 'WHEN THEY SAY "YOUR CLAIM IS PENDING"', bottom: 'FOR THE 47TH TIME THIS YEAR 💀' },
+                        { top: 'EMPLOYER LIES: ZERO CONSEQUENCES', bottom: 'I MISS ONE DEADLINE: DENIED ❌' },
+                        { top: 'PERMANENT INJURY', bottom: 'TEMPORARY BENEFITS 🧮❌' },
+                        { top: 'WCB: "TRANSITIONAL WORK"', bottom: 'THE WORK: DOESN\'T EXIST 👻' },
+                        { top: 'THEY SPENT MORE FIGHTING MY CLAIM', bottom: 'THAN JUST APPROVING IT 🤡💸' },
+                        { top: 'DOCTOR AFTER 3 MINUTES:', bottom: '"HAVE YOU TRIED YOGA?" 🙄' },
+                        { top: 'HR: "WE TAKE THIS SERIOUSLY"', bottom: '*VANISHES INTO THIN AIR* 💨' },
+                        { top: 'THE EMPLOYER SAID YOU WERE FINE', bottom: 'MUST BE TRUE THEN 🙈' },
+                        { top: 'BEING DISABLED UNDER CAPITALISM', bottom: 'IS BEING GASLIT BY INSURANCE DOCTORS 🔥' },
+                        { top: 'POV: YOU\'RE PERMANENTLY DISABLED', bottom: 'BUT WCB SAYS "SUITABLE WORK" 🎪' },
+                        { top: 'MY PAIN IS PERMANENT', bottom: 'THEIR CONCERN IS TEMPORARY ⏰' }
                       ];
-                      const random = templates[Math.floor(Math.random() * templates.length)];
+                      const random = viralTemplates[Math.floor(Math.random() * viralTemplates.length)];
                       setMemeText(random);
                     }
                   }}
@@ -3246,25 +3374,27 @@ export default function MemeticEmbassyFull() {
                     width: '100%',
                     padding: '1rem',
                     background: autoMemeMode 
-                      ? 'linear-gradient(135deg, #ff6b6b 0%, #ffaa00 100%)'
-                      : 'rgba(0,0,0,0.3)',
-                    border: '2px solid #ff6b6b',
+                      ? 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)'
+                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    border: '3px solid #FFD700',
                     borderRadius: '10px',
                     color: '#fff',
                     cursor: 'pointer',
-                    fontSize: '0.9rem',
-                    fontWeight: 'bold'
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    boxShadow: '0 0 20px rgba(255,215,0,0.4)'
                   }}
                 >
-                  🎲 GENERATE
+                  🔥 GENERATE VIRAL MEME 🔥
                 </button>
                 <p style={{
-                  fontSize: '0.7rem',
-                  color: '#aaa',
+                  fontSize: '0.85rem',
+                  color: '#FFD700',
                   marginTop: '0.5rem',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  fontWeight: 'bold'
                 }}>
-                  AI-powered templates
+                  ⚡ Instant viral-ready templates ⚡
                 </p>
                 <div style={{
                   marginTop: '1rem',
@@ -3688,6 +3818,36 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #330066 0%, #1a0033 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: EPISODE VAULT */}
+            <div style={{
+              background: 'linear-gradient(135deg, #FFD700 0%, #FF6600 50%, #FF0066 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #FFD700',
+              boxShadow: '0 0 30px rgba(255,215,0,0.5), inset 0 0 30px rgba(255,102,0,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                ✨🎭 MEMETIC EPISODE VAULT ACTIVATED 🎭✨
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#1a0033',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                WHERE BUREAUCRATIC NIGHTMARES BECOME LEGENDARY EPISODES
+              </div>
+            </div>
+
             <h2 style={{
               fontSize: 'clamp(2.5rem, 7vw, 5rem)',
               marginBottom: '1rem',
@@ -3887,6 +4047,36 @@ export default function MemeticEmbassyFull() {
           background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: COMIC ARCHIVE */}
+            <div style={{
+              background: 'linear-gradient(135deg, #FF00FF 0%, #9900FF 50%, #FFD700 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #FF00FF',
+              boxShadow: '0 0 30px rgba(255,0,255,0.5), inset 0 0 30px rgba(153,0,255,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                📚🎨 MEMETIC COMIC ARCHIVE UNLOCKED 🎨📚
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#1a0033',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                SATIRE MEETS ACTION IN THE BUREAUCRATIC WASTES SAGA
+              </div>
+            </div>
+
             <h2 style={{
               fontSize: 'clamp(2.5rem, 7vw, 5rem)',
               marginBottom: '1rem',
@@ -4600,14 +4790,30 @@ export default function MemeticEmbassyFull() {
                 padding: '3rem',
                 animation: 'pulse 2s infinite'
               }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✨🏛️✨</div>
                 <h3 style={{
                   fontSize: '2.5rem',
                   color: '#000',
-                  marginBottom: '1.5rem',
+                  marginBottom: '1rem',
                   fontWeight: 'bold'
                 }}>
                   🎖️ CLAIM YOUR CITIZENSHIP 🎖️
                 </h3>
+                
+                <div style={{
+                  background: 'rgba(0,0,0,0.2)',
+                  padding: '1rem',
+                  borderRadius: '10px',
+                  marginBottom: '1.5rem'
+                }}>
+                  <p style={{ fontSize: '1rem', color: '#ff00ff', fontWeight: 'bold', margin: 0 }}>
+                    🎭 MEMETIC MAGIC INCLUDES:
+                  </p>
+                  <p style={{ fontSize: '0.95rem', color: '#000', margin: '0.5rem 0 0', lineHeight: '1.5' }}>
+                    Diplomatic immunity from gaslighting • Digital passport with meme powers •
+                    Access to the Memetic Forge • Protection by the Hero Squad
+                  </p>
+                </div>
 
                 <p style={{
                   fontSize: '1.3rem',
@@ -4716,6 +4922,60 @@ export default function MemeticEmbassyFull() {
               }}>
                 📖 Our Story
               </Link>
+            </div>
+
+            {/* Social Share Section */}
+            <div style={{
+              marginTop: '3rem',
+              padding: '2rem',
+              background: 'rgba(255,0,255,0.1)',
+              border: '2px solid #ff00ff',
+              borderRadius: '15px',
+              textAlign: 'center'
+            }}>
+              <p style={{
+                fontSize: '1.2rem',
+                color: '#00ffff',
+                marginBottom: '1rem',
+                fontWeight: 'bold'
+              }}>
+                🌐 Share The Memetic Embassy Full Experience
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '1.5rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginBottom: '1rem'
+              }}>
+                <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Join the Memetic Embassy - Where injured workers become superheroes!')}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}&via=Phoenixrizin09`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#1DA1F2', textDecoration: 'none', fontSize: '2rem' }}>
+                  🐦
+                </a>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#4267B2', textDecoration: 'none', fontSize: '2rem' }}>
+                  📘
+                </a>
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#0077B5', textDecoration: 'none', fontSize: '2rem' }}>
+                  💼
+                </a>
+                <a href={`https://reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}&title=${encodeURIComponent('The Memetic Embassy - Superhero Edition')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#FF4500', textDecoration: 'none', fontSize: '2rem' }}>
+                  🤖
+                </a>
+              </div>
+              <p style={{
+                fontSize: '1.1rem',
+                color: '#FFD700',
+                fontWeight: 'bold'
+              }}>
+                🌐 injuredworkersunite.pages.dev
+              </p>
             </div>
           </div>
         </div>

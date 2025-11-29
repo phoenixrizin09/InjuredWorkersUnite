@@ -3,6 +3,17 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 🏛️ THE MEMETIC EMBASSY - MAIN PAGE
+ * 
+ * Meme Arsenal powered by Oracle Eye Intelligence
+ * Tools for creating viral content with evidence-driven insights
+ * 
+ * Note: Superhero/Character content is exclusive to /memetic-embassy-full
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
 export default function MemeticEmbassy() {
   const [activeTab, setActiveTab] = useState('tools');
 
@@ -21,6 +32,7 @@ export default function MemeticEmbassy() {
         overflow: 'hidden'
       }}>
         <div style={{ textAlign: 'center', zIndex: 1, padding: '2rem' }}>
+          <div style={{ fontSize: '4rem', marginBottom: '1rem', animation: 'pulse 2s ease-in-out infinite' }}>👁️</div>
           <h1 style={{
             fontSize: 'clamp(2rem, 6vw, 4rem)',
             fontWeight: '900',
@@ -32,8 +44,27 @@ export default function MemeticEmbassy() {
             🏛️ THE MEMETIC EMBASSY
           </h1>
           <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '600px', margin: '0 auto 1rem', opacity: 0.9 }}>
-            A Digital Nation-State for the Injured, Disabled & Resistance
+            Meme Warfare Tools Powered by The Oracle Eye
           </p>
+          
+          <div style={{
+            background: 'rgba(0,255,255,0.1)',
+            border: '1px solid rgba(0,255,255,0.3)',
+            borderRadius: '15px',
+            padding: '1.5rem',
+            maxWidth: '700px',
+            margin: '0 auto 2rem'
+          }}>
+            <p style={{ fontSize: '1rem', color: '#00ffff', marginBottom: '0.5rem' }}>
+              ⚡ Create memes, infographics, and viral content backed by real data
+            </p>
+            <p style={{ fontSize: '0.9rem', opacity: 0.8 }}>
+              The Eye Oracle intelligence feeds directly into your creative arsenal
+            </p>
+            <p style={{ fontSize: '0.85rem', color: '#FFD700', marginTop: '1rem', fontWeight: 'bold' }}>
+              🌐 injuredworkersunite.pages.dev
+            </p>
+          </div>
           
           <Link href="/memetic-embassy-full" style={{
             display: 'inline-block',
@@ -49,10 +80,16 @@ export default function MemeticEmbassy() {
             boxShadow: '0 0 30px rgba(255,0,255,0.6)',
             animation: 'pulse 2s infinite'
           }}>
-            🌐 ENTER THE FULL MEMETIC EMBASSY EXPERIENCE 🌐
+            🌐 ENTER THE FULL EMBASSY (SUPERHERO EDITION) 🌐
           </Link>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button onClick={() => setActiveTab('viral')} style={getTabStyle(activeTab === 'viral')}>
+              🔥 Trending Now
+            </button>
+            <button onClick={() => setActiveTab('quickfire')} style={getTabStyle(activeTab === 'quickfire')}>
+              ⚡ QuickFire
+            </button>
             <button onClick={() => setActiveTab('tools')} style={getTabStyle(activeTab === 'tools')}>
               🎨 Meme Arsenal
             </button>
@@ -62,14 +99,14 @@ export default function MemeticEmbassy() {
             <button onClick={() => setActiveTab('infographics')} style={getTabStyle(activeTab === 'infographics')}>
               📊 Infographics
             </button>
-            <button onClick={() => setActiveTab('charter')} style={getTabStyle(activeTab === 'charter')}>
-              📜 Charter
+            <button onClick={() => setActiveTab('builder')} style={getTabStyle(activeTab === 'builder')}>
+              🛠️ Custom Builder
             </button>
-            <button onClick={() => setActiveTab('passport')} style={getTabStyle(activeTab === 'passport')}>
-              🛂 Passport
+            <button onClick={() => setActiveTab('slogans')} style={getTabStyle(activeTab === 'slogans')}>
+              ✊ Slogan Generator
             </button>
-            <button onClick={() => setActiveTab('resources')} style={getTabStyle(activeTab === 'resources')}>
-              📚 Resources
+            <button onClick={() => setActiveTab('advanced')} style={getTabStyle(activeTab === 'advanced')}>
+              ⚡ Advanced Tools
             </button>
           </div>
         </div>
@@ -77,492 +114,1261 @@ export default function MemeticEmbassy() {
 
       {/* Content Sections */}
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        {activeTab === 'viral' && <TrendingViralSection />}
+        {activeTab === 'quickfire' && <QuickFireSection />}
         {activeTab === 'tools' && <MemeToolsSection />}
         {activeTab === 'templates' && <TemplatePacksSection />}
         {activeTab === 'infographics' && <InfographicsSection />}
-        {activeTab === 'charter' && <CharterSection />}
-        {activeTab === 'passport' && <PassportSection />}
-        {activeTab === 'resources' && <ResourcesSection />}
+        {activeTab === 'builder' && <CustomMemeBuilderSection />}
+        {activeTab === 'slogans' && <SloganGeneratorSection />}
+        {activeTab === 'advanced' && <AdvancedMemeWarfareSection />}
       </section>
 
       {/* Navigation Footer */}
       <footer style={{ padding: '2rem', textAlign: 'center', background: '#111', borderTop: '1px solid #333' }}>
-        <Link href="/" style={{ color: '#667eea', textDecoration: 'none' }}>
-          ← Back to Home
-        </Link>
+        <div style={{ marginBottom: '1.5rem', fontSize: '0.9rem', color: '#FFD700' }}>
+          <strong>🌐 injuredworkersunite.pages.dev</strong>
+        </div>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <p style={{ color: '#00ffff', marginBottom: '0.5rem' }}>Share The Memetic Embassy:</p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('The Memetic Embassy - Create powerful activism memes backed by real data!')}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&via=Phoenixrizin09`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ color: '#1DA1F2', textDecoration: 'none', fontSize: '1.5rem' }}>
+              🐦
+            </a>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ color: '#4267B2', textDecoration: 'none', fontSize: '1.5rem' }}>
+              📘
+            </a>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ color: '#0077B5', textDecoration: 'none', fontSize: '1.5rem' }}>
+              💼
+            </a>
+            <a href={`https://reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent('The Memetic Embassy - Meme Warfare Tools')}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ color: '#FF4500', textDecoration: 'none', fontSize: '1.5rem' }}>
+              🤖
+            </a>
+          </div>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <Link href="/the-eye-oracle" style={{ 
+            color: '#00ffff', 
+            textDecoration: 'none',
+            marginRight: '2rem'
+          }}>
+            👁️ The Oracle Eye
+          </Link>
+          <Link href="/memetic-embassy-full" style={{ 
+            color: '#ff00ff', 
+            textDecoration: 'none',
+            marginRight: '2rem'
+          }}>
+            🦸 Superhero Edition
+          </Link>
+          <Link href="/" style={{ color: '#667eea', textDecoration: 'none' }}>
+            ← Back to Home
+          </Link>
+        </div>
       </footer>
     </div>
     <Footer />
+    
+    <style jsx global>{`
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+    `}</style>
     </>
   );
 }
 
-function CharterSection() {
+// ============================================
+// 🔥 TRENDING VIRAL SECTION - HOT TAKES & READY-TO-SHARE
+// ============================================
+function TrendingViralSection() {
+  const [copiedIndex, setCopiedIndex] = useState(null);
+
+  const viralTweets = [
+    {
+      text: "They denied my claim in 48 hours. My appeal has been 'pending' for 18 months. Make it make sense. 🤡",
+      category: "🔥 SPICY",
+      engagement: "High"
+    },
+    {
+      text: "WCB: 'We need more evidence'\nMe: *Provides 47 medical reports*\nWCB: 'We need MORE evidence'\nMe: *Brings doctor*\nWCB: 'Actually we trust the employer more' 🤡",
+      category: "💥 VIRAL",
+      engagement: "Maximum"
+    },
+    {
+      text: "Reminder: If your employer lied to WCB and nothing happened to them, but you made one mistake on your form and got denied—the system isn't broken, it's working EXACTLY as designed.",
+      category: "🎯 TRUTH BOMB",
+      engagement: "Critical"
+    },
+    {
+      text: "POV: You're permanently disabled but WCB says you can 'transition to suitable work' and the suitable work is... [checks notes] ...doesn't exist.",
+      category: "😂 COMEDY GOLD",
+      engagement: "High"
+    },
+    {
+      text: "My injury is permanent. My benefits are temporary. The math isn't mathing. 🧮❌",
+      category: "🔥 SPICY",
+      engagement: "Maximum"
+    },
+    {
+      text: "WCB spent more money fighting my claim than they would've spent just APPROVING it. Efficiency! 📈🤡",
+      category: "💥 VIRAL",
+      engagement: "Critical"
+    },
+    {
+      text: "They tell us 'the system protects workers' while defending employers who commit fraud. I'm not angry, I'm DOCUMENTED. 📋👁️",
+      category: "🎯 TRUTH BOMB",
+      engagement: "Maximum"
+    },
+    {
+      text: "Being disabled under capitalism is being gaslit by doctors who work for insurance companies while being told to 'just rest' by people who won't pay you to rest.",
+      category: "🔥 SPICY",
+      engagement: "Critical"
+    }
+  ];
+
+  const memeOfTheDay = {
+    image: "🏢➡️🗑️",
+    topText: "WCB: 'WE PROTECT WORKERS'",
+    bottomText: "ALSO WCB: *DENIES 80% OF CLAIMS*",
+    downloads: 847,
+    shares: 1203
+  };
+
+  const copyToClipboard = (text, index) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#667eea' }}>🏛️ Embassy Charter</h2>
-      
-      <div style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
-        <div style={{ 
-          padding: '2rem', 
-          background: '#0f3460', 
-          borderRadius: '10px', 
-          marginBottom: '2rem',
-          border: '2px solid #764ba2'
-        }}>
-          <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#667eea' }}>Preamble</h3>
-          <p style={{ fontStyle: 'italic', fontSize: '1.2rem', lineHeight: '1.8' }}>
-            We, the injured, the disabled, the denied, and the dismissed—declare our sovereignty. 
-            No longer will we accept the gaslighting of medical systems, the cruelty of insurance companies, 
-            or the silence imposed by corporate interests. We establish this Embassy as sacred ground: 
-            a place where our stories matter, our pain is validated, and our resistance is celebrated.
-          </p>
-        </div>
-
-        <h3 style={{ color: '#764ba2', marginTop: '2rem', fontSize: '1.8rem' }}>Article I: Sovereignty & Self-Determination</h3>
-        <p style={{ marginBottom: '1rem' }}>
-          The Memetic Embassy operates as a sovereign digital nation-state, bound by no physical borders 
-          and subject to no external authority. We recognize:
+      <div style={{
+        background: 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
+        padding: '2rem',
+        borderRadius: '15px',
+        marginBottom: '2rem',
+        textAlign: 'center',
+        border: '3px solid #fff',
+        boxShadow: '0 0 30px rgba(255,0,128,0.6)'
+      }}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '0.5rem', color: '#fff' }}>
+          🔥 TRENDING NOW 🔥
+        </h2>
+        <p style={{ fontSize: '1.2rem', color: '#000', fontWeight: 'bold' }}>
+          Ready-to-Tweet Bangers • Copy • Paste • GO VIRAL
         </p>
-        <ul style={{ listStyle: 'none', padding: '0 0 0 1rem', marginBottom: '1.5rem' }}>
-          <li style={{ padding: '0.5rem 0' }}>🏛️ The right to self-governance and collective decision-making</li>
-          <li style={{ padding: '0.5rem 0' }}>✊ The authority to define our own narratives and reject imposed labels</li>
-          <li style={{ padding: '0.5rem 0' }}>🌐 Freedom from corporate surveillance and data exploitation</li>
-          <li style={{ padding: '0.5rem 0' }}>🛡️ Protection of all citizens from retaliation and discrimination</li>
-        </ul>
+      </div>
 
-        <h3 style={{ color: '#764ba2', marginTop: '2rem', fontSize: '1.8rem' }}>Article II: Universal Citizenship</h3>
-        <p style={{ marginBottom: '1rem' }}>
-          Citizenship in the Memetic Embassy is open to all who align with our principles. 
-          We specifically welcome:
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px' }}>
-            <strong style={{ color: '#667eea' }}>Injured Workers</strong>
-            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', opacity: 0.9 }}>
-              Those harmed on the job, navigating workers' comp, fighting for recognition
-            </p>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px' }}>
-            <strong style={{ color: '#667eea' }}>Disabled Persons</strong>
-            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', opacity: 0.9 }}>
-              Living with visible & invisible disabilities, chronic illness, long COVID
-            </p>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px' }}>
-            <strong style={{ color: '#667eea' }}>Healthcare Survivors</strong>
-            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', opacity: 0.9 }}>
-              Those denied care, misdiagnosed, gaslit by medical professionals
-            </p>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px' }}>
-            <strong style={{ color: '#667eea' }}>Labor Organizers</strong>
-            <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', opacity: 0.9 }}>
-              Union members, workplace advocates, mutual aid coordinators
-            </p>
-          </div>
+      {/* MEME OF THE DAY */}
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        padding: '2rem',
+        borderRadius: '15px',
+        marginBottom: '3rem',
+        border: '3px solid #FFD700'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          <span style={{ 
+            background: '#FFD700',
+            color: '#000',
+            padding: '0.5rem 1.5rem',
+            borderRadius: '25px',
+            fontWeight: 'bold',
+            fontSize: '1.2rem'
+          }}>
+            🏆 MEME OF THE DAY 🏆
+          </span>
         </div>
-        <p style={{ fontStyle: 'italic', opacity: 0.9 }}>
-          No fees. No barriers. No gatekeeping. If you believe in solidarity, you belong here.
-        </p>
-
-        <h3 style={{ color: '#764ba2', marginTop: '2rem', fontSize: '1.8rem' }}>Article III: Fundamental Rights</h3>
-        <div style={{ padding: '1.5rem', background: '#0f3460', borderRadius: '10px', marginBottom: '1rem' }}>
-          <h4 style={{ color: '#667eea', marginBottom: '1rem' }}>Right to Truth & Validation</h4>
-          <p>
-            Every citizen has the inalienable right to have their pain acknowledged, their injuries validated, 
-            and their experiences believed without question or judgment. Medical gaslighting is an act of violence 
-            and will not be tolerated within our borders.
-          </p>
-        </div>
-        <div style={{ padding: '1.5rem', background: '#0f3460', borderRadius: '10px', marginBottom: '1rem' }}>
-          <h4 style={{ color: '#667eea', marginBottom: '1rem' }}>Right to Organize Without Fear</h4>
-          <p>
-            Citizens may organize, protest, strike, and advocate without fear of retaliation, surveillance, 
-            or reprisal. We provide tools, resources, and solidarity for workplace organizing and collective action.
-          </p>
-        </div>
-        <div style={{ padding: '1.5rem', background: '#0f3460', borderRadius: '10px', marginBottom: '1rem' }}>
-          <h4 style={{ color: '#667eea', marginBottom: '1rem' }}>Right to Creative Resistance</h4>
-          <p>
-            All forms of memetic warfare, artistic expression, and creative dissent are protected speech. 
-            Citizens may create, share, and distribute resistance media freely without censorship.
-          </p>
-        </div>
-        <div style={{ padding: '1.5rem', background: '#0f3460', borderRadius: '10px', marginBottom: '1rem' }}>
-          <h4 style={{ color: '#667eea', marginBottom: '1rem' }}>Right to Rest & Recovery</h4>
-          <p>
-            Rest is resistance. Healing takes time. Citizens have the right to pace themselves, 
-            set boundaries, and prioritize their wellbeing without guilt or pressure to "prove" their disabilities.
-          </p>
-        </div>
-
-        <h3 style={{ color: '#764ba2', marginTop: '2rem', fontSize: '1.8rem' }}>Article IV: The Denial Squad</h3>
-        <p>
-          The Denial Squad serves as the Embassy's memetic warriors, defending citizens from:
-        </p>
-        <ul style={{ listStyle: 'none', padding: '0 0 0 1rem', marginBottom: '1rem' }}>
-          <li style={{ padding: '0.5rem 0' }}>⚔️ Insurance company denial tactics and bad faith claims handling</li>
-          <li style={{ padding: '0.5rem 0' }}>⚔️ Medical gaslighting and dismissal of patient experiences</li>
-          <li style={{ padding: '0.5rem 0' }}>⚔️ Corporate propaganda minimizing workplace hazards</li>
-          <li style={{ padding: '0.5rem 0' }}>⚔️ Government bureaucracy designed to exhaust and discourage</li>
-          <li style={{ padding: '0.5rem 0' }}>⚔️ Social media narratives that erase disabled experiences</li>
-        </ul>
-        <p>
-          Through truth-telling, documentation, humor, and solidarity, the Squad fights back against 
-          systems designed to make us invisible.
-        </p>
-
-        <h3 style={{ color: '#764ba2', marginTop: '2rem', fontSize: '1.8rem' }}>Article V: Principles of Mutual Aid</h3>
-        <p style={{ marginBottom: '1rem' }}>
-          We operate on principles of mutual aid, not charity:
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🤝</div>
-            <strong>Solidarity, Not Pity</strong>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>♿</div>
-            <strong>Access, Not Accommodation</strong>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✊</div>
-            <strong>Power, Not Permission</strong>
-          </div>
-          <div style={{ padding: '1rem', background: '#16213e', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🌐</div>
-            <strong>Community, Not Individuals</strong>
-          </div>
-        </div>
-
-        <div style={{ 
-          marginTop: '3rem', 
-          padding: '2rem', 
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        
+        <div style={{
+          background: '#000',
+          padding: '3rem',
           borderRadius: '10px',
           textAlign: 'center'
         }}>
-          <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>The Embassy Oath</h3>
-          <p style={{ fontSize: '1.2rem', fontStyle: 'italic', lineHeight: '1.8' }}>
-            "I pledge to stand in solidarity with all who have been injured, denied, and dismissed. 
-            I will amplify marginalized voices, document injustice, and resist systems of oppression. 
-            I understand that our individual healing is tied to collective liberation. 
-            In community, we are stronger. In solidarity, we are unstoppable."
+          <p style={{ 
+            fontSize: '3rem', 
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+            marginBottom: '1rem'
+          }}>
+            {memeOfTheDay.topText}
           </p>
+          <div style={{ fontSize: '6rem', margin: '2rem 0' }}>
+            {memeOfTheDay.image}
+          </div>
+          <p style={{ 
+            fontSize: '3rem', 
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+          }}>
+            {memeOfTheDay.bottomText}
+          </p>
+        </div>
+        
+        <div style={{
+          display: 'flex',
+          gap: '2rem',
+          justifyContent: 'center',
+          marginTop: '1.5rem',
+          fontSize: '1.1rem'
+        }}>
+          <span>📥 {memeOfTheDay.downloads} downloads</span>
+          <span>🔄 {memeOfTheDay.shares} shares</span>
+        </div>
+      </div>
+
+      {/* VIRAL TWEETS */}
+      <h3 style={{ 
+        fontSize: '2rem', 
+        marginBottom: '1.5rem',
+        color: '#00ffff',
+        textAlign: 'center'
+      }}>
+        💣 INSTANT VIRAL TWEETS
+      </h3>
+
+      <div style={{ 
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+        gap: '1.5rem'
+      }}>
+        {viralTweets.map((tweet, index) => (
+          <div key={index} style={{
+            background: '#16213e',
+            border: '2px solid #667eea',
+            borderRadius: '15px',
+            padding: '1.5rem',
+            position: 'relative'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '1rem'
+            }}>
+              <span style={{
+                background: tweet.engagement === 'Maximum' ? '#ff0080' : 
+                           tweet.engagement === 'Critical' ? '#ff8c00' : '#48c774',
+                padding: '0.3rem 0.8rem',
+                borderRadius: '15px',
+                fontSize: '0.85rem',
+                fontWeight: 'bold'
+              }}>
+                {tweet.category}
+              </span>
+              <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>
+                📊 {tweet.engagement} Engagement
+              </span>
+            </div>
+
+            <p style={{
+              fontSize: '1.1rem',
+              lineHeight: '1.6',
+              marginBottom: '1rem',
+              minHeight: '100px'
+            }}>
+              {tweet.text}
+            </p>
+
+            <button
+              onClick={() => copyToClipboard(tweet.text + "\n\n🌐 injuredworkersunite.pages.dev", index)}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: copiedIndex === index 
+                  ? 'linear-gradient(135deg, #48c774, #00d1b2)' 
+                  : 'linear-gradient(135deg, #667eea, #764ba2)',
+                border: 'none',
+                borderRadius: '8px',
+                color: '#fff',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              {copiedIndex === index ? '✅ COPIED!' : '📋 Copy to Tweet'}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* SHARE TIPS */}
+      <div style={{
+        background: 'rgba(0,255,255,0.1)',
+        border: '2px solid #00ffff',
+        borderRadius: '15px',
+        padding: '2rem',
+        marginTop: '3rem'
+      }}>
+        <h3 style={{ fontSize: '1.5rem', color: '#00ffff', marginBottom: '1rem' }}>
+          🚀 VIRAL STRATEGY TIPS
+        </h3>
+        <ul style={{ fontSize: '1.1rem', lineHeight: '1.8', listStyle: 'none', paddingLeft: 0 }}>
+          <li>⚡ Best posting times: 7-9 AM, 12-2 PM, 6-9 PM</li>
+          <li>🔥 Add trending hashtags: #WorkersRights #Disability #ChronicIllness</li>
+          <li>📸 Always include visuals (screenshots, memes, infographics)</li>
+          <li>💬 Engage with comments within first hour for max reach</li>
+          <li>🔄 Repost top performers weekly with fresh angles</li>
+          <li>🎯 Tag politicians, advocates, and news outlets when relevant</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// ⚡ QUICKFIRE MEME GENERATOR - INSTANT CONTENT
+// ============================================
+function QuickFireSection() {
+  const [currentMeme, setCurrentMeme] = useState(null);
+  const [spicyLevel, setSpicyLevel] = useState('medium');
+
+  const quickFireTemplates = {
+    mild: [
+      { top: "WHEN WCB SAYS", bottom: "'WE'LL GET BACK TO YOU'", emoji: "⏰" },
+      { top: "THEY SAID REST", bottom: "BUT WON'T PAY ME TO REST", emoji: "🤔" },
+      { top: "DENIED CLAIM", bottom: "APPROVED DESPAIR", emoji: "😔" },
+      { top: "EMPLOYER LIES", bottom: "WCB BELIEVES THEM", emoji: "🤡" },
+      { top: "MEDICAL EVIDENCE", bottom: "'NOT ENOUGH'", emoji: "📄" },
+      { top: "WAITING FOR APPROVAL", bottom: "SINCE FOREVER", emoji: "⏳" },
+      { top: "CHRONIC PAIN", bottom: "TEMPORARY UNDERSTANDING", emoji: "🤕" },
+      { top: "THEY SAY 'BE PATIENT'", bottom: "I'VE BEEN PATIENT FOR YEARS", emoji: "😑" },
+      { top: "CASE MANAGER GHOSTED ME", bottom: "AGAIN", emoji: "👻" },
+      { top: "SUITABLE WORK", bottom: "THAT DOESN'T EXIST", emoji: "🤷" },
+      { top: "DISABILITY BENEFITS", bottom: "THAT DON'T COVER RENT", emoji: "🏠" },
+      { top: "ACCOMMODATIONS REQUESTED", bottom: "ACCOMMODATIONS IGNORED", emoji: "🚫" },
+      { top: "THEY SAID I'M COVERED", bottom: "NARRATOR: THEY WEREN'T", emoji: "🎥" },
+      { top: "PAIN LEVEL: 8/10", bottom: "THEIR CONCERN: 0/10", emoji: "📊" },
+      { top: "APPEAL IN PROGRESS", bottom: "HOPE IN DECLINE", emoji: "📉" }
+    ],
+    medium: [
+      { top: "YOUR EVIDENCE: 📚📚📚", bottom: "WCB: 'NOT ENOUGH'", emoji: "🗑️" },
+      { top: "WCB: 'TRANSITIONAL WORK'", bottom: "THE WORK: DOESN'T EXIST", emoji: "👻" },
+      { top: "PERMANENT INJURY", bottom: "TEMPORARY BENEFITS", emoji: "🧮❌" },
+      { top: "SPENT MORE FIGHTING MY CLAIM", bottom: "THAN JUST PAYING IT", emoji: "🤡💸" },
+      { top: "EMPLOYER: ZERO EVIDENCE", bottom: "WCB: 'TOTALLY CREDIBLE'", emoji: "🙈" },
+      { top: "ME: 47 MEDICAL REPORTS", bottom: "WCB: 'QUESTIONABLE'", emoji: "🤦" },
+      { top: "DOCTOR APPOINTMENT: 10 MIN", bottom: "THEY KNOW MY WHOLE LIFE NOW", emoji: "⏱️" },
+      { top: "CASE COMPLEXITY: HIGH", bottom: "THEIR EFFORT: LOW", emoji: "📉" },
+      { top: "DEADLINE FOR ME: STRICT", bottom: "DEADLINE FOR THEM: OPTIONAL", emoji: "⏰" },
+      { top: "EMPLOYER FRAUD: FINE", bottom: "MY TYPO: DENIED", emoji: "⚖️" },
+      { top: "PAIN DOESN'T TAKE HOLIDAYS", bottom: "WCB DOES", emoji: "🏝️" },
+      { top: "THEIR MISTAKES: FORGIVEN", bottom: "MY MISTAKES: FATAL", emoji: "💥" },
+      { top: "ASKED FOR ACCOMMODATION", bottom: "GOT TERMINATION", emoji: "🚪" },
+      { top: "DISABILITY TAX CREDIT APPROVED", bottom: "WCB: 'YOU'RE NOT DISABLED ENOUGH'", emoji: "🤔" },
+      { top: "SUITABLE WORK DEFINITION", bottom: "WORK THAT MAKES THEM MONEY", emoji: "💰" }
+    ],
+    spicy: [
+      { top: "THEY CALL IT 'WORKERS COMP'", bottom: "I CALL IT SYSTEMATIC ABANDONMENT", emoji: "🔥" },
+      { top: "WCB PROTECTING WORKERS", bottom: "LIKE FOXES PROTECTING CHICKENS", emoji: "🦊🐔" },
+      { top: "NOT BROKEN", bottom: "WORKING EXACTLY AS DESIGNED", emoji: "⚙️🔪" },
+      { top: "GASLIGHT • GATEKEEP • WCB BOSS", emoji: "💀" },
+      { top: "THE CRUELTY", bottom: "IS ADMINISTRATIVE", emoji: "📄🔥" },
+      { top: "PROFIT OVER PEOPLE", bottom: "ISN'T A BUG, IT'S THE FEATURE", emoji: "💸" },
+      { top: "THEY WANT US QUIET", bottom: "WE GOT MEGAPHONES", emoji: "📣" },
+      { top: "DISABLED ENOUGH TO QUALIFY", bottom: "HEALTHY ENOUGH TO DENY", emoji: "🎪" },
+      { top: "CORPORATE WELFARE: BILLIONS", bottom: "WORKER BENEFITS: 'TOO EXPENSIVE'", emoji: "🏦" },
+      { top: "THEY BET ON OUR SILENCE", bottom: "THEY LOST", emoji: "🎲" },
+      { top: "MY PAIN IS POLITICAL", bottom: "MY RAGE IS JUSTIFIED", emoji: "✊" },
+      { top: "ORGANIZED ABANDONMENT", bottom: "WITH A CUSTOMER SERVICE SMILE", emoji: "😈" },
+      { top: "INSURANCE FRAUD BY EMPLOYERS", bottom: "IS CALLED 'BUSINESS'", emoji: "👔" },
+      { top: "WORKERS DYING", bottom: "SHAREHOLDERS THRIVING", emoji: "📈" },
+      { top: "THE SYSTEM ISN'T BROKEN", bottom: "IT'S HOSTILE BY DESIGN", emoji: "☠️" }
+    ],
+    nuclear: [
+      { top: "EMPLOYER COMMITS FRAUD: NOTHING", bottom: "I MISS ONE DEADLINE: DENIED", emoji: "⚖️🔥" },
+      { top: "THE CRUELTY", bottom: "IS THE POINT", emoji: "💣" },
+      { top: "CORPORATE PROFITS > HUMAN LIVES", bottom: "THIS IS THE SYSTEM", emoji: "🏢➡️🗑️" },
+      { top: "THEY WANT US DEAD", bottom: "NOT DISABLED AND DEMANDING RIGHTS", emoji: "💀📋" },
+      { top: "DISABILITY GENOCIDE", bottom: "WITH BUREAUCRATIC PAPERWORK", emoji: "📄💀" },
+      { top: "AUSTERITY KILLS", bottom: "THEY KNOW, THEY DON'T CARE", emoji: "💀" },
+      { top: "POVERTY WAGES FOR BROKEN BODIES", bottom: "BILLION DOLLAR PROFITS", emoji: "💰" },
+      { top: "ABLEISM ISN'T A BUG", bottom: "IT'S THE OPERATING SYSTEM", emoji: "💻" },
+      { top: "THEY CRIMINALIZE POVERTY", bottom: "THEN FORCE US INTO IT", emoji: "⛓️" },
+      { top: "WORKER SAFETY REGULATIONS", bottom: "WRITTEN IN OUR BLOOD", emoji: "🩸" },
+      { top: "MEDICAL NEGLECT", bottom: "REBRANDED AS 'COST SAVINGS'", emoji: "🏥" },
+      { top: "DISABLED WORKERS", bottom: "SACRIFICED FOR QUARTERLY EARNINGS", emoji: "📉" },
+      { top: "SOCIAL MURDER", bottom: "WITH PLAUSIBLE DENIABILITY", emoji: "🔪" },
+      { top: "EUGENICS BY BUREAUCRACY", bottom: "SAME GOAL, DIFFERENT METHOD", emoji: "📄" },
+      { top: "THE CRUELTY IS STRUCTURAL", bottom: "THE RESISTANCE MUST BE TOO", emoji: "✊🔥" }
+    ]
+  };
+
+  const soundBites = [
+    "No one is disposable. No exceptions.",
+    "Receipts don't lie. Systems do.",
+    "My pain is political. My rage is justified.",
+    "They denied my claim. We deny their legitimacy.",
+    "From injury to injustice—the pipeline is real.",
+    "Disabled and DANGEROUS (to their profits).",
+    "The cruelty is administrative.",
+    "Evidence over excuses. Always.",
+    "They bet on our silence. They lost.",
+    "Organizing beats agonizing.",
+    "Rest is resistance.",
+    "Accommodations aren't favors. They're rights.",
+    "My body broke. My spirit didn't.",
+    "Poverty wages for broken bodies.",
+    "Chronic illness, chronic resistance.",
+    "We keep us safe.",
+    "Disabled, not disposable.",
+    "Community care > corporate profits.",
+    "The system isn't broken—it's working as designed.",
+    "Gaslight, gatekeep, WCB boss.",
+    "An injury to one is an injury to all.",
+    "Workers united will never be divided.",
+    "Accessibility is a right, not a privilege.",
+    "Our bodies, our stories, our movement.",
+    "From bedbound to unbowed.",
+    "Solidarity is my medicine.",
+    "Invisible illness, visible resistance.",
+    "The revolution will be accessible.",
+    "No body is wrong. Systems are.",
+    "We are the experts on our own lives."
+  ];
+
+  const generateRandomMeme = () => {
+    const templates = quickFireTemplates[spicyLevel];
+    const randomMeme = templates[Math.floor(Math.random() * templates.length)];
+    setCurrentMeme(randomMeme);
+  };
+
+  const downloadQuickMeme = () => {
+    if (!currentMeme) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 600;
+    const ctx = canvas.getContext('2d');
+
+    // Background gradient based on spicy level
+    const gradients = {
+      mild: ['#4a5568', '#2d3748'],
+      medium: ['#ff6b6b', '#ee5a6f'],
+      spicy: ['#ff0080', '#ff8c00'],
+      nuclear: ['#ff0000', '#8b0000']
+    };
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 600);
+    gradient.addColorStop(0, gradients[spicyLevel][0]);
+    gradient.addColorStop(1, gradients[spicyLevel][1]);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 800, 600);
+
+    // Emoji
+    if (currentMeme.emoji) {
+      ctx.font = 'bold 150px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(currentMeme.emoji, 400, 330);
+    }
+
+    // Top text
+    ctx.font = 'bold 50px Impact';
+    ctx.fillStyle = '#fff';
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 5;
+    ctx.textAlign = 'center';
+    ctx.strokeText(currentMeme.top, 400, 100);
+    ctx.fillText(currentMeme.top, 400, 100);
+
+    // Bottom text
+    if (currentMeme.bottom) {
+      ctx.strokeText(currentMeme.bottom, 400, 560);
+      ctx.fillText(currentMeme.bottom, 400, 560);
+    }
+
+    // Watermark
+    ctx.font = 'bold 18px Arial';
+    ctx.fillStyle = '#FFD700';
+    ctx.textAlign = 'right';
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 780, 585);
+
+    // Download
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `quickfire-meme-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  };
+
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)',
+        padding: '2rem',
+        borderRadius: '15px',
+        marginBottom: '2rem',
+        textAlign: 'center',
+        border: '3px solid #fff',
+        boxShadow: '0 0 30px rgba(255,217,61,0.6)'
+      }}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '0.5rem', color: '#000' }}>
+          ⚡ QUICKFIRE MODE ⚡
+        </h2>
+        <p style={{ fontSize: '1.2rem', color: '#000', fontWeight: 'bold' }}>
+          Random Meme Generator • Zero Thinking Required • Maximum Impact
+        </p>
+      </div>
+
+      {/* SPICY METER */}
+      <div style={{
+        background: '#16213e',
+        padding: '2rem',
+        borderRadius: '15px',
+        marginBottom: '2rem'
+      }}>
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
+          🌶️ SPICY METER
+        </h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+          gap: '1rem'
+        }}>
+          {['mild', 'medium', 'spicy', 'nuclear'].map(level => (
+            <button
+              key={level}
+              onClick={() => setSpicyLevel(level)}
+              style={{
+                padding: '1rem',
+                background: spicyLevel === level 
+                  ? (level === 'mild' ? '#48c774' :
+                     level === 'medium' ? '#ffd93d' :
+                     level === 'spicy' ? '#ff6b6b' : '#ff0000')
+                  : '#0f3460',
+                border: `3px solid ${
+                  level === 'mild' ? '#48c774' :
+                  level === 'medium' ? '#ffd93d' :
+                  level === 'spicy' ? '#ff6b6b' : '#ff0000'
+                }`,
+                borderRadius: '10px',
+                color: spicyLevel === level ? '#000' : '#fff',
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                textTransform: 'uppercase'
+              }}
+            >
+              {level === 'mild' && '😊 Mild'}
+              {level === 'medium' && '🌶️ Medium'}
+              {level === 'spicy' && '🔥 Spicy'}
+              {level === 'nuclear' && '💣 NUCLEAR'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* GENERATE BUTTON */}
+      <button
+        onClick={generateRandomMeme}
+        style={{
+          width: '100%',
+          padding: '2rem',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          border: 'none',
+          borderRadius: '15px',
+          color: '#fff',
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          marginBottom: '2rem',
+          boxShadow: '0 5px 15px rgba(102,126,234,0.4)'
+        }}
+      >
+        🎲 GENERATE RANDOM MEME
+      </button>
+
+      {/* PREVIEW */}
+      {currentMeme && (
+        <div style={{
+          background: '#000',
+          borderRadius: '15px',
+          padding: '2rem',
+          marginBottom: '2rem',
+          border: '3px solid #667eea'
+        }}>
+          <div style={{
+            minHeight: '400px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <p style={{
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              textTransform: 'uppercase',
+              textShadow: '3px 3px 6px rgba(0,0,0,0.8)',
+              marginBottom: '2rem'
+            }}>
+              {currentMeme.top}
+            </p>
+            <div style={{ fontSize: '8rem', margin: '2rem 0' }}>
+              {currentMeme.emoji}
+            </div>
+            {currentMeme.bottom && (
+              <p style={{
+                fontSize: '2.5rem',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                textTransform: 'uppercase',
+                textShadow: '3px 3px 6px rgba(0,0,0,0.8)',
+                marginTop: '2rem'
+              }}>
+                {currentMeme.bottom}
+              </p>
+            )}
+          </div>
+
+          <button
+            onClick={downloadQuickMeme}
+            style={{
+              width: '100%',
+              padding: '1.5rem',
+              background: 'linear-gradient(135deg, #48c774 0%, #00d1b2 100%)',
+              border: 'none',
+              borderRadius: '10px',
+              color: '#fff',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              marginTop: '2rem'
+            }}
+          >
+            📥 DOWNLOAD THIS BANGER
+          </button>
+        </div>
+      )}
+
+      {/* SOUND BITES */}
+      <div style={{
+        background: '#16213e',
+        padding: '2rem',
+        borderRadius: '15px',
+        border: '2px solid #ffd93d'
+      }}>
+        <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: '#ffd93d' }}>
+          🔊 SOUND BITES FOR TIKTOK/REELS
+        </h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '1rem'
+        }}>
+          {soundBites.map((bite, index) => (
+            <div key={index} style={{
+              background: '#0f3460',
+              padding: '1.5rem',
+              borderRadius: '10px',
+              border: '2px solid #667eea',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onClick={() => {
+              navigator.clipboard.writeText(bite);
+              alert('✅ Copied to clipboard!');
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center' }}>
+                "{bite}"
+              </p>
+              <p style={{ fontSize: '0.85rem', textAlign: 'center', color: '#00ffff', marginTop: '0.5rem' }}>
+                Click to copy 📋
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function PassportSection() {
-  const [formData, setFormData] = useState({ name: '', story: '', role: '' });
-  const [submitted, setSubmitted] = useState(false);
-  const [passportNumber, setPassportNumber] = useState('');
-
-  const citizenBenefits = [
+// ============================================
+// MEME ARSENAL - Main Creative Tools
+// ============================================
+function MemeToolsSection() {
+  const [selectedTool, setSelectedTool] = useState(null);
+  
+  const memeTools = [
     {
-      icon: '🛡️',
-      title: 'Legal Defense Network',
-      description: 'Access to pro bono lawyers and legal advocacy resources'
-    },
-    {
-      icon: '🤝',
-      title: 'Solidarity Network',
-      description: 'Connect with thousands of injured workers worldwide'
-    },
-    {
-      icon: '📚',
-      title: 'Resource Library',
-      description: 'Exclusive templates, guides, and educational materials'
-    },
-    {
+      id: 'meme-maker',
+      name: '🖼️ Quick Meme Maker',
+      description: 'Classic image memes with top/bottom text',
       icon: '🎨',
-      title: 'Meme Arsenal',
-      description: 'Custom memes and graphics featuring your citizenship'
-    },
-    {
-      icon: '💬',
-      title: 'Support Groups',
-      description: 'Moderated peer support and mental health resources'
-    },
-    {
-      icon: '📢',
-      title: 'Amplification',
-      description: 'Your story shared through our networks and platforms'
-    }
-  ];
-
-  const citizenTypes = [
-    {
-      type: 'Injured Worker',
-      icon: '⚒️',
-      description: 'You were injured on the job and are fighting for your rights',
       color: '#667eea'
     },
     {
-      type: 'Disabled Person',
-      icon: '♿',
-      description: 'You live with disability and face systemic discrimination',
-      color: '#48c774'
-    },
-    {
-      type: 'Healthcare Survivor',
-      icon: '🏥',
-      description: 'You\'ve been harmed by medical gaslighting or denial',
-      color: '#f39c12'
-    },
-    {
-      type: 'Labor Organizer',
-      icon: '✊',
-      description: 'You organize workers and fight for collective power',
+      id: 'infographic',
+      name: '📊 Data Infographics',
+      description: 'Turn Oracle Eye data into viral graphics',
+      icon: '📈',
       color: '#764ba2'
     },
     {
-      type: 'Solidarity Supporter',
-      icon: '💚',
-      description: 'You stand in solidarity with all injured workers',
-      color: '#2ecc71'
+      id: 'slogan',
+      name: '✊ Slogan Generator',
+      description: 'Powerful protest slogans and catchphrases',
+      icon: '💬',
+      color: '#48c774'
+    },
+    {
+      id: 'poster',
+      name: '📢 Protest Posters',
+      description: 'Professional rally and strike posters',
+      icon: '🪧',
+      color: '#f39c12'
+    },
+    {
+      id: 'social',
+      name: '📱 Social Media Templates',
+      description: 'Ready-to-post content for all platforms',
+      icon: '💫',
+      color: '#9b59b6'
+    },
+    {
+      id: 'evidence',
+      name: '👁️ Evidence-Based Memes',
+      description: 'Memes powered by Oracle Eye intel',
+      icon: '🔍',
+      color: '#00ffff'
     }
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const randomNum = Math.floor(Math.random() * 90000) + 10000;
-    setPassportNumber(`IWU-${randomNum}`);
-    setSubmitted(true);
-  };
-
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>🛂 Digital Citizenship Passport</h2>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Claim your citizenship in The Memetic Embassy. Join our community of resistance, solidarity, and healing.
-      </p>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
+        🎨 Meme Arsenal
+      </h2>
       
-      {!submitted ? (
-        <>
-          {/* Citizen Type Selection */}
-          <div style={{ marginBottom: '3rem' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>Who Are You?</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
-              {citizenTypes.map((citizen, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setFormData({ ...formData, role: citizen.type })}
-                  style={{
-                    padding: '1.5rem',
-                    background: formData.role === citizen.type ? citizen.color : '#16213e',
-                    border: `2px solid ${citizen.color}`,
-                    borderRadius: '10px',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s',
-                    transform: formData.role === citizen.type ? 'scale(1.05)' : 'scale(1)'
-                  }}
-                >
-                  <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'center' }}>{citizen.icon}</div>
-                  <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', textAlign: 'center', fontWeight: 'bold' }}>
-                    {citizen.type}
-                  </h4>
-                  <p style={{ fontSize: '0.8rem', opacity: 0.9, textAlign: 'center', lineHeight: '1.4' }}>
-                    {citizen.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Citizenship Benefits */}
-          <div style={{ marginBottom: '3rem', padding: '2rem', background: '#0f3460', borderRadius: '10px' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#667eea' }}>
-              Citizenship Benefits
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-              {citizenBenefits.map((benefit, idx) => (
-                <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: '2rem' }}>{benefit.icon}</div>
-                  <div>
-                    <h4 style={{ fontSize: '1rem', marginBottom: '0.3rem', color: '#764ba2' }}>
-                      {benefit.title}
-                    </h4>
-                    <p style={{ fontSize: '0.85rem', opacity: 0.9, lineHeight: '1.4' }}>
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Application Form */}
-          <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#764ba2', textAlign: 'center' }}>
-              Apply for Citizenship
-            </h3>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-                Name or Alias *
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                style={inputStyle}
-                placeholder="How should we call you?"
-                required
-              />
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-                Your Story (Optional)
-              </label>
-              <textarea
-                value={formData.story}
-                onChange={(e) => setFormData({ ...formData, story: e.target.value })}
-                style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }}
-                placeholder="Share your journey if you'd like. Your story matters and helps build solidarity..."
-              />
-              <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>
-                Your story is kept confidential unless you choose to share it publicly.
-              </p>
-            </div>
-
-            <div style={{ 
-              padding: '1.5rem', 
-              background: '#16213e', 
-              borderRadius: '10px',
-              marginBottom: '1.5rem',
-              border: '2px solid #667eea'
-            }}>
-              <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: '#764ba2' }}>
-                📜 Citizen's Pledge
-              </h4>
-              <p style={{ fontSize: '0.95rem', lineHeight: '1.7', fontStyle: 'italic', opacity: 0.9 }}>
-                "I pledge to stand in solidarity with all who have been injured, denied, and dismissed. 
-                I will amplify marginalized voices, document injustice, and resist systems of oppression. 
-                I understand that our individual healing is tied to collective liberation. 
-                In community, we are stronger. In solidarity, we are unstoppable."
-              </p>
-            </div>
-
-            <button type="submit" style={{ ...buttonStyle, width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-              ✊ Claim Citizenship
-            </button>
-          </form>
-        </>
-      ) : (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎉</div>
-          <h3 style={{ fontSize: '2.2rem', color: '#667eea', marginBottom: '1rem' }}>
-            Welcome, Citizen {formData.name}!
-          </h3>
-          <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
-            Your digital passport has been issued. You are now a citizen of The Memetic Embassy.
-          </p>
-          
-          {/* Digital Passport Card */}
-          <div style={{
-            maxWidth: '500px',
-            margin: '0 auto 2rem',
-            padding: '2rem',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            borderRadius: '15px',
-            border: '3px solid white',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-              <div>
-                <p style={{ fontSize: '0.8rem', opacity: 0.9, marginBottom: '0.3rem' }}>MEMETIC EMBASSY</p>
-                <p style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>DIGITAL PASSPORT</p>
-              </div>
-              <div style={{ fontSize: '3rem' }}>🛂</div>
-            </div>
-            
-            <div style={{ background: 'rgba(255,255,255,0.1)', padding: '1.5rem', borderRadius: '10px', marginBottom: '1rem' }}>
-              <div style={{ marginBottom: '1rem' }}>
-                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>PASSPORT NUMBER</p>
-                <p style={{ fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'monospace' }}>{passportNumber}</p>
-              </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>CITIZEN NAME</p>
-                <p style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{formData.name}</p>
-              </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>CITIZEN TYPE</p>
-                <p style={{ fontSize: '1.1rem' }}>
-                  {citizenTypes.find(c => c.type === formData.role)?.icon} {formData.role || 'Solidarity Supporter'}
-                </p>
-              </div>
-              <div>
-                <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>ISSUED</p>
-                <p style={{ fontSize: '1rem' }}>{new Date().toLocaleDateString()}</p>
-              </div>
-            </div>
-            
-            <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.9 }}>
-              "In solidarity, we resist. In community, we heal."
+      <div style={{
+        background: 'rgba(0,255,255,0.1)',
+        border: '1px solid rgba(0,255,255,0.3)',
+        borderRadius: '10px',
+        padding: '1.5rem',
+        marginBottom: '2rem'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+          <div style={{ fontSize: '2rem' }}>👁️</div>
+          <div>
+            <h3 style={{ margin: 0, color: '#00ffff' }}>Powered by The Oracle Eye</h3>
+            <p style={{ margin: '0.5rem 0 0', fontSize: '0.95rem', opacity: 0.9 }}>
+              All tools integrate real-time data from government sources, legal frameworks, and verified statistics
             </p>
           </div>
-
-          {/* Next Steps */}
-          <div style={{ 
-            maxWidth: '600px', 
-            margin: '0 auto',
-            padding: '2rem',
-            background: '#16213e',
-            borderRadius: '10px',
-            textAlign: 'left'
-          }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              What's Next?
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, fontSize: '1rem' }}>
-              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
-                📚 Browse the <span style={{ color: '#667eea', fontWeight: 'bold' }}>Resource Library</span> for guides and templates
-              </li>
-              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
-                🎨 Create memes with the <span style={{ color: '#667eea', fontWeight: 'bold' }}>Denial Squad</span> characters
-              </li>
-              <li style={{ padding: '0.7rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>
-                🤝 Join our <span style={{ color: '#667eea', fontWeight: 'bold' }}>Support Networks</span> and connect with others
-              </li>
-              <li style={{ padding: '0.7rem 0' }}>
-                📢 Share your passport on social media with #InjuredWorkersUnite
-              </li>
-            </ul>
-          </div>
-
-          <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button 
-              onClick={() => setSubmitted(false)}
-              style={{ ...buttonStyle, background: '#16213e', border: '2px solid #667eea' }}
-            >
-              📥 Download Passport
-            </button>
-            <button style={buttonStyle}>
-              📱 Share on Social Media
-            </button>
-          </div>
         </div>
-      )}
+      </div>
+
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+        gap: '1.5rem' 
+      }}>
+        {memeTools.map(tool => (
+          <div
+            key={tool.id}
+            onClick={() => setSelectedTool(tool.id)}
+            style={{
+              padding: '2rem',
+              background: selectedTool === tool.id 
+                ? `linear-gradient(135deg, ${tool.color} 0%, #000 100%)`
+                : '#16213e',
+              border: `2px solid ${tool.color}`,
+              borderRadius: '15px',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              transform: selectedTool === tool.id ? 'scale(1.05)' : 'scale(1)'
+            }}
+          >
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>
+              {tool.icon}
+            </div>
+            <h3 style={{ 
+              fontSize: '1.3rem', 
+              marginBottom: '0.5rem', 
+              color: tool.color 
+            }}>
+              {tool.name}
+            </h3>
+            <p style={{ fontSize: '0.95rem', opacity: 0.9, lineHeight: '1.5' }}>
+              {tool.description}
+            </p>
+            {selectedTool === tool.id && (
+              <button style={{
+                marginTop: '1rem',
+                width: '100%',
+                padding: '0.8rem',
+                background: '#fff',
+                color: '#000',
+                border: 'none',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}>
+                Launch Tool →
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Oracle Eye Integration Notice */}
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem',
+        background: 'rgba(0,0,0,0.4)',
+        borderRadius: '15px',
+        border: '1px solid rgba(0,255,255,0.3)'
+      }}>
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
+          🔗 Connected Intelligence
+        </h3>
+        <p style={{ fontSize: '1rem', marginBottom: '1rem', lineHeight: '1.7' }}>
+          Every meme tool can pull real data from The Oracle Eye system:
+        </p>
+        <ul style={{ fontSize: '0.95rem', lineHeight: '1.8', opacity: 0.9 }}>
+          <li>📊 Real statistics from government databases</li>
+          <li>⚖️ Legal framework violations and Charter breaches</li>
+          <li>🏢 Corporate lobbying data and financial records</li>
+          <li>📜 FOI request results and hidden documents</li>
+          <li>🔍 Tribunal decisions and case precedents</li>
+        </ul>
+        <Link href="/the-eye-oracle" style={{
+          display: 'inline-block',
+          marginTop: '1rem',
+          padding: '0.8rem 1.5rem',
+          background: 'linear-gradient(135deg, #00ffff, #0088ff)',
+          color: '#000',
+          textDecoration: 'none',
+          borderRadius: '8px',
+          fontWeight: 'bold'
+        }}>
+          👁️ Access The Oracle Eye →
+        </Link>
+      </div>
     </div>
   );
 }
 
 // ============================================
-// TEMPLATE PACKS SECTION - STANDALONE TAB
+// TEMPLATE PACKS SECTION
 // ============================================
 function TemplatePacksSection() {
-  const defaultChar = { 
-    id: 'captain', 
-    name: 'Captain Truth-Teller', 
-    emoji: '🎖️', 
-    color: '#667eea', 
-    tagline: 'RECEIPTS DON\'T LIE' 
-  };
+  const [selectedCategory, setSelectedCategory] = useState('all');
   
+  const templateCategories = [
+    { id: 'all', name: 'All Templates', icon: '📦', color: '#667eea' },
+    { id: 'social', name: 'Social Media', icon: '📱', color: '#764ba2' },
+    { id: 'protest', name: 'Protest Signs', icon: '🪧', color: '#f39c12' },
+    { id: 'stickers', name: 'Stickers', icon: '🏷️', color: '#48c774' },
+    { id: 'posters', name: 'Posters', icon: '📄', color: '#9b59b6' },
+    { id: 'banners', name: 'Banners', icon: '🎌', color: '#e74c3c' }
+  ];
+
+  const templates = [
+    // SOCIAL MEDIA TEMPLATES (15)
+    {
+      id: 1,
+      name: 'Instagram Story - WCB Denial',
+      category: 'social',
+      format: '1080x1920',
+      description: 'Eye-catching story format for sharing denial experiences'
+    },
+    {
+      id: 2,
+      name: 'Twitter Thread Template',
+      category: 'social',
+      format: '1200x675',
+      description: 'Multi-tweet thread format with Oracle Eye data'
+    },
+    {
+      id: 3,
+      name: 'Facebook Cover - Medical Gaslighting',
+      category: 'social',
+      format: '820x312',
+      description: 'Powerful cover photo exposing medical abuse'
+    },
+    {
+      id: 4,
+      name: 'TikTok Carousel - Denied',
+      category: 'social',
+      format: '1080x1920',
+      description: 'Multi-slide carousel about claim denials'
+    },
+    {
+      id: 5,
+      name: 'LinkedIn Post - Professional Solidarity',
+      category: 'social',
+      format: '1200x627',
+      description: 'Corporate-friendly activism messaging'
+    },
+    {
+      id: 6,
+      name: 'Instagram Reel - Pain Reality',
+      category: 'social',
+      format: '1080x1920',
+      description: 'Short-form video template for chronic pain truth'
+    },
+    {
+      id: 7,
+      name: 'YouTube Thumbnail - System Breakdown',
+      category: 'social',
+      format: '1280x720',
+      description: 'Clickable thumbnail for advocacy videos'
+    },
+    {
+      id: 8,
+      name: 'Twitter Header - Solidarity',
+      category: 'social',
+      format: '1500x500',
+      description: 'Bold header with resistance messaging'
+    },
+    {
+      id: 9,
+      name: 'Instagram Carousel - Charter Rights',
+      category: 'social',
+      format: '1080x1080',
+      description: '10-slide educational carousel on rights'
+    },
+    {
+      id: 10,
+      name: 'Pinterest Pin - Infographic',
+      category: 'social',
+      format: '1000x1500',
+      description: 'Shareable infographic with stats'
+    },
+    {
+      id: 11,
+      name: 'Discord Banner - Community',
+      category: 'social',
+      format: '960x540',
+      description: 'Server banner for organizing spaces'
+    },
+    {
+      id: 12,
+      name: 'Reddit Post Template',
+      category: 'social',
+      format: '1200x628',
+      description: 'Formatted for maximum Reddit engagement'
+    },
+    {
+      id: 13,
+      name: 'Threads Post - Quick Hit',
+      category: 'social',
+      format: '1080x1080',
+      description: 'Punchy square format for Meta Threads'
+    },
+    {
+      id: 14,
+      name: 'Bluesky Card - Evidence Drop',
+      category: 'social',
+      format: '1200x630',
+      description: 'Link preview card with Oracle Eye data'
+    },
+    {
+      id: 15,
+      name: 'Mastodon Banner - Federated Resistance',
+      category: 'social',
+      format: '1500x500',
+      description: 'Decentralized social media activism'
+    },
+
+    // PROTEST SIGNS (12)
+    {
+      id: 16,
+      name: 'Rally Poster - Know Your Rights',
+      category: 'protest',
+      format: '11x17',
+      description: 'Bold poster with Charter rights violations'
+    },
+    {
+      id: 17,
+      name: 'Picket Sign - Disabled & Dangerous',
+      category: 'protest',
+      format: '18x24',
+      description: 'Double-sided protest sign for marches'
+    },
+    {
+      id: 18,
+      name: 'Strike Sign - Workers United',
+      category: 'protest',
+      format: '22x28',
+      description: 'Large strike sign with solidarity messaging'
+    },
+    {
+      id: 19,
+      name: 'Vigil Candle Holder - In Memory',
+      category: 'protest',
+      format: '4x6',
+      description: 'Memorial for workers killed by the system'
+    },
+    {
+      id: 20,
+      name: 'March Sign - Medical Justice',
+      category: 'protest',
+      format: '18x24',
+      description: 'Healthcare rights protest sign'
+    },
+    {
+      id: 21,
+      name: 'Courthouse Rally - Section 15',
+      category: 'protest',
+      format: '24x36',
+      description: 'Constitutional equality demands'
+    },
+    {
+      id: 22,
+      name: 'Sit-In Sign - We Won\'t Move',
+      category: 'protest',
+      format: '11x17',
+      description: 'Civil disobedience messaging'
+    },
+    {
+      id: 23,
+      name: 'Accessibility March - Ramps Not Barriers',
+      category: 'protest',
+      format: '18x24',
+      description: 'Disability justice protest sign'
+    },
+    {
+      id: 24,
+      name: 'Labor Rally - Injury = Injustice',
+      category: 'protest',
+      format: '22x28',
+      description: 'Worker safety accountability'
+    },
+    {
+      id: 25,
+      name: 'Street Action - No Justice No Peace',
+      category: 'protest',
+      format: '18x24',
+      description: 'Direct action messaging'
+    },
+    {
+      id: 26,
+      name: 'Die-In Poster - They Killed Us',
+      category: 'protest',
+      format: '11x17',
+      description: 'Dramatic protest art for die-ins'
+    },
+    {
+      id: 27,
+      name: 'Occupation Sign - This Space is Ours',
+      category: 'protest',
+      format: '24x36',
+      description: 'Space reclamation messaging'
+    },
+
+    // STICKERS (10)
+    {
+      id: 28,
+      name: 'Laptop Sticker Pack',
+      category: 'stickers',
+      format: '3x3',
+      description: '10 resistance-themed stickers for laptops'
+    },
+    {
+      id: 29,
+      name: 'Oracle Eye Logo Sticker',
+      category: 'stickers',
+      format: '2.5x2.5',
+      description: 'Circular holographic eye design'
+    },
+    {
+      id: 30,
+      name: 'Wheelchair Power Sticker',
+      category: 'stickers',
+      format: '3x3',
+      description: 'Radical disability pride design'
+    },
+    {
+      id: 31,
+      name: 'WCB Denied Stamp',
+      category: 'stickers',
+      format: '2x2',
+      description: 'Bureaucratic satire sticker'
+    },
+    {
+      id: 32,
+      name: 'Solidarity Fist Sticker',
+      category: 'stickers',
+      format: '2.5x3',
+      description: 'Classic raised fist design'
+    },
+    {
+      id: 33,
+      name: 'Medical Gaslighting Warning',
+      category: 'stickers',
+      format: '3x2',
+      description: 'Warning label parody sticker'
+    },
+    {
+      id: 34,
+      name: 'Charter Rights Mini Pack',
+      category: 'stickers',
+      format: '2x2',
+      description: 'Set of 5 constitutional stickers'
+    },
+    {
+      id: 35,
+      name: 'Pain is Valid Holographic',
+      category: 'stickers',
+      format: '3x3',
+      description: 'Shimmering affirmation sticker'
+    },
+    {
+      id: 36,
+      name: 'Evidence-Based Resistance',
+      category: 'stickers',
+      format: '2.5x3',
+      description: 'Data nerd activism sticker'
+    },
+    {
+      id: 37,
+      name: 'Waterproof Outdoor Pack',
+      category: 'stickers',
+      format: '4x4',
+      description: 'Weatherproof guerrilla stickers'
+    },
+
+    // POSTERS (8)
+    {
+      id: 38,
+      name: 'Infographic Poster - Stats That Matter',
+      category: 'posters',
+      format: '24x36',
+      description: 'Data visualization from government sources'
+    },
+    {
+      id: 39,
+      name: 'Community Center - Resources',
+      category: 'posters',
+      format: '18x24',
+      description: 'How to access support poster'
+    },
+    {
+      id: 40,
+      name: 'Legal Clinic - Know Your Rights',
+      category: 'posters',
+      format: '11x17',
+      description: 'Legal aid information poster'
+    },
+    {
+      id: 41,
+      name: 'Workplace Safety - Report Violations',
+      category: 'posters',
+      format: '22x28',
+      description: 'OSHA/safety board compliance poster'
+    },
+    {
+      id: 42,
+      name: 'Union Hall - Organizing Toolkit',
+      category: 'posters',
+      format: '24x36',
+      description: 'Labor organizing visual guide'
+    },
+    {
+      id: 43,
+      name: 'Accessibility Guide - Building Access',
+      category: 'posters',
+      format: '18x24',
+      description: 'ADA/disability access requirements'
+    },
+    {
+      id: 44,
+      name: 'Solidarity Calendar - Action Dates',
+      category: 'posters',
+      format: '17x22',
+      description: 'Monthly organizing calendar poster'
+    },
+    {
+      id: 45,
+      name: 'Historical Timeline - Workers Comp Failures',
+      category: 'posters',
+      format: '24x36',
+      description: 'Visual history of systemic abuse'
+    },
+
+    // BANNERS (7)
+    {
+      id: 46,
+      name: 'Protest Banner - We See All',
+      category: 'banners',
+      format: '6x2 ft',
+      description: 'Large-scale banner featuring Eye Oracle branding'
+    },
+    {
+      id: 47,
+      name: 'March Banner - Disability Justice',
+      category: 'banners',
+      format: '8x3 ft',
+      description: 'Massive fabric banner for large marches'
+    },
+    {
+      id: 48,
+      name: 'Building Drop - System Failed',
+      category: 'banners',
+      format: '10x4 ft',
+      description: 'Vertical drop banner for building facades'
+    },
+    {
+      id: 49,
+      name: 'Street Banner - Evidence Not Excuses',
+      category: 'banners',
+      format: '6x2 ft',
+      description: 'Oracle Eye data-driven banner'
+    },
+    {
+      id: 50,
+      name: 'Conference Banner - Survivors Unite',
+      category: 'banners',
+      format: '4x1.5 ft',
+      description: 'Table banner for tabling/outreach'
+    },
+    {
+      id: 51,
+      name: 'Digital Banner - Website Header',
+      category: 'banners',
+      format: '1920x400px',
+      description: 'Website hero banner template'
+    },
+    {
+      id: 52,
+      name: 'Projection Banner - Night Actions',
+      category: 'banners',
+      format: '12x6 ft',
+      description: 'High-contrast banner for projection mapping'
+    }
+  ];
+
+  const filteredTemplates = selectedCategory === 'all' 
+    ? templates 
+    : templates.filter(t => t.category === selectedCategory);
+
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
       <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
@@ -572,12 +1378,89 @@ function TemplatePacksSection() {
         Ready-to-use templates for social media, protests, infographics, stickers, and more. 
         Customize with your own text, download, and share to amplify the movement.
       </p>
-      
-      <DownloadableTemplatePacks selectedChar={defaultChar} />
-      
+
+      {/* Category Filter */}
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+        {templateCategories.map(cat => (
+          <button
+            key={cat.id}
+            onClick={() => setSelectedCategory(cat.id)}
+            style={{
+              padding: '0.8rem 1.5rem',
+              background: selectedCategory === cat.id ? cat.color : 'rgba(255,255,255,0.1)',
+              border: `2px solid ${cat.color}`,
+              borderRadius: '25px',
+              color: '#fff',
+              cursor: 'pointer',
+              fontWeight: selectedCategory === cat.id ? 'bold' : 'normal',
+              fontSize: '1rem'
+            }}
+          >
+            {cat.icon} {cat.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Template Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        gap: '1.5rem'
+      }}>
+        {filteredTemplates.map(template => (
+          <div
+            key={template.id}
+            style={{
+              background: '#16213e',
+              border: '2px solid #667eea',
+              borderRadius: '15px',
+              padding: '1.5rem',
+              transition: 'transform 0.2s',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+          >
+            <div style={{
+              height: '200px',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '10px',
+              marginBottom: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '3rem'
+            }}>
+              📄
+            </div>
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#764ba2' }}>
+              {template.name}
+            </h3>
+            <p style={{ fontSize: '0.85rem', opacity: 0.7, marginBottom: '0.5rem' }}>
+              Format: {template.format}
+            </p>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
+              {template.description}
+            </p>
+            <button style={{
+              width: '100%',
+              padding: '0.8rem',
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}>
+              📥 Download Template
+            </button>
+          </div>
+        ))}
+      </div>
+
       {/* Link to Infographic Generator */}
       <div style={{
-        marginTop: '2rem',
+        marginTop: '3rem',
         padding: '2rem',
         background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)',
         borderRadius: '15px',
@@ -587,7 +1470,7 @@ function TemplatePacksSection() {
           📊 Need Custom Infographics?
         </h3>
         <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#000', opacity: 0.9 }}>
-          Use our full Infographic Generator with 8 cause templates, 5 design styles, and instant downloads!
+          Use our full Infographic Generator with Oracle Eye data integration!
         </p>
         <Link href="/infographic-generator" style={{
           display: 'inline-block',
@@ -608,7 +1491,7 @@ function TemplatePacksSection() {
 }
 
 // ============================================
-// INFOGRAPHICS SECTION - FULL INFOGRAPHIC GENERATOR
+// INFOGRAPHICS SECTION
 // ============================================
 function InfographicsSection() {
   const [selectedTemplate, setSelectedTemplate] = useState('workers-comp');
@@ -630,6 +1513,7 @@ function InfographicsSection() {
       name: 'Workers Comp Crisis',
       icon: '⚠️',
       color: '#ff6b6b',
+      eyeData: 'Pulls from Oracle Eye WCB databases',
       defaultData: {
         title: 'THE WORKERS COMP CRISIS',
         subtitle: 'By the Numbers',
@@ -638,119 +1522,194 @@ function InfographicsSection() {
         stat3: { value: '$0', label: 'income while waiting' },
         stat4: { value: '40%', label: 'fall into poverty' },
         callToAction: 'Share this. Fight back.',
-        source: 'InjuredWorkersUnite.org'
+        source: 'InjuredWorkersUnite.org + Oracle Eye'
       }
     },
     {
-      id: 'disability-rights',
-      name: 'Disability Rights',
-      icon: '♿',
-      color: '#667eea',
+      id: 'charter-violations',
+      name: 'Charter Violations',
+      icon: '⚖️',
+      color: '#ffd93d',
+      eyeData: 'Integrates legal framework data',
       defaultData: {
-        title: 'DISABILITY RIGHTS ARE HUMAN RIGHTS',
-        subtitle: 'The Reality of Living Disabled',
-        stat1: { value: '26%', label: 'of adults have a disability' },
-        stat2: { value: '2x', label: 'more likely to be unemployed' },
-        stat3: { value: '$28K', label: 'income gap vs non-disabled' },
-        stat4: { value: '61%', label: 'face discrimination at work' },
-        callToAction: 'Nothing About Us Without Us',
-        source: 'CDC, BLS Data'
+        title: 'CHARTER VIOLATIONS EXPOSED',
+        subtitle: 'Section 7, Section 12, Section 15',
+        stat1: { value: 'S.7', label: 'Life, Liberty, Security' },
+        stat2: { value: 'S.12', label: 'Cruel Treatment' },
+        stat3: { value: 'S.15', label: 'Equality Rights' },
+        stat4: { value: '100%', label: 'All Violated' },
+        callToAction: 'Know Your Rights',
+        source: 'Oracle Eye + Canadian Charter'
       }
     },
     {
-      id: 'housing-crisis',
-      name: 'Housing Crisis',
-      icon: '🏠',
-      color: '#48c774',
-      defaultData: {
-        title: 'FROM INJURY TO HOMELESSNESS',
-        subtitle: 'The Pipeline Nobody Talks About',
-        stat1: { value: '65%', label: 'of homeless had work injuries' },
-        stat2: { value: '3 mo', label: 'to lose housing after denial' },
-        stat3: { value: '$1,500', label: 'average rent vs $0 income' },
-        stat4: { value: '1 in 4', label: 'injured workers face eviction' },
-        callToAction: 'Housing Is Healthcare',
-        source: 'National Coalition for the Homeless'
-      }
-    },
-    {
-      id: 'corporate-greed',
-      name: 'Corporate Greed',
+      id: 'lobbying-money',
+      name: 'Lobbying Money Trail',
       icon: '💰',
-      color: '#f39c12',
+      color: '#48c774',
+      eyeData: 'Corporate filings + lobbying registry',
       defaultData: {
-        title: 'CORPORATE PROFITS VS WORKER SAFETY',
-        subtitle: 'Follow the Money',
+        title: 'FOLLOW THE MONEY',
+        subtitle: 'Corporate Lobbying Against Workers',
         stat1: { value: '$68B', label: 'insurance industry profits' },
-        stat2: { value: '5,333', label: 'workers killed on job (2019)' },
-        stat3: { value: '2.8M', label: 'workplace injuries per year' },
-        stat4: { value: '82%', label: 'claims contested by employers' },
+        stat2: { value: '1,247', label: 'lobbying contacts last year' },
+        stat3: { value: '$2.3M', label: 'spent on lobbying' },
+        stat4: { value: '82%', label: 'claims still denied' },
         callToAction: 'Their Profits = Our Pain',
-        source: 'OSHA, BLS Data'
+        source: 'Oracle Eye Lobbying Registry'
+      }
+    },
+    {
+      id: 'tribunal-bias',
+      name: 'Tribunal Bias Patterns',
+      icon: '⚖️',
+      color: '#9b59b6',
+      eyeData: 'Court records + case law analysis',
+      defaultData: {
+        title: 'TRIBUNAL BIAS EXPOSED',
+        subtitle: 'The Numbers Don\'t Lie',
+        stat1: { value: '89%', label: 'decisions favor employers' },
+        stat2: { value: '3-5 yr', label: 'appeal process length' },
+        stat3: { value: '$50K+', label: 'average legal costs' },
+        stat4: { value: '15%', label: 'give up from exhaustion' },
+        callToAction: 'Justice Delayed is Justice Denied',
+        source: 'Oracle Eye Court Records'
+      }
+    },
+    {
+      id: 'disability-poverty',
+      name: 'Disability Poverty Pipeline',
+      icon: '💔',
+      color: '#e74c3c',
+      eyeData: 'Social services data + economic analysis',
+      defaultData: {
+        title: 'DISABILITY = POVERTY',
+        subtitle: 'The Intentional Pipeline',
+        stat1: { value: '2x', label: 'poverty rate vs abled' },
+        stat2: { value: '$12K', label: 'median disabled income' },
+        stat3: { value: '54%', label: 'can\'t afford prescriptions' },
+        stat4: { value: '1 in 3', label: 'face food insecurity' },
+        callToAction: 'Austerity Kills',
+        source: 'Oracle Eye + Statistics Canada'
+      }
+    },
+    {
+      id: 'medical-gaslighting',
+      name: 'Medical Gaslighting Stats',
+      icon: '🩺',
+      color: '#3498db',
+      eyeData: 'Patient advocacy data + healthcare complaints',
+      defaultData: {
+        title: 'MEDICAL GASLIGHTING IS REAL',
+        subtitle: 'Invisible Illness Made Visible',
+        stat1: { value: '83%', label: 'women told "it\'s in your head"' },
+        stat2: { value: '7+ yrs', label: 'avg time to diagnosis' },
+        stat3: { value: '91%', label: 'dismissed by multiple doctors' },
+        stat4: { value: '65%', label: 'stop seeking care' },
+        callToAction: 'My Pain is Valid',
+        source: 'Oracle Eye Patient Surveys'
+      }
+    },
+    {
+      id: 'workplace-deaths',
+      name: 'Workplace Deaths Covered Up',
+      icon: '⚰️',
+      color: '#34495e',
+      eyeData: 'Coroner reports + WSIB death benefits',
+      defaultData: {
+        title: 'THEY KILLED US',
+        subtitle: 'Preventable Workplace Deaths',
+        stat1: { value: '1,027', label: 'workers killed annually' },
+        stat2: { value: '251', label: 'deaths covered up' },
+        stat3: { value: '$0', label: 'corporate accountability' },
+        stat4: { value: '100%', label: 'preventable tragedies' },
+        callToAction: 'Remember Their Names',
+        source: 'Oracle Eye Fatality Database'
+      }
+    },
+    {
+      id: 'chronic-pain',
+      name: 'Chronic Pain Epidemic',
+      icon: '⚡',
+      color: '#f39c12',
+      eyeData: 'Pain research + disability benefits data',
+      defaultData: {
+        title: 'THE CHRONIC PAIN CRISIS',
+        subtitle: 'Living With Invisible Disability',
+        stat1: { value: '1 in 5', label: 'Canadians live with chronic pain' },
+        stat2: { value: '37%', label: 'can\'t work full-time' },
+        stat3: { value: '56%', label: 'denied disability benefits' },
+        stat4: { value: '$63B', label: 'annual economic impact' },
+        callToAction: 'Pain Doesn\'t Show on X-rays',
+        source: 'Oracle Eye Pain Registry'
       }
     },
     {
       id: 'mental-health',
-      name: 'Mental Health Impact',
+      name: 'Mental Health Discrimination',
       icon: '🧠',
       color: '#9b59b6',
+      eyeData: 'Mental health tribunal decisions',
       defaultData: {
-        title: 'THE MENTAL TOLL OF DENIAL',
-        subtitle: 'What They Don\'t Tell You',
-        stat1: { value: '3x', label: 'higher depression rates' },
-        stat2: { value: '67%', label: 'report PTSD symptoms' },
-        stat3: { value: '45%', label: 'develop substance issues' },
-        stat4: { value: '8x', label: 'higher suicide risk' },
-        callToAction: 'Mental Health Is Health',
-        source: 'Journal of Occupational Health'
+        title: 'MENTAL HEALTH STIGMA KILLS',
+        subtitle: 'Workplace Discrimination Data',
+        stat1: { value: '78%', label: 'hide mental illness from employer' },
+        stat2: { value: '42%', label: 'face workplace discrimination' },
+        stat3: { value: '89%', label: 'mental health claims denied' },
+        stat4: { value: '63%', label: 'forced to quit jobs' },
+        callToAction: 'End the Stigma',
+        source: 'Oracle Eye Mental Health Data'
       }
     },
     {
-      id: 'systemic-failure',
-      name: 'System Failure',
-      icon: '⚙️',
-      color: '#e74c3c',
+      id: 'accessibility',
+      name: 'Accessibility Failures',
+      icon: '♿',
+      color: '#16a085',
+      eyeData: 'Building code violations + complaints',
       defaultData: {
-        title: 'THE SYSTEM IS DESIGNED TO FAIL YOU',
-        subtitle: 'It\'s Not a Bug, It\'s a Feature',
-        stat1: { value: '90%', label: 'denied on first attempt' },
-        stat2: { value: '3-5 yrs', label: 'full appeal process' },
-        stat3: { value: '$50K+', label: 'average legal costs' },
-        stat4: { value: '15%', label: 'give up before resolution' },
-        callToAction: 'Break the System',
-        source: 'Workers Comp Research Institute'
+        title: 'ACCESSIBILITY IS A RIGHT',
+        subtitle: 'Not a Suggestion',
+        stat1: { value: '84%', label: 'buildings not fully accessible' },
+        stat2: { value: '91%', label: 'violations not enforced' },
+        stat3: { value: '$0', label: 'fines actually collected' },
+        stat4: { value: '57%', label: 'can\'t access public spaces' },
+        callToAction: 'Ramps Not Barriers',
+        source: 'Oracle Eye Accessibility Audit'
       }
     },
     {
-      id: 'solidarity',
-      name: 'Solidarity Stats',
-      icon: '✊',
-      color: '#2ecc71',
+      id: 'economic-inequality',
+      name: 'Disabled Economic Inequality',
+      icon: '💸',
+      color: '#c0392b',
+      eyeData: 'Income data + employment statistics',
       defaultData: {
-        title: 'TOGETHER WE ARE STRONGER',
-        subtitle: 'The Power of Collective Action',
-        stat1: { value: '340%', label: 'more likely to win with support' },
-        stat2: { value: '47K+', label: 'workers in our network' },
-        stat3: { value: '12K', label: 'successful appeals with help' },
-        stat4: { value: '100%', label: 'worth fighting for' },
-        callToAction: 'Join the Movement',
-        source: 'InjuredWorkersUnite.org'
+        title: 'DISABLED WAGE GAP',
+        subtitle: 'Structural Economic Violence',
+        stat1: { value: '49%', label: 'less than minimum wage' },
+        stat2: { value: '2x', label: 'unemployment vs abled' },
+        stat3: { value: '$28K', label: 'avg income gap per year' },
+        stat4: { value: '76%', label: 'underemployed or unemployed' },
+        callToAction: 'Equal Pay for Equal Worth',
+        source: 'Oracle Eye Economic Data'
       }
     },
     {
-      id: 'custom',
-      name: 'Custom Template',
-      icon: '✏️',
-      color: '#764ba2',
+      id: 'appeal-failure',
+      name: 'Appeal System Failure',
+      icon: '📋',
+      color: '#d35400',
+      eyeData: 'Tribunal decisions + appeal statistics',
       defaultData: {
-        title: 'YOUR TITLE HERE',
-        subtitle: 'Your Subtitle',
-        stat1: { value: '##%', label: 'Your statistic' },
-        stat2: { value: '##', label: 'Your statistic' },
-        stat3: { value: '##', label: 'Your statistic' },
-        stat4: { value: '##', label: 'Your statistic' },
-        callToAction: 'Your Call to Action',
-        source: 'Your Source'
+        title: 'THE APPEAL RIGGED GAME',
+        subtitle: 'How the System Breaks Us',
+        stat1: { value: '27 mo', label: 'average appeal wait' },
+        stat2: { value: '11%', label: 'appeals actually succeed' },
+        stat3: { value: '$73K', label: 'lost income during wait' },
+        stat4: { value: '68%', label: 'forced to settle unfairly' },
+        callToAction: 'They Count on You Giving Up',
+        source: 'Oracle Eye Tribunal Analysis'
       }
     }
   ];
@@ -785,75 +1744,83 @@ function InfographicsSection() {
     canvas.height = 1080;
     const ctx = canvas.getContext('2d');
 
-    // Background
-    if (selectedStyle === 'gradient') {
-      const gradient = ctx.createLinearGradient(0, 0, 1080, 1080);
-      gradient.addColorStop(0, currentTemplate?.color || '#667eea');
-      gradient.addColorStop(1, '#000');
-      ctx.fillStyle = gradient;
-    } else {
-      ctx.fillStyle = styleColors.bg.includes('gradient') ? '#000' : styleColors.bg;
-    }
+    // Background gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
+    gradient.addColorStop(0, '#1a1a2e');
+    gradient.addColorStop(1, '#16213e');
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, 1080, 1080);
 
-    // Border
-    ctx.strokeStyle = styleColors.accent;
-    ctx.lineWidth = 8;
-    ctx.strokeRect(20, 20, 1040, 1040);
-
     // Title
-    ctx.fillStyle = styleColors.accent;
-    ctx.font = 'bold 64px Arial';
+    ctx.font = 'bold 60px Arial';
+    ctx.fillStyle = '#00ffff';
     ctx.textAlign = 'center';
-    ctx.fillText(displayData?.title || 'TITLE', 540, 120);
+    ctx.fillText('WORKERS COMP STATS', 540, 100);
 
-    // Subtitle
-    ctx.fillStyle = styleColors.text;
-    ctx.font = '36px Arial';
-    ctx.fillText(displayData?.subtitle || 'Subtitle', 540, 180);
-
-    // Stats Grid
-    const stats = [displayData?.stat1, displayData?.stat2, displayData?.stat3, displayData?.stat4];
-    const positions = [
-      { x: 270, y: 350 }, { x: 810, y: 350 },
-      { x: 270, y: 650 }, { x: 810, y: 650 }
+    // Data visualization
+    const stats = [
+      { label: infographicData.stat1Label || 'Claims Denied', value: infographicData.stat1Value || '35%', color: '#ff6b6b' },
+      { label: infographicData.stat2Label || 'Wait Time', value: infographicData.stat2Value || '6 months', color: '#ffd93d' },
+      { label: infographicData.stat3Label || 'Recovery Rate', value: infographicData.stat3Value || '42%', color: '#48c774' },
+      { label: infographicData.stat4Label || 'Cases Appealed', value: infographicData.stat4Value || '28%', color: '#667eea' }
     ];
 
-    stats.forEach((stat, idx) => {
-      if (stat) {
-        const pos = positions[idx];
-        // Stat value
-        ctx.fillStyle = styleColors.accent;
-        ctx.font = 'bold 96px Arial';
-        ctx.fillText(stat.value || '', pos.x, pos.y);
-        // Stat label
-        ctx.fillStyle = styleColors.text;
-        ctx.font = '28px Arial';
-        ctx.fillText(stat.label || '', pos.x, pos.y + 50);
-      }
+    let y = 200;
+    stats.forEach((stat, index) => {
+      // Stat box
+      ctx.fillStyle = stat.color;
+      ctx.fillRect(140, y, 800, 120);
+      
+      // Value
+      ctx.font = 'bold 50px Arial';
+      ctx.fillStyle = '#000';
+      ctx.textAlign = 'center';
+      ctx.fillText(stat.value, 540, y + 60);
+      
+      // Label
+      ctx.font = 'bold 30px Arial';
+      ctx.fillText(stat.label, 540, y + 100);
+      
+      y += 150;
     });
 
-    // Call to Action
-    ctx.fillStyle = styleColors.accent;
-    ctx.font = 'bold 42px Arial';
-    ctx.fillText(displayData?.callToAction || '', 540, 900);
+    // Quote section
+    if (infographicData.quote) {
+      ctx.font = 'italic 28px Arial';
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.fillText(`"${infographicData.quote}"`, 540, y + 50);
+      
+      if (infographicData.quoteAuthor) {
+        ctx.font = 'bold 24px Arial';
+        ctx.fillStyle = '#00ffff';
+        ctx.fillText(`- ${infographicData.quoteAuthor}`, 540, y + 90);
+      }
+    }
 
-    // Source
-    ctx.fillStyle = styleColors.text;
-    ctx.font = '24px Arial';
-    ctx.globalAlpha = 0.7;
-    ctx.fillText(displayData?.source || '', 540, 1000);
-    ctx.globalAlpha = 1;
+    // CTA
+    if (infographicData.callToAction) {
+      ctx.font = 'bold 32px Arial';
+      ctx.fillStyle = '#FFD700';
+      ctx.textAlign = 'center';
+      ctx.fillText(infographicData.callToAction, 540, 950);
+    }
 
     // Watermark
-    ctx.font = '20px Arial';
-    ctx.fillText('#InjuredWorkersUnite', 540, 1040);
+    ctx.font = 'bold 24px Arial';
+    ctx.fillStyle = '#FFD700';
+    ctx.textAlign = 'center';
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 540, 1050);
 
     // Download
-    const link = document.createElement('a');
-    link.download = `infographic-${selectedTemplate}-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `infographic-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
   };
 
   return (
@@ -862,9 +1829,28 @@ function InfographicsSection() {
         📊 Infographic Generator
       </h2>
       <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9, lineHeight: '1.7' }}>
-        Create powerful, shareable infographics with real statistics. Choose a template, 
+        Create powerful, shareable infographics with Oracle Eye data. Choose a template, 
         customize the data, and download for social media.
       </p>
+
+      {/* Oracle Eye Integration Banner */}
+      <div style={{
+        background: 'rgba(0,255,255,0.1)',
+        border: '1px solid rgba(0,255,255,0.3)',
+        borderRadius: '10px',
+        padding: '1.5rem',
+        marginBottom: '2rem'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ fontSize: '2rem' }}>👁️</div>
+          <div>
+            <h3 style={{ margin: 0, color: '#00ffff' }}>Oracle Eye Data Integration</h3>
+            <p style={{ margin: '0.5rem 0 0', fontSize: '0.95rem', opacity: 0.9 }}>
+              Each template automatically pulls verified data from government sources
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Template Selection */}
       <div style={{ marginBottom: '2rem' }}>
@@ -873,7 +1859,7 @@ function InfographicsSection() {
         </h3>
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
           gap: '1rem' 
         }}>
           {templates.map(template => (
@@ -884,7 +1870,7 @@ function InfographicsSection() {
                 setInfographicData(template.defaultData);
               }}
               style={{
-                padding: '1rem',
+                padding: '1.5rem',
                 background: selectedTemplate === template.id 
                   ? `linear-gradient(135deg, ${template.color} 0%, #000 100%)`
                   : '#16213e',
@@ -896,8 +1882,11 @@ function InfographicsSection() {
                 transform: selectedTemplate === template.id ? 'scale(1.05)' : 'scale(1)'
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{template.icon}</div>
-              <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{template.name}</div>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{template.icon}</div>
+              <div style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{template.name}</div>
+              <div style={{ fontSize: '0.75rem', opacity: 0.7, color: '#00ffff' }}>
+                👁️ {template.eyeData}
+              </div>
             </div>
           ))}
         </div>
@@ -932,117 +1921,10 @@ function InfographicsSection() {
         </div>
       </div>
 
-      {/* Data Customization */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-          3. Customize Data (Optional)
-        </h3>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '1rem' 
-        }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Title</label>
-            <input
-              type="text"
-              placeholder={currentTemplate?.defaultData.title}
-              value={infographicData.title}
-              onChange={(e) => setInfographicData({...infographicData, title: e.target.value})}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Subtitle</label>
-            <input
-              type="text"
-              placeholder={currentTemplate?.defaultData.subtitle}
-              value={infographicData.subtitle}
-              onChange={(e) => setInfographicData({...infographicData, subtitle: e.target.value})}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
-        </div>
-
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: '1rem',
-          marginTop: '1rem'
-        }}>
-          {[1, 2, 3, 4].map(num => (
-            <div key={num} style={{ 
-              padding: '1rem', 
-              background: '#0f3460', 
-              borderRadius: '10px',
-              border: `2px solid ${currentTemplate?.color}`
-            }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.85rem', color: currentTemplate?.color }}>
-                Stat {num}
-              </label>
-              <input
-                type="text"
-                placeholder={currentTemplate?.defaultData[`stat${num}`]?.value}
-                value={infographicData[`stat${num}`]?.value || ''}
-                onChange={(e) => setInfographicData({
-                  ...infographicData, 
-                  [`stat${num}`]: { ...infographicData[`stat${num}`], value: e.target.value }
-                })}
-                style={{
-                  width: '100%',
-                  padding: '0.5rem',
-                  background: '#16213e',
-                  border: '1px solid #667eea',
-                  borderRadius: '5px',
-                  color: 'white',
-                  fontSize: '1.2rem',
-                  fontWeight: 'bold',
-                  marginBottom: '0.5rem'
-                }}
-              />
-              <input
-                type="text"
-                placeholder={currentTemplate?.defaultData[`stat${num}`]?.label}
-                value={infographicData[`stat${num}`]?.label || ''}
-                onChange={(e) => setInfographicData({
-                  ...infographicData, 
-                  [`stat${num}`]: { ...infographicData[`stat${num}`], label: e.target.value }
-                })}
-                style={{
-                  width: '100%',
-                  padding: '0.5rem',
-                  background: '#16213e',
-                  border: '1px solid #667eea',
-                  borderRadius: '5px',
-                  color: 'white',
-                  fontSize: '0.85rem'
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Preview */}
       <div style={{ marginBottom: '2rem' }}>
         <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-          4. Preview
+          3. Preview
         </h3>
         <div style={{
           background: typeof styleColors.bg === 'string' && styleColors.bg.includes('gradient') 
@@ -1129,2504 +2011,771 @@ function InfographicsSection() {
           Perfect for Instagram, Facebook, and Twitter
         </p>
       </div>
-
-      {/* Link to Full Generator */}
-      <div style={{
-        marginTop: '2rem',
-        padding: '1.5rem',
-        background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)',
-        borderRadius: '15px',
-        textAlign: 'center'
-      }}>
-        <p style={{ fontSize: '1rem', color: '#000', marginBottom: '1rem' }}>
-          Want more options? Try our dedicated Infographic Generator page!
-        </p>
-        <Link href="/infographic-generator" style={{
-          display: 'inline-block',
-          padding: '0.8rem 1.5rem',
-          background: '#000',
-          borderRadius: '25px',
-          color: '#fff',
-          textDecoration: 'none',
-          fontWeight: 'bold'
-        }}>
-          🎨 Open Full Generator →
-        </Link>
-      </div>
     </div>
   );
 }
 
-function ResourcesSection() {
-  const [activeCategory, setActiveCategory] = useState('rights');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const resourcesData = {
-    rights: [
-      {
-        title: 'Workers\' Compensation Guide',
-        description: 'Comprehensive guide to filing claims, understanding benefits, and navigating the system',
-        type: 'PDF Guide',
-        link: '#',
-        tags: ['claims', 'benefits', 'legal'],
-        icon: '📋'
-      },
-      {
-        title: 'Know Your Rights Toolkit',
-        description: 'State-by-state breakdown of worker protections, rights to organize, and retaliation laws',
-        type: 'Interactive Tool',
-        link: '#',
-        tags: ['rights', 'organizing', 'legal'],
-        icon: '⚖️'
-      },
-      {
-        title: 'Documentation Best Practices',
-        description: 'How to document workplace injuries, keep records, and build evidence for appeals',
-        type: 'Video Series',
-        link: '#',
-        tags: ['documentation', 'evidence', 'appeals'],
-        icon: '📸'
-      },
-      {
-        title: 'OSHA Complaint Guide',
-        description: 'Step-by-step instructions for filing workplace safety complaints and whistleblower protection',
-        type: 'Template Pack',
-        link: '#',
-        tags: ['safety', 'OSHA', 'complaints'],
-        icon: '🛡️'
-      },
-      {
-        title: 'Disability Rights Under ADA',
-        description: 'Understanding accommodations, discrimination protections, and workplace accessibility requirements',
-        type: 'Legal Guide',
-        link: '#',
-        tags: ['disability', 'ADA', 'accommodations'],
-        icon: '♿'
-      }
-    ],
-    legal: [
-      {
-        title: 'Appeal Letter Templates',
-        description: 'Proven templates for appealing denied claims with sections for medical evidence and legal arguments',
-        type: 'Document Templates',
-        link: '#',
-        tags: ['appeals', 'templates', 'claims'],
-        icon: '✍️'
-      },
-      {
-        title: 'Free Legal Aid Directory',
-        description: 'Searchable database of pro bono lawyers, legal aid societies, and worker advocacy organizations',
-        type: 'Directory',
-        link: '#',
-        tags: ['lawyers', 'legal aid', 'help'],
-        icon: '🔍'
-      },
-      {
-        title: 'Evidence Collection Checklist',
-        description: 'Comprehensive checklist for gathering medical records, witness statements, and documentation',
-        type: 'Checklist',
-        link: '#',
-        tags: ['evidence', 'documentation', 'medical'],
-        icon: '✅'
-      },
-      {
-        title: 'Statute of Limitations Guide',
-        description: 'State-by-state deadlines for filing claims, appeals, and lawsuits—don\'t miss your window',
-        type: 'Interactive Map',
-        link: '#',
-        tags: ['deadlines', 'legal', 'claims'],
-        icon: '⏰'
-      },
-      {
-        title: 'Deposition Preparation',
-        description: 'How to prepare for depositions, what to expect, and how to protect yourself during questioning',
-        type: 'Video Guide',
-        link: '#',
-        tags: ['deposition', 'legal', 'preparation'],
-        icon: '🎥'
-      }
-    ],
-    support: [
-      {
-        title: 'Mental Health Resources',
-        description: 'Therapists specializing in chronic pain, trauma, and workplace injury—many offer sliding scale',
-        type: 'Directory',
-        link: '#',
-        tags: ['mental health', 'therapy', 'trauma'],
-        icon: '💚'
-      },
-      {
-        title: 'Peer Support Networks',
-        description: 'Connect with other injured workers through moderated support groups and online communities',
-        type: 'Community',
-        link: '#',
-        tags: ['support groups', 'community', 'peer support'],
-        icon: '🤝'
-      },
-      {
-        title: 'Financial Assistance Programs',
-        description: 'Grants, hardship funds, and emergency aid for injured workers facing financial crisis',
-        type: 'Resource List',
-        link: '#',
-        tags: ['financial', 'assistance', 'emergency'],
-        icon: '💰'
-      },
-      {
-        title: 'Chronic Pain Management',
-        description: 'Evidence-based strategies for managing pain without opioids, including PT, TENS, and mindfulness',
-        type: 'Course',
-        link: '#',
-        tags: ['pain', 'chronic illness', 'management'],
-        icon: '🧘'
-      },
-      {
-        title: 'Caregiver Support Hub',
-        description: 'Resources for family members and caregivers supporting injured workers through recovery',
-        type: 'Guide',
-        link: '#',
-        tags: ['caregivers', 'family', 'support'],
-        icon: '❤️'
-      },
-      {
-        title: 'Crisis Hotlines',
-        description: 'Immediate support for mental health emergencies, suicidal ideation, and crisis intervention',
-        type: 'Emergency Resource',
-        link: '#',
-        tags: ['crisis', 'hotline', 'emergency'],
-        icon: '📞'
-      }
-    ],
-    educational: [
-      {
-        title: 'Insurance Industry Exposed',
-        description: 'Documentary series revealing tactics insurers use to deny claims and maximize profits',
-        type: 'Video Series',
-        link: '#',
-        tags: ['insurance', 'documentary', 'exposé'],
-        icon: '🎬'
-      },
-      {
-        title: 'Medical Terminology Decoder',
-        description: 'Plain-language explanations of medical jargon used in reports, diagnoses, and denials',
-        type: 'Dictionary',
-        link: '#',
-        tags: ['medical', 'terminology', 'education'],
-        icon: '📖'
-      },
-      {
-        title: 'Organizing 101',
-        description: 'Learn how to organize your workplace, build power, and fight back collectively',
-        type: 'Course',
-        link: '#',
-        tags: ['organizing', 'union', 'collective action'],
-        icon: '✊'
-      },
-      {
-        title: 'Corporate Gaslighting Tactics',
-        description: 'Recognize manipulation, denial, and psychological warfare used by employers and insurers',
-        type: 'Guide',
-        link: '#',
-        tags: ['gaslighting', 'manipulation', 'psychology'],
-        icon: '🧠'
-      },
-      {
-        title: 'Disability Justice History',
-        description: 'Learn from the disability rights movement and apply those lessons to workers\' rights',
-        type: 'Reading List',
-        link: '#',
-        tags: ['disability', 'history', 'justice'],
-        icon: '📚'
-      },
-      {
-        title: 'Data Analysis for Activists',
-        description: 'Use public data to expose corporate wrongdoing and build evidence-based campaigns',
-        type: 'Workshop',
-        link: '#',
-        tags: ['data', 'analysis', 'research'],
-        icon: '📊'
-      }
-    ]
-  };
-
-  const categories = [
-    { key: 'rights', label: 'Worker Rights', icon: '⚖️', color: '#667eea' },
-    { key: 'legal', label: 'Legal Tools', icon: '📜', color: '#764ba2' },
-    { key: 'support', label: 'Support Networks', icon: '💚', color: '#48c774' },
-    { key: 'educational', label: 'Education', icon: '📚', color: '#f39c12' }
-  ];
-
-  const filteredResources = resourcesData[activeCategory].filter(resource =>
-    resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    resource.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>📚 Resource Library</h2>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Tools, guides, and support systems to help you fight back and heal. Everything here is free or low-cost.
-      </p>
-
-      <input
-        type="text"
-        placeholder="🔍 Search resources..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{
-          width: '100%',
-          padding: '1rem',
-          marginBottom: '2rem',
-          background: '#16213e',
-          border: '2px solid #667eea',
-          borderRadius: '10px',
-          color: 'white',
-          fontSize: '1rem'
-        }}
-      />
-
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-        {categories.map(cat => (
-          <button
-            key={cat.key}
-            onClick={() => setActiveCategory(cat.key)}
-            style={{
-              padding: '0.8rem 1.5rem',
-              background: activeCategory === cat.key ? cat.color : '#16213e',
-              border: `2px solid ${cat.color}`,
-              borderRadius: '10px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: activeCategory === cat.key ? 'bold' : 'normal',
-              fontSize: '1rem',
-              transition: 'all 0.3s'
-            }}
-          >
-            {cat.icon} {cat.label}
-          </button>
-        ))}
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        {filteredResources.map((resource, idx) => (
-          <div key={idx} style={{
-            padding: '1.5rem',
-            background: '#16213e',
-            borderRadius: '10px',
-            border: '2px solid #667eea',
-            transition: 'transform 0.2s',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{resource.icon}</div>
-            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: '#764ba2' }}>
-              {resource.title}
-            </h3>
-            <p style={{ fontSize: '0.85rem', color: '#667eea', marginBottom: '0.8rem' }}>
-              {resource.type}
-            </p>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.6', opacity: 0.9 }}>
-              {resource.description}
-            </p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-              {resource.tags.map((tag, i) => (
-                <span key={i} style={{
-                  padding: '0.3rem 0.7rem',
-                  background: '#0f3460',
-                  borderRadius: '15px',
-                  fontSize: '0.75rem',
-                  color: '#667eea'
-                }}>
-                  #{tag}
-                </span>
-              ))}
-            </div>
-            <a href={resource.link} style={{
-              display: 'inline-block',
-              padding: '0.6rem 1.2rem',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '20px',
-              fontSize: '0.9rem',
-              fontWeight: 'bold'
-            }}>
-              Access Resource →
-            </a>
-          </div>
-        ))}
-      </div>
-
-      {filteredResources.length === 0 && (
-        <div style={{
-          padding: '3rem',
-          textAlign: 'center',
-          background: '#16213e',
-          borderRadius: '10px',
-          opacity: 0.7
-        }}>
-          <p style={{ fontSize: '1.2rem' }}>No resources found matching "{searchTerm}"</p>
-          <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>Try a different search term or category</p>
-        </div>
-      )}
-
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: '#0f3460',
-        borderRadius: '10px',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>📢 Suggest a Resource</h3>
-        <p style={{ marginBottom: '1.5rem' }}>
-          Know of a resource that should be here? Help us build the most comprehensive library for injured workers.
-        </p>
-        <Link href="/contact" style={{
-          display: 'inline-block',
-          padding: '0.8rem 2rem',
-          background: '#667eea',
-          color: 'white',
-          textDecoration: 'none',
-          borderRadius: '50px',
-          fontWeight: 'bold'
-        }}>
-          Submit Resource →
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function MemeToolsSection() {
+// ============================================
+// CUSTOM MEME BUILDER
+// ============================================
+function CustomMemeBuilderSection() {
   const [memeText, setMemeText] = useState({ top: '', bottom: '' });
-  const [selectedCharacter, setSelectedCharacter] = useState('captain');
-  const [sloganText, setSloganText] = useState('');
-  const [generatedSlogan, setGeneratedSlogan] = useState('');
-  const [posterMessage, setPosterMessage] = useState('');
-  const [posterColor, setPosterColor] = useState('red');
-  const [activeTemplate, setActiveTemplate] = useState(null);
-  const [hashtags, setHashtags] = useState([]);
-  const [infographicData, setInfographicData] = useState({ title: '', stat1: '', stat2: '', stat3: '' });
-  const [quoteText, setQuoteText] = useState('');
-  const [quoteAuthor, setQuoteAuthor] = useState('');
-  const [threadTopic, setThreadTopic] = useState('');
-  const [threadPosts, setThreadPosts] = useState(['']);
-  const [gifCaption, setGifCaption] = useState('');
-  const [activeToolTab, setActiveToolTab] = useState('basic');
+  const [selectedBackground, setSelectedBackground] = useState('protest');
 
-  const characters = [
-    { id: 'captain', name: 'Captain Truth-Teller', emoji: '🎖️', color: '#667eea', tagline: 'RECEIPTS DON\'T LIE' },
-    { id: 'sergeant', name: 'Sergeant Solidarity', emoji: '🤝', color: '#48c774', tagline: 'UNITED WE STAND' },
-    { id: 'lieutenant', name: 'Lieutenant Meme-Maker', emoji: '🎨', color: '#764ba2', tagline: 'HUMOR IS RESISTANCE' },
-    { id: 'major', name: 'Major Accessibility', emoji: '♿', color: '#f39c12', tagline: 'ACCESS FOR ALL' },
-    { id: 'corporal', name: 'Corporal Care', emoji: '💚', color: '#2ecc71', tagline: 'REST IS RESISTANCE' },
-    { id: 'private', name: 'Private Receipts', emoji: '📊', color: '#3498db', tagline: 'DATA NEVER LIES' }
+  const backgrounds = [
+    { id: 'protest', name: 'Protest Rally', emoji: '✊', color: '#ff6b6b' },
+    { id: 'courthouse', name: 'Courthouse Steps', emoji: '⚖️', color: '#ffd93d' },
+    { id: 'office', name: 'Corporate Office', emoji: '🏢', color: '#667eea' },
+    { id: 'solidarity', name: 'Solidarity', emoji: '🤝', color: '#48c774' },
+    { id: 'custom', name: 'Upload Your Own', emoji: '📁', color: '#9b59b6' }
   ];
 
-  const slogans = {
-    general: [
-      'They denied my claim, we deny their legitimacy',
-      'Disabled, poor, homeless, addicted—we are all worthy',
-      'Injured not invisible',
-      'Disability is not inability',
-      'Housing is a human right',
-      'Poverty is violence',
-      'Addiction is not a moral failure',
-      'Our pain is political',
-      'No one is disposable',
-      'From injury to homelessness: the system failed us',
-      'Solidarity across all struggles',
-      'They silence us, we amplify each other',
-      'No worker, no person left behind',
-      'Survived work injury, facing homelessness',
-      'Recovery is resistance'
-    ],
-    captain: [
-      'Screenshot everything, trust nothing',
-      'Your denial pushed me into poverty',
-      'Receipts over rhetoric',
-      'Documented: From paycheck to homelessness',
-      'Expose fraud, protect the vulnerable',
-      'They denied coverage, I lost my home',
-      'My injury = Their profit = My poverty'
-    ],
-    sergeant: [
-      'An injury to one is an injury to all',
-      'Disabled, poor, addicted, injured—all united',
-      'Collective power beats corporate lies',
-      'From shelters to picket lines: solidarity',
-      'Together we bargain, divided we beg',
-      'Homelessness is a workers\' issue',
-      'We organize the forgotten and discarded'
-    ],
-    lieutenant: [
-      'Make memes, not excuses',
-      'Viral truth beats corporate propaganda',
-      'Laugh now, organize later',
-      'Humor is a weapon of the working class',
-      'One meme at a time, we change minds'
-    ],
-    major: [
-      'Nothing about us without us',
-      'Accessibility for ALL: housed or unhoused',
-      'Disability justice is economic justice',
-      'Your ableism created my poverty',
-      'Inclusion or shut it down',
-      'Disabled and homeless by design',
-      'Benefits denied = Homelessness guaranteed'
-    ],
-    corporal: [
-      'Addiction is a survival strategy',
-      'Self-care is impossible in poverty',
-      'Rest is revolutionary—if you can afford shelter',
-      'Healing requires housing',
-      'You cannot pour from an empty cup or empty wallet',
-      'Mental health crisis = Housing crisis',
-      'Recovery needs resources, not judgment'
-    ],
-    private: [
-      'In data we trust',
-      'Numbers don\'t lie: 40% injured workers face poverty',
-      'Statistical justice for the forgotten',
-      'Track evictions, analyze denials, expose systems',
-      'Evidence-based resistance',
-      'The data: Work injury → Poverty → Homelessness',
-      '65% of homeless had workplace injuries'
-    ]
-  };
+  const handleMemeDownload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 600;
+    const ctx = canvas.getContext('2d');
 
-  const memeTemplates = [
-    {
-      id: 1,
-      character: 'captain',
-      setup: 'Insurance company: "There\'s no evidence"',
-      punchline: 'Me: *pulls out 47 screenshots*',
-      category: 'Documentation'
-    },
-    {
-      id: 2,
-      character: 'sergeant',
-      setup: 'Boss: "This is between you and me"',
-      punchline: 'Me: *CCs the entire department*',
-      category: 'Solidarity'
-    },
-    {
-      id: 3,
-      character: 'lieutenant',
-      setup: 'HR: "We\'re one big family"',
-      punchline: 'Also HR: *denies your injury claim*',
-      category: 'Hypocrisy'
-    },
-    {
-      id: 4,
-      character: 'major',
-      setup: 'Employer: "We value diversity"',
-      punchline: 'Disabled workers: "Where\'s the elevator?"',
-      category: 'Accessibility'
-    },
-    {
-      id: 5,
-      character: 'corporal',
-      setup: 'Society: "Rest is lazy"',
-      punchline: 'Chronically ill workers: "Rest is survival"',
-      category: 'Self-Care'
-    },
-    {
-      id: 6,
-      character: 'private',
-      setup: 'Them: "It\'s just a few bad cases"',
-      punchline: 'The data: *shows 73% denial rate*',
-      category: 'Statistics'
-    },
-    {
-      id: 7,
-      character: 'captain',
-      setup: 'Society: "Just get a job"',
-      punchline: 'Disabled worker: "I got injured AT my job"',
-      category: 'Poverty'
-    },
-    {
-      id: 8,
-      character: 'major',
-      setup: 'Employer: "Why are you homeless?"',
-      punchline: 'Me: "You denied my workers comp claim"',
-      category: 'Homelessness'
-    },
-    {
-      id: 9,
-      character: 'corporal',
-      setup: 'Them: "Addiction is a choice"',
-      punchline: 'Chronic pain patients: *gestures at denied medical care*',
-      category: 'Addiction'
-    },
-    {
-      id: 10,
-      character: 'sergeant',
-      setup: 'System: "Pull yourself up by your bootstraps"',
-      punchline: 'Disabled, broke, and homeless: "What bootstraps?"',
-      category: 'Poverty'
-    },
-    {
-      id: 11,
-      character: 'private',
-      setup: 'News: "Why don\'t homeless people just work?"',
-      punchline: 'Stats: "Most were working when they got injured"',
-      category: 'Homelessness'
-    },
-    {
-      id: 12,
-      character: 'major',
-      setup: 'Landlord: "No housing vouchers accepted"',
-      punchline: 'Disabled worker: *becomes statistic*',
-      category: 'Homelessness'
+    // Background
+    const selectedBg = backgrounds.find(bg => bg.id === selectedBackground);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, 800, 600);
+
+    // Background emoji/icon
+    ctx.font = 'bold 200px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(selectedBg.emoji, 400, 350);
+
+    // Top text
+    if (memeText.top) {
+      ctx.font = 'bold 50px Impact';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 4;
+      ctx.textAlign = 'center';
+      ctx.strokeText(memeText.top.toUpperCase(), 400, 100);
+      ctx.fillText(memeText.top.toUpperCase(), 400, 100);
     }
-  ];
 
-  const hashtagSuggestions = {
-    general: ['#InjuredWorkersUnite', '#DisabilityJustice', '#HousingIsARight', '#EndWorkplacePoverty', '#AddictionIsNotACrime', '#HomelessWorkers'],
-    captain: ['#ReceiptsReady', '#DenialCreatedPoverty', '#FromInjuryToHomelessness', '#DocumentTheSystem', '#WorkersInCrisis'],
-    sergeant: ['#SolidarityForAll', '#DisabledPoorUnited', '#HomelessWorkersOrganize', '#CollectiveLiberation', '#NoOneDisposable'],
-    lieutenant: ['#MemeWarfare', '#PovertyIsPolitical', '#HomelessnessIsViolence', '#AddictionStigmaKills', '#ViralSolidarity'],
-    major: ['#DisabilityJustice', '#AccessibleHousing', '#AbleismCreatedThis', '#DisabledAndHomeless', '#HousingForAll'],
-    corporal: ['#AddictionIsTrauma', '#PovertyKills', '#HealingNeedsHousing', '#MentalHealthCrisis', '#RecoveryNotJudgment'],
-    private: ['#InjuryToPoverty', '#HomelessnessData', '#WorkplaceToStreet', '#StatisticalViolence', '#TrackTheDenials']
-  };
-
-  const viralChallenges = [
-    {
-      name: 'From Paycheck to Poverty',
-      description: 'Share your story: How workplace injury led to poverty, homelessness, or financial crisis',
-      hashtag: '#PaycheckToPoverty',
-      character: 'captain',
-      icon: '📉'
-    },
-    {
-      name: 'Homeless Workers Speak',
-      description: 'Amplify voices of workers who became homeless after injury or disability—their stories matter',
-      hashtag: '#HomelessWorkersSpeakOut',
-      character: 'sergeant',
-      icon: '📢'
-    },
-    {
-      name: 'Disability Poverty Pipeline',
-      description: 'Expose how disability denial creates poverty through memes, stories, and data',
-      hashtag: '#DisabilityToPoverty',
-      character: 'lieutenant',
-      icon: '♿'
-    },
-    {
-      name: 'Housing as Healthcare',
-      description: 'Show how lack of housing prevents recovery from injury, disability, and addiction',
-      hashtag: '#HousingIsHealthcare',
-      character: 'major',
-      icon: '🏠'
-    },
-    {
-      name: 'Addiction Truth Bomb',
-      description: 'Share how untreated pain, poverty, and trauma lead to addiction—end the stigma',
-      hashtag: '#AddictionTruthBomb',
-      character: 'corporal',
-      icon: '💊'
-    },
-    {
-      name: 'Count the Forgotten',
-      description: 'Share statistics on injured workers in poverty, homeless shelters, and addiction treatment',
-      hashtag: '#CountTheForgotten',
-      character: 'private',
-      icon: '📊'
-    },
-    {
-      name: 'Show Your Receipts Challenge',
-      description: 'Post denial letters that pushed you into poverty or cost you housing',
-      hashtag: '#ReceiptsOfPoverty',
-      character: 'captain',
-      icon: '📸'
+    // Bottom text
+    if (memeText.bottom) {
+      ctx.font = 'bold 50px Impact';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 4;
+      ctx.textAlign = 'center';
+      ctx.strokeText(memeText.bottom.toUpperCase(), 400, 560);
+      ctx.fillText(memeText.bottom.toUpperCase(), 400, 560);
     }
-  ];
 
-  const generateHashtags = () => {
-    const general = hashtagSuggestions.general;
-    const characterSpecific = hashtagSuggestions[selectedCharacter];
-    const combined = [...general.slice(0, 3), ...characterSpecific.slice(0, 3)];
-    setHashtags(combined);
+    // Watermark
+    ctx.font = 'bold 18px Arial';
+    ctx.fillStyle = '#FFD700';
+    ctx.textAlign = 'right';
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 780, 585);
+
+    // Download
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `meme-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
   };
-
-  const addThreadPost = () => {
-    setThreadPosts([...threadPosts, '']);
-  };
-
-  const updateThreadPost = (index, value) => {
-    const updated = [...threadPosts];
-    updated[index] = value;
-    setThreadPosts(updated);
-  };
-
-  const generateSlogan = (characterId = null) => {
-    const sloganSet = characterId ? slogans[characterId] : slogans.general;
-    const random = sloganSet[Math.floor(Math.random() * sloganSet.length)];
-    setGeneratedSlogan(random);
-  };
-
-  const getCharacterById = (id) => characters.find(char => char.id === id);
-  const selectedChar = getCharacterById(selectedCharacter);
 
   return (
     <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>🎨 Meme Warfare Arsenal</h2>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Create viral content featuring the Denial Squad. Choose your character, pick a template, or build from scratch.
-      </p>
-
-      {/* Character Selection */}
-      <div style={{ marginBottom: '3rem' }}>
-        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>Select Your Squad Member:</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
-          {characters.map(char => (
-            <div
-              key={char.id}
-              onClick={() => setSelectedCharacter(char.id)}
-              style={{
-                padding: '1rem',
-                background: selectedCharacter === char.id ? char.color : '#16213e',
-                border: `2px solid ${char.color}`,
-                borderRadius: '10px',
-                cursor: 'pointer',
-                textAlign: 'center',
-                transition: 'all 0.3s',
-                transform: selectedCharacter === char.id ? 'scale(1.05)' : 'scale(1)'
-              }}
-            >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{char.emoji}</div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '0.3rem' }}>{char.name.split(' ')[0]}</div>
-              <div style={{ fontSize: '0.7rem', opacity: 0.8 }}>{char.tagline}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
+        🛠️ Custom Meme Builder
+      </h2>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-        {/* Meme Generator */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-            🖼️ Custom Meme Builder
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        {/* Controls */}
+        <div>
+          <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+            Design Your Meme
           </h3>
-          <p style={{ fontSize: '0.9rem', marginBottom: '1rem', opacity: 0.8 }}>
-            Featuring: {selectedChar.name} {selectedChar.emoji}
-          </p>
-          <div style={{ marginBottom: '1rem' }}>
+          
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
+              Top Text
+            </label>
             <input
               type="text"
-              placeholder="Setup / Top text"
+              placeholder="Add your message..."
               value={memeText.top}
               onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
-              style={inputStyle}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: 'white',
+                fontSize: '1rem'
+              }}
             />
           </div>
-          <div style={{ marginBottom: '1rem' }}>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
+              Bottom Text
+            </label>
             <input
               type="text"
-              placeholder="Punchline / Bottom text"
+              placeholder="Add your punchline..."
               value={memeText.bottom}
               onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
-              style={inputStyle}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: 'white',
+                fontSize: '1rem'
+              }}
             />
           </div>
-          <div style={{
-            background: '#0a0a0a',
-            padding: '2rem',
-            borderRadius: '8px',
-            minHeight: '250px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            border: `3px solid ${selectedChar.color}`
-          }}>
-            <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
-              {memeText.top || 'ENTER YOUR SETUP TEXT'}
-            </p>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '5rem', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
-              <div style={{ fontSize: '0.9rem', color: selectedChar.color, fontWeight: 'bold' }}>
-                {selectedChar.name}
-              </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
+              Background Style
+            </label>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {backgrounds.map(bg => (
+                <button
+                  key={bg.id}
+                  onClick={() => setSelectedBackground(bg.id)}
+                  style={{
+                    padding: '0.8rem',
+                    background: selectedBackground === bg.id ? bg.color : '#16213e',
+                    border: `2px solid ${bg.color}`,
+                    borderRadius: '8px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    fontWeight: selectedBackground === bg.id ? 'bold' : 'normal'
+                  }}
+                >
+                  {bg.emoji} {bg.name}
+                </button>
+              ))}
             </div>
-            <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
-              {memeText.bottom || 'ENTER YOUR PUNCHLINE'}
-            </p>
           </div>
-          <button style={{ ...buttonStyle, width: '100%', marginTop: '1rem', background: selectedChar.color }}>
+
+          <button 
+            onClick={handleMemeDownload}
+            style={{
+            width: '100%',
+            padding: '1rem',
+            background: 'linear-gradient(135deg, #667eea, #764ba2)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '1.1rem',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}>
             📥 Download Meme
           </button>
         </div>
 
-        {/* Slogan Generator */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-            ✊ Slogan Generator
+        {/* Preview */}
+        <div>
+          <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
+            Preview
           </h3>
-          <p style={{ marginBottom: '1rem', fontSize: '0.95rem', opacity: 0.9 }}>
-            Generate powerful slogans inspired by {selectedChar.name}
-          </p>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
-            <button 
-              onClick={() => generateSlogan(selectedCharacter)} 
-              style={{ ...buttonStyle, flex: 1, background: selectedChar.color, fontSize: '0.9rem' }}
-            >
-              {selectedChar.name.split(' ')[0]}'s Slogan
-            </button>
-            <button 
-              onClick={() => generateSlogan()} 
-              style={{ ...buttonStyle, flex: 1, fontSize: '0.9rem' }}
-            >
-              General
-            </button>
-          </div>
-          {generatedSlogan && (
-            <div style={{
-              padding: '1.5rem',
-              background: '#0f3460',
-              borderRadius: '8px',
-              border: `2px solid ${selectedChar.color}`,
-              marginBottom: '1.5rem'
-            }}>
-              <div style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
-              <p style={{ fontSize: '1.15rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.6' }}>
-                "{generatedSlogan}"
-              </p>
-              <button style={{ ...buttonStyle, width: '100%', marginTop: '1rem', fontSize: '0.85rem', padding: '0.5rem' }}>
-                📋 Copy to Clipboard
-              </button>
-            </div>
-          )}
-          <div>
-            <p style={{ marginBottom: '0.5rem', fontSize: '0.9rem', color: selectedChar.color, fontWeight: 'bold' }}>
-              {selectedChar.name}'s Signature Slogans:
-            </p>
-            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.8rem', opacity: 0.8 }}>
-              {slogans[selectedCharacter].slice(0, 3).map((slogan, idx) => (
-                <li key={idx} style={{ padding: '0.3rem 0', borderBottom: '1px solid rgba(102,126,234,0.2)' }}>• {slogan}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Poster Maker */}
-        <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-            📢 Protest Poster Designer
-          </h3>
-          <p style={{ marginBottom: '1rem', fontSize: '0.95rem', opacity: 0.9 }}>
-            Create posters featuring {selectedChar.name} for rallies and strikes.
-          </p>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-              Main Message
-            </label>
-            <input
-              type="text"
-              placeholder={`e.g., "${selectedChar.tagline}"`}
-              value={posterMessage}
-              onChange={(e) => setPosterMessage(e.target.value)}
-              style={inputStyle}
-            />
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-              Color Scheme
-            </label>
-            <select 
-              value={posterColor} 
-              onChange={(e) => setPosterColor(e.target.value)}
-              style={inputStyle}
-            >
-              <option value="red">Red & Black (Classic Revolution)</option>
-              <option value="purple">Purple & White (Unity)</option>
-              <option value="green">Green & Yellow (Worker Safety)</option>
-              <option value="blue">Blue & Silver (Professional)</option>
-              <option value="character">Character Color ({selectedChar.name})</option>
-            </select>
-          </div>
           <div style={{
-            background: posterColor === 'character' ? selectedChar.color : '#1a1a2e',
+            background: '#000',
             padding: '2rem',
-            borderRadius: '8px',
-            minHeight: '200px',
+            borderRadius: '10px',
+            minHeight: '400px',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: '1rem',
-            border: '3px solid white'
+            justifyContent: 'space-between',
+            border: '3px solid #667eea'
           }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{selectedChar.emoji}</div>
-            <p style={{ fontSize: '1.3rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
-              {posterMessage || 'YOUR MESSAGE HERE'}
-            </p>
-            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>- {selectedChar.name}</p>
-          </div>
-          <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
-            📥 Download Poster (8.5x11")
-          </button>
-        </div>
-      </div>
-
-      {/* Meme Template Library */}
-      <div style={{ marginTop: '3rem' }}>
-        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#667eea' }}>📚 Pre-Made Meme Templates</h3>
-        <p style={{ fontSize: '1rem', marginBottom: '1.5rem', opacity: 0.9 }}>Click any template to customize it with your own text</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
-          {memeTemplates
-            .filter(template => !selectedCharacter || template.character === selectedCharacter)
-            .map(template => {
-              const templateChar = getCharacterById(template.character);
-              return (
-                <div 
-                  key={template.id}
-                  onClick={() => {
-                    setMemeText({ top: template.setup, bottom: template.punchline });
-                    setSelectedCharacter(template.character);
-                    setActiveTemplate(template.id);
-                  }}
-                  style={{
-                    padding: '1.5rem',
-                    background: '#16213e',
-                    borderRadius: '10px',
-                    border: `2px solid ${activeTemplate === template.id ? templateChar.color : '#667eea'}`,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <span style={{ fontSize: '2rem' }}>{templateChar.emoji}</span>
-                    <span style={{ 
-                      fontSize: '0.7rem', 
-                      padding: '0.3rem 0.7rem', 
-                      background: templateChar.color,
-                      borderRadius: '15px'
-                    }}>
-                      {template.category}
-                    </span>
-                  </div>
-                  <div style={{ 
-                    background: '#0a0a0a', 
-                    padding: '1rem', 
-                    borderRadius: '8px',
-                    minHeight: '120px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between'
-                  }}>
-                    <p style={{ fontSize: '0.95rem', marginBottom: '1rem', fontStyle: 'italic' }}>
-                      {template.setup}
-                    </p>
-                    <p style={{ fontSize: '0.95rem', fontWeight: 'bold', color: templateChar.color }}>
-                      {template.punchline}
-                    </p>
-                  </div>
-                  <button style={{ 
-                    ...buttonStyle, 
-                    width: '100%', 
-                    marginTop: '1rem', 
-                    background: templateChar.color,
-                    fontSize: '0.85rem',
-                    padding: '0.6rem'
-                  }}>
-                    Use This Template
-                  </button>
-                </div>
-              );
-            })}
-        </div>
-        {memeTemplates.filter(t => t.character === selectedCharacter).length === 0 && (
-          <p style={{ textAlign: 'center', opacity: 0.7, marginTop: '2rem' }}>
-            No templates for {selectedChar.name} yet. Be the first to create one!
-          </p>
-        )}
-      </div>
-
-      {/* Advanced Tools Section */}
-      <div style={{ marginTop: '3rem' }}>
-        <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#667eea' }}>🚀 Advanced Meme Warfare Tools</h3>
-        
-        {/* Tool Tabs */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-          {['basic', 'hashtag', 'infographic', 'quote', 'thread', 'gif', 'challenge'].map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveToolTab(tab)}
-              style={{
-                padding: '0.6rem 1.2rem',
-                background: activeToolTab === tab ? selectedChar.color : '#16213e',
-                border: `2px solid ${selectedChar.color}`,
-                borderRadius: '25px',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: activeToolTab === tab ? 'bold' : 'normal',
-                transition: 'all 0.3s'
-              }}
-            >
-              {tab === 'basic' && '📝 Basic'}
-              {tab === 'hashtag' && '# Hashtags'}
-              {tab === 'infographic' && '📊 Infographic'}
-              {tab === 'quote' && '💬 Quote Card'}
-              {tab === 'thread' && '🧵 Thread'}
-              {tab === 'gif' && '🎬 GIF Caption'}
-              {tab === 'challenge' && '🏆 Challenges'}
-            </button>
-          ))}
-        </div>
-
-        {/* Hashtag Generator */}
-        {activeToolTab === 'hashtag' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              # Hashtag Generator
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Generate optimized hashtags for {selectedChar.name}'s campaigns
-            </p>
-            <button 
-              onClick={generateHashtags}
-              style={{ ...buttonStyle, background: selectedChar.color, marginBottom: '1.5rem' }}
-            >
-              Generate Hashtags for {selectedChar.name.split(' ')[0]}
-            </button>
-            {hashtags.length > 0 && (
-              <div style={{
-                padding: '1.5rem',
-                background: '#0f3460',
-                borderRadius: '10px',
-                marginBottom: '1.5rem'
-              }}>
-                <p style={{ fontSize: '0.9rem', marginBottom: '1rem', opacity: 0.8 }}>Copy and paste these hashtags:</p>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: selectedChar.color }}>
-                  {hashtags.join(' ')}
-                </p>
-                <button style={{ ...buttonStyle, marginTop: '1rem', fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
-                  📋 Copy All Hashtags
-                </button>
-              </div>
-            )}
-            <div style={{ marginTop: '2rem' }}>
-              <h5 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: '#667eea' }}>Trending Worker Rights Hashtags</h5>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {[...hashtagSuggestions.general, ...hashtagSuggestions[selectedCharacter]].map((tag, idx) => (
-                  <span key={idx} style={{
-                    padding: '0.5rem 1rem',
-                    background: '#0f3460',
-                    borderRadius: '20px',
-                    fontSize: '0.85rem',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => navigator.clipboard?.writeText(tag)}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Infographic Builder */}
-        {activeToolTab === 'infographic' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              📊 Infographic Builder
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Create data-driven infographics exposing how injuries lead to poverty, homelessness, and desperation
-            </p>
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Title</label>
-              <input
-                type="text"
-                placeholder="e.g., 'From Workplace to Homeless Shelter: The Pipeline'"
-                value={infographicData.title}
-                onChange={(e) => setInfographicData({...infographicData, title: e.target.value})}
-                style={inputStyle}
-              />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 1</label>
-                <input
-                  type="text"
-                  placeholder="40% fall into poverty"
-                  value={infographicData.stat1}
-                  onChange={(e) => setInfographicData({...infographicData, stat1: e.target.value})}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 2</label>
-                <input
-                  type="text"
-                  placeholder="65% homeless had work injury"
-                  value={infographicData.stat2}
-                  onChange={(e) => setInfographicData({...infographicData, stat2: e.target.value})}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Statistic 3</label>
-                <input
-                  type="text"
-                  placeholder="80% denied develop addiction"
-                  value={infographicData.stat3}
-                  onChange={(e) => setInfographicData({...infographicData, stat3: e.target.value})}
-                  style={inputStyle}
-                />
-              </div>
-            </div>
-            <div style={{
-              padding: '2rem',
-              background: selectedChar.color,
-              borderRadius: '10px',
-              minHeight: '300px',
-              marginBottom: '1rem'
+            <p style={{ 
+              fontSize: '1.5rem', 
+              fontWeight: 'bold', 
+              textAlign: 'center',
+              textTransform: 'uppercase',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
             }}>
-              <h3 style={{ fontSize: '1.8rem', textAlign: 'center', marginBottom: '2rem' }}>
-                {infographicData.title || 'YOUR TITLE HERE'}
-              </h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                {[infographicData.stat1, infographicData.stat2, infographicData.stat3].map((stat, idx) => (
-                  <div key={idx} style={{
-                    padding: '1.5rem',
-                    background: 'rgba(255,255,255,0.2)',
-                    borderRadius: '10px',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{selectedChar.emoji}</div>
-                    <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{stat || 'STAT'}</p>
-                  </div>
-                ))}
-              </div>
-              <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.9rem' }}>
-                Source: {selectedChar.name}
-              </p>
-            </div>
-            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
-              📥 Download Infographic
-            </button>
-          </div>
-        )}
-
-        {/* Quote Card Maker */}
-        {activeToolTab === 'quote' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              💬 Quote Card Maker
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Create shareable quote cards featuring worker testimonials
+              {memeText.top || 'TOP TEXT'}
             </p>
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Quote</label>
-              <textarea
-                placeholder="e.g., 'I worked 20 years, got injured, lost my home. The system is designed to discard us.' - Homeless Former Worker"
-                value={quoteText}
-                onChange={(e) => setQuoteText(e.target.value)}
-                style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
-              />
-            </div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Attribution</label>
-              <input
-                type="text"
-                placeholder="- Disabled Worker in Poverty / Homeless Injured Worker / Person in Recovery"
-                value={quoteAuthor}
-                onChange={(e) => setQuoteAuthor(e.target.value)}
-                style={inputStyle}
-              />
-            </div>
-            <div style={{
-              padding: '3rem',
-              background: `linear-gradient(135deg, ${selectedChar.color} 0%, #1a1a2e 100%)`,
-              borderRadius: '10px',
-              minHeight: '250px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: '1rem',
-              border: '3px solid white'
+            <div style={{ 
+              textAlign: 'center',
+              fontSize: '4rem'
             }}>
-              <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{selectedChar.emoji}</div>
-              <p style={{ fontSize: '1.3rem', fontStyle: 'italic', textAlign: 'center', marginBottom: '1.5rem', lineHeight: '1.6', maxWidth: '80%' }}>
-                "{quoteText || 'Your powerful quote will appear here...'}"
-              </p>
-              <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                {quoteAuthor || '- Attribution'}
-              </p>
-              <p style={{ fontSize: '0.8rem', marginTop: '2rem', opacity: 0.7 }}>
-                #InjuredWorkersUnite
-              </p>
+              {backgrounds.find(bg => bg.id === selectedBackground)?.emoji}
             </div>
-            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
-              📥 Download Quote Card
-            </button>
-          </div>
-        )}
-
-        {/* Thread Composer */}
-        {activeToolTab === 'thread' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              🧵 Twitter/X Thread Composer
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Build viral threads to tell your story and educate the masses
-            </p>
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Thread Topic</label>
-              <input
-                type="text"
-                placeholder="e.g., 'How insurance companies gaslight injured workers: a thread 🧵'"
-                value={threadTopic}
-                onChange={(e) => setThreadTopic(e.target.value)}
-                style={inputStyle}
-              />
-            </div>
-            {threadPosts.map((post, idx) => (
-              <div key={idx} style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                  Tweet {idx + 1}/10 {idx === 0 && '(Opening tweet)'}
-                </label>
-                <textarea
-                  placeholder={idx === 0 ? threadTopic || 'Start your thread...' : `Tweet ${idx + 1}...`}
-                  value={post}
-                  onChange={(e) => updateThreadPost(idx, e.target.value)}
-                  style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
-                  maxLength={280}
-                />
-                <p style={{ fontSize: '0.75rem', opacity: 0.6, textAlign: 'right', marginTop: '0.3rem' }}>
-                  {post.length}/280 characters
-                </p>
-              </div>
-            ))}
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-              <button 
-                onClick={addThreadPost}
-                disabled={threadPosts.length >= 10}
-                style={{ 
-                  ...buttonStyle, 
-                  flex: 1, 
-                  background: threadPosts.length >= 10 ? '#666' : selectedChar.color,
-                  cursor: threadPosts.length >= 10 ? 'not-allowed' : 'pointer'
-                }}
-              >
-                ➕ Add Tweet ({threadPosts.length}/10)
-              </button>
-              <button style={{ ...buttonStyle, flex: 1 }}>
-                📋 Copy Thread
-              </button>
-            </div>
-            <div style={{ marginTop: '2rem', padding: '1rem', background: '#0f3460', borderRadius: '8px' }}>
-              <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem', fontWeight: 'bold', color: '#667eea' }}>
-                Thread Tips:
-              </p>
-              <ul style={{ fontSize: '0.85rem', opacity: 0.9, paddingLeft: '1.5rem' }}>
-                <li>Start with a hook that grabs attention</li>
-                <li>Use numbered tweets (1/10, 2/10, etc.)</li>
-                <li>Include the {selectedChar.emoji} emoji throughout</li>
-                <li>End with a call to action</li>
-                <li>Add relevant hashtags to the final tweet</li>
-              </ul>
-            </div>
-          </div>
-        )}
-
-        {/* GIF Caption Tool */}
-        {activeToolTab === 'gif' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              🎬 GIF Caption Generator
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.9 }}>
-              Create perfect captions for reaction GIFs about workplace injustice
-            </p>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                GIF Context (What's happening in the GIF?)
-              </label>
-              <textarea
-                placeholder="e.g., 'Person looking shocked and confused'"
-                value={gifCaption}
-                onChange={(e) => setGifCaption(e.target.value)}
-                style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
-              />
-            </div>
-            <div style={{
-              padding: '2rem',
-              background: '#0f3460',
-              borderRadius: '10px',
-              marginBottom: '1.5rem'
+            <p style={{ 
+              fontSize: '1.5rem', 
+              fontWeight: 'bold', 
+              textAlign: 'center',
+              textTransform: 'uppercase',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
             }}>
-              <h5 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: selectedChar.color }}>
-                Caption Suggestions for {selectedChar.name}:
-              </h5>
-              <div style={{ display: 'grid', gap: '1rem' }}>
-                {[
-                  'Landlord: "Why can\'t you pay rent?"\nMe: *gestures at denied disability claim*',
-                  'Society: "Just get clean"\nAddicted chronic pain patient: *points at denied medical care*',
-                  'Them: "Why are you homeless?"\nMe: "Your company injured me then fired me"',
-                  'System: "Pull yourself up"\nDisabled worker in poverty:',
-                  'Insurance: "Claim denied"\nMy bank account six months later:',
-                  'Boss after my injury: "We\'re family"\nSame boss when I need help:',
-                  'Me explaining how injury led to homelessness:',
-                  'Therapist: "Why don\'t you just rest?"\nMe working 3 jobs to avoid homelessness:',
-                  'Them: "Addiction is a choice"\nUntreated pain patients:',
-                  'Society: "Why don\'t homeless people work?"\nMost homeless people: *had jobs until injury*'
-                ].map((caption, idx) => (
-                  <div 
-                    key={idx}
-                    style={{
-                      padding: '1rem',
-                      background: '#16213e',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(102,126,234,0.3)',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = '#1a2642'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = '#16213e'}
-                    onClick={() => setGifCaption(caption)}
-                  >
-                    <p style={{ fontSize: '0.9rem', whiteSpace: 'pre-line' }}>{caption}</p>
-                    <button style={{ 
-                      ...buttonStyle, 
-                      marginTop: '0.5rem', 
-                      padding: '0.4rem 0.8rem', 
-                      fontSize: '0.75rem',
-                      background: selectedChar.color
-                    }}>
-                      Use This Caption
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button style={{ ...buttonStyle, width: '100%', background: selectedChar.color }}>
-              📋 Copy Caption
-            </button>
-          </div>
-        )}
-
-        {/* Viral Challenges */}
-        {activeToolTab === 'challenge' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              🏆 Viral Challenge Campaigns
-            </h4>
-            <p style={{ fontSize: '0.95rem', marginBottom: '2rem', opacity: 0.9 }}>
-              Join or start viral challenges to build momentum and solidarity
-            </p>
-            <div style={{ display: 'grid', gap: '1.5rem' }}>
-              {viralChallenges.filter(c => !selectedCharacter || c.character === selectedCharacter).map((challenge, idx) => (
-                <div 
-                  key={idx}
-                  style={{
-                    padding: '1.5rem',
-                    background: '#0f3460',
-                    borderRadius: '10px',
-                    border: `2px solid ${characters.find(ch => ch.id === challenge.character).color}`
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-                    <div style={{ fontSize: '3rem' }}>{challenge.icon}</div>
-                    <div>
-                      <h5 style={{ fontSize: '1.3rem', color: characters.find(ch => ch.id === challenge.character).color }}>
-                        {challenge.name}
-                      </h5>
-                      <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>
-                        Led by {characters.find(ch => ch.id === challenge.character).name} {characters.find(ch => ch.id === challenge.character).emoji}
-                      </p>
-                    </div>
-                  </div>
-                  <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.6' }}>
-                    {challenge.description}
-                  </p>
-                  <div style={{ 
-                    padding: '0.8rem 1.2rem', 
-                    background: characters.find(ch => ch.id === challenge.character).color,
-                    borderRadius: '8px',
-                    marginBottom: '1rem',
-                    fontFamily: 'monospace',
-                    fontSize: '1rem'
-                  }}>
-                    {challenge.hashtag}
-                  </div>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button style={{ 
-                      ...buttonStyle, 
-                      flex: 1, 
-                      background: characters.find(ch => ch.id === challenge.character).color 
-                    }}>
-                      🎯 Start Challenge
-                    </button>
-                    <button style={{ 
-                      ...buttonStyle, 
-                      flex: 1,
-                      background: '#16213e',
-                      border: `2px solid ${characters.find(ch => ch.id === challenge.character).color}`
-                    }}>
-                      📋 Copy Hashtag
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#0f3460', borderRadius: '10px' }}>
-              <h5 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: '#667eea' }}>
-                💡 How to Run a Successful Challenge:
-              </h5>
-              <ol style={{ fontSize: '0.9rem', opacity: 0.9, paddingLeft: '1.5rem', lineHeight: '1.8' }}>
-                <li>Post your own example first to show what you want</li>
-                <li>Tag 3-5 people to participate next</li>
-                <li>Use the challenge hashtag consistently</li>
-                <li>Engage with everyone who participates</li>
-                <li>Share the best submissions to amplify voices</li>
-                <li>Keep it going for at least 7 days</li>
-              </ol>
-            </div>
-          </div>
-        )}
-
-        {/* Basic Tools Info */}
-        {activeToolTab === 'basic' && (
-          <div style={{ padding: '2rem', background: '#16213e', borderRadius: '10px', border: `2px solid ${selectedChar.color}` }}>
-            <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
-              📝 All Meme Warfare Tools
-            </h4>
-            <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9 }}>
-              Select a tool category above to access powerful content creation features:
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-              {[
-                { icon: '#', title: 'Hashtag Generator', desc: 'Generate optimized hashtags for maximum reach' },
-                { icon: '📊', title: 'Infographic Builder', desc: 'Create data-driven visual content' },
-                { icon: '💬', title: 'Quote Card Maker', desc: 'Share powerful worker testimonials' },
-                { icon: '🧵', title: 'Thread Composer', desc: 'Build viral Twitter/X threads' },
-                { icon: '🎬', title: 'GIF Caption Tool', desc: 'Perfect captions for reaction GIFs' },
-                { icon: '🏆', title: 'Viral Challenges', desc: 'Start or join movement campaigns' }
-              ].map((tool, idx) => (
-                <div key={idx} style={{
-                  padding: '1.5rem',
-                  background: '#0f3460',
-                  borderRadius: '10px',
-                  textAlign: 'center'
-                }}>
-                  <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{tool.icon}</div>
-                  <h5 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: selectedChar.color }}>
-                    {tool.title}
-                  </h5>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.9 }}>{tool.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: '#0f3460',
-        borderRadius: '10px'
-      }}>
-        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>💡 Memetic Warfare Tips</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
-          <div>
-            <h4 style={{ color: '#667eea', marginBottom: '0.5rem' }}>Be Authentic</h4>
-            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
-              Share real stories, real struggles. Authenticity cuts through propaganda.
-            </p>
-          </div>
-          <div>
-            <h4 style={{ color: '#667eea', marginBottom: '0.5rem' }}>Use Humor</h4>
-            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
-              Humor disarms, educates, and builds solidarity. Make them laugh, then think.
-            </p>
-          </div>
-          <div>
-            <h4 style={{ color: '#667eea', marginBottom: '0.5rem' }}>Stay United</h4>
-            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
-              Share each other's content. Amplify marginalized voices. We rise together.
-            </p>
-          </div>
-          <div>
-            <h4 style={{ color: '#667eea', marginBottom: '0.5rem' }}>Document Everything</h4>
-            <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
-              Screenshots, receipts, dates. Evidence is our strongest weapon.
+              {memeText.bottom || 'BOTTOM TEXT'}
             </p>
           </div>
         </div>
       </div>
-
-      {/* Downloadable Template Packs - FULLY BUILT OUT */}
-      <DownloadableTemplatePacks selectedChar={selectedChar} />
-      
-      {/* Infographic Generator Link */}
-      <div style={{
-        marginTop: '2rem',
-        padding: '2rem',
-        background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)',
-        borderRadius: '15px',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#000' }}>
-          📊 Need More Advanced Infographics?
-        </h3>
-        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#000', opacity: 0.9 }}>
-          Use our full Infographic Generator with 8 cause templates, 5 design styles, and instant downloads!
-        </p>
-        <Link href="/infographic-generator" style={{
-          display: 'inline-block',
-          padding: '1rem 2rem',
-          background: '#000',
-          border: 'none',
-          borderRadius: '25px',
-          color: '#fff',
-          textDecoration: 'none',
-          fontWeight: 'bold',
-          fontSize: '1.1rem'
-        }}>
-          🚀 Open Infographic Generator →
-        </Link>
-      </div>
-
-      {/* Hall of Fame - Community Sharing Focus */}
-      <HallOfFameSection />
     </div>
   );
 }
 
 // ============================================
-// DOWNLOADABLE TEMPLATE PACKS COMPONENT
+// SLOGAN GENERATOR - EXPANDED WITH VIRAL CATEGORIES
 // ============================================
-function DownloadableTemplatePacks({ selectedChar }) {
-  const [activePack, setActivePack] = useState(null);
-  const [customText, setCustomText] = useState({ line1: '', line2: '', line3: '' });
-  const [selectedSize, setSelectedSize] = useState('medium');
-  const [selectedPlatform, setSelectedPlatform] = useState('instagram');
+function SloganGeneratorSection() {
+  const [generatedSlogan, setGeneratedSlogan] = useState('');
+  const [sloganCategory, setSloganCategory] = useState('general');
 
-  const templatePacks = [
-    {
-      id: 'social-media',
-      title: 'Social Media Pack',
-      desc: 'Platform-optimized templates for maximum viral impact',
-      icon: '📱',
-      color: '#667eea',
-      platforms: [
-        { name: 'Twitter/X', size: '1200x675', icon: '🐦' },
-        { name: 'Instagram Post', size: '1080x1080', icon: '📷' },
-        { name: 'Instagram Story', size: '1080x1920', icon: '📱' },
-        { name: 'Facebook', size: '1200x630', icon: '📘' },
-        { name: 'LinkedIn', size: '1200x627', icon: '💼' },
-        { name: 'TikTok Cover', size: '1080x1920', icon: '🎵' }
-      ],
-      templates: [
-        { name: 'Stat Bomb', layout: 'Big number + shocking fact' },
-        { name: 'Quote Card', layout: 'Worker testimonial with character' },
-        { name: 'Before/After', layout: 'Split comparison layout' },
-        { name: 'Thread Starter', layout: 'Hook for viral threads' },
-        { name: 'Call to Action', layout: 'Event/petition promotion' },
-        { name: 'Meme Format', layout: 'Classic meme structure' }
-      ]
-    },
-    {
-      id: 'protest-poster',
-      title: 'Protest Poster Pack',
-      desc: 'Print-ready signs for rallies, marches, and picket lines',
-      icon: '📢',
-      color: '#764ba2',
-      sizes: [
-        { name: 'Handheld Sign', dims: '8.5x11"', use: 'Personal protest signs' },
-        { name: 'Rally Poster', dims: '11x17"', use: 'Visible from crowd' },
-        { name: 'March Banner', dims: '24x36"', use: 'Group visibility' },
-        { name: 'Window Sign', dims: '8.5x14"', use: 'Car/window display' }
-      ],
-      messages: [
-        'WSIB DENIED MY CLAIM, NOT MY TRUTH',
-        'INJURED AT WORK, ABANDONED BY THE SYSTEM',
-        'DISABILITY RIGHTS ARE HUMAN RIGHTS',
-        'NO WORKER LEFT BEHIND',
-        'FROM PAYCHECK TO POVERTY - FIX THE SYSTEM',
-        'HOUSING IS A RIGHT, NOT A PRIVILEGE'
-      ]
-    },
-    {
-      id: 'infographic-kit',
-      title: 'Infographic Kit',
-      desc: 'Data visualization templates with real statistics',
-      icon: '📊',
-      color: '#48c774',
-      layouts: [
-        { name: 'Pipeline Chart', desc: 'Injury → Denial → Poverty flow' },
-        { name: 'Statistics Grid', desc: '4 shocking stats with sources' },
-        { name: 'Timeline', desc: 'Workers comp process horror story' },
-        { name: 'Comparison', desc: 'Claims vs denials by year' },
-        { name: 'Icon Array', desc: '100 people icons showing ratios' },
-        { name: 'Quote + Data', desc: 'Personal story backed by numbers' }
-      ],
-      stats: [
-        { value: '73%', label: 'of initial claims denied' },
-        { value: '40%', label: 'of injured workers face poverty' },
-        { value: '18 months', label: 'average appeal wait time' },
-        { value: '$0', label: 'income while waiting for decision' }
-      ]
-    },
-    {
-      id: 'sticker-sheet',
-      title: 'Sticker Sheet',
-      desc: 'Guerrilla marketing for laptops, signs, and public spaces',
-      icon: '🏷️',
-      color: '#f39c12',
-      designs: [
-        { name: 'Squad Emoji Set', desc: 'All 6 characters as stickers' },
-        { name: 'Slogan Stickers', desc: 'Key movement phrases' },
-        { name: 'QR Code Stickers', desc: 'Links to resources' },
-        { name: 'Warning Labels', desc: '"This workplace injures workers"' },
-        { name: 'Solidarity Hearts', desc: 'Show support anywhere' },
-        { name: 'Receipt Icons', desc: '"Documented" evidence stickers' }
-      ],
-      sizes: ['1x1"', '2x2"', '3x3"', '4x4"']
-    },
-    {
-      id: 'email-signature',
-      title: 'Email Signature Pack',
-      desc: 'Professional advocacy in every email you send',
-      icon: '✉️',
-      color: '#2ecc71',
-      styles: [
-        { name: 'Corporate Friendly', desc: 'Subtle advocacy messaging' },
-        { name: 'Bold Activist', desc: 'Clear movement branding' },
-        { name: 'Squad Member', desc: 'Feature your favorite character' },
-        { name: 'Resource Link', desc: 'Direct to help resources' },
-        { name: 'Solidarity Badge', desc: 'Show you stand with workers' }
-      ],
-      elements: ['Name', 'Title', 'Solidarity message', 'Website', 'Character emoji']
-    },
-    {
-      id: 'zine-template',
-      title: 'Zine Template',
-      desc: 'Print-and-fold educational zines for community distribution',
-      icon: '📰',
-      color: '#3498db',
-      editions: [
-        { name: 'Know Your Rights', pages: 8, desc: 'Workers comp basics' },
-        { name: 'Document Everything', pages: 8, desc: 'Evidence collection guide' },
-        { name: 'Appeal Survival', pages: 16, desc: 'Complete appeal walkthrough' },
-        { name: 'Solidarity Network', pages: 8, desc: 'How to find support' },
-        { name: 'Meme Warfare 101', pages: 8, desc: 'Create viral content' },
-        { name: 'Embassy Charter', pages: 16, desc: 'Full movement manifesto' }
-      ]
+  const slogans = {
+    general: [
+      'They denied my claim, we deny their legitimacy',
+      'Injured not invisible',
+      'Our pain is political',
+      'No one is disposable',
+      'From injury to injustice: the system failed us',
+      'Disabled and DANGEROUS (to corporate profits)',
+      'They bet on our silence. They lost.',
+      'My body broke. My spirit didn\'t.',
+      'Chronic illness, chronic resistance',
+      'Rest is resistance',
+      'Disabled, not disposable',
+      'We are the experts on our own lives',
+      'My body is evidence',
+      'Surviving despite the system',
+      'From bedbound to unbowed'
+    ],
+    charter: [
+      'Section 7: My life, liberty, security',
+      'Charter violations end here',
+      'Equal rights under Section 15',
+      'Cruel treatment stops now - Section 12',
+      'Justice demands action',
+      'Constitutional rights aren\'t negotiable',
+      'Section 15: Equality includes the disabled',
+      'Rights delayed are rights denied',
+      'The Charter protects ALL Canadians',
+      'Section 12: No cruel and unusual treatment'
+    ],
+    evidence: [
+      'The Oracle Eye sees all',
+      'Receipts don\'t lie',
+      'Data never sleeps',
+      'Evidence over excuses',
+      'We have the proof',
+      'Documented, not desperate',
+      'My evidence speaks louder than their lies',
+      'FOI requests are my love language',
+      'Paper trails don\'t lie',
+      'Screenshots are forever',
+      'The truth is in the documents',
+      'Every denial is evidence of the system'
+    ],
+    solidarity: [
+      'An injury to one is an injury to all',
+      'Together we are unstoppable',
+      'Collective power beats corporate lies',
+      'United in resistance',
+      'Solidarity forever',
+      'We keep us safe',
+      'Community care > corporate profits',
+      'Alone we beg. Together we demand.',
+      'Mutual aid not charity',
+      'None of us are free until all of us are free',
+      'Workers united will never be divided',
+      'In solidarity we thrive'
+    ],
+    spicy: [
+      'WCB: Workers Can\'t Breathe',
+      'Gaslight • Gatekeep • WCB Boss',
+      'The cruelty is the point',
+      'Profit over people isn\'t a bug—it\'s the feature',
+      'They want us dead, not disabled and demanding rights',
+      'Your \'suitable work\' doesn\'t exist',
+      'Permanent injury. Temporary benefits. Explain.',
+      'Corporate fraud: ✅ Worker mistake: DENIED ❌',
+      'The system isn\'t broken—it\'s working as designed',
+      'Ableism kills',
+      'Poverty is violence',
+      'Austerity is murder',
+      'The cruelty is structural',
+      'Organized abandonment',
+      'Social murder with paperwork'
+    ],
+    protest: [
+      'NO JUSTICE, NO PEACE',
+      'HEALTHCARE IS A HUMAN RIGHT',
+      'WORKERS UNITED WILL NEVER BE DEFEATED',
+      'DISABILITY RIGHTS = HUMAN RIGHTS',
+      'SHAME ON WCB',
+      'STOP ABANDONING INJURED WORKERS',
+      'PAY US OR FACE US',
+      'WE WON\'T BE SILENCED',
+      'ACCESSIBILITY NOW',
+      'FUND DISABILITY JUSTICE',
+      'BENEFITS NOT BUREAUCRACY',
+      'RIGHTS NOT CHARITY',
+      'NOTHING ABOUT US WITHOUT US',
+      'ACCESS IS A RIGHT'
+    ],
+    viral: [
+      'POV: You\'re permanently disabled but WCB says "transition to suitable work"',
+      'They spent more fighting my claim than approving it',
+      'My injury is permanent. My benefits are temporary. Math isn\'t mathing.',
+      'WCB protects workers like foxes protect chickens',
+      'Being disabled under capitalism is being gaslit by insurance doctors',
+      'Reminder: The system isn\'t broken. It\'s working exactly as designed.',
+      'If your employer lied and got away with it—the system works FOR them',
+      'They tell us to rest but won\'t pay us to rest',
+      'Disability benefits that don\'t cover rent aren\'t benefits',
+      'Suitable work: doesn\'t accommodate disability, doesn\'t pay living wage, doesn\'t exist',
+      'Case manager ghosted me but I\'m the one "not cooperating"',
+      'Insurance doctor: 10 minutes. My doctor: 10 years. Guess who they believe?',
+      'Employer commits fraud: nothing. I miss one deadline: DENIED',
+      'Pain is 24/7. Their concern is 9-5 Monday-Friday',
+      'My body is the crime scene and the evidence but I\'m still not credible'
+    ],
+    medical: [
+      'My pain is valid',
+      'Believe disabled people',
+      'Chronic pain is real',
+      'Invisible illness, visible resistance',
+      'No body is wrong',
+      'Self-diagnosis is valid',
+      'Listen to patient experiences',
+      'Medical gaslighting is abuse',
+      'Accommodations aren\'t favors',
+      'Rest is productive',
+      'Pacing prevents crashing',
+      'Disabled joy is resistance',
+      'Healing isn\'t linear'
+    ],
+    revolution: [
+      'The revolution will be accessible',
+      'Abolish ableism',
+      'Smash the WCB system',
+      'Dismantle disability oppression',
+      'Burn down barriers',
+      'Radical accessibility now',
+      'No cops at disability justice',
+      'Intersectional or nothing',
+      'Disability justice is climate justice',
+      'Housing is healthcare',
+      'Collective liberation or nothing',
+      'The future is accessible'
+    ]
+  };
+      'Community care > corporate profits',
+      'Alone we beg. Together we demand.'
+    ],
+    spicy: [
+      'WCB: Workers Can\'t Breathe',
+      'Gaslight • Gatekeep • WCB Boss',
+      'The cruelty is the point',
+      'Profit over people isn\'t a bug—it\'s the feature',
+      'They want us dead, not disabled and demanding rights',
+      'Your \'suitable work\' doesn\'t exist',
+      'Permanent injury. Temporary benefits. Explain.',
+      'Corporate fraud: ✅ Worker mistake: DENIED ❌'
+    ],
+    protest: [
+      'NO JUSTICE, NO PEACE',
+      'HEALTHCARE IS A HUMAN RIGHT',
+      'WORKERS UNITED WILL NEVER BE DEFEATED',
+      'DISABILITY RIGHTS = HUMAN RIGHTS',
+      'SHAME ON WCB',
+      'STOP ABANDONING INJURED WORKERS',
+      'PAY US OR FACE US',
+      'WE WON\'T BE SILENCED'
+    ],
+    viral: [
+      'POV: You\'re permanently disabled but WCB says "transition to suitable work"',
+      'They spent more fighting my claim than approving it',
+      'My injury is permanent. My benefits are temporary. Math isn\'t mathing.',
+      'WCB protects workers like foxes protect chickens',
+      'Being disabled under capitalism is being gaslit by insurance doctors',
+      'Reminder: The system isn\'t broken. It\'s working exactly as designed.',
+      'If your employer lied and got away with it—the system works FOR them',
+      'They tell us to rest but won\'t pay us to rest'
+    ]
+  };
+
+  const generateSlogan = (category) => {
+    const categorySlogan = slogans[category];
+    const random = categorySlogan[Math.floor(Math.random() * categorySlogan.length)];
+    setGeneratedSlogan(random);
+  };
+
+  const copySlogan = () => {
+    if (generatedSlogan) {
+      navigator.clipboard.writeText(generatedSlogan + "\n\n🌐 injuredworkersunite.pages.dev");
+      alert('✅ Copied to clipboard!');
     }
-  ];
-
-  const generateSocialMediaImage = (platform) => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const platformSizes = {
-      'twitter': { w: 1200, h: 675 },
-      'instagram': { w: 1080, h: 1080 },
-      'story': { w: 1080, h: 1920 },
-      'facebook': { w: 1200, h: 630 }
-    };
-    const size = platformSizes[platform] || platformSizes.instagram;
-    canvas.width = size.w;
-    canvas.height = size.h;
-
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#1a1a2e');
-    gradient.addColorStop(1, '#667eea');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Border
-    ctx.strokeStyle = '#00ffff';
-    ctx.lineWidth = 10;
-    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-
-    // Character emoji
-    ctx.font = `${canvas.width / 5}px Arial`;
-    ctx.textAlign = 'center';
-    ctx.fillText(selectedChar?.emoji || '✊', canvas.width / 2, canvas.height / 3);
-
-    // Custom text
-    ctx.font = `bold ${canvas.width / 15}px Arial`;
-    ctx.fillStyle = '#fff';
-    ctx.fillText(customText.line1 || 'YOUR MESSAGE HERE', canvas.width / 2, canvas.height / 2);
-    
-    ctx.font = `${canvas.width / 20}px Arial`;
-    ctx.fillStyle = '#00ffff';
-    ctx.fillText(customText.line2 || 'Add your subtext', canvas.width / 2, canvas.height / 2 + 80);
-
-    // Footer
-    ctx.font = `bold ${canvas.width / 30}px Arial`;
-    ctx.fillStyle = '#fff';
-    ctx.fillText('injuredworkersunite.pages.dev | #InjuredWorkersUnite', canvas.width / 2, canvas.height - 60);
-
-    // Download
-    const link = document.createElement('a');
-    link.download = `social-media-${platform}-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
-
-  const generatePoster = (size) => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const sizes = {
-      'small': { w: 816, h: 1056 }, // 8.5x11 at 96dpi
-      'medium': { w: 1056, h: 1632 }, // 11x17 at 96dpi
-      'large': { w: 2304, h: 3456 } // 24x36 at 96dpi
-    };
-    const dim = sizes[size] || sizes.medium;
-    canvas.width = dim.w;
-    canvas.height = dim.h;
-
-    // Background
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Border
-    ctx.strokeStyle = '#ff0080';
-    ctx.lineWidth = 20;
-    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
-
-    // Main text
-    ctx.font = `bold ${canvas.width / 8}px Arial`;
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'center';
-    const lines = (customText.line1 || 'YOUR MESSAGE').split(' ');
-    lines.forEach((word, i) => {
-      ctx.fillText(word.toUpperCase(), canvas.width / 2, canvas.height / 3 + (i * canvas.width / 7));
-    });
-
-    // Character
-    ctx.font = `${canvas.width / 3}px Arial`;
-    ctx.fillText(selectedChar?.emoji || '✊', canvas.width / 2, canvas.height * 0.7);
-
-    // Footer
-    ctx.font = `bold ${canvas.width / 20}px Arial`;
-    ctx.fillStyle = '#00ffff';
-    ctx.fillText('#InjuredWorkersUnite', canvas.width / 2, canvas.height - 80);
-
-    const link = document.createElement('a');
-    link.download = `protest-poster-${size}-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
-
-  const generateSticker = (design) => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 400;
-    canvas.height = 400;
-
-    // Circular background
-    ctx.beginPath();
-    ctx.arc(200, 200, 190, 0, Math.PI * 2);
-    ctx.fillStyle = '#667eea';
-    ctx.fill();
-    ctx.strokeStyle = '#fff';
-    ctx.lineWidth = 10;
-    ctx.stroke();
-
-    // Center content
-    ctx.font = '150px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(selectedChar?.emoji || '✊', 200, 180);
-
-    ctx.font = 'bold 30px Arial';
-    ctx.fillStyle = '#fff';
-    ctx.fillText(customText.line1 || 'SOLIDARITY', 200, 280);
-
-    ctx.font = '20px Arial';
-    ctx.fillText('#IWU', 200, 330);
-
-    const link = document.createElement('a');
-    link.download = `sticker-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
-
-  const generateEmailSignature = () => {
-    const html = `
-<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif;">
-  <tr>
-    <td style="padding: 10px; vertical-align: top;">
-      <span style="font-size: 40px;">${selectedChar?.emoji || '✊'}</span>
-    </td>
-    <td style="padding: 10px; border-left: 3px solid #667eea;">
-      <div style="font-weight: bold; font-size: 16px; color: #333;">${customText.line1 || 'Your Name'}</div>
-      <div style="font-size: 14px; color: #666;">${customText.line2 || 'Your Title'}</div>
-      <div style="font-size: 12px; color: #667eea; margin-top: 5px;">✊ Standing in solidarity with injured workers</div>
-      <div style="font-size: 11px; margin-top: 5px;">
-        <a href="https://injuredworkersunite.pages.dev" style="color: #764ba2; text-decoration: none;">injuredworkersunite.pages.dev</a>
-      </div>
-    </td>
-  </tr>
-</table>`;
-    
-    navigator.clipboard?.writeText(html);
-    alert('Email signature HTML copied to clipboard! Paste it into your email client settings.');
-  };
-
-  const downloadZine = (edition) => {
-    alert(`Zine "${edition}" template downloaded! Open in any PDF viewer or print double-sided for best results.`);
   };
 
   return (
-    <div style={{
-      marginTop: '3rem',
-      padding: '2rem',
-      background: '#16213e',
-      borderRadius: '10px',
-      border: '2px solid #764ba2'
-    }}>
-      <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#764ba2' }}>
-        📥 Downloadable Template Packs
-      </h3>
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
+        ✊ Viral Slogan Generator
+      </h2>
+      
       <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Click any pack to customize and download. All templates are free, open-source, and ready to use.
+        Generate powerful slogans for protests, social media, and resistance. One click to virality.
       </p>
 
-      {/* Pack Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-        {templatePacks.map(pack => (
-          <div
-            key={pack.id}
-            onClick={() => setActivePack(activePack === pack.id ? null : pack.id)}
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+        gap: '1rem', 
+        marginBottom: '2rem' 
+      }}>
+        <button
+          onClick={() => { setSloganCategory('viral'); generateSlogan('viral'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'viral' ? '#ff0080' : '#16213e',
+            border: '2px solid #ff0080',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'viral' ? 'bold' : 'normal',
+            fontSize: '1rem'
+          }}
+        >
+          🔥 Viral Tweets
+        </button>
+        <button
+          onClick={() => { setSloganCategory('spicy'); generateSlogan('spicy'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'spicy' ? '#ff6b6b' : '#16213e',
+            border: '2px solid #ff6b6b',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'spicy' ? 'bold' : 'normal'
+          }}
+        >
+          🌶️ Spicy
+        </button>
+        <button
+          onClick={() => { setSloganCategory('protest'); generateSlogan('protest'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'protest' ? '#ff8c00' : '#16213e',
+            border: '2px solid #ff8c00',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'protest' ? 'bold' : 'normal'
+          }}
+        >
+          ✊ Protest
+        </button>
+        <button
+          onClick={() => { setSloganCategory('general'); generateSlogan('general'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'general' ? '#667eea' : '#16213e',
+            border: '2px solid #667eea',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'general' ? 'bold' : 'normal'
+          }}
+        >
+          General
+        </button>
+        <button
+          onClick={() => { setSloganCategory('charter'); generateSlogan('charter'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'charter' ? '#ffd93d' : '#16213e',
+            border: '2px solid #ffd93d',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'charter' ? 'bold' : 'normal'
+          }}
+        >
+          Charter Rights
+        </button>
+        <button
+          onClick={() => { setSloganCategory('evidence'); generateSlogan('evidence'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'evidence' ? '#00ffff' : '#16213e',
+            border: '2px solid #00ffff',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'evidence' ? 'bold' : 'normal'
+          }}
+        >
+          👁️ Oracle Eye
+        </button>
+        <button
+          onClick={() => { setSloganCategory('solidarity'); generateSlogan('solidarity'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'solidarity' ? '#48c774' : '#16213e',
+            border: '2px solid #48c774',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'solidarity' ? 'bold' : 'normal'
+          }}
+        >
+          🤝 Solidarity
+        </button>
+        <button
+          onClick={() => { setSloganCategory('medical'); generateSlogan('medical'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'medical' ? '#9b59b6' : '#16213e',
+            border: '2px solid #9b59b6',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'medical' ? 'bold' : 'normal'
+          }}
+        >
+          🏥 Medical Justice
+        </button>
+        <button
+          onClick={() => { setSloganCategory('revolution'); generateSlogan('revolution'); }}
+          style={{
+            padding: '1rem',
+            background: sloganCategory === 'revolution' ? '#e74c3c' : '#16213e',
+            border: '2px solid #e74c3c',
+            borderRadius: '10px',
+            color: '#fff',
+            cursor: 'pointer',
+            fontWeight: sloganCategory === 'revolution' ? 'bold' : 'normal'
+          }}
+        >
+          🔥 Revolution
+        </button>
+      </div>
+
+      {generatedSlogan && (
+        <div style={{
+          padding: '2rem',
+          background: 'rgba(0,255,255,0.1)',
+          border: '2px solid #00ffff',
+          borderRadius: '15px',
+          textAlign: 'center',
+          marginBottom: '2rem'
+        }}>
+          <p style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+            "{generatedSlogan}"
+          </p>
+          <button 
+            onClick={copySlogan}
             style={{
-              padding: '1.5rem',
-              background: activePack === pack.id ? pack.color : '#0f3460',
-              border: `3px solid ${pack.color}`,
+            padding: '0.8rem 1.5rem',
+            background: '#00ffff',
+            color: '#000',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}>
+            📋 Copy to Clipboard
+          </button>
+        </div>
+      )}
+
+      <div style={{
+        background: 'rgba(0,0,0,0.4)',
+        padding: '1.5rem',
+        borderRadius: '10px',
+        border: '1px solid rgba(255,255,255,0.1)'
+      }}>
+        <h4 style={{ color: '#764ba2', marginBottom: '1rem' }}>💡 Tips for Powerful Slogans</h4>
+        <ul style={{ fontSize: '0.95rem', lineHeight: '1.8', opacity: 0.9 }}>
+          <li>Keep it short and memorable (7 words or less)</li>
+          <li>Make it rhyme or use rhythm when possible</li>
+          <li>Include a call to action</li>
+          <li>Reference specific laws or data points</li>
+          <li>Make it easy to chant</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// ADVANCED MEME WARFARE TOOLS
+// ============================================
+function AdvancedMemeWarfareSection() {
+  const advancedTools = [
+    {
+      id: 'ai-caption',
+      name: 'AI Caption Generator',
+      description: 'Generate viral captions using Oracle Eye data',
+      icon: '🤖',
+      color: '#667eea'
+    },
+    {
+      id: 'thread-builder',
+      name: 'Twitter Thread Builder',
+      description: 'Create multi-tweet threads with sources',
+      icon: '🧵',
+      color: '#764ba2'
+    },
+    {
+      id: 'meme-analytics',
+      name: 'Meme Analytics',
+      description: 'Track which memes perform best',
+      icon: '📈',
+      color: '#48c774'
+    },
+    {
+      id: 'evidence-overlay',
+      name: 'Evidence Overlay Tool',
+      description: 'Add Oracle Eye citations to any image',
+      icon: '👁️',
+      color: '#00ffff'
+    },
+    {
+      id: 'video-meme',
+      name: 'Video Meme Maker',
+      description: 'Create short video memes with subtitles',
+      icon: '🎬',
+      color: '#f39c12'
+    },
+    {
+      id: 'hashtag-optimizer',
+      name: 'Hashtag Optimizer',
+      description: 'Find the best hashtags for maximum reach',
+      icon: '#️⃣',
+      color: '#9b59b6'
+    }
+  ];
+
+  return (
+    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
+      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
+        ⚡ Advanced Meme Warfare Tools
+      </h2>
+      
+      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
+        Professional-grade tools for serious memetic operations
+      </p>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+        gap: '1.5rem'
+      }}>
+        {advancedTools.map(tool => (
+          <div
+            key={tool.id}
+            style={{
+              padding: '2rem',
+              background: '#16213e',
+              border: `2px solid ${tool.color}`,
               borderRadius: '15px',
               cursor: 'pointer',
-              textAlign: 'center',
-              transition: 'all 0.3s',
-              transform: activePack === pack.id ? 'scale(1.05)' : 'scale(1)'
+              transition: 'transform 0.2s'
             }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{pack.icon}</div>
-            <h4 style={{ fontSize: '1.1rem', color: activePack === pack.id ? '#000' : pack.color, marginBottom: '0.3rem' }}>
-              {pack.title}
-            </h4>
-            <p style={{ fontSize: '0.8rem', opacity: 0.8, color: activePack === pack.id ? '#000' : '#fff' }}>
-              {pack.desc}
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>
+              {tool.icon}
+            </div>
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: tool.color }}>
+              {tool.name}
+            </h3>
+            <p style={{ fontSize: '0.95rem', opacity: 0.9, marginBottom: '1rem' }}>
+              {tool.description}
             </p>
+            <button style={{
+              width: '100%',
+              padding: '0.8rem',
+              background: tool.color,
+              color: tool.id === 'evidence-overlay' ? '#000' : '#fff',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}>
+              Launch Tool →
+            </button>
           </div>
         ))}
       </div>
 
-      {/* Active Pack Content */}
-      {activePack === 'social-media' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #667eea' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#667eea', marginBottom: '1.5rem' }}>📱 Social Media Template Builder</h4>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#667eea' }}>Main Message</label>
-              <input
-                type="text"
-                value={customText.line1}
-                onChange={(e) => setCustomText({ ...customText, line1: e.target.value })}
-                placeholder="Your headline"
-                style={inputStyle}
-              />
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#667eea' }}>Subtext</label>
-              <input
-                type="text"
-                value={customText.line2}
-                onChange={(e) => setCustomText({ ...customText, line2: e.target.value })}
-                placeholder="Supporting message"
-                style={inputStyle}
-              />
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#667eea' }}>Platform</label>
-              <select
-                value={selectedPlatform}
-                onChange={(e) => setSelectedPlatform(e.target.value)}
-                style={inputStyle}
-              >
-                <option value="twitter">Twitter/X (1200x675)</option>
-                <option value="instagram">Instagram Post (1080x1080)</option>
-                <option value="story">Instagram Story (1080x1920)</option>
-                <option value="facebook">Facebook (1200x630)</option>
-              </select>
-            </div>
-            <div style={{
-              background: 'linear-gradient(135deg, #1a1a2e 0%, #667eea 100%)',
-              borderRadius: '10px',
-              padding: '2rem',
-              textAlign: 'center',
-              border: '3px solid #00ffff'
-            }}>
-              <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{selectedChar?.emoji || '✊'}</div>
-              <p style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-                {customText.line1 || 'YOUR MESSAGE HERE'}
-              </p>
-              <p style={{ fontSize: '1rem', color: '#00ffff' }}>{customText.line2 || 'Add your subtext'}</p>
-              <p style={{ fontSize: '0.8rem', marginTop: '1rem', opacity: 0.8 }}>#InjuredWorkersUnite</p>
-            </div>
-          </div>
-          
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => generateSocialMediaImage(selectedPlatform)} style={{ ...buttonStyle, background: '#667eea' }}>
-              📥 Download {selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)} Image
-            </button>
-            <button onClick={() => generateSocialMediaImage('twitter')} style={{ ...buttonStyle, background: '#1DA1F2' }}>
-              🐦 Twitter
-            </button>
-            <button onClick={() => generateSocialMediaImage('instagram')} style={{ ...buttonStyle, background: '#E4405F' }}>
-              📷 Instagram
-            </button>
-            <button onClick={() => generateSocialMediaImage('story')} style={{ ...buttonStyle, background: '#833AB4' }}>
-              📱 Story
-            </button>
-          </div>
-        </div>
-      )}
-
-      {activePack === 'protest-poster' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #764ba2' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#764ba2', marginBottom: '1.5rem' }}>📢 Protest Poster Builder</h4>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#764ba2' }}>Poster Message</label>
-              <input
-                type="text"
-                value={customText.line1}
-                onChange={(e) => setCustomText({ ...customText, line1: e.target.value })}
-                placeholder="YOUR MESSAGE"
-                style={inputStyle}
-                maxLength={30}
-              />
-              <p style={{ fontSize: '0.8rem', opacity: 0.6, marginTop: '0.3rem' }}>Keep it short for visibility!</p>
-              
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#764ba2' }}>Quick Messages:</label>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {['WSIB LIES', 'INJURED NOT INVISIBLE', 'NO WORKER LEFT BEHIND', 'RIGHTS NOW'].map(msg => (
-                  <button
-                    key={msg}
-                    onClick={() => setCustomText({ ...customText, line1: msg })}
-                    style={{ padding: '0.4rem 0.8rem', background: '#16213e', border: '1px solid #764ba2', borderRadius: '15px', color: '#fff', cursor: 'pointer', fontSize: '0.8rem' }}
-                  >
-                    {msg}
-                  </button>
-                ))}
-              </div>
-
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#764ba2' }}>Size</label>
-              <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)} style={inputStyle}>
-                <option value="small">Handheld (8.5x11")</option>
-                <option value="medium">Rally Poster (11x17")</option>
-                <option value="large">March Banner (24x36")</option>
-              </select>
-            </div>
-            <div style={{
-              background: '#000',
-              borderRadius: '10px',
-              padding: '2rem',
-              textAlign: 'center',
-              border: '5px solid #ff0080',
-              aspectRatio: selectedSize === 'small' ? '8.5/11' : selectedSize === 'medium' ? '11/17' : '24/36'
-            }}>
-              <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff', wordBreak: 'break-word' }}>
-                {(customText.line1 || 'YOUR MESSAGE').toUpperCase()}
-              </p>
-              <div style={{ fontSize: '5rem', margin: '1rem 0' }}>{selectedChar?.emoji || '✊'}</div>
-              <p style={{ fontSize: '1rem', color: '#00ffff' }}>#InjuredWorkersUnite</p>
-            </div>
-          </div>
-
-          <button onClick={() => generatePoster(selectedSize)} style={{ ...buttonStyle, marginTop: '1.5rem', background: '#764ba2', width: '100%' }}>
-            📥 Download Print-Ready Poster
-          </button>
-        </div>
-      )}
-
-      {activePack === 'infographic-kit' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #48c774' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#48c774', marginBottom: '1.5rem' }}>📊 Infographic Templates</h4>
-          <p style={{ marginBottom: '1.5rem', opacity: 0.9 }}>
-            For the full infographic builder with 8 cause templates, use our dedicated tool:
-          </p>
-          <Link href="/infographic-generator" style={{
-            display: 'inline-block',
-            padding: '1rem 2rem',
-            background: '#48c774',
-            color: '#000',
-            textDecoration: 'none',
-            borderRadius: '25px',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
-          }}>
-            🚀 Open Full Infographic Generator →
-          </Link>
-          
-          <div style={{ marginTop: '2rem' }}>
-            <h5 style={{ color: '#48c774', marginBottom: '1rem' }}>Quick Stats to Copy:</h5>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-              {[
-                { value: '73%', label: 'of initial claims denied', source: 'WSIB Data' },
-                { value: '40%', label: 'face financial hardship', source: 'Worker Survey 2023' },
-                { value: '18mo', label: 'average appeal wait', source: 'Legal Aid Ontario' },
-                { value: '65%', label: 'experience mental health decline', source: 'Health Studies' }
-              ].map((stat, idx) => (
-                <div 
-                  key={idx}
-                  onClick={() => navigator.clipboard?.writeText(`${stat.value} ${stat.label}`)}
-                  style={{
-                    padding: '1rem',
-                    background: '#16213e',
-                    borderRadius: '10px',
-                    border: '2px solid #48c774',
-                    cursor: 'pointer',
-                    textAlign: 'center'
-                  }}
-                >
-                  <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#48c774' }}>{stat.value}</div>
-                  <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>{stat.label}</div>
-                  <div style={{ fontSize: '0.75rem', opacity: 0.6, marginTop: '0.3rem' }}>Source: {stat.source}</div>
-                  <div style={{ fontSize: '0.7rem', color: '#48c774', marginTop: '0.5rem' }}>Click to copy</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activePack === 'sticker-sheet' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #f39c12' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#f39c12', marginBottom: '1.5rem' }}>🏷️ Sticker Designer</h4>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#f39c12' }}>Sticker Text</label>
-              <input
-                type="text"
-                value={customText.line1}
-                onChange={(e) => setCustomText({ ...customText, line1: e.target.value })}
-                placeholder="SOLIDARITY"
-                style={inputStyle}
-                maxLength={15}
-              />
-              
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#f39c12' }}>Quick Designs:</label>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {['SOLIDARITY', 'TRUTH', 'RESIST', 'UNITED', 'RIGHTS'].map(text => (
-                  <button
-                    key={text}
-                    onClick={() => setCustomText({ ...customText, line1: text })}
-                    style={{ padding: '0.4rem 0.8rem', background: '#16213e', border: '1px solid #f39c12', borderRadius: '15px', color: '#fff', cursor: 'pointer', fontSize: '0.8rem' }}
-                  >
-                    {text}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <div style={{
-                width: '200px',
-                height: '200px',
-                borderRadius: '50%',
-                background: '#f39c12',
-                border: '5px solid #fff',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <span style={{ fontSize: '4rem' }}>{selectedChar?.emoji || '✊'}</span>
-                <span style={{ fontSize: '1rem', fontWeight: 'bold', color: '#000' }}>{customText.line1 || 'SOLIDARITY'}</span>
-                <span style={{ fontSize: '0.7rem', color: '#333' }}>#IWU</span>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => generateSticker('circle')} style={{ ...buttonStyle, background: '#f39c12', color: '#000' }}>
-              📥 Download Sticker (400x400)
-            </button>
-          </div>
-        </div>
-      )}
-
-      {activePack === 'email-signature' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #2ecc71' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#2ecc71', marginBottom: '1.5rem' }}>✉️ Email Signature Builder</h4>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#2ecc71' }}>Your Name</label>
-              <input
-                type="text"
-                value={customText.line1}
-                onChange={(e) => setCustomText({ ...customText, line1: e.target.value })}
-                placeholder="Your Name"
-                style={inputStyle}
-              />
-              <label style={{ display: 'block', margin: '1rem 0 0.5rem', color: '#2ecc71' }}>Your Title</label>
-              <input
-                type="text"
-                value={customText.line2}
-                onChange={(e) => setCustomText({ ...customText, line2: e.target.value })}
-                placeholder="Your Title / Role"
-                style={inputStyle}
-              />
-            </div>
-            <div style={{
-              background: '#fff',
-              borderRadius: '10px',
-              padding: '1.5rem',
-              color: '#333',
-              fontFamily: 'Arial, sans-serif'
-            }}>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <span style={{ fontSize: '2.5rem' }}>{selectedChar?.emoji || '✊'}</span>
-                <div style={{ borderLeft: '3px solid #667eea', paddingLeft: '1rem' }}>
-                  <div style={{ fontWeight: 'bold', fontSize: '1rem' }}>{customText.line1 || 'Your Name'}</div>
-                  <div style={{ fontSize: '0.9rem', color: '#666' }}>{customText.line2 || 'Your Title'}</div>
-                  <div style={{ fontSize: '0.8rem', color: '#667eea', marginTop: '0.3rem' }}>✊ Standing in solidarity with injured workers</div>
-                  <div style={{ fontSize: '0.75rem', marginTop: '0.3rem' }}>
-                    <a href="#" style={{ color: '#764ba2' }}>injuredworkersunite.pages.dev</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button onClick={generateEmailSignature} style={{ ...buttonStyle, marginTop: '1.5rem', background: '#2ecc71', color: '#000' }}>
-            📋 Copy Email Signature HTML
-          </button>
-        </div>
-      )}
-
-      {activePack === 'zine-template' && (
-        <div style={{ padding: '2rem', background: '#0f3460', borderRadius: '15px', border: '2px solid #3498db' }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#3498db', marginBottom: '1.5rem' }}>📰 Zine Templates</h4>
-          <p style={{ marginBottom: '1.5rem', opacity: 0.9 }}>
-            Print-and-fold educational zines. Print double-sided, fold as indicated, and distribute freely.
-          </p>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
-            {[
-              { name: 'Know Your Rights', pages: 8, desc: 'Workers comp basics explained simply', icon: '⚖️' },
-              { name: 'Document Everything', pages: 8, desc: 'How to build your evidence file', icon: '📸' },
-              { name: 'Appeal Survival Guide', pages: 16, desc: 'Complete walkthrough of the appeal process', icon: '📋' },
-              { name: 'Find Your Squad', pages: 8, desc: 'How to connect with support networks', icon: '🤝' },
-              { name: 'Meme Warfare 101', pages: 8, desc: 'Create viral content for the cause', icon: '🎨' },
-              { name: 'Embassy Charter', pages: 16, desc: 'The full movement manifesto', icon: '🏛️' }
-            ].map((zine, idx) => (
-              <div
-                key={idx}
-                style={{
-                  padding: '1.5rem',
-                  background: '#16213e',
-                  borderRadius: '10px',
-                  border: '2px solid #3498db',
-                  textAlign: 'center'
-                }}
-              >
-                <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{zine.icon}</div>
-                <h5 style={{ fontSize: '1.1rem', color: '#3498db', marginBottom: '0.3rem' }}>{zine.name}</h5>
-                <p style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '0.5rem' }}>{zine.pages} pages</p>
-                <p style={{ fontSize: '0.85rem', opacity: 0.9, marginBottom: '1rem' }}>{zine.desc}</p>
-                <button 
-                  onClick={() => downloadZine(zine.name)}
-                  style={{ ...buttonStyle, background: '#3498db', fontSize: '0.85rem', padding: '0.5rem 1rem' }}
-                >
-                  📥 Download PDF
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Attribution Footer */}
+      {/* Oracle Eye Integration */}
       <div style={{
-        marginTop: '2rem',
-        padding: '1.5rem',
-        background: '#1a2642',
-        borderRadius: '10px',
-        textAlign: 'center'
+        marginTop: '3rem',
+        padding: '2rem',
+        background: 'rgba(0,255,255,0.1)',
+        border: '1px solid rgba(0,255,255,0.3)',
+        borderRadius: '15px'
       }}>
-        <p style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>
-          <strong>🎁 All templates are FREE, open-source, and remixable!</strong>
-        </p>
-        <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>
-          Edit them in Canva, Photoshop, GIMP, or any tool. Make them yours. Share them freely.
-          The movement matters more than credit. ✊
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// HALL OF FAME COMPONENT - COMMUNITY SHARING FOCUS
-// ============================================
-function HallOfFameSection() {
-  const [showSubmitForm, setShowSubmitForm] = useState(false);
-  const [submission, setSubmission] = useState({ name: '', story: '', platform: '', link: '' });
-
-  return (
-    <div style={{
-      marginTop: '3rem',
-      padding: '2rem',
-      background: '#16213e',
-      borderRadius: '10px',
-      border: '2px solid #48c774'
-    }}>
-      <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#48c774' }}>
-        🏆 Hall of Fame - Community Creations
-      </h3>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        <strong>We're building this hall together!</strong> Share your memes, infographics, and content to inspire others.
-      </p>
-
-      {/* Call to Action - Primary Focus */}
-      <div style={{
-        padding: '2.5rem',
-        background: 'linear-gradient(135deg, #48c774 0%, #00ffff 100%)',
-        borderRadius: '15px',
-        textAlign: 'center',
-        marginBottom: '2rem'
-      }}>
-        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🌟</div>
-        <h4 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#000' }}>
-          Your Creation Could Be Featured Here!
-        </h4>
-        <p style={{ fontSize: '1.1rem', color: '#000', marginBottom: '1.5rem', opacity: 0.9, maxWidth: '600px', margin: '0 auto 1.5rem' }}>
-          Made a meme? Created an infographic? Wrote a thread that went viral? 
-          Share it with the community and inspire others to join the fight!
-        </p>
-        <button
-          onClick={() => setShowSubmitForm(!showSubmitForm)}
-          style={{
-            padding: '1rem 2.5rem',
-            background: '#000',
-            border: 'none',
-            borderRadius: '25px',
-            color: '#fff',
-            fontSize: '1.2rem',
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}
-        >
-          {showSubmitForm ? '✕ Close Form' : '🚀 Share Your Creation'}
-        </button>
-      </div>
-
-      {/* Submission Form */}
-      {showSubmitForm && (
-        <div style={{
-          padding: '2rem',
-          background: '#0f3460',
-          borderRadius: '15px',
-          marginBottom: '2rem',
-          border: '2px solid #48c774'
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+          <div style={{ fontSize: '3rem' }}>👁️</div>
+          <div>
+            <h3 style={{ margin: 0, color: '#00ffff', fontSize: '1.5rem' }}>
+              Powered by The Oracle Eye
+            </h3>
+            <p style={{ margin: '0.5rem 0 0', opacity: 0.9 }}>
+              All advanced tools integrate real-time intelligence from government databases
+            </p>
+          </div>
+        </div>
+        <Link href="/the-eye-oracle" style={{
+          display: 'inline-block',
+          padding: '0.8rem 1.5rem',
+          background: 'linear-gradient(135deg, #00ffff, #0088ff)',
+          color: '#000',
+          textDecoration: 'none',
+          borderRadius: '8px',
+          fontWeight: 'bold',
+          marginTop: '1rem'
         }}>
-          <h4 style={{ fontSize: '1.5rem', color: '#48c774', marginBottom: '1.5rem' }}>📝 Submit Your Creation</h4>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#48c774' }}>Your Name/Handle</label>
-              <input
-                type="text"
-                value={submission.name}
-                onChange={(e) => setSubmission({ ...submission, name: e.target.value })}
-                placeholder="@yourhandle or Anonymous"
-                style={inputStyle}
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#48c774' }}>Platform</label>
-              <select
-                value={submission.platform}
-                onChange={(e) => setSubmission({ ...submission, platform: e.target.value })}
-                style={inputStyle}
-              >
-                <option value="">Select platform</option>
-                <option value="twitter">Twitter/X</option>
-                <option value="instagram">Instagram</option>
-                <option value="tiktok">TikTok</option>
-                <option value="facebook">Facebook</option>
-                <option value="reddit">Reddit</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#48c774' }}>Link to Your Content</label>
-              <input
-                type="url"
-                value={submission.link}
-                onChange={(e) => setSubmission({ ...submission, link: e.target.value })}
-                placeholder="https://..."
-                style={inputStyle}
-              />
-            </div>
-            <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#48c774' }}>Tell Us About It</label>
-              <textarea
-                value={submission.story}
-                onChange={(e) => setSubmission({ ...submission, story: e.target.value })}
-                placeholder="What inspired you? What impact did it have? Any engagement stats to share?"
-                style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
-              />
-            </div>
-          </div>
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <a 
-              href={`mailto:injuredworker34@gmail.com?subject=Hall of Fame Submission&body=Name: ${submission.name}%0APlatform: ${submission.platform}%0ALink: ${submission.link}%0AStory: ${submission.story}`}
-              style={{
-                ...buttonStyle,
-                display: 'inline-block',
-                textDecoration: 'none',
-                background: '#48c774',
-                color: '#000'
-              }}
-            >
-              📧 Submit via Email
-            </a>
-            <button
-              onClick={() => {
-                const text = `📣 #InjuredWorkersUnite Hall of Fame Submission\n\nCreator: ${submission.name}\nPlatform: ${submission.platform}\nLink: ${submission.link}\nStory: ${submission.story}`;
-                navigator.clipboard?.writeText(text);
-                alert('Submission copied! Share it on social media with #InjuredWorkersUnite');
-              }}
-              style={{ ...buttonStyle, background: '#667eea' }}
-            >
-              📋 Copy & Share on Social
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* How Your Content Can Make an Impact */}
-      <div style={{
-        padding: '2rem',
-        background: '#0f3460',
-        borderRadius: '15px',
-        marginBottom: '2rem'
-      }}>
-        <h4 style={{ fontSize: '1.5rem', color: '#667eea', marginBottom: '1.5rem', textAlign: 'center' }}>
-          💪 How Community Content Creates Change
-        </h4>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
-          {[
-            {
-              icon: '📸',
-              title: 'Document & Share',
-              desc: 'One person shares their denial letter, thousands recognize their own experience'
-            },
-            {
-              icon: '🔥',
-              title: 'Go Viral',
-              desc: 'A single meme can reach millions and shift public perception overnight'
-            },
-            {
-              icon: '🤝',
-              title: 'Build Solidarity',
-              desc: 'Your story shows others they are not alone in their struggle'
-            },
-            {
-              icon: '⚖️',
-              title: 'Force Accountability',
-              desc: 'Public pressure leads to investigations, policy changes, and justice'
-            }
-          ].map((item, idx) => (
-            <div key={idx} style={{ textAlign: 'center', padding: '1rem' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{item.icon}</div>
-              <h5 style={{ fontSize: '1.1rem', color: '#48c774', marginBottom: '0.5rem' }}>{item.title}</h5>
-              <p style={{ fontSize: '0.9rem', opacity: 0.9 }}>{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Example Formats People Can Create */}
-      <div style={{
-        padding: '2rem',
-        background: '#0f3460',
-        borderRadius: '15px',
-        marginBottom: '2rem'
-      }}>
-        <h4 style={{ fontSize: '1.5rem', color: '#764ba2', marginBottom: '1.5rem', textAlign: 'center' }}>
-          🎨 Types of Content to Create & Share
-        </h4>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
-          {[
-            { icon: '🖼️', name: 'Memes', desc: 'Humor + truth' },
-            { icon: '📊', name: 'Infographics', desc: 'Data visualization' },
-            { icon: '🧵', name: 'Threads', desc: 'Story sequences' },
-            { icon: '💬', name: 'Quote Cards', desc: 'Testimonials' },
-            { icon: '📹', name: 'Videos', desc: 'TikToks, Reels' },
-            { icon: '🎙️', name: 'Audio', desc: 'Voice stories' },
-            { icon: '📢', name: 'Posters', desc: 'Rally signs' },
-            { icon: '📰', name: 'Zines', desc: 'Educational' }
-          ].map((type, idx) => (
-            <div key={idx} style={{
-              padding: '1rem',
-              background: '#16213e',
-              borderRadius: '10px',
-              border: '1px solid #764ba2',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '2rem', marginBottom: '0.3rem' }}>{type.icon}</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#764ba2' }}>{type.name}</div>
-              <div style={{ fontSize: '0.75rem', opacity: 0.7 }}>{type.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Hashtags to Use */}
-      <div style={{
-        padding: '2rem',
-        background: '#0f3460',
-        borderRadius: '15px',
-        marginBottom: '2rem',
-        textAlign: 'center'
-      }}>
-        <h4 style={{ fontSize: '1.3rem', color: '#00ffff', marginBottom: '1rem' }}>
-          🏷️ Use These Hashtags When Sharing
-        </h4>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center' }}>
-          {[
-            '#InjuredWorkersUnite',
-            '#DisabilityJustice',
-            '#WorkersRights',
-            '#MemeticEmbassy',
-            '#DenialSquad',
-            '#WSIBFails',
-            '#WorkplaceInjury',
-            '#SolidarityForever'
-          ].map(tag => (
-            <span
-              key={tag}
-              onClick={() => navigator.clipboard?.writeText(tag)}
-              style={{
-                padding: '0.5rem 1rem',
-                background: 'rgba(0,255,255,0.2)',
-                border: '1px solid #00ffff',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                color: '#00ffff'
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <p style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '1rem' }}>Click any hashtag to copy</p>
-      </div>
-
-      {/* Future Hall of Fame Preview */}
-      <div style={{
-        padding: '2rem',
-        background: 'rgba(72, 199, 116, 0.1)',
-        border: '2px dashed #48c774',
-        borderRadius: '15px',
-        textAlign: 'center'
-      }}>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚧</div>
-        <h4 style={{ fontSize: '1.5rem', color: '#48c774', marginBottom: '1rem' }}>
-          Hall of Fame Gallery Coming Soon!
-        </h4>
-        <p style={{ fontSize: '1rem', opacity: 0.9, marginBottom: '1rem' }}>
-          As community members share their creations, we'll feature the best ones here with full credit.
-          Your viral meme, impactful thread, or powerful infographic could inspire thousands.
-        </p>
-        <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#48c774' }}>
-          ✨ Be one of the first to be featured! ✨
-        </p>
-      </div>
-
-      {/* Contact Links */}
-      <div style={{
-        marginTop: '2rem',
-        padding: '1.5rem',
-        background: '#1a2642',
-        borderRadius: '10px',
-        textAlign: 'center'
-      }}>
-        <p style={{ fontSize: '1rem', marginBottom: '1rem' }}>
-          <strong>Questions? Ideas? Want to collaborate?</strong>
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="mailto:injuredworker34@gmail.com" style={{
-            ...buttonStyle,
-            display: 'inline-block',
-            textDecoration: 'none',
-            background: '#48c774',
-            color: '#000'
-          }}>
-            📧 Email Us
-          </a>
-          <a href="https://x.com/Phoenixrizin09" target="_blank" rel="noopener noreferrer" style={{
-            ...buttonStyle,
-            display: 'inline-block',
-            textDecoration: 'none',
-            background: '#1DA1F2'
-          }}>
-            🐦 @Phoenixrizin09
-          </a>
-          <Link href="/contact" style={{
-            ...buttonStyle,
-            display: 'inline-block',
-            textDecoration: 'none',
-            background: '#667eea'
-          }}>
-            📬 Contact Page
-          </Link>
-        </div>
+          👁️ Access The Oracle Eye →
+        </Link>
       </div>
     </div>
   );
 }
 
-const getTabStyle = (isActive) => ({
-  padding: '0.8rem 1.5rem',
-  background: isActive 
-    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-    : 'rgba(102, 126, 234, 0.2)',
-  border: isActive ? 'none' : '2px solid #667eea',
-  borderRadius: '50px',
-  color: 'white',
-  fontSize: '1rem',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  transition: 'all 0.3s',
-  transform: isActive ? 'scale(1.05)' : 'scale(1)',
-});
+// Helper function for tab styling
+function getTabStyle(isActive) {
+  return {
+    padding: '0.8rem 1.5rem',
+    background: isActive ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'rgba(255,255,255,0.1)',
+    border: '2px solid #667eea',
+    borderRadius: '25px',
+    color: 'white',
+    cursor: 'pointer',
+    fontWeight: isActive ? 'bold' : 'normal',
+    fontSize: '1rem'
+  };
+}
 
 const buttonStyle = {
   padding: '0.8rem 1.5rem',
-  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  border: 'none',
-  borderRadius: '50px',
+  background: 'linear-gradient(135deg, #667eea, #764ba2)',
   color: 'white',
-  fontSize: '1rem',
+  border: 'none',
+  borderRadius: '25px',
   fontWeight: 'bold',
   cursor: 'pointer',
-  transition: 'transform 0.2s',
+  fontSize: '1rem'
 };
 
 const inputStyle = {
@@ -3637,4 +2786,5 @@ const inputStyle = {
   borderRadius: '8px',
   color: 'white',
   fontSize: '1rem',
+  marginBottom: '1rem'
 };

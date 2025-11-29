@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: injuredworkersunite.pages.dev
+Token: 6b924d46f3c64bcd3d65daf1a9ced4fdd2e4c0e07bfa64c807ae845502853197

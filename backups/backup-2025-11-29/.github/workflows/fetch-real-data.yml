@@ -1,0 +1,66 @@
+name: Fetch Real Data Daily
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Fetch all real data
+        run: npm run fetch:real
+      
+      - name: Check for changes
+        id: check-changes
+        run: |
+          git diff --quiet public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/data/*.json
+          git commit -m "📊 Auto-update real data from government APIs [skip ci]" || echo "No changes to commit"
+          git push
+      
+      - name: Generate data summary
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          echo "## 📊 Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Successfully fetched real data from:" >> $GITHUB_STEP_SUMMARY
+          echo "- Open Canada (Federal datasets)" >> $GITHUB_STEP_SUMMARY
+          echo "- Ontario Open Data (Provincial datasets)" >> $GITHUB_STEP_SUMMARY
+          echo "- Reddit (Community discussions)" >> $GITHUB_STEP_SUMMARY
+          echo "- OpenParliament (Bills and debates)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "💰 Cost: \$0.00 (100% FREE APIs)" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Send Discord notification
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"content": "📊 **Real Data Updated!**\n\nFresh government data has been fetched from free APIs:\n\n✅ Federal datasets\n✅ Ontario datasets\n✅ Reddit discussions\n✅ Parliament bills\n\n💰 Cost: $0.00\n🔗 https://injuredworkersunite.pages.dev"}' \
+               ${{ secrets.DISCORD_WEBHOOK_URL }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        continue-on-error: true

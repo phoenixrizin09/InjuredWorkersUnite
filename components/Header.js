@@ -75,6 +75,7 @@ export default function Header() {
 
         {/* Navigation Menu */}
         <nav 
+          id="nav-main"
           role="navigation"
           aria-label="Main navigation"
           style={{
@@ -103,6 +104,9 @@ export default function Header() {
           <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>
           <Link href="/contact" style={navLinkStyle}>Contact</Link>
           <Link href="/legal" style={navLinkStyle}>Legal</Link>
+          <Link href="/accessibility" style={{...navLinkStyle, background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: '#000', fontWeight: 'bold'}}>
+            <span aria-hidden="true">♿</span> A11y
+          </Link>
         </nav>
 
         {/* Social Media & Donate */}

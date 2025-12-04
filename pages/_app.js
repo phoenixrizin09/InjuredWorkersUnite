@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import Head from 'next/head';
+import AccessibilityToolbar from '../components/AccessibilityToolbar';
 
 // Accessibility Context for global settings
 export const AccessibilityContext = createContext({
@@ -142,14 +143,21 @@ export default function App({ Component, pageProps }) {
         *:focus-visible {
           outline: 3px solid #4facfe !important;
           outline-offset: 3px !important;
+          box-shadow: 0 0 0 6px rgba(79, 172, 254, 0.3) !important;
         }
         
-        /* Skip Link - WCAG 2.4.1 */
+        /* Skip Links Container - WCAG 2.4.1 */
+        .skip-links-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10001;
+        }
+        
         .skip-link {
           position: absolute;
           top: -100%;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 10px;
           padding: 1rem 2rem;
           background: #4facfe;
           color: #000;
@@ -157,10 +165,32 @@ export default function App({ Component, pageProps }) {
           z-index: 10000;
           border-radius: 0 0 8px 8px;
           text-decoration: none;
+          font-size: 1rem;
+          white-space: nowrap;
         }
         
         .skip-link:focus {
           top: 0;
+          outline: 3px solid #fff;
+          outline-offset: 2px;
+        }
+        
+        /* AAA Color Contrast - Minimum 7:1 ratio */
+        .high-contrast-text {
+          color: #fff !important;
+          background: #000 !important;
+        }
+        
+        /* WCAG 2.5.5 - Target Size (AAA requires 44x44px minimum) */
+        button, a, input, select, textarea {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        
+        /* Exception for inline links */
+        p a, li a, span a {
+          min-height: auto;
+          min-width: auto;
         }
         
         /* Selection - WCAG 1.4.11 */
@@ -192,12 +222,23 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       
-      {/* Skip to Main Content Link */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+      {/* Skip Links - WCAG 2.4.1 */}
+      <nav aria-label="Skip links" className="skip-links-container">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <a href="#nav-main" className="skip-link" style={{ left: '200px' }}>
+          Skip to navigation
+        </a>
+        <a href="#footer" className="skip-link" style={{ left: '400px' }}>
+          Skip to footer
+        </a>
+      </nav>
       
-      {/* Accessibility Settings Button */}
+      {/* Accessibility Toolbar - Left side */}
+      <AccessibilityToolbar />
+      
+      {/* Accessibility Settings Button - Right side */}
       <button
         onClick={() => setShowA11yPanel(!showA11yPanel)}
         aria-label="Accessibility Settings"

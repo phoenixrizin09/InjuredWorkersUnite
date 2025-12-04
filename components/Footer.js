@@ -4,13 +4,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{
-      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-      borderTop: '3px solid #00ffff',
-      boxShadow: '0 -4px 20px rgba(0,255,255,0.3)',
-      marginTop: '80px',
-      padding: '40px 20px 20px'
-    }}>
+    <footer 
+      id="footer"
+      role="contentinfo"
+      aria-label="Site footer"
+      style={{
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+        borderTop: '3px solid #00ffff',
+        boxShadow: '0 -4px 20px rgba(0,255,255,0.3)',
+        marginTop: '80px',
+        padding: '40px 20px 20px'
+      }}
+    >
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto'
@@ -81,8 +86,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li style={{ marginBottom: '10px' }}>
-                <Link href="/legal#accessibility" style={footerLinkStyle}>
-                  ♿ Accessibility Statement
+                <Link href="/accessibility" style={{
+                  ...footerLinkStyle,
+                  color: '#4facfe',
+                  fontWeight: 'bold'
+                }}>
+                  ♿ Accessibility (WCAG 2.2 AAA)
                 </Link>
               </li>
             </ul>

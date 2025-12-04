@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-04T21:14:17.990Z",
+  "generated_at": "2025-12-04T21:39:31.388Z",
   "coverage": "CANADA-WIDE (All 10 Provinces + 3 Territories)",
   "data_sources": {
     "federal_datasets": 50,
@@ -11,7 +11,7 @@
       "Quebec",
       null
     ],
-    "reddit_posts": 120,
+    "reddit_posts": 97,
     "parliament_bills": 20,
     "total_alerts": 12
   },

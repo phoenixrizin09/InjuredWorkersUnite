@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-04T21:14:52.699Z",
+  "generated_at": "2025-12-04T21:39:36.886Z",
   "data_sources": [
     "reddit.com (real discussions)",
     "The Eye Oracle v2.0",
@@ -15,7 +15,7 @@
         "engagement": "Maximum",
         "source": "r/canada",
         "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
-        "upvotes": 204,
+        "upvotes": 207,
         "verified": true
       },
       {
@@ -24,7 +24,7 @@
         "engagement": "Maximum",
         "source": "r/onguardforthee",
         "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
-        "upvotes": 702,
+        "upvotes": 708,
         "verified": true
       },
       {
@@ -33,7 +33,7 @@
         "engagement": "Critical",
         "source": "r/legaladvicecanada",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
-        "upvotes": 1,
+        "upvotes": 0,
         "verified": true
       },
       {
@@ -42,7 +42,7 @@
         "engagement": "High",
         "source": "r/legaladvicecanada",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
-        "upvotes": 1,
+        "upvotes": 0,
         "verified": true
       },
       {
@@ -87,7 +87,7 @@
         "engagement": "Critical",
         "source": "r/legaladvicecanada",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
-        "upvotes": 0,
+        "upvotes": 1,
         "verified": true
       },
       {
@@ -96,7 +96,7 @@
         "engagement": "High",
         "source": "r/legaladvicecanada",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
-        "upvotes": 0,
+        "upvotes": 1,
         "verified": true
       },
       {
@@ -199,7 +199,7 @@
         "text": "Active discussion in r/canada",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/canada (204↑, 116 comments)",
+        "source": "r/canada (207↑, 116 comments)",
         "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
         "verified": false
       },
@@ -207,7 +207,7 @@
         "text": "Active discussion in r/onguardforthee",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/onguardforthee (702↑, 52 comments)",
+        "source": "r/onguardforthee (708↑, 52 comments)",
         "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
         "verified": false
       },
@@ -215,7 +215,7 @@
         "text": "While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. \n\nMy fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. \n\nI was in shock,",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/legaladvicecanada (39↑, 42 comments)",
+        "source": "r/legaladvicecanada (41↑, 42 comments)",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
         "verified": false
       },
@@ -231,7 +231,7 @@
         "text": "\nThis is an emotional topic for me, so I have tried my best to remove any emotion and stick to the facts. \n\n\nmy sibling is an adult with permanent disabilities living in a publicly funded group living home in Ontario and our parents are divorced. our dad has tried to skirt his su",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/legaladvicecanada (39↑, 24 comments)",
+        "source": "r/legaladvicecanada (43↑, 24 comments)",
         "source_url": "https://reddit.com/r/legaladvicecanada/comments/1onbrz7/child_support_for_disabled_daughter_after_primary/",
         "verified": false
       }
@@ -356,50 +356,6 @@
         "category": "evidence",
         "data_source": "reddit_verified",
         "viral_score": 88
-      },
-      {
-        "id": "real_wait_1p85r08",
-        "name": "Real Wait Time Evidence",
-        "format": "stat_bomb",
-        "mainText": "3 year",
-        "source": "Toddler Friendly Acitivies",
-        "source_url": "https://reddit.com/r/quebeccity/comments/1p85r08/toddler_friendly_acitivies/",
-        "category": "evidence",
-        "data_source": "reddit_verified",
-        "viral_score": 88
-      },
-      {
-        "id": "real_wait_1oy6556",
-        "name": "Real Wait Time Evidence",
-        "format": "stat_bomb",
-        "mainText": "15 years",
-        "source": "WCB Casework Excellence Specialist",
-        "source_url": "https://reddit.com/r/NovaScotia/comments/1oy6556/wcb_casework_excellence_specialist/",
-        "category": "evidence",
-        "data_source": "reddit_verified",
-        "viral_score": 88
-      },
-      {
-        "id": "real_wait_1p7pyq4",
-        "name": "Real Wait Time Evidence",
-        "format": "stat_bomb",
-        "mainText": "4 months",
-        "source": "How safe are GovNL Job Contracts?",
-        "source_url": "https://reddit.com/r/newfoundland/comments/1p7pyq4/how_safe_are_govnl_job_contracts/",
-        "category": "evidence",
-        "data_source": "reddit_verified",
-        "viral_score": 88
-      },
-      {
-        "id": "real_wait_1pe37at",
-        "name": "Real Wait Time Evidence",
-        "format": "stat_bomb",
-        "mainText": "22 year",
-        "source": "22M - Fell for someone, lost her, dealing with family trauma, legal stress, heartbreak, and I feel like I’m losing myself",
-        "source_url": "https://reddit.com/r/PEI/comments/1pe37at/22m_fell_for_someone_lost_her_dealing_with_family/",
-        "category": "evidence",
-        "data_source": "reddit_verified",
-        "viral_score": 88
       }
     ],
     "quickfire_slogans": [
@@ -415,7 +371,7 @@
         "power_level": "maximum",
         "source": "r/legaladvicecanada",
         "verified": true,
-        "upvotes": 16
+        "upvotes": 17
       },
       {
         "text": "Off work temporarily due to serious back pain. What are my options? Ontario. 👁️",
@@ -464,7 +420,7 @@
         "power_level": "maximum",
         "source": "r/Edmonton",
         "verified": true,
-        "upvotes": 66
+        "upvotes": 64
       }
     ],
     "infographic_data": [
@@ -497,7 +453,7 @@
     ],
     "stats": {
       "total_tweets": 26,
-      "total_templates": 15,
+      "total_templates": 11,
       "total_slogans": 9,
       "total_infographics": 2
     }

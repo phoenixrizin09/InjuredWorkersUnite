@@ -746,6 +746,38 @@ function AlertCard({ alert }) {
             }}>
               {alert.source}
             </span>
+            {/* Verification Badge */}
+            {alert.verificationBadge && (
+              <span style={{
+                background: alert.verified 
+                  ? 'rgba(46, 213, 115, 0.25)' 
+                  : 'rgba(255, 193, 7, 0.25)',
+                padding: '4px 12px',
+                borderRadius: '5px',
+                fontSize: '11px',
+                fontWeight: 'bold',
+                color: alert.verified ? '#2ed573' : '#ffc107',
+                border: alert.verified 
+                  ? '1px solid rgba(46, 213, 115, 0.5)' 
+                  : '1px solid rgba(255, 193, 7, 0.5)'
+              }}>
+                {alert.verificationBadge}
+              </span>
+            )}
+            {/* Charter Violations Badge */}
+            {alert.charter_violations && alert.charter_violations.length > 0 && (
+              <span style={{
+                background: 'rgba(255, 0, 0, 0.2)',
+                padding: '4px 12px',
+                borderRadius: '5px',
+                fontSize: '11px',
+                fontWeight: 'bold',
+                color: '#ff6b6b',
+                border: '1px solid rgba(255, 0, 0, 0.5)'
+              }}>
+                ⚠️ Charter: {alert.charter_violations.join(', ')}
+              </span>
+            )}
             <span style={{
               background: 'rgba(255,255,255,0.1)',
               padding: '4px 12px',
@@ -764,7 +796,42 @@ function AlertCard({ alert }) {
             {alert.title}
           </h3>
           
-          {alert.details && Object.keys(alert.details).length > 0 && (
+          {/* Impact Info from Real Data */}
+          {(alert.affected_count || alert.financial_impact) && (
+            <div style={{
+              display: 'flex',
+              gap: '15px',
+              flexWrap: 'wrap',
+              marginBottom: '10px'
+            }}>
+              {alert.affected_count && (
+                <span style={{
+                  background: 'rgba(255, 68, 68, 0.2)',
+                  padding: '5px 12px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  color: '#ff6b6b',
+                  border: '1px solid rgba(255, 68, 68, 0.3)'
+                }}>
+                  👥 Affected: {alert.affected_count}
+                </span>
+              )}
+              {alert.financial_impact && (
+                <span style={{
+                  background: 'rgba(255, 193, 7, 0.2)',
+                  padding: '5px 12px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  color: '#ffc107',
+                  border: '1px solid rgba(255, 193, 7, 0.3)'
+                }}>
+                  💰 Impact: {alert.financial_impact}
+                </span>
+              )}
+            </div>
+          )}
+          
+                    {alert.details && Object.keys(alert.details).length > 0 && (
             <div style={{ 
               display: 'flex', 
               gap: '20px', 

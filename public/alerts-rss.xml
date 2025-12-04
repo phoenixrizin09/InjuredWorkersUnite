@@ -5,9 +5,30 @@
     <description>Real-time alerts on government data updates, policy changes, and activism opportunities</description>
     <link>https://injuredworkersunite.pages.dev/alerts</link>
     <language>en-CA</language>
-    <lastBuildDate>Sat, 29 Nov 2025 03:42:24 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 04 Dec 2025 20:24:26 GMT</lastBuildDate>
     <atom:link href="https://injuredworkersunite.pages.dev/alerts-rss.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>Community Discussion: Question for PC Voters about RTO/WFH</title>
+      <description>I&apos;m curious to hear from PC voters and even some more conservative Liberal voters about their views on RTO (Return to Office) and WFH (Work from Home) as well as a more broad question at the end.
+
+  
+If a party other than the Conservatives were to introduce a policy in their campaign which made working from home a protected labour right if the job can be provably and demonstrably done from home, would that be an engaging policy in your opinion?
+
+I know that the discussions around RTO/WFH have so</description>
+      <link>https://reddit.com/r/ontario/comments/1pd9gzg/question_for_pc_voters_about_rtowfh/</link>
+      <guid>REDDIT_1pd9gzg</guid>
+      <pubDate>Wed, 03 Dec 2025 16:51:06 GMT</pubDate>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Community Discussion: &apos;This is the new slavery&apos;: Migrant farm workers underpaid, abused and injured</title>
+      <description>Active discussion in r/canada</description>
+      <link>https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/</link>
+      <guid>REDDIT_1pbdhbd</guid>
+      <pubDate>Mon, 01 Dec 2025 13:59:49 GMT</pubDate>
+      <category>community</category>
+    </item>
     <item>
       <title>Community Discussion: Canadian farmers to lobby federal government to cap profits of major grocers</title>
       <description>Active discussion in r/onguardforthee</description>
@@ -25,20 +46,6 @@ If you have comments or ques</description>
       <guid>FED_adad580f-76b0-4502-bd05-20c125de9116</guid>
       <pubDate>Wed, 19 Nov 2025 20:21:45 GMT</pubDate>
       <category>government_data</category>
-    </item>
-    <item>
-      <title>Community Discussion: Got laid off right after I told my work I was ready to come back after sick leave</title>
-      <description>Had to go on sick leave after hurting my back at work..(CT warewhouse) was on it for the full 6 months and got a doctors note saying I could go back. 
-
-My back isn&apos;t actually all the way better, still have sciatica but ei ran out so I felt I had no choice.
-
-Anyway, they left me hanging for a few weeks after I told them I was ready to come back then my manager messaged me today saying I was being laid off and that my ROE was already sent for my sick leave. 
-
-So basically I got laid off immediatel</description>
-      <link>https://reddit.com/r/legaladvicecanada/comments/1ozv8wj/got_laid_off_right_after_i_told_my_work_i_was/</link>
-      <guid>REDDIT_1ozv8wj</guid>
-      <pubDate>Mon, 17 Nov 2025 22:56:59 GMT</pubDate>
-      <category>community</category>
     </item>
     <item>
       <title>Community Discussion: Telus employee fell in my yard</title>
@@ -73,58 +80,42 @@ The _Law on Industrial Accidents and Occupational Diseases_ (LATMP) aims to comp
       <category>government_data</category>
     </item>
     <item>
-      <title>Community Discussion: Denied extended maternity benefits - Ontario</title>
-      <description>Location: Ontario Canada
-
-Myself and 3 other female employees at my work have just started maternity leave.
-
-Our current collective agreement allows 18 weeks of top up pay while on maternity leave.
-
-We are entering a new collective agreement as of January 1, in which maternity top up benefits are extended for 40 weeks.
-
-Our association is stating that the small group of pregnant/new moms who are on leave will NOT be entitled to the terms of the new agreement and will only get the 18 weeks that t</description>
-      <link>https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/</link>
-      <guid>REDDIT_1orvbgg</guid>
-      <pubDate>Sat, 08 Nov 2025 17:34:20 GMT</pubDate>
-      <category>community</category>
-    </item>
-    <item>
-      <title>Bill C-1: [object Object]</title>
-      <description>Status: undefined. Sponsor: Unknown</description>
-      <link>/bills/43-1/C-1/</link>
-      <guid>BILL_C-1</guid>
+      <title>Bill C-1: An Act respecting the administration of oaths of office</title>
+      <description>Status: Unknown Status. Sponsor: Unknown</description>
+      <link>https://openparliament.ca/bills/43-1/C-1/</link>
+      <guid>BILL_C-1_2019-12-05</guid>
       <pubDate>Thu, 05 Dec 2019 00:00:00 GMT</pubDate>
       <category>legislation</category>
     </item>
     <item>
-      <title>Bill C-1: [object Object]</title>
-      <description>Status: undefined. Sponsor: Unknown</description>
-      <link>/bills/42-1/C-1/</link>
-      <guid>BILL_C-1</guid>
+      <title>Bill C-1: An Act respecting the administration of oaths of office</title>
+      <description>Status: Unknown Status. Sponsor: Unknown</description>
+      <link>https://openparliament.ca/bills/42-1/C-1/</link>
+      <guid>BILL_C-1_2015-12-04</guid>
       <pubDate>Fri, 04 Dec 2015 00:00:00 GMT</pubDate>
       <category>legislation</category>
     </item>
     <item>
-      <title>Bill C-1: [object Object]</title>
-      <description>Status: undefined. Sponsor: Unknown</description>
-      <link>/bills/40-3/C-1/</link>
-      <guid>BILL_C-1</guid>
+      <title>Bill C-1: An Act respecting the Administration of Oaths of Office</title>
+      <description>Status: Unknown Status. Sponsor: Unknown</description>
+      <link>https://openparliament.ca/bills/40-3/C-1/</link>
+      <guid>BILL_C-1_2010-03-03</guid>
       <pubDate>Wed, 03 Mar 2010 00:00:00 GMT</pubDate>
       <category>legislation</category>
     </item>
     <item>
-      <title>Bill C-1: [object Object]</title>
-      <description>Status: undefined. Sponsor: Unknown</description>
-      <link>/bills/39-1/C-1/</link>
-      <guid>BILL_C-1</guid>
+      <title>Bill C-1: An Act respecting the Administration of Oaths of Office</title>
+      <description>Status: Unknown Status. Sponsor: Unknown</description>
+      <link>https://openparliament.ca/bills/39-1/C-1/</link>
+      <guid>BILL_C-1_2006-04-04</guid>
       <pubDate>Tue, 04 Apr 2006 00:00:00 GMT</pubDate>
       <category>legislation</category>
     </item>
     <item>
-      <title>Bill C-1: [object Object]</title>
-      <description>Status: undefined. Sponsor: Unknown</description>
-      <link>/bills/37-1/C-1/</link>
-      <guid>BILL_C-1</guid>
+      <title>Bill C-1: An Act respecting the Administration of Oaths of Office  (pro forma bill)</title>
+      <description>Status: Unknown Status. Sponsor: Unknown</description>
+      <link>https://openparliament.ca/bills/37-1/C-1/</link>
+      <guid>BILL_C-1_2001-01-30</guid>
       <pubDate>Tue, 30 Jan 2001 00:00:00 GMT</pubDate>
       <category>legislation</category>
     </item>

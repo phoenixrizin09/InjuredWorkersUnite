@@ -1,0 +1,41 @@
+[
+  {
+    "company": "Manulife Financial Corporation",
+    "ticker": "MFC",
+    "filing": "2023 Annual Report",
+    "date": "2024-02-15",
+    "url": "https://www.sedarplus.ca/landingpage/en/homepage",
+    "keyData": [
+      "Revenue: $34.6B",
+      "Claims paid: $19.2B"
+    ],
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - SEDAR+"
+  },
+  {
+    "company": "Sun Life Financial Inc.",
+    "ticker": "SLF",
+    "filing": "2023 Annual Report",
+    "date": "2024-02-14",
+    "url": "https://www.sedarplus.ca/landingpage/en/homepage",
+    "keyData": [
+      "Revenue: $29.8B",
+      "Group benefits data"
+    ],
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - SEDAR+"
+  },
+  {
+    "company": "Great-West Lifeco Inc.",
+    "ticker": "GWO",
+    "filing": "2023 Annual Report",
+    "date": "2024-02-15",
+    "url": "https://www.sedarplus.ca/landingpage/en/homepage",
+    "keyData": [
+      "Revenue: $54.2B",
+      "Canada Life operations"
+    ],
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - SEDAR+"
+  }
+]

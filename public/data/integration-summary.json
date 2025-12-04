@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-12-04T20:52:03.607Z",
+  "sources": [
+    {
+      "name": "Federal Open Data",
+      "success": true,
+      "count": 40,
+      "verified": true
+    },
+    {
+      "name": "Ontario Open Data",
+      "success": true,
+      "count": 29,
+      "verified": true
+    },
+    {
+      "name": "Parliament Bills",
+      "success": true,
+      "count": 20,
+      "verified": true
+    },
+    {
+      "name": "Reddit Discussions",
+      "success": true,
+      "count": 16,
+      "verified": false
+    },
+    {
+      "name": "SEDAR+ Corporate Filings",
+      "success": true,
+      "count": 3,
+      "verified": true
+    },
+    {
+      "name": "CanLII Court Decisions",
+      "success": true,
+      "count": 3,
+      "verified": true
+    }
+  ],
+  "stats": {
+    "totalSources": 6,
+    "successfulSources": 6,
+    "totalAlerts": 11,
+    "verifiedAlerts": 6,
+    "communityAlerts": 5,
+    "totalTargets": 3,
+    "criticalAlerts": 5,
+    "highAlerts": 1
+  },
+  "elapsed": "18.81s"
+}

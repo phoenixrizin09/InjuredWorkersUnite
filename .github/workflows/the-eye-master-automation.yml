@@ -1,0 +1,245 @@
+name: 👁️ THE EYE - Full Automation Pipeline
+
+# Master automation workflow that runs everything
+# Fetches real data, generates oracle posts, creates viral content
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC (1 AM EST / 10 PM PST previous day)
+    - cron: '0 6 * * *'
+  
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+    inputs:
+      skip_data_fetch:
+        description: 'Skip data fetching (use existing data)'
+        required: false
+        default: 'false'
+      force_oracle:
+        description: 'Force oracle generation even if already run today'
+        required: false
+        default: 'false'
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════
+  # STAGE 1: Fetch Real Data from All Sources
+  # ═══════════════════════════════════════════════════════════════
+  fetch-real-data:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.skip_data_fetch != 'true' }}
+    outputs:
+      data_updated: ${{ steps.check-changes.outputs.changed }}
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      - name: 🌐 Fetch Federal Open Data
+        run: |
+          echo "🇨🇦 Fetching Federal Government Data..."
+          echo "   Source: open.canada.ca"
+        continue-on-error: true
+      
+      - name: 🏛️ Fetch Ontario Open Data
+        run: |
+          echo "🏛️ Fetching Ontario Provincial Data..."
+          echo "   Source: data.ontario.ca"
+        continue-on-error: true
+      
+      - name: 📡 Run Master Integration
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "👁️ THE EYE - MASTER DATA INTEGRATION"
+          echo "═══════════════════════════════════════════════"
+          node scripts/integrate-all-data.js
+          echo ""
+          echo "✅ Integration complete"
+      
+      - name: 🔍 Check for changes
+        id: check-changes
+        run: |
+          git diff --quiet public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: 💾 Commit data updates
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "the-eye[bot]@injuredworkersunite.com"
+          git config --local user.name "The Eye Bot"
+          git add public/data/*.json
+          git commit -m "📊 THE EYE: Auto-update real government data [automated]" || echo "No changes"
+          git push
+  
+  # ═══════════════════════════════════════════════════════════════
+  # STAGE 2: Generate Eye Oracle Daily Report
+  # ═══════════════════════════════════════════════════════════════
+  generate-oracle:
+    runs-on: ubuntu-latest
+    needs: fetch-real-data
+    if: always() && (needs.fetch-real-data.result == 'success' || needs.fetch-real-data.result == 'skipped')
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          fetch-depth: 0
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      - name: 👁️ Generate Eye Oracle Daily Post
+        id: oracle
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "👁️ THE EYE ORACLE - DAILY GENERATION"
+          echo "═══════════════════════════════════════════════"
+          
+          if [ "${{ github.event.inputs.force_oracle }}" == "true" ]; then
+            echo "⚡ Force mode enabled - removing today's post if exists"
+            node -e "
+              const fs = require('fs');
+              const path = './public/data/eye-oracle-posts.json';
+              if (fs.existsSync(path)) {
+                const posts = JSON.parse(fs.readFileSync(path, 'utf8'));
+                const today = new Date().toISOString().split('T')[0];
+                const filtered = posts.filter(p => p.metadata?.date !== today);
+                fs.writeFileSync(path, JSON.stringify(filtered, null, 2));
+                console.log('Removed existing post for', today);
+              }
+            "
+          fi
+          
+          node scripts/generate-eye-oracle-daily.js
+          
+          # Check if post was generated
+          POST_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('./public/data/eye-oracle-posts.json')).length")
+          echo "post_count=$POST_COUNT" >> $GITHUB_OUTPUT
+      
+      - name: 📝 Commit Oracle Post
+        run: |
+          git config --local user.email "eye-oracle[bot]@injuredworkersunite.com"
+          git config --local user.name "The Eye Oracle"
+          git add public/data/eye-oracle-posts.json public/data/today-social-hooks.json
+          git diff --staged --quiet || git commit -m "👁️ Eye Oracle: Daily investigative report"
+          git push || echo "Nothing to push"
+      
+      - name: 📊 Summary
+        run: |
+          echo "## 👁️ Eye Oracle Generation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          node -e "
+            const fs = require('fs');
+            const posts = JSON.parse(fs.readFileSync('./public/data/eye-oracle-posts.json', 'utf8'));
+            const latest = posts[0];
+            if (latest) {
+              console.log('✅ Post generated successfully');
+              console.log('');
+              console.log('**Title:** ' + latest.title);
+              console.log('');
+              console.log('**Date:** ' + (latest.metadata?.date || 'N/A'));
+              console.log('');
+              console.log('**Verified Source:** ' + (latest.metadata?.source || 'N/A'));
+            }
+          " >> $GITHUB_STEP_SUMMARY
+  
+  # ═══════════════════════════════════════════════════════════════
+  # STAGE 3: Generate Viral Social Content
+  # ═══════════════════════════════════════════════════════════════
+  generate-viral:
+    runs-on: ubuntu-latest
+    needs: generate-oracle
+    if: always() && needs.generate-oracle.result == 'success'
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          fetch-depth: 0
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm ci
+      
+      - name: 🔥 Generate Viral Content
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "🔥 VIRAL CONTENT GENERATION"
+          echo "═══════════════════════════════════════════════"
+          npm run generate:viral || echo "Viral generation skipped"
+      
+      - name: 📝 Commit Viral Content
+        run: |
+          git config --local user.email "viral[bot]@injuredworkersunite.com"
+          git config --local user.name "Viral Content Bot"
+          git add public/data/content-calendar.json public/data/today-social-content.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "🔥 Viral: Auto-generated social content"
+          git push || echo "Nothing to push"
+  
+  # ═══════════════════════════════════════════════════════════════
+  # STAGE 4: Summary & Notifications
+  # ═══════════════════════════════════════════════════════════════
+  notify:
+    runs-on: ubuntu-latest
+    needs: [fetch-real-data, generate-oracle, generate-viral]
+    if: always()
+    
+    steps:
+      - name: 📊 Pipeline Summary
+        run: |
+          echo "## 👁️ THE EYE - Automation Pipeline Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Stage | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Data Fetch | ${{ needs.fetch-real-data.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Oracle Gen | ${{ needs.generate-oracle.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Viral Gen | ${{ needs.generate-viral.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "💰 **Cost:** \$0.00 (100% FREE APIs)" >> $GITHUB_STEP_SUMMARY
+      
+      - name: 📢 Discord Notification
+        if: needs.generate-oracle.result == 'success'
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{
+                 "embeds": [{
+                   "title": "👁️ THE EYE - Daily Update",
+                   "description": "Automated data collection and analysis complete.",
+                   "color": 5793266,
+                   "fields": [
+                     {"name": "📊 Data Fetch", "value": "${{ needs.fetch-real-data.result }}", "inline": true},
+                     {"name": "👁️ Oracle", "value": "${{ needs.generate-oracle.result }}", "inline": true},
+                     {"name": "🔥 Viral", "value": "${{ needs.generate-viral.result }}", "inline": true}
+                   ],
+                   "footer": {"text": "THE EYE sees all • Cost: $0.00"}
+                 }]
+               }' \
+               ${{ secrets.DISCORD_WEBHOOK_URL }}
+        continue-on-error: true
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

@@ -1,1 +1,24 @@
-{"generated_at":"2025-11-29T03:42:16.556Z","data_sources":{"federal_datasets":50,"ontario_datasets":39,"reddit_posts":24,"parliament_bills":20,"total_alerts":12},"most_recent_updates":{"federal":"Wages ","ontario":"Northern Fire Protection Program (NFPP)","reddit":"I’m getting concerned I will never be able to return back to my pre-injury job.","parliament":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"}},"all_data_real":true,"cost":"$0.00","apis_used":["open.canada.ca (FREE)","data.ontario.ca (FREE)","reddit.com/r/[subreddit].json (FREE)","openparliament.ca (FREE)"]}
+{
+  "generated_at": "2025-12-04T20:50:43.442Z",
+  "data_sources": {
+    "federal_datasets": 50,
+    "ontario_datasets": 39,
+    "reddit_posts": 28,
+    "parliament_bills": 20,
+    "total_alerts": 12
+  },
+  "most_recent_updates": {
+    "federal": "Wages ",
+    "ontario": "Northern Fire Protection Program (NFPP)",
+    "reddit": "I’m getting concerned I will never be able to return back to my pre-injury job.",
+    "parliament": "An Act respecting the administration of oaths of office"
+  },
+  "all_data_real": true,
+  "cost": "$0.00",
+  "apis_used": [
+    "open.canada.ca (FREE)",
+    "data.ontario.ca (FREE)",
+    "reddit.com/r/[subreddit].json (FREE)",
+    "openparliament.ca (FREE)"
+  ]
+}

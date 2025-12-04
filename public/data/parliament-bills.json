@@ -1,1 +1,202 @@
-[{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2019-12-05","url":"/bills/43-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office  (pro forma bill)","fr":"Loi concernant la prestation des serments d'office  (projet de loi pro forma)"},"introduced":"2001-01-30","url":"/bills/37-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2006-04-04","url":"/bills/39-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2015-12-04","url":"/bills/42-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2010-03-03","url":"/bills/40-3/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2013-10-16","url":"/bills/41-2/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2011-06-03","url":"/bills/41-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2004-02-02","url":"/bills/37-3/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2025-05-27","url":"/bills/45-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2008-11-19","url":"/bills/40-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2007-10-16","url":"/bills/39-2/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2021-11-23","url":"/bills/44-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2009-01-26","url":"/bills/40-2/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2002-09-30","url":"/bills/37-2/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the Administration of Oaths of Office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2004-10-05","url":"/bills/38-1/C-1/","source":"openparliament.ca"},{"id":"C-1","number":"C-1","title":{"en":"An Act respecting the administration of oaths of office","fr":"Loi concernant la prestation de serments d'office"},"introduced":"2020-09-23","url":"/bills/43-2/C-1/","source":"openparliament.ca"},{"id":"C-2","number":"C-2","title":{"en":"An Act to amend the Criminal Code and to make consequential amendments to other Acts","fr":"Loi modifiant le Code criminel et d’autres lois en conséquence"},"introduced":"2007-10-18","url":"/bills/39-2/C-2/","source":"openparliament.ca"},{"id":"C-2","number":"C-2","title":{"en":"An Act to amend the Controlled Drugs and Substances Act","fr":"Loi modifiant la Loi réglementant certaines drogues et autres substances"},"introduced":"2013-10-17","url":"/bills/41-2/C-2/","source":"openparliament.ca"},{"id":"C-2","number":"C-2","title":{"en":"An Act respecting certain measures relating to the security of the border between Canada and the United States and respecting other related security measures","fr":"Loi concernant certaines mesures liées à la sécurité de la frontière entre le Canada et les États-Unis et d'autres mesures connexes liées à la sécurité"},"introduced":"2025-06-03","url":"/bills/45-1/C-2/","source":"openparliament.ca"},{"id":"C-2","number":"C-2","title":{"en":"An Act to amend the Criminal Code (mega-trials)","fr":"Loi modifiant le Code criminel (mégaprocès)"},"introduced":"2011-06-13","url":"/bills/41-1/C-2/","source":"openparliament.ca"}]
+[
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2019-12-05",
+    "url": "https://openparliament.ca/bills/43-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office  (pro forma bill)",
+    "status": "Unknown",
+    "introduced": "2001-01-30",
+    "url": "https://openparliament.ca/bills/37-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2006-04-04",
+    "url": "https://openparliament.ca/bills/39-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2015-12-04",
+    "url": "https://openparliament.ca/bills/42-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2010-03-03",
+    "url": "https://openparliament.ca/bills/40-3/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2013-10-16",
+    "url": "https://openparliament.ca/bills/41-2/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2011-06-03",
+    "url": "https://openparliament.ca/bills/41-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2004-02-02",
+    "url": "https://openparliament.ca/bills/37-3/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2025-05-27",
+    "url": "https://openparliament.ca/bills/45-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2008-11-19",
+    "url": "https://openparliament.ca/bills/40-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2007-10-16",
+    "url": "https://openparliament.ca/bills/39-2/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2021-11-23",
+    "url": "https://openparliament.ca/bills/44-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2009-01-26",
+    "url": "https://openparliament.ca/bills/40-2/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2002-09-30",
+    "url": "https://openparliament.ca/bills/37-2/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the Administration of Oaths of Office",
+    "status": "Unknown",
+    "introduced": "2004-10-05",
+    "url": "https://openparliament.ca/bills/38-1/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-1",
+    "title": "An Act respecting the administration of oaths of office",
+    "status": "Unknown",
+    "introduced": "2020-09-23",
+    "url": "https://openparliament.ca/bills/43-2/C-1/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-2",
+    "title": "An Act to amend the Criminal Code and to make consequential amendments to other Acts",
+    "status": "Unknown",
+    "introduced": "2007-10-18",
+    "url": "https://openparliament.ca/bills/39-2/C-2/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-2",
+    "title": "An Act to amend the Controlled Drugs and Substances Act",
+    "status": "Unknown",
+    "introduced": "2013-10-17",
+    "url": "https://openparliament.ca/bills/41-2/C-2/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-2",
+    "title": "An Act respecting certain measures relating to the security of the border between Canada and the United States and respecting other related security measures",
+    "status": "Unknown",
+    "introduced": "2025-06-03",
+    "url": "https://openparliament.ca/bills/45-1/C-2/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  },
+  {
+    "number": "C-2",
+    "title": "An Act to amend the Criminal Code (mega-trials)",
+    "status": "Unknown",
+    "introduced": "2011-06-13",
+    "url": "https://openparliament.ca/bills/41-1/C-2/",
+    "sponsor": "Unknown",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - OpenParliament.ca"
+  }
+]

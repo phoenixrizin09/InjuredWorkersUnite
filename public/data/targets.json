@@ -1,0 +1,41 @@
+[
+  {
+    "name": "WSIB Ontario",
+    "type": "provincial_agency",
+    "jurisdiction": "Ontario",
+    "threat_level": "critical",
+    "related_issues": [
+      "WSIB Mental Health Claim Denial Rate: 67%"
+    ],
+    "evidence_count": 1,
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - Official Government Source",
+    "source_url": "https://www.ombudsman.on.ca/resources/reports-and-case-summaries"
+  },
+  {
+    "name": "Ministry of Children, Community and Social Services",
+    "type": "provincial_ministry",
+    "jurisdiction": "Ontario",
+    "threat_level": "critical",
+    "related_issues": [
+      "ODSP Rates Below Poverty Line: $1,308/month"
+    ],
+    "evidence_count": 1,
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - Official Government Source",
+    "source_url": "https://www.ontario.ca/page/ontario-disability-support-program-income-support"
+  },
+  {
+    "name": "Indigenous Services Canada",
+    "type": "federal_department",
+    "jurisdiction": "Federal",
+    "threat_level": "critical",
+    "related_issues": [
+      "First Nations Water Crisis: 33 Long-Term Advisories"
+    ],
+    "evidence_count": 1,
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - Official Government Source",
+    "source_url": "https://www.sac-isc.gc.ca/eng/1506514143353/1533317130660"
+  }
+]

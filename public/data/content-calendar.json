@@ -1,0 +1,3731 @@
+{
+  "calendarPeriod": {
+    "start": "2025-12-04",
+    "end": "2026-01-02"
+  },
+  "totalDays": 30,
+  "generatedAt": "2025-12-04T17:53:23.268Z",
+  "nextUpdateDue": "2026-01-03",
+  "days": [
+    {
+      "date": "2025-12-04",
+      "dayOfWeek": "thursday",
+      "dayNumber": 1,
+      "dayTheme": "Throw Back / Historical Patterns",
+      "themeEmoji": "📜",
+      "mood": "investigative",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "claim denial patterns",
+      "platforms": {
+        "twitter": {
+          "hook": "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "outrage",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "What patterns have you noticed?",
+        "Drop your FOI findings below 👇",
+        "Help us connect the dots"
+      ],
+      "quirkyIntro": "Good afternoon! Time to see what ableist shenanigans they've been up to. ☕",
+      "quirkyClosing": "The Eye sees all. The Eye forgets nothing. And now, so do you.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.116Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-05",
+      "dayOfWeek": "friday",
+      "dayNumber": 2,
+      "dayTheme": "Fury Friday / Outrage",
+      "themeEmoji": "🔥",
+      "mood": "angry",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "executive compensation vs benefit rates",
+      "platforms": {
+        "twitter": {
+          "hook": "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "There's a pattern they don't want you to notice. Here's what The Eye found:",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "We ran the numbers on ODSP. What we found will shock you. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Are you as angry as we are?",
+        "This can't keep happening. Share to expose.",
+        "Tag your MPP in the comments"
+      ],
+      "quirkyIntro": "Happy Thursday! Bad news: they're still at it. Good news: so are we.",
+      "quirkyClosing": "The Eye sees all. The Eye forgets nothing. And now, so do you.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.123Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-06",
+      "dayOfWeek": "saturday",
+      "dayNumber": 3,
+      "dayTheme": "Story Saturday / Real Stories",
+      "themeEmoji": "📖",
+      "mood": "humanizing",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "disability rights under law",
+      "platforms": {
+        "twitter": {
+          "hook": "The exact words to use in your appeal that adjudicators can't ignore: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "How to appeal an ODSP/WSIB/CPP-D denial (step-by-step guide that actually works): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Mental health claim denied? The 5 words that can change everything on appeal: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Know your rights: What they MUST accommodate under Ontario Human Rights Code 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Invisible disability? Here's how to document what doctors can't \"see\":",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "How to appeal an ODSP/WSIB/CPP-D denial (step-by-step guide that actually works): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "educational",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Your story matters. Share it.",
+        "We're listening. Tell us in the comments.",
+        "Connect with others who understand"
+      ],
+      "quirkyIntro": "Rise and... well, do what you can today. We'll do the grinding. Spoons are precious.",
+      "quirkyClosing": "Take your meds. Drink water. And remember: you're not the problem. The system is.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.127Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-07",
+      "dayOfWeek": "sunday",
+      "dayNumber": 4,
+      "dayTheme": "Sunday Strategy / How To",
+      "themeEmoji": "🎯",
+      "mood": "helpful",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "FOI requests",
+      "platforms": {
+        "twitter": {
+          "hook": "Did you know they can deny your claim without EVER speaking to your doctor? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Why do for-profit insurers get to decide if you're disabled? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "question",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Ever wonder why appeals take 18 months but denials take 48 hours? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "question",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "How many injured workers have to suffer before someone holds them accountable? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "What if I told you there's a paper trail that proves it's all coordinated?",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "youtube": {
+          "hook": "Why do for-profit insurers get to decide if you're disabled? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "question",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Bookmark this for later",
+        "Tag someone who needs this info",
+        "Which tip helped you most?"
+      ],
+      "quirkyIntro": "Welcome back! Spoiler alert: ableism is alive and well. But so is our resistance.",
+      "quirkyClosing": "Disabled and proud. Informed and dangerous. Nothing about us without us. ♿✊",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.132Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-08",
+      "dayOfWeek": "monday",
+      "dayNumber": 5,
+      "dayTheme": "Monday Motivation / Disability Pride",
+      "themeEmoji": "💪",
+      "mood": "empowering",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "caregiver solidarity",
+      "platforms": {
+        "twitter": {
+          "hook": "Thread: Real stories from 4,000+ people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "To everyone still fighting after months (or years) of appeals: We're with you. ✊ 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Every disabled person who's been told \"it's in your head\" 🤝 We see you. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Thread: Real stories from 33 people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Thread: Real stories from 10,000+ people denied benefits this month. You're not alone. 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "The spoon theory is real. The pain is real. YOU are real. Don't let them gaslight you. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your own story in the comments 💬",
+        "Tag someone who needs to see this",
+        "RT if you've experienced this too"
+      ],
+      "quirkyIntro": "Good afternoon, fellow disability warriors. The data doesn't lie. Here's what we found.",
+      "quirkyClosing": "That's the tea for today. ☕ Share it before it goes cold.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.138Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-09",
+      "dayOfWeek": "tuesday",
+      "dayNumber": 6,
+      "dayTheme": "Truth Tuesday / Data Drops",
+      "themeEmoji": "📊",
+      "mood": "exposing",
+      "pillar": "Call to Action",
+      "pillarDescription": "Specific actions the disability community can take",
+      "topic": "Canada Disability Benefit updates",
+      "platforms": {
+        "twitter": {
+          "hook": "The person who denied your claim has never lived with a disability. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "\"Nothing about us without us\" isn't a request. It's a demand. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Ableism isn't just attitudes. It's policy. It's budgets. It's intentional. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "They don't deny claims to save money. They deny claims to make you give up. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "The disability system isn't broken. It's working exactly as designed. Thread 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions?",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "Ableism isn't just attitudes. It's policy. It's budgets. It's intentional. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Did you know about this? 👇",
+        "This needs to go viral. Share it.",
+        "Comment with your reaction"
+      ],
+      "quirkyIntro": "They said we were exaggerating. The numbers say otherwise. 👁️",
+      "quirkyClosing": "Until tomorrow, when we do this all over again. The Eye is watching. 👁️",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.145Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-10",
+      "dayOfWeek": "wednesday",
+      "dayNumber": 7,
+      "dayTheme": "Winning Wednesday / Community Victories",
+      "themeEmoji": "🏆",
+      "mood": "celebratory",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "ableism in policy design",
+      "platforms": {
+        "twitter": {
+          "hook": "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "outrage",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your wins! We want to celebrate with you 🎉",
+        "Who else has had a victory lately?",
+        "Let's spread some hope - share this"
+      ],
+      "quirkyIntro": "They said we were exaggerating. The numbers say otherwise. 👁️",
+      "quirkyClosing": "Disabled and proud. Informed and dangerous. Nothing about us without us. ♿✊",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.149Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-11",
+      "dayOfWeek": "thursday",
+      "dayNumber": 8,
+      "dayTheme": "Throw Back / Historical Patterns",
+      "themeEmoji": "📜",
+      "mood": "investigative",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "claim denial patterns",
+      "platforms": {
+        "twitter": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "The document they tried to bury says it all. Thread 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions?",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think..."
+          ]
+        },
+        "youtube": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "What patterns have you noticed?",
+        "Drop your FOI findings below 👇",
+        "Help us connect the dots"
+      ],
+      "quirkyIntro": "The Eye Oracle reporting for duty. What fresh ableist hell awaits us today? Let's find out.",
+      "quirkyClosing": "Until tomorrow, when we do this all over again. The Eye is watching. 👁️",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.157Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-12",
+      "dayOfWeek": "friday",
+      "dayNumber": 9,
+      "dayTheme": "Fury Friday / Outrage",
+      "themeEmoji": "🔥",
+      "mood": "angry",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "documentation tips",
+      "platforms": {
+        "twitter": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "How to appeal an ODSP/WSIB/CPP-D denial (step-by-step guide that actually works): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "The exact words to use in your appeal that adjudicators can't ignore: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "educational",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Invisible disability? Here's how to document what doctors can't \"see\": 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think..."
+          ]
+        },
+        "youtube": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "educational",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Are you as angry as we are?",
+        "This can't keep happening. Share to expose.",
+        "Tag your MPP in the comments"
+      ],
+      "quirkyIntro": "Grab your tea/coffee/hydration of choice. Today's report is a doozy.",
+      "quirkyClosing": "Until tomorrow, when we do this all over again. The Eye is watching. 👁️",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.163Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-13",
+      "dayOfWeek": "saturday",
+      "dayNumber": 10,
+      "dayTheme": "Story Saturday / Real Stories",
+      "themeEmoji": "📖",
+      "mood": "humanizing",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "disability rights under law",
+      "platforms": {
+        "twitter": {
+          "hook": "Ever wonder why appeals take 18 months but denials take 48 hours? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Why do for-profit insurers get to decide if you're disabled? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "question",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "How many injured workers have to suffer before someone holds them accountable? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "question",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "How many injured workers have to suffer before someone holds them accountable? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "How many injured workers have to suffer before someone holds them accountable?",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "question",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "What if I told you there's a paper trail that proves it's all coordinated? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "question",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Your story matters. Share it.",
+        "We're listening. Tell us in the comments.",
+        "Connect with others who understand"
+      ],
+      "quirkyIntro": "Plot twist: the system is still ableist. Here's today's evidence 📋",
+      "quirkyClosing": "Take your meds. Drink water. And remember: you're not the problem. The system is.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.167Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-14",
+      "dayOfWeek": "sunday",
+      "dayNumber": 11,
+      "dayTheme": "Sunday Strategy / How To",
+      "themeEmoji": "🎯",
+      "mood": "helpful",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "caregiver solidarity",
+      "platforms": {
+        "twitter": {
+          "hook": "To everyone still fighting after months (or years) of appeals: We're with you. ✊ 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "To everyone with an invisible disability being told you \"don't look sick\" - WE SEE YOU. 💜 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Neurodivergent 🤝 Physically disabled 🤝 Chronically ill. United against ableism. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "POV: You did everything right, got sick/injured, and now YOU'RE the \"problem.\" 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Every disabled person who's been told \"it's in your head\" 🤝 We see you.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening.",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "Thread: Real stories from 500,000+ people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Bookmark this for later",
+        "Tag someone who needs this info",
+        "Which tip helped you most?"
+      ],
+      "quirkyIntro": "Rise and... well, do what you can today. We'll do the grinding. Spoons are precious.",
+      "quirkyClosing": "The Eye sees all. The Eye forgets nothing. And now, so do you.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.173Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-15",
+      "dayOfWeek": "monday",
+      "dayNumber": 12,
+      "dayTheme": "Monday Motivation / Disability Pride",
+      "themeEmoji": "💪",
+      "mood": "empowering",
+      "pillar": "Call to Action",
+      "pillarDescription": "Specific actions the disability community can take",
+      "topic": "Canada Disability Benefit updates",
+      "platforms": {
+        "twitter": {
+          "hook": "ODSP isn't \"support\" - it's enforced poverty. Call it what it is. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "If they treated disabled people like they treat executives, we'd all have what we need. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "ODSP isn't \"support\" - it's enforced poverty. Call it what it is. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "The medical model of disability is violence dressed up as science. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Disability rights ARE human rights. Full stop. No exceptions.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus.",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "\"Nothing about us without us\" isn't a request. It's a demand. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "bold",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your own story in the comments 💬",
+        "Tag someone who needs to see this",
+        "RT if you've experienced this too"
+      ],
+      "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+      "quirkyClosing": "Until tomorrow, when we do this all over again. The Eye is watching. 👁️",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.178Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-16",
+      "dayOfWeek": "tuesday",
+      "dayNumber": 13,
+      "dayTheme": "Truth Tuesday / Data Drops",
+      "themeEmoji": "📊",
+      "mood": "exposing",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "insurance company lobbying",
+      "platforms": {
+        "twitter": {
+          "hook": "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus.",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think..."
+          ]
+        },
+        "youtube": {
+          "hook": "Invisible disability = invisible to them. But not to us. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "outrage",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Did you know about this? 👇",
+        "This needs to go viral. Share it.",
+        "Comment with your reaction"
+      ],
+      "quirkyIntro": "Good afternoon! Time to see what ableist shenanigans they've been up to. ☕",
+      "quirkyClosing": "That's the tea for today. ☕ Share it before it goes cold.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.182Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-17",
+      "dayOfWeek": "wednesday",
+      "dayNumber": 14,
+      "dayTheme": "Winning Wednesday / Community Victories",
+      "themeEmoji": "🏆",
+      "mood": "celebratory",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "ableism in policy design",
+      "platforms": {
+        "twitter": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "We ran the numbers on CNESST. What we found will shock you. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think...",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "youtube": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your wins! We want to celebrate with you 🎉",
+        "Who else has had a victory lately?",
+        "Let's spread some hope - share this"
+      ],
+      "quirkyIntro": "Happy Thursday! Bad news: they're still at it. Good news: so are we.",
+      "quirkyClosing": "Rest if you need to. Your health comes first. But when you're ready, we're here.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.188Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-18",
+      "dayOfWeek": "thursday",
+      "dayNumber": 15,
+      "dayTheme": "Throw Back / Historical Patterns",
+      "themeEmoji": "📜",
+      "mood": "investigative",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "appeal processes for all programs",
+      "platforms": {
+        "twitter": {
+          "hook": "Know your rights: What they MUST accommodate under Ontario Human Rights Code 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "educational",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "The exact words to use in your appeal that adjudicators can't ignore: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "educational",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "The exact words to use in your appeal that adjudicators can't ignore:",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "3 \"small\" mistakes that get disability claims denied (and how to avoid them): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "educational",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "What patterns have you noticed?",
+        "Drop your FOI findings below 👇",
+        "Help us connect the dots"
+      ],
+      "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+      "quirkyClosing": "Share this with someone who needs to know. We rise by lifting each other.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.193Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-19",
+      "dayOfWeek": "friday",
+      "dayNumber": 16,
+      "dayTheme": "Fury Friday / Outrage",
+      "themeEmoji": "🔥",
+      "mood": "angry",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "chronic illness lived experience",
+      "platforms": {
+        "twitter": {
+          "hook": "POV: You're disabled, you need help, and the system sees you as a number to reject. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Her invisible illness is invisible to everyone except her body. Here's her story: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "story",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "POV: You're disabled, you need help, and the system sees you as a number to reject. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "story",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "They told him chronic fatigue \"isn't real.\" He sleeps 16 hours a day. Thread: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "THREAD: What really happens behind closed doors at CNESST:",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "THREAD: What really happens behind closed doors at CNESST: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "story",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Are you as angry as we are?",
+        "This can't keep happening. Share to expose.",
+        "Tag your MPP in the comments"
+      ],
+      "quirkyIntro": "Good afternoon, fellow disability warriors. The data doesn't lie. Here's what we found.",
+      "quirkyClosing": "That's the tea for today. ☕ Share it before it goes cold.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.197Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-20",
+      "dayOfWeek": "saturday",
+      "dayNumber": 17,
+      "dayTheme": "Story Saturday / Real Stories",
+      "themeEmoji": "📖",
+      "mood": "humanizing",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "caregiver solidarity",
+      "platforms": {
+        "twitter": {
+          "hook": "Chronic illness warriors 🤝 Injured workers 🤝 Mental health survivors. Same fight. Same enemy. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "To everyone with an invisible disability being told you \"don't look sick\" - WE SEE YOU. 💜 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Chronic illness warriors 🤝 Injured workers 🤝 Mental health survivors. Same fight. Same enemy. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Thread: Real stories from 847 people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Thread: Real stories from 847 people denied benefits this month. You're not alone. 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening.",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "Every disabled person who's been told \"it's in your head\" 🤝 We see you. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Your story matters. Share it.",
+        "We're listening. Tell us in the comments.",
+        "Connect with others who understand"
+      ],
+      "quirkyIntro": "Welcome back! Spoiler alert: ableism is alive and well. But so is our resistance.",
+      "quirkyClosing": "Rest if you need to. Your health comes first. But when you're ready, we're here.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.202Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-21",
+      "dayOfWeek": "sunday",
+      "dayNumber": 18,
+      "dayTheme": "Sunday Strategy / How To",
+      "themeEmoji": "🎯",
+      "mood": "helpful",
+      "pillar": "Call to Action",
+      "pillarDescription": "Specific actions the disability community can take",
+      "topic": "Canada Disability Benefit updates",
+      "platforms": {
+        "twitter": {
+          "hook": "Hot take: The 18-month wait for appeals isn't a bug, it's a feature. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "The person who denied your claim has never lived with a disability. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Ableism isn't just attitudes. It's policy. It's budgets. It's intentional. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "The medical model of disability is violence dressed up as science. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "\"Nothing about us without us\" isn't a request. It's a demand.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "The person who denied your claim has never lived with a disability. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Bookmark this for later",
+        "Tag someone who needs this info",
+        "Which tip helped you most?"
+      ],
+      "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+      "quirkyClosing": "Remember: they're not understaffed, they're under-motivated to help. Keep pushing.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.207Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-22",
+      "dayOfWeek": "monday",
+      "dayNumber": 19,
+      "dayTheme": "Monday Motivation / Disability Pride",
+      "themeEmoji": "💪",
+      "mood": "empowering",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "statistical anomalies in disability decisions",
+      "platforms": {
+        "twitter": {
+          "hook": "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Invisible disability = invisible to them. But not to us. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "youtube": {
+          "hook": "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your own story in the comments 💬",
+        "Tag someone who needs to see this",
+        "RT if you've experienced this too"
+      ],
+      "quirkyIntro": "Good afternoon, fellow disability warriors. The data doesn't lie. Here's what we found.",
+      "quirkyClosing": "Disabled and proud. Informed and dangerous. Nothing about us without us. ♿✊",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.211Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-23",
+      "dayOfWeek": "tuesday",
+      "dayNumber": 20,
+      "dayTheme": "Truth Tuesday / Data Drops",
+      "themeEmoji": "📊",
+      "mood": "exposing",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "insurance company lobbying",
+      "platforms": {
+        "twitter": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "The document they tried to bury says it all. Thread 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "We ran the numbers on CNESST. What we found will shock you. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Did you know about this? 👇",
+        "This needs to go viral. Share it.",
+        "Comment with your reaction"
+      ],
+      "quirkyIntro": "Happy Thursday! Bad news: they're still at it. Good news: so are we.",
+      "quirkyClosing": "Rest if you need to. Your health comes first. But when you're ready, we're here.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.216Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-24",
+      "dayOfWeek": "wednesday",
+      "dayNumber": 21,
+      "dayTheme": "Winning Wednesday / Community Victories",
+      "themeEmoji": "🏆",
+      "mood": "celebratory",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "invisible disability accommodation rights",
+      "platforms": {
+        "twitter": {
+          "hook": "3 \"small\" mistakes that get disability claims denied (and how to avoid them): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Know your rights: What they MUST accommodate under Ontario Human Rights Code 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Invisible disability? Here's how to document what doctors can't \"see\": 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Mental health claim denied? The 5 words that can change everything on appeal: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Know your rights: What they MUST accommodate under Ontario Human Rights Code 🧵",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "educational",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your wins! We want to celebrate with you 🎉",
+        "Who else has had a victory lately?",
+        "Let's spread some hope - share this"
+      ],
+      "quirkyIntro": "Happy Thursday! Bad news: they're still at it. Good news: so are we.",
+      "quirkyClosing": "Remember: they're not understaffed, they're under-motivated to help. Keep pushing.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.221Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-25",
+      "dayOfWeek": "thursday",
+      "dayNumber": 22,
+      "dayTheme": "Throw Back / Historical Patterns",
+      "themeEmoji": "📜",
+      "mood": "investigative",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "chronic illness lived experience",
+      "platforms": {
+        "twitter": {
+          "hook": "He followed every rule. Filed every form. They still denied him. Why? 👇 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "story",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Her invisible illness is invisible to everyone except her body. Here's her story: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "story",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "POV: You're disabled, you need help, and the system sees you as a number to reject. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "POV: You're disabled, you need help, and the system sees you as a number to reject.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus.",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "youtube": {
+          "hook": "A disabled person just sent us this. What happens next will make your blood boil. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "story",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "What patterns have you noticed?",
+        "Drop your FOI findings below 👇",
+        "Help us connect the dots"
+      ],
+      "quirkyIntro": "Welcome back! Spoiler alert: ableism is alive and well. But so is our resistance.",
+      "quirkyClosing": "Share this with someone who needs to know. We rise by lifting each other.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.225Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-26",
+      "dayOfWeek": "friday",
+      "dayNumber": 23,
+      "dayTheme": "Fury Friday / Outrage",
+      "themeEmoji": "🔥",
+      "mood": "angry",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "caregiver solidarity",
+      "platforms": {
+        "twitter": {
+          "hook": "To everyone with an invisible disability being told you \"don't look sick\" - WE SEE YOU. 💜 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Neurodivergent 🤝 Physically disabled 🤝 Chronically ill. United against ableism. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "To everyone with an invisible disability being told you \"don't look sick\" - WE SEE YOU. 💜 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "To everyone with an invisible disability being told you \"don't look sick\" - WE SEE YOU. 💜 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Disabled and proud isn't just a slogan. It's resistance. ♿✊",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening.",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "POV: You did everything right, got sick/injured, and now YOU'RE the \"problem.\" 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Are you as angry as we are?",
+        "This can't keep happening. Share to expose.",
+        "Tag your MPP in the comments"
+      ],
+      "quirkyIntro": "The Eye Oracle reporting for duty. What fresh ableist hell awaits us today? Let's find out.",
+      "quirkyClosing": "Disabled and proud. Informed and dangerous. Nothing about us without us. ♿✊",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.234Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-27",
+      "dayOfWeek": "saturday",
+      "dayNumber": 24,
+      "dayTheme": "Story Saturday / Real Stories",
+      "themeEmoji": "📖",
+      "mood": "humanizing",
+      "pillar": "Call to Action",
+      "pillarDescription": "Specific actions the disability community can take",
+      "topic": "Canada Disability Benefit updates",
+      "platforms": {
+        "twitter": {
+          "hook": "ODSP isn't \"support\" - it's enforced poverty. Call it what it is. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "The disability system isn't broken. It's working exactly as designed. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "If they treated disabled people like they treat executives, we'd all have what we need. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "\"Nothing about us without us\" isn't a request. It's a demand. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "ODSP isn't \"support\" - it's enforced poverty. Call it what it is.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "Disability rights ARE human rights. Full stop. No exceptions. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Your story matters. Share it.",
+        "We're listening. Tell us in the comments.",
+        "Connect with others who understand"
+      ],
+      "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+      "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.240Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-28",
+      "dayOfWeek": "sunday",
+      "dayNumber": 25,
+      "dayTheme": "Sunday Strategy / How To",
+      "themeEmoji": "🎯",
+      "mood": "helpful",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "algorithmic discrimination",
+      "platforms": {
+        "twitter": {
+          "hook": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "They denied 4,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "They denied 847 disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years.",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "youtube": {
+          "hook": "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "outrage",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Bookmark this for later",
+        "Tag someone who needs this info",
+        "Which tip helped you most?"
+      ],
+      "quirkyIntro": "Low spoon day? Same. But the receipts don't collect themselves. Here's what The Eye saw.",
+      "quirkyClosing": "Until tomorrow, when we do this all over again. The Eye is watching. 👁️",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.244Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-29",
+      "dayOfWeek": "monday",
+      "dayNumber": 26,
+      "dayTheme": "Monday Motivation / Disability Pride",
+      "themeEmoji": "💪",
+      "mood": "empowering",
+      "pillar": "Expose Corruption",
+      "pillarDescription": "Reveal what they're hiding about disability discrimination",
+      "topic": "statistical anomalies in disability decisions",
+      "platforms": {
+        "twitter": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "The document they tried to bury says it all. Thread 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "We traced the money. You won't believe where it leads. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years.",
+            "The document they tried to bury says it all. Thread 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "We ran the numbers on ODSP. What we found will shock you. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "curiosity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your own story in the comments 💬",
+        "Tag someone who needs to see this",
+        "RT if you've experienced this too"
+      ],
+      "quirkyIntro": "Happy Thursday! Bad news: they're still at it. Good news: so are we.",
+      "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.248Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-30",
+      "dayOfWeek": "tuesday",
+      "dayNumber": 27,
+      "dayTheme": "Truth Tuesday / Data Drops",
+      "themeEmoji": "📊",
+      "mood": "exposing",
+      "pillar": "Educate & Empower",
+      "pillarDescription": "How-to guides and rights info for all disabilities",
+      "topic": "ODSP/CPP-D application tips",
+      "platforms": {
+        "twitter": {
+          "hook": "5 things you MUST document right now if you're filing a disability claim (thread): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "5 things you MUST document right now if you're filing a disability claim (thread): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "educational",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Chronic illness + disability claims: What you need to know that they won't tell you: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "educational",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Mental health claim denied? The 5 words that can change everything on appeal: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "How to appeal an ODSP/WSIB/CPP-D denial (step-by-step guide that actually works):",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "educational",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions?",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵"
+          ]
+        },
+        "youtube": {
+          "hook": "How to appeal an ODSP/WSIB/CPP-D denial (step-by-step guide that actually works): 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "educational",
+          "altHooks": [
+            "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Did you know about this? 👇",
+        "This needs to go viral. Share it.",
+        "Comment with your reaction"
+      ],
+      "quirkyIntro": "Another day, another 21 violations against disabled people. Let's dive in, shall we?",
+      "quirkyClosing": "Disabled and proud. Informed and dangerous. Nothing about us without us. ♿✊",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.254Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2025-12-31",
+      "dayOfWeek": "wednesday",
+      "dayNumber": 28,
+      "dayTheme": "Winning Wednesday / Community Victories",
+      "themeEmoji": "🏆",
+      "mood": "celebratory",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "chronic illness lived experience",
+      "platforms": {
+        "twitter": {
+          "hook": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "THREAD: What really happens behind closed doors at WSIB: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "story",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "This email from an adjudicator accidentally got forwarded to us. Read it. 👀 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "story",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like: 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "They told him chronic fatigue \"isn't real.\" He sleeps 16 hours a day. Thread:",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "story",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think..."
+          ]
+        },
+        "youtube": {
+          "hook": "She has 47 doctor's notes. They still said she's \"not disabled enough.\" 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "story",
+          "altHooks": [
+            "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Share your wins! We want to celebrate with you 🎉",
+        "Who else has had a victory lately?",
+        "Let's spread some hope - share this"
+      ],
+      "quirkyIntro": "Good afternoon, fellow disability warriors. The data doesn't lie. Here's what we found.",
+      "quirkyClosing": "Take your meds. Drink water. And remember: you're not the problem. The system is.",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.258Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2026-01-01",
+      "dayOfWeek": "thursday",
+      "dayNumber": 29,
+      "dayTheme": "Throw Back / Historical Patterns",
+      "themeEmoji": "📜",
+      "mood": "investigative",
+      "pillar": "Community Stories",
+      "pillarDescription": "Real stories from the disability community",
+      "topic": "caregiver solidarity",
+      "platforms": {
+        "twitter": {
+          "hook": "To everyone still fighting after months (or years) of appeals: We're with you. ✊ 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "POV: You did everything right, got sick/injured, and now YOU'RE the \"problem.\" 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "Thread: Real stories from 33 people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Thread: Real stories from 33 people denied benefits this month. You're not alone. 🧵 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "POV: You did everything right, got sick/injured, and now YOU'RE the \"problem.\"",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today:",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "Your disability is valid. Your pain is real. Your struggle matters. Period. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "solidarity",
+          "altHooks": [
+            "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "What patterns have you noticed?",
+        "Drop your FOI findings below 👇",
+        "Help us connect the dots"
+      ],
+      "quirkyIntro": "Grab your tea/coffee/hydration of choice. Today's report is a doozy.",
+      "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.263Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    },
+    {
+      "date": "2026-01-02",
+      "dayOfWeek": "friday",
+      "dayNumber": 30,
+      "dayTheme": "Fury Friday / Outrage",
+      "themeEmoji": "🔥",
+      "mood": "angry",
+      "pillar": "Call to Action",
+      "pillarDescription": "Specific actions the disability community can take",
+      "topic": "Canada Disability Benefit updates",
+      "platforms": {
+        "twitter": {
+          "hook": "Hot take: The 18-month wait for appeals isn't a bug, it's a feature. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "facebook": {
+          "hook": "The medical model of disability is violence dressed up as science. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabilityCommunity"
+          ],
+          "bestTime": "9AM",
+          "hookType": "bold",
+          "altHooks": [
+            "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+            "We ran the numbers on WSIB. What we found will shock you. 🧵 👁️"
+          ]
+        },
+        "instagram": {
+          "hook": "\"Nothing about us without us\" isn't a request. It's a demand. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityRights",
+            "#DisabledAndProud",
+            "#ChronicIllness",
+            "#InvisibleIllness",
+            "#DisabilityAwareness",
+            "#Ableism",
+            "#SpoonieLife",
+            "#ChronicPain",
+            "#MentalHealthMatters",
+            "#AccessibilityMatters",
+            "#DisabilityCommunity",
+            "#NothingAboutUsWithoutUs",
+            "#DisabilityAdvocate",
+            "#ChronicIllnessWarrior"
+          ],
+          "bestTime": "11AM",
+          "hookType": "bold",
+          "altHooks": [
+            "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
+            "The document they tried to bury says it all. Thread 🧵 👁️"
+          ]
+        },
+        "tiktok": {
+          "hook": "Hot take: The 18-month wait for appeals isn't a bug, it's a feature. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabledTikTok",
+            "#ChronicIllness",
+            "#Spoonie",
+            "#DisabilityAwareness"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "Invisible disability = invisible to them. But not to us. 👁️",
+            "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+          ]
+        },
+        "linkedin": {
+          "hook": "Ableism isn't just attitudes. It's policy. It's budgets. It's intentional.",
+          "hashtags": [
+            "#3mpwrApp",
+            "#DisabilityInclusion",
+            "#AccessibleWorkplace",
+            "#DisabilityRights",
+            "#Accommodation"
+          ],
+          "bestTime": "7AM",
+          "hookType": "bold",
+          "altHooks": [
+            "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
+            "There's a pattern they don't want you to notice. Here's what The Eye found:"
+          ]
+        },
+        "youtube": {
+          "hook": "They don't deny claims to save money. They deny claims to make you give up. 👁️",
+          "hashtags": [
+            "#3mpwrApp",
+            "#WorkersComp",
+            "#InjuredWorkers"
+          ],
+          "bestTime": "2PM",
+          "hookType": "bold",
+          "altHooks": [
+            "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+            "We traced the money. You won't believe where it leads. 👁️"
+          ]
+        }
+      },
+      "engagementPrompts": [
+        "Are you as angry as we are?",
+        "This can't keep happening. Share to expose.",
+        "Tag your MPP in the comments"
+      ],
+      "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+      "quirkyClosing": "The fight continues. See you tomorrow with more receipts. 🧾",
+      "metadata": {
+        "generatedAt": "2025-12-04T17:53:23.268Z",
+        "version": "2.0",
+        "analyticsUpdateDue": "2026-01-03"
+      }
+    }
+  ]
+}

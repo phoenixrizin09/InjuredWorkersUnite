@@ -1,0 +1,341 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2024-12-04",
+  "nextOptimizationDue": "2025-01-04",
+  
+  "mainGoal": "Expose systemic ableism, build disability community solidarity, drive action for disability rights",
+  
+  "targetAudience": {
+    "primary": "The entire disability community in Canada",
+    "segments": [
+      "Injured workers fighting WCB/WSIB claims",
+      "ODSP and disability benefits recipients", 
+      "People with chronic illness",
+      "People with invisible disabilities",
+      "Mental health survivors navigating the system",
+      "Neurodivergent individuals",
+      "Caregivers and family members",
+      "Disability advocates and allies"
+    ],
+    "demographics": {
+      "ageRange": "18-65+",
+      "location": "Canada (Ontario focus, expanding)",
+      "challenges": [
+        "Active disability/workers' compensation claims",
+        "Denied benefits and fighting appeals",
+        "Living on poverty-level ODSP ($1,308/month)",
+        "Invisible disabilities being dismissed",
+        "Chronic illness not recognized",
+        "Mental health claims denied at 67% rate",
+        "Accessibility barriers everywhere",
+        "Employment discrimination"
+      ]
+    }
+  },
+
+  "painPoints": [
+    "Denied claims after years of loyal work (WCB/WSIB)",
+    "ODSP rates forcing disabled people into poverty ($1,308/month vs $2,500+ poverty line)",
+    "Bureaucratic runaround and medical gaslighting",
+    "Invisible disabilities dismissed as 'not real' or 'not sick enough'",
+    "Chronic illness not recognized as disability",
+    "Mental health claims denied at 67% rate",
+    "Being told to 'just get a job' when you can barely leave bed",
+    "Poverty-level benefits while executives profit",
+    "Feeling invisible, unheard, and dehumanized by the system",
+    "Confusing processes designed to make you give up",
+    "Medical evidence being ignored or dismissed",
+    "Long wait times (18+ months for appeals)",
+    "Accessibility barriers in healthcare and government services",
+    "Employment discrimination and accommodation denials",
+    "Retaliation for requesting accommodations",
+    "Having to 'prove' your disability over and over",
+    "The emotional labor of navigating ableist systems"
+  ],
+
+  "desires": [
+    "Justice and accountability for systemic ableism",
+    "Fair treatment and livable benefits above poverty line",
+    "Community, solidarity, and disability pride",
+    "Knowledge and tools to fight back against the system",
+    "Their story being heard and validated",
+    "Winning their case/claim/appeal",
+    "Accessible and dignified services",
+    "Recognition of disability rights as human rights",
+    "Nothing about us without us - real representation",
+    "An end to medical gaslighting",
+    "Being believed without having to 'prove' themselves",
+    "Financial security and independence"
+  ],
+
+  "contentPillars": {
+    "expose": {
+      "name": "Expose Ableism & Corruption",
+      "weight": 30,
+      "description": "Reveal systemic ableism with real data",
+      "hookTypes": ["outrage", "curiosity", "dataDriven"],
+      "examples": [
+        "ODSP poverty rates vs cost of living",
+        "Disability claim denial patterns",
+        "Executive compensation vs benefits",
+        "Accessibility failures",
+        "Mental health claim discrimination",
+        "Lobbying against disability rights"
+      ]
+    },
+    "educate": {
+      "name": "Educate & Empower",
+      "weight": 25,
+      "description": "How-to guides, rights info, survival tips",
+      "hookTypes": ["educational", "question"],
+      "examples": [
+        "Appeal process guides for ODSP/WSIB/CPP-D",
+        "Documentation tips for invisible disabilities",
+        "Rights under Charter and Human Rights Code",
+        "FOI request templates",
+        "Accommodation request guides",
+        "Spoonie survival tips"
+      ]
+    },
+    "community": {
+      "name": "Disability Community Stories",
+      "weight": 25,
+      "description": "Real stories, solidarity, disability pride",
+      "hookTypes": ["solidarity", "story"],
+      "examples": [
+        "Success stories from the community",
+        "You are not alone / validation posts",
+        "Invisible disability representation",
+        "Chronic illness warrior spotlights",
+        "Disability pride content",
+        "Shared experiences across disability types"
+      ]
+    },
+    "action": {
+      "name": "Call to Action",
+      "weight": 15,
+      "description": "Specific actions people can take",
+      "hookTypes": ["fomo", "bold"],
+      "examples": [
+        "Contact your MPP campaigns",
+        "Share this report",
+        "File FOI requests",
+        "Sign petitions",
+        "Join disability rights organizations",
+        "Nothing about us without us advocacy"
+      ]
+    },
+    "celebration": {
+      "name": "Wins & Disability Pride",
+      "weight": 5,
+      "description": "Celebrate victories and disability pride",
+      "hookTypes": ["story", "solidarity"],
+      "examples": [
+        "Successful appeals",
+        "Policy changes won",
+        "Community milestones",
+        "Disability pride celebrations",
+        "Accessibility wins"
+      ]
+    }
+  },
+
+  "weeklyThemes": {
+    "monday": {
+      "theme": "Fight Back Monday",
+      "emoji": "💪",
+      "mood": "empowering",
+      "hookType": "solidarity",
+      "focus": "Motivation and empowerment"
+    },
+    "tuesday": {
+      "theme": "Truth Tuesday",
+      "emoji": "📊",
+      "mood": "exposing",
+      "hookType": "dataDriven",
+      "focus": "Data drops and corruption exposure"
+    },
+    "wednesday": {
+      "theme": "Winning Wednesday",
+      "emoji": "🏆",
+      "mood": "celebratory",
+      "hookType": "story",
+      "focus": "Success stories and victories"
+    },
+    "thursday": {
+      "theme": "Throwback Thursday",
+      "emoji": "📜",
+      "mood": "investigative",
+      "hookType": "curiosity",
+      "focus": "Historical patterns and investigations"
+    },
+    "friday": {
+      "theme": "Fury Friday",
+      "emoji": "🔥",
+      "mood": "angry",
+      "hookType": "outrage",
+      "focus": "Week's most infuriating findings"
+    },
+    "saturday": {
+      "theme": "Story Saturday",
+      "emoji": "📖",
+      "mood": "humanizing",
+      "hookType": "story",
+      "focus": "Community stories and spotlights"
+    },
+    "sunday": {
+      "theme": "Sunday Strategy",
+      "emoji": "🎯",
+      "mood": "helpful",
+      "hookType": "educational",
+      "focus": "Preparation and how-to guides"
+    }
+  },
+
+  "platformSettings": {
+    "twitter": {
+      "enabled": true,
+      "handle": "@Phoenixrizin09",
+      "maxLength": 280,
+      "hashtagCount": 2,
+      "postTimes": ["07:00", "12:00", "17:00", "20:00"],
+      "style": "punchy",
+      "primaryHashtags": ["#3mpwrApp", "#DisabilityRights", "#DisabledAndProud", "#ODSP", "#Ableism"],
+      "notes": "Use 🧵 for threads, engage with disability community, amplify disabled voices"
+    },
+    "facebook": {
+      "enabled": true,
+      "page": "Injured Workers Video Campaign",
+      "maxLength": 500,
+      "hashtagCount": 3,
+      "postTimes": ["09:00", "13:00", "16:00"],
+      "style": "storytelling",
+      "primaryHashtags": ["#3mpwrApp", "#DisabilityRights", "#DisabilityCommunity", "#NothingAboutUsWithoutUs"],
+      "notes": "Personal stories resonate, ask for shares, longer format works"
+    },
+    "instagram": {
+      "enabled": true,
+      "handle": "@PhoenixRizin09",
+      "maxLength": 2200,
+      "hashtagCount": 15,
+      "postTimes": ["11:00", "14:00", "19:00"],
+      "style": "visual-first",
+      "notes": "Disability representation in images, hashtags in first comment, accessible alt text"
+    },
+    "tiktok": {
+      "enabled": true,
+      "handle": "@PhoenixRizin09",
+      "maxLength": 150,
+      "hashtagCount": 5,
+      "postTimes": ["07:00", "11:00", "19:00", "22:00"],
+      "style": "hook-heavy",
+      "primaryHashtags": ["#3mpwrApp", "#InjuredWorker", "#WorkersComp", "#FYP"],
+      "notes": "First 3 seconds MUST hook, POV style works best"
+    },
+    "linkedin": {
+      "enabled": true,
+      "maxLength": 3000,
+      "hashtagCount": 5,
+      "postTimes": ["07:00", "12:00", "17:00"],
+      "style": "professional-activist",
+      "notes": "Data-driven but human, professional tone"
+    },
+    "youtube": {
+      "enabled": true,
+      "channel": "Injured Workers Video Campaign",
+      "maxLength": 5000,
+      "hashtagCount": 3,
+      "postTimes": ["14:00", "17:00"],
+      "style": "documentary",
+      "notes": "Strong thumbnails, first 30 seconds hook"
+    }
+  },
+
+  "analyticsConfig": {
+    "updateFrequency": "30 days",
+    "metricsTracked": [
+      "engagement_rate",
+      "click_through_rate",
+      "shares",
+      "comments",
+      "saves",
+      "follower_growth"
+    ],
+    "optimizationRules": {
+      "increaseFrequency": "If hook type avg engagement > 150% of overall avg",
+      "decreaseFrequency": "If hook type avg engagement < 50% of overall avg",
+      "testNew": "Introduce 1 new hook variation per week"
+    }
+  },
+
+  "quirkyPersonality": {
+    "tone": "Sarcastic but supportive, angry but constructive, unapologetically disabled",
+    "voice": "Like a disabled friend who's been through it all and won't take BS from anyone",
+    "avoidances": [
+      "Corporate speak",
+      "Victim blaming",
+      "False hope without action",
+      "Defeatism",
+      "Inspiration porn",
+      "Ableist language",
+      "Poverty shaming",
+      "Medical model superiority"
+    ],
+    "embrace": [
+      "Dark humor about the system",
+      "Righteous anger at ableism",
+      "Solidarity messaging across all disabilities",
+      "Evidence-backed claims",
+      "Empowerment language",
+      "Nothing About Us Without Us philosophy",
+      "Spoon theory references",
+      "Disability pride"
+    ]
+  },
+
+  "currentTrends": {
+    "lastUpdated": "2024-12-04",
+    "trending": [
+      "AI in claim decisions (algorithmic denial)",
+      "Cost of living crisis impact on disability benefits",
+      "Mental health claim denials across all programs",
+      "ODSP rate increases still below poverty line",
+      "18-month appeal backlog scandal",
+      "Invisible disability discrimination",
+      "Caregiver burnout crisis",
+      "Medical Assistance in Dying (MAiD) concerns"
+    ],
+    "performingWell": [
+      "CEO salary comparisons",
+      "48 hours to deny vs 18 months to appeal",
+      "Real disabled person story threads",
+      "FOI request results",
+      "ODSP vs actual cost of living comparisons",
+      "Disability tax credit success stories",
+      "Accessible housing waitlist data"
+    ],
+    "toWatch": [
+      "Upcoming benefit cuts",
+      "Policy changes in Q1 2025",
+      "Class action developments",
+      "Canada Disability Benefit implementation",
+      "Provincial benefit harmonization"
+    ]
+  },
+
+  "successMetrics": {
+    "engagement": {
+      "target": ">3%",
+      "industry_avg": "1-2%"
+    },
+    "shares": {
+      "target": ">2% of impressions"
+    },
+    "ctr": {
+      "target": ">1.5%"
+    },
+    "followerGrowth": {
+      "target": ">5% monthly"
+    }
+  }
+}

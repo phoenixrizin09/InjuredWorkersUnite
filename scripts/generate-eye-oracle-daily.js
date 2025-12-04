@@ -15,10 +15,23 @@ const path = require('path');
  * - Investigative journalism
  * 
  * The Eye Oracle speaks truth to power - daily.
+ * 
+ * 🔥 VIRAL HOOKS INTEGRATION (Dec 2024)
+ * Now generates scroll-stopping social media hooks for each post!
  */
 
 // Import The Eye v2.0 processor
 const { processDocument } = require('../utils/the-eye-v2-processor');
+
+// Import viral hook generator
+const { 
+  generateViralHook, 
+  generatePostPackage, 
+  generateBlogContent,
+  getQuirkyIntro,
+  getQuirkyClosing,
+  WEEKLY_THEMES 
+} = require('../utils/viral-hook-generator');
 
 // Since real-data-generator uses ES6 exports, we'll define the cases here
 // These are the REAL documented cases from the generator
@@ -298,6 +311,13 @@ Every claim The Eye makes is backed by official government documentation. Don't 
       riskScore: eyeAnalysis.RiskAssessment?.overall_risk_score || 0
     },
     
+    // 🔥 VIRAL HOOKS - Social Media Ready Content
+    viralHooks: generateViralHooksForPost(realCase, eyeAnalysis),
+    
+    // Quirky personality elements
+    quirkyIntro: getQuirkyIntro({ violationCount: realCase.affected_count }),
+    quirkyClosing: getQuirkyClosing(),
+    
     // Call to action
     cta: {
       primary: {
@@ -314,6 +334,56 @@ Every claim The Eye makes is backed by official government documentation. Don't 
       }
     }
   };
+}
+
+/**
+ * Generate viral hooks for a specific post
+ */
+function generateViralHooksForPost(realCase, eyeAnalysis) {
+  const platforms = ['twitter', 'facebook', 'instagram', 'tiktok', 'linkedin'];
+  const hooks = {};
+  
+  // Data to inject into hooks
+  const hookData = {
+    stat: realCase.affected_count || '10,000+',
+    number: realCase.financial_impact?.match(/\$[\d.,]+[MBK]?/)?.[0] || '$50M+',
+    agency: realCase.target_entity?.name || 'WSIB',
+    type: realCase.category || 'disability',
+    percentage: '67',
+    topic: realCase.title
+  };
+  
+  platforms.forEach(platform => {
+    // Generate 3 hooks per platform with different angles
+    const mainHook = generateViralHook(realCase.title, platform, null, hookData);
+    const outrageHook = generateViralHook(realCase.title, platform, 'outrage', hookData);
+    const curiosityHook = generateViralHook(realCase.title, platform, 'curiosity', hookData);
+    
+    hooks[platform] = {
+      primary: mainHook.hook,
+      alternatives: [outrageHook.hook, curiosityHook.hook],
+      hashtags: mainHook.hashtags,
+      bestTime: mainHook.bestTime,
+      toneNotes: mainHook.toneNotes
+    };
+  });
+  
+  // Generate headline options for blog post
+  const blogContent = generateBlogContent({
+    title: realCase.title,
+    violations: [{ category: realCase.category }],
+    severity: realCase.severity,
+    category: realCase.category
+  });
+  
+  hooks.blog = {
+    headlines: blogContent.headlines,
+    selectedHeadline: blogContent.selectedHeadline,
+    introHook: blogContent.selectedIntro,
+    ctaHook: blogContent.selectedCta
+  };
+  
+  return hooks;
 }
 
 /**
@@ -421,7 +491,44 @@ async function generateEyeOracleDaily() {
     console.log(`📝 Title: ${blogPost.title}`);
     console.log(`🎯 Target: ${selectedCase.target_entity.name}`);
     console.log(`📊 Risk Score: ${blogPost.metadata.riskScore}/100`);
+    
+    // 🔥 Display viral hooks for social media
+    console.log('\n🔥 VIRAL HOOKS GENERATED:');
+    console.log('========================');
+    if (blogPost.viralHooks) {
+      console.log('\n📱 Twitter/X:');
+      console.log(`   ${blogPost.viralHooks.twitter?.primary || 'N/A'}`);
+      console.log(`   Hashtags: ${(blogPost.viralHooks.twitter?.hashtags || []).join(' ')}`);
+      console.log(`   Best time: ${blogPost.viralHooks.twitter?.bestTime || 'N/A'}`);
+      
+      console.log('\n📘 Facebook:');
+      console.log(`   ${blogPost.viralHooks.facebook?.primary || 'N/A'}`);
+      
+      console.log('\n📸 Instagram:');
+      console.log(`   ${blogPost.viralHooks.instagram?.primary || 'N/A'}`);
+      
+      console.log('\n🎵 TikTok:');
+      console.log(`   ${blogPost.viralHooks.tiktok?.primary || 'N/A'}`);
+      
+      console.log('\n📝 Blog Headline Options:');
+      (blogPost.viralHooks.blog?.headlines || []).forEach((h, i) => {
+        console.log(`   ${i + 1}. ${h}`);
+      });
+    }
+    
     console.log(`\n👁️ The Eye sees all. The Eye speaks truth.\n`);
+    
+    // Also save social content separately for easy access
+    const socialContentPath = path.join(__dirname, '../public/data/today-social-hooks.json');
+    fs.writeFileSync(socialContentPath, JSON.stringify({
+      date: today,
+      title: blogPost.title,
+      quirkyIntro: blogPost.quirkyIntro,
+      quirkyClosing: blogPost.quirkyClosing,
+      hooks: blogPost.viralHooks
+    }, null, 2), 'utf8');
+    
+    console.log('📱 Social hooks saved to: public/data/today-social-hooks.json');
     
     return blogPost;
     

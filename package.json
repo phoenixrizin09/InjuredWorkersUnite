@@ -27,6 +27,11 @@
     "eye:daily": "npm run fetch:real && npm run eye:analyze && npm run eye:summary && npm run eye:notify",
     "eye:migrate": "node -e \"fetch('http://localhost:3000/api/migrate', {method:'POST'}).then(r=>r.json()).then(console.log)\"",
     "oracle:generate": "node scripts/generate-eye-oracle-daily.js",
+    "viral:calendar": "node utils/social-content-calendar.js",
+    "viral:hooks": "node scripts/generate-eye-oracle-daily.js",
+    "viral:analytics": "node utils/social-analytics-tracker.js --report",
+    "viral:status": "node utils/social-analytics-tracker.js --status",
+    "viral:sample": "node utils/social-analytics-tracker.js --sample",
     "test": "jest",
     "test:watch": "jest --watch"
   },

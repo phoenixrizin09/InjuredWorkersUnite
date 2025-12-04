@@ -124,6 +124,158 @@ export default function Blog() {
             </div>
           </div>
 
+          {/* 👁️ THE EYE ORACLE FEATURED SECTION */}
+          <div style={{
+            marginBottom: '3rem',
+            background: 'linear-gradient(135deg, rgba(138,43,226,0.2) 0%, rgba(0,255,255,0.2) 100%)',
+            borderRadius: '20px',
+            border: '3px solid rgba(138,43,226,0.5)',
+            padding: '2rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            {/* Animated Eye Background */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              right: '5%',
+              transform: 'translateY(-50%)',
+              fontSize: '8rem',
+              opacity: 0.1,
+              animation: 'pulse 3s ease-in-out infinite'
+            }}>👁️</div>
+            
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+                flexWrap: 'wrap'
+              }}>
+                <span style={{
+                  fontSize: '2.5rem',
+                  animation: 'pulse 2s ease-in-out infinite'
+                }}>👁️</span>
+                <h2 style={{
+                  fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                  fontWeight: '900',
+                  background: 'linear-gradient(135deg, #8a2be2 0%, #00ffff 50%, #ffd700 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  margin: 0
+                }}>
+                  THE EYE ORACLE
+                </h2>
+                <span style={{
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%)',
+                  color: '#000',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '20px',
+                  fontSize: '0.8rem',
+                  fontWeight: 'bold',
+                  animation: 'pulse 1.5s ease-in-out infinite'
+                }}>DAILY REPORTS</span>
+              </div>
+              
+              <p style={{
+                fontSize: '1.1rem',
+                color: '#00ffff',
+                marginBottom: '1rem',
+                maxWidth: '700px',
+                lineHeight: '1.6'
+              }}>
+                <strong>THE EYE SEES ALL • THE EYE FORGETS NOTHING • THE EYE NEVER SLEEPS</strong>
+              </p>
+              
+              <p style={{
+                fontSize: '1rem',
+                color: 'rgba(255,255,255,0.9)',
+                marginBottom: '1.5rem',
+                maxWidth: '700px',
+                lineHeight: '1.6'
+              }}>
+                Every day, The Eye Oracle publishes a new investigation report exposing government corruption, 
+                disability discrimination, and injustice. All backed by <strong>REAL government data</strong>. 
+                Every claim verifiable. Nothing About Us Without Us.
+              </p>
+              
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                flexWrap: 'wrap',
+                marginBottom: '1.5rem'
+              }}>
+                <div style={{
+                  background: 'rgba(0,0,0,0.3)',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(0,255,255,0.3)'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>📊</span>
+                  <span style={{ marginLeft: '0.5rem', color: '#00ffff' }}>89+ Datasets Monitored</span>
+                </div>
+                <div style={{
+                  background: 'rgba(0,0,0,0.3)',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(0,255,255,0.3)'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>🔄</span>
+                  <span style={{ marginLeft: '0.5rem', color: '#00ffff' }}>Updates Every 6 Hours</span>
+                </div>
+                <div style={{
+                  background: 'rgba(0,0,0,0.3)',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(0,255,255,0.3)'
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>✅</span>
+                  <span style={{ marginLeft: '0.5rem', color: '#00ffff' }}>100% Verified Sources</span>
+                </div>
+              </div>
+              
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                flexWrap: 'wrap'
+              }}>
+                <Link href="/eye-oracle-reports" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '1rem 2rem',
+                  background: 'linear-gradient(135deg, #8a2be2 0%, #00ffff 100%)',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: '30px',
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
+                  boxShadow: '0 4px 20px rgba(138,43,226,0.4)',
+                  transition: 'all 0.3s ease'
+                }}>
+                  👁️ Read Today's Report →
+                </Link>
+                <Link href="/the-eye-oracle" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '1rem 2rem',
+                  background: 'transparent',
+                  color: '#00ffff',
+                  textDecoration: 'none',
+                  borderRadius: '30px',
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
+                  border: '2px solid #00ffff',
+                  transition: 'all 0.3s ease'
+                }}>
+                  🔍 Explore All Investigations
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* Category Filter */}
           <div style={{
             marginBottom: '2rem',

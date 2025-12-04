@@ -1,0 +1,124 @@
+{
+  "date": "2025-12-04",
+  "dayOfWeek": "thursday",
+  "dayNumber": 1,
+  "dayTheme": "Throw Back / Historical Patterns",
+  "themeEmoji": "📜",
+  "mood": "investigative",
+  "pillar": "Expose Corruption",
+  "pillarDescription": "Reveal what they're hiding about disability discrimination",
+  "topic": "claim denial patterns",
+  "platforms": {
+    "twitter": {
+      "hook": "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+      "hashtags": [
+        "#3mpwrApp",
+        "#DisabilityRights"
+      ],
+      "bestTime": "7AM",
+      "hookType": "outrage",
+      "altHooks": [
+        "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+        "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+      ]
+    },
+    "facebook": {
+      "hook": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
+      "hashtags": [
+        "#3mpwrApp",
+        "#DisabilityRights",
+        "#DisabilityCommunity"
+      ],
+      "bestTime": "9AM",
+      "hookType": "outrage",
+      "altHooks": [
+        "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+        "Why do 67% of mental health claims get denied? The answer isn't what you think... 👁️"
+      ]
+    },
+    "instagram": {
+      "hook": "Invisible disability = invisible to them. But not to us. 👁️",
+      "hashtags": [
+        "#3mpwrApp",
+        "#DisabilityRights",
+        "#DisabledAndProud",
+        "#ChronicIllness",
+        "#InvisibleIllness",
+        "#DisabilityAwareness",
+        "#Ableism",
+        "#SpoonieLife",
+        "#ChronicPain",
+        "#MentalHealthMatters",
+        "#AccessibilityMatters",
+        "#DisabilityCommunity",
+        "#NothingAboutUsWithoutUs",
+        "#DisabilityAdvocate",
+        "#ChronicIllnessWarrior"
+      ],
+      "bestTime": "11AM",
+      "hookType": "outrage",
+      "altHooks": [
+        "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+        "The document they tried to bury says it all. Thread 🧵 👁️"
+      ]
+    },
+    "tiktok": {
+      "hook": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+      "hashtags": [
+        "#3mpwrApp",
+        "#DisabledTikTok",
+        "#ChronicIllness",
+        "#Spoonie",
+        "#DisabilityAwareness"
+      ],
+      "bestTime": "7AM",
+      "hookType": "outrage",
+      "altHooks": [
+        "They denied 10,000+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
+        "We traced the money. You won't believe where it leads. 👁️"
+      ]
+    },
+    "linkedin": {
+      "hook": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+      "hashtags": [
+        "#3mpwrApp",
+        "#DisabilityInclusion",
+        "#AccessibleWorkplace",
+        "#DisabilityRights",
+        "#Accommodation"
+      ],
+      "bestTime": "7AM",
+      "hookType": "outrage",
+      "altHooks": [
+        "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims.",
+        "Why do 67% of mental health claims get denied? The answer isn't what you think..."
+      ]
+    },
+    "youtube": {
+      "hook": "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
+      "hashtags": [
+        "#3mpwrApp",
+        "#WorkersComp",
+        "#InjuredWorkers"
+      ],
+      "bestTime": "2PM",
+      "hookType": "outrage",
+      "altHooks": [
+        "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
+        "The document they tried to bury says it all. Thread 🧵 👁️"
+      ]
+    }
+  },
+  "engagementPrompts": [
+    "What patterns have you noticed?",
+    "Drop your FOI findings below 👇",
+    "Help us connect the dots"
+  ],
+  "quirkyIntro": "Good afternoon, fellow disability warriors. The data doesn't lie. Here's what we found.",
+  "quirkyClosing": "Share this with someone who needs to know. We rise by lifting each other.",
+  "metadata": {
+    "generatedAt": "2025-12-04T17:53:23.279Z",
+    "version": "2.0",
+    "analyticsUpdateDue": "2026-01-03"
+  }
+}

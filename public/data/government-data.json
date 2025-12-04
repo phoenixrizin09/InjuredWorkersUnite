@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-04T20:50:43.433Z",
+  "timestamp": "2025-12-04T21:14:17.884Z",
   "federal": [
     {
       "id": "adad580f-76b0-4502-bd05-20c125de9116",
@@ -604,6 +604,636 @@
   ],
   "provincial": [
     {
+      "id": "1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
+      "title": "Ontario Disability Support Program (ODSP) disability adjudication data",
+      "description": "The Ministry of Community and Social Services data set for Ontario Disability\nSupport Program (ODSP) adjudication contains ODSP disability adjudication\napplications and their outcomes (decisions, decision dates, type of\ndisability).\n\n",
+      "organization": "Children, Community and Social Services",
+      "lastModified": "2021-01-14T13:46:13.923757",
+      "url": "https://data.ontario.ca/dataset/1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "disability"
+    },
+    {
+      "id": "053e206d-5015-4e71-be42-5d33db5c6793",
+      "title": "Disability Adjudication Database",
+      "description": "The Disability Adjudication Database (DAD) has incorporated integrated\nworkflows and file staging customized to the ministry's Disability\nAdjudication Unit (DAU)'s business processes. It tracks what happens to a\nreferral for Ontario Disability Support Program (ODSP) benefits from the time\na disability determination package is received at the DAU. The database\nfollows the referral as it goes through the various stages of the adjudication\nprocess, including appeals to the Divisional Court.\n\n",
+      "organization": "Children, Community and Social Services",
+      "lastModified": "2021-01-14T17:32:36.260452",
+      "url": "https://data.ontario.ca/dataset/053e206d-5015-4e71-be42-5d33db5c6793",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "disability"
+    },
+    {
+      "id": "f7b07b82-e8a5-4c57-927c-aabf07f53b50",
+      "title": "Developmental disability support: client profiles",
+      "description": "This dataset includes snapshot information for 33,615 individuals, including:\n\n  * age\n  * gender\n  * living arrangement\n  * income source(s)\n  * communication\n  * use of disability aids\n  * health and medical conditions\n  * behavioural traits\n  * level of support need\n\nThe 2010 survey was completed by agencies providing residential services.\n\nThe 2013 survey was completed by agencies providing non-residential services.\n\nResponses from multiple agencies for the same client were consolidated to\ne",
+      "organization": "Children, Community and Social Services",
+      "lastModified": "2022-12-05T01:52:24.121202",
+      "url": "https://data.ontario.ca/dataset/f7b07b82-e8a5-4c57-927c-aabf07f53b50",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "disability"
+    },
+    {
+      "id": "1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
+      "title": "Ontario Disability Support Program cases and beneficiaries",
+      "description": "The Ministry of Community and Social Services reports the numbers of Ontario\nDisability Support Program (ODSP) cases and beneficiaries (by family\nstructure), the number of children and Assistance for Children with Severe\nDisabilities (ACSD) cases as of the end of month (April 2008 to present).\n\n",
+      "organization": "Children, Community and Social Services",
+      "lastModified": "2021-01-15T00:41:46.779024",
+      "url": "https://data.ontario.ca/dataset/1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "disability"
+    },
+    {
+      "id": "83f3305c-711d-46f5-bfa0-a77c810874af",
+      "title": "2012 Canadian Survey on Disability data tables",
+      "description": "Variables include labour force status (employment, unemployment, unemployment\nrates and participation rates), educational attainment, barriers to job\nsearch, reasons difficult to change jobs, attendance at school, self-\nemployment, employer awareness of limitation, income, sources of income,\naccommodations needed/obtained, workforce training, class of worker, major\nfield of study and employment by industry and occupation, by age group, Canada\nand the provinces. Data is for 2010 to 2012, dependin",
+      "organization": "Economic Development, Job Creation and Trade",
+      "lastModified": "2021-01-14T19:42:01.031789",
+      "url": "https://data.ontario.ca/dataset/83f3305c-711d-46f5-bfa0-a77c810874af",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "disability"
+    },
+    {
+      "id": "8950fc57-cb69-47a7-86c4-6f644245ed08",
+      "title": "Occupational Health and Safety rates",
+      "description": "Provides statistical information on workplace injury rates for traumatic\nfatalities, occupational disease fatalities and critical injuries\n\n",
+      "organization": "Labour, Training and Skills Development",
+      "lastModified": "2021-01-15T00:39:32.774238",
+      "url": "https://data.ontario.ca/dataset/8950fc57-cb69-47a7-86c4-6f644245ed08",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "f3e63186-8401-4c9e-a490-1f9e7d7eb00b",
+      "title": "Occupational Health and Safety worker fatality and critical injury counts report",
+      "description": "The numbers reflect incidents that were reported to and tracked by the\r\nMinistry of Labour. They exclude death from natural causes, death of non-\r\nworkers at a workplace, suicides, death as a result of a criminal act or\r\ntraffic accident (unless the OHSA is also implicated) and death from\r\noccupational exposures that occurred in the past.\r\n\r\nData from the Ministry of Labour reflects Occupational Health and Safety (OHS)\r\nand Employment Standards (ES) information at a point in time and/or for\r\nspe",
+      "organization": "Labour, Training and Skills Development",
+      "lastModified": "2025-10-22T17:45:30.158954",
+      "url": "https://data.ontario.ca/dataset/f3e63186-8401-4c9e-a490-1f9e7d7eb00b",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
+      "title": "Occupational Health and Safety inspections report",
+      "description": "The Ministry of Labour inspects workplaces to monitor compliance with\r\noccupational health and safety legislation and regulations. These are\r\nconsidered to be proactive field visits. The ministry focuses on workplaces\r\nand/or sectors of the economy that have a history of poor compliance or high\r\nlevels of work-related injuries.\r\n\r\nData from the Ministry of Labour reflects Occupational Health and Safety (OHS)\r\nand Employment Standards (ES) information at a point in time and/or for\r\nspecific repor",
+      "organization": "Labour, Training and Skills Development",
+      "lastModified": "2025-05-22T18:49:15.058564",
+      "url": "https://data.ontario.ca/dataset/ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "404fbfa7-6954-489b-bf92-9a5efa36dbf4",
+      "title": "Recognized Employers Under the Supporting Ontario’s Safe Employers Program",
+      "description": "[Supporting Ontario’s Safe Employers](https://www.ontario.ca/page/supporting-ontarios-safe-employers-program) is a voluntary program that promotes health and safety in the workplace and helps reduce injuries and illness. The Ministry of Labour, Immigration, Training and Skills Development runs the program under the direction of the Chief Prevention Officer (CPO).  Employers that are recognized by the program have successfully implemented an occupational health and safety management system and [m",
+      "organization": "Labour, Training and Skills Development",
+      "lastModified": "2025-10-30T18:21:10.951963",
+      "url": "https://data.ontario.ca/dataset/404fbfa7-6954-489b-bf92-9a5efa36dbf4",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "bf95788f-e27f-4d1f-a850-97f5f36de480",
+      "title": "Ministry of Labour, Training and Skills Development Prevention Office Research Grants",
+      "description": "Get data on grants, recipients and project information distributed by the Ministry of Labour, Training and Skills Development under a number of research programs.\r\n\r\nThis dataset details funding provided to recipients under the Bridging the Gap, Research Opportunities Program, Applied Research Questions, and the Occupational Health & Safety Prevention and Innovation programs.\r\n\r\nThese grants aim to improve occupational health and safety outcomes by supporting projects that reduce workplace injur",
+      "organization": "Labour, Training and Skills Development",
+      "lastModified": "2022-12-05T00:50:24.741993",
+      "url": "https://data.ontario.ca/dataset/bf95788f-e27f-4d1f-a850-97f5f36de480",
+      "source": "data.ontario.ca",
+      "province": "Ontario",
+      "provinceCode": "ON",
+      "wcb": {
+        "name": "WSIB",
+        "url": "https://www.wsib.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - data.ontario.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "eb2edb1e-0bd4-4a4a-a1cf-71dcc74e735e",
+      "title": "Canadian Survey on Disability (CSD) 2022",
+      "description": "Dataset excerpt from the Canadian Survey on Disability (CSD) provided by Statistics Canada. The data in this table have additional details compared to datasets available on the Statistics Canada website. All data provided is on an annual basis for reference year 2022.\n\nSource: Statistics Canada, Canadian Survey on Disability (CSD), March 2025. Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada.",
+      "organization": "BC Stats",
+      "lastModified": "2025-07-03T16:33:55.457206",
+      "url": "https://catalogue.data.gov.bc.ca/dataset/eb2edb1e-0bd4-4a4a-a1cf-71dcc74e735e",
+      "source": "catalogue.data.gov.bc.ca",
+      "province": "British Columbia",
+      "provinceCode": "BC",
+      "wcb": {
+        "name": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - catalogue.data.gov.bc.ca",
+      "query": "disability"
+    },
+    {
+      "id": "1e730ea9-dd19-4c22-aa95-fe644efc7a06",
+      "title": "Student Headcount by Disabilities or Diverse Abilities Category",
+      "description": "Headcount of students by disabilities or diverse abilities (special needs) funding code:  \n*Category A – Physically Dependent  \n*Category B – Deafblind  \n*Category C – Moderate to Profound Intellectual Disability  \n*Category D – Physical Disability / Chronic Health Impairment   \n*Category E – Visual Impairment  \n*Category F – Deaf or Hard of Hearing  \n*Category G – Autism Spectrum Disorder  \n*Category H – Intensive Behaviour Intervention / Serious Mental Illness  \n*Category K – Mild Intellectual",
+      "organization": "Education Analytics Office",
+      "lastModified": "2024-12-13T00:14:39.062612",
+      "url": "https://catalogue.data.gov.bc.ca/dataset/1e730ea9-dd19-4c22-aa95-fe644efc7a06",
+      "source": "catalogue.data.gov.bc.ca",
+      "province": "British Columbia",
+      "provinceCode": "BC",
+      "wcb": {
+        "name": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - catalogue.data.gov.bc.ca",
+      "query": "disability"
+    },
+    {
+      "id": "6084ff6e-a363-449a-97b3-87e36b14d1d7",
+      "title": "Annual Labour Force Characteristics and Wages by Disability Status from Labour Force Survey (LFS)",
+      "description": "Dataset excerpts from the Labour Force Survey (LFS) provided by Statistics Canada. The data in this table have additional details compared to datasets available on the Statistics Canada website. \n\nAll data provided is on an annual basis and covers the period 2022 to 2023. \n\nSource: Statistics Canada, Labour Force Survey, October 2024. Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada.",
+      "organization": "BC Stats",
+      "lastModified": "2025-07-03T16:33:36.215165",
+      "url": "https://catalogue.data.gov.bc.ca/dataset/6084ff6e-a363-449a-97b3-87e36b14d1d7",
+      "source": "catalogue.data.gov.bc.ca",
+      "province": "British Columbia",
+      "provinceCode": "BC",
+      "wcb": {
+        "name": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - catalogue.data.gov.bc.ca",
+      "query": "disability"
+    },
+    {
+      "id": "55dacce5-8b63-471c-9feb-2d64ad88a567",
+      "title": "BC Public Service - Workforce Profiles",
+      "description": "The Workforce Profiles dataset provides important perspective on representation of equity groups within the B.C. Public Service and all of its ministries and organizations. ",
+      "organization": "BC Stats",
+      "lastModified": "2025-05-06T23:03:11.325516",
+      "url": "https://catalogue.data.gov.bc.ca/dataset/55dacce5-8b63-471c-9feb-2d64ad88a567",
+      "source": "catalogue.data.gov.bc.ca",
+      "province": "British Columbia",
+      "provinceCode": "BC",
+      "wcb": {
+        "name": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - catalogue.data.gov.bc.ca",
+      "query": "disability"
+    },
+    {
+      "id": "2428875d-c09b-479f-853d-a6da09abefd6",
+      "title": "Budget 2012 - Supports To Individuals and Families Tbl 1.16",
+      "description": "A tabular presentation of planned costs of direct support to British Columbia individuals and families for the years 2012-13, 2013-14 and 2014-15, includes values for income assistance, support for developmental disabilities and communications assistance",
+      "organization": "Treasury Board Staff",
+      "lastModified": "2022-06-01T23:34:06.104253",
+      "url": "https://catalogue.data.gov.bc.ca/dataset/2428875d-c09b-479f-853d-a6da09abefd6",
+      "source": "catalogue.data.gov.bc.ca",
+      "province": "British Columbia",
+      "provinceCode": "BC",
+      "wcb": {
+        "name": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - catalogue.data.gov.bc.ca",
+      "query": "disability"
+    },
+    {
+      "id": "8b0a5505-243c-409c-8159-13d1a368b90a",
+      "title": "Alberta Aids to Daily Living program manual Section L : lifters, homecare beds and accessories benefits",
+      "description": "The Alberta Aids to Daily Living (AADL) program manual includes information on eligibility, cost-share exemption, quantity and frequency review requests and vendor, authorizer and specialty supplier roles and responsibilities. The program manual also includes policies and procedures for each benefit area and approved product lists. The manual is broken into sections for easier reference.",
+      "organization": "Primary and Preventative Health Services",
+      "lastModified": "2025-12-01T16:48:50.608913",
+      "url": "https://open.alberta.ca/dataset/8b0a5505-243c-409c-8159-13d1a368b90a",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "cb4b0e80-e50e-4c6a-8283-6cb0f8229db7",
+      "title": "Alberta Aids to Daily Living program manual Section X : seating and wheelchair accessory benefits",
+      "description": "The Alberta Aids to Daily Living (AADL) program manual includes information on eligibility, cost-share exemption, quantity and frequency review requests and vendor, authorizer and specialty supplier roles and responsibilities. The program manual also includes policies and procedures for each benefit area and approved product lists. The manual is broken into sections for easier reference.",
+      "organization": "Primary and Preventative Health Services",
+      "lastModified": "2025-12-02T15:45:29.973529",
+      "url": "https://open.alberta.ca/dataset/cb4b0e80-e50e-4c6a-8283-6cb0f8229db7",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "97458b3b-3f49-4267-99c0-5868f7a78da7",
+      "title": "Assured Income for the Severely Handicapped (AISH)",
+      "description": "Providing information about the Assured Income for the Severely Handicapped program.",
+      "organization": "Assisted Living and Social Services",
+      "lastModified": "2025-11-24T23:01:33.778584",
+      "url": "https://open.alberta.ca/dataset/97458b3b-3f49-4267-99c0-5868f7a78da7",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
+      "title": "The Alberta Aids to Daily Living (AADL) bulletin [151 to current]",
+      "description": "Alberta Aids to Daily Living assists Albertans with a long-term disability, chronic illness or terminal illness, in maintaining independence in their community. AADL provides funding for basic medical equipment and supplies to meet clinically assessed needs. The AADL bulletin provides notices, updates and reminders to AADL providers, vendors, suppliers and other interested parties.",
+      "organization": "Primary and Preventative Health Services",
+      "lastModified": "2025-11-18T22:20:21.004370",
+      "url": "https://open.alberta.ca/dataset/fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "e79e42cd-a5d9-4076-a474-4517456d5c73",
+      "title": "Responses to public fatality inquiry recommendations",
+      "description": "This dataset serves as a public tracking system for responses to recommendations made by judges as a result of a public fatality inquiry. For each inquiry, the tracking system records the name of the deceased, the cause and manner of death, the recommendations made by the judge to prevent similar deaths, the persons and organizations who were asked to respond to the recommendations, and their responses, if any.",
+      "organization": "Justice",
+      "lastModified": "2025-11-03T15:51:02.500430",
+      "url": "https://open.alberta.ca/dataset/e79e42cd-a5d9-4076-a474-4517456d5c73",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "d3a844d2-69b7-4a69-8c10-9a502cdb8849",
+      "title": "Workers' Compensation Regulation",
+      "description": "This Regulation contains detailed provisions regarding application of the Workers' Compensation Act.",
+      "organization": "King's Printer",
+      "lastModified": "2025-09-20T02:03:36.056999",
+      "url": "https://open.alberta.ca/dataset/d3a844d2-69b7-4a69-8c10-9a502cdb8849",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "7cbd9e40-e931-4ee5-bb43-9c5503f908d8",
+      "title": "Health Statutes Amendment Act, 2025 (Unproclaimed Sections Only)",
+      "description": "Contains unproclaimed amendments to: Access to Information; Alberta Evidence; Alberta Health; Alberta Health Care Insurance; Alberta Sovereignty within a United Canada; Animal Health; Auditor General; Child and Youth Advocate; Child, Youth and Family Enhancement; Conflicts of Interest; Continuing Care; COVID-19 Related Measures; Crown’s Right of Recovery; Election; Election Finances and Contributions Disclosure; Emergency Health Services; Environmental Protection and Enhancement; Family and Comm",
+      "organization": "King's Printer",
+      "lastModified": "2025-09-20T02:01:01.331240",
+      "url": "https://open.alberta.ca/dataset/7cbd9e40-e931-4ee5-bb43-9c5503f908d8",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "title": "Workers' Compensation Act",
+      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
+      "organization": "King's Printer",
+      "lastModified": "2025-12-04T03:01:44.598574",
+      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "0080ab5e-b25a-4325-9adb-e223728bd860",
+      "title": "Prevention initiative annual update",
+      "description": "Keeping workplaces and workers healthy and safe is the ultimate goal of the Prevention Initiative for Alberta’s Occupational Health and Safety system. This annual update reviews actions taken during the previous fiscal year, and outlines the path the Prevention Initiative has set for the upcoming year.",
+      "organization": "Jobs, Economy and Trade",
+      "lastModified": "2025-05-16T19:22:40.197585",
+      "url": "https://open.alberta.ca/dataset/0080ab5e-b25a-4325-9adb-e223728bd860",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "5e977b8c-41f7-4763-ad4d-2f0723417dbd",
+      "title": "Alberta wage and salary survey : average wages by industry and economic region",
+      "description": "This bienneial survey provides information on wages and salaries for full- and part-time employees by occupation, region, and industry. The survey helps Albertans make career and education choices and helps organizations determine pay scales.",
+      "organization": "Jobs, Economy and Trade",
+      "lastModified": "2025-05-09T21:05:34.056222",
+      "url": "https://open.alberta.ca/dataset/5e977b8c-41f7-4763-ad4d-2f0723417dbd",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "ae50ec4d-8c29-4059-b09f-1887fe343323",
+      "title": "Worker fatally injured after fall through roof",
+      "description": "Presents findings of an investigation of a workplace fatality that occurred in June 2023 in the construction and construction trades sector. A worker was replacing the metal roofing on the building when the worker fell through an opening and sustained fatal injuries.",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-11-26T17:29:00.312818",
+      "url": "https://open.alberta.ca/dataset/ae50ec4d-8c29-4059-b09f-1887fe343323",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "29f3ba06-73f0-48d9-b077-e7eaed44a918",
+      "title": "Worker fatally injured when struck by a falling load",
+      "description": "Presents findings of an investigation of a workplace fatality that occurred in July 2022 in the business and professional services sector. A worker was using a mobile crane during equipment maintenance activities when the load fell from the crane and struck the worker, resulting in fatal injuries.",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-11-26T17:29:10.647374",
+      "url": "https://open.alberta.ca/dataset/29f3ba06-73f0-48d9-b077-e7eaed44a918",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "30359cef-2796-4ad2-90dc-279167733829",
+      "title": "Worker fatally injured after exposure to carbon monoxide",
+      "description": "Presents the findings of an investigation of a workplace fatality in the business, personal and professional services sector that occurred in February, 2023. A worker was using a hooded supplied air respirator while sandblasting equipment. Carbon monoxide was released into the worker's air supply, resulting in a fatal exposure injury.",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-12-03T22:11:49.869320",
+      "url": "https://open.alberta.ca/dataset/30359cef-2796-4ad2-90dc-279167733829",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "3728ce9d-2133-43c3-a090-e73e968f4b62",
+      "title": "Workers’ handbook on occupational health and safety",
+      "description": "This pocket-sized handbook is a quick health and safety reference for Alberta workers. It introduces some key health and safety concepts, along with examples of common workplace hazards, frequently used controls and quick tips that workers can use everyday.",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-06-16T21:36:00.922096",
+      "url": "https://open.alberta.ca/dataset/3728ce9d-2133-43c3-a090-e73e968f4b62",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "title": "Workers' Compensation Act",
+      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
+      "organization": "King's Printer",
+      "lastModified": "2025-12-04T03:01:44.598574",
+      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "9af70bad-661f-4305-92fb-a7f74dad923d",
+      "title": "Données de compensation de base GPS",
+      "description": "Ces fichiers permettent aux utilisateurs d'ajouter des corrections à leurs données en post-traitement, améliorant ainsi leur précision. ",
+      "organization": "Ville de Lévis",
+      "lastModified": "2025-12-04T16:59:12.317786",
+      "url": "https://donneesquebec.ca/dataset/9af70bad-661f-4305-92fb-a7f74dad923d",
+      "source": "donneesquebec.ca",
+      "province": "Quebec",
+      "provinceCode": "QC",
+      "wcb": {
+        "name": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - donneesquebec.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "d1af59fd-4304-4434-a109-b6bfae37bbf9",
+      "title": "Sondage - Expérimentation de mobilité autonome à Montréal",
+      "description": "Cet ensemble de données présente deux sondages effectués dans le cadre des projets pilotes de navettes autonomes ayant eu lieu sur le territoire de Montréal depuis 2018 portés par la Ville ou auxquels la Ville a collaboré. \r\n\r\nLe premier a été fait l'automne 2018 auprès des utilisateurs des navettes ayant opéré au Parc Olympique et passants sur le site. La [documentation](\r\nhttps://parcolympique.qc.ca/nouvelles/2019/12/navette-electriques-autonomes-au-parc-olympique-publication-du-rapport-du-pro",
+      "organization": "Ville de Montréal",
+      "lastModified": "2025-02-21T17:04:34.908688",
+      "url": "https://donneesquebec.ca/dataset/d1af59fd-4304-4434-a109-b6bfae37bbf9",
+      "source": "donneesquebec.ca",
+      "province": "Quebec",
+      "provinceCode": "QC",
+      "wcb": {
+        "name": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - donneesquebec.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "716310b2-bb1d-4cd8-b12c-39a43db15d10",
+      "title": "Sondage du Défi des villes intelligentes",
+      "description": "Dans le cadre du Défi des villes intelligentes, la Ville de Montréal a sollicité la communauté pour définir les orientations de sa candidature. Afin d’imaginer le Montréal de demain, un sondage a été lancé afin d'entendre les citoyens sur les grands enjeux montréalais qui ont le plus d’impact sur leur qualité de vie.  Le présent ensemble présente les résultats de ce sondage.\r\nPlus d'informations sur la candidature de Montréal sont disponibles sur la plate-forme [Réalisons-Montréal](https://www.r",
+      "organization": "Ville de Montréal",
+      "lastModified": "2025-02-21T17:06:17.309815",
+      "url": "https://donneesquebec.ca/dataset/716310b2-bb1d-4cd8-b12c-39a43db15d10",
+      "source": "donneesquebec.ca",
+      "province": "Quebec",
+      "provinceCode": "QC",
+      "wcb": {
+        "name": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - donneesquebec.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "ac48914c-8e75-4fc3-b93f-1d3f169ae1ff",
+      "title": "Agriculture urbaine : sondage auprès de la population de l’île de Montréal",
+      "description": "La Division du développement durable de la Ville de Montréal a confié à la firme Bureau d’intervieweurs professionnels (BIP Recherche) la réalisation d’un sondage auprès de la population de l’Île de Montréal portant sur l’agriculture urbaine. Dans ce contexte, l’agriculture urbaine est entendue comme la production alimentaire en milieu urbain.\r\n\r\nLe sondage visait à :  \r\n  - Mesurer la proportion de Montréalais qui pratique l’agriculture urbaine ;  \r\n  - Connaître, parmi les agriculteurs urbains",
+      "organization": "Ville de Montréal",
+      "lastModified": "2025-05-12T20:30:53.660461",
+      "url": "https://donneesquebec.ca/dataset/ac48914c-8e75-4fc3-b93f-1d3f169ae1ff",
+      "source": "donneesquebec.ca",
+      "province": "Quebec",
+      "provinceCode": "QC",
+      "wcb": {
+        "name": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - donneesquebec.ca",
+      "query": "workers compensation"
+    },
+    {
+      "id": "e07261e6-f13d-4995-a97e-e8466fd9f197",
+      "title": "Sondage Rêvons Montréal 2020-2030",
+      "description": "Consultation réalisée par la Ville de Montréal auprès de la population et de ses employés. Le sondage en ligne Rêvons Montréal 2020-2030 a obtenu 12 500 réponses, dont 4 000 de personnes à l'emploi de la Ville de Montréal. Pour en savoir plus sur le [plan stratégique Montréal 2030](https://montreal.ca/articles/montreal-2030-un-premier-plan-strategique).",
+      "organization": "Ville de Montréal",
+      "lastModified": "2025-02-17T23:48:58.622186",
+      "url": "https://donneesquebec.ca/dataset/e07261e6-f13d-4995-a97e-e8466fd9f197",
+      "source": "donneesquebec.ca",
+      "province": "Quebec",
+      "provinceCode": "QC",
+      "wcb": {
+        "name": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - donneesquebec.ca",
+      "query": "workers compensation"
+    },
+    {
       "id": "5eb38a24-2d3e-429d-afb8-46cb93ebd5f7",
       "title": "Northern Fire Protection Program (NFPP)",
       "description": "This database contains registrations/resignations, Fire Department Roster,\ntraining records for each member, WSIB information, invoices paid through\nBusiness Support/RMS or P-Card, NFPP equipment, invoices on individual truck,\nrecord maintenance, annual tests and repairs.\n\n  *[NFPP]: Northern Fire Protection Program\n  *[WSIB]: Workplace Safety and Insurance Board\n\n",
@@ -635,28 +1265,6 @@
       "url": "https://data.ontario.ca/dataset/4221eb79-caaf-4ffc-8163-fe287e901607",
       "source": "data.ontario.ca",
       "query": "WSIB"
-    },
-    {
-      "id": "bf95788f-e27f-4d1f-a850-97f5f36de480",
-      "title": "Ministry of Labour, Training and Skills Development Prevention Office Research Grants",
-      "description": "Get data on grants, recipients and project information distributed by the Ministry of Labour, Training and Skills Development under a number of research programs.\r\n\r\nThis dataset details funding provided to recipients under the Bridging the Gap, Research Opportunities Program, Applied Research Questions, and the Occupational Health & Safety Prevention and Innovation programs.\r\n\r\nThese grants aim to improve occupational health and safety outcomes by supporting projects that reduce workplace injur",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2022-12-05T00:50:24.741993",
-      "created": "2020-01-11T05:55:22.260137",
-      "url": "https://data.ontario.ca/dataset/bf95788f-e27f-4d1f-a850-97f5f36de480",
-      "source": "data.ontario.ca",
-      "query": "WSIB"
-    },
-    {
-      "id": "1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
-      "title": "Ontario Disability Support Program (ODSP) disability adjudication data",
-      "description": "The Ministry of Community and Social Services data set for Ontario Disability\nSupport Program (ODSP) adjudication contains ODSP disability adjudication\napplications and their outcomes (decisions, decision dates, type of\ndisability).\n\n",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2021-01-14T13:46:13.923757",
-      "created": "2020-01-11T05:39:31.307690",
-      "url": "https://data.ontario.ca/dataset/1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
-      "source": "data.ontario.ca",
-      "query": "ODSP"
     },
     {
       "id": "6a84b330-f4b7-421b-b2b3-0dbc4404cf7d",
@@ -736,17 +1344,6 @@
       "query": "ODSP"
     },
     {
-      "id": "1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
-      "title": "Ontario Disability Support Program cases and beneficiaries",
-      "description": "The Ministry of Community and Social Services reports the numbers of Ontario\nDisability Support Program (ODSP) cases and beneficiaries (by family\nstructure), the number of children and Assistance for Children with Severe\nDisabilities (ACSD) cases as of the end of month (April 2008 to present).\n\n",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2021-01-15T00:41:46.779024",
-      "created": "2020-01-11T05:39:44.463960",
-      "url": "https://data.ontario.ca/dataset/1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
-      "source": "data.ontario.ca",
-      "query": "ODSP"
-    },
-    {
       "id": "67b71060-9085-4a34-8a45-3fe8316161df",
       "title": "Social assistance operational indicators data set",
       "description": "The Ministry of Community and Social Services reports monthly information on\noperational indicators by Ontario Works Consolidated Municipal Service\nManager/District Social Services Administration Board (CMSM/DSSAB) and Ontario\nDisability Support Program (ODSP) region/local office, in the following areas:\n\n  * intake\n  * case management workload\n  * customer service\n  * accountability\n  * financial\n\n",
@@ -758,83 +1355,6 @@
       "query": "ODSP"
     },
     {
-      "id": "8950fc57-cb69-47a7-86c4-6f644245ed08",
-      "title": "Occupational Health and Safety rates",
-      "description": "Provides statistical information on workplace injury rates for traumatic\nfatalities, occupational disease fatalities and critical injuries\n\n",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2021-01-15T00:39:32.774238",
-      "created": "2020-01-11T05:55:54.072836",
-      "url": "https://data.ontario.ca/dataset/8950fc57-cb69-47a7-86c4-6f644245ed08",
-      "source": "data.ontario.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "f3e63186-8401-4c9e-a490-1f9e7d7eb00b",
-      "title": "Occupational Health and Safety worker fatality and critical injury counts report",
-      "description": "The numbers reflect incidents that were reported to and tracked by the\r\nMinistry of Labour. They exclude death from natural causes, death of non-\r\nworkers at a workplace, suicides, death as a result of a criminal act or\r\ntraffic accident (unless the OHSA is also implicated) and death from\r\noccupational exposures that occurred in the past.\r\n\r\nData from the Ministry of Labour reflects Occupational Health and Safety (OHS)\r\nand Employment Standards (ES) information at a point in time and/or for\r\nspe",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2025-10-22T17:45:30.158954",
-      "created": "2020-01-11T05:55:35.388035",
-      "url": "https://data.ontario.ca/dataset/f3e63186-8401-4c9e-a490-1f9e7d7eb00b",
-      "source": "data.ontario.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
-      "title": "Occupational Health and Safety inspections report",
-      "description": "The Ministry of Labour inspects workplaces to monitor compliance with\r\noccupational health and safety legislation and regulations. These are\r\nconsidered to be proactive field visits. The ministry focuses on workplaces\r\nand/or sectors of the economy that have a history of poor compliance or high\r\nlevels of work-related injuries.\r\n\r\nData from the Ministry of Labour reflects Occupational Health and Safety (OHS)\r\nand Employment Standards (ES) information at a point in time and/or for\r\nspecific repor",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2025-05-22T18:49:15.058564",
-      "created": "2020-01-11T05:56:20.890781",
-      "url": "https://data.ontario.ca/dataset/ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
-      "source": "data.ontario.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "404fbfa7-6954-489b-bf92-9a5efa36dbf4",
-      "title": "Recognized Employers Under the Supporting Ontario’s Safe Employers Program",
-      "description": "[Supporting Ontario’s Safe Employers](https://www.ontario.ca/page/supporting-ontarios-safe-employers-program) is a voluntary program that promotes health and safety in the workplace and helps reduce injuries and illness. The Ministry of Labour, Immigration, Training and Skills Development runs the program under the direction of the Chief Prevention Officer (CPO).  Employers that are recognized by the program have successfully implemented an occupational health and safety management system and [m",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2025-10-30T18:21:10.951963",
-      "created": "2023-04-26T03:16:56.996684",
-      "url": "https://data.ontario.ca/dataset/404fbfa7-6954-489b-bf92-9a5efa36dbf4",
-      "source": "data.ontario.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "bf95788f-e27f-4d1f-a850-97f5f36de480",
-      "title": "Ministry of Labour, Training and Skills Development Prevention Office Research Grants",
-      "description": "Get data on grants, recipients and project information distributed by the Ministry of Labour, Training and Skills Development under a number of research programs.\r\n\r\nThis dataset details funding provided to recipients under the Bridging the Gap, Research Opportunities Program, Applied Research Questions, and the Occupational Health & Safety Prevention and Innovation programs.\r\n\r\nThese grants aim to improve occupational health and safety outcomes by supporting projects that reduce workplace injur",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2022-12-05T00:50:24.741993",
-      "created": "2020-01-11T05:55:22.260137",
-      "url": "https://data.ontario.ca/dataset/bf95788f-e27f-4d1f-a850-97f5f36de480",
-      "source": "data.ontario.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
-      "title": "Ontario Disability Support Program (ODSP) disability adjudication data",
-      "description": "The Ministry of Community and Social Services data set for Ontario Disability\nSupport Program (ODSP) adjudication contains ODSP disability adjudication\napplications and their outcomes (decisions, decision dates, type of\ndisability).\n\n",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2021-01-14T13:46:13.923757",
-      "created": "2020-01-11T05:39:31.307690",
-      "url": "https://data.ontario.ca/dataset/1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
-      "source": "data.ontario.ca",
-      "query": "disability support"
-    },
-    {
-      "id": "f7b07b82-e8a5-4c57-927c-aabf07f53b50",
-      "title": "Developmental disability support: client profiles",
-      "description": "This dataset includes snapshot information for 33,615 individuals, including:\n\n  * age\n  * gender\n  * living arrangement\n  * income source(s)\n  * communication\n  * use of disability aids\n  * health and medical conditions\n  * behavioural traits\n  * level of support need\n\nThe 2010 survey was completed by agencies providing residential services.\n\nThe 2013 survey was completed by agencies providing non-residential services.\n\nResponses from multiple agencies for the same client were consolidated to\ne",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2022-12-05T01:52:24.121202",
-      "created": "2020-01-11T09:46:47.161571",
-      "url": "https://data.ontario.ca/dataset/f7b07b82-e8a5-4c57-927c-aabf07f53b50",
-      "source": "data.ontario.ca",
-      "query": "disability support"
-    },
-    {
       "id": "6a84b330-f4b7-421b-b2b3-0dbc4404cf7d",
       "title": "Ontario Disability Support Program (ODSP) Employment Supports Management System",
       "description": "The Ontario Disability Support Program (ODSP) Employment Supports Management\r\nSystem (ESMS) uses portions of the Social Assistance Management System (SAMS)\r\ndataset to facilitate employment supports management functions that are not\r\ncurrently supported by the SAMS application. SAMS is a case management system\r\nfor social assistance clients.\r\n\r\n",
@@ -842,17 +1362,6 @@
       "lastModified": "2023-11-01T02:30:37.929039",
       "created": "2020-01-11T05:38:54.226055",
       "url": "https://data.ontario.ca/dataset/6a84b330-f4b7-421b-b2b3-0dbc4404cf7d",
-      "source": "data.ontario.ca",
-      "query": "disability support"
-    },
-    {
-      "id": "1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
-      "title": "Ontario Disability Support Program cases and beneficiaries",
-      "description": "The Ministry of Community and Social Services reports the numbers of Ontario\nDisability Support Program (ODSP) cases and beneficiaries (by family\nstructure), the number of children and Assistance for Children with Severe\nDisabilities (ACSD) cases as of the end of month (April 2008 to present).\n\n",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2021-01-15T00:41:46.779024",
-      "created": "2020-01-11T05:39:44.463960",
-      "url": "https://data.ontario.ca/dataset/1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
       "source": "data.ontario.ca",
       "query": "disability support"
     },
@@ -875,17 +1384,6 @@
       "lastModified": "2021-01-15T00:31:51.368508",
       "created": "2020-01-11T07:13:03.449067",
       "url": "https://data.ontario.ca/dataset/5d68bfa4-0ae9-4b1e-b995-66a806b3d1df",
-      "source": "data.ontario.ca",
-      "query": "disability support"
-    },
-    {
-      "id": "053e206d-5015-4e71-be42-5d33db5c6793",
-      "title": "Disability Adjudication Database",
-      "description": "The Disability Adjudication Database (DAD) has incorporated integrated\nworkflows and file staging customized to the ministry's Disability\nAdjudication Unit (DAU)'s business processes. It tracks what happens to a\nreferral for Ontario Disability Support Program (ODSP) benefits from the time\na disability determination package is received at the DAU. The database\nfollows the referral as it goes through the various stages of the adjudication\nprocess, including appeals to the Divisional Court.\n\n",
-      "organization": "Children, Community and Social Services",
-      "lastModified": "2021-01-14T17:32:36.260452",
-      "created": "2020-01-11T09:41:00.562911",
-      "url": "https://data.ontario.ca/dataset/053e206d-5015-4e71-be42-5d33db5c6793",
       "source": "data.ontario.ca",
       "query": "disability support"
     },
@@ -921,28 +1419,6 @@
       "url": "https://data.ontario.ca/dataset/954d93c5-b654-4a60-bb83-01cdc1e50e45",
       "source": "data.ontario.ca",
       "query": "disability support"
-    },
-    {
-      "id": "8950fc57-cb69-47a7-86c4-6f644245ed08",
-      "title": "Occupational Health and Safety rates",
-      "description": "Provides statistical information on workplace injury rates for traumatic\nfatalities, occupational disease fatalities and critical injuries\n\n",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2021-01-15T00:39:32.774238",
-      "created": "2020-01-11T05:55:54.072836",
-      "url": "https://data.ontario.ca/dataset/8950fc57-cb69-47a7-86c4-6f644245ed08",
-      "source": "data.ontario.ca",
-      "query": "occupational health"
-    },
-    {
-      "id": "ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
-      "title": "Occupational Health and Safety inspections report",
-      "description": "The Ministry of Labour inspects workplaces to monitor compliance with\r\noccupational health and safety legislation and regulations. These are\r\nconsidered to be proactive field visits. The ministry focuses on workplaces\r\nand/or sectors of the economy that have a history of poor compliance or high\r\nlevels of work-related injuries.\r\n\r\nData from the Ministry of Labour reflects Occupational Health and Safety (OHS)\r\nand Employment Standards (ES) information at a point in time and/or for\r\nspecific repor",
-      "organization": "Labour, Training and Skills Development",
-      "lastModified": "2025-05-22T18:49:15.058564",
-      "created": "2020-01-11T05:56:20.890781",
-      "url": "https://data.ontario.ca/dataset/ad0c625b-a525-4ddb-9770-dc3f3a74da4e",
-      "source": "data.ontario.ca",
-      "query": "occupational health"
     },
     {
       "id": "861f4388-feb8-4a9f-8b99-5701a0867e72",
@@ -1033,11 +1509,18 @@
       "query": "occupational health"
     }
   ],
+  "provinces_covered": [
+    "Ontario",
+    "British Columbia",
+    "Alberta",
+    "Quebec",
+    null
+  ],
   "topics_scanned": [
     "workers compensation",
     "disability support",
-    "WSIB",
-    "ODSP"
+    "WCB",
+    "workplace injury"
   ],
-  "total_datasets": 89
+  "total_datasets": 110
 }

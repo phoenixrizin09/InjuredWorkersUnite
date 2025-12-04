@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-04T20:24:28.131Z",
+  "generated_at": "2025-12-04T21:14:52.699Z",
   "data_sources": [
     "reddit.com (real discussions)",
     "The Eye Oracle v2.0",
@@ -10,165 +10,165 @@
   "content": {
     "viral_tweets": [
       {
-        "text": "I suffered a workplace injury about 9 months ago, where I was immediately receiving WSIB for [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
-        "upvotes": 37,
-        "verified": true
-      },
-      {
-        "text": "I’m getting concerned I will never be able to return back to my pre-injury job. 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "Maximum",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
-        "upvotes": 37,
-        "verified": true
-      },
-      {
-        "text": "Hi, over a year ago I got hurt at work while lifting very heavy parts [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1pbzv7h/can_employer_force_you_to_sign_a_modified/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "Can employer force you to sign a modified dutyagreement if hurt at work? 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1pbzv7h/can_employer_force_you_to_sign_a_modified/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "I filed for WSIB because my foot got fractured [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ony3tg/injured_at_workplace/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "Injured at Workplace 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ony3tg/injured_at_workplace/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "I'm curious to hear from PC voters and even some more conservative Liberal voters about their views on RTO (Return to Office) and WFH (Work from Home) as well as a more broad question at the end [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1pd9gzg/question_for_pc_voters_about_rtowfh/",
-        "upvotes": 6,
-        "verified": true
-      },
-      {
-        "text": "Question for PC Voters about RTO/WFH 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1pd9gzg/question_for_pc_voters_about_rtowfh/",
-        "upvotes": 6,
-        "verified": true
-      },
-      {
-        "text": "I attend school at WLU and have Blue Cross Health and Dental Insurance through the school [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1oqgks4/cdcp_student_eligibility/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "CDCP Student Eligibility 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1oqgks4/cdcp_student_eligibility/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "A child support payment I was to make got returned due to NSF [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ooijrn/fro_help/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "FRO help 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ooijrn/fro_help/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "I’ve been on ODSP for about 10 years [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "Better Jobs/Second Career 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
-        "upvotes": 0,
-        "verified": true
-      },
-      {
-        "text": "'Better call Paul,' advocates tell families struggling with school supports for kids with disabilities 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1otvjky/better_call_paul_advocates_tell_families/",
-        "upvotes": 12,
-        "verified": true
-      },
-      {
-        "text": "I have been working in healthcare for 10+ years [Real story from ontario]",
-        "category": "💬 REAL STORIES",
-        "engagement": "Critical",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1onecm9/when_will_the_provincial_hiring_freeze_end_does/",
-        "upvotes": 8,
-        "verified": true
-      },
-      {
-        "text": "When will the provincial hiring freeze end? Does this really help bolster frontline employment? 👁️",
-        "category": "🔥 TRENDING",
-        "engagement": "High",
-        "source": "r/ontario",
-        "source_url": "https://reddit.com/r/ontario/comments/1onecm9/when_will_the_provincial_hiring_freeze_end_does/",
-        "upvotes": 8,
-        "verified": true
-      },
-      {
         "text": "'This is the new slavery': Migrant farm workers underpaid, abused and injured 👁️",
         "category": "🔥 TRENDING",
         "engagement": "Maximum",
         "source": "r/canada",
         "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
-        "upvotes": 205,
+        "upvotes": 204,
+        "verified": true
+      },
+      {
+        "text": "Canadian farmers to lobby federal government to cap profits of major grocers 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "Maximum",
+        "source": "r/onguardforthee",
+        "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
+        "upvotes": 702,
+        "verified": true
+      },
+      {
+        "text": "Hello everyone,\n\nI’m posting on behalf of a close friend who is very nervous about speaking up or taking legal action regarding a work injury [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 1,
+        "verified": true
+      },
+      {
+        "text": "Friend Injured at Work Due to Third-Party Negligence 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 1,
+        "verified": true
+      },
+      {
+        "text": "Hey LAC,\n\nThis post is an update/follow-up to my last post here [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1onqxr4/employers_hiring_scheduling_dysfunction_likely/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Employer's hiring &amp; scheduling dysfunction likely violating employment standards, seeking advice on recourse 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1onqxr4/employers_hiring_scheduling_dysfunction_likely/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "I’m looking for advice on how to approach this situation for a family member [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p8nebm/car_accident_while_on_ei/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Car accident while on EI 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p8nebm/car_accident_while_on_ei/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Hello everyone,\n\nI’m posting on behalf of a close friend who is very nervous about speaking up or taking legal action regarding a work injury [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Friend Injured at Work Due to Third-Party Negligence 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "**TL;DR**\n\nMy friend went on medical leave for a psychological injury caused by a supervisor [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p5m1x6/canada_friends_employer_cancelled_their/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "[Canada] Friend’s Employer Cancelled Their Pre-Approved Vacation, Forcing In-Office Return Despite Psychological Injury, WCB Involvement, and No Medical Clearance — Looking for Advice 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p5m1x6/canada_friends_employer_cancelled_their/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Hi everyone,\n\nAbout a week ago I donated plasma at a local center [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oosz2r/injury_during_plasma_donation_how_do_i_go_about/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Injury during plasma donation, how do I go about negotiating compensation? 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oosz2r/injury_during_plasma_donation_how_do_i_go_about/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "I’m looking for legal guidance in BC regarding workplace harassment, my employer’s investigation, and my options moving forward [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1pdo6yh/harassed_at_work_thirdparty_lawyer_backed_my/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Harassed at Work, Third-Party Lawyer Backed My Claim. Now I’m Being Asked to Sign a Release. Need Help 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1pdo6yh/harassed_at_work_thirdparty_lawyer_backed_my/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Hello everyone,\n\nI’m posting on behalf of a close friend who is very nervous about speaking up or taking legal action regarding a work injury [Real story from legaladvicecanada]",
+        "category": "💬 REAL STORIES",
+        "engagement": "Critical",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 0,
+        "verified": true
+      },
+      {
+        "text": "Friend Injured at Work Due to Third-Party Negligence 👁️",
+        "category": "🔥 TRENDING",
+        "engagement": "High",
+        "source": "r/legaladvicecanada",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orabdp/friend_injured_at_work_due_to_thirdparty/",
+        "upvotes": 0,
         "verified": true
       },
       {
@@ -196,18 +196,10 @@
         "oracle_verified": true
       },
       {
-        "text": "I'm curious to hear from PC voters and even some more conservative Liberal voters about their views on RTO (Return to Office) and WFH (Work from Home) as well as a more broad question at the end.\n\n  \nIf a party other than the Conservatives were to introduce a policy in their camp",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/ontario (6↑, 36 comments)",
-        "source_url": "https://reddit.com/r/ontario/comments/1pd9gzg/question_for_pc_voters_about_rtowfh/",
-        "verified": false
-      },
-      {
         "text": "Active discussion in r/canada",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/canada (205↑, 116 comments)",
+        "source": "r/canada (204↑, 116 comments)",
         "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
         "verified": false
       },
@@ -215,8 +207,16 @@
         "text": "Active discussion in r/onguardforthee",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/onguardforthee (703↑, 52 comments)",
+        "source": "r/onguardforthee (702↑, 52 comments)",
         "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
+        "verified": false
+      },
+      {
+        "text": "While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. \n\nMy fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. \n\nI was in shock,",
+        "category": "⚡ LIVE ALERTS",
+        "engagement": "High",
+        "source": "r/legaladvicecanada (39↑, 42 comments)",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
         "verified": false
       },
       {
@@ -228,11 +228,11 @@
         "verified": false
       },
       {
-        "text": "I suffered a workplace injury about 9 months ago, where I was immediately receiving WSIB for.  For reference, I suffered from a knee subluxation that doesn’t seem to be recovering very well.\nI have been able to do modified duties for the last 4 months, however my employer claims ",
+        "text": "\nThis is an emotional topic for me, so I have tried my best to remove any emotion and stick to the facts. \n\n\nmy sibling is an adult with permanent disabilities living in a publicly funded group living home in Ontario and our parents are divorced. our dad has tried to skirt his su",
         "category": "⚡ LIVE ALERTS",
         "engagement": "High",
-        "source": "r/ontario (37↑, 25 comments)",
-        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "source": "r/legaladvicecanada (39↑, 24 comments)",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1onbrz7/child_support_for_disabled_daughter_after_primary/",
         "verified": false
       }
     ],
@@ -259,23 +259,23 @@
         "viral_score": 92
       },
       {
-        "id": "real_wait_1oxfwfm",
+        "id": "real_wait_1p07mjp",
         "name": "Real Wait Time Evidence",
         "format": "stat_bomb",
-        "mainText": "9 months",
-        "source": "I’m getting concerned I will never be able to return back to my pre-injury job.",
-        "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
+        "mainText": "5 years",
+        "source": "Lost and homeless",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
         "category": "evidence",
         "data_source": "reddit_verified",
         "viral_score": 88
       },
       {
-        "id": "real_wait_1ood846",
+        "id": "real_wait_1p126w0",
         "name": "Real Wait Time Evidence",
         "format": "stat_bomb",
-        "mainText": "10 years",
-        "source": "Better Jobs/Second Career",
-        "source_url": "https://reddit.com/r/ontario/comments/1ood846/better_jobssecond_career/",
+        "mainText": "40 years",
+        "source": "Complaint Respecting a Co-guardian or trustee application",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p126w0/complaint_respecting_a_coguardian_or_trustee/",
         "category": "evidence",
         "data_source": "reddit_verified",
         "viral_score": 88
@@ -303,23 +303,100 @@
         "viral_score": 88
       },
       {
-        "id": "real_wait_1p07mjp",
+        "id": "real_wait_1ozfqh5",
         "name": "Real Wait Time Evidence",
         "format": "stat_bomb",
-        "mainText": "5 years",
-        "source": "Lost and homeless",
-        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
+        "mainText": "19 years",
+        "source": "Recourse for pregnant worker",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1ozfqh5/recourse_for_pregnant_worker/",
         "category": "evidence",
         "data_source": "reddit_verified",
         "viral_score": 88
       },
       {
-        "id": "real_wait_1p126w0",
+        "id": "real_wait_1ozv8wj",
         "name": "Real Wait Time Evidence",
         "format": "stat_bomb",
-        "mainText": "40 years",
-        "source": "Complaint Respecting a Co-guardian or trustee application",
-        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p126w0/complaint_respecting_a_coguardian_or_trustee/",
+        "mainText": "6 months",
+        "source": "Got laid off right after I told my work I was ready to come back after sick leave",
+        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1ozv8wj/got_laid_off_right_after_i_told_my_work_i_was/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1ourhqy",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "16 year",
+        "source": "What options exist for a 16 year old wanting independent living?",
+        "source_url": "https://reddit.com/r/alberta/comments/1ourhqy/what_options_exist_for_a_16_year_old_wanting/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1on9lrs",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "4 months",
+        "source": "Working in Edmonton for 4 months and I require some help.",
+        "source_url": "https://reddit.com/r/Edmonton/comments/1on9lrs/working_in_edmonton_for_4_months_and_i_require/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1oq9cna",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "7 months",
+        "source": "Anyone used the child-minding service at Clareview Rec Centre?",
+        "source_url": "https://reddit.com/r/Edmonton/comments/1oq9cna/anyone_used_the_childminding_service_at_clareview/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1p85r08",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "3 year",
+        "source": "Toddler Friendly Acitivies",
+        "source_url": "https://reddit.com/r/quebeccity/comments/1p85r08/toddler_friendly_acitivies/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1oy6556",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "15 years",
+        "source": "WCB Casework Excellence Specialist",
+        "source_url": "https://reddit.com/r/NovaScotia/comments/1oy6556/wcb_casework_excellence_specialist/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1p7pyq4",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "4 months",
+        "source": "How safe are GovNL Job Contracts?",
+        "source_url": "https://reddit.com/r/newfoundland/comments/1p7pyq4/how_safe_are_govnl_job_contracts/",
+        "category": "evidence",
+        "data_source": "reddit_verified",
+        "viral_score": 88
+      },
+      {
+        "id": "real_wait_1pe37at",
+        "name": "Real Wait Time Evidence",
+        "format": "stat_bomb",
+        "mainText": "22 year",
+        "source": "22M - Fell for someone, lost her, dealing with family trauma, legal stress, heartbreak, and I feel like I’m losing myself",
+        "source_url": "https://reddit.com/r/PEI/comments/1pe37at/22m_fell_for_someone_lost_her_dealing_with_family/",
         "category": "evidence",
         "data_source": "reddit_verified",
         "viral_score": 88
@@ -327,9 +404,9 @@
     ],
     "quickfire_slogans": [
       {
-        "text": "Can employer force you to sign a modified dutyagreement if hurt at work? 👁️",
+        "text": "Employer's hiring &amp; scheduling dysfunction likely violating employment standards, seeking advice on recourse 👁️",
         "power_level": "high",
-        "source": "r/ontario",
+        "source": "r/legaladvicecanada",
         "verified": true,
         "upvotes": 0
       },
@@ -338,7 +415,7 @@
         "power_level": "maximum",
         "source": "r/legaladvicecanada",
         "verified": true,
-        "upvotes": 17
+        "upvotes": 16
       },
       {
         "text": "Off work temporarily due to serious back pain. What are my options? Ontario. 👁️",
@@ -348,11 +425,46 @@
         "upvotes": 0
       },
       {
-        "text": "Employer's hiring &amp; scheduling dysfunction likely violating employment standards, seeking advice on recourse 👁️",
+        "text": "How to Ensure the Evidence is Valid When Fighting a Denied Claim by WorkSafeBC? 👁️",
         "power_level": "high",
         "source": "r/legaladvicecanada",
         "verified": true,
-        "upvotes": 2
+        "upvotes": 1
+      },
+      {
+        "text": "Does medical evidence from another province count within BC? Trying to challenge a wrong decision made by WorkSafeBC. 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 0
+      },
+      {
+        "text": "Employer skilled hours out of my pay 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 0
+      },
+      {
+        "text": "Does medical evidence from another province count within BC? Trying to challenge a wrong decision made by WorkSafeBC. 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 0
+      },
+      {
+        "text": "How to Ensure the Evidence is Valid When Fighting a Denied Claim by WorkSafeBC? 👁️",
+        "power_level": "high",
+        "source": "r/legaladvicecanada",
+        "verified": true,
+        "upvotes": 1
+      },
+      {
+        "text": "Working in Edmonton for 4 months and I require some help. 👁️",
+        "power_level": "maximum",
+        "source": "r/Edmonton",
+        "verified": true,
+        "upvotes": 66
       }
     ],
     "infographic_data": [
@@ -385,8 +497,8 @@
     ],
     "stats": {
       "total_tweets": 26,
-      "total_templates": 8,
-      "total_slogans": 4,
+      "total_templates": 15,
+      "total_slogans": 9,
       "total_infographics": 2
     }
   }

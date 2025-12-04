@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-04T20:52:03.607Z",
+  "timestamp": "2025-12-04T21:15:07.880Z",
   "sources": [
     {
       "name": "Federal Open Data",
@@ -8,10 +8,20 @@
       "verified": true
     },
     {
+      "name": "Federal Open Data",
+      "success": false,
+      "error": "UNKNOWN: unknown error, open 'C:\\Users\\bookw\\OneDrive\\Desktop\\injured workers unite\\1-InjuredWorkersUnite\\public\\data\\federal-datasets.json'"
+    },
+    {
       "name": "Ontario Open Data",
       "success": true,
       "count": 29,
       "verified": true
+    },
+    {
+      "name": "Ontario Open Data",
+      "success": false,
+      "error": "UNKNOWN: unknown error, open 'C:\\Users\\bookw\\OneDrive\\Desktop\\injured workers unite\\1-InjuredWorkersUnite\\public\\data\\ontario-datasets.json'"
     },
     {
       "name": "Parliament Bills",
@@ -20,9 +30,14 @@
       "verified": true
     },
     {
+      "name": "Parliament Bills",
+      "success": false,
+      "error": "UNKNOWN: unknown error, open 'C:\\Users\\bookw\\OneDrive\\Desktop\\injured workers unite\\1-InjuredWorkersUnite\\public\\data\\parliament-bills.json'"
+    },
+    {
       "name": "Reddit Discussions",
       "success": true,
-      "count": 16,
+      "count": 0,
       "verified": false
     },
     {
@@ -39,14 +54,14 @@
     }
   ],
   "stats": {
-    "totalSources": 6,
+    "totalSources": 9,
     "successfulSources": 6,
-    "totalAlerts": 11,
+    "totalAlerts": 6,
     "verifiedAlerts": 6,
-    "communityAlerts": 5,
+    "communityAlerts": 0,
     "totalTargets": 3,
     "criticalAlerts": 5,
     "highAlerts": 1
   },
-  "elapsed": "18.81s"
+  "elapsed": "18.09s"
 }

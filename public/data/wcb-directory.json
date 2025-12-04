@@ -1,0 +1,106 @@
+[
+  {
+    "province": "Ontario",
+    "code": "ON",
+    "wcb_name": "WSIB",
+    "wcb_url": "https://www.wsib.ca/",
+    "data_portal": "data.ontario.ca",
+    "has_api": true
+  },
+  {
+    "province": "British Columbia",
+    "code": "BC",
+    "wcb_name": "WorkSafeBC",
+    "wcb_url": "https://www.worksafebc.com/",
+    "data_portal": "catalogue.data.gov.bc.ca",
+    "has_api": true
+  },
+  {
+    "province": "Alberta",
+    "code": "AB",
+    "wcb_name": "WCB Alberta",
+    "wcb_url": "https://www.wcb.ab.ca/",
+    "data_portal": "open.alberta.ca",
+    "has_api": true
+  },
+  {
+    "province": "Quebec",
+    "code": "QC",
+    "wcb_name": "CNESST",
+    "wcb_url": "https://www.cnesst.gouv.qc.ca/",
+    "data_portal": "donneesquebec.ca",
+    "has_api": true
+  },
+  {
+    "province": "Manitoba",
+    "code": "MB",
+    "wcb_name": "WCB Manitoba",
+    "wcb_url": "https://www.wcb.mb.ca/",
+    "data_portal": "geoportal.gov.mb.ca",
+    "has_api": false
+  },
+  {
+    "province": "Saskatchewan",
+    "code": "SK",
+    "wcb_name": "WCB Saskatchewan",
+    "wcb_url": "https://www.wcbsask.com/",
+    "data_portal": "data.saskatchewan.ca",
+    "has_api": true
+  },
+  {
+    "province": "Nova Scotia",
+    "code": "NS",
+    "wcb_name": "WCB Nova Scotia",
+    "wcb_url": "https://www.wcb.ns.ca/",
+    "data_portal": "data.novascotia.ca",
+    "has_api": true
+  },
+  {
+    "province": "New Brunswick",
+    "code": "NB",
+    "wcb_name": "WorkSafeNB",
+    "wcb_url": "https://www.worksafenb.ca/",
+    "data_portal": "geonb.snb.ca",
+    "has_api": true
+  },
+  {
+    "province": "Newfoundland and Labrador",
+    "code": "NL",
+    "wcb_name": "WorkplaceNL",
+    "wcb_url": "https://workplacenl.ca/",
+    "data_portal": "opendata.gov.nl.ca",
+    "has_api": true
+  },
+  {
+    "province": "Prince Edward Island",
+    "code": "PE",
+    "wcb_name": "WCB PEI",
+    "wcb_url": "https://www.wcb.pe.ca/",
+    "data_portal": "data.princeedwardisland.ca",
+    "has_api": false
+  },
+  {
+    "province": "Yukon",
+    "code": "YT",
+    "wcb_name": "Yukon WCB",
+    "wcb_url": "https://wcb.yk.ca/",
+    "data_portal": "open.yukon.ca",
+    "has_api": false
+  },
+  {
+    "province": "Northwest Territories",
+    "code": "NT",
+    "wcb_name": "WSCC",
+    "wcb_url": "https://www.wscc.nt.ca/",
+    "data_portal": "open.gov.nt.ca",
+    "has_api": false
+  },
+  {
+    "province": "Nunavut",
+    "code": "NU",
+    "wcb_name": "WSCC",
+    "wcb_url": "https://www.wscc.nt.ca/",
+    "data_portal": "gov.nu.ca",
+    "has_api": false
+  }
+]

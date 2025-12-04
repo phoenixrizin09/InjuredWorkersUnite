@@ -1,24 +1,38 @@
 {
-  "generated_at": "2025-12-04T20:50:43.442Z",
+  "generated_at": "2025-12-04T21:14:17.990Z",
+  "coverage": "CANADA-WIDE (All 10 Provinces + 3 Territories)",
   "data_sources": {
     "federal_datasets": 50,
-    "ontario_datasets": 39,
-    "reddit_posts": 28,
+    "provincial_datasets": 60,
+    "provinces_with_data": [
+      "Ontario",
+      "British Columbia",
+      "Alberta",
+      "Quebec",
+      null
+    ],
+    "reddit_posts": 120,
     "parliament_bills": 20,
     "total_alerts": 12
   },
+  "wcb_boards_tracked": 13,
   "most_recent_updates": {
     "federal": "Wages ",
-    "ontario": "Northern Fire Protection Program (NFPP)",
-    "reddit": "I’m getting concerned I will never be able to return back to my pre-injury job.",
+    "provincial": "Ontario Disability Support Program (ODSP) disability adjudication data",
+    "reddit": "'This is the new slavery': Migrant farm workers underpaid, abused and injured",
     "parliament": "An Act respecting the administration of oaths of office"
   },
   "all_data_real": true,
   "cost": "$0.00",
   "apis_used": [
-    "open.canada.ca (FREE)",
-    "data.ontario.ca (FREE)",
-    "reddit.com/r/[subreddit].json (FREE)",
-    "openparliament.ca (FREE)"
+    "open.canada.ca (Federal)",
+    "data.ontario.ca (Ontario)",
+    "catalogue.data.gov.bc.ca (British Columbia)",
+    "open.alberta.ca (Alberta)",
+    "donneesquebec.ca (Quebec)",
+    "data.saskatchewan.ca (Saskatchewan)",
+    "data.novascotia.ca (Nova Scotia)",
+    "reddit.com (Community)",
+    "openparliament.ca (Parliament)"
   ]
 }

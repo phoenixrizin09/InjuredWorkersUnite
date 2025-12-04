@@ -13,31 +13,7 @@
     "created_at": "2009-11-17"
   },
   {
-    "id": "ISSUE_First_Nations_Water_Crisis:_33_1764881542413",
-    "title": "First Nations Water Crisis: 33 Long-Term Advisories",
-    "message": "33 communities without clean water for decades",
-    "severity": "critical",
-    "category": "indigenous_rights",
-    "scope": "federal",
-    "source": "Indigenous Services Canada",
-    "source_url": "https://www.sac-isc.gc.ca/eng/1506514143353/1533317130660",
-    "verified": true,
-    "verificationBadge": "✅ VERIFIED - ISC Canada",
-    "charter_violations": [
-      "Section 7",
-      "Section 15"
-    ],
-    "affected_count": "50,000+ people",
-    "financial_impact": "$2B spent on broken promises",
-    "target_entity": {
-      "name": "Indigenous Services Canada",
-      "type": "federal_department",
-      "jurisdiction": "Federal"
-    },
-    "created_at": "2025-12-04T20:52:22.413Z"
-  },
-  {
-    "id": "ISSUE_WSIB_Mental_Health_Claim_Denia_1764881542412",
+    "id": "ISSUE_WSIB_Mental_Health_Claim_Denia_1764882925912",
     "title": "WSIB Mental Health Claim Denial Rate: 67%",
     "message": "2 out of 3 mental health claims denied on first application",
     "severity": "critical",
@@ -58,10 +34,10 @@
       "type": "provincial_agency",
       "jurisdiction": "Ontario"
     },
-    "created_at": "2025-12-04T20:52:22.412Z"
+    "created_at": "2025-12-04T21:15:25.912Z"
   },
   {
-    "id": "ISSUE_ODSP_Rates_Below_Poverty_Line:_1764881542412",
+    "id": "ISSUE_ODSP_Rates_Below_Poverty_Line:_1764882925912",
     "title": "ODSP Rates Below Poverty Line: $1,308/month",
     "message": "Maximum rate $1,308 while poverty line is $2,500+",
     "severity": "critical",
@@ -82,72 +58,31 @@
       "type": "provincial_ministry",
       "jurisdiction": "Ontario"
     },
-    "created_at": "2025-12-04T20:52:22.412Z"
+    "created_at": "2025-12-04T21:15:25.912Z"
   },
   {
-    "id": "REDDIT_1pd9gzg",
-    "title": "💬 Community: Question for PC Voters about RTO/WFH...",
-    "message": "I'm curious to hear from PC voters and even some more conservative Liberal voters about their views on RTO (Return to Office) and WFH (Work from Home) as well as a more broad question at the end.\n\n  \n",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/ontario (6↑)",
-    "source_url": "https://reddit.com/r/ontario/comments/1pd9gzg/question_for_pc_voters_about_rtowfh/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY",
-    "created_at": "2025-12-03T16:51:06.000Z"
-  },
-  {
-    "id": "REDDIT_1ozv8wj",
-    "title": "💬 Community: Got laid off right after I told my work I was ready to come back after sick leav...",
-    "message": "Had to go on sick leave after hurting my back at work..(CT warewhouse) was on it for the full 6 months and got a doctors note saying I could go back. \n\nMy back isn't actually all the way better, still",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (12↑)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1ozv8wj/got_laid_off_right_after_i_told_my_work_i_was/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY",
-    "created_at": "2025-11-17T22:56:59.000Z"
-  },
-  {
-    "id": "REDDIT_1oy3p5e",
-    "title": "💬 Community: Telus employee fell in my yard...",
-    "message": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (278↑)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY",
-    "created_at": "2025-11-15T21:39:09.000Z"
-  },
-  {
-    "id": "REDDIT_1oxfwfm",
-    "title": "💬 Community: I’m getting concerned I will never be able to return back to my pre-injury job....",
-    "message": "I suffered a workplace injury about 9 months ago, where I was immediately receiving WSIB for.  For reference, I suffered from a knee subluxation that doesn’t seem to be recovering very well.\nI have be",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/ontario (35↑)",
-    "source_url": "https://reddit.com/r/ontario/comments/1oxfwfm/im_getting_concerned_i_will_never_be_able_to/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY",
-    "created_at": "2025-11-15T02:23:12.000Z"
-  },
-  {
-    "id": "REDDIT_1orvbgg",
-    "title": "💬 Community: Denied extended maternity benefits - Ontario...",
-    "message": "Location: Ontario Canada\n\nMyself and 3 other female employees at my work have just started maternity leave.\n\nOur current collective agreement allows 18 weeks of top up pay while on maternity leave.\n\nW",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (16↑)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY",
-    "created_at": "2025-11-08T17:34:20.000Z"
+    "id": "ISSUE_First_Nations_Water_Crisis:_33_1764882925912",
+    "title": "First Nations Water Crisis: 33 Long-Term Advisories",
+    "message": "33 communities without clean water for decades",
+    "severity": "critical",
+    "category": "indigenous_rights",
+    "scope": "federal",
+    "source": "Indigenous Services Canada",
+    "source_url": "https://www.sac-isc.gc.ca/eng/1506514143353/1533317130660",
+    "verified": true,
+    "verificationBadge": "✅ VERIFIED - ISC Canada",
+    "charter_violations": [
+      "Section 7",
+      "Section 15"
+    ],
+    "affected_count": "50,000+ people",
+    "financial_impact": "$2B spent on broken promises",
+    "target_entity": {
+      "name": "Indigenous Services Canada",
+      "type": "federal_department",
+      "jurisdiction": "Federal"
+    },
+    "created_at": "2025-12-04T21:15:25.912Z"
   },
   {
     "id": "CANLII_2012 SCC 61",

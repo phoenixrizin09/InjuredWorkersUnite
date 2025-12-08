@@ -240,6 +240,18 @@
     "query": "CPP disability"
   },
   {
+    "id": "a5dd7bcb-88aa-4a59-a8b1-b37f84a04bfb",
+    "title": "Regional unemployment rates used by the Employment Insurance program, three-month moving average, seasonally adjusted",
+    "description": "Regional unemployment rates used by the Employment Insurance program, by effective date, current month.<br>",
+    "organization": "Government of Canada",
+    "lastModified": "2025-12-05T13:46:56.257918",
+    "created": "2018-06-27T16:14:16.945795",
+    "url": "https://open.canada.ca/data/en/dataset/a5dd7bcb-88aa-4a59-a8b1-b37f84a04bfb",
+    "source": "open.canada.ca",
+    "tags": [],
+    "query": "employment insurance"
+  },
+  {
     "id": "4c6c515f-7c44-4bb6-ab56-c5f79f75f705",
     "title": "Property and casualty companies",
     "description": "All publicly available financial data as filed by federally regulated property and casualty insurance companies are available free of charge from the Beyond 20/20 Web site.\r\n\r\nIndustry Totals: Please note that to determine total industry data, you must add “Total Canadian P&C”, “Total Foreign P&C” and “Total Canadian Mortgage Insurers”.\r\n(Up to and including Q4 2017, “Total Canadian P&C Companies” industry total included Canadian mortgage insurers’ data.)\r\n(Effective Q1 2018, to determine “Total",
@@ -343,18 +355,6 @@
     "lastModified": "2025-11-20T15:32:31.571456",
     "created": "2020-04-16T12:39:14.030334",
     "url": "https://open.canada.ca/data/en/dataset/cf441b48-129d-4561-8523-6ee617897adf",
-    "source": "open.canada.ca",
-    "tags": [],
-    "query": "employment insurance"
-  },
-  {
-    "id": "ccd8b4bf-46cf-45f7-b548-c302f4df7bcb",
-    "title": "Employment Insurance beneficiaries (regular benefits) by economic region, monthly, seasonally adjusted",
-    "description": "<p>Number of employment insurance beneficiaries receiving regular income benefits by economic region, last 5 months.<br>\n</p>\n",
-    "organization": "Government of Canada",
-    "lastModified": "2025-11-20T15:32:31.160486",
-    "created": "2020-04-16T12:39:17.003212",
-    "url": "https://open.canada.ca/data/en/dataset/ccd8b4bf-46cf-45f7-b548-c302f4df7bcb",
     "source": "open.canada.ca",
     "tags": [],
     "query": "employment insurance"
@@ -480,6 +480,18 @@
     "query": "workplace safety"
   },
   {
+    "id": "508edfe7-0cba-4d76-afe8-d19e42e9df8a",
+    "title": "Ministers’ offices expenses",
+    "description": "The dataset of “Ministers’ offices expenses” contains an annual report of all expenses incurred by the office of a head of a department or a ministry of state for the Government of Canada and charged to the Consolidated Revenue Fund. This dataset does not include civilian termination benefits and statutory expenditures such as the Minister's salary and motor vehicle allowance, employer contributions to superannuation and certain benefit plans and other items as specified in these policies.\r\n\r\nTh",
+    "organization": "Government of Canada",
+    "lastModified": "2025-12-06T06:10:52.632284",
+    "created": "2020-07-28T17:40:43.369479",
+    "url": "https://open.canada.ca/data/en/dataset/508edfe7-0cba-4d76-afe8-d19e42e9df8a",
+    "source": "open.canada.ca",
+    "tags": [],
+    "query": "Canada Pension Plan disability"
+  },
+  {
     "id": "b27ec3ef-7338-4e76-a6fd-128339a92df5",
     "title": "Who we regulate",
     "description": "We regulate and supervise more than 400 financial institutions. In this dataset you’ll find a list of these institutions, updated daily. \r\n\r\nWe regulate and supervise more than 1200 private pension plans for employees working in federally regulated industries. Here you’ll find a list of these plans, updated daily, or see our list of pooled registered pension plans. We’ve excluded some pension plans from the list for privacy reasons.\r\n\r\n",
@@ -583,18 +595,6 @@
     "lastModified": "2025-11-27T17:01:09.325754",
     "created": "2017-07-04T19:51:00.608196",
     "url": "https://open.canada.ca/data/en/dataset/267d0301-fd2f-4565-8c70-2e39190fdb31",
-    "source": "open.canada.ca",
-    "tags": [],
-    "query": "Canada Pension Plan disability"
-  },
-  {
-    "id": "f2e34301-989c-4102-9ce0-c3b3b2b0b20c",
-    "title": "Veterans Affairs Canada Audit of Digitization of Service and Health Records - March 2017",
-    "description": "Approval of a disability pension or award application requires the establishment of a relationship between the claimed disability or injury and service. Service and health records (SHR) that are held at the Department of National Defence (DND), the Royal Canadian Mounted Police (RCMP), or at Library and Archives Canada (LAC) are the primary means to establish this relationship.\r\n\r\nThe digitization of SHRs was implemented to improve internal processes and expedite service to Veterans seeking disa",
-    "organization": "Government of Canada",
-    "lastModified": "2025-11-27T17:01:08.577654",
-    "created": "2017-07-04T19:52:13.196489",
-    "url": "https://open.canada.ca/data/en/dataset/f2e34301-989c-4102-9ce0-c3b3b2b0b20c",
     "source": "open.canada.ca",
     "tags": [],
     "query": "Canada Pension Plan disability"

@@ -101,6 +101,15 @@ export default function Header() {
           </Link>
           <Link href="/target-acquisition" style={navLinkStyle}>Targets</Link>
           <Link href="/alerts" style={navLinkStyle}>Alerts</Link>
+          <Link href="/violation-map" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff4444 0%, #ff8800 100%)', color: '#fff', fontWeight: 'bold'}}>
+            <span aria-hidden="true">🗺️</span> Map
+          </Link>
+          <Link href="/submit-tip" style={{...navLinkStyle, background: 'linear-gradient(135deg, #00ff88 0%, #00ccff 100%)', color: '#000', fontWeight: 'bold'}}>
+            <span aria-hidden="true">📩</span> Submit Tip
+          </Link>
+          <Link href="/template-letters" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ffdd00 0%, #ff8800 100%)', color: '#000', fontWeight: 'bold'}}>
+            <span aria-hidden="true">📝</span> Templates
+          </Link>
           <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>
           <Link href="/contact" style={navLinkStyle}>Contact</Link>
           <Link href="/legal" style={navLinkStyle}>Legal</Link>

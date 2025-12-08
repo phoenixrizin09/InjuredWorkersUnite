@@ -1,7 +1,7 @@
 {
   "name": "injured-workers-unite",
   "version": "2.0.0",
-  "description": "Digital nation-state sanctuary for injured workers - THE EYE investigative system",
+  "description": "Digital nation-state sanctuary for injured workers - THE EYE ORACLE investigative system",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -31,6 +31,14 @@
     "oracle:generate": "node scripts/generate-eye-oracle-daily.js",
     "oracle:report": "node scripts/generate-eye-oracle-report.js",
     "oracle:all": "npm run oracle:report && npm run oracle:generate",
+    "oracle:scan": "node utils/eye-oracle-live-scanner.js",
+    "oracle:auto": "node scripts/eye-oracle-automation.js",
+    "oracle:auto:hourly": "node scripts/eye-oracle-automation.js hourly",
+    "oracle:auto:daily": "node scripts/eye-oracle-automation.js daily",
+    "oracle:auto:weekly": "node scripts/eye-oracle-automation.js weekly",
+    "oracle:auto:monthly": "node scripts/eye-oracle-automation.js monthly",
+    "oracle:auto:full": "node scripts/eye-oracle-automation.js full",
+    "oracle:test": "node scripts/eye-oracle-automation.js test",
     "viral:calendar": "node utils/social-content-calendar.js",
     "viral:hooks": "node scripts/generate-eye-oracle-daily.js",
     "viral:analytics": "node utils/social-analytics-tracker.js --report",

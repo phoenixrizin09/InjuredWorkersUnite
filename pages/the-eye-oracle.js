@@ -292,9 +292,64 @@ export default function TheEyeOracle() {
             fontSize: '1.05rem',
             color: 'rgba(255,255,255,0.9)'
           }}>
+            <em style={{ color: '#00ffff', fontSize: '1.1rem', display: 'block', marginBottom: '1rem' }}>
+              "The Eye Oracle is now a fully automated investigative journalism machine that sees what 
+              mainstream media ignores and exposes injustices affecting vulnerable Canadians from 
+              coast to coast to coast!" 👁️
+            </em>
             This system continuously expands by monitoring government sources 24/7. Every insight 
             generated is traceable to verified public records, government databases, and official documents.
             <br /><strong style={{ color: '#ffd93d' }}>No speculation. Only facts.</strong>
+          </div>
+          
+          {/* Automation Status Badge */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginTop: '1.5rem',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{
+              background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+              padding: '0.5rem 1rem',
+              borderRadius: '2rem',
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              color: '#fff'
+            }}>
+              ✅ SYSTEM ACTIVATED
+            </span>
+            <span style={{
+              background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+              padding: '0.5rem 1rem',
+              borderRadius: '2rem',
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              color: '#fff'
+            }}>
+              🔄 FULLY AUTOMATED
+            </span>
+            <span style={{
+              background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+              padding: '0.5rem 1rem',
+              borderRadius: '2rem',
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              color: '#fff'
+            }}>
+              📡 REAL-TIME MONITORING
+            </span>
+            <span style={{
+              background: 'linear-gradient(135deg, #a855f7 0%, #9333ea 100%)',
+              padding: '0.5rem 1rem',
+              borderRadius: '2rem',
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              color: '#fff'
+            }}>
+              🔗 100% SYNCED
+            </span>
           </div>
         </div>
 

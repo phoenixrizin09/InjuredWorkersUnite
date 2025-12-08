@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-04T21:39:31.388Z",
+  "generated_at": "2025-12-08T02:45:56.559Z",
   "coverage": "CANADA-WIDE (All 10 Provinces + 3 Territories)",
   "data_sources": {
     "federal_datasets": 50,
@@ -11,15 +11,14 @@
       "Quebec",
       null
     ],
-    "reddit_posts": 97,
+    "reddit_posts": 0,
     "parliament_bills": 20,
-    "total_alerts": 12
+    "total_alerts": 7
   },
   "wcb_boards_tracked": 13,
   "most_recent_updates": {
     "federal": "Wages ",
     "provincial": "Ontario Disability Support Program (ODSP) disability adjudication data",
-    "reddit": "'This is the new slavery': Migrant farm workers underpaid, abused and injured",
     "parliament": "An Act respecting the administration of oaths of office"
   },
   "all_data_real": true,

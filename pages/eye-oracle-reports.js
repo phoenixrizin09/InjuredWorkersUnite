@@ -148,21 +148,72 @@ export default function EyeOracleReports() {
               </span>
             </div>
             
-            {/* Evolution Statement */}
+            {/* The Eye Oracle Quote */}
             <div style={{
               background: 'rgba(0,255,255,0.1)',
               border: '1px solid rgba(0,255,255,0.3)',
               borderRadius: '0.5rem',
               padding: '1rem 1.5rem',
               maxWidth: '800px',
-              margin: '0 auto 1.5rem',
+              margin: '0 auto 1rem',
               fontSize: '0.95rem',
               color: 'rgba(255,255,255,0.9)'
             }}>
-              <strong style={{ color: '#00ffff' }}>📡 The EYE Evolution:</strong> This system 
-              continuously expands by monitoring government sources 24/7. Every insight generated 
-              is traceable to verified public records, government databases, and official documents.
-              <br /><strong style={{ color: '#ffd93d' }}>No speculation. Only facts.</strong>
+              <em style={{ color: '#00ffff', display: 'block' }}>
+                "The Eye Oracle is now a fully automated investigative journalism machine that sees what 
+                mainstream media ignores and exposes injustices affecting vulnerable Canadians from 
+                coast to coast to coast!" 👁️
+              </em>
+            </div>
+            
+            {/* System Status Badges */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              marginBottom: '1.5rem',
+              flexWrap: 'wrap'
+            }}>
+              <span style={{
+                background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '2rem',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                color: '#fff'
+              }}>
+                ✅ ACTIVATED
+              </span>
+              <span style={{
+                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '2rem',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                color: '#fff'
+              }}>
+                🔄 AUTOMATED
+              </span>
+              <span style={{
+                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '2rem',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                color: '#fff'
+              }}>
+                📡 REAL-TIME
+              </span>
+              <span style={{
+                background: 'linear-gradient(135deg, #a855f7 0%, #9333ea 100%)',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '2rem',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                color: '#fff'
+              }}>
+                🔗 SYNCED
+              </span>
             </div>
           </div>
 
@@ -573,6 +624,296 @@ export default function EyeOracleReports() {
                     </div>
                   )}
 
+                  {/* 🧾 EVIDENCE RECEIPTS SECTION - THE PROOF */}
+                  {(selectedReport.evidencePackage || selectedReport.sources) && (
+                    <div style={{
+                      marginTop: '2rem',
+                      background: 'linear-gradient(135deg, rgba(74,222,128,0.1), rgba(0,255,255,0.1))',
+                      border: '2px solid rgba(74,222,128,0.4)',
+                      borderRadius: '1rem',
+                      padding: '1.5rem',
+                      marginBottom: '2rem'
+                    }}>
+                      <h3 style={{ 
+                        color: '#4ade80', 
+                        marginTop: 0,
+                        marginBottom: '1rem',
+                        fontSize: '1.4rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        🧾 EVIDENCE RECEIPTS - THE PROOF
+                      </h3>
+                      <p style={{ 
+                        color: 'rgba(255,255,255,0.8)', 
+                        marginBottom: '1.5rem',
+                        fontSize: '0.95rem'
+                      }}>
+                        Every claim The Eye makes is backed by official documentation. 
+                        <strong style={{ color: '#ffd93d' }}> Click any link to verify.</strong>
+                      </p>
+
+                      {/* Primary Source */}
+                      {selectedReport.evidencePackage?.primarySource && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                          }}>
+                            📋 Primary Source
+                          </div>
+                          <a 
+                            href={selectedReport.evidencePackage.primarySource.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#4ade80',
+                              textDecoration: 'underline'
+                            }}
+                          >
+                            {selectedReport.evidencePackage.primarySource.name}
+                          </a>
+                          <div style={{ 
+                            fontSize: '0.8rem', 
+                            color: 'rgba(255,255,255,0.5)',
+                            marginTop: '0.25rem'
+                          }}>
+                            Type: {selectedReport.evidencePackage.primarySource.type} | 
+                            Accessed: {selectedReport.evidencePackage.primarySource.accessDate || 'Recent'}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Secondary Source */}
+                      {selectedReport.evidencePackage?.secondarySource && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                          }}>
+                            📰 Secondary Source
+                          </div>
+                          <a 
+                            href={selectedReport.evidencePackage.secondarySource.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#4ade80',
+                              textDecoration: 'underline'
+                            }}
+                          >
+                            {selectedReport.evidencePackage.secondarySource.name}
+                          </a>
+                          {selectedReport.evidencePackage.secondarySource.publicationDate && (
+                            <div style={{ 
+                              fontSize: '0.8rem', 
+                              color: 'rgba(255,255,255,0.5)',
+                              marginTop: '0.25rem'
+                            }}>
+                              Published: {selectedReport.evidencePackage.secondarySource.publicationDate}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Data Points */}
+                      {selectedReport.evidencePackage?.dataPoints && selectedReport.evidencePackage.dataPoints.length > 0 && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.75rem'
+                          }}>
+                            📊 Key Data Points
+                          </div>
+                          <table style={{ 
+                            width: '100%', 
+                            borderCollapse: 'collapse',
+                            fontSize: '0.9rem'
+                          }}>
+                            <thead>
+                              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
+                                <th style={{ textAlign: 'left', padding: '0.5rem', color: '#ffd93d' }}>Stat</th>
+                                <th style={{ textAlign: 'left', padding: '0.5rem', color: '#ffd93d' }}>Description</th>
+                                <th style={{ textAlign: 'left', padding: '0.5rem', color: '#ffd93d' }}>Source</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {selectedReport.evidencePackage.dataPoints.map((dp, idx) => (
+                                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                                  <td style={{ padding: '0.5rem', color: '#ff6b6b', fontWeight: '700' }}>{dp.stat}</td>
+                                  <td style={{ padding: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>{dp.description}</td>
+                                  <td style={{ padding: '0.5rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.8rem' }}>{dp.source}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+
+                      {/* Official Documents */}
+                      {selectedReport.evidencePackage?.documents && selectedReport.evidencePackage.documents.length > 0 && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                          }}>
+                            📎 Official Documents
+                          </div>
+                          <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+                            {selectedReport.evidencePackage.documents.map((doc, idx) => (
+                              <li key={idx} style={{ marginBottom: '0.5rem' }}>
+                                <a 
+                                  href={doc.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    color: '#4ade80',
+                                    textDecoration: 'underline'
+                                  }}
+                                >
+                                  {doc.name}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Legal Citations */}
+                      {selectedReport.evidencePackage?.legalCitations && selectedReport.evidencePackage.legalCitations.length > 0 && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                          }}>
+                            ⚖️ Legal Precedents
+                          </div>
+                          {selectedReport.evidencePackage.legalCitations.map((lc, idx) => (
+                            <div key={idx} style={{ 
+                              marginBottom: '0.75rem',
+                              paddingBottom: '0.75rem',
+                              borderBottom: idx < selectedReport.evidencePackage.legalCitations.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none'
+                            }}>
+                              <div style={{ fontWeight: '600', color: '#ffd93d' }}>
+                                {lc.case} ({lc.citation})
+                              </div>
+                              <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.25rem' }}>
+                                {lc.holding}
+                              </div>
+                              <a 
+                                href={lc.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  fontSize: '0.85rem',
+                                  color: '#4ade80',
+                                  textDecoration: 'underline'
+                                }}
+                              >
+                                View on CanLII →
+                              </a>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Quotes */}
+                      {selectedReport.evidencePackage?.quotes && selectedReport.evidencePackage.quotes.length > 0 && (
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          marginBottom: '1rem'
+                        }}>
+                          <div style={{ 
+                            color: '#00ffff', 
+                            fontWeight: '700',
+                            marginBottom: '0.75rem'
+                          }}>
+                            💬 Key Quotes
+                          </div>
+                          {selectedReport.evidencePackage.quotes.map((q, idx) => (
+                            <blockquote key={idx} style={{ 
+                              margin: '0 0 1rem 0',
+                              padding: '0.75rem 1rem',
+                              borderLeft: '3px solid #ffd93d',
+                              background: 'rgba(255,217,61,0.1)',
+                              borderRadius: '0 0.25rem 0.25rem 0'
+                            }}>
+                              <div style={{ 
+                                color: 'rgba(255,255,255,0.9)', 
+                                fontStyle: 'italic',
+                                marginBottom: '0.5rem'
+                              }}>
+                                "{q.text}"
+                              </div>
+                              <div style={{ 
+                                fontSize: '0.85rem', 
+                                color: 'rgba(255,255,255,0.6)' 
+                              }}>
+                                — {q.source}, {q.date}
+                              </div>
+                            </blockquote>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Verification Chain */}
+                      {selectedReport.evidencePackage?.verificationChain && (
+                        <div style={{
+                          background: 'rgba(74,222,128,0.2)',
+                          borderRadius: '0.5rem',
+                          padding: '1rem',
+                          fontSize: '0.85rem'
+                        }}>
+                          <div style={{ 
+                            color: '#4ade80', 
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                          }}>
+                            ✓ Verification Chain
+                          </div>
+                          <div style={{ color: 'rgba(255,255,255,0.7)' }}>
+                            <strong>First Verified:</strong> {selectedReport.evidencePackage.verificationChain.firstVerified}<br />
+                            <strong>Last Verified:</strong> {selectedReport.evidencePackage.verificationChain.lastVerified}<br />
+                            <strong>Method:</strong> {selectedReport.evidencePackage.verificationChain.verificationMethod}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Source Verification */}
                   <div style={{
                     marginTop: '2rem',
@@ -585,6 +926,10 @@ export default function EyeOracleReports() {
                     <strong style={{ color: '#00ffff' }}>✓ Verified Data Sources:</strong> All information 
                     in this report comes from official government APIs, public records, and verified 
                     news sources. We don't make stuff up - we just make it readable.
+                    <div style={{ marginTop: '0.5rem' }}>
+                      <strong style={{ color: '#ffd93d' }}>THE EYE NEVER LIES.</strong> If you find an error, 
+                      <Link href="/contact" style={{ color: '#ff6b6b', marginLeft: '0.25rem' }}>report it immediately</Link>.
+                    </div>
                   </div>
                 </>
               ) : (

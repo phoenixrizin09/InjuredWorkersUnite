@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://injuredworkersunite.pages.dev/alerts</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://injuredworkersunite.pages.dev/eye-oracle-reports</loc>
-    <lastmod>2025-11-28</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -92,14 +92,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://injuredworkersunite.pages.dev/submit-tip</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://injuredworkersunite.pages.dev/target-acquisition</loc>
     <lastmod>2025-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://injuredworkersunite.pages.dev/template-letters</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://injuredworkersunite.pages.dev/the-eye-oracle</loc>
-    <lastmod>2025-11-28</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -110,14 +122,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://injuredworkersunite.pages.dev/violation-map</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://injuredworkersunite.pages.dev/admin/index</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://injuredworkersunite.pages.dev/admin/monitoring</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

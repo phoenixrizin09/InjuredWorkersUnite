@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -674,6 +674,7 @@ function StatCard({ label, value, color }) {
 }
 
 function AlertCard({ alert }) {
+  const [showEvidence, setShowEvidence] = React.useState(false);
   const severityColors = {
     critical: '#ff0000',
     high: '#ff8800',
@@ -683,10 +684,18 @@ function AlertCard({ alert }) {
 
   const color = severityColors[alert.severity] || '#00ccff';
   
+  // Get evidence package (if available)
+  const evidence = alert.evidence || {};
+  
   // Default verification sources based on alert type
   const getVerificationSources = () => {
     if (alert.sources && alert.sources.length > 0) {
       return alert.sources;
+    }
+    
+    // Use evidence documents if available
+    if (evidence.documents && evidence.documents.length > 0) {
+      return evidence.documents.slice(0, 3);
     }
     
     // Provide default sources based on source type
@@ -925,7 +934,156 @@ function AlertCard({ alert }) {
             </a>
           ))}
         </div>
+        
+        {/* Show Evidence Button */}
+        {(evidence.dataPoints?.length > 0 || evidence.documents?.length > 0 || evidence.legalCitations?.length > 0) && (
+          <button
+            onClick={() => setShowEvidence(!showEvidence)}
+            style={{
+              padding: '8px 16px',
+              background: showEvidence ? 'rgba(74, 222, 128, 0.3)' : 'rgba(74, 222, 128, 0.15)',
+              border: '1px solid #4ade80',
+              borderRadius: '5px',
+              color: '#4ade80',
+              cursor: 'pointer',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+          >
+            🧾 {showEvidence ? 'Hide' : 'Show'} Evidence Receipts
+          </button>
+        )}
       </div>
+      
+      {/* EVIDENCE RECEIPTS SECTION */}
+      {showEvidence && (
+        <div style={{
+          marginTop: '15px',
+          padding: '15px',
+          background: 'rgba(74, 222, 128, 0.1)',
+          border: '1px solid rgba(74, 222, 128, 0.3)',
+          borderRadius: '8px'
+        }}>
+          <div style={{ 
+            color: '#4ade80', 
+            fontWeight: 'bold', 
+            marginBottom: '10px',
+            fontSize: '14px'
+          }}>
+            🧾 EVIDENCE RECEIPTS - VERIFY EVERYTHING
+          </div>
+          
+          {/* Primary Source */}
+          {evidence.primarySource && (
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ color: '#00ffff', fontSize: '12px', fontWeight: 'bold' }}>📋 Primary Source:</div>
+              <a 
+                href={evidence.primarySource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#4ade80', fontSize: '13px' }}
+              >
+                {evidence.primarySource.name} →
+              </a>
+            </div>
+          )}
+          
+          {/* Data Points Table */}
+          {evidence.dataPoints && evidence.dataPoints.length > 0 && (
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ color: '#00ffff', fontSize: '12px', fontWeight: 'bold', marginBottom: '5px' }}>📊 Key Statistics:</div>
+              <div style={{ 
+                background: 'rgba(0,0,0,0.3)', 
+                borderRadius: '5px', 
+                padding: '10px',
+                fontSize: '12px'
+              }}>
+                {evidence.dataPoints.map((dp, idx) => (
+                  <div key={idx} style={{ 
+                    display: 'flex', 
+                    gap: '10px', 
+                    marginBottom: idx < evidence.dataPoints.length - 1 ? '8px' : 0,
+                    paddingBottom: idx < evidence.dataPoints.length - 1 ? '8px' : 0,
+                    borderBottom: idx < evidence.dataPoints.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none'
+                  }}>
+                    <span style={{ color: '#ff6b6b', fontWeight: 'bold', minWidth: '80px' }}>{dp.stat}</span>
+                    <span style={{ color: 'rgba(255,255,255,0.8)', flex: 1 }}>{dp.description}</span>
+                    <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px' }}>{dp.source}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Documents */}
+          {evidence.documents && evidence.documents.length > 0 && (
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ color: '#00ffff', fontSize: '12px', fontWeight: 'bold', marginBottom: '5px' }}>📎 Official Documents:</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {evidence.documents.map((doc, idx) => (
+                  <a
+                    key={idx}
+                    href={doc.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: '5px 10px',
+                      background: 'rgba(0,255,255,0.1)',
+                      border: '1px solid rgba(0,255,255,0.3)',
+                      borderRadius: '4px',
+                      color: '#00ffff',
+                      textDecoration: 'none',
+                      fontSize: '11px'
+                    }}
+                  >
+                    📄 {doc.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Legal Citations */}
+          {evidence.legalCitations && evidence.legalCitations.length > 0 && (
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ color: '#00ffff', fontSize: '12px', fontWeight: 'bold', marginBottom: '5px' }}>⚖️ Legal Precedents:</div>
+              {evidence.legalCitations.map((lc, idx) => (
+                <div key={idx} style={{ 
+                  padding: '8px',
+                  background: 'rgba(0,0,0,0.3)',
+                  borderRadius: '4px',
+                  marginBottom: '5px',
+                  fontSize: '12px'
+                }}>
+                  <div style={{ color: '#ffd93d', fontWeight: 'bold' }}>{lc.case}</div>
+                  <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px' }}>{lc.citation}</div>
+                  <div style={{ color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>{lc.holding}</div>
+                  <a href={lc.url} target="_blank" rel="noopener noreferrer" style={{ color: '#4ade80', fontSize: '11px' }}>
+                    View on CanLII →
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {/* Verification Chain */}
+          {evidence.verificationChain && (
+            <div style={{
+              padding: '8px',
+              background: 'rgba(74, 222, 128, 0.2)',
+              borderRadius: '4px',
+              fontSize: '11px',
+              color: 'rgba(255,255,255,0.7)'
+            }}>
+              <strong style={{ color: '#4ade80' }}>✓ Verification Chain:</strong> First verified: {evidence.verificationChain.firstVerified} | 
+              Last verified: {evidence.verificationChain.lastVerified} | Method: {evidence.verificationChain.verificationMethod}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

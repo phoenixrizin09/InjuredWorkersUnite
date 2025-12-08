@@ -1,41 +1,5 @@
 [
   {
-    "id": "REDDIT_1pbdhbd",
-    "title": "Community Discussion: 'This is the new slavery': Migrant farm workers underpaid, abused and injured",
-    "message": "Active discussion in r/canada",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/canada (207↑, 116 comments)",
-    "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY - User-generated content",
-    "acknowledged": false,
-    "created_at": "2025-12-01T13:59:49.000Z",
-    "engagement": {
-      "score": 207,
-      "comments": 116
-    }
-  },
-  {
-    "id": "REDDIT_1p7hj7x",
-    "title": "Community Discussion: Canadian farmers to lobby federal government to cap profits of major grocers",
-    "message": "Active discussion in r/onguardforthee",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/onguardforthee (708↑, 52 comments)",
-    "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY - User-generated content",
-    "acknowledged": false,
-    "created_at": "2025-11-26T19:48:51.000Z",
-    "engagement": {
-      "score": 708,
-      "comments": 52
-    }
-  },
-  {
     "id": "FED_adad580f-76b0-4502-bd05-20c125de9116",
     "title": "New Federal Data: Wages ",
     "message": "The wages on the Job Bank website are specific to an occupation and provide information on the earnings of workers at the regional level. Wages for most occupations are also provided at the national and provincial level. In Canada, all jobs are associated with one specific occupational grouping which is determined by the National Occupational Classification. For most occupations, a minimum, median and maximum wage estimates are displayed. They are update annually.\r\n\r\nIf you have comments or ques",
@@ -48,43 +12,7 @@
     "verificationBadge": "✅ VERIFIED - open.canada.ca",
     "acknowledged": false,
     "created_at": "2025-11-19T15:21:45.787073",
-    "age_days": 15
-  },
-  {
-    "id": "REDDIT_1p07mjp",
-    "title": "Community Discussion: Lost and homeless",
-    "message": "While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. \n\nMy fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. \n\nI was in shock, I tried to call but no answer. \n\nI had one week left in another province with my family and I couldn’t wrap my head around how he could do that to me.\n\nOver the years I have taken care of his elderly parents. Spending c",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (41↑, 42 comments)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY - User-generated content",
-    "acknowledged": false,
-    "created_at": "2025-11-18T09:33:22.000Z",
-    "engagement": {
-      "score": 41,
-      "comments": 42
-    }
-  },
-  {
-    "id": "REDDIT_1oy3p5e",
-    "title": "Community Discussion: Telus employee fell in my yard",
-    "message": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in my yard through my gate and I said yes. For what it’s worth I do have cameras in the front, side and back that are motion activated and have video of them asking for permission. 7 minutes later they fell off their ladder and they called 911 which we only realized when our notifications went crazy o",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (278↑, 91 comments)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY - User-generated content",
-    "acknowledged": false,
-    "created_at": "2025-11-15T21:39:09.000Z",
-    "engagement": {
-      "score": 278,
-      "comments": 91
-    }
+    "age_days": 18
   },
   {
     "id": "FED_0e3ba082-a963-4771-95a2-accc43ae244c",
@@ -99,25 +27,7 @@
     "verificationBadge": "✅ VERIFIED - open.canada.ca",
     "acknowledged": false,
     "created_at": "2025-11-12T17:01:17.640455",
-    "age_days": 21
-  },
-  {
-    "id": "REDDIT_1onbrz7",
-    "title": "Community Discussion: Child support for disabled daughter after primary parent dies",
-    "message": "\nThis is an emotional topic for me, so I have tried my best to remove any emotion and stick to the facts. \n\n\nmy sibling is an adult with permanent disabilities living in a publicly funded group living home in Ontario and our parents are divorced. our dad has tried to skirt his support obligations multiple times.\n\nour mother recently died and before her death my parents reached an agreement where our dad was only required to pay support in the amount of my sisters expenses since she no longer res",
-    "severity": "info",
-    "category": "community",
-    "scope": "social",
-    "source": "r/legaladvicecanada (43↑, 24 comments)",
-    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1onbrz7/child_support_for_disabled_daughter_after_primary/",
-    "verified": false,
-    "verificationBadge": "👥 COMMUNITY - User-generated content",
-    "acknowledged": false,
-    "created_at": "2025-11-03T13:29:48.000Z",
-    "engagement": {
-      "score": 43,
-      "comments": 24
-    }
+    "age_days": 25
   },
   {
     "id": "BILL_C-1_2019-12-05",

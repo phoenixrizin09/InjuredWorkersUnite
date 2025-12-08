@@ -1,0 +1,39 @@
+{
+  "date": "2025-12-08",
+  "timestamp": "2025-12-08T01:37:47.704Z",
+  "findings": 431,
+  "criticalAlerts": 0,
+  "areasScanned": 10,
+  "topIssues": [
+    {
+      "area": "disability_benefits",
+      "name": "Disability Benefits Recipients",
+      "findings": 51,
+      "scandals": 0
+    },
+    {
+      "area": "mental_health",
+      "name": "Mental Health & Addiction",
+      "findings": 50,
+      "scandals": 0
+    },
+    {
+      "area": "low_income",
+      "name": "Low-Income & Working Poor",
+      "findings": 50,
+      "scandals": 0
+    },
+    {
+      "area": "homeless_housing",
+      "name": "Homeless & Housing Insecure",
+      "findings": 47,
+      "scandals": 0
+    },
+    {
+      "area": "children_youth",
+      "name": "Vulnerable Children & Youth",
+      "findings": 45,
+      "scandals": 0
+    }
+  ]
+}

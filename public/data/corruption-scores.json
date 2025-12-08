@@ -1,0 +1,145 @@
+{
+  "lastUpdated": "2025-12-08T01:37:47.701Z",
+  "scores": [
+    {
+      "entity": "WSIB",
+      "score": 61,
+      "riskLevel": "HIGH",
+      "factors": [
+        {
+          "name": "Denial Rate",
+          "score": 16.75,
+          "max": 20,
+          "detail": "67.0% denial rate"
+        },
+        {
+          "name": "Appeal Success (indicates wrong initial decisions)",
+          "score": 9,
+          "max": 15,
+          "detail": "45.0% of appeals succeed"
+        },
+        {
+          "name": "Processing Delays",
+          "score": 15,
+          "max": 15,
+          "detail": "180 days avg (legal limit: 90)"
+        },
+        {
+          "name": "Opacity (lack of transparency)",
+          "score": 7,
+          "max": 10,
+          "detail": "Transparency rating: 30%"
+        },
+        {
+          "name": "Complaint Volume",
+          "score": 9,
+          "max": 10,
+          "detail": "45 complaints per 1000 cases"
+        },
+        {
+          "name": "Executive Pay Disparity",
+          "score": 3.9212962962962963,
+          "max": 10,
+          "detail": "Executives earn 39x average annual benefit"
+        }
+      ],
+      "calculatedAt": "2025-12-08T01:37:47.690Z"
+    },
+    {
+      "entity": "ODSP",
+      "score": 54,
+      "riskLevel": "HIGH",
+      "factors": [
+        {
+          "name": "Denial Rate",
+          "score": 13.750000000000002,
+          "max": 20,
+          "detail": "55.0% denial rate"
+        },
+        {
+          "name": "Appeal Success (indicates wrong initial decisions)",
+          "score": 10,
+          "max": 15,
+          "detail": "50.0% of appeals succeed"
+        },
+        {
+          "name": "Processing Delays",
+          "score": 15,
+          "max": 15,
+          "detail": "120 days avg (legal limit: 60)"
+        },
+        {
+          "name": "Funding Gap",
+          "score": 9.536,
+          "max": 15,
+          "detail": "Budget covers 52% of need"
+        },
+        {
+          "name": "Opacity (lack of transparency)",
+          "score": 6,
+          "max": 10,
+          "detail": "Transparency rating: 40%"
+        }
+      ],
+      "calculatedAt": "2025-12-08T01:37:47.692Z"
+    },
+    {
+      "entity": "Service Canada - CPP-D",
+      "score": 47,
+      "riskLevel": "MEDIUM",
+      "factors": [
+        {
+          "name": "Denial Rate",
+          "score": 15,
+          "max": 20,
+          "detail": "60.0% denial rate"
+        },
+        {
+          "name": "Appeal Success (indicates wrong initial decisions)",
+          "score": 10,
+          "max": 15,
+          "detail": "50.0% of appeals succeed"
+        },
+        {
+          "name": "Processing Delays",
+          "score": 15,
+          "max": 15,
+          "detail": "540 days avg (legal limit: 120)"
+        },
+        {
+          "name": "Opacity (lack of transparency)",
+          "score": 6.5,
+          "max": 10,
+          "detail": "Transparency rating: 35%"
+        }
+      ],
+      "calculatedAt": "2025-12-08T01:37:47.694Z"
+    },
+    {
+      "entity": "Indigenous Services Canada",
+      "score": 18,
+      "riskLevel": "LOW",
+      "factors": [
+        {
+          "name": "Opacity (lack of transparency)",
+          "score": 7.5,
+          "max": 10,
+          "detail": "Transparency rating: 25%"
+        },
+        {
+          "name": "Complaint Volume",
+          "score": 10,
+          "max": 10,
+          "detail": "80 complaints per 1000 cases"
+        },
+        {
+          "name": "Service Deterioration",
+          "score": 0.5,
+          "max": 5,
+          "detail": "-5.0% worse than last year"
+        }
+      ],
+      "calculatedAt": "2025-12-08T01:37:47.697Z"
+    }
+  ]
+}

@@ -149,15 +149,25 @@ export default function App({ Component, pageProps }) {
         /* Skip Links Container - WCAG 2.4.1 */
         .skip-links-container {
           position: absolute;
+          top: -9999px;
+          left: -9999px;
+          z-index: 10001;
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        .skip-links-container:focus-within {
+          position: fixed;
           top: 0;
           left: 0;
-          z-index: 10001;
+          opacity: 1;
+          pointer-events: auto;
         }
         
         .skip-link {
           position: absolute;
-          top: -100%;
-          left: 10px;
+          top: -9999px;
+          left: -9999px;
           padding: 1rem 2rem;
           background: #4facfe;
           color: #000;
@@ -167,10 +177,14 @@ export default function App({ Component, pageProps }) {
           text-decoration: none;
           font-size: 1rem;
           white-space: nowrap;
+          opacity: 0;
         }
         
         .skip-link:focus {
-          top: 0;
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          opacity: 1;
           outline: 3px solid #fff;
           outline-offset: 2px;
         }
@@ -222,15 +236,15 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       
-      {/* Skip Links - WCAG 2.4.1 */}
+      {/* Skip Links - WCAG 2.4.1 - Hidden until focused */}
       <nav aria-label="Skip links" className="skip-links-container">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <a href="#nav-main" className="skip-link" style={{ left: '200px' }}>
+        <a href="#nav-main" className="skip-link">
           Skip to navigation
         </a>
-        <a href="#footer" className="skip-link" style={{ left: '400px' }}>
+        <a href="#footer" className="skip-link">
           Skip to footer
         </a>
       </nav>

@@ -1,409 +1,2380 @@
 [
   {
-    "id": "eye-oracle-wsib-mental-health",
+    "id": "verified-child-poverty-stats-can",
+    "slug": "verified-child-poverty-stats-can",
+    "title": "👶 Child Poverty: Statistics Canada Data Available",
+    "excerpt": "Statistics Canada publishes child poverty rates using various measures (LICO, MBM, LIM). Canada Child Benefit introduced 2016 reduced child poverty but gaps remain.",
+    "content": "## 👶 Child Poverty: Statistics Canada Data Available\n\n**Category:** Children & Families\n**Severity:** HIGH\n**Date:** 2024-01-01\n**Jurisdiction:** Federal\n\n---\n\nStatistics Canada publishes child poverty rates using various measures (LICO, MBM, LIM). Canada Child Benefit introduced 2016 reduced child poverty but gaps remain.\n\n---\n\n### 📚 Official Source\n\n**[Statistics Canada - Low Income Data](https://www.statcan.gc.ca/en/subjects-start/income_pensions_spending_and_wealth/low_income_and_inequality)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport anti-poverty programs\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Children & Families",
+    "categoryIcon": "👶",
+    "severity": "high",
+    "tags": [
+      "children & families",
+      "children",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/services/benefits/family.html",
+      "name": "Government of Canada - Family Benefits",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for family and children programs"
+    },
+    "sourceName": "Statistics Canada - Low Income Data",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-childcare-10-day",
+    "slug": "verified-childcare-10-day",
+    "title": "👶 $10/Day Childcare: Provincial Implementation Ongoing",
+    "excerpt": "Canada-Wide Early Learning and Child Care agreements signed with all provinces/territories. Target: average $10/day regulated childcare by 2025-26. Progress varies by province.",
+    "content": "## 👶 $10/Day Childcare: Provincial Implementation Ongoing\n\n**Category:** Children & Families\n**Severity:** HIGH\n**Date:** 2021-04-01\n**Jurisdiction:** Federal\n\n---\n\nCanada-Wide Early Learning and Child Care agreements signed with all provinces/territories. Target: average $10/day regulated childcare by 2025-26. Progress varies by province.\n\n---\n\n### 📚 Official Source\n\n**[ESDC - Childcare Agreements](https://www.canada.ca/en/early-learning-child-care-agreement/agreements-provinces-territories.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor childcare fee reductions in your province\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2021-04-01",
+    "category": "Children & Families",
+    "categoryIcon": "👶",
+    "severity": "high",
+    "tags": [
+      "children & families",
+      "children",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/services/benefits/family.html",
+      "name": "Government of Canada - Family Benefits",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for family and children programs"
+    },
+    "sourceName": "ESDC - Childcare Agreements",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-refugee-claims-irb",
+    "slug": "verified-refugee-claims-irb",
+    "title": "🌍 IRB Refugee Claims: Statistics Published Quarterly",
+    "excerpt": "Immigration and Refugee Board publishes quarterly statistics on refugee claims received, finalized, and pending. Check source for current backlog and wait times.",
+    "content": "## 🌍 IRB Refugee Claims: Statistics Published Quarterly\n\n**Category:** Immigrants & Refugees\n**Severity:** HIGH\n**Date:** 2024-12-01\n**Jurisdiction:** Federal\n\n---\n\nImmigration and Refugee Board publishes quarterly statistics on refugee claims received, finalized, and pending. Check source for current backlog and wait times.\n\n---\n\n### 📚 Official Source\n\n**[IRB Statistics](https://irb.gc.ca/en/statistics/Pages/index.aspx)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nAdvocate for faster refugee processing\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-12-01",
+    "category": "Immigrants & Refugees",
+    "categoryIcon": "🌍",
+    "severity": "high",
+    "tags": [
+      "immigrants & refugees",
+      "immigrants",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship.html",
+      "name": "Immigration, Refugees and Citizenship Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for immigration and refugee information"
+    },
+    "sourceName": "IRB Statistics",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-tfwp-reforms-2024",
+    "slug": "verified-tfwp-reforms-2024",
+    "title": "🌍 Temporary Foreign Worker Program: 2024 Reforms",
+    "excerpt": "Federal government announced TFWP reforms in August 2024 including reducing low-wage stream cap from 20% to 10% and ending LMIA exemptions for some streams.",
+    "content": "## 🌍 Temporary Foreign Worker Program: 2024 Reforms\n\n**Category:** Immigrants & Refugees\n**Severity:** HIGH\n**Date:** 2024-08-26\n**Jurisdiction:** Federal\n\n---\n\nFederal government announced TFWP reforms in August 2024 including reducing low-wage stream cap from 20% to 10% and ending LMIA exemptions for some streams.\n\n---\n\n### 📚 Official Source\n\n**[ESDC News Release](https://www.canada.ca/en/employment-social-development/news/2024/08/government-of-canada-announces-new-reforms-to-the-temporary-foreign-worker-program.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor impact on migrant workers and advocate for pathways to PR\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-08-26",
+    "category": "Immigrants & Refugees",
+    "categoryIcon": "🌍",
+    "severity": "high",
+    "tags": [
+      "immigrants & refugees",
+      "immigrants",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship.html",
+      "name": "Immigration, Refugees and Citizenship Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for immigration and refugee information"
+    },
+    "sourceName": "ESDC News Release",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-federal-replacement-workers",
+    "slug": "verified-federal-replacement-workers",
+    "title": "⚙️ Bill C-58: Anti-Replacement Workers Act Passed June 2024",
+    "excerpt": "Bill C-58 (Canada Labour Code amendment) received Royal Assent June 20, 2024. Prohibits use of replacement workers during strikes/lockouts in federally regulated workplaces. In force June 2025.",
+    "content": "## ⚙️ Bill C-58: Anti-Replacement Workers Act Passed June 2024\n\n**Category:** Workers Rights\n**Severity:** HIGH\n**Date:** 2024-06-20\n**Jurisdiction:** Federal\n\n---\n\nBill C-58 (Canada Labour Code amendment) received Royal Assent June 20, 2024. Prohibits use of replacement workers during strikes/lockouts in federally regulated workplaces. In force June 2025.\n\n---\n\n### 📚 Official Source\n\n**[LEGISinfo - Bill C-58](https://www.parl.ca/LegisInfo/en/bill/44-1/c-58)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nEnsure enforcement in federal workplaces\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-06-20",
+    "category": "Workers Rights",
+    "categoryIcon": "⚙️",
+    "severity": "high",
+    "tags": [
+      "workers rights",
+      "workers",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "LEGISinfo - Bill C-58",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-minimum-wage-ontario",
+    "slug": "verified-minimum-wage-ontario",
+    "title": "⚙️ Ontario Minimum Wage: $17.20/hour (Oct 2024)",
+    "excerpt": "Ontario general minimum wage increased to $17.20/hour effective October 1, 2024. Students under 18 and liquor servers have different rates.",
+    "content": "## ⚙️ Ontario Minimum Wage: $17.20/hour (Oct 2024)\n\n**Category:** Workers Rights\n**Severity:** HIGH\n**Date:** 2024-10-01\n**Jurisdiction:** ON\n\n---\n\nOntario general minimum wage increased to $17.20/hour effective October 1, 2024. Students under 18 and liquor servers have different rates.\n\n---\n\n### 📚 Official Source\n\n**[Ontario.ca - Minimum Wage](https://www.ontario.ca/document/your-guide-employment-standards-act-0/minimum-wage)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport living wage advocacy\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-10-01",
+    "category": "Workers Rights",
+    "categoryIcon": "⚙️",
+    "severity": "high",
+    "tags": [
+      "workers rights",
+      "workers",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario.ca - Minimum Wage",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-wsib-annual-report",
+    "slug": "verified-wsib-annual-report",
+    "title": "⚙️ WSIB Annual Reports: Claim Statistics Published Yearly",
+    "excerpt": "Workplace Safety and Insurance Board publishes annual reports with claim statistics, allowed claims, appeal rates, and financial data. Check source for latest data.",
+    "content": "## ⚙️ WSIB Annual Reports: Claim Statistics Published Yearly\n\n**Category:** Workers Rights\n**Severity:** HIGH\n**Date:** 2024-01-01\n**Jurisdiction:** ON\n\n---\n\nWorkplace Safety and Insurance Board publishes annual reports with claim statistics, allowed claims, appeal rates, and financial data. Check source for latest data.\n\n---\n\n### 📚 Official Source\n\n**[WSIB Annual Reports](https://www.wsib.ca/en/annual-reports)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nReview WSIB statistics and advocate for injured workers\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Workers Rights",
+    "categoryIcon": "⚙️",
+    "severity": "high",
+    "tags": [
+      "workers rights",
+      "workers",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "WSIB Annual Reports",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-bill-86-meredith-act",
+    "slug": "verified-bill-86-meredith-act",
+    "title": "⚙️ Bill 86: Meredith Act (Fair Compensation for Injured Workers), 2025",
+    "excerpt": "Private Member's Bill introduced December 8, 2025 by Lise Vaugeois (NDP-Thunder Bay-Superior North), co-sponsored by Wayne Gates and Jamie West. Would repeal WSIA 1997 and establish new Workers' Compensation Commission of Ontario with worker-focused reforms.",
+    "content": "## ⚙️ Bill 86: Meredith Act (Fair Compensation for Injured Workers), 2025\n\n**Category:** Workers Rights\n**Severity:** CRITICAL\n**Date:** 2025-12-08\n**Jurisdiction:** ON\n\n---\n\nPrivate Member's Bill introduced December 8, 2025 by Lise Vaugeois (NDP-Thunder Bay-Superior North), co-sponsored by Wayne Gates and Jamie West. Would repeal WSIA 1997 and establish new Workers' Compensation Commission of Ontario with worker-focused reforms.\n\n---\n\n### 📚 Official Source\n\n**[Ontario Legislative Assembly - Bill 86](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nContact your MPP to support Bill 86\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2025-12-08",
+    "category": "Workers Rights",
+    "categoryIcon": "⚙️",
+    "severity": "critical",
+    "tags": [
+      "workers rights",
+      "workers",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly - Bill 86",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "verified-bc-decriminalization",
+    "slug": "verified-bc-decriminalization",
+    "title": "🧠 BC Drug Decriminalization: Jan 2023 - Jan 2026 Exemption",
+    "excerpt": "British Columbia received federal exemption under CDSA to decriminalize possession of small amounts of certain drugs (up to 2.5g) from Jan 31, 2023 to Jan 31, 2026.",
+    "content": "## 🧠 BC Drug Decriminalization: Jan 2023 - Jan 2026 Exemption\n\n**Category:** Mental Health & Addiction\n**Severity:** HIGH\n**Date:** 2023-01-31\n**Jurisdiction:** BC\n\n---\n\nBritish Columbia received federal exemption under CDSA to decriminalize possession of small amounts of certain drugs (up to 2.5g) from Jan 31, 2023 to Jan 31, 2026.\n\n---\n\n### 📚 Official Source\n\n**[BC Government - Decriminalization Info](https://www2.gov.bc.ca/gov/content/overdose/decriminalization)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor decriminalization outcomes and policy evolution\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2023-01-31",
+    "category": "Mental Health & Addiction",
+    "categoryIcon": "🧠",
+    "severity": "high",
+    "tags": [
+      "mental health & addiction",
+      "mental_health",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/public-health/services/mental-health-services.html",
+      "name": "Public Health Agency of Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for mental health services and programs"
+    },
+    "sourceName": "BC Government - Decriminalization Info",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-mental-health-funding",
+    "slug": "verified-mental-health-funding",
+    "title": "🧠 Federal Mental Health Transfer: $5 Billion over 10 Years",
+    "excerpt": "Budget 2023 announced $5 billion over 10 years for provincial/territorial mental health and substance use services via bilateral agreements.",
+    "content": "## 🧠 Federal Mental Health Transfer: $5 Billion over 10 Years\n\n**Category:** Mental Health & Addiction\n**Severity:** HIGH\n**Date:** 2023-03-28\n**Jurisdiction:** Federal\n\n---\n\nBudget 2023 announced $5 billion over 10 years for provincial/territorial mental health and substance use services via bilateral agreements.\n\n---\n\n### 📚 Official Source\n\n**[Health Canada News Release](https://www.canada.ca/en/health-canada/news/2023/02/government-of-canada-announces-nearly-200-billion-to-improve-health-care-including-25-billion-for-mental-health-and-substance-use.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor how provinces deploy mental health funding\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2023-03-28",
+    "category": "Mental Health & Addiction",
+    "categoryIcon": "🧠",
+    "severity": "high",
+    "tags": [
+      "mental health & addiction",
+      "mental_health",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/public-health/services/mental-health-services.html",
+      "name": "Public Health Agency of Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for mental health services and programs"
+    },
+    "sourceName": "Health Canada News Release",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-opioid-deaths-phac",
+    "slug": "verified-opioid-deaths-phac",
+    "title": "🧠 Opioid Toxicity Deaths: 8,049 in 2023 (PHAC Data)",
+    "excerpt": "Public Health Agency of Canada tracks opioid and stimulant toxicity deaths. In 2023, there were 8,049 apparent opioid toxicity deaths in Canada. 2024/2025 data published quarterly.",
+    "content": "## 🧠 Opioid Toxicity Deaths: 8,049 in 2023 (PHAC Data)\n\n**Category:** Mental Health & Addiction\n**Severity:** CRITICAL\n**Date:** 2024-09-30\n**Jurisdiction:** Federal\n\n---\n\nPublic Health Agency of Canada tracks opioid and stimulant toxicity deaths. In 2023, there were 8,049 apparent opioid toxicity deaths in Canada. 2024/2025 data published quarterly.\n\n---\n\n### 📚 Official Source\n\n**[PHAC Opioid and Stimulant-Related Harms Dashboard](https://health-infobase.canada.ca/substance-related-harms/opioids-stimulants/)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport harm reduction and safe supply programs\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-09-30",
+    "category": "Mental Health & Addiction",
+    "categoryIcon": "🧠",
+    "severity": "critical",
+    "tags": [
+      "mental health & addiction",
+      "mental_health",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/public-health/services/mental-health-services.html",
+      "name": "Public Health Agency of Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for mental health services and programs"
+    },
+    "sourceName": "PHAC Opioid and Stimulant-Related Harms Dashboard",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-oas-gis-rates",
+    "slug": "verified-oas-gis-rates",
+    "title": "👴 OAS/GIS: Payment Rates Updated Quarterly",
+    "excerpt": "Old Age Security (OAS) and Guaranteed Income Supplement (GIS) rates are adjusted quarterly. Check source for current maximum rates.",
+    "content": "## 👴 OAS/GIS: Payment Rates Updated Quarterly\n\n**Category:** Seniors & Long-Term Care\n**Severity:** HIGH\n**Date:** 2024-10-01\n**Jurisdiction:** Federal\n\n---\n\nOld Age Security (OAS) and Guaranteed Income Supplement (GIS) rates are adjusted quarterly. Check source for current maximum rates.\n\n---\n\n### 📚 Official Source\n\n**[Canada.ca - OAS Payment Amounts](https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/payments.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nEnsure all eligible seniors receive full entitlements\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-10-01",
+    "category": "Seniors & Long-Term Care",
+    "categoryIcon": "👴",
+    "severity": "high",
+    "tags": [
+      "seniors & long-term care",
+      "seniors",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/corporate/seniors.html",
+      "name": "Government of Canada - Seniors",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for seniors programs and long-term care"
+    },
+    "sourceName": "Canada.ca - OAS Payment Amounts",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-ltc-covid-inquiry",
+    "slug": "verified-ltc-covid-inquiry",
+    "title": "👴 Ontario LTC Commission: COVID-19 Inquiry Report",
+    "excerpt": "Ontario Long-Term Care COVID-19 Commission released final report April 2021 with 85 recommendations. Documented systemic failures in long-term care homes.",
+    "content": "## 👴 Ontario LTC Commission: COVID-19 Inquiry Report\n\n**Category:** Seniors & Long-Term Care\n**Severity:** CRITICAL\n**Date:** 2021-04-30\n**Jurisdiction:** ON\n\n---\n\nOntario Long-Term Care COVID-19 Commission released final report April 2021 with 85 recommendations. Documented systemic failures in long-term care homes.\n\n---\n\n### 📚 Official Source\n\n**[Ontario LTC COVID-19 Commission Final Report](http://www.ltccommission-commissionsld.ca/report/index.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nDemand implementation of all 85 recommendations\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2021-04-30",
+    "category": "Seniors & Long-Term Care",
+    "categoryIcon": "👴",
+    "severity": "critical",
+    "tags": [
+      "seniors & long-term care",
+      "seniors",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/corporate/seniors.html",
+      "name": "Government of Canada - Seniors",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for seniors programs and long-term care"
+    },
+    "sourceName": "Ontario LTC COVID-19 Commission Final Report",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-ontario-ltc-staffing",
+    "slug": "verified-ontario-ltc-staffing",
+    "title": "👴 Ontario LTC: 4 Hours Direct Care Standard",
+    "excerpt": "Ontario committed to 4 hours of direct care per resident per day in long-term care homes. FAO and Auditor General report on implementation progress.",
+    "content": "## 👴 Ontario LTC: 4 Hours Direct Care Standard\n\n**Category:** Seniors & Long-Term Care\n**Severity:** HIGH\n**Date:** 2024-01-01\n**Jurisdiction:** ON\n\n---\n\nOntario committed to 4 hours of direct care per resident per day in long-term care homes. FAO and Auditor General report on implementation progress.\n\n---\n\n### 📚 Official Source\n\n**[Ontario Government - LTC Staffing](https://www.ontario.ca/page/long-term-care-staffing-study)**\n\n**Additional Source:** [Financial Accountability Office of Ontario](https://www.fao-on.org/)\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor FAO reports on LTC staffing progress\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Seniors & Long-Term Care",
+    "categoryIcon": "👴",
+    "severity": "high",
+    "tags": [
+      "seniors & long-term care",
+      "seniors",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/corporate/seniors.html",
+      "name": "Government of Canada - Seniors",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for seniors programs and long-term care"
+    },
+    "sourceName": "Ontario Government - LTC Staffing",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-national-housing-strategy",
+    "slug": "verified-national-housing-strategy",
+    "title": "🏠 National Housing Strategy: $82+ Billion Commitment",
+    "excerpt": "Canada's National Housing Strategy is a 10-year, $82+ billion plan launched in 2017 to create new housing supply and reduce homelessness. Progress reports available.",
+    "content": "## 🏠 National Housing Strategy: $82+ Billion Commitment\n\n**Category:** Housing & Homelessness\n**Severity:** HIGH\n**Date:** 2017-11-22\n**Jurisdiction:** Federal\n\n---\n\nCanada's National Housing Strategy is a 10-year, $82+ billion plan launched in 2017 to create new housing supply and reduce homelessness. Progress reports available.\n\n---\n\n### 📚 Official Source\n\n**[Place to Call Home - National Housing Strategy](https://www.placetocallhome.ca/)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor NHS progress and advocate for accelerated investment\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2017-11-22",
+    "category": "Housing & Homelessness",
+    "categoryIcon": "🏠",
+    "severity": "high",
+    "tags": [
+      "housing & homelessness",
+      "housing",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.infrastructure.gc.ca/homelessness-sans-abri/index-eng.html",
+      "name": "Infrastructure Canada - Homelessness",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for housing and homelessness programs"
+    },
+    "sourceName": "Place to Call Home - National Housing Strategy",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-bc-homelessness-count",
+    "slug": "verified-bc-homelessness-count",
+    "title": "🏠 BC Homeless Counts: Provincial Data Available",
+    "excerpt": "BC Housing publishes homeless count data for communities across British Columbia. Point-in-time counts conducted regularly in major municipalities.",
+    "content": "## 🏠 BC Homeless Counts: Provincial Data Available\n\n**Category:** Housing & Homelessness\n**Severity:** CRITICAL\n**Date:** 2024-01-01\n**Jurisdiction:** BC\n\n---\n\nBC Housing publishes homeless count data for communities across British Columbia. Point-in-time counts conducted regularly in major municipalities.\n\n---\n\n### 📚 Official Source\n\n**[BC Housing - Homeless Counts Data](https://www.bchousing.org/research-centre/housing-data/homeless-counts)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport Housing First initiatives\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Housing & Homelessness",
+    "categoryIcon": "🏠",
+    "severity": "critical",
+    "tags": [
+      "housing & homelessness",
+      "housing",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.infrastructure.gc.ca/homelessness-sans-abri/index-eng.html",
+      "name": "Infrastructure Canada - Homelessness",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for housing and homelessness programs"
+    },
+    "sourceName": "BC Housing - Homeless Counts Data",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-toronto-shelter-census",
+    "slug": "verified-toronto-shelter-census",
+    "title": "🏠 Toronto Shelter System: Daily Census Data Available",
+    "excerpt": "City of Toronto publishes daily shelter census data. System regularly operates at 98%+ capacity with thousands in shelter system nightly. Check source for current numbers.",
+    "content": "## 🏠 Toronto Shelter System: Daily Census Data Available\n\n**Category:** Housing & Homelessness\n**Severity:** CRITICAL\n**Date:** 2025-12-09\n**Jurisdiction:** ON\n\n---\n\nCity of Toronto publishes daily shelter census data. System regularly operates at 98%+ capacity with thousands in shelter system nightly. Check source for current numbers.\n\n---\n\n### 📚 Official Source\n\n**[City of Toronto - Shelter System Flow Data](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nDemand emergency shelter expansion and housing investment\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
     "date": "2025-12-09",
-    "emoji": "🧠",
-    "category": "The Eye Oracle",
-    "title": "👁️ BREAKING: WSIB Mental Health Denial Crisis - 67% Rejected",
-    "excerpt": "The Eye v2.0 analysis: 67% of PTSD claims denied. Workers with documented workplace trauma systematically rejected.",
+    "category": "Housing & Homelessness",
+    "categoryIcon": "🏠",
+    "severity": "critical",
+    "tags": [
+      "housing & homelessness",
+      "housing",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.infrastructure.gc.ca/homelessness-sans-abri/index-eng.html",
+      "name": "Infrastructure Canada - Homelessness",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for housing and homelessness programs"
+    },
+    "sourceName": "City of Toronto - Shelter System Flow Data",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-trc-calls-action",
+    "slug": "verified-trc-calls-action",
+    "title": "🪶 TRC: 94 Calls to Action - Implementation Tracking",
+    "excerpt": "The Truth and Reconciliation Commission issued 94 Calls to Action in 2015. Progress tracked by various organizations including CBC Beyond 94 project.",
+    "content": "## 🪶 TRC: 94 Calls to Action - Implementation Tracking\n\n**Category:** Indigenous Rights\n**Severity:** HIGH\n**Date:** 2015-12-15\n**Jurisdiction:** Federal\n\n---\n\nThe Truth and Reconciliation Commission issued 94 Calls to Action in 2015. Progress tracked by various organizations including CBC Beyond 94 project.\n\n---\n\n### 📚 Official Source\n\n**[CIRNAC - TRC Calls to Action](https://www.rcaanc-cirnac.gc.ca/eng/1524494530110/1557511412801)**\n\n**Additional Source:** [CBC Beyond 94 Tracker](https://newsinteractives.cbc.ca/longform-single/beyond-94)\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nMonitor implementation of Calls to Action\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2015-12-15",
+    "category": "Indigenous Rights",
+    "categoryIcon": "🪶",
+    "severity": "high",
+    "tags": [
+      "indigenous rights",
+      "indigenous",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.sac-isc.gc.ca/eng/1100100028574/1529354062610",
+      "name": "Crown-Indigenous Relations and Northern Affairs Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for Indigenous rights and treaty information"
+    },
+    "sourceName": "CIRNAC - TRC Calls to Action",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-child-welfare-compensation",
+    "slug": "verified-child-welfare-compensation",
+    "title": "🪶 First Nations Child Welfare: $23.34 Billion Settlement",
+    "excerpt": "In 2022, the Federal Court approved a $23.34 billion settlement for First Nations children and families harmed by discriminatory child welfare funding. Compensation distribution ongoing.",
+    "content": "## 🪶 First Nations Child Welfare: $23.34 Billion Settlement\n\n**Category:** Indigenous Rights\n**Severity:** CRITICAL\n**Date:** 2022-10-24\n**Jurisdiction:** Federal\n\n---\n\nIn 2022, the Federal Court approved a $23.34 billion settlement for First Nations children and families harmed by discriminatory child welfare funding. Compensation distribution ongoing.\n\n---\n\n### 📚 Official Source\n\n**[Indigenous Services Canada - Child Welfare Settlement](https://www.sac-isc.gc.ca/eng/1656012372773/1656012394186)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nEnsure affected families receive compensation\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2022-10-24",
+    "category": "Indigenous Rights",
+    "categoryIcon": "🪶",
+    "severity": "critical",
+    "tags": [
+      "indigenous rights",
+      "indigenous",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.sac-isc.gc.ca/eng/1100100028574/1529354062610",
+      "name": "Crown-Indigenous Relations and Northern Affairs Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for Indigenous rights and treaty information"
+    },
+    "sourceName": "Indigenous Services Canada - Child Welfare Settlement",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-mmiwg-calls-justice",
+    "slug": "verified-mmiwg-calls-justice",
+    "title": "🪶 MMIWG: 231 Calls for Justice Issued in 2019",
+    "excerpt": "The National Inquiry into Missing and Murdered Indigenous Women and Girls released 231 Calls for Justice in June 2019. Implementation tracking varies by organization. Federal government releases annual progress reports.",
+    "content": "## 🪶 MMIWG: 231 Calls for Justice Issued in 2019\n\n**Category:** Indigenous Rights\n**Severity:** CRITICAL\n**Date:** 2019-06-03\n**Jurisdiction:** Federal\n\n---\n\nThe National Inquiry into Missing and Murdered Indigenous Women and Girls released 231 Calls for Justice in June 2019. Implementation tracking varies by organization. Federal government releases annual progress reports.\n\n---\n\n### 📚 Official Source\n\n**[MMIWG National Inquiry Final Report](https://www.mmiwg-ffada.ca/final-report/)**\n\n**Additional Source:** [CIRNAC - Federal Pathway Progress](https://www.rcaanc-cirnac.gc.ca/eng/1622233286270/1622233321912)\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport Indigenous-led organizations tracking implementation\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2019-06-03",
+    "category": "Indigenous Rights",
+    "categoryIcon": "🪶",
+    "severity": "critical",
+    "tags": [
+      "indigenous rights",
+      "indigenous",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.sac-isc.gc.ca/eng/1100100028574/1529354062610",
+      "name": "Crown-Indigenous Relations and Northern Affairs Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for Indigenous rights and treaty information"
+    },
+    "sourceName": "MMIWG National Inquiry Final Report",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-water-advisories-nov2025",
+    "slug": "verified-water-advisories-nov2025",
+    "title": "🪶 Long-Term Drinking Water Advisories: 28 Remain on First Nations",
+    "excerpt": "As of November 18, 2025, 28 long-term drinking water advisories remain on public systems on First Nations reserves. 143 have been lifted since 2015. Recent additions: Asubpeeschoseewagong (Aug 2025), Shawanaga (July 2025).",
+    "content": "## 🪶 Long-Term Drinking Water Advisories: 28 Remain on First Nations\n\n**Category:** Indigenous Rights\n**Severity:** CRITICAL\n**Date:** 2025-11-18\n**Jurisdiction:** Federal\n\n---\n\nAs of November 18, 2025, 28 long-term drinking water advisories remain on public systems on First Nations reserves. 143 have been lifted since 2015. Recent additions: Asubpeeschoseewagong (Aug 2025), Shawanaga (July 2025).\n\n---\n\n### 📚 Official Source\n\n**[Indigenous Services Canada - Official Water Advisory Tracker](https://www.sac-isc.gc.ca/eng/1506514143353/1533317130660)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nDemand immediate federal infrastructure investment\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2025-11-18",
+    "category": "Indigenous Rights",
+    "categoryIcon": "🪶",
+    "severity": "critical",
+    "tags": [
+      "indigenous rights",
+      "indigenous",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.sac-isc.gc.ca/eng/1100100028574/1529354062610",
+      "name": "Crown-Indigenous Relations and Northern Affairs Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for Indigenous rights and treaty information"
+    },
+    "sourceName": "Indigenous Services Canada - Official Water Advisory Tracker",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-canada-disability-benefit-2024",
+    "slug": "verified-canada-disability-benefit-2024",
+    "title": "🦽 Canada Disability Benefit Act Passed - Regulations Pending",
+    "excerpt": "Bill C-22 (Canada Disability Benefit Act) received Royal Assent June 22, 2023. Regulations to determine benefit amounts still pending as of late 2024. Implementation timeline uncertain.",
+    "content": "## 🦽 Canada Disability Benefit Act Passed - Regulations Pending\n\n**Category:** Disability Rights\n**Severity:** CRITICAL\n**Date:** 2023-06-22\n**Jurisdiction:** Federal\n\n---\n\nBill C-22 (Canada Disability Benefit Act) received Royal Assent June 22, 2023. Regulations to determine benefit amounts still pending as of late 2024. Implementation timeline uncertain.\n\n---\n\n### 📚 Official Source\n\n**[Employment and Social Development Canada](https://www.canada.ca/en/employment-social-development/programs/disability-benefit.html)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nContact MP to demand rapid CDB implementation with adequate rates\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2023-06-22",
+    "category": "Disability Rights",
+    "categoryIcon": "🦽",
+    "severity": "critical",
+    "tags": [
+      "disability rights",
+      "disability",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/disability.html",
+      "name": "Government of Canada - Disability Programs",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for disability rights and programs"
+    },
+    "sourceName": "Employment and Social Development Canada",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-bc-pwd-rates-2024",
+    "slug": "verified-bc-pwd-rates-2024",
+    "title": "🦽 BC Disability Assistance: $1,483.50/month",
+    "excerpt": "Persons with Disabilities (PWD) designation provides $1,483.50/month maximum for single adults in British Columbia as of 2024.",
+    "content": "## 🦽 BC Disability Assistance: $1,483.50/month\n\n**Category:** Disability Rights\n**Severity:** HIGH\n**Date:** 2024-01-01\n**Jurisdiction:** BC\n\n---\n\nPersons with Disabilities (PWD) designation provides $1,483.50/month maximum for single adults in British Columbia as of 2024.\n\n---\n\n### 📚 Official Source\n\n**[BC Government Income Assistance Rates](https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplement-amounts)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport BC disability advocacy organizations\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Disability Rights",
+    "categoryIcon": "🦽",
+    "severity": "high",
+    "tags": [
+      "disability rights",
+      "disability",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/disability.html",
+      "name": "Government of Canada - Disability Programs",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for disability rights and programs"
+    },
+    "sourceName": "BC Government Income Assistance Rates",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-aish-rates-2024",
+    "slug": "verified-aish-rates-2024",
+    "title": "🦽 AISH (Alberta): $1,863/month Maximum Benefit",
+    "excerpt": "Assured Income for the Severely Handicapped provides maximum $1,863/month for single adults as of 2024. Income and assets affect eligibility.",
+    "content": "## 🦽 AISH (Alberta): $1,863/month Maximum Benefit\n\n**Category:** Disability Rights\n**Severity:** HIGH\n**Date:** 2024-01-01\n**Jurisdiction:** AB\n\n---\n\nAssured Income for the Severely Handicapped provides maximum $1,863/month for single adults as of 2024. Income and assets affect eligibility.\n\n---\n\n### 📚 Official Source\n\n**[Alberta.ca Official AISH Page](https://www.alberta.ca/aish)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nContact Alberta MLA about AISH adequacy\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-01-01",
+    "category": "Disability Rights",
+    "categoryIcon": "🦽",
+    "severity": "high",
+    "tags": [
+      "disability rights",
+      "disability",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/disability.html",
+      "name": "Government of Canada - Disability Programs",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for disability rights and programs"
+    },
+    "sourceName": "Alberta.ca Official AISH Page",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "verified-odsp-rates-2024",
+    "slug": "verified-odsp-rates-2024",
+    "title": "🦽 ODSP Maximum Rate: $1,308/month for Single Adult",
+    "excerpt": "Ontario Disability Support Program provides maximum $1,308/month basic needs + shelter for single recipients, far below poverty line. Rate increased 6.5% in July 2024 but remains inadequate.",
+    "content": "## 🦽 ODSP Maximum Rate: $1,308/month for Single Adult\n\n**Category:** Disability Rights\n**Severity:** CRITICAL\n**Date:** 2024-07-01\n**Jurisdiction:** ON\n\n---\n\nOntario Disability Support Program provides maximum $1,308/month basic needs + shelter for single recipients, far below poverty line. Rate increased 6.5% in July 2024 but remains inadequate.\n\n---\n\n### 📚 Official Source\n\n**[Ontario.ca Official ODSP Directives](https://www.ontario.ca/page/ontario-disability-support-program-income-support-directives)**\n\n\n\n*Last verified: 2025-12-09*\n\n---\n\n### 📢 Take Action\n\nSupport Raise the Rates campaign - https://raisingtherates.ca\n\n---\n\n*👁️ THE EYE ORACLE only reports verified data with official sources. Every claim is linked to government or institutional documentation.*",
+    "date": "2024-07-01",
+    "category": "Disability Rights",
+    "categoryIcon": "🦽",
+    "severity": "critical",
+    "tags": [
+      "disability rights",
+      "disability",
+      "verified",
+      "sourced"
+    ],
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/disability.html",
+      "name": "Government of Canada - Disability Programs",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for disability rights and programs"
+    },
+    "sourceName": "Ontario.ca Official ODSP Directives",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-on-bill-7",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 7 - Health Care is Not for Sale Act, 2025",
+    "excerpt": "The Eye detected: Health Care is Not for Sale Act, 2025. Sponsor: France Gélinas, Robin Lennox, Chandra Pasma (NDP). Status: First Reading. Relevance: HIGH - Healthcare Privatization",
     "content": {
       "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "WSIB Mental Health Claim Denials at 67%. Source: WSIB By The Numbers 2023. First responders and healthcare workers most impacted."
+        "title": "🎯 Bill Details",
+        "body": "**Bill 7: Health Care is Not for Sale Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** France Gélinas, Robin Lennox, Chandra Pasma (NDP)\n**Status:** First Reading\n**Introduced:** 2025-04-30\n**Relevance:** HIGH - Healthcare Privatization\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7)"
       },
       "evidenceReceipts": {
         "title": "🧾 Evidence Receipts",
-        "body": "| Stat | Value | Source |\\n|------|-------|--------|\\n| Denial Rate | 67% | WSIB 2023 |\\n| Physical Approval | 75% | WSIB |\\n| Appeals Success | 43% | WSIAT |"
-      }
-    }
-  },
-  {
-    "emoji": "🏥",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: LTC Staffing Crisis: 1 PSW for 30+ Residents",
-    "excerpt": "The Eye v2.0 has analyzed official government data and found systemic corruption. Unsafe staffing ratios - residents left in soiled beds for hours. Official source: Ontario Health Coalition.",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** LTC Staffing Crisis: 1 PSW for 30+ Residents\n\n**Source:** Ontario Health Coalition  \n**Verification:** [https://www.ontariohealthcoalition.ca/](https://www.ontariohealthcoalition.ca/)\n**Trust Level:** 📊 SOURCED - Public Record\n\n**Severity:** CRITICAL  \n**Scope:** provincial  \n**People Affected:** 100,000+ LTC residents  \n**Financial Impact:** For-profit operators pocket savings while cutting staff\n\n**Evidence:**  \nUnsafe staffing ratios - residents left in soiled beds for hours"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified the following corruption indicators:\n\n• Systemic corruption patterns detected\n\n**Overall Corruption Risk Score:** Analysis pending/100\n\n**Corruption Type:** Systemic\n\n**Corruption Indicators:**\n• wage theft\n• unsafe conditions\n• regulatory capture"
-      },
-      "constitutional": {
-        "title": "📜 Constitutional & Human Rights Violations",
-        "body": "**Canadian Charter Violations:**  \nSection 7 (security of person), Section 15 (age discrimination)\n\n**Human Rights Breaches:**  \nMultiple violations identified\n\n**UN Convention on Rights of Persons with Disabilities (UNCRPD):**  \nAssessment in progress"
-      },
-      "impact": {
-        "title": "👥 Who Is Being Harmed",
-        "body": "**Vulnerable Populations Impacted:**  \n• Marginalized communities\n\n**Affected Count:** 100,000+ LTC residents\n\n**Disproportionate Impact:**  \nMarginalized communities bear the heaviest burden"
-      },
-      "target": {
-        "title": "🎯 The Responsible Entity",
-        "body": "**Target:** Chartwell, Extendicare, Revera (LTC chains)  \n**Type:** corporate_sector  \n**Jurisdiction:** Ontario\n\n\n\n\n**Corruption Indicators:**  \n• wage theft\n• unsafe conditions\n• regulatory capture"
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 7 |\n| Province | ON |\n| Title | Health Care is Not for Sale Act, 2025 |\n| Status | First Reading |\n| Sponsor | France Gélinas, Robin Lennox, Chandra Pasma (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
       },
       "action": {
-        "title": "⚡ What You Can Do Right Now",
-        "body": "**Recommended Action:** Contact elected representatives\n\n**Priority:** high  \n**Timeline:** immediate\n\n**Why This Works:**  \nPublic pressure is needed to force change\n\n**Next Steps:**  \nVisit /target-acquisition for detailed action packages"
-      },
-      "evidenceReceipts": {
-        "title": "🧾 Evidence Receipts - THE PROOF",
-        "body": "### 📊 Key Data Points\n| Statistic | Description | Source |\n|-----------|-------------|--------|\n| 1:30+ | PSW to resident ratio in some homes | OHC Survey Data |\n| 4 hours | Direct care target (many get 2-3 hours) | Fixing Long-Term Care Act |\n| $21/hour | Average PSW wage (poverty wage) | SEIU Healthcare |\n| 100,000+ | LTC residents in Ontario | Ontario LTC Association |\n\n### 📎 Official Documents\n• [Fixing Long-Term Care Act 2021](https://www.ontario.ca/laws/statute/21f39)\n• [Long-Term Care Homes Act](https://www.ontario.ca/laws/statute/07l08)\n\n\n\n\n\n### 🔗 Verification Chain\n**Primary Source:** [Ontario Health Coalition LTC Staffing Report](https://www.ontariohealthcoalition.ca/index.php/long-term-care/)  \n\n**Access Date:** 2024-12-07  \n**Verification Method:** direct_api_access\n\n---\n**Archive Link:** [Wayback Machine Backup](https://web.archive.org/web/https://www.ontariohealthcoalition.ca/)"
-      },
-      "verification": {
-        "title": "✅ Verify This Yourself",
-        "body": "**Official Source:** Ontario Health Coalition  \n**URL:** [https://www.ontariohealthcoalition.ca/](https://www.ontariohealthcoalition.ca/)  \n**Date Collected:** 2024-01-01  \n**Last Verified:** 2025-12-09T18:55:48.992Z\n\n**Trust Level:** 📊 SOURCED - Public Record\n\n### How to Verify:\n1. Click the source link above\n2. Search for the specific statistic or finding\n3. Cross-reference with secondary sources below\n4. Check the Wayback Machine archive for permanence\n\n**THE EYE NEVER LIES** - Every claim is backed by official government documentation. If you find an error, [report it](/contact)."
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
       }
     },
     "evidencePackage": {
       "primarySource": {
-        "name": "Ontario Health Coalition LTC Staffing Report",
-        "url": "https://www.ontariohealthcoalition.ca/index.php/long-term-care/",
-        "type": "advocacy_report",
-        "accessDate": "2024-12-07",
-        "archiveUrl": "https://web.archive.org/web/https://www.ontariohealthcoalition.ca/index.php/long-term-care/"
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-7",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-8",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 8 - WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025",
+    "excerpt": "The Eye detected: WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025. Sponsor: John Fraser (Liberal). Status: First Reading. Relevance: CRITICAL - WSIB Coverage Gap",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 8: WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** John Fraser (Liberal)\n**Status:** First Reading\n**Introduced:** 2025-04-30\n**Relevance:** CRITICAL - WSIB Coverage Gap\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)"
       },
-      "secondarySource": null,
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 8 |\n| Province | ON |\n| Title | WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025 |\n| Status | First Reading |\n| Sponsor | John Fraser (Liberal) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-on-bill-19",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 19 - Patient-to-Nurse Ratios for Hospitals Act, 2025",
+    "excerpt": "The Eye detected: Patient-to-Nurse Ratios for Hospitals Act, 2025. Sponsor: France Gélinas, Jamie West (NDP). Status: First Reading. Relevance: HIGH - Healthcare",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 19: Patient-to-Nurse Ratios for Hospitals Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** France Gélinas, Jamie West (NDP)\n**Status:** First Reading\n**Introduced:** 2025-05-13\n**Relevance:** HIGH - Healthcare\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 19 |\n| Province | ON |\n| Title | Patient-to-Nurse Ratios for Hospitals Act, 2025 |\n| Status | First Reading |\n| Sponsor | France Gélinas, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-19",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-23",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 23 - Protecting Seniors' Rights in Care Homes Act, 2025",
+    "excerpt": "The Eye detected: Protecting Seniors' Rights in Care Homes Act, 2025. Sponsor: Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois (NDP). Status: First Reading. Relevance: HIGH - Seniors/LTC",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 23: Protecting Seniors' Rights in Care Homes Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois (NDP)\n**Status:** First Reading\n**Introduced:** 2025-05-14\n**Relevance:** HIGH - Seniors/LTC\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 23 |\n| Province | ON |\n| Title | Protecting Seniors' Rights in Care Homes Act, 2025 |\n| Status | First Reading |\n| Sponsor | Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-30",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 30 - Working for Workers Seven Act, 2025",
+    "excerpt": "The Eye detected: Working for Workers Seven Act, 2025. Sponsor: David Piccini (PC - Minister of Labour). Status: Royal Assent. Relevance: CRITICAL - Workers Rights",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 30: Working for Workers Seven Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** David Piccini (PC - Minister of Labour)\n**Status:** Royal Assent\n**Introduced:** 2025-05-28\n**Relevance:** CRITICAL - Workers Rights\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 30 |\n| Province | ON |\n| Title | Working for Workers Seven Act, 2025 |\n| Status | Royal Assent |\n| Sponsor | David Piccini (PC - Minister of Labour) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-36",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 36 - Heat Stress Act, 2025",
+    "excerpt": "The Eye detected: Heat Stress Act, 2025. Sponsor: Peter Tabuns, Chandra Pasma, Lise Vaugeois, Jamie West (NDP). Status: First Reading. Relevance: HIGH - Workplace Safety",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 36: Heat Stress Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** Peter Tabuns, Chandra Pasma, Lise Vaugeois, Jamie West (NDP)\n**Status:** First Reading\n**Introduced:** 2025-05-29\n**Relevance:** HIGH - Workplace Safety\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 36 |\n| Province | ON |\n| Title | Heat Stress Act, 2025 |\n| Status | First Reading |\n| Sponsor | Peter Tabuns, Chandra Pasma, Lise Vaugeois, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-36",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-44",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 44 - Healthcare Staffing Agencies Act, 2025",
+    "excerpt": "The Eye detected: Healthcare Staffing Agencies Act, 2025. Sponsor: France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP). Status: First Reading. Relevance: HIGH - Healthcare Workers",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 44: Healthcare Staffing Agencies Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP)\n**Status:** First Reading\n**Introduced:** 2025-06-03\n**Relevance:** HIGH - Healthcare Workers\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 44 |\n| Province | ON |\n| Title | Healthcare Staffing Agencies Act, 2025 |\n| Status | First Reading |\n| Sponsor | France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-44",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-69",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 69 - Respecting Workers in Health Care and in Related Fields Act, 2025",
+    "excerpt": "The Eye detected: Respecting Workers in Health Care and in Related Fields Act, 2025. Sponsor: France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP). Status: First Reading. Relevance: HIGH - Healthcare Workers",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 69: Respecting Workers in Health Care and in Related Fields Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP)\n**Status:** First Reading\n**Introduced:** 2025-11-18\n**Relevance:** HIGH - Healthcare Workers\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 69 |\n| Province | ON |\n| Title | Respecting Workers in Health Care and in Related Fields Act, 2025 |\n| Status | First Reading |\n| Sponsor | France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-77",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 77 - Speaking Out About, and Reporting On, Workplace Violence and Harassment Act, 2025",
+    "excerpt": "The Eye detected: Speaking Out About, and Reporting On, Workplace Violence and Harassment Act, 2025. Sponsor: France Gélinas, Jamie West (NDP). Status: First Reading. Relevance: HIGH - Workplace Safety",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 77: Speaking Out About, and Reporting On, Workplace Violence and Harassment Act, 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** France Gélinas, Jamie West (NDP)\n**Status:** First Reading\n**Introduced:** 2025-11-25\n**Relevance:** HIGH - Workplace Safety\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 77 |\n| Province | ON |\n| Title | Speaking Out About, and Reporting On, Workplace Violence and Harassment Act, 2025 |\n| Status | First Reading |\n| Sponsor | France Gélinas, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-77",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-on-bill-86",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - ON LEGISLATION",
+    "title": "👁️ ON: Bill 86 - Meredith Act (Fair Compensation for Injured Workers), 2025",
+    "excerpt": "The Eye detected: Meredith Act (Fair Compensation for Injured Workers), 2025. Sponsor: Lise Vaugeois, Wayne Gates, Jamie West (NDP). Status: First Reading - Ordered for Second Reading. Relevance: CRITICAL - Injured Workers Compensation",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 86: Meredith Act (Fair Compensation for Injured Workers), 2025**\n\n**Province/Territory:** Ontario Legislative Assembly\n**Sponsor:** Lise Vaugeois, Wayne Gates, Jamie West (NDP)\n**Status:** First Reading - Ordered for Second Reading\n**Introduced:** 2025-12-08\n**Relevance:** CRITICAL - Injured Workers Compensation\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill | Bill 86 |\n| Province | ON |\n| Title | Meredith Act (Fair Compensation for Injured Workers), 2025 |\n| Status | First Reading - Ordered for Second Reading |\n| Sponsor | Lise Vaugeois, Wayne Gates, Jamie West (NDP) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)\n\n### 🏛️ WCB/WSIB in this jurisdiction\n[WSIB](https://www.wsib.ca)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)\n2. Contact your MLA/MPP/MNA about this bill\n3. Share with affected workers\n\n**Legislature:** Ontario Legislative Assembly"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-bill-8",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - LEGISLATIVE TRACKER",
+    "title": "👁️ NEW BILL: Bill 8 - WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025",
+    "excerpt": "The Eye detected new legislation: WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025. Sponsored by: John Fraser. Status: First Reading",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 8: WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025**\n\n**Sponsors:** John Fraser\n**Status:** First Reading\n**Introduced:** 2025-04-30\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)\n\n**Relevance:** This bill may affect workers, vulnerable populations, or social services in Ontario."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill Number | Bill 8 |\n| Title | WSIB Coverage for Workers in Residential Care Facilities and Group Homes Act, 2025 |\n| Status | First Reading |\n| Sponsors | John Fraser |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8)\n2. Contact your MPP about this bill\n3. Follow updates on the Legislative Tracking page\n\n**Find Your MPP:** [ola.org/members](https://www.ola.org/en/members/current)"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-8",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-bill-23",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - LEGISLATIVE TRACKER",
+    "title": "👁️ NEW BILL: Bill 23 - Protecting Seniors' Rights in Care Homes Act, 2025",
+    "excerpt": "The Eye detected new legislation: Protecting Seniors' Rights in Care Homes Act, 2025. Sponsored by: Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois. Status: First Reading",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 23: Protecting Seniors' Rights in Care Homes Act, 2025**\n\n**Sponsors:** Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois\n**Status:** First Reading\n**Introduced:** 2025-05-14\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)\n\n**Relevance:** This bill may affect workers, vulnerable populations, or social services in Ontario."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill Number | Bill 23 |\n| Title | Protecting Seniors' Rights in Care Homes Act, 2025 |\n| Status | First Reading |\n| Sponsors | Chandra Pasma, Jessica Bell, Chris Glover, Lise Vaugeois |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23)\n2. Contact your MPP about this bill\n3. Follow updates on the Legislative Tracking page\n\n**Find Your MPP:** [ola.org/members](https://www.ola.org/en/members/current)"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-23",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/corporate/seniors.html",
+      "name": "Government of Canada - Seniors",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for seniors programs and long-term care"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-bill-30",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - LEGISLATIVE TRACKER",
+    "title": "👁️ NEW BILL: Bill 30 - Working for Workers Seven Act, 2025",
+    "excerpt": "The Eye detected new legislation: Working for Workers Seven Act, 2025. Sponsored by: David Piccini (Minister of Labour). Status: Royal Assent (Passed)",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 30: Working for Workers Seven Act, 2025**\n\n**Sponsors:** David Piccini (Minister of Labour)\n**Status:** Royal Assent (Passed)\n**Introduced:** 2025-05-28\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)\n\n**Relevance:** This bill may affect workers, vulnerable populations, or social services in Ontario."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill Number | Bill 30 |\n| Title | Working for Workers Seven Act, 2025 |\n| Status | Royal Assent (Passed) |\n| Sponsors | David Piccini (Minister of Labour) |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30)\n2. Contact your MPP about this bill\n3. Follow updates on the Legislative Tracking page\n\n**Find Your MPP:** [ola.org/members](https://www.ola.org/en/members/current)"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-30",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-bill-69",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - LEGISLATIVE TRACKER",
+    "title": "👁️ NEW BILL: Bill 69 - Respecting Workers in Health Care and in Related Fields Act, 2025",
+    "excerpt": "The Eye detected new legislation: Respecting Workers in Health Care and in Related Fields Act, 2025. Sponsored by: France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West. Status: First Reading",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 69: Respecting Workers in Health Care and in Related Fields Act, 2025**\n\n**Sponsors:** France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West\n**Status:** First Reading\n**Introduced:** 2025-11-18\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)\n\n**Relevance:** This bill may affect workers, vulnerable populations, or social services in Ontario."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill Number | Bill 69 |\n| Title | Respecting Workers in Health Care and in Related Fields Act, 2025 |\n| Status | First Reading |\n| Sponsors | France Gélinas, Wayne Gates, Lisa Gretzky, Jamie West |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69)\n2. Contact your MPP about this bill\n3. Follow updates on the Legislative Tracking page\n\n**Find Your MPP:** [ola.org/members](https://www.ola.org/en/members/current)"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-69",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "eye-oracle-bill-85",
+    "date": "2025-12-09",
+    "emoji": "📜",
+    "category": "The Eye Oracle - LEGISLATIVE TRACKER",
+    "title": "👁️ NEW BILL: Bill 85 - Transparent and Accountable Health Care Act, 2025",
+    "excerpt": "The Eye detected new legislation: Transparent and Accountable Health Care Act, 2025. Sponsored by: France Gélinas. Status: First Reading",
+    "content": {
+      "overview": {
+        "title": "🎯 Bill Details",
+        "body": "**Bill 85: Transparent and Accountable Health Care Act, 2025**\n\n**Sponsors:** France Gélinas\n**Status:** First Reading\n**Introduced:** 2025-12-02\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85)\n\n**Relevance:** This bill may affect workers, vulnerable populations, or social services in Ontario."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "### 📊 Legislative Record\n| Field | Value |\n|-------|-------|\n| Bill Number | Bill 85 |\n| Title | Transparent and Accountable Health Care Act, 2025 |\n| Status | First Reading |\n| Sponsors | France Gélinas |\n\n### 🔗 Official Source\n[https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85)"
+      },
+      "action": {
+        "title": "⚡ Take Action",
+        "body": "**Track This Bill:**\n1. [Read the full bill text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85)\n2. Contact your MPP about this bill\n3. Follow updates on the Legislative Tracking page\n\n**Find Your MPP:** [ola.org/members](https://www.ola.org/en/members/current)"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09"
+      }
+    },
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-85",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09",
+    "lastUpdated": "2025-12-09T23:17:14.555Z"
+  },
+  {
+    "id": "eye-oracle-bill-86",
+    "date": "2025-12-09",
+    "emoji": "⚖️",
+    "category": "The Eye Oracle - LEGISLATIVE ALERT",
+    "title": "👁️ BREAKING: Bill 86 - Meredith Act for Fair Injured Worker Compensation!",
+    "excerpt": "MPP Lise Vaugeois (NDP) introduced Bill 86 on Dec 8, 2025 - The Meredith Act aims to restore fair compensation for injured workers under WSIB.",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**BREAKING LEGISLATIVE NEWS**\n\n**Bill 86: Meredith Act (Fair Compensation for Injured Workers), 2025**\n\n**Sponsors:** Lise Vaugeois (NDP - Thunder Bay-Superior North), Wayne Gates, Jamie West\n**Introduced:** December 8, 2025\n**Status:** First Reading PASSED - Ordered for Second Reading\n\n**Source:** [Ontario Legislative Assembly](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)\n\n**Why This Matters:**\nThe Meredith Principles (1914) established the historic compromise - workers gave up the right to sue in exchange for guaranteed compensation. This bill aims to restore that promise which has been systematically eroded."
+      },
+      "corruption": {
+        "title": "🔍 Why This Bill Was Needed",
+        "body": "**The Broken Promise:**\n• WSIB denial rates have skyrocketed (67% for mental health)\n• Benefits have been cut repeatedly since 1990s\n• The \"historic compromise\" has become one-sided\n• Workers gave up right to sue but aren't getting fair compensation\n\n**Who Broke It:**\n• Ontario PC Government - Bill 162 (1989 cuts)\n• Ontario PC Government - Bill 99 (1997 cuts)  \n• Ongoing WSIB policy changes favoring employers"
+      },
+      "constitutional": {
+        "title": "📜 Legal Framework",
+        "body": "**The Meredith Principles (1914):**\n1. No-fault compensation\n2. Collective liability of employers\n3. Security of payment\n4. Exclusive jurisdiction\n5. Independent administration\n\n**These principles have been violated by:**\n• Arbitrary claim denials\n• Insufficient benefit levels\n• Barriers to appeals\n• Employer influence over WSIB policy"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts - THE PROOF",
+        "body": "### 📊 Bill 86 Details\n| Field | Information |\n|-------|-------------|\n| Bill Number | Bill 86 |\n| Short Title | Meredith Act (Fair Compensation for Injured Workers), 2025 |\n| Sponsor | Lise Vaugeois (NDP) |\n| Co-Sponsors | Wayne Gates, Jamie West |\n| Introduced | December 8, 2025 |\n| First Reading | PASSED (Carried) |\n| Status | Ordered for Second Reading |\n\n### 🔗 Official Source\n**Ontario Legislative Assembly:** [Bill 86 Full Text](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86)\n\n### 📞 Contact Your MPP\nSupport this bill by contacting your MPP: [Find Your MPP](https://www.ola.org/en/members/current)"
+      },
+      "action": {
+        "title": "⚡ What You Can Do RIGHT NOW",
+        "body": "**URGENT: This Bill Needs Public Support**\n\n1. **Contact Your MPP** - Ask them to support Bill 86\n2. **Share This Report** - Spread awareness on social media\n3. **Contact the Sponsors:**\n   - Lise Vaugeois: lvaugeois-qp@ndp.on.ca | 807-345-3647\n   - Wayne Gates: wgates-qp@ndp.on.ca\n   - Jamie West: jwest-qp@ndp.on.ca\n\n4. **Submit Your Story** at /submit-tip - Your experience matters!\n\n**Why Act Now:**\nBills often die after First Reading if there's no public pressure. Second Reading debate is when support matters most!"
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Legislative Assembly - Bill 86",
+        "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86",
+        "type": "government_legislation",
+        "accessDate": "2025-12-09",
+        "archiveUrl": "https://web.archive.org/web/https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-86"
+      },
       "dataPoints": [
         {
-          "stat": "1:30+",
-          "description": "PSW to resident ratio in some homes",
-          "source": "OHC Survey Data"
+          "stat": "Bill 86",
+          "description": "Meredith Act",
+          "source": "OLA"
         },
         {
-          "stat": "4 hours",
-          "description": "Direct care target (many get 2-3 hours)",
-          "source": "Fixing Long-Term Care Act"
+          "stat": "Dec 8, 2025",
+          "description": "Date Introduced",
+          "source": "OLA"
         },
         {
-          "stat": "$21/hour",
-          "description": "Average PSW wage (poverty wage)",
-          "source": "SEIU Healthcare"
-        },
-        {
-          "stat": "100,000+",
-          "description": "LTC residents in Ontario",
-          "source": "Ontario LTC Association"
+          "stat": "Passed",
+          "description": "First Reading Vote",
+          "source": "OLA"
         }
+      ]
+    },
+    "source": {
+      "url": "https://www.canada.ca/en/employment-social-development/programs/laws-regulations/labour.html",
+      "name": "Employment and Social Development Canada",
+      "accessedDate": "2025-12-09T23:24:22.219Z",
+      "note": "Official source for federal labour laws and worker rights"
+    },
+    "sourceName": "Ontario Legislative Assembly",
+    "sourceVerified": true,
+    "lastVerified": "2025-12-09"
+  },
+  {
+    "id": "on-leg-1765322234578-bzhqj",
+    "title": "Bill 59: Rare Disease Strategy Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Disability Rights",
+    "content": "## Bill 59: Rare Disease Strategy Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** October 22, 2025\n**Priority:** HIGH\n\n**Sponsored by:** France Gélinas, Robin Lennox\n\n### Summary\nCreates a strategy for rare diseases in Ontario\n\n### Impact\nCritical for thousands of Ontarians with rare diseases lacking treatment access\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-59)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "HIGH",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "disability-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-59",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "Bill 59",
+      "sponsors": [
+        "France Gélinas",
+        "Robin Lennox"
       ],
-      "documents": [
-        {
-          "name": "Fixing Long-Term Care Act 2021",
-          "url": "https://www.ontario.ca/laws/statute/21f39"
-        },
-        {
-          "name": "Long-Term Care Homes Act",
-          "url": "https://www.ontario.ca/laws/statute/07l08"
-        }
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "October 22, 2025"
+    }
+  },
+  {
+    "id": "on-leg-1765322234580-mlvhq",
+    "title": "Bill 82: Protecting Renters from Unfair Above Guideline Rent Increases Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Housing Rights",
+    "content": "## Bill 82: Protecting Renters from Unfair Above Guideline Rent Increases Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** November 27, 2025\n**Priority:** HIGH\n\n**Sponsored by:** Stephanie Smyth\n\n### Summary\nProtects renters from unfair above-guideline rent increases\n\n### Impact\nWould provide protection for millions of Ontario renters\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-82)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "HIGH",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "housing-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-82",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "Bill 82",
+      "sponsors": [
+        "Stephanie Smyth"
       ],
-      "legalCitations": [],
-      "quotes": [],
-      "verificationChain": {
-        "firstVerified": "2025-12-09T18:55:48.992Z",
-        "lastVerified": "2025-12-09T18:55:48.992Z",
-        "verificationMethod": "direct_api_access",
-        "verifierNote": "Verified by The Eye Oracle automated system"
-      }
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "November 27, 2025"
+    }
+  },
+  {
+    "id": "on-leg-1765322234581-v3anq",
+    "title": "Bill 64: Housing Equity and Rental Transparency Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Housing Rights",
+    "content": "## Bill 64: Housing Equity and Rental Transparency Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** October 28, 2025\n**Priority:** HIGH\n\n**Sponsored by:** Stephanie Bowman\n\n### Summary\nPromotes housing equity and rental transparency\n\n### Impact\nWould increase transparency in rental housing market\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-64)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "HIGH",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "housing-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-64",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-09",
-      "source": "Ontario Health Coalition",
-      "sourceUrl": "https://www.ontariohealthcoalition.ca/",
-      "category": "healthcare",
-      "severity": "critical",
-      "affectedCount": "100,000+ LTC residents",
-      "financialImpact": "For-profit operators pocket savings while cutting staff",
-      "charterViolations": [
-        "Section 7 (security of person)",
-        "Section 15 (age discrimination)"
+      "billNumber": "Bill 64",
+      "sponsors": [
+        "Stephanie Bowman"
       ],
-      "uncrpdViolations": [],
-      "riskScore": 0,
-      "lastVerified": "2025-12-09T18:55:48.992Z"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "verificationNote": "Source: Ontario Health Coalition | URL: https://www.ontariohealthcoalition.ca/",
-    "lastVerified": "2025-12-09T18:55:48.992Z",
-    "viralHooks": {
-      "twitter": {
-        "primary": "$50M+ people affected. $2.3M in denied benefits. And they call it \"fraud prevention.\" 👁️",
-        "alternatives": [
-          "Invisible disability = invisible to them. But not to us. 👁️",
-          "The document they tried to bury says it all. Thread 🧵 👁️"
-        ],
-        "hashtags": [
-          "#3mpwrApp",
-          "#DisabilityRights"
-        ],
-        "bestTime": "7AM",
-        "toneNotes": "Punchy, provocative, thread-friendly. End with 🧵 or 👇 for threads."
-      },
-      "facebook": {
-        "primary": "The Eye tracked denial rates this month. The pattern is undeniable: 👁️",
-        "alternatives": [
-          "They denied $50M+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
-          "Why do 67% of healthcare claims get denied? The answer isn't what you think... 👁️"
-        ],
-        "hashtags": [
-          "#3mpwrApp",
-          "#DisabilityRights",
-          "#DisabilityCommunity"
-        ],
-        "bestTime": "9AM",
-        "toneNotes": "More personal, storytelling. Ask for shares explicitly."
-      },
-      "instagram": {
-        "primary": "EXPOSED: The real numbers they don't want you to see 📈 👁️",
-        "alternatives": [
-          "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
-          "Why do 67% of healthcare claims get denied? The answer isn't what you think... 👁️"
-        ],
-        "hashtags": [
-          "#3mpwrApp",
-          "#DisabilityRights",
-          "#DisabledAndProud",
-          "#ChronicIllness",
-          "#InvisibleIllness",
-          "#DisabilityAwareness",
-          "#Ableism",
-          "#SpoonieLife",
-          "#ChronicPain",
-          "#MentalHealthMatters",
-          "#AccessibilityMatters",
-          "#DisabilityCommunity",
-          "#NothingAboutUsWithoutUs",
-          "#DisabilityAdvocate",
-          "#ChronicIllnessWarrior"
-        ],
-        "bestTime": "11AM",
-        "toneNotes": "Hook in first line. Use line breaks. Caption should complement image."
-      },
-      "tiktok": {
-        "primary": "$50M+ people affected. $2.3M in denied benefits. And they call it \"fraud prevention.\" 👁️",
-        "alternatives": [
-          "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
-          "Why do 67% of healthcare claims get denied? The answer isn't what you think... 👁️"
-        ],
-        "hashtags": [
-          "#3mpwrApp",
-          "#DisabledTikTok",
-          "#ChronicIllness",
-          "#Spoonie",
-          "#DisabilityAwareness"
-        ],
-        "bestTime": "7AM",
-        "toneNotes": "First 3 seconds MUST hook. Pattern interrupt. Relatable POV style."
-      },
-      "linkedin": {
-        "primary": "📊 THE NUMBERS ARE IN: 100,000+ LTC residents - here's what The Eye Oracle found today:",
-        "alternatives": [
-          "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening.",
-          "The document they tried to bury says it all. Thread 🧵"
-        ],
-        "hashtags": [
-          "#3mpwrApp",
-          "#DisabilityInclusion",
-          "#AccessibleWorkplace",
-          "#DisabilityRights",
-          "#Accommodation"
-        ],
-        "bestTime": "7AM",
-        "toneNotes": "Data-driven but human. Professional tone with activist heart."
-      },
-      "blog": {
-        "headlines": [
-          "👁️ What The Government Doesn't Want You to Know About LTC Staffing Crisis: 1 PSW for 30+ Residents",
-          "🔥 EXPOSED: The Shocking Truth Behind LTC Staffing Crisis: 1 PSW for 30+ Residents",
-          "⚠️ 1+ Workers Affected: What You NEED to Know About LTC Staffing Crisis: 1 PSW for 30+ Residents",
-          "Why Are They Hiding This? The Real Story of LTC Staffing Crisis: 1 PSW for 30+ Residents",
-          "The Eye Sees All: LTC Staffing Crisis: 1 PSW for 30+ Residents - And It's Worse Than They're Telling You"
-        ],
-        "selectedHeadline": "👁️ What The Government Doesn't Want You to Know About LTC Staffing Crisis: 1 PSW for 30+ Residents",
-        "introHook": "Here's the thing they don't want you to understand: LTC Staffing Crisis: 1 PSW for 30+ Residents isn't a mistake. It's a pattern. And today, The Eye Oracle exposes exactly how deep it goes.",
-        "ctaHook": "Share this with every injured worker you know. They're counting on us staying silent."
-      }
-    },
-    "quirkyIntro": "They said we were exaggerating. The numbers say otherwise. 👁️",
-    "quirkyClosing": "That's the tea for today. ☕ Share it before it goes cold.",
-    "cta": {
-      "primary": {
-        "text": "View Target Dossier →",
-        "link": "/target-acquisition"
-      },
-      "secondary": {
-        "text": "Get Alerts →",
-        "link": "/alerts"
-      },
-      "tertiary": {
-        "text": "Use The Eye Yourself →",
-        "link": "/the-eye-v2-demo"
-      }
-    },
-    "id": "eye-oracle-ltc",
-    "date": "2025-12-09"
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "October 28, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: ODSP Rates Below Poverty Line: $1,308/month",
-    "excerpt": "The Eye v2.0 has analyzed official government data. Maximum single rate $1,308 while Toronto poverty line is $2,500+...",
-    "date": "2025-12-08",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** ODSP Rates Below Poverty Line: $1,308/month\\n\\n**Source:** Ontario Government ODSP Rates 2024\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234581-ljdly",
+    "title": "Bill 51: Rent Stabilization Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Housing Rights",
+    "content": "## Bill 51: Rent Stabilization Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** June 4, 2025\n**Priority:** CRITICAL\n\n**Sponsored by:** Jessica Bell, Alexa Gilmour, Catherine McKenney, Chandra Pasma\n\n### Summary\nStabilizes rent across Ontario\n\n### Impact\nWould protect renters from excessive rent increases\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-51)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "housing-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-51",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-08",
-      "source": "Ontario Government ODSP Rates 2024",
-      "sourceUrl": "https://www.ontario.ca/page/ontario-disability-support-program-income-support",
-      "category": "disabilities",
-      "severity": "critical"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 2
+      "billNumber": "Bill 51",
+      "sponsors": [
+        "Jessica Bell",
+        "Alexa Gilmour",
+        "Catherine McKenney",
+        "Chandra Pasma"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "June 4, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: Missing & Murdered Indigenous Women: 4,000+ Cases",
-    "excerpt": "The Eye v2.0 has analyzed official government data. 4,000+ Indigenous women missing or murdered - called genocide by inquiry...",
-    "date": "2025-12-07",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** Missing & Murdered Indigenous Women: 4,000+ Cases\\n\\n**Source:** MMIWG National Inquiry Final Report 2019\\n**Severity:** CRITICAL\\n**Scope:** federal\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234584-ficbk",
+    "title": "Bill 28: Homelessness Ends with Housing Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Housing Rights",
+    "content": "## Bill 28: Homelessness Ends with Housing Act, 2025\n\n**Status:** Lost on division - October 23, 2025\n**Last Update:** October 23, 2025\n**Priority:** CRITICAL\n\n**Sponsored by:** Aislinn Clancy, Lee Fairclough\n\n### Summary\nAddresses homelessness through housing solutions\n\n### Impact\nDEFEATED - Government refused to address homelessness crisis\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-28)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "housing-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-28",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-07",
-      "source": "MMIWG National Inquiry Final Report 2019",
-      "sourceUrl": "https://www.mmiwg-ffada.ca/final-report/",
-      "category": "indigenous_rights",
-      "severity": "critical"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 4
+      "billNumber": "Bill 28",
+      "sponsors": [
+        "Aislinn Clancy",
+        "Lee Fairclough"
+      ],
+      "status": "Lost on division - October 23, 2025",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "October 23, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: Toronto Homeless Deaths: 187 in 2023",
-    "excerpt": "The Eye v2.0 has analyzed official government data. 187 unhoused people died in Toronto in 2023 - preventable deaths...",
-    "date": "2025-12-06",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** Toronto Homeless Deaths: 187 in 2023\\n\\n**Source:** Toronto Public Health\\n**Severity:** CRITICAL\\n**Scope:** local\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234586-61ln1",
+    "title": "Bill 53: Dignity and Mental Health in Jails Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Mental Health",
+    "content": "## Bill 53: Dignity and Mental Health in Jails Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** June 5, 2025\n**Priority:** HIGH\n\n**Sponsored by:** Lucille Collard\n\n### Summary\nAddresses dignity and mental health issues in jails\n\n### Impact\nWould improve conditions for incarcerated persons with mental health issues\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-53)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "HIGH",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "mental-health",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-53",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-06",
-      "source": "Toronto Public Health",
-      "sourceUrl": "https://www.toronto.ca/community-people/health-wellness-care/",
-      "category": "housing",
-      "severity": "critical"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 6
+      "billNumber": "Bill 53",
+      "sponsors": [
+        "Lucille Collard"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "June 5, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: OW \"Work-for-Welfare\" Programs: Forced Labour",
-    "excerpt": "The Eye v2.0 has analyzed official government data. Recipients forced to work for below minimum wage or lose benefits...",
-    "date": "2025-12-05",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** OW \"Work-for-Welfare\" Programs: Forced Labour\\n\\n**Source:** Income Security Advocacy Centre\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234587-1j5gh",
+    "title": "Bill 42: Justice for Soli Act (Stop Criminalizing Mental Health), 2025",
+    "category": "ON Legislation",
+    "subcategory": "Mental Health",
+    "content": "## Bill 42: Justice for Soli Act (Stop Criminalizing Mental Health), 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** June 3, 2025\n**Priority:** CRITICAL\n\n**Sponsored by:** Kristyn Wong-Tam, Robin Lennox, Sol Mamakwa, Jennifer (Jennie) Stevens\n\n### Summary\nStops the criminalization of mental health crises\n\n### Impact\nWould prevent people with mental illness from being treated as criminals\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-42)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "mental-health",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-42",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-05",
-      "source": "Income Security Advocacy Centre",
-      "sourceUrl": "https://incomesecurity.org/",
-      "category": "poverty",
-      "severity": "critical"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 8
+      "billNumber": "Bill 42",
+      "sponsors": [
+        "Kristyn Wong-Tam",
+        "Robin Lennox",
+        "Sol Mamakwa",
+        "Jennifer (Jennie) Stevens"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "June 3, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: Autism Services Waitlist: 50,000+ Kids in Ontario",
-    "excerpt": "The Eye v2.0 has analyzed official government data. 50,000+ autistic kids waiting years for services - critical development windows missed...",
-    "date": "2025-12-04",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** Autism Services Waitlist: 50,000+ Kids in Ontario\\n\\n**Source:** Ontario Autism Coalition\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234588-utequ",
+    "title": "Bill 14: Support for Seniors and Caregivers Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Seniors Rights",
+    "content": "## Bill 14: Support for Seniors and Caregivers Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** May 8, 2025\n**Priority:** MEDIUM\n\n**Sponsored by:** Hon. Natalia Kusendova-Bashta\n\n### Summary\nGovernment bill supporting seniors and caregivers\n\n### Impact\nGovernment approach to senior care support\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-14)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "MEDIUM",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "seniors-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-14",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-04",
-      "source": "Ontario Autism Coalition",
-      "sourceUrl": "https://www.ontarioautismcoalition.com/",
-      "category": "disabilities",
-      "severity": "critical"
-    },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 10
+      "billNumber": "Bill 14",
+      "sponsors": [
+        "Hon. Natalia Kusendova-Bashta"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "May 8, 2025"
+    }
   },
   {
-    "emoji": "🔴",
-    "category": "The Eye Oracle",
-    "title": "👁️ The Eye Oracle: Alberta Oil Worker Deaths: 37 Workplace Fatalities 2023",
-    "excerpt": "The Eye v2.0 has analyzed official government data. 37 workers killed on the job. Oil/gas sector most dangerous. Families denied full benefits....",
-    "date": "2025-12-03",
-    "content": {
-      "overview": {
-        "title": "🎯 What The Eye Found",
-        "body": "**Issue:** Alberta Oil Worker Deaths: 37 Workplace Fatalities 2023\\n\\n**Source:** Alberta Occupational Health and Safety\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
-      },
-      "corruption": {
-        "title": "🔍 Corruption Findings",
-        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
-      }
+    "id": "on-leg-1765322234588-aozi2",
+    "title": "Bill 88: Safe Night Out Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Safety",
+    "content": "## Bill 88: Safe Night Out Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** December 9, 2025\n**Priority:** HIGH\n\n**Sponsored by:** Peggy Sattler, Alexa Gilmour, Jamie West, Kristyn Wong-Tam\n\n### Summary\nPromotes safety during nights out\n\n### Impact\nWould protect people from violence during nightlife activities\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-88)\n\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "HIGH",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "safety",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-88",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
+    "sourceVerified": true,
     "metadata": {
-      "date": "2025-12-03",
-      "source": "Alberta Occupational Health and Safety",
-      "sourceUrl": "https://www.alberta.ca/occupational-health-safety.aspx",
-      "category": "workers",
-      "severity": "critical"
+      "billNumber": "Bill 88",
+      "sponsors": [
+        "Peggy Sattler",
+        "Alexa Gilmour",
+        "Jamie West",
+        "Kristyn Wong-Tam"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "December 9, 2025"
+    }
+  },
+  {
+    "id": "on-leg-1765322234589-4ttpt",
+    "title": "Bill 55: Intimate Partner Violence Epidemic Act, 2025",
+    "category": "ON Legislation",
+    "subcategory": "Violence Prevention",
+    "content": "## Bill 55: Intimate Partner Violence Epidemic Act, 2025\n\n**Status:** First Reading - Ordered for Second Reading\n**Last Update:** June 5, 2025\n**Priority:** CRITICAL\n\n**Sponsored by:** Kristyn Wong-Tam, Doly Begum, Lisa Gretzky, Peggy Sattler\n\n### Summary\nAddresses the epidemic of intimate partner violence\n\n### Impact\nCritical legislation to address femicide and partner violence crisis\n\n### Verification\nThis bill information is verified from the Ontario Legislative Assembly.\n**Direct Link:** [View on ola.org](https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-55)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:17:14.555Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Ontario",
+    "type": "legislative",
+    "tags": [
+      "Ontario",
+      "Legislature",
+      "violence-prevention",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.ola.org/en/legislative-business/bills/parliament-44/session-1/bill-55",
+      "name": "Ontario Legislative Assembly",
+      "accessedDate": "2025-12-09T23:17:14.555Z"
     },
-    "verified": true,
-    "verificationBadge": "📊 SOURCED - Public Record",
-    "id": 12
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "Bill 55",
+      "sponsors": [
+        "Kristyn Wong-Tam",
+        "Doly Begum",
+        "Lisa Gretzky",
+        "Peggy Sattler"
+      ],
+      "status": "First Reading - Ordered for Second Reading",
+      "parliament": "44th Parliament, 1st Session",
+      "lastUpdate": "June 5, 2025"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509267-f0ouw",
+    "title": "Federal C-2: An Act respecting certain measures relating to the security of the border between Canada and the United States and respecting other related security measures",
+    "category": "Federal Legislation",
+    "subcategory": "Border Security",
+    "content": "## Federal C-2: An Act respecting certain measures relating to the security of the border between Canada and the United States and respecting other related security measures\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nGovernment bill on Canada-US border security measures\n\n### Impact\nAffects all Canadians crossing the US border\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-2)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "border-security",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-2",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-2",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509285-h6uuo",
+    "title": "Federal C-3: An Act to amend the Citizenship Act (2025)",
+    "category": "Federal Legislation",
+    "subcategory": "Immigration",
+    "content": "## Federal C-3: An Act to amend the Citizenship Act (2025)\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to the Citizenship Act\n\n### Impact\nAffects citizenship rights and requirements for immigrants\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-3)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "immigration",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-3",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-3",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509286-q4bm1",
+    "title": "Federal C-4: An Act respecting certain affordability measures for Canadians and another measure",
+    "category": "Federal Legislation",
+    "subcategory": "Affordability",
+    "content": "## Federal C-4: An Act respecting certain affordability measures for Canadians and another measure\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nGovernment affordability measures for Canadians\n\n### Impact\nAddresses cost of living crisis affecting all Canadians\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-4)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "affordability",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-4",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-4",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509286-h69e2",
+    "title": "Federal C-5: An Act to enact the Free Trade and Labour Mobility in Canada Act and the Building Canada Act",
+    "category": "Federal Legislation",
+    "subcategory": "Workers Rights",
+    "content": "## Federal C-5: An Act to enact the Free Trade and Labour Mobility in Canada Act and the Building Canada Act\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nFree trade and labour mobility within Canada\n\n### Impact\nDirectly affects workers ability to work across provinces\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-5)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "workers-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-5",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-5",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509286-zi6re",
+    "title": "Federal C-8: An Act respecting cyber security, amending the Telecommunications Act and making consequential amendments to other Acts",
+    "category": "Federal Legislation",
+    "subcategory": "Cyber Security",
+    "content": "## Federal C-8: An Act respecting cyber security, amending the Telecommunications Act and making consequential amendments to other Acts\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nCyber security measures and telecommunications amendments\n\n### Impact\nAffects digital rights and security for all Canadians\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-8)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "cyber-security",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-8",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-8",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509286-ei08l",
+    "title": "Federal C-9: An Act to amend the Criminal Code (hate propaganda, hate crime and access to religious or cultural places)",
+    "category": "Federal Legislation",
+    "subcategory": "Human Rights",
+    "content": "## Federal C-9: An Act to amend the Criminal Code (hate propaganda, hate crime and access to religious or cultural places)\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to address hate propaganda and hate crimes\n\n### Impact\nProtects religious and cultural communities from hate crimes\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-9)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "human-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-9",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-9",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509287-5wj07",
+    "title": "Federal C-10: An Act respecting the Commissioner for Modern Treaty Implementation",
+    "category": "Federal Legislation",
+    "subcategory": "Indigenous Rights",
+    "content": "## Federal C-10: An Act respecting the Commissioner for Modern Treaty Implementation\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nEstablishes Commissioner for Modern Treaty Implementation\n\n### Impact\nCritical for Indigenous treaty rights implementation\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-10)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "indigenous-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-10",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-10",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509287-9xsds",
+    "title": "Federal C-11: An Act to amend the National Defence Act and other Acts",
+    "category": "Federal Legislation",
+    "subcategory": "National Defence",
+    "content": "## Federal C-11: An Act to amend the National Defence Act and other Acts\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** MEDIUM\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to the National Defence Act\n\n### Impact\nAffects military personnel and national defence operations\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-11)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "MEDIUM",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "national-defence",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-11",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-11",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509287-f9ifn",
+    "title": "Federal C-12: An Act respecting certain measures relating to the security of Canada's borders and the integrity of the Canadian immigration system and respecting other related security measures",
+    "category": "Federal Legislation",
+    "subcategory": "Immigration",
+    "content": "## Federal C-12: An Act respecting certain measures relating to the security of Canada's borders and the integrity of the Canadian immigration system and respecting other related security measures\n\n**Bill Type:** Government Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nBorder security and immigration system integrity measures\n\n### Impact\nAffects immigrants and border security policies\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/c-12)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "house-of-commons",
+      "immigration",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-12",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "C-12",
+      "billType": "Government Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509288-2yzr8",
+    "title": "Federal S-2: An Act to amend the Indian Act (new registration entitlements)",
+    "category": "Federal Legislation",
+    "subcategory": "Indigenous Rights",
+    "content": "## Federal S-2: An Act to amend the Indian Act (new registration entitlements)\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmends Indian Act for new registration entitlements\n\n### Impact\nCritical for Indigenous peoples seeking status registration\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-2)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "indigenous-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-2",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-2",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509288-8r4w3",
+    "title": "Federal S-201: An Act respecting a national framework on sickle cell disease",
+    "category": "Federal Legislation",
+    "subcategory": "Disability Rights",
+    "content": "## Federal S-201: An Act respecting a national framework on sickle cell disease\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational framework for sickle cell disease support\n\n### Impact\nAffects thousands of Canadians with sickle cell disease\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-201)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "disability-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-201",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-201",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509289-3407r",
+    "title": "Federal S-204: An Act to establish a national framework on heart failure",
+    "category": "Federal Legislation",
+    "subcategory": "Healthcare",
+    "content": "## Federal S-204: An Act to establish a national framework on heart failure\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational framework for heart failure support and treatment\n\n### Impact\nAffects hundreds of thousands with heart failure\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-204)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "healthcare",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-204",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-204",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509289-dffoy",
+    "title": "Federal S-205: An Act to amend the Corrections and Conditional Release Act",
+    "category": "Federal Legislation",
+    "subcategory": "Criminal Justice",
+    "content": "## Federal S-205: An Act to amend the Corrections and Conditional Release Act\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to corrections and conditional release\n\n### Impact\nAffects incarcerated persons and their rights\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-205)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "criminal-justice",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-205",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-205",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509290-sashw",
+    "title": "Federal S-206: An Act to develop a national framework for a guaranteed livable basic income",
+    "category": "Federal Legislation",
+    "subcategory": "Poverty Reduction",
+    "content": "## Federal S-206: An Act to develop a national framework for a guaranteed livable basic income\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nFramework for guaranteed livable basic income in Canada\n\n### Impact\nCRITICAL - Would directly address poverty for millions of Canadians\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-206)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "poverty-reduction",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-206",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-206",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509291-jsmrp",
+    "title": "Federal S-207: An Act to amend the Criminal Records Act, to make consequential amendments to other Acts and to repeal a regulation",
+    "category": "Federal Legislation",
+    "subcategory": "Criminal Justice",
+    "content": "## Federal S-207: An Act to amend the Criminal Records Act, to make consequential amendments to other Acts and to repeal a regulation\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to Criminal Records Act\n\n### Impact\nAffects persons with criminal records seeking rehabilitation\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-207)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "criminal-justice",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-207",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-207",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509291-hdlji",
+    "title": "Federal S-231: An Act to amend the Criminal Code (medical assistance in dying)",
+    "category": "Federal Legislation",
+    "subcategory": "Healthcare",
+    "content": "## Federal S-231: An Act to amend the Criminal Code (medical assistance in dying)\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments to medical assistance in dying laws\n\n### Impact\nCritical for those seeking end-of-life care options\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-231)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "healthcare",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-231",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-231",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509292-3cnrq",
+    "title": "Federal S-232: An Act respecting non-disclosure agreements",
+    "category": "Federal Legislation",
+    "subcategory": "Workers Rights",
+    "content": "## Federal S-232: An Act respecting non-disclosure agreements\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nRegulates non-disclosure agreements\n\n### Impact\nProtects workers from abusive NDAs that silence them\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-232)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "workers-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-232",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-232",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509293-iketm",
+    "title": "Federal S-233: An Act to amend the Criminal Code (assault against persons who provide health services and first responders)",
+    "category": "Federal Legislation",
+    "subcategory": "Healthcare Workers",
+    "content": "## Federal S-233: An Act to amend the Criminal Code (assault against persons who provide health services and first responders)\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nProtects healthcare workers from assault\n\n### Impact\nCritical protection for nurses, doctors, and first responders\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-233)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "healthcare-workers",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-233",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-233",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509293-ca4x1",
+    "title": "Federal S-234: An Act respecting a national framework for fetal alcohol spectrum disorder",
+    "category": "Federal Legislation",
+    "subcategory": "Disability Rights",
+    "content": "## Federal S-234: An Act respecting a national framework for fetal alcohol spectrum disorder\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational framework for FASD support\n\n### Impact\nAffects those with fetal alcohol spectrum disorder\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-234)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "disability-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-234",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-234",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509294-rqacf",
+    "title": "Federal S-235: An Act respecting the National Strategy to Combat Human Trafficking",
+    "category": "Federal Legislation",
+    "subcategory": "Human Rights",
+    "content": "## Federal S-235: An Act respecting the National Strategy to Combat Human Trafficking\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational strategy to combat human trafficking\n\n### Impact\nCritical for victims of human trafficking\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-235)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "human-rights",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-235",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-235",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509295-2em7p",
+    "title": "Federal S-236: An Act to amend the Canadian Victims Bill of Rights and to establish a framework for implementing the rights of victims of crime",
+    "category": "Federal Legislation",
+    "subcategory": "Victims Rights",
+    "content": "## Federal S-236: An Act to amend the Canadian Victims Bill of Rights and to establish a framework for implementing the rights of victims of crime\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nStrengthens victims rights framework\n\n### Impact\nProtects and empowers victims of crime\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-236)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "victims-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-236",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-236",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509296-t9r5i",
+    "title": "Federal S-241: An Act to amend the Criminal Code and the Indian Act",
+    "category": "Federal Legislation",
+    "subcategory": "Indigenous Rights",
+    "content": "## Federal S-241: An Act to amend the Criminal Code and the Indian Act\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nAmendments affecting Indigenous peoples under Criminal Code and Indian Act\n\n### Impact\nAffects Indigenous communities\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-241)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "indigenous-rights",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-241",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-241",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509299-vxp4d",
+    "title": "Federal S-242: An Act respecting national action for the prevention of intimate partner violence",
+    "category": "Federal Legislation",
+    "subcategory": "Violence Prevention",
+    "content": "## Federal S-242: An Act respecting national action for the prevention of intimate partner violence\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** CRITICAL\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational action to prevent intimate partner violence\n\n### Impact\nCritical for preventing domestic violence and femicide\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-242)\n\n⚠️ **CRITICAL BILL** - This legislation directly affects vulnerable communities and requires immediate attention.\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "CRITICAL",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "violence-prevention",
+      "urgent"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-242",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-242",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
+  },
+  {
+    "id": "fed-leg-1765322509300-5ftvv",
+    "title": "Federal S-243: An Act to establish a national framework for women's health in Canada",
+    "category": "Federal Legislation",
+    "subcategory": "Women's Health",
+    "content": "## Federal S-243: An Act to establish a national framework for women's health in Canada\n\n**Bill Type:** Senate Bill\n**Status:** Active\n**Priority:** HIGH\n**Parliament:** 45th Parliament, 1st Session (May 26, 2025 - present)\n\n### Summary\nNational framework for women's health\n\n### Impact\nAddresses systemic gaps in women's healthcare\n\n### Verification\nThis bill information is verified from the Parliament of Canada LEGISinfo database.\n**Direct Link:** [View on parl.ca](https://www.parl.ca/legisinfo/en/bill/45-1/s-243)\n\n",
+    "date": "2025-12-09T23:21:49.265Z",
+    "priority": "HIGH",
+    "jurisdiction": "Federal",
+    "type": "legislative",
+    "tags": [
+      "Federal",
+      "Parliament",
+      "senate",
+      "women-s-health",
+      "tracking"
+    ],
+    "source": {
+      "url": "https://www.parl.ca/legisinfo/en/bill/45-1/s-243",
+      "name": "Parliament of Canada - LEGISinfo",
+      "accessedDate": "2025-12-09T23:21:49.265Z"
+    },
+    "sourceVerified": true,
+    "metadata": {
+      "billNumber": "S-243",
+      "billType": "Senate Bill",
+      "status": "Active",
+      "parliament": "45th Parliament, 1st Session",
+      "session": "May 26, 2025 - present"
+    }
   }
 ]

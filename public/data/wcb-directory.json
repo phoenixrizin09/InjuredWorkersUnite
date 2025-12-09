@@ -1,106 +1,261 @@
 [
   {
+    "id": "ontario",
+    "name": "Workplace Safety and Insurance Board (WSIB)",
+    "abbrev": "WSIB",
     "province": "Ontario",
-    "code": "ON",
-    "wcb_name": "WSIB",
-    "wcb_url": "https://www.wsib.ca/",
-    "data_portal": "data.ontario.ca",
-    "has_api": true
+    "provinceAbbrev": "ON",
+    "website": "https://www.wsib.ca",
+    "claimsPhone": "1-800-387-0750",
+    "appealsBody": "WSIAT - Workplace Safety and Insurance Appeals Tribunal",
+    "appealsUrl": "https://www.wsiat.on.ca",
+    "workerAdvocate": "Office of the Worker Adviser (OWA)",
+    "workerAdvocateUrl": "https://www.owa.gov.on.ca",
+    "workerAdvocatePhone": "1-800-435-8980",
+    "ombudsman": "Ontario Ombudsman",
+    "ombudsmanUrl": "https://www.ombudsman.on.ca",
+    "issues": [
+      "Mental health claim denial rate: 67%",
+      "Deeming practices - phantom jobs",
+      "PTSD claims for first responders",
+      "Long-term care worker injuries",
+      "COVID-19 presumption gaps"
+    ],
+    "recentChanges": [
+      {
+        "date": "2025-12-08",
+        "change": "Bill 86 - Meredith Act introduced"
+      },
+      {
+        "date": "2025-05-28",
+        "change": "Bill 30 - Working for Workers Seven passed"
+      }
+    ]
   },
   {
+    "id": "british_columbia",
+    "name": "WorkSafeBC",
+    "abbrev": "WorkSafeBC",
     "province": "British Columbia",
-    "code": "BC",
-    "wcb_name": "WorkSafeBC",
-    "wcb_url": "https://www.worksafebc.com/",
-    "data_portal": "catalogue.data.gov.bc.ca",
-    "has_api": true
+    "provinceAbbrev": "BC",
+    "website": "https://www.worksafebc.com",
+    "claimsPhone": "1-888-967-5377",
+    "appealsBody": "Workers' Compensation Appeal Tribunal (WCAT)",
+    "appealsUrl": "https://www.wcat.bc.ca",
+    "workerAdvocate": "Workers' Advisers Office",
+    "workerAdvocateUrl": "https://www2.gov.bc.ca/gov/content/employment-business/employment-standards-advice/personal-injury-in-the-workplace/workers-advisers-office",
+    "workerAdvocatePhone": "1-800-663-4261",
+    "issues": [
+      "Wildfire smoke exposure claims",
+      "Forestry sector fatalities",
+      "Port worker injuries",
+      "Construction site safety"
+    ]
   },
   {
+    "id": "alberta",
+    "name": "Workers' Compensation Board - Alberta",
+    "abbrev": "WCB Alberta",
     "province": "Alberta",
-    "code": "AB",
-    "wcb_name": "WCB Alberta",
-    "wcb_url": "https://www.wcb.ab.ca/",
-    "data_portal": "open.alberta.ca",
-    "has_api": true
+    "provinceAbbrev": "AB",
+    "website": "https://www.wcb.ab.ca",
+    "claimsPhone": "1-866-922-9221",
+    "appealsBody": "Appeals Commission for Alberta Workers' Compensation",
+    "appealsUrl": "https://www.appealscommission.ab.ca",
+    "workerAdvocate": "Workers' Compensation Board Fair Practices Office",
+    "workerAdvocateUrl": "https://www.wcb.ab.ca/about-wcb/fair-practices-office.html",
+    "issues": [
+      "Oil and gas sector fatalities - 37 deaths in 2023",
+      "Cold weather exposure claims",
+      "Camp worker isolation injuries",
+      "Oilsands worker mental health"
+    ],
+    "recentChanges": [
+      {
+        "date": "2024-05-09",
+        "change": "Bill 17 - Presumptive PTSD coverage expanded"
+      }
+    ]
   },
   {
+    "id": "quebec",
+    "name": "Commission des normes, de l'équité, de la santé et de la sécurité du travail",
+    "abbrev": "CNESST",
     "province": "Quebec",
-    "code": "QC",
-    "wcb_name": "CNESST",
-    "wcb_url": "https://www.cnesst.gouv.qc.ca/",
-    "data_portal": "donneesquebec.ca",
-    "has_api": true
+    "provinceAbbrev": "QC",
+    "website": "https://www.cnesst.gouv.qc.ca",
+    "claimsPhone": "1-844-838-0808",
+    "appealsBody": "Tribunal administratif du travail (TAT)",
+    "appealsUrl": "https://www.tat.gouv.qc.ca",
+    "workerAdvocate": "Au bas de l'échelle / Community Legal Clinics",
+    "issues": [
+      "Warehouse worker injuries (Amazon)",
+      "Agricultural worker coverage gaps",
+      "Language barriers in claims",
+      "Gig economy worker exclusions"
+    ],
+    "recentChanges": [
+      {
+        "date": "2024-04-02",
+        "change": "Bill 42 - Workplace harassment prevention passed"
+      }
+    ]
   },
   {
+    "id": "manitoba",
+    "name": "Workers Compensation Board of Manitoba",
+    "abbrev": "WCB Manitoba",
     "province": "Manitoba",
-    "code": "MB",
-    "wcb_name": "WCB Manitoba",
-    "wcb_url": "https://www.wcb.mb.ca/",
-    "data_portal": "geoportal.gov.mb.ca",
-    "has_api": false
+    "provinceAbbrev": "MB",
+    "website": "https://www.wcb.mb.ca",
+    "claimsPhone": "1-800-362-3340",
+    "appealsBody": "Appeal Commission",
+    "appealsUrl": "https://www.wcb.mb.ca/appeal-commission",
+    "workerAdvocate": "Workers Compensation Advocacy Program",
+    "issues": [
+      "Agricultural worker injuries",
+      "Extreme cold exposure",
+      "Mining sector safety"
+    ],
+    "recentChanges": [
+      {
+        "date": "2024-11-14",
+        "change": "Bill 9 - WCB Amendment Act introduced by NDP government"
+      }
+    ]
   },
   {
+    "id": "saskatchewan",
+    "name": "Workers' Compensation Board Saskatchewan",
+    "abbrev": "WCB Saskatchewan",
     "province": "Saskatchewan",
-    "code": "SK",
-    "wcb_name": "WCB Saskatchewan",
-    "wcb_url": "https://www.wcbsask.com/",
-    "data_portal": "data.saskatchewan.ca",
-    "has_api": true
+    "provinceAbbrev": "SK",
+    "website": "https://www.wcbsask.com",
+    "claimsPhone": "1-800-667-7590",
+    "appealsBody": "Workers' Compensation Board Appeal Tribunal",
+    "appealsUrl": "https://www.wcbsask.com/about-us/boards-and-committees/appeal-tribunal",
+    "workerAdvocate": "Office of the Worker's Advocate",
+    "workerAdvocateUrl": "https://www.saskatchewan.ca/residents/jobs-working-and-training/workplace-injuries/office-of-the-workers-advocate",
+    "workerAdvocatePhone": "1-877-787-2456",
+    "issues": [
+      "Potash mining injuries",
+      "Farm worker coverage",
+      "Oil field worker claims"
+    ]
   },
   {
+    "id": "nova_scotia",
+    "name": "Workers' Compensation Board of Nova Scotia",
+    "abbrev": "WCB Nova Scotia",
     "province": "Nova Scotia",
-    "code": "NS",
-    "wcb_name": "WCB Nova Scotia",
-    "wcb_url": "https://www.wcb.ns.ca/",
-    "data_portal": "data.novascotia.ca",
-    "has_api": true
+    "provinceAbbrev": "NS",
+    "website": "https://www.wcb.ns.ca",
+    "claimsPhone": "1-800-870-3331",
+    "appealsBody": "Workers' Compensation Appeals Tribunal",
+    "appealsUrl": "https://wcat.novascotia.ca",
+    "workerAdvocate": "Workers' Advisers Program",
+    "workerAdvocateUrl": "https://novascotia.ca/lae/wap/",
+    "workerAdvocatePhone": "1-800-774-4712",
+    "issues": [
+      "Fishing industry injuries",
+      "Long-term disability denials",
+      "Healthcare worker burnout"
+    ]
   },
   {
+    "id": "new_brunswick",
+    "name": "WorkSafeNB",
+    "abbrev": "WorkSafeNB",
     "province": "New Brunswick",
-    "code": "NB",
-    "wcb_name": "WorkSafeNB",
-    "wcb_url": "https://www.worksafenb.ca/",
-    "data_portal": "geonb.snb.ca",
-    "has_api": true
+    "provinceAbbrev": "NB",
+    "website": "https://www.worksafenb.ca",
+    "claimsPhone": "1-800-222-9775",
+    "appealsBody": "Workers' Compensation Appeals Tribunal",
+    "appealsUrl": "https://www.worksafenb.ca/claims/appeals/",
+    "workerAdvocate": "Workers' Advocate",
+    "issues": [
+      "Forestry sector injuries",
+      "Aquaculture worker safety",
+      "French language services"
+    ]
   },
   {
+    "id": "newfoundland",
+    "name": "WorkplaceNL",
+    "abbrev": "WorkplaceNL",
     "province": "Newfoundland and Labrador",
-    "code": "NL",
-    "wcb_name": "WorkplaceNL",
-    "wcb_url": "https://workplacenl.ca/",
-    "data_portal": "opendata.gov.nl.ca",
-    "has_api": true
+    "provinceAbbrev": "NL",
+    "website": "https://workplacenl.ca",
+    "claimsPhone": "1-800-563-9000",
+    "appealsBody": "Labour Relations Board - Workers' Compensation Division",
+    "appealsUrl": "https://www.gov.nl.ca/lrb/",
+    "workerAdvocate": "Workers' Adviser",
+    "issues": [
+      "Offshore oil rig injuries",
+      "Fishing industry fatalities",
+      "Rural access to services"
+    ]
   },
   {
+    "id": "pei",
+    "name": "Workers Compensation Board of PEI",
+    "abbrev": "WCB PEI",
     "province": "Prince Edward Island",
-    "code": "PE",
-    "wcb_name": "WCB PEI",
-    "wcb_url": "https://www.wcb.pe.ca/",
-    "data_portal": "data.princeedwardisland.ca",
-    "has_api": false
+    "provinceAbbrev": "PE",
+    "website": "https://www.wcb.pe.ca",
+    "claimsPhone": "1-800-237-5049",
+    "appealsBody": "Workers Compensation Appeal Tribunal",
+    "appealsUrl": "https://www.wcb.pe.ca/About/AppealTribunal",
+    "workerAdvocate": "Worker Advisor",
+    "issues": [
+      "Seasonal worker coverage",
+      "Agriculture injuries",
+      "Tourism sector"
+    ]
   },
   {
+    "id": "yukon",
+    "name": "Yukon Workers' Compensation Health and Safety Board",
+    "abbrev": "YWCHSB",
     "province": "Yukon",
-    "code": "YT",
-    "wcb_name": "Yukon WCB",
-    "wcb_url": "https://wcb.yk.ca/",
-    "data_portal": "open.yukon.ca",
-    "has_api": false
+    "provinceAbbrev": "YT",
+    "website": "https://wcb.yk.ca",
+    "claimsPhone": "1-800-661-0443",
+    "appealsBody": "Appeal Tribunal",
+    "issues": [
+      "Mining sector injuries",
+      "Remote community access",
+      "Extreme cold exposure"
+    ]
   },
   {
+    "id": "nwt",
+    "name": "Workers' Safety and Compensation Commission - NWT",
+    "abbrev": "WSCC NWT",
     "province": "Northwest Territories",
-    "code": "NT",
-    "wcb_name": "WSCC",
-    "wcb_url": "https://www.wscc.nt.ca/",
-    "data_portal": "open.gov.nt.ca",
-    "has_api": false
+    "provinceAbbrev": "NT",
+    "website": "https://www.wscc.nt.ca",
+    "claimsPhone": "1-800-661-0792",
+    "appealsBody": "Appeals Tribunal",
+    "issues": [
+      "Mining sector safety",
+      "Diamond mine workers",
+      "Remote community coverage"
+    ]
   },
   {
+    "id": "nunavut",
+    "name": "Workers' Safety and Compensation Commission - Nunavut",
+    "abbrev": "WSCC Nunavut",
     "province": "Nunavut",
-    "code": "NU",
-    "wcb_name": "WSCC",
-    "wcb_url": "https://www.wscc.nt.ca/",
-    "data_portal": "gov.nu.ca",
-    "has_api": false
+    "provinceAbbrev": "NU",
+    "website": "https://www.wscc.nu.ca",
+    "claimsPhone": "1-877-404-4407",
+    "appealsBody": "Appeals Tribunal",
+    "issues": [
+      "Mining and resource extraction",
+      "Remote community challenges",
+      "Cultural considerations in claims"
+    ]
   }
 ]

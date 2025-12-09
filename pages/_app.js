@@ -254,19 +254,85 @@ export default function App({ Component, pageProps }) {
             color: #000 !important;
           }
         }
+        
+        /* NUCLEAR OPTION: Hide skip links completely until Tab key focuses them */
+        .skip-nav-hidden {
+          position: absolute !important;
+          top: -9999px !important;
+          left: -9999px !important;
+          width: 1px !important;
+          height: 1px !important;
+          overflow: hidden !important;
+          clip: rect(1px, 1px, 1px, 1px) !important;
+          clip-path: inset(50%) !important;
+          white-space: nowrap !important;
+          border: 0 !important;
+          margin: -1px !important;
+          padding: 0 !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+          z-index: -9999 !important;
+        }
+        
+        .skip-nav-hidden:focus-within,
+        .skip-nav-hidden:focus {
+          position: fixed !important;
+          top: 10px !important;
+          left: 10px !important;
+          width: auto !important;
+          height: auto !important;
+          overflow: visible !important;
+          clip: auto !important;
+          clip-path: none !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          pointer-events: auto !important;
+          z-index: 999999 !important;
+        }
+        
+        .skip-nav-hidden a {
+          display: block;
+          padding: 1rem 2rem;
+          background: #4facfe;
+          color: #000;
+          font-weight: bold;
+          text-decoration: none;
+          margin-bottom: 5px;
+          border-radius: 5px;
+        }
+        
+        .skip-nav-hidden a:focus {
+          outline: 3px solid #fff;
+        }
       `}</style>
       
-      {/* Skip Links - WCAG 2.4.1 - Hidden until focused */}
-      <nav aria-label="Skip links" className="skip-links-container">
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <a href="#nav-main" className="skip-link">
-          Skip to navigation
-        </a>
-        <a href="#footer" className="skip-link">
-          Skip to footer
-        </a>
+      {/* Skip Links - WCAG 2.4.1 - Completely hidden until Tab focuses */}
+      <nav 
+        aria-label="Skip links" 
+        className="skip-nav-hidden"
+        style={{
+          position: 'absolute',
+          top: '-9999px',
+          left: '-9999px',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden',
+          clip: 'rect(1px, 1px, 1px, 1px)',
+          clipPath: 'inset(50%)',
+          whiteSpace: 'nowrap',
+          border: 0,
+          margin: '-1px',
+          padding: 0,
+          opacity: 0,
+          visibility: 'hidden',
+          pointerEvents: 'none',
+          zIndex: -9999
+        }}
+      >
+        <a href="#main-content">Skip to main content</a>
+        <a href="#nav-main">Skip to navigation</a>
+        <a href="#footer">Skip to footer</a>
       </nav>
       
       {/* Accessibility Toolbar - Left side */}

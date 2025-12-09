@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-12-08T01:37:47.701Z",
+  "lastUpdated": "2025-12-09T18:04:39.826Z",
   "scores": [
     {
       "entity": "WSIB",
@@ -43,7 +43,7 @@
           "detail": "Executives earn 39x average annual benefit"
         }
       ],
-      "calculatedAt": "2025-12-08T01:37:47.690Z"
+      "calculatedAt": "2025-12-09T18:04:39.818Z"
     },
     {
       "entity": "ODSP",
@@ -81,7 +81,7 @@
           "detail": "Transparency rating: 40%"
         }
       ],
-      "calculatedAt": "2025-12-08T01:37:47.692Z"
+      "calculatedAt": "2025-12-09T18:04:39.820Z"
     },
     {
       "entity": "Service Canada - CPP-D",
@@ -113,7 +113,7 @@
           "detail": "Transparency rating: 35%"
         }
       ],
-      "calculatedAt": "2025-12-08T01:37:47.694Z"
+      "calculatedAt": "2025-12-09T18:04:39.822Z"
     },
     {
       "entity": "Indigenous Services Canada",
@@ -139,7 +139,7 @@
           "detail": "-5.0% worse than last year"
         }
       ],
-      "calculatedAt": "2025-12-08T01:37:47.697Z"
+      "calculatedAt": "2025-12-09T18:04:39.824Z"
     }
   ]
 }

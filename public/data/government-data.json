@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-08T02:45:56.509Z",
+  "timestamp": "2025-12-09T19:37:47.274Z",
   "federal": [
     {
       "id": "adad580f-76b0-4502-bd05-20c125de9116",
@@ -242,6 +242,18 @@
       "query": "CPP disability"
     },
     {
+      "id": "de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
+      "title": "Work-Sharing (WS) Program Statistics",
+      "description": "The Work-Sharing (WS) Program is an adjustment program through Employment Insurance (EI) involving employers, employees and Service Canada. It is designed to help employers and employees avoid layoffs when there is a temporary reduction in the normal level of business activity that is beyond the control of the employer. \r\n\r\nEmployment and Social Development Canada (ESDC) has compiled data on various metrics related to WS applications and agreements. We have also archived statistics related to th",
+      "organization": "Government of Canada",
+      "lastModified": "2025-12-09T16:40:52.059318",
+      "created": "2020-10-16T12:40:13.829931",
+      "url": "https://open.canada.ca/data/en/dataset/de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
+      "source": "open.canada.ca",
+      "tags": [],
+      "query": "employment insurance"
+    },
+    {
       "id": "a5dd7bcb-88aa-4a59-a8b1-b37f84a04bfb",
       "title": "Regional unemployment rates used by the Employment Insurance program, three-month moving average, seasonally adjusted",
       "description": "Regional unemployment rates used by the Employment Insurance program, by effective date, current month.<br>",
@@ -285,18 +297,6 @@
       "lastModified": "2025-12-03T17:52:15.124273",
       "created": "2025-09-29T12:22:18.140869",
       "url": "https://open.canada.ca/data/en/dataset/7ad44bfe-aa26-4b5b-930b-e7845023dd4c",
-      "source": "open.canada.ca",
-      "tags": [],
-      "query": "employment insurance"
-    },
-    {
-      "id": "de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
-      "title": "Work-Sharing (WS) Program Statistics",
-      "description": "The Work-Sharing (WS) Program is an adjustment program through Employment Insurance (EI) involving employers, employees and Service Canada. It is designed to help employers and employees avoid layoffs when there is a temporary reduction in the normal level of business activity that is beyond the control of the employer. \r\n\r\nEmployment and Social Development Canada (ESDC) has compiled data on various metrics related to WS applications and agreements. We have also archived statistics related to th",
-      "organization": "Government of Canada",
-      "lastModified": "2025-12-02T18:12:08.416642",
-      "created": "2020-10-16T12:40:13.829931",
-      "url": "https://open.canada.ca/data/en/dataset/de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
       "source": "open.canada.ca",
       "tags": [],
       "query": "employment insurance"
@@ -874,6 +874,42 @@
       "query": "disability"
     },
     {
+      "id": "fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
+      "title": "The Alberta Aids to Daily Living (AADL) bulletin [151 to current]",
+      "description": "Alberta Aids to Daily Living assists Albertans with a long-term disability, chronic illness or terminal illness, in maintaining independence in their community. AADL provides funding for basic medical equipment and supplies to meet clinically assessed needs. The AADL bulletin provides notices, updates and reminders to AADL providers, vendors, suppliers and other interested parties.",
+      "organization": "Primary and Preventative Health Services",
+      "lastModified": "2025-12-08T21:02:46.777717",
+      "url": "https://open.alberta.ca/dataset/fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
+      "id": "db4014f0-2b45-4f88-9fd4-aba62f969618",
+      "title": "Protection for persons in care : decision summaries [2020 to Current]",
+      "description": "Decision summaries of the Protection for Persons in Care Director contain information about allegations of abuse which have been the subject of investigation by an independent investigator, and decisions made by the Director. Publicly posting of the decision summaries began in April 2016 to promote transparency and to increase public awareness of the service providers’ accountability to the Protection for Persons in Care Act.  Individually-identifiable health and other personal information are n",
+      "organization": "Primary and Preventative Health Services",
+      "lastModified": "2025-12-08T22:27:32.042380",
+      "url": "https://open.alberta.ca/dataset/db4014f0-2b45-4f88-9fd4-aba62f969618",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "disability"
+    },
+    {
       "id": "8b0a5505-243c-409c-8159-13d1a368b90a",
       "title": "Alberta Aids to Daily Living program manual Section L : lifters, homecare beds and accessories benefits",
       "description": "The Alberta Aids to Daily Living (AADL) program manual includes information on eligibility, cost-share exemption, quantity and frequency review requests and vendor, authorizer and specialty supplier roles and responsibilities. The program manual also includes policies and procedures for each benefit area and approved product lists. The manual is broken into sections for easier reference.",
@@ -928,12 +964,12 @@
       "query": "disability"
     },
     {
-      "id": "fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
-      "title": "The Alberta Aids to Daily Living (AADL) bulletin [151 to current]",
-      "description": "Alberta Aids to Daily Living assists Albertans with a long-term disability, chronic illness or terminal illness, in maintaining independence in their community. AADL provides funding for basic medical equipment and supplies to meet clinically assessed needs. The AADL bulletin provides notices, updates and reminders to AADL providers, vendors, suppliers and other interested parties.",
-      "organization": "Primary and Preventative Health Services",
-      "lastModified": "2025-11-18T22:20:21.004370",
-      "url": "https://open.alberta.ca/dataset/fd568bfc-6ac2-4f56-b022-105cf7c0bf38",
+      "id": "66b6b8e7-52c1-44dd-812a-96abd7b9bf10",
+      "title": "Potential Serious Incidents (PSIs) reporting : PSI WCB sector report 2019-2024",
+      "description": "This annual report provides statistical information on reported workplace potentially serious incidents.  Information includes the type of incident, source of the incident, type of injuries and occupations of injured workers. Reports are provided by industry sectors, as defined by the Alberta Workers’ Compensation Board. Coverage of this set of reports is January 1, 2019 to December 31, 2024.\r\n",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-12-08T22:56:52.525591",
+      "url": "https://open.alberta.ca/dataset/66b6b8e7-52c1-44dd-812a-96abd7b9bf10",
       "source": "open.alberta.ca",
       "province": "Alberta",
       "provinceCode": "AB",
@@ -943,15 +979,15 @@
       },
       "verified": true,
       "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "disability"
+      "query": "workers compensation"
     },
     {
-      "id": "e79e42cd-a5d9-4076-a474-4517456d5c73",
-      "title": "Responses to public fatality inquiry recommendations",
-      "description": "This dataset serves as a public tracking system for responses to recommendations made by judges as a result of a public fatality inquiry. For each inquiry, the tracking system records the name of the deceased, the cause and manner of death, the recommendations made by the judge to prevent similar deaths, the persons and organizations who were asked to respond to the recommendations, and their responses, if any.",
-      "organization": "Justice",
-      "lastModified": "2025-11-03T15:51:02.500430",
-      "url": "https://open.alberta.ca/dataset/e79e42cd-a5d9-4076-a474-4517456d5c73",
+      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "title": "Workers' Compensation Act",
+      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
+      "organization": "King's Printer",
+      "lastModified": "2025-12-09T03:01:23.600214",
+      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
       "source": "open.alberta.ca",
       "province": "Alberta",
       "provinceCode": "AB",
@@ -961,14 +997,14 @@
       },
       "verified": true,
       "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "disability"
+      "query": "workers compensation"
     },
     {
       "id": "d3a844d2-69b7-4a69-8c10-9a502cdb8849",
       "title": "Workers' Compensation Regulation",
       "description": "This Regulation contains detailed provisions regarding application of the Workers' Compensation Act.",
       "organization": "King's Printer",
-      "lastModified": "2025-09-20T02:03:36.056999",
+      "lastModified": "2025-12-09T03:01:50.265789",
       "url": "https://open.alberta.ca/dataset/d3a844d2-69b7-4a69-8c10-9a502cdb8849",
       "source": "open.alberta.ca",
       "province": "Alberta",
@@ -1000,24 +1036,6 @@
       "query": "workers compensation"
     },
     {
-      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
-      "title": "Workers' Compensation Act",
-      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
-      "organization": "King's Printer",
-      "lastModified": "2025-12-04T03:01:44.598574",
-      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
-      "source": "open.alberta.ca",
-      "province": "Alberta",
-      "provinceCode": "AB",
-      "wcb": {
-        "name": "WCB Alberta",
-        "url": "https://www.wcb.ab.ca/"
-      },
-      "verified": true,
-      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "workers compensation"
-    },
-    {
       "id": "0080ab5e-b25a-4325-9adb-e223728bd860",
       "title": "Prevention initiative annual update",
       "description": "Keeping workplaces and workers healthy and safe is the ultimate goal of the Prevention Initiative for Alberta’s Occupational Health and Safety system. This annual update reviews actions taken during the previous fiscal year, and outlines the path the Prevention Initiative has set for the upcoming year.",
@@ -1036,12 +1054,12 @@
       "query": "workers compensation"
     },
     {
-      "id": "5e977b8c-41f7-4763-ad4d-2f0723417dbd",
-      "title": "Alberta wage and salary survey : average wages by industry and economic region",
-      "description": "This bienneial survey provides information on wages and salaries for full- and part-time employees by occupation, region, and industry. The survey helps Albertans make career and education choices and helps organizations determine pay scales.",
-      "organization": "Jobs, Economy and Trade",
-      "lastModified": "2025-05-09T21:05:34.056222",
-      "url": "https://open.alberta.ca/dataset/5e977b8c-41f7-4763-ad4d-2f0723417dbd",
+      "id": "66b6b8e7-52c1-44dd-812a-96abd7b9bf10",
+      "title": "Potential Serious Incidents (PSIs) reporting : PSI WCB sector report 2019-2024",
+      "description": "This annual report provides statistical information on reported workplace potentially serious incidents.  Information includes the type of incident, source of the incident, type of injuries and occupations of injured workers. Reports are provided by industry sectors, as defined by the Alberta Workers’ Compensation Board. Coverage of this set of reports is January 1, 2019 to December 31, 2024.\r\n",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-12-08T22:56:52.525591",
+      "url": "https://open.alberta.ca/dataset/66b6b8e7-52c1-44dd-812a-96abd7b9bf10",
       "source": "open.alberta.ca",
       "province": "Alberta",
       "provinceCode": "AB",
@@ -1051,7 +1069,43 @@
       },
       "verified": true,
       "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "workers compensation"
+      "query": "workplace injury"
+    },
+    {
+      "id": "1ca09e79-44a9-44ad-8e3c-7926f966eb42",
+      "title": "Potential Serious Incidents (PSIs) reporting : PSI NAICS sector report 2019-2024",
+      "description": "This annual report provides statistical information on reported workplace potentially serious incidents.  Information includes the type of incident, source of the incident, type of injuries and occupations of injured workers. Reports are provided by industry sectors, as defined by the North American Industry Classification System.\r\n\r\n",
+      "organization": "Jobs, Economy, Trade and Immigration",
+      "lastModified": "2025-12-08T23:05:15.254461",
+      "url": "https://open.alberta.ca/dataset/1ca09e79-44a9-44ad-8e3c-7926f966eb42",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
+    },
+    {
+      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "title": "Workers' Compensation Act",
+      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
+      "organization": "King's Printer",
+      "lastModified": "2025-12-09T03:01:23.600214",
+      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
+      "source": "open.alberta.ca",
+      "province": "Alberta",
+      "provinceCode": "AB",
+      "wcb": {
+        "name": "WCB Alberta",
+        "url": "https://www.wcb.ab.ca/"
+      },
+      "verified": true,
+      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
+      "query": "workplace injury"
     },
     {
       "id": "ae50ec4d-8c29-4059-b09f-1887fe343323",
@@ -1090,65 +1144,11 @@
       "query": "workplace injury"
     },
     {
-      "id": "30359cef-2796-4ad2-90dc-279167733829",
-      "title": "Worker fatally injured after exposure to carbon monoxide",
-      "description": "Presents the findings of an investigation of a workplace fatality in the business, personal and professional services sector that occurred in February, 2023. A worker was using a hooded supplied air respirator while sandblasting equipment. Carbon monoxide was released into the worker's air supply, resulting in a fatal exposure injury.",
-      "organization": "Jobs, Economy, Trade and Immigration",
-      "lastModified": "2025-12-03T22:11:49.869320",
-      "url": "https://open.alberta.ca/dataset/30359cef-2796-4ad2-90dc-279167733829",
-      "source": "open.alberta.ca",
-      "province": "Alberta",
-      "provinceCode": "AB",
-      "wcb": {
-        "name": "WCB Alberta",
-        "url": "https://www.wcb.ab.ca/"
-      },
-      "verified": true,
-      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "3728ce9d-2133-43c3-a090-e73e968f4b62",
-      "title": "Workers’ handbook on occupational health and safety",
-      "description": "This pocket-sized handbook is a quick health and safety reference for Alberta workers. It introduces some key health and safety concepts, along with examples of common workplace hazards, frequently used controls and quick tips that workers can use everyday.",
-      "organization": "Jobs, Economy, Trade and Immigration",
-      "lastModified": "2025-06-16T21:36:00.922096",
-      "url": "https://open.alberta.ca/dataset/3728ce9d-2133-43c3-a090-e73e968f4b62",
-      "source": "open.alberta.ca",
-      "province": "Alberta",
-      "provinceCode": "AB",
-      "wcb": {
-        "name": "WCB Alberta",
-        "url": "https://www.wcb.ab.ca/"
-      },
-      "verified": true,
-      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "workplace injury"
-    },
-    {
-      "id": "2b47f78f-7965-4194-b0d4-b26d8eb2882d",
-      "title": "Workers' Compensation Act",
-      "description": "The Workers' Compensation Act creates the Workers' Compensation Board (WCB) as a corporation and grants it authority to administer a system of workplace injury insurance for the workers and employers of the province of Alberta. The organization compensates injured workers for lost income, health care and other costs associated with a work-related injury through an employer funded model.",
-      "organization": "King's Printer",
-      "lastModified": "2025-12-04T03:01:44.598574",
-      "url": "https://open.alberta.ca/dataset/2b47f78f-7965-4194-b0d4-b26d8eb2882d",
-      "source": "open.alberta.ca",
-      "province": "Alberta",
-      "provinceCode": "AB",
-      "wcb": {
-        "name": "WCB Alberta",
-        "url": "https://www.wcb.ab.ca/"
-      },
-      "verified": true,
-      "verificationBadge": "✅ VERIFIED - open.alberta.ca",
-      "query": "workplace injury"
-    },
-    {
       "id": "9af70bad-661f-4305-92fb-a7f74dad923d",
       "title": "Données de compensation de base GPS",
       "description": "Ces fichiers permettent aux utilisateurs d'ajouter des corrections à leurs données en post-traitement, améliorant ainsi leur précision. ",
       "organization": "Ville de Lévis",
-      "lastModified": "2025-12-07T09:36:04.223961",
+      "lastModified": "2025-12-09T09:42:08.169815",
       "url": "https://donneesquebec.ca/dataset/9af70bad-661f-4305-92fb-a7f74dad923d",
       "source": "donneesquebec.ca",
       "province": "Quebec",

@@ -1,5 +1,41 @@
 [
   {
+    "id": "REDDIT_1pbdhbd",
+    "title": "Community Discussion: 'This is the new slavery': Migrant farm workers underpaid, abused and injured",
+    "message": "Active discussion in r/canada",
+    "severity": "info",
+    "category": "community",
+    "scope": "social",
+    "source": "r/canada (204↑, 118 comments)",
+    "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
+    "verified": false,
+    "verificationBadge": "👥 COMMUNITY - User-generated content",
+    "acknowledged": false,
+    "created_at": "2025-12-01T13:59:49.000Z",
+    "engagement": {
+      "score": 204,
+      "comments": 118
+    }
+  },
+  {
+    "id": "REDDIT_1p7hj7x",
+    "title": "Community Discussion: Canadian farmers to lobby federal government to cap profits of major grocers",
+    "message": "Active discussion in r/onguardforthee",
+    "severity": "info",
+    "category": "community",
+    "scope": "social",
+    "source": "r/onguardforthee (706↑, 52 comments)",
+    "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
+    "verified": false,
+    "verificationBadge": "👥 COMMUNITY - User-generated content",
+    "acknowledged": false,
+    "created_at": "2025-11-26T19:48:51.000Z",
+    "engagement": {
+      "score": 706,
+      "comments": 52
+    }
+  },
+  {
     "id": "FED_adad580f-76b0-4502-bd05-20c125de9116",
     "title": "New Federal Data: Wages ",
     "message": "The wages on the Job Bank website are specific to an occupation and provide information on the earnings of workers at the regional level. Wages for most occupations are also provided at the national and provincial level. In Canada, all jobs are associated with one specific occupational grouping which is determined by the National Occupational Classification. For most occupations, a minimum, median and maximum wage estimates are displayed. They are update annually.\r\n\r\nIf you have comments or ques",
@@ -12,7 +48,43 @@
     "verificationBadge": "✅ VERIFIED - open.canada.ca",
     "acknowledged": false,
     "created_at": "2025-11-19T15:21:45.787073",
-    "age_days": 18
+    "age_days": 19
+  },
+  {
+    "id": "REDDIT_1p07mjp",
+    "title": "Community Discussion: Lost and homeless",
+    "message": "While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. \n\nMy fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. \n\nI was in shock, I tried to call but no answer. \n\nI had one week left in another province with my family and I couldn’t wrap my head around how he could do that to me.\n\nOver the years I have taken care of his elderly parents. Spending c",
+    "severity": "info",
+    "category": "community",
+    "scope": "social",
+    "source": "r/legaladvicecanada (38↑, 42 comments)",
+    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
+    "verified": false,
+    "verificationBadge": "👥 COMMUNITY - User-generated content",
+    "acknowledged": false,
+    "created_at": "2025-11-18T09:33:22.000Z",
+    "engagement": {
+      "score": 38,
+      "comments": 42
+    }
+  },
+  {
+    "id": "REDDIT_1oy3p5e",
+    "title": "Community Discussion: Telus employee fell in my yard",
+    "message": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in my yard through my gate and I said yes. For what it’s worth I do have cameras in the front, side and back that are motion activated and have video of them asking for permission. 7 minutes later they fell off their ladder and they called 911 which we only realized when our notifications went crazy o",
+    "severity": "info",
+    "category": "community",
+    "scope": "social",
+    "source": "r/legaladvicecanada (282↑, 91 comments)",
+    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
+    "verified": false,
+    "verificationBadge": "👥 COMMUNITY - User-generated content",
+    "acknowledged": false,
+    "created_at": "2025-11-15T21:39:09.000Z",
+    "engagement": {
+      "score": 282,
+      "comments": 91
+    }
   },
   {
     "id": "FED_0e3ba082-a963-4771-95a2-accc43ae244c",
@@ -27,7 +99,25 @@
     "verificationBadge": "✅ VERIFIED - open.canada.ca",
     "acknowledged": false,
     "created_at": "2025-11-12T17:01:17.640455",
-    "age_days": 25
+    "age_days": 26
+  },
+  {
+    "id": "REDDIT_1orvbgg",
+    "title": "Community Discussion: Denied extended maternity benefits - Ontario",
+    "message": "Location: Ontario Canada\n\nMyself and 3 other female employees at my work have just started maternity leave.\n\nOur current collective agreement allows 18 weeks of top up pay while on maternity leave.\n\nWe are entering a new collective agreement as of January 1, in which maternity top up benefits are extended for 40 weeks.\n\nOur association is stating that the small group of pregnant/new moms who are on leave will NOT be entitled to the terms of the new agreement and will only get the 18 weeks that t",
+    "severity": "info",
+    "category": "community",
+    "scope": "social",
+    "source": "r/legaladvicecanada (16↑, 39 comments)",
+    "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
+    "verified": false,
+    "verificationBadge": "👥 COMMUNITY - User-generated content",
+    "acknowledged": false,
+    "created_at": "2025-11-08T17:34:20.000Z",
+    "engagement": {
+      "score": 16,
+      "comments": 39
+    }
   },
   {
     "id": "BILL_C-1_2019-12-05",

@@ -224,5 +224,167 @@
       }
     },
     "id": 1
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: ODSP Rates Below Poverty Line: $1,308/month",
+    "excerpt": "The Eye v2.0 has analyzed official government data. Maximum single rate $1,308 while Toronto poverty line is $2,500+...",
+    "date": "2025-12-08",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** ODSP Rates Below Poverty Line: $1,308/month\\n\\n**Source:** Ontario Government ODSP Rates 2024\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-08",
+      "source": "Ontario Government ODSP Rates 2024",
+      "sourceUrl": "https://www.ontario.ca/page/ontario-disability-support-program-income-support",
+      "category": "disabilities",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 2
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: Missing & Murdered Indigenous Women: 4,000+ Cases",
+    "excerpt": "The Eye v2.0 has analyzed official government data. 4,000+ Indigenous women missing or murdered - called genocide by inquiry...",
+    "date": "2025-12-07",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** Missing & Murdered Indigenous Women: 4,000+ Cases\\n\\n**Source:** MMIWG National Inquiry Final Report 2019\\n**Severity:** CRITICAL\\n**Scope:** federal\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-07",
+      "source": "MMIWG National Inquiry Final Report 2019",
+      "sourceUrl": "https://www.mmiwg-ffada.ca/final-report/",
+      "category": "indigenous_rights",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 4
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: Toronto Homeless Deaths: 187 in 2023",
+    "excerpt": "The Eye v2.0 has analyzed official government data. 187 unhoused people died in Toronto in 2023 - preventable deaths...",
+    "date": "2025-12-06",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** Toronto Homeless Deaths: 187 in 2023\\n\\n**Source:** Toronto Public Health\\n**Severity:** CRITICAL\\n**Scope:** local\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-06",
+      "source": "Toronto Public Health",
+      "sourceUrl": "https://www.toronto.ca/community-people/health-wellness-care/",
+      "category": "housing",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 6
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: OW \"Work-for-Welfare\" Programs: Forced Labour",
+    "excerpt": "The Eye v2.0 has analyzed official government data. Recipients forced to work for below minimum wage or lose benefits...",
+    "date": "2025-12-05",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** OW \"Work-for-Welfare\" Programs: Forced Labour\\n\\n**Source:** Income Security Advocacy Centre\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-05",
+      "source": "Income Security Advocacy Centre",
+      "sourceUrl": "https://incomesecurity.org/",
+      "category": "poverty",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 8
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: Autism Services Waitlist: 50,000+ Kids in Ontario",
+    "excerpt": "The Eye v2.0 has analyzed official government data. 50,000+ autistic kids waiting years for services - critical development windows missed...",
+    "date": "2025-12-04",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** Autism Services Waitlist: 50,000+ Kids in Ontario\\n\\n**Source:** Ontario Autism Coalition\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-04",
+      "source": "Ontario Autism Coalition",
+      "sourceUrl": "https://www.ontarioautismcoalition.com/",
+      "category": "disabilities",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 10
+  },
+  {
+    "emoji": "🔴",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: Alberta Oil Worker Deaths: 37 Workplace Fatalities 2023",
+    "excerpt": "The Eye v2.0 has analyzed official government data. 37 workers killed on the job. Oil/gas sector most dangerous. Families denied full benefits....",
+    "date": "2025-12-03",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** Alberta Oil Worker Deaths: 37 Workplace Fatalities 2023\\n\\n**Source:** Alberta Occupational Health and Safety\\n**Severity:** CRITICAL\\n**Scope:** provincial\\n**People Affected:** undefined"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified systemic corruption patterns affecting vulnerable Canadians."
+      }
+    },
+    "metadata": {
+      "date": "2025-12-03",
+      "source": "Alberta Occupational Health and Safety",
+      "sourceUrl": "https://www.alberta.ca/occupational-health-safety.aspx",
+      "category": "workers",
+      "severity": "critical"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "id": 12
   }
 ]

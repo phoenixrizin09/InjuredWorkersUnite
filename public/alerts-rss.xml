@@ -5,9 +5,25 @@
     <description>Real-time alerts on government data updates, policy changes, and activism opportunities</description>
     <link>https://injuredworkersunite.pages.dev/alerts</link>
     <language>en-CA</language>
-    <lastBuildDate>Mon, 08 Dec 2025 02:46:01 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 09 Dec 2025 19:37:51 GMT</lastBuildDate>
     <atom:link href="https://injuredworkersunite.pages.dev/alerts-rss.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>Community Discussion: &apos;This is the new slavery&apos;: Migrant farm workers underpaid, abused and injured</title>
+      <description>Active discussion in r/canada</description>
+      <link>https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/</link>
+      <guid>REDDIT_1pbdhbd</guid>
+      <pubDate>Mon, 01 Dec 2025 13:59:49 GMT</pubDate>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Community Discussion: Canadian farmers to lobby federal government to cap profits of major grocers</title>
+      <description>Active discussion in r/onguardforthee</description>
+      <link>https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/</link>
+      <guid>REDDIT_1p7hj7x</guid>
+      <pubDate>Wed, 26 Nov 2025 19:48:51 GMT</pubDate>
+      <category>community</category>
+    </item>
     <item>
       <title>New Federal Data: Wages </title>
       <description>The wages on the Job Bank website are specific to an occupation and provide information on the earnings of workers at the regional level. Wages for most occupations are also provided at the national and provincial level. In Canada, all jobs are associated with one specific occupational grouping which is determined by the National Occupational Classification. For most occupations, a minimum, median and maximum wage estimates are displayed. They are update annually.
@@ -17,6 +33,30 @@ If you have comments or ques</description>
       <guid>FED_adad580f-76b0-4502-bd05-20c125de9116</guid>
       <pubDate>Wed, 19 Nov 2025 20:21:45 GMT</pubDate>
       <category>government_data</category>
+    </item>
+    <item>
+      <title>Community Discussion: Lost and homeless</title>
+      <description>While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. 
+
+My fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. 
+
+I was in shock, I tried to call but no answer. 
+
+I had one week left in another province with my family and I couldn’t wrap my head around how he could do that to me.
+
+Over the years I have taken care of his elderly parents. Spending c</description>
+      <link>https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/</link>
+      <guid>REDDIT_1p07mjp</guid>
+      <pubDate>Tue, 18 Nov 2025 09:33:22 GMT</pubDate>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Community Discussion: Telus employee fell in my yard</title>
+      <description>A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in my yard through my gate and I said yes. For what it’s worth I do have cameras in the front, side and back that are motion activated and have video of them asking for permission. 7 minutes later they fell off their ladder and they called 911 which we only realized when our notifications went crazy o</description>
+      <link>https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/</link>
+      <guid>REDDIT_1oy3p5e</guid>
+      <pubDate>Sat, 15 Nov 2025 21:39:09 GMT</pubDate>
+      <category>community</category>
     </item>
     <item>
       <title>New Federal Data: Occupational injuries</title>
@@ -31,6 +71,22 @@ The _Law on Industrial Accidents and Occupational Diseases_ (LATMP) aims to comp
       <guid>FED_0e3ba082-a963-4771-95a2-accc43ae244c</guid>
       <pubDate>Wed, 12 Nov 2025 22:01:17 GMT</pubDate>
       <category>government_data</category>
+    </item>
+    <item>
+      <title>Community Discussion: Denied extended maternity benefits - Ontario</title>
+      <description>Location: Ontario Canada
+
+Myself and 3 other female employees at my work have just started maternity leave.
+
+Our current collective agreement allows 18 weeks of top up pay while on maternity leave.
+
+We are entering a new collective agreement as of January 1, in which maternity top up benefits are extended for 40 weeks.
+
+Our association is stating that the small group of pregnant/new moms who are on leave will NOT be entitled to the terms of the new agreement and will only get the 18 weeks that t</description>
+      <link>https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/</link>
+      <guid>REDDIT_1orvbgg</guid>
+      <pubDate>Sat, 08 Nov 2025 17:34:20 GMT</pubDate>
+      <category>community</category>
     </item>
     <item>
       <title>Bill C-1: An Act respecting the administration of oaths of office</title>

@@ -178,6 +178,89 @@ export default function Home() {
           </ul>
         </div>
 
+        {/* Eye Oracle Daily Reports */}
+        <div style={{
+          padding: '2rem',
+          background: 'linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(0,255,255,0.15) 100%)',
+          borderRadius: '20px',
+          maxWidth: '900px',
+          width: '100%',
+          backdropFilter: 'blur(10px)',
+          border: '2px solid rgba(255,107,107,0.4)',
+          textAlign: 'center',
+          marginBottom: '2rem'
+        }}>
+          <h3 style={{ 
+            fontSize: '1.8rem', 
+            marginBottom: '0.5rem',
+            background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #00ffff 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            👁️ The Eye Oracle Daily Reports
+          </h3>
+          <p style={{ 
+            fontSize: '1rem', 
+            marginBottom: '1.5rem',
+            opacity: 0.9
+          }}>
+            Automated investigative journalism exposing injustices affecting vulnerable Canadians
+          </p>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '1rem',
+            marginBottom: '1.5rem'
+          }}>
+            <div style={{
+              background: 'rgba(0,0,0,0.3)',
+              padding: '1rem',
+              borderRadius: '10px',
+              border: '1px solid rgba(255,107,107,0.3)'
+            }}>
+              <div style={{ fontSize: '2rem' }}>🔴</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>WSIB Denial Rates</div>
+              <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>67% Mental Health Claims</div>
+            </div>
+            <div style={{
+              background: 'rgba(0,0,0,0.3)',
+              padding: '1rem',
+              borderRadius: '10px',
+              border: '1px solid rgba(0,255,255,0.3)'
+            }}>
+              <div style={{ fontSize: '2rem' }}>♿</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>ODSP Poverty</div>
+              <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>$1,308/month Below Line</div>
+            </div>
+            <div style={{
+              background: 'rgba(0,0,0,0.3)',
+              padding: '1rem',
+              borderRadius: '10px',
+              border: '1px solid rgba(255,217,61,0.3)'
+            }}>
+              <div style={{ fontSize: '2rem' }}>🪶</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>Indigenous Rights</div>
+              <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>4,000+ MMIWG Cases</div>
+            </div>
+          </div>
+          
+          <Link href="/eye-oracle-reports" style={{
+            display: 'inline-block',
+            padding: '0.75rem 2rem',
+            background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%)',
+            color: '#000',
+            textDecoration: 'none',
+            borderRadius: '25px',
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            boxShadow: '0 0 20px rgba(255,107,107,0.5)',
+            transition: 'all 0.3s ease'
+          }}>
+            👁️ View All Reports →
+          </Link>
+        </div>
+
         {/* Blog Teaser */}
         <div style={{
           padding: '2rem',

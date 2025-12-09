@@ -240,6 +240,18 @@
     "query": "CPP disability"
   },
   {
+    "id": "de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
+    "title": "Work-Sharing (WS) Program Statistics",
+    "description": "The Work-Sharing (WS) Program is an adjustment program through Employment Insurance (EI) involving employers, employees and Service Canada. It is designed to help employers and employees avoid layoffs when there is a temporary reduction in the normal level of business activity that is beyond the control of the employer. \r\n\r\nEmployment and Social Development Canada (ESDC) has compiled data on various metrics related to WS applications and agreements. We have also archived statistics related to th",
+    "organization": "Government of Canada",
+    "lastModified": "2025-12-09T16:40:52.059318",
+    "created": "2020-10-16T12:40:13.829931",
+    "url": "https://open.canada.ca/data/en/dataset/de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
+    "source": "open.canada.ca",
+    "tags": [],
+    "query": "employment insurance"
+  },
+  {
     "id": "a5dd7bcb-88aa-4a59-a8b1-b37f84a04bfb",
     "title": "Regional unemployment rates used by the Employment Insurance program, three-month moving average, seasonally adjusted",
     "description": "Regional unemployment rates used by the Employment Insurance program, by effective date, current month.<br>",
@@ -283,18 +295,6 @@
     "lastModified": "2025-12-03T17:52:15.124273",
     "created": "2025-09-29T12:22:18.140869",
     "url": "https://open.canada.ca/data/en/dataset/7ad44bfe-aa26-4b5b-930b-e7845023dd4c",
-    "source": "open.canada.ca",
-    "tags": [],
-    "query": "employment insurance"
-  },
-  {
-    "id": "de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
-    "title": "Work-Sharing (WS) Program Statistics",
-    "description": "The Work-Sharing (WS) Program is an adjustment program through Employment Insurance (EI) involving employers, employees and Service Canada. It is designed to help employers and employees avoid layoffs when there is a temporary reduction in the normal level of business activity that is beyond the control of the employer. \r\n\r\nEmployment and Social Development Canada (ESDC) has compiled data on various metrics related to WS applications and agreements. We have also archived statistics related to th",
-    "organization": "Government of Canada",
-    "lastModified": "2025-12-02T18:12:08.416642",
-    "created": "2020-10-16T12:40:13.829931",
-    "url": "https://open.canada.ca/data/en/dataset/de2bf291-1ccd-4f27-9dcd-8616b95bec6f",
     "source": "open.canada.ca",
     "tags": [],
     "query": "employment insurance"

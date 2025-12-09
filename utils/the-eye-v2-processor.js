@@ -53,7 +53,7 @@ function escapeRegExp(string) {
  * 
  * OUTPUT: Complete investigative intelligence report (JSON)
  */
-export async function processDocument(input) {
+async function processDocument(input) {
   const startTime = Date.now();
   
   // Robust input validation
@@ -2034,7 +2034,7 @@ function extractContext(text, keyword, contextLength = 200) {
 // SAFETY CHECKS (Legacy function - kept for backwards compatibility)
 // ═══════════════════════════════════════════════════════════════════════════
 
-export function applySafetyChecks(report) {
+function applySafetyChecks(report) {
   // Privacy check
   const personalDataIndicators = report.Evidence?.entities?.people?.length > 0;
   
@@ -2060,7 +2060,7 @@ export function applySafetyChecks(report) {
 // EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export default {
+module.exports = {
   processDocument,
   applySafetyChecks
 };

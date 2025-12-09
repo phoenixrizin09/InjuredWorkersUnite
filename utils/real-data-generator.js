@@ -2372,7 +2372,7 @@ const REAL_ATLANTIC_ISSUES = [
 /**
  * COMBINE ALL REAL ISSUES
  */
-export const ALL_REAL_ISSUES = [
+const ALL_REAL_ISSUES = [
   ...REAL_WSIB_ISSUES,
   ...REAL_ODSP_ISSUES,
   ...REAL_INDIGENOUS_ISSUES,
@@ -2407,7 +2407,7 @@ export const ALL_REAL_ISSUES = [
 /**
  * GENERATE ALERTS FROM REAL ISSUES - WITH FULL EVIDENCE RECEIPTS
  */
-export function generateRealAlerts() {
+function generateRealAlerts() {
   return ALL_REAL_ISSUES.map((issue, index) => ({
     id: `REAL_ALERT_${Date.now()}_${index}`,
     title: issue.title,
@@ -2453,7 +2453,7 @@ export function generateRealAlerts() {
 /**
  * GENERATE TARGETS FROM REAL ISSUES - WITH EVIDENCE DOSSIERS
  */
-export function generateRealTargets() {
+function generateRealTargets() {
   const targets = new Map();
   
   ALL_REAL_ISSUES.forEach(issue => {
@@ -2529,7 +2529,7 @@ export function generateRealTargets() {
 /**
  * GENERATE MONITORING STATS FROM REAL ISSUES
  */
-export function generateRealMonitoringStats() {
+function generateRealMonitoringStats() {
   const by_scope = { local: 0, provincial: 0, federal: 0 };
   const by_category = {};
   const by_severity = { critical: 0, high: 0, medium: 0, low: 0 };
@@ -2556,7 +2556,7 @@ export function generateRealMonitoringStats() {
 /**
  * INITIALIZE AUTOMATION ENGINE WITH REAL DATA
  */
-export function initializeWithRealData() {
+function initializeWithRealData() {
   const alerts = generateRealAlerts();
   const targets = generateRealTargets();
   const stats = generateRealMonitoringStats();
@@ -2577,7 +2577,7 @@ export function initializeWithRealData() {
   };
 }
 
-export default {
+module.exports = {
   ALL_REAL_ISSUES,
   generateRealAlerts,
   generateRealTargets,

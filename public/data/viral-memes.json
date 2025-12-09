@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-08T02:46:03.391Z",
+  "generated_at": "2025-12-09T18:49:30.448Z",
   "data_sources": [
     "reddit.com (real discussions)",
     "The Eye Oracle v2.0",
@@ -9,6 +9,14 @@
   "cost": "$0.00",
   "content": {
     "viral_tweets": [
+      {
+        "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. Unsafe staffing ratios - residents left in soiled beds for hours. Official source: Ontario Health Coalition.",
+        "category": "🎯 ORACLE INTELLIGENCE",
+        "engagement": "Maximum",
+        "source": "The Eye Oracle v2.0",
+        "verified": true,
+        "oracle_verified": true
+      },
       {
         "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. OW pays $733/month - 25% of poverty line - forces homelessness. Official source: Ontario Ministry MCSS 2024.",
         "category": "🎯 ORACLE INTELLIGENCE",
@@ -44,7 +52,7 @@
     "quickfire_slogans": [],
     "infographic_data": [
       {
-        "id": "oracle_infographic_0",
+        "id": "oracle_infographic_1",
         "title": "👁️ The Eye Oracle: Ontario Works: $733/month Maximum for Singles",
         "stats": [
           "$733",
@@ -60,7 +68,7 @@
       }
     ],
     "stats": {
-      "total_tweets": 1,
+      "total_tweets": 2,
       "total_templates": 2,
       "total_slogans": 0,
       "total_infographics": 1

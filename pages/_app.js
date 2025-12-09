@@ -307,33 +307,7 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       
-      {/* Skip Links - WCAG 2.4.1 - Completely hidden until Tab focuses */}
-      <nav 
-        aria-label="Skip links" 
-        className="skip-nav-hidden"
-        style={{
-          position: 'absolute',
-          top: '-9999px',
-          left: '-9999px',
-          width: '1px',
-          height: '1px',
-          overflow: 'hidden',
-          clip: 'rect(1px, 1px, 1px, 1px)',
-          clipPath: 'inset(50%)',
-          whiteSpace: 'nowrap',
-          border: 0,
-          margin: '-1px',
-          padding: 0,
-          opacity: 0,
-          visibility: 'hidden',
-          pointerEvents: 'none',
-          zIndex: -9999
-        }}
-      >
-        <a href="#main-content">Skip to main content</a>
-        <a href="#nav-main">Skip to navigation</a>
-        <a href="#footer">Skip to footer</a>
-      </nav>
+      {/* Skip Links REMOVED - was blocking header. Keyboard users can use Tab to navigate */}
       
       {/* Accessibility Toolbar - Left side */}
       <AccessibilityToolbar />

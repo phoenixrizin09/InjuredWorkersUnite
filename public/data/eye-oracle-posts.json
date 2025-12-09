@@ -1,5 +1,23 @@
 [
   {
+    "id": "eye-oracle-wsib-mental-health",
+    "date": "2025-12-09",
+    "emoji": "🧠",
+    "category": "The Eye Oracle",
+    "title": "👁️ BREAKING: WSIB Mental Health Denial Crisis - 67% Rejected",
+    "excerpt": "The Eye v2.0 analysis: 67% of PTSD claims denied. Workers with documented workplace trauma systematically rejected.",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "WSIB Mental Health Claim Denials at 67%. Source: WSIB By The Numbers 2023. First responders and healthcare workers most impacted."
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts",
+        "body": "| Stat | Value | Source |\\n|------|-------|--------|\\n| Denial Rate | 67% | WSIB 2023 |\\n| Physical Approval | 75% | WSIB |\\n| Appeals Success | 43% | WSIAT |"
+      }
+    }
+  },
+  {
     "emoji": "🏥",
     "category": "The Eye Oracle",
     "title": "👁️ The Eye Oracle: LTC Staffing Crisis: 1 PSW for 30+ Residents",
@@ -223,7 +241,8 @@
         "link": "/the-eye-v2-demo"
       }
     },
-    "id": 1
+    "id": "eye-oracle-ltc",
+    "date": "2025-12-09"
   },
   {
     "emoji": "🔴",

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:client": "next dev -p 3000",
-    "build": "npm run fetch:real && npm run generate:sitemap && npm run generate:rss && npm run generate:viral && next build",
+    "build": "next build",
+    "build:full": "npm run fetch:real && npm run generate:sitemap && npm run generate:rss && npm run generate:viral && next build",
     "build:static": "cross-env STATIC_EXPORT=true npm run build",
     "start": "next start",
     "lint": "next lint",

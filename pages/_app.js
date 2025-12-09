@@ -146,47 +146,67 @@ export default function App({ Component, pageProps }) {
           box-shadow: 0 0 0 6px rgba(79, 172, 254, 0.3) !important;
         }
         
-        /* Skip Links Container - WCAG 2.4.1 */
+        /* Skip Links Container - WCAG 2.4.1 - HIDDEN BY DEFAULT */
         .skip-links-container {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
-          z-index: 10001;
-          opacity: 0;
-          pointer-events: none;
+          position: absolute !important;
+          top: -9999px !important;
+          left: -9999px !important;
+          width: 1px !important;
+          height: 1px !important;
+          overflow: hidden !important;
+          clip: rect(0, 0, 0, 0) !important;
+          white-space: nowrap !important;
+          border: 0 !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+          z-index: -1 !important;
         }
         
         .skip-links-container:focus-within {
-          position: fixed;
-          top: 0;
-          left: 0;
-          opacity: 1;
-          pointer-events: auto;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: auto !important;
+          height: auto !important;
+          overflow: visible !important;
+          clip: auto !important;
+          opacity: 1 !important;
+          pointer-events: auto !important;
+          z-index: 10001 !important;
         }
         
         .skip-link {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
+          position: absolute !important;
+          top: -9999px !important;
+          left: -9999px !important;
+          width: 1px !important;
+          height: 1px !important;
+          overflow: hidden !important;
+          clip: rect(0, 0, 0, 0) !important;
+          white-space: nowrap !important;
+          border: 0 !important;
           padding: 1rem 2rem;
           background: #4facfe;
           color: #000;
           font-weight: bold;
-          z-index: 10000;
           border-radius: 0 0 8px 8px;
           text-decoration: none;
           font-size: 1rem;
-          white-space: nowrap;
-          opacity: 0;
+          opacity: 0 !important;
         }
         
         .skip-link:focus {
-          position: fixed;
-          top: 10px;
-          left: 10px;
-          opacity: 1;
+          position: fixed !important;
+          top: 10px !important;
+          left: 10px !important;
+          width: auto !important;
+          height: auto !important;
+          overflow: visible !important;
+          clip: auto !important;
+          opacity: 1 !important;
           outline: 3px solid #fff;
           outline-offset: 2px;
+          z-index: 10002 !important;
         }
         
         /* AAA Color Contrast - Minimum 7:1 ratio */

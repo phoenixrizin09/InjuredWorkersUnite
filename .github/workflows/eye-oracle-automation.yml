@@ -59,22 +59,15 @@ jobs:
             echo "No changes to commit - report already published today"
           else
             DATE=$(date -u +%Y-%m-%d)
-            git commit -m "👁️ Eye Oracle Daily Report - ${DATE}
-
-📊 Automated daily investigation report
-🎯 Exposing injustices affecting vulnerable Canadians
-📡 58 documented issues across 11 categories
-
-The Eye sees all. The Eye speaks truth."
-            
+            git commit -m "Eye Oracle Daily Report - ${DATE}"
             git push
-            echo "✅ Changes pushed to repository"
+            echo "Changes pushed to repository"
           fi
 
-      - name: ✅ Report Status
+      - name: Report Status
         run: |
           echo "========================================"
-          echo "👁️ EYE ORACLE DAILY AUTOMATION COMPLETE"
+          echo "EYE ORACLE DAILY AUTOMATION COMPLETE"
           echo "========================================"
           echo "Date: $(date -u +%Y-%m-%d)"
           echo "Time: $(date -u +%H:%M:%S) UTC"

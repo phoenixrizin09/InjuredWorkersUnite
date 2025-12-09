@@ -212,6 +212,170 @@ export default function ViolationMap() {
           </div>
 
           {/* Interactive Map Area */}
+          
+          {/* Visual Canada Map SVG */}
+          <div style={{
+            background: 'rgba(0,0,0,0.3)',
+            borderRadius: '1rem',
+            padding: '2rem',
+            marginBottom: '2rem',
+            border: '1px solid rgba(0,255,255,0.2)',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <h3 style={{ color: '#00ffff', textAlign: 'center', marginBottom: '1rem' }}>
+              🗺️ Click a Province or Territory
+            </h3>
+            
+            <svg
+              viewBox="0 0 800 500"
+              style={{ width: '100%', maxWidth: '900px', margin: '0 auto', display: 'block' }}
+            >
+              {/* Background */}
+              <rect x="0" y="0" width="800" height="500" fill="#0a0a1a" />
+              
+              {/* British Columbia */}
+              <path
+                d="M50,150 L100,100 L130,120 L140,180 L130,250 L100,280 L50,260 L30,200 Z"
+                fill={selectedRegion === 'bc' ? '#ffd93d' : '#ffd93d40'}
+                stroke="#ffd93d"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('bc')}
+              />
+              <text x="75" y="190" fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>BC</text>
+              
+              {/* Alberta */}
+              <path
+                d="M140,120 L200,100 L210,180 L200,260 L140,280 L130,250 L140,180 Z"
+                fill={selectedRegion === 'alberta' ? '#a78bfa' : '#a78bfa40'}
+                stroke="#a78bfa"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('alberta')}
+              />
+              <text x="170" y="190" fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>AB</text>
+              
+              {/* Saskatchewan */}
+              <path
+                d="M210,100 L280,100 L280,270 L210,270 L210,180 Z"
+                fill={selectedRegion === 'saskatchewan' ? '#f59e0b' : '#f59e0b40'}
+                stroke="#f59e0b"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              <text x="245" y="185" fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>SK</text>
+              
+              {/* Manitoba */}
+              <path
+                d="M280,100 L350,100 L360,180 L350,270 L280,270 Z"
+                fill={selectedRegion === 'manitoba' ? '#22c55e' : '#22c55e40'}
+                stroke="#22c55e"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              <text x="315" y="185" fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>MB</text>
+              
+              {/* Ontario */}
+              <path
+                d="M360,140 L450,100 L500,150 L520,200 L500,280 L450,320 L380,300 L350,270 L360,180 Z"
+                fill={selectedRegion === 'ontario' ? '#ff6b6b' : '#ff6b6b40'}
+                stroke="#ff6b6b"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('ontario')}
+              />
+              <text x="430" y="210" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>ON</text>
+              
+              {/* Quebec */}
+              <path
+                d="M500,100 L600,80 L650,120 L660,200 L620,280 L550,300 L500,280 L500,150 Z"
+                fill={selectedRegion === 'quebec' ? '#00ffff' : '#00ffff40'}
+                stroke="#00ffff"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('quebec')}
+              />
+              <text x="570" y="180" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>QC</text>
+              
+              {/* New Brunswick */}
+              <path
+                d="M650,220 L700,200 L720,240 L700,280 L660,280 L650,250 Z"
+                fill={selectedRegion === 'new_brunswick' ? '#f59e0b' : '#f59e0b40'}
+                stroke="#f59e0b"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('new_brunswick')}
+              />
+              <text x="680" y="245" fill="white" fontSize="10" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>NB</text>
+              
+              {/* Nova Scotia */}
+              <path
+                d="M700,280 L770,260 L780,300 L740,320 L700,300 Z"
+                fill={selectedRegion === 'nova_scotia' ? '#22c55e' : '#22c55e40'}
+                stroke="#22c55e"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('nova_scotia')}
+              />
+              <text x="740" y="290" fill="white" fontSize="10" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>NS</text>
+              
+              {/* PEI */}
+              <path
+                d="M720,230 L750,220 L755,240 L725,250 Z"
+                fill="#ec489940"
+                stroke="#ec4899"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              <text x="738" y="240" fill="white" fontSize="8" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>PE</text>
+              
+              {/* Newfoundland */}
+              <path
+                d="M700,150 L760,130 L780,180 L750,220 L700,200 Z"
+                fill="#14b8a640"
+                stroke="#14b8a6"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              <text x="740" y="175" fill="white" fontSize="10" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>NL</text>
+              
+              {/* Northern Territories (combined) */}
+              <path
+                d="M100,20 L350,20 L400,80 L350,100 L280,100 L210,100 L200,100 L140,120 L130,120 L100,100 Z"
+                fill={selectedRegion === 'federal' ? '#ef4444' : '#ef444440'}
+                stroke="#ef4444"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              <text x="220" y="60" fill="white" fontSize="11" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>YT/NT/NU</text>
+              
+              {/* Nunavut extension */}
+              <path
+                d="M400,20 L550,20 L600,80 L500,100 L450,100 L400,80 Z"
+                fill={selectedRegion === 'federal' ? '#ef4444' : '#ef444440'}
+                stroke="#ef4444"
+                strokeWidth="2"
+                style={{ cursor: 'pointer', transition: 'fill 0.3s' }}
+                onClick={() => setSelectedRegion('federal')}
+              />
+              
+              {/* Legend */}
+              <text x="400" y="420" fill="#00ffff" fontSize="12" textAnchor="middle">🔴 Critical Issues Documented</text>
+              <text x="400" y="440" fill="rgba(255,255,255,0.6)" fontSize="10" textAnchor="middle">Click any province to see violations</text>
+              
+              {/* Federal badge */}
+              <rect x="320" y="360" width="160" height="40" rx="20" fill={selectedRegion === 'federal' ? '#ef4444' : 'rgba(239,68,68,0.3)'} stroke="#ef4444" strokeWidth="2" style={{ cursor: 'pointer' }} onClick={() => setSelectedRegion('federal')} />
+              <text x="400" y="385" fill="white" fontSize="12" textAnchor="middle" fontWeight="bold" style={{ pointerEvents: 'none' }}>🍁 FEDERAL ISSUES</text>
+            </svg>
+          </div>
+
+          {/* Region Buttons (backup/mobile) */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',

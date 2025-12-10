@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -12,12 +12,127 @@ import path from 'path';
  * Meme Arsenal powered by Oracle Eye Intelligence
  * Tools for creating viral content with evidence-driven insights
  * 
+ * REAL-TIME SYNC: Auto-updates with Oracle Eye data every 5 minutes
+ * 
  * Note: Superhero/Character content is exclusive to /memetic-embassy-full
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
+// ============================================
+// 👁️ ORACLE EYE REAL-TIME DATA HOOK
+// ============================================
+function useOracleRealTimeSync(initialData, refreshInterval = 300000) {
+  const [oracleData, setOracleData] = useState({
+    viralContent: initialData?.viralContent || null,
+    oracleReports: [],
+    alerts: [],
+    lastSync: null,
+    syncStatus: 'idle', // 'idle' | 'syncing' | 'success' | 'error'
+    nextSync: null
+  });
+
+  const fetchOracleData = useCallback(async () => {
+    setOracleData(prev => ({ ...prev, syncStatus: 'syncing' }));
+    
+    try {
+      // Fetch all Oracle data sources in parallel
+      const [viralRes, reportsRes, alertsRes, redditRes] = await Promise.allSettled([
+        fetch('/data/viral-memes.json'),
+        fetch('/data/eye-oracle-reports.json'),
+        fetch('/data/alerts.json'),
+        fetch('/data/reddit-discussions.json')
+      ]);
+
+      const updates = {};
+      
+      if (viralRes.status === 'fulfilled' && viralRes.value.ok) {
+        updates.viralContent = await viralRes.value.json();
+      }
+      
+      if (reportsRes.status === 'fulfilled' && reportsRes.value.ok) {
+        updates.oracleReports = await reportsRes.value.json();
+      }
+      
+      if (alertsRes.status === 'fulfilled' && alertsRes.value.ok) {
+        updates.alerts = await alertsRes.value.json();
+      }
+      
+      if (redditRes.status === 'fulfilled' && redditRes.value.ok) {
+        updates.redditDiscussions = await redditRes.value.json();
+      }
+
+      setOracleData(prev => ({
+        ...prev,
+        ...updates,
+        lastSync: new Date().toISOString(),
+        syncStatus: 'success',
+        nextSync: new Date(Date.now() + refreshInterval).toISOString()
+      }));
+      
+      console.log('👁️ Oracle Eye sync complete:', new Date().toLocaleTimeString());
+    } catch (error) {
+      console.error('👁️ Oracle sync error:', error);
+      setOracleData(prev => ({ ...prev, syncStatus: 'error' }));
+    }
+  }, [refreshInterval]);
+
+  useEffect(() => {
+    // Initial fetch
+    fetchOracleData();
+    
+    // Set up interval for real-time sync
+    const intervalId = setInterval(fetchOracleData, refreshInterval);
+    
+    // Cleanup
+    return () => clearInterval(intervalId);
+  }, [fetchOracleData, refreshInterval]);
+
+  return { ...oracleData, refresh: fetchOracleData };
+}
+
 export default function MemeticEmbassy({ viralContent }) {
   const [activeTab, setActiveTab] = useState('tools');
+  const [communitySubmissions, setCommunitySubmissions] = useState([]);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+  
+  // 👁️ ORACLE EYE REAL-TIME SYNC - Updates every 5 minutes
+  const oracle = useOracleRealTimeSync({ viralContent }, 300000);
+  
+  // Load community submissions from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('memeticEmbassy_communitySubmissions');
+    if (saved) {
+      try {
+        setCommunitySubmissions(JSON.parse(saved));
+      } catch (e) {
+        console.error('Error loading submissions:', e);
+      }
+    }
+  }, []);
+  
+  // Handle new submission
+  const handleSubmission = (submission) => {
+    const newSubmission = {
+      ...submission,
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      likes: 0,
+      featured: false
+    };
+    const updated = [newSubmission, ...communitySubmissions];
+    setCommunitySubmissions(updated);
+    localStorage.setItem('memeticEmbassy_communitySubmissions', JSON.stringify(updated));
+    setShowSubmitModal(false);
+  };
+  
+  // Handle like
+  const handleLike = (id) => {
+    const updated = communitySubmissions.map(s => 
+      s.id === id ? { ...s, likes: s.likes + 1 } : s
+    );
+    setCommunitySubmissions(updated);
+    localStorage.setItem('memeticEmbassy_communitySubmissions', JSON.stringify(updated));
+  };
 
   return (
     <>
@@ -66,6 +181,48 @@ export default function MemeticEmbassy({ viralContent }) {
             <p style={{ fontSize: '0.85rem', color: '#FFD700', marginTop: '1rem', fontWeight: 'bold' }}>
               🌐 injuredworkersunite.pages.dev
             </p>
+            {/* Real-Time Sync Status */}
+            <div style={{ 
+              marginTop: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              fontSize: '0.8rem'
+            }}>
+              <span style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                background: oracle.syncStatus === 'syncing' ? '#ffd93d' 
+                  : oracle.syncStatus === 'success' ? '#48c774' 
+                  : oracle.syncStatus === 'error' ? '#ff6b6b' 
+                  : '#667eea',
+                animation: oracle.syncStatus === 'syncing' ? 'pulse 1s infinite' : 'none'
+              }} />
+              <span style={{ color: '#00ffff' }}>
+                {oracle.syncStatus === 'syncing' ? '🔄 Syncing with Oracle Eye...' 
+                  : oracle.syncStatus === 'success' ? `✅ Live Data • Last sync: ${oracle.lastSync ? new Date(oracle.lastSync).toLocaleTimeString() : 'Just now'}`
+                  : oracle.syncStatus === 'error' ? '⚠️ Sync error - Using cached data'
+                  : '👁️ Oracle Eye Connected'}
+              </span>
+              <button 
+                onClick={oracle.refresh}
+                disabled={oracle.syncStatus === 'syncing'}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid #00ffff',
+                  borderRadius: '5px',
+                  color: '#00ffff',
+                  padding: '0.2rem 0.5rem',
+                  fontSize: '0.75rem',
+                  cursor: oracle.syncStatus === 'syncing' ? 'not-allowed' : 'pointer',
+                  opacity: oracle.syncStatus === 'syncing' ? 0.5 : 1
+                }}
+              >
+                🔄 Refresh
+              </button>
+            </div>
           </div>
           
           <Link href="/memetic-embassy-full" style={{
@@ -110,21 +267,33 @@ export default function MemeticEmbassy({ viralContent }) {
             <button onClick={() => setActiveTab('advanced')} style={getTabStyle(activeTab === 'advanced')}>
               ⚡ Advanced Tools
             </button>
+            <button onClick={() => setActiveTab('community')} style={getTabStyle(activeTab === 'community')}>
+              🌍 Community Gallery
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Content Sections */}
+      {/* Content Sections - Pass oracle real-time data */}
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        {activeTab === 'viral' && <TrendingViralSection viralContent={viralContent} />}
-        {activeTab === 'quickfire' && <QuickFireSection viralContent={viralContent} />}
-        {activeTab === 'tools' && <MemeToolsSection />}
-        {activeTab === 'templates' && <TemplatePacksSection viralContent={viralContent} />}
-        {activeTab === 'infographics' && <InfographicsSection viralContent={viralContent} />}
-        {activeTab === 'builder' && <CustomMemeBuilderSection />}
-        {activeTab === 'slogans' && <SloganGeneratorSection />}
-        {activeTab === 'advanced' && <AdvancedMemeWarfareSection />}
+        {activeTab === 'viral' && <TrendingViralSection viralContent={oracle.viralContent || viralContent} oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
+        {activeTab === 'quickfire' && <QuickFireSection viralContent={oracle.viralContent || viralContent} />}
+        {activeTab === 'tools' && <MemeToolsSection oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
+        {activeTab === 'templates' && <TemplatePacksSection viralContent={oracle.viralContent || viralContent} />}
+        {activeTab === 'infographics' && <InfographicsSection viralContent={oracle.viralContent || viralContent} oracleReports={oracle.oracleReports} />}
+        {activeTab === 'builder' && <CustomMemeBuilderSection oracleReports={oracle.oracleReports} />}
+        {activeTab === 'slogans' && <SloganGeneratorSection viralContent={oracle.viralContent || viralContent} />}
+        {activeTab === 'advanced' && <AdvancedMemeWarfareSection oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
+        {activeTab === 'community' && <CommunityGallerySection submissions={communitySubmissions} onLike={handleLike} onSubmit={() => setShowSubmitModal(true)} />}
       </section>
+      
+      {/* Submit Creation Modal */}
+      {showSubmitModal && (
+        <SubmitCreationModal 
+          onClose={() => setShowSubmitModal(false)} 
+          onSubmit={handleSubmission} 
+        />
+      )}
 
       {/* Navigation Footer */}
       <footer style={{ padding: '2rem', textAlign: 'center', background: '#111', borderTop: '1px solid #333' }}>
@@ -198,7 +367,7 @@ export default function MemeticEmbassy({ viralContent }) {
 // ============================================
 // 🔥 TRENDING VIRAL SECTION - REAL DATA FROM EYE ORACLE + REDDIT
 // ============================================
-function TrendingViralSection({ viralContent }) {
+function TrendingViralSection({ viralContent, oracleReports = [], alerts = [] }) {
   const [copiedIndex, setCopiedIndex] = useState(null);
 
   // TIER 1: MEMETIC WEAPONS - Real viral tweets from Eye Oracle + Reddit
@@ -245,7 +414,19 @@ function TrendingViralSection({ viralContent }) {
     }
   ];
 
-  const memeOfTheDay = {
+  // Extract fresh violations from Oracle reports for "BREAKING" section
+  const breakingViolations = oracleReports?.slice(0, 1)?.[0]?.violations?.filter(v => v.severity === 'critical')?.slice(0, 3) || [];
+  
+  // Convert alerts to viral content
+  const alertTweets = alerts?.filter(a => a.category === 'community' || a.severity === 'critical')?.slice(0, 5)?.map(alert => ({
+    text: alert.message || alert.title,
+    category: "⚡ LIVE ALERT",
+    engagement: alert.severity === 'critical' ? 'Maximum' : 'High',
+    source: alert.source,
+    verified: alert.verified
+  })) || [];
+
+  const memeOfTheDay = viralContent?.content?.meme_templates?.[0] || {
     image: "🏢➡️🗑️",
     topText: "WCB: 'WE PROTECT WORKERS'",
     bottomText: "ALSO WCB: *DENIES 80% OF CLAIMS*",
@@ -334,10 +515,137 @@ function TrendingViralSection({ viralContent }) {
           marginTop: '1.5rem',
           fontSize: '1.1rem'
         }}>
-          <span>📥 {memeOfTheDay.downloads} downloads</span>
-          <span>🔄 {memeOfTheDay.shares} shares</span>
+          <span>📥 {memeOfTheDay.downloads || 847} downloads</span>
+          <span>🔄 {memeOfTheDay.shares || 1203} shares</span>
         </div>
       </div>
+
+      {/* 👁️ BREAKING FROM ORACLE EYE - Live Violations */}
+      {breakingViolations.length > 0 && (
+        <div style={{
+          background: 'linear-gradient(135deg, #00ffff 0%, #0088ff 100%)',
+          padding: '2rem',
+          borderRadius: '15px',
+          marginBottom: '3rem',
+          border: '3px solid #fff'
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <span style={{ 
+              background: '#000',
+              color: '#00ffff',
+              padding: '0.5rem 1.5rem',
+              borderRadius: '25px',
+              fontWeight: 'bold',
+              fontSize: '1.2rem'
+            }}>
+              👁️ BREAKING FROM ORACLE EYE
+            </span>
+          </div>
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            {breakingViolations.map((violation, idx) => (
+              <div key={idx} style={{
+                background: 'rgba(0,0,0,0.6)',
+                padding: '1.5rem',
+                borderRadius: '10px',
+                border: `2px solid ${violation.severity === 'critical' ? '#ff6b6b' : '#ffd93d'}`
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <span style={{ 
+                    background: violation.severity === 'critical' ? '#ff6b6b' : '#ffd93d',
+                    color: '#000',
+                    padding: '0.3rem 0.8rem',
+                    borderRadius: '15px',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {violation.severity?.toUpperCase()}
+                  </span>
+                  {violation.verified && (
+                    <span style={{ fontSize: '0.85rem', color: '#48c774' }}>
+                      ✅ VERIFIED
+                    </span>
+                  )}
+                </div>
+                <h4 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '0.5rem' }}>
+                  {violation.title}
+                </h4>
+                <p style={{ fontSize: '0.95rem', color: '#ccc', marginBottom: '1rem' }}>
+                  {violation.plainEnglish}
+                </p>
+                <button
+                  onClick={() => {
+                    const tweetText = `🚨 BREAKING: ${violation.plainEnglish}\n\n👁️ Source: ${violation.source}\n\n🔗 Full report: injuredworkersunite.pages.dev/the-eye-oracle\n\n@InjuredWorkersU #InjuredWorkersUnite #OracleEye`;
+                    navigator.clipboard.writeText(tweetText);
+                    window.alert('✅ Copied with branding & hashtags!');
+                  }}
+                  style={{
+                    padding: '0.6rem 1.2rem',
+                    background: '#00ffff',
+                    color: '#000',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  📋 Copy as Tweet
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ⚡ LIVE ALERTS */}
+      {alertTweets.length > 0 && (
+        <div style={{
+          background: '#16213e',
+          padding: '2rem',
+          borderRadius: '15px',
+          marginBottom: '3rem',
+          border: '2px solid #ffd93d'
+        }}>
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#ffd93d', textAlign: 'center' }}>
+            ⚡ LIVE COMMUNITY ALERTS
+          </h3>
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            {alertTweets.map((alert, idx) => (
+              <div key={idx} style={{
+                background: '#0f3460',
+                padding: '1rem',
+                borderRadius: '10px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: '1rem'
+              }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{alert.text}</p>
+                  {alert.source && <span style={{ fontSize: '0.8rem', color: '#667eea' }}>Source: {alert.source}</span>}
+                </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(`${alert.text}\n\n👁️ via The Oracle Eye | @InjuredWorkersU\n🌐 injuredworkersunite.pages.dev`);
+                    window.alert('✅ Copied with branding!');
+                  }}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    background: '#ffd93d',
+                    color: '#000',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap'
+                  }}
+                >
+                  📋 Copy
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* VIRAL TWEETS */}
       <h3 style={{ 
@@ -393,7 +701,7 @@ function TrendingViralSection({ viralContent }) {
             </p>
 
             <button
-              onClick={() => copyToClipboard(tweet.text + "\n\n🌐 injuredworkersunite.pages.dev", index)}
+              onClick={() => copyToClipboard(tweet.text + "\n\n👁️ via @InjuredWorkersU\n🌐 injuredworkersunite.pages.dev", index)}
               style={{
                 width: '100%',
                 padding: '0.8rem',
@@ -599,18 +907,42 @@ function QuickFireSection() {
       ctx.fillText(currentMeme.bottom, 400, 560);
     }
 
-    // Watermark
-    ctx.font = 'bold 18px Arial';
+    // ═══════════════════════════════════════════════════════════
+    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
+    // ═══════════════════════════════════════════════════════════
+    
+    // Brand bar background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+    ctx.fillRect(0, 555, 800, 45);
+    
+    // Oracle Eye icon
+    ctx.font = 'bold 24px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.textAlign = 'left';
+    ctx.fillText('👁️', 15, 582);
+    
+    // Brand name
+    ctx.font = 'bold 16px Arial';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('INJURED WORKERS UNITE', 50, 578);
+    
+    // Powered by Oracle
+    ctx.font = '12px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.fillText('Powered by The Oracle Eye', 50, 593);
+    
+    // URL
+    ctx.font = 'bold 14px Arial';
     ctx.fillStyle = '#FFD700';
     ctx.textAlign = 'right';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 780, 585);
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 785, 585);
 
     // Download
     canvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `quickfire-meme-${Date.now()}.png`;
+      a.download = `IWU-quickfire-meme-${Date.now()}.png`;
       a.click();
       URL.revokeObjectURL(url);
     });
@@ -763,6 +1095,43 @@ function QuickFireSection() {
           >
             📥 DOWNLOAD THIS BANGER
           </button>
+          
+          {/* Social Share Buttons */}
+          <div style={{ 
+            display: 'flex', 
+            gap: '0.5rem', 
+            justifyContent: 'center', 
+            marginTop: '1rem',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{ color: '#00ffff', fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
+            <button
+              onClick={() => {
+                const text = `${currentMeme.top} ${currentMeme.bottom}\n\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
+              }}
+              style={{ padding: '0.5rem 0.8rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
+              title="Share on X"
+            >𝕏</button>
+            <button
+              onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
+              style={{ padding: '0.5rem 0.8rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
+              title="Share on Facebook"
+            >f</button>
+            <button
+              onClick={() => window.open(`https://www.reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent('Meme from Injured Workers Unite')}`, '_blank')}
+              style={{ padding: '0.5rem 0.8rem', background: '#ff4500', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
+              title="Share on Reddit"
+            >↗️</button>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(`${currentMeme.top} ${currentMeme.bottom}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite`);
+                alert('✅ Copied to clipboard!');
+              }}
+              style={{ padding: '0.5rem 0.8rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer' }}
+              title="Copy to clipboard"
+            >📋</button>
+          </div>
         </div>
       )}
 
@@ -791,8 +1160,8 @@ function QuickFireSection() {
               transition: 'all 0.3s'
             }}
             onClick={() => {
-              navigator.clipboard.writeText(bite);
-              alert('✅ Copied to clipboard!');
+              navigator.clipboard.writeText(bite + "\n\n👁️ @InjuredWorkersU | 🌐 injuredworkersunite.pages.dev");
+              alert('✅ Copied with branding!');
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -814,8 +1183,17 @@ function QuickFireSection() {
 // ============================================
 // MEME ARSENAL - Main Creative Tools
 // ============================================
-function MemeToolsSection() {
+function MemeToolsSection({ oracleReports = [], alerts = [] }) {
   const [selectedTool, setSelectedTool] = useState(null);
+  
+  // Extract live stats from Oracle reports for tools
+  const latestReport = oracleReports?.[0] || null;
+  const criticalViolations = latestReport?.violations?.filter(v => v.severity === 'critical') || [];
+  const liveStats = {
+    violationCount: latestReport?.violationCount || 15,
+    criticalCount: criticalViolations.length,
+    activeAlerts: alerts?.length || 0
+  };
   
   const memeTools = [
     {
@@ -1496,7 +1874,7 @@ function TemplatePacksSection() {
 // ============================================
 // INFOGRAPHICS SECTION
 // ============================================
-function InfographicsSection() {
+function InfographicsSection({ viralContent = null, oracleReports = [] }) {
   const [selectedTemplate, setSelectedTemplate] = useState('workers-comp');
   const [selectedStyle, setSelectedStyle] = useState('bold');
   const [infographicData, setInfographicData] = useState({
@@ -1509,6 +1887,18 @@ function InfographicsSection() {
     callToAction: '',
     source: ''
   });
+
+  // 👁️ LIVE DATA FROM ORACLE EYE
+  const latestReport = oracleReports?.[0] || null;
+  const liveViolations = latestReport?.violations || [];
+  const criticalViolations = liveViolations.filter(v => v.severity === 'critical');
+  
+  // Extract real stats from Oracle data
+  const oracleLiveStats = {
+    violationCount: latestReport?.violationCount || 15,
+    criticalCount: criticalViolations.length,
+    reportDate: latestReport?.date || new Date().toISOString().split('T')[0]
+  };
 
   const templates = [
     {
@@ -1526,6 +1916,23 @@ function InfographicsSection() {
         stat4: { value: '40%', label: 'fall into poverty' },
         callToAction: 'Share this. Fight back.',
         source: 'InjuredWorkersUnite.org + Oracle Eye'
+      }
+    },
+    {
+      id: 'oracle-live',
+      name: '👁️ LIVE Oracle Data',
+      icon: '👁️',
+      color: '#00ffff',
+      eyeData: `${oracleLiveStats.violationCount} violations tracked today`,
+      defaultData: {
+        title: `👁️ TODAY'S ORACLE REPORT`,
+        subtitle: `${oracleLiveStats.reportDate}`,
+        stat1: { value: `${oracleLiveStats.violationCount}`, label: 'total violations found' },
+        stat2: { value: `${oracleLiveStats.criticalCount}`, label: 'critical issues' },
+        stat3: { value: criticalViolations[0]?.category || 'workers', label: 'top category' },
+        stat4: { value: '✅', label: 'all verified' },
+        callToAction: 'The Eye Sees All',
+        source: 'The Oracle Eye v2.0 - Live Data'
       }
     },
     {
@@ -1809,18 +2216,40 @@ function InfographicsSection() {
       ctx.fillText(infographicData.callToAction, 540, 950);
     }
 
-    // Watermark
-    ctx.font = 'bold 24px Arial';
+    // ═══════════════════════════════════════════════════════════
+    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
+    // ═══════════════════════════════════════════════════════════
+    
+    // Brand bar background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+    ctx.fillRect(0, 1010, 1080, 70);
+    
+    // Left side - Oracle Eye branding
+    ctx.font = 'bold 32px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.textAlign = 'left';
+    ctx.fillText('👁️', 30, 1055);
+    
+    ctx.font = 'bold 20px Arial';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('INJURED WORKERS UNITE', 75, 1045);
+    
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.fillText('Data powered by The Oracle Eye', 75, 1065);
+    
+    // Right side - URL
+    ctx.font = 'bold 18px Arial';
     ctx.fillStyle = '#FFD700';
-    ctx.textAlign = 'center';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 540, 1050);
+    ctx.textAlign = 'right';
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 1050, 1055);
 
     // Download
     canvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `infographic-${Date.now()}.png`;
+      a.download = `IWU-infographic-${Date.now()}.png`;
       a.click();
       URL.revokeObjectURL(url);
     });
@@ -2013,6 +2442,43 @@ function InfographicsSection() {
         <p style={{ marginTop: '1rem', fontSize: '0.9rem', opacity: 0.7 }}>
           Perfect for Instagram, Facebook, and Twitter
         </p>
+        
+        {/* Social Share Buttons */}
+        <div style={{ 
+          display: 'flex', 
+          gap: '0.5rem', 
+          justifyContent: 'center', 
+          marginTop: '1rem',
+          flexWrap: 'wrap'
+        }}>
+          <span style={{ color: '#00ffff', fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
+          <button
+            onClick={() => {
+              const text = `${displayData?.headline}\n\n📊 ${displayData?.mainStat}\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
+              window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
+            }}
+            style={{ padding: '0.5rem 0.8rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
+            title="Share on X"
+          >𝕏</button>
+          <button
+            onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
+            style={{ padding: '0.5rem 0.8rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
+            title="Share on Facebook"
+          >f</button>
+          <button
+            onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
+            style={{ padding: '0.5rem 0.8rem', background: '#0a66c2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontWeight: 'bold' }}
+            title="Share on LinkedIn"
+          >in</button>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(`${displayData?.headline}\n📊 ${displayData?.mainStat}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev\n#InjuredWorkersUnite`);
+              alert('✅ Copied to clipboard!');
+            }}
+            style={{ padding: '0.5rem 0.8rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer' }}
+            title="Copy to clipboard"
+          >📋</button>
+        </div>
       </div>
     </div>
   );
@@ -2021,9 +2487,13 @@ function InfographicsSection() {
 // ============================================
 // CUSTOM MEME BUILDER
 // ============================================
-function CustomMemeBuilderSection() {
+function CustomMemeBuilderSection({ oracleReports = [] }) {
   const [memeText, setMemeText] = useState({ top: '', bottom: '' });
   const [selectedBackground, setSelectedBackground] = useState('protest');
+  
+  // 👁️ Extract live data from Oracle for meme suggestions
+  const latestReport = oracleReports?.[0] || null;
+  const oracleSuggestions = latestReport?.violations?.slice(0, 3)?.map(v => v.plainEnglish) || [];
 
   const backgrounds = [
     { id: 'protest', name: 'Protest Rally', emoji: '✊', color: '#ff6b6b' },
@@ -2071,18 +2541,42 @@ function CustomMemeBuilderSection() {
       ctx.fillText(memeText.bottom.toUpperCase(), 400, 560);
     }
 
-    // Watermark
-    ctx.font = 'bold 18px Arial';
+    // ═══════════════════════════════════════════════════════════
+    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
+    // ═══════════════════════════════════════════════════════════
+    
+    // Brand bar background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+    ctx.fillRect(0, 555, 800, 45);
+    
+    // Oracle Eye icon
+    ctx.font = 'bold 24px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.textAlign = 'left';
+    ctx.fillText('👁️', 15, 582);
+    
+    // Brand name
+    ctx.font = 'bold 16px Arial';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('INJURED WORKERS UNITE', 50, 578);
+    
+    // Powered by Oracle
+    ctx.font = '12px Arial';
+    ctx.fillStyle = '#00ffff';
+    ctx.fillText('Powered by The Oracle Eye', 50, 593);
+    
+    // URL
+    ctx.font = 'bold 14px Arial';
     ctx.fillStyle = '#FFD700';
     ctx.textAlign = 'right';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 780, 585);
+    ctx.fillText('🌐 injuredworkersunite.pages.dev', 785, 585);
 
     // Download
     canvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `meme-${Date.now()}.png`;
+      a.download = `IWU-custom-meme-${Date.now()}.png`;
       a.click();
       URL.revokeObjectURL(url);
     });
@@ -2093,6 +2587,41 @@ function CustomMemeBuilderSection() {
       <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
         🛠️ Custom Meme Builder
       </h2>
+      
+      {/* 👁️ ORACLE SUGGESTIONS */}
+      {oracleSuggestions.length > 0 && (
+        <div style={{
+          background: 'rgba(0,255,255,0.1)',
+          border: '1px solid rgba(0,255,255,0.3)',
+          borderRadius: '10px',
+          padding: '1.5rem',
+          marginBottom: '2rem'
+        }}>
+          <h4 style={{ color: '#00ffff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            👁️ Oracle Eye Suggestions (Live Data)
+          </h4>
+          <div style={{ display: 'grid', gap: '0.5rem' }}>
+            {oracleSuggestions.map((suggestion, idx) => (
+              <button
+                key={idx}
+                onClick={() => setMemeText({ top: 'THE SYSTEM:', bottom: suggestion })}
+                style={{
+                  padding: '0.8rem',
+                  background: '#16213e',
+                  border: '1px solid #00ffff',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem'
+                }}
+              >
+                <span style={{ color: '#00ffff' }}>Use: </span>{suggestion.substring(0, 80)}...
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
         {/* Controls */}
@@ -2184,6 +2713,43 @@ function CustomMemeBuilderSection() {
           }}>
             📥 Download Meme
           </button>
+          
+          {/* Social Share Buttons */}
+          <div style={{ 
+            display: 'flex', 
+            gap: '0.5rem', 
+            justifyContent: 'center', 
+            marginTop: '1rem',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{ color: '#00ffff', fontSize: '0.85rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
+            <button
+              onClick={() => {
+                const text = `${memeText.top} ${memeText.bottom}\n\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
+              }}
+              style={{ padding: '0.4rem 0.7rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
+              title="Share on X"
+            >𝕏</button>
+            <button
+              onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
+              style={{ padding: '0.4rem 0.7rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
+              title="Share on Facebook"
+            >f</button>
+            <button
+              onClick={() => window.open(`https://www.reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent(memeText.top || 'Meme from Injured Workers Unite')}`, '_blank')}
+              style={{ padding: '0.4rem 0.7rem', background: '#ff4500', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
+              title="Share on Reddit"
+            >↗️</button>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(`${memeText.top}\n${memeText.bottom}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite`);
+                alert('✅ Copied to clipboard!');
+              }}
+              style={{ padding: '0.4rem 0.7rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer', fontSize: '0.85rem' }}
+              title="Copy to clipboard"
+            >📋</button>
+          </div>
         </div>
 
         {/* Preview */}
@@ -2235,9 +2801,12 @@ function CustomMemeBuilderSection() {
 // ============================================
 // SLOGAN GENERATOR - EXPANDED WITH VIRAL CATEGORIES
 // ============================================
-function SloganGeneratorSection() {
+function SloganGeneratorSection({ viralContent = null }) {
   const [generatedSlogan, setGeneratedSlogan] = useState('');
   const [sloganCategory, setSloganCategory] = useState('general');
+  
+  // 👁️ Extract viral slogans from real-time data
+  const realViralSlogans = viralContent?.content?.quickfire_slogans?.map(s => s.text) || [];
 
   const slogans = {
     general: [
@@ -2411,14 +2980,18 @@ function SloganGeneratorSection() {
   };
 
   const generateSlogan = (category) => {
-    const categorySlogan = slogans[category];
+    // Include real viral slogans if available
+    let categorySlogan = slogans[category] || slogans.general;
+    if (category === 'viral' && realViralSlogans.length > 0) {
+      categorySlogan = [...categorySlogan, ...realViralSlogans];
+    }
     const random = categorySlogan[Math.floor(Math.random() * categorySlogan.length)];
     setGeneratedSlogan(random);
   };
 
   const copySlogan = () => {
     if (generatedSlogan) {
-      navigator.clipboard.writeText(generatedSlogan + "\n\n🌐 injuredworkersunite.pages.dev");
+      navigator.clipboard.writeText(generatedSlogan + "\n\n👁️ Powered by The Oracle Eye\n🌐 injuredworkersunite.pages.dev | @InjuredWorkersU");
       alert('✅ Copied to clipboard!');
     }
   };
@@ -2429,9 +3002,29 @@ function SloganGeneratorSection() {
         ✊ Viral Slogan Generator
       </h2>
       
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
+      <p style={{ fontSize: '1.1rem', marginBottom: '1rem', opacity: 0.9 }}>
         Generate powerful slogans for protests, social media, and resistance. One click to virality.
       </p>
+      
+      {/* 👁️ ORACLE DATA INTEGRATION NOTICE */}
+      {realViralSlogans.length > 0 && (
+        <div style={{
+          background: 'rgba(0,255,255,0.1)',
+          border: '1px solid rgba(0,255,255,0.3)',
+          borderRadius: '8px',
+          padding: '1rem',
+          marginBottom: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          fontSize: '0.9rem'
+        }}>
+          <span style={{ fontSize: '1.2rem' }}>👁️</span>
+          <span style={{ color: '#00ffff' }}>
+            Live viral content from Reddit + Oracle Eye integrated • {realViralSlogans.length} real slogans loaded
+          </span>
+        </div>
+      )}
 
       <div style={{ 
         display: 'grid', 
@@ -2618,7 +3211,12 @@ function SloganGeneratorSection() {
 // ============================================
 // ADVANCED MEME WARFARE TOOLS
 // ============================================
-function AdvancedMemeWarfareSection() {
+function AdvancedMemeWarfareSection({ oracleReports = [], alerts = [] }) {
+  // 👁️ Live data from Oracle Eye
+  const latestReport = oracleReports?.[0] || null;
+  const activeAlerts = alerts?.length || 0;
+  const criticalViolations = latestReport?.violations?.filter(v => v.severity === 'critical')?.length || 0;
+  
   const advancedTools = [
     {
       id: 'ai-caption',
@@ -2669,6 +3267,38 @@ function AdvancedMemeWarfareSection() {
       <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
         ⚡ Advanced Meme Warfare Tools
       </h2>
+      
+      {/* 👁️ ORACLE LIVE STATUS */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(0,255,255,0.2) 0%, rgba(102,126,234,0.2) 100%)',
+        border: '2px solid #00ffff',
+        borderRadius: '10px',
+        padding: '1.5rem',
+        marginBottom: '2rem',
+        display: 'flex',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#00ffff' }}>👁️</div>
+          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Oracle Connected</div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: criticalViolations > 0 ? '#ff6b6b' : '#48c774' }}>
+            {criticalViolations}
+          </div>
+          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Critical Issues</div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffd93d' }}>{activeAlerts}</div>
+          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Active Alerts</div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#48c774' }}>✅</div>
+          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Real-Time Sync</div>
+        </div>
+      </div>
       
       <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
         Professional-grade tools for serious memetic operations
@@ -2749,6 +3379,761 @@ function AdvancedMemeWarfareSection() {
         }}>
           👁️ Access The Oracle Eye →
         </Link>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// 🌍 COMMUNITY GALLERY SECTION
+// ============================================
+function CommunityGallerySection({ submissions, onLike, onSubmit }) {
+  const [filter, setFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('newest');
+  
+  const filteredSubmissions = submissions
+    .filter(s => filter === 'all' || s.type === filter)
+    .sort((a, b) => {
+      if (sortBy === 'newest') return new Date(b.timestamp) - new Date(a.timestamp);
+      if (sortBy === 'popular') return b.likes - a.likes;
+      return 0;
+    });
+  
+  return (
+    <div>
+      <h2 style={{ 
+        fontSize: '2.5rem', 
+        marginBottom: '1rem',
+        background: 'linear-gradient(45deg, #48c774, #00ffff)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent'
+      }}>
+        🌍 Community Gallery
+      </h2>
+      
+      <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
+        Share your creations with the movement! Every meme strengthens our collective voice.
+      </p>
+      
+      {/* Submit Button */}
+      <button
+        onClick={onSubmit}
+        style={{
+          padding: '1rem 2rem',
+          background: 'linear-gradient(135deg, #48c774, #2ecc71)',
+          border: 'none',
+          borderRadius: '15px',
+          color: '#fff',
+          fontSize: '1.2rem',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          marginBottom: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          boxShadow: '0 4px 20px rgba(72, 199, 116, 0.4)'
+        }}
+      >
+        📤 Share Your Creation
+      </button>
+      
+      {/* Filters */}
+      <div style={{
+        display: 'flex',
+        gap: '1rem',
+        flexWrap: 'wrap',
+        marginBottom: '2rem',
+        padding: '1rem',
+        background: 'rgba(255,255,255,0.05)',
+        borderRadius: '10px'
+      }}>
+        <div>
+          <label style={{ marginRight: '0.5rem', color: '#00ffff' }}>Filter:</label>
+          <select 
+            value={filter} 
+            onChange={(e) => setFilter(e.target.value)}
+            style={{
+              padding: '0.5rem',
+              background: '#16213e',
+              border: '1px solid #667eea',
+              borderRadius: '5px',
+              color: '#fff'
+            }}
+          >
+            <option value="all">All Types</option>
+            <option value="meme">Memes</option>
+            <option value="infographic">Infographics</option>
+            <option value="slogan">Slogans</option>
+            <option value="poster">Posters</option>
+          </select>
+        </div>
+        <div>
+          <label style={{ marginRight: '0.5rem', color: '#00ffff' }}>Sort:</label>
+          <select 
+            value={sortBy} 
+            onChange={(e) => setSortBy(e.target.value)}
+            style={{
+              padding: '0.5rem',
+              background: '#16213e',
+              border: '1px solid #667eea',
+              borderRadius: '5px',
+              color: '#fff'
+            }}
+          >
+            <option value="newest">Newest First</option>
+            <option value="popular">Most Popular</option>
+          </select>
+        </div>
+        <div style={{ marginLeft: 'auto', color: '#48c774' }}>
+          {filteredSubmissions.length} creation{filteredSubmissions.length !== 1 ? 's' : ''}
+        </div>
+      </div>
+      
+      {/* Gallery Grid */}
+      {filteredSubmissions.length === 0 ? (
+        <div style={{
+          padding: '4rem 2rem',
+          textAlign: 'center',
+          background: 'rgba(255,255,255,0.05)',
+          borderRadius: '15px',
+          border: '2px dashed #667eea'
+        }}>
+          <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎨</div>
+          <h3 style={{ color: '#667eea', marginBottom: '1rem' }}>No Creations Yet!</h3>
+          <p style={{ opacity: 0.8 }}>
+            Be the first to share your meme warfare creation with the community.
+          </p>
+          <button
+            onClick={onSubmit}
+            style={{
+              marginTop: '1rem',
+              padding: '0.8rem 1.5rem',
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              border: 'none',
+              borderRadius: '25px',
+              color: '#fff',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}
+          >
+            📤 Share First Creation
+          </button>
+        </div>
+      ) : (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: '1.5rem'
+        }}>
+          {filteredSubmissions.map(submission => (
+            <div
+              key={submission.id}
+              style={{
+                background: '#16213e',
+                border: submission.featured ? '2px solid #ffd93d' : '2px solid #667eea',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              {submission.featured && (
+                <div style={{
+                  background: 'linear-gradient(135deg, #ffd93d, #ff8c00)',
+                  padding: '0.3rem 1rem',
+                  textAlign: 'center',
+                  color: '#000',
+                  fontWeight: 'bold',
+                  fontSize: '0.8rem'
+                }}>
+                  ⭐ FEATURED CREATION
+                </div>
+              )}
+              
+              {/* Image Preview */}
+              {submission.imageUrl && (
+                <div style={{
+                  height: '200px',
+                  background: `url(${submission.imageUrl}) center/cover`,
+                  borderBottom: '1px solid #333'
+                }} />
+              )}
+              
+              {/* Text Content (for slogans) */}
+              {submission.type === 'slogan' && (
+                <div style={{
+                  padding: '2rem',
+                  background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+                  textAlign: 'center',
+                  fontSize: '1.3rem',
+                  fontWeight: 'bold',
+                  color: '#ffd93d',
+                  minHeight: '150px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  "{submission.content}"
+                </div>
+              )}
+              
+              {/* Details */}
+              <div style={{ padding: '1.5rem' }}>
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+                  marginBottom: '0.5rem'
+                }}>
+                  <span style={{
+                    padding: '0.3rem 0.8rem',
+                    background: submission.type === 'meme' ? '#ff6b6b' 
+                      : submission.type === 'infographic' ? '#667eea'
+                      : submission.type === 'slogan' ? '#ffd93d'
+                      : '#48c774',
+                    color: submission.type === 'slogan' ? '#000' : '#fff',
+                    borderRadius: '15px',
+                    fontSize: '0.75rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {submission.type.toUpperCase()}
+                  </span>
+                  <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>
+                    {new Date(submission.timestamp).toLocaleDateString()}
+                  </span>
+                </div>
+                
+                <h4 style={{ 
+                  margin: '0.5rem 0', 
+                  color: '#fff',
+                  fontSize: '1.1rem'
+                }}>
+                  {submission.title}
+                </h4>
+                
+                {submission.description && (
+                  <p style={{ 
+                    fontSize: '0.9rem', 
+                    opacity: 0.8,
+                    marginBottom: '1rem'
+                  }}>
+                    {submission.description}
+                  </p>
+                )}
+                
+                {/* Like & Social Share Buttons */}
+                <div style={{ 
+                  display: 'flex', 
+                  gap: '0.5rem', 
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  marginTop: '1rem'
+                }}>
+                  <button
+                    onClick={() => onLike(submission.id)}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      background: 'rgba(255, 107, 107, 0.2)',
+                      border: '1px solid #ff6b6b',
+                      borderRadius: '20px',
+                      color: '#ff6b6b',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem'
+                    }}
+                  >
+                    ❤️ {submission.likes}
+                  </button>
+                  
+                  {/* Twitter/X Share */}
+                  <button
+                    onClick={() => {
+                      const shareText = `${submission.title}\n\n👁️ Created with The Eye Oracle at Injured Workers Unite\n\n#InjuredWorkersUnite #WorkersRights #DisabilityJustice`;
+                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
+                      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`, '_blank');
+                    }}
+                    style={{
+                      padding: '0.5rem 0.8rem',
+                      background: '#000',
+                      border: '1px solid #333',
+                      borderRadius: '20px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem'
+                    }}
+                    title="Share on X (Twitter)"
+                  >
+                    𝕏
+                  </button>
+                  
+                  {/* Facebook Share */}
+                  <button
+                    onClick={() => {
+                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
+                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(submission.title + ' - Created with The Eye Oracle #InjuredWorkersUnite')}`, '_blank');
+                    }}
+                    style={{
+                      padding: '0.5rem 0.8rem',
+                      background: '#1877f2',
+                      border: 'none',
+                      borderRadius: '20px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem'
+                    }}
+                    title="Share on Facebook"
+                  >
+                    f
+                  </button>
+                  
+                  {/* LinkedIn Share */}
+                  <button
+                    onClick={() => {
+                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
+                      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                    }}
+                    style={{
+                      padding: '0.5rem 0.8rem',
+                      background: '#0a66c2',
+                      border: 'none',
+                      borderRadius: '20px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.85rem',
+                      fontWeight: 'bold'
+                    }}
+                    title="Share on LinkedIn"
+                  >
+                    in
+                  </button>
+                  
+                  {/* Reddit Share */}
+                  <button
+                    onClick={() => {
+                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
+                      const title = `${submission.title} - Injured Workers Unite`;
+                      window.open(`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
+                    }}
+                    style={{
+                      padding: '0.5rem 0.8rem',
+                      background: '#ff4500',
+                      border: 'none',
+                      borderRadius: '20px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.85rem'
+                    }}
+                    title="Share on Reddit"
+                  >
+                    ↗️
+                  </button>
+                  
+                  {/* Copy Link */}
+                  <button
+                    onClick={() => {
+                      const shareText = `Check out this creation from Injured Workers Unite!\n\n${submission.title}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite #WorkersRights`;
+                      navigator.clipboard.writeText(shareText);
+                      alert('Share text copied to clipboard!');
+                    }}
+                    style={{
+                      padding: '0.5rem 0.8rem',
+                      background: 'rgba(0, 255, 255, 0.2)',
+                      border: '1px solid #00ffff',
+                      borderRadius: '20px',
+                      color: '#00ffff',
+                      cursor: 'pointer'
+                    }}
+                    title="Copy to clipboard"
+                  >
+                    📋
+                  </button>
+                </div>
+                
+                {submission.creator && (
+                  <div style={{ 
+                    marginTop: '1rem',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid #333',
+                    fontSize: '0.85rem',
+                    color: '#48c774'
+                  }}>
+                    Created by: {submission.creator}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      
+      {/* Community Stats */}
+      <div style={{
+        marginTop: '3rem',
+        padding: '2rem',
+        background: 'rgba(72, 199, 116, 0.1)',
+        border: '1px solid rgba(72, 199, 116, 0.3)',
+        borderRadius: '15px',
+        textAlign: 'center'
+      }}>
+        <h3 style={{ color: '#48c774', marginBottom: '1rem' }}>🌍 Community Impact</h3>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff' }}>{submissions.length}</div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Creations Shared</div>
+          </div>
+          <div>
+            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ff6b6b' }}>
+              {submissions.reduce((sum, s) => sum + s.likes, 0)}
+            </div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Total Likes</div>
+          </div>
+          <div>
+            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffd93d' }}>
+              {submissions.filter(s => s.featured).length}
+            </div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Featured</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// 📤 SUBMIT CREATION MODAL
+// ============================================
+function SubmitCreationModal({ onClose, onSubmit }) {
+  const [formData, setFormData] = useState({
+    type: 'meme',
+    title: '',
+    description: '',
+    content: '',
+    imageUrl: '',
+    creator: ''
+  });
+  const [imagePreview, setImagePreview] = useState(null);
+  
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setFormData(prev => ({ ...prev, imageUrl: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.title.trim()) {
+      alert('Please enter a title for your creation');
+      return;
+    }
+    if (formData.type !== 'slogan' && !formData.imageUrl) {
+      alert('Please upload an image of your creation');
+      return;
+    }
+    if (formData.type === 'slogan' && !formData.content.trim()) {
+      alert('Please enter your slogan text');
+      return;
+    }
+    onSubmit(formData);
+  };
+  
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(0,0,0,0.9)',
+      zIndex: 1000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1rem'
+    }}>
+      <div style={{
+        background: '#16213e',
+        borderRadius: '20px',
+        padding: '2rem',
+        maxWidth: '600px',
+        width: '100%',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+        border: '2px solid #667eea'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          marginBottom: '1.5rem'
+        }}>
+          <h2 style={{ 
+            margin: 0,
+            background: 'linear-gradient(45deg, #48c774, #00ffff)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            📤 Share Your Creation
+          </h2>
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#ff6b6b',
+              fontSize: '1.5rem',
+              cursor: 'pointer'
+            }}
+          >
+            ✕
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit}>
+          {/* Type Selection */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem', 
+              color: '#00ffff',
+              fontWeight: 'bold'
+            }}>
+              Creation Type
+            </label>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {[
+                { value: 'meme', label: '🎭 Meme', color: '#ff6b6b' },
+                { value: 'infographic', label: '📊 Infographic', color: '#667eea' },
+                { value: 'slogan', label: '✊ Slogan', color: '#ffd93d' },
+                { value: 'poster', label: '📰 Poster', color: '#48c774' }
+              ].map(type => (
+                <button
+                  key={type.value}
+                  type="button"
+                  onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    background: formData.type === type.value ? type.color : 'transparent',
+                    border: `2px solid ${type.color}`,
+                    borderRadius: '20px',
+                    color: formData.type === type.value ? '#000' : type.color,
+                    cursor: 'pointer',
+                    fontWeight: formData.type === type.value ? 'bold' : 'normal'
+                  }}
+                >
+                  {type.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Title */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem', 
+              color: '#00ffff',
+              fontWeight: 'bold'
+            }}>
+              Title *
+            </label>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+              placeholder="Give your creation a title..."
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: '#fff',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+          
+          {/* Slogan Content (only for slogans) */}
+          {formData.type === 'slogan' && (
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ 
+                display: 'block', 
+                marginBottom: '0.5rem', 
+                color: '#00ffff',
+                fontWeight: 'bold'
+              }}>
+                Slogan Text *
+              </label>
+              <textarea
+                value={formData.content}
+                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
+                placeholder="Enter your slogan..."
+                rows={3}
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  background: '#0f3460',
+                  border: '2px solid #667eea',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  fontSize: '1rem',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+          )}
+          
+          {/* Image Upload (not for slogans) */}
+          {formData.type !== 'slogan' && (
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ 
+                display: 'block', 
+                marginBottom: '0.5rem', 
+                color: '#00ffff',
+                fontWeight: 'bold'
+              }}>
+                Upload Image *
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  background: '#0f3460',
+                  border: '2px dashed #667eea',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  cursor: 'pointer'
+                }}
+              />
+              {imagePreview && (
+                <div style={{ marginTop: '1rem' }}>
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    style={{ 
+                      maxWidth: '100%', 
+                      maxHeight: '200px',
+                      borderRadius: '8px',
+                      border: '2px solid #667eea'
+                    }} 
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Description */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem', 
+              color: '#00ffff',
+              fontWeight: 'bold'
+            }}>
+              Description (Optional)
+            </label>
+            <textarea
+              value={formData.description}
+              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+              placeholder="Tell us about your creation..."
+              rows={3}
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: '#fff',
+                fontSize: '1rem',
+                resize: 'vertical'
+              }}
+            />
+          </div>
+          
+          {/* Creator Name */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem', 
+              color: '#00ffff',
+              fontWeight: 'bold'
+            }}>
+              Your Name (Optional)
+            </label>
+            <input
+              type="text"
+              value={formData.creator}
+              onChange={(e) => setFormData(prev => ({ ...prev, creator: e.target.value }))}
+              placeholder="Anonymous or your name/handle..."
+              style={{
+                width: '100%',
+                padding: '0.8rem',
+                background: '#0f3460',
+                border: '2px solid #667eea',
+                borderRadius: '8px',
+                color: '#fff',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+          
+          {/* Submit Button */}
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <button
+              type="button"
+              onClick={onClose}
+              style={{
+                flex: 1,
+                padding: '1rem',
+                background: 'transparent',
+                border: '2px solid #ff6b6b',
+                borderRadius: '10px',
+                color: '#ff6b6b',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              style={{
+                flex: 2,
+                padding: '1rem',
+                background: 'linear-gradient(135deg, #48c774, #2ecc71)',
+                border: 'none',
+                borderRadius: '10px',
+                color: '#fff',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '1.1rem'
+              }}
+            >
+              📤 Share with Community
+            </button>
+          </div>
+        </form>
+        
+        <p style={{ 
+          marginTop: '1.5rem', 
+          fontSize: '0.8rem', 
+          opacity: 0.7,
+          textAlign: 'center'
+        }}>
+          👁️ By sharing, you agree that your creation will be visible to the community.
+          <br />All creations are branded with Injured Workers Unite.
+        </p>
       </div>
     </div>
   );

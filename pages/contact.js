@@ -125,7 +125,7 @@ export default function Contact() {
 
         {!submitted ? (
           <form onSubmit={handleSubmit} style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '15px' }}>
-            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#667eea' }}>Or Send a Message</h3>
+            <h2 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#667eea' }}>Or Send a Message</h2>
             
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem' }}>Name *</label>

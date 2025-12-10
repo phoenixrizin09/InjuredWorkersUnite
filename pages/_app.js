@@ -308,7 +308,12 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       
-      {/* Skip Links REMOVED - was blocking header. Keyboard users can use Tab to navigate */}
+      {/* Skip Links - WCAG 2.4.1 Bypass Blocks - Visually hidden until focused */}
+      <nav className="skip-nav-hidden" aria-label="Skip navigation">
+        <a href="#main-content">Skip to main content</a>
+        <a href="#nav-main">Skip to navigation</a>
+        <a href="#footer">Skip to footer</a>
+      </nav>
       
       {/* Accessibility Toolbar - Left side */}
       <AccessibilityToolbar />

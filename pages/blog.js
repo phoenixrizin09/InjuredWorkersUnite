@@ -410,14 +410,14 @@ export default function Blog() {
                     {/* Key Features */}
                     {post.keyFeatures && post.keyFeatures.length > 0 && (
                       <div style={{ marginBottom: '1rem' }}>
-                        <h4 style={{
+                        <h3 style={{
                           fontSize: '0.9rem',
                           fontWeight: 'bold',
                           color: '#00ffff',
                           marginBottom: '0.5rem'
                         }}>
                           Key Features:
-                        </h4>
+                        </h3>
                         <ul style={{
                           listStyle: 'none',
                           padding: 0,
@@ -523,13 +523,13 @@ export default function Blog() {
             border: '2px solid rgba(255,107,107,0.5)',
             textAlign: 'center'
           }}>
-            <h3 style={{
+            <h2 style={{
               fontSize: '1.8rem',
               marginBottom: '1rem',
               color: '#ff6b6b'
             }}>
               ✊ Stay Updated
-            </h3>
+            </h2>
             <p style={{
               fontSize: '1.1rem',
               marginBottom: '1.5rem',

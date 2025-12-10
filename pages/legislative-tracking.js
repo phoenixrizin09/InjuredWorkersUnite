@@ -618,9 +618,9 @@ export default function LegislativeTracking() {
                         {bill.jurisdiction} • {bill.level}
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.5rem', color: '#4facfe', marginBottom: '0.5rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', color: '#4facfe', marginBottom: '0.5rem' }}>
                       {bill.bill_number}: {bill.title}
-                    </h3>
+                    </h2>
                   </div>
                 </div>
 
@@ -716,12 +716,12 @@ export default function LegislativeTracking() {
             padding: '2rem',
             marginTop: '3rem'
           }}>
-            <h3 style={{ color: '#4facfe', marginBottom: '1rem' }}>
+            <h2 style={{ color: '#4facfe', marginBottom: '1rem' }}>
               📋 HOW TO TRACK NEW BILLS - ALL LEVELS OF GOVERNMENT
-            </h3>
+            </h2>
             
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ FEDERAL LEVEL</h4>
+              <h3 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ FEDERAL LEVEL</h3>
               <ul style={{ color: '#ddd', lineHeight: '2', paddingLeft: '1.5rem' }}>
                 <li><strong>Federal Parliament Bills:</strong> <a href="https://www.parl.ca/legisinfo" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>parl.ca/legisinfo</a></li>
                 <li><strong>Open Parliament API (FREE):</strong> <a href="https://openparliament.ca/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>openparliament.ca</a></li>
@@ -731,7 +731,7 @@ export default function LegislativeTracking() {
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ PROVINCIAL LEVEL (Ontario)</h4>
+              <h3 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ PROVINCIAL LEVEL (Ontario)</h3>
               <ul style={{ color: '#ddd', lineHeight: '2', paddingLeft: '1.5rem' }}>
                 <li><strong>Ontario Legislature:</strong> <a href="https://www.ola.org/en/legislative-business/bills" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>ola.org/en/legislative-business/bills</a></li>
                 <li><strong>ODSP Policy Updates:</strong> <a href="https://www.mcss.gov.on.ca/en/mcss/programs/social/odsp/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>mcss.gov.on.ca/odsp</a></li>
@@ -741,7 +741,7 @@ export default function LegislativeTracking() {
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ MUNICIPAL/LOCAL LEVEL</h4>
+              <h3 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🏛️ MUNICIPAL/LOCAL LEVEL</h3>
               <ul style={{ color: '#ddd', lineHeight: '2', paddingLeft: '1.5rem' }}>
                 <li><strong>Toronto City Council:</strong> <a href="https://www.toronto.ca/city-government/council/" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>toronto.ca/city-government/council</a></li>
                 <li><strong>Ottawa City Council:</strong> <a href="https://ottawa.ca/en/city-hall/city-council" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>ottawa.ca/city-hall/city-council</a></li>
@@ -751,7 +751,7 @@ export default function LegislativeTracking() {
             </div>
 
             <div>
-              <h4 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🔔 MONITORING STRATEGIES</h4>
+              <h3 style={{ color: '#00ff88', marginBottom: '0.75rem' }}>🔔 MONITORING STRATEGIES</h3>
               <ul style={{ color: '#ddd', lineHeight: '2', paddingLeft: '1.5rem' }}>
                 <li>Set up <strong>Google Alerts</strong> for keywords: "WSIB bill", "ODSP legislation", "disability benefit", "autism funding", "Indigenous rights", "homeless evictions"</li>
                 <li>Follow advocacy groups on social media: <strong>ODSP Action Coalition</strong>, <strong>ARCH Disability Law Centre</strong>, <strong>Income Security Advocacy Centre</strong></li>

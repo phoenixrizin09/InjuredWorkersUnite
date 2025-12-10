@@ -48,41 +48,41 @@ export default function BackToTop() {
         tabIndex={isVisible ? 0 : -1}
         style={{
           position: 'fixed',
-          bottom: '30px',
-          right: '30px',
+          bottom: '90px',
+          right: '20px',
           width: '56px',
           height: '56px',
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          border: 'none',
+          border: '3px solid rgba(255,255,255,0.3)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(102, 126, 234, 0.4)',
+          boxShadow: '0 4px 20px rgba(102, 126, 234, 0.5), 0 0 15px rgba(118, 75, 162, 0.4)',
           transition: 'all 0.3s ease',
           opacity: isVisible ? 1 : 0,
           visibility: isVisible ? 'visible' : 'hidden',
-          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-          zIndex: 9999
+          transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
+          zIndex: 9998
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
-          e.currentTarget.style.boxShadow = '0 6px 25px rgba(102, 126, 234, 0.6)';
+          e.currentTarget.style.transform = 'translateY(-5px) scale(1.1)';
+          e.currentTarget.style.boxShadow = '0 8px 30px rgba(102, 126, 234, 0.7), 0 0 25px rgba(118, 75, 162, 0.5)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.transform = isVisible ? 'translateY(0)' : 'translateY(20px)';
-          e.currentTarget.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.4)';
+          e.currentTarget.style.transform = isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)';
+          e.currentTarget.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.5), 0 0 15px rgba(118, 75, 162, 0.4)';
         }}
       >
         {/* Up Arrow Icon */}
         <svg
-          width="24"
-          height="24"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
           stroke="white"
-          strokeWidth="2.5"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -100,8 +100,8 @@ export default function BackToTop() {
 
         @media (max-width: 768px) {
           button {
-            bottom: 20px !important;
-            right: 20px !important;
+            bottom: 85px !important;
+            right: 15px !important;
             width: 50px !important;
             height: 50px !important;
           }

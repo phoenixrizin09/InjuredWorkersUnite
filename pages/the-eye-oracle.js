@@ -409,7 +409,7 @@ export default function TheEyeOracle() {
                   borderRadius: '1rem',
                   padding: '1.5rem'
                 }}>
-                  <h3 style={{ color: '#ff6b6b', marginTop: 0 }}>🐰 Rabbit Holes</h3>
+                  <h2 style={{ color: '#ff6b6b', marginTop: 0 }}>🐰 Rabbit Holes</h2>
                   <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '1rem' }}>
                     11 categories of official government investigation tools. FOI requests, 
                     lobbying registries, court records, and more.
@@ -436,7 +436,7 @@ export default function TheEyeOracle() {
                   borderRadius: '1rem',
                   padding: '1.5rem'
                 }}>
-                  <h3 style={{ color: '#ffd93d', marginTop: 0 }}>⚖️ Legal Framework</h3>
+                  <h2 style={{ color: '#ffd93d', marginTop: 0 }}>⚖️ Legal Framework</h2>
                   <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '1rem' }}>
                     Charter rights, Human Rights Act, UNCRPD - know your legal protections 
                     in plain English.
@@ -463,7 +463,7 @@ export default function TheEyeOracle() {
                   borderRadius: '1rem',
                   padding: '1.5rem'
                 }}>
-                  <h3 style={{ color: '#a78bfa', marginTop: 0 }}>📊 Daily Reports</h3>
+                  <h2 style={{ color: '#a78bfa', marginTop: 0 }}>📊 Daily Reports</h2>
                   <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '1rem' }}>
                     Quirky, plain-English daily reports on government wrongdoings, 
                     violations, and bureaucratic shenanigans.
@@ -497,28 +497,28 @@ export default function TheEyeOracle() {
                   gap: '1.5rem'
                 }}>
                   <div>
-                    <h4 style={{ color: '#ff6b6b' }}>🔍 Monitors 24/7</h4>
+                    <h3 style={{ color: '#ff6b6b' }}>🔍 Monitors 24/7</h3>
                     <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0 }}>
                       Continuously scans government APIs, open data portals, and official records 
                       for changes that affect injured workers.
                     </p>
                   </div>
                   <div>
-                    <h4 style={{ color: '#ffd93d' }}>📝 Translates</h4>
+                    <h3 style={{ color: '#ffd93d' }}>📝 Translates</h3>
                     <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0 }}>
                       Converts legalese and bureaucratic jargon into plain English so everyone 
                       can understand what's happening.
                     </p>
                   </div>
                   <div>
-                    <h4 style={{ color: '#00ffff' }}>📊 Analyzes</h4>
+                    <h3 style={{ color: '#00ffff' }}>📊 Analyzes</h3>
                     <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0 }}>
                       Cross-references documents against Charter rights, human rights codes, 
                       and international conventions.
                     </p>
                   </div>
                   <div>
-                    <h4 style={{ color: '#a78bfa' }}>🗂️ Archives</h4>
+                    <h3 style={{ color: '#a78bfa' }}>🗂️ Archives</h3>
                     <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0 }}>
                       Preserves everything for transparency. Reports older than 30 days move to 
                       the archive but remain accessible forever.

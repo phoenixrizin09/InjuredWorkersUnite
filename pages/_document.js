@@ -90,6 +90,82 @@ export default function Document() {
             })
           }}
         />
+        
+        {/* Structured Data - FAQ Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What is WSIB and how does it affect injured workers?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'WSIB (Workplace Safety and Insurance Board) is Ontario\'s workplace insurance system. It provides benefits to workers injured on the job. However, denial rates for mental health claims are around 67%, which is why advocacy platforms like Injured Workers Unite exist to help workers understand their rights.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is ODSP and why is there concern about benefit levels?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'ODSP (Ontario Disability Support Program) provides income and employment support to people with disabilities. Current benefit levels of approximately $1,308/month are significantly below the poverty line, leaving many disabled Ontarians struggling to afford basic necessities.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How can I track disability-related legislation in Canada?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'You can track federal bills at parl.ca/legisinfo, Ontario provincial bills at ola.org, and follow advocacy groups like ODSP Action Coalition and ARCH Disability Law Centre. Our Legislative Tracking page provides real-time monitoring of bills affecting injured workers and disabled persons.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Is this website accessible?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes! Injured Workers Unite is committed to WCAG 2.2 Level AAA accessibility standards. We offer high contrast mode, large text options, dyslexia-friendly fonts, reduced motion settings, and full keyboard navigation. All features are designed with disability rights advocates in mind.'
+                  }
+                }
+              ]
+            })
+          }}
+        />
+        
+        {/* Structured Data - Breadcrumb for Navigation */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://injuredworkersunite.pages.dev'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'The Eye Oracle',
+                  item: 'https://injuredworkersunite.pages.dev/the-eye-oracle'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: 'Daily Reports',
+                  item: 'https://injuredworkersunite.pages.dev/eye-oracle-reports'
+                }
+              ]
+            })
+          }}
+        />
       </Head>
       <body>
         <Main />

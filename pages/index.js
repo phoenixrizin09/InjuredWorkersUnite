@@ -65,7 +65,7 @@ export default function Home() {
               boxShadow: '0 0 20px rgba(0,255,255,0.3)'
             }}>
               <div style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1rem' }}>👁️</div>
-              <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0.5rem' }}>THE EYE ORACLE</h3>
+              <h2 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', marginBottom: '0.5rem' }}>THE EYE ORACLE</h2>
               <p style={{ opacity: 0.9, fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)' }}>Incorruptible Evidence-Driven Intelligence. 11 Rabbit Holes, Daily Reports, Legal Framework. THE EYE SEES ALL.</p>
             </div>
           </Link>
@@ -83,7 +83,7 @@ export default function Home() {
               height: '100%'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>24/7 Monitoring</h3>
+              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>24/7 Monitoring</h2>
               <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Automated tracking of provincial & federal bills, WSIB policies, disability benefits, and more.</p>
             </div>
           </Link>
@@ -101,7 +101,7 @@ export default function Home() {
               height: '100%'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🏛️</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Memetic Embassy</h3>
+              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Memetic Embassy</h2>
               <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Creative resistance through powerful narratives and viral storytelling. Amplify the truth.</p>
             </div>
           </Link>
@@ -119,7 +119,7 @@ export default function Home() {
               height: '100%'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎯</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Target Acquisition</h3>
+              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Target Acquisition</h2>
               <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Track entities causing harm to workers and disabled persons. Evidence-based accountability.</p>
             </div>
           </Link>
@@ -137,7 +137,7 @@ export default function Home() {
               height: '100%'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚨</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Live Alerts</h3>
+              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Live Alerts</h2>
               <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Real-time notifications of critical policy changes, new bills, and system updates.</p>
             </div>
           </Link>
@@ -155,7 +155,7 @@ export default function Home() {
               height: '100%'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>😂</div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Meme Gallery</h3>
+              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Meme Gallery</h2>
               <p style={{ opacity: 0.9, fontSize: '0.95rem' }}>Creative resistance through humor. Share and spread awareness with powerful memes.</p>
             </div>
           </Link>
@@ -169,7 +169,7 @@ export default function Home() {
           backdropFilter: 'blur(10px)',
           marginBottom: '2rem'
         }}>
-          <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>What We Stand For</h3>
+          <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>What We Stand For</h2>
           <ul style={{ textAlign: 'left', lineHeight: '1.8', listStyle: 'none', padding: 0 }}>
             <li>✊ Worker Rights & Safety</li>
             <li>🛡️ Disability Justice & Advocacy</li>
@@ -190,7 +190,7 @@ export default function Home() {
           textAlign: 'center',
           marginBottom: '2rem'
         }}>
-          <h3 style={{ 
+          <h2 style={{ 
             fontSize: '1.8rem', 
             marginBottom: '0.5rem',
             background: 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #00ffff 100%)',
@@ -198,7 +198,7 @@ export default function Home() {
             WebkitTextFillColor: 'transparent'
           }}>
             👁️ The Eye Oracle Daily Reports
-          </h3>
+          </h2>
           <p style={{ 
             fontSize: '1rem', 
             marginBottom: '1.5rem',
@@ -271,7 +271,7 @@ export default function Home() {
           border: '2px solid rgba(0,255,255,0.3)',
           textAlign: 'center'
         }}>
-          <h3 style={{ 
+          <h2 style={{ 
             fontSize: '1.8rem', 
             marginBottom: '1rem',
             background: 'linear-gradient(135deg, #00ffff 0%, #ff6b6b 100%)',
@@ -279,7 +279,7 @@ export default function Home() {
             WebkitTextFillColor: 'transparent'
           }}>
             📰 Feature Spotlight Blog
-          </h3>
+          </h2>
           <p style={{ 
             fontSize: '1.1rem', 
             marginBottom: '1.5rem',

@@ -2054,20 +2054,132 @@ export default function MemeticEmbassyFull() {
   return (
     <>
       <Header />
+      {/* Enhanced Global Styles */}
+      <style jsx global>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.85; transform: scale(1.02); }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(255,0,255,0.5), 0 0 40px rgba(0,255,255,0.3); }
+          50% { box-shadow: 0 0 40px rgba(255,0,255,0.8), 0 0 80px rgba(0,255,255,0.5); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes slide {
+          0% { background-position: 0 0; }
+          100% { background-position: 100px 100px; }
+        }
+        @keyframes textGlow {
+          0%, 100% { text-shadow: 0 0 20px rgba(255,0,255,0.8), 0 0 40px rgba(0,255,255,0.6); }
+          50% { text-shadow: 0 0 40px rgba(255,0,255,1), 0 0 80px rgba(0,255,255,0.9), 0 0 120px rgba(255,255,0,0.5); }
+        }
+        @keyframes rainbow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-15px); }
+          60% { transform: translateY(-7px); }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .section-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .section-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .glow-button {
+          position: relative;
+          overflow: hidden;
+        }
+        .glow-button::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+          transform: rotate(45deg);
+          animation: shimmer 3s infinite;
+        }
+        .scroll-indicator {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+          background-size: 200% 100%;
+          animation: rainbow 3s linear infinite;
+          z-index: 9999;
+          transition: width 0.1s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff00ff 100%);
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba(255,107,107,0.8);
+          transition: all 0.2s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+          transform: scale(1.2);
+          box-shadow: 0 0 25px rgba(255,0,255,1);
+        }
+        input[type="range"]::-moz-range-thumb {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff00ff 100%);
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba(255,107,107,0.8);
+          border: none;
+        }
+      `}</style>
+      
       <div style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #000000 0%, #1a0033 50%, #330066 100%)',
         color: '#fff',
-        fontFamily: 'monospace'
+        fontFamily: 'monospace',
+        position: 'relative'
       }}>
-        {/* HERO SECTION */}
+        {/* HERO SECTION - Enhanced */}
         <div style={{
-          background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
-          padding: '100px 20px',
+          background: 'linear-gradient(135deg, #ff00ff 0%, #8B00FF 25%, #00ffff 50%, #00ff88 75%, #ff00ff 100%)',
+          backgroundSize: '400% 400%',
+          animation: 'rainbow 15s ease infinite',
+          padding: '120px 20px',
           textAlign: 'center',
           position: 'relative',
           overflow: 'hidden'
         }}>
+          {/* Animated background pattern */}
           <div style={{
             position: 'absolute',
             top: 0,
@@ -2078,50 +2190,88 @@ export default function MemeticEmbassyFull() {
             animation: 'slide 20s linear infinite'
           }}></div>
           
+          {/* Floating particles */}
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            left: '10%',
+            fontSize: '3rem',
+            animation: 'float 3s ease-in-out infinite',
+            opacity: 0.6
+          }}>✨</div>
+          <div style={{
+            position: 'absolute',
+            top: '20%',
+            right: '15%',
+            fontSize: '2.5rem',
+            animation: 'float 4s ease-in-out infinite 0.5s',
+            opacity: 0.6
+          }}>🔥</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '15%',
+            left: '20%',
+            fontSize: '2rem',
+            animation: 'float 3.5s ease-in-out infinite 1s',
+            opacity: 0.6
+          }}>⚡</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '25%',
+            right: '10%',
+            fontSize: '2.5rem',
+            animation: 'float 4.5s ease-in-out infinite 0.3s',
+            opacity: 0.6
+          }}>🎭</div>
+          
           <h1 style={{
-            fontSize: 'clamp(2rem, 8vw, 5rem)',
+            fontSize: 'clamp(2.5rem, 10vw, 6rem)',
             fontWeight: 'bold',
-            textShadow: '0 0 20px rgba(255,0,255,0.8), 0 0 40px rgba(0,255,255,0.6)',
-            marginBottom: '1rem',
+            animation: 'textGlow 3s ease-in-out infinite',
+            marginBottom: '1.5rem',
             position: 'relative',
             zIndex: 1,
-            color: '#000'
+            color: '#000',
+            letterSpacing: '2px'
           }}>
             🌐 THE MEMETIC EMBASSY 🌐
           </h1>
           
           <h2 style={{
-            fontSize: 'clamp(1.2rem, 4vw, 2.5rem)',
-            marginBottom: '2rem',
+            fontSize: 'clamp(1.3rem, 4vw, 2.8rem)',
+            marginBottom: '2.5rem',
             color: '#000',
             fontWeight: 'bold',
             position: 'relative',
-            zIndex: 1
+            zIndex: 1,
+            textShadow: '0 2px 10px rgba(255,255,255,0.3)'
           }}>
             The World's First Digital Nation-State<br/>
-            For The Marginalized, By The Marginalized
+            <span style={{ color: '#1a0033' }}>For The Marginalized, By The Marginalized</span>
           </h2>
 
           <div style={{
-            background: 'rgba(0,0,0,0.8)',
-            border: '3px solid #ff00ff',
-            borderRadius: '20px',
-            padding: '2rem',
-            maxWidth: '900px',
+            background: 'rgba(0,0,0,0.85)',
+            border: '4px solid #ff00ff',
+            borderRadius: '25px',
+            padding: '2.5rem',
+            maxWidth: '950px',
             margin: '0 auto',
             position: 'relative',
-            zIndex: 1
+            zIndex: 1,
+            boxShadow: '0 0 50px rgba(255,0,255,0.4), inset 0 0 30px rgba(0,255,255,0.1)',
+            animation: 'glow 4s ease-in-out infinite'
           }}>
             <p style={{
-              fontSize: '1.3rem',
-              lineHeight: '1.8',
+              fontSize: '1.4rem',
+              lineHeight: '1.9',
               color: '#00ffff',
               marginBottom: '1.5rem'
             }}>
-              Welcome to a place where injured workers, persons with disabilities, chronic illness warriors, and everyone overlooked by systems of power are finally the main characters.
+              Welcome to a place where injured workers, persons with disabilities, chronic illness warriors, and everyone overlooked by systems of power are finally <strong style={{ color: '#FFD700' }}>the main characters</strong>.
             </p>
             <p style={{
-              fontSize: '1.5rem',
+              fontSize: '1.6rem',
               fontWeight: 'bold',
               color: '#ff00ff'
             }}>
@@ -2145,51 +2295,95 @@ export default function MemeticEmbassyFull() {
 
         {/* NAVIGATION TABS */}
         <div style={{
-          background: '#000',
-          padding: '20px',
+          background: 'linear-gradient(180deg, #000 0%, rgba(0,0,0,0.95) 100%)',
+          padding: '15px 20px',
           position: 'sticky',
           top: 0,
           zIndex: 100,
-          borderBottom: '3px solid #ff00ff'
+          borderBottom: '3px solid #ff00ff',
+          boxShadow: '0 4px 30px rgba(255,0,255,0.4)'
         }}>
+          {/* Scroll progress bar inside nav */}
           <div style={{
-            maxWidth: '1400px',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '3px',
+            background: 'linear-gradient(90deg, #ff00ff, #00ffff, #FFD700)',
+            width: '100%',
+            transform: 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: 'transform 0.1s'
+          }} id="scroll-progress"></div>
+          
+          <div style={{
+            maxWidth: '1600px',
             margin: '0 auto',
             display: 'flex',
-            gap: '10px',
+            gap: '8px',
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}>
-            {['squad-showdown', 'heroes', 'villains', 'meme-tools', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
+            {[
+              { id: 'squad-showdown', label: '⚔️ Squad Showdown', color: '#ff6b6b' },
+              { id: 'heroes', label: '🦸 Hero Squad', color: '#FFD700' },
+              { id: 'villains', label: '😈 Denial Squad', color: '#ff0080' },
+              { id: 'meme-tools', label: '🎨 Meme Tools', color: '#00ffff' },
+              { id: 'ecosystem', label: '🌿 Ecosystem', color: '#32CD32' },
+              { id: 'departments', label: '🏛️ Departments', color: '#1E90FF' },
+              { id: 'categories', label: '📂 Categories', color: '#FFD700' },
+              { id: 'horror-comedy', label: '🎭 Horror Comedy', color: '#8B00FF' },
+              { id: 'meme-forge', label: '🔥 Meme Forge', color: '#ff4500' },
+              { id: 'artifacts', label: '⚡ Artifacts', color: '#9400D3' },
+              { id: 'factions', label: '💀 Factions', color: '#DC143C' },
+              { id: 'geography', label: '🗺️ Geography', color: '#20B2AA' }
+            ].map(section => (
               <button
-                key={section}
+                key={section.id}
+                className="glow-button"
                 onClick={() => {
-                  setActiveSection(section);
-                  document.getElementById(`section-${section}`)?.scrollIntoView({ behavior: 'smooth' });
+                  setActiveSection(section.id);
+                  document.getElementById(`section-${section.id}`)?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 style={{
-                  padding: '12px 24px',
-                  background: activeSection === section 
-                    ? 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)'
-                    : 'rgba(255,255,255,0.1)',
-                  border: '2px solid #ff00ff',
+                  padding: '10px 18px',
+                  background: activeSection === section.id 
+                    ? `linear-gradient(135deg, ${section.color} 0%, ${section.color}88 50%, #000 100%)`
+                    : 'rgba(255,255,255,0.05)',
+                  border: `2px solid ${activeSection === section.id ? section.color : 'rgba(255,255,255,0.15)'}`,
                   borderRadius: '25px',
-                  color: activeSection === section ? '#000' : '#fff',
-                  fontSize: '1rem',
+                  color: activeSection === section.id ? '#fff' : '#aaa',
+                  fontSize: '0.8rem',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                   textTransform: 'uppercase',
-                  transition: 'all 0.3s'
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  whiteSpace: 'nowrap',
+                  boxShadow: activeSection === section.id 
+                    ? `0 0 20px ${section.color}60, 0 4px 15px rgba(0,0,0,0.3)` 
+                    : 'none',
+                  transform: activeSection === section.id ? 'scale(1.05)' : 'scale(1)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeSection !== section.id) {
+                    e.target.style.background = `linear-gradient(135deg, ${section.color}40 0%, transparent 100%)`;
+                    e.target.style.borderColor = section.color;
+                    e.target.style.color = '#fff';
+                    e.target.style.transform = 'scale(1.08)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeSection !== section.id) {
+                    e.target.style.background = 'rgba(255,255,255,0.05)';
+                    e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+                    e.target.style.color = '#aaa';
+                    e.target.style.transform = 'scale(1)';
+                  }
                 }}
               >
-                {section === 'squad-showdown' && '⚔️ Squad Showdown'}
-                {section === 'heroes' && '🦸 Heroes'}
-                {section === 'villains' && '😈 Villains'}
-                {section === 'meme-tools' && '🎨 Meme Tools'}
-                {section === 'generator' && '⚡ Meme Forge'}
-                {section === 'episodes' && '🎬 Season 2'}
-                {section === 'comics' && '📖 Comics'}
-                {section === 'ecosystem' && '🌿 Ecosystem'}
+                {section.label}
               </button>
             ))}
           </div>
@@ -3129,48 +3323,66 @@ export default function MemeticEmbassyFull() {
 
         {/* SECTION: THE HERO SQUAD */}
         <div id="section-heroes" style={{
-          padding: '80px 20px',
-          background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #001a33 50%, #002244 100%)',
+          position: 'relative'
         }}>
+          {/* Section background accent */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '5px',
+            background: 'linear-gradient(90deg, #FFD700, #00BFFF, #FFD700)',
+            backgroundSize: '200% 100%',
+            animation: 'rainbow 5s linear infinite'
+          }}></div>
+          
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            {/* Memetic Magic Banner */}
+            {/* Enhanced Memetic Magic Banner */}
             <div style={{
-              background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
-              padding: '1.5rem',
-              borderRadius: '15px',
-              marginBottom: '2rem',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #00BFFF 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
               textAlign: 'center',
-              border: '3px solid #fff',
-              animation: 'pulse 3s ease-in-out infinite'
+              border: '4px solid #fff',
+              boxShadow: '0 0 40px rgba(255,215,0,0.4), inset 0 0 30px rgba(255,255,255,0.2)',
+              animation: 'glow 3s ease-in-out infinite'
             }}>
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✨🎭✨</div>
-              <h3 style={{ fontSize: '1.5rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', animation: 'bounce 2s infinite' }}>✨🦸✨</div>
+              <h3 style={{ fontSize: '1.8rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem', letterSpacing: '2px' }}>
                 MEMETIC MAGIC ACTIVATED
               </h3>
-              <p style={{ fontSize: '1rem', color: '#000', margin: 0, opacity: 0.9 }}>
+              <p style={{ fontSize: '1.1rem', color: '#1a0033', margin: 0, fontWeight: '500' }}>
                 Where satire becomes power • Where humor becomes resistance • Where memes become movements
               </p>
             </div>
             
             <h2 style={{
-              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
               textAlign: 'center',
-              marginBottom: '1rem',
-              background: 'linear-gradient(135deg, #FFD700 0%, #00BFFF 100%)',
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 30%, #00BFFF 70%, #FFD700 100%)',
+              backgroundSize: '300% 100%',
+              animation: 'rainbow 8s linear infinite',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              letterSpacing: '3px'
             }}>
               🦸 THE HERO SQUAD 🦸
             </h2>
 
             <p style={{
               textAlign: 'center',
-              fontSize: '1.3rem',
+              fontSize: '1.4rem',
               color: '#FFD700',
               marginBottom: '1rem',
               maxWidth: '900px',
-              margin: '0 auto 2rem'
+              margin: '0 auto 2rem',
+              textShadow: '0 2px 10px rgba(255,215,0,0.3)'
             }}>
               Meet the defenders of the Memetic Embassy—warriors who fight for truth, solidarity, and justice.
             </p>
@@ -3335,31 +3547,45 @@ export default function MemeticEmbassyFull() {
 
         {/* SECTION 1: THE DENIAL SQUAD */}
         <div id="section-villains" style={{
-          padding: '80px 20px',
-          background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #330011 50%, #000000 100%)',
+          position: 'relative'
         }}>
+          {/* Section accent line */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '5px',
+            background: 'linear-gradient(90deg, #ff0080, #ff0000, #ff0080)',
+            backgroundSize: '200% 100%',
+            animation: 'rainbow 5s linear infinite'
+          }}></div>
+          
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            {/* Memetic Magic Warning */}
+            {/* Enhanced Memetic Magic Warning */}
             <div style={{
-              background: 'linear-gradient(135deg, #ff0000 0%, #ff6b6b 100%)',
-              padding: '1.5rem',
-              borderRadius: '15px',
-              marginBottom: '2rem',
+              background: 'linear-gradient(135deg, #ff0000 0%, #8B0000 50%, #ff0080 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
               textAlign: 'center',
-              border: '3px solid #fff',
-              boxShadow: '0 0 30px rgba(255,0,0,0.5)'
+              border: '4px solid #fff',
+              boxShadow: '0 0 50px rgba(255,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
             }}>
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️💀⚠️</div>
-              <h3 style={{ fontSize: '1.5rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', animation: 'shake 3s infinite' }}>⚠️💀⚠️</div>
+              <h3 style={{ fontSize: '1.8rem', color: '#fff', fontWeight: 'bold', marginBottom: '0.5rem', letterSpacing: '2px', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
                 BUREAUCRATIC HORROR COMEDY ZONE
               </h3>
-              <p style={{ fontSize: '1rem', color: '#000', margin: 0, opacity: 0.9 }}>
+              <p style={{ fontSize: '1.1rem', color: '#ffcccc', margin: 0, fontWeight: '500' }}>
                 Satire so sharp it cuts through red tape • Parody so real it hurts • Villains you'll recognize instantly
               </p>
             </div>
             
             <h2 style={{
-              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
               textAlign: 'center',
               marginBottom: '3rem',
               background: 'linear-gradient(135deg, #ff6b6b 0%, #ff0000 100%)',
@@ -4190,8 +4416,8 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        {/* SECTION 3: THE MEMETIC EMBASSY - WORLD BUILDING */}
-        <div style={{
+        {/* SECTION 3: THE MEMETIC EMBASSY - DEPARTMENTS */}
+        <div id="section-departments" style={{
           padding: '80px 20px',
           background: 'linear-gradient(180deg, #001a33 0%, #330066 100%)'
         }}>
@@ -4287,7 +4513,7 @@ export default function MemeticEmbassyFull() {
         </div>
 
         {/* SECTION 4: MEME CATEGORIES */}
-        <div style={{
+        <div id="section-categories" style={{
           padding: '80px 20px',
           background: 'linear-gradient(180deg, #330066 0%, #000000 100%)'
         }}>
@@ -4398,8 +4624,8 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        {/* SECTION 5: INTERACTIVE TOOLS */}
-        <div style={{
+        {/* SECTION 5: INTERACTIVE TOOLS & HORROR COMEDY */}
+        <div id="section-horror-comedy" style={{
           padding: '80px 20px',
           background: 'linear-gradient(180deg, #000000 0%, #1a0033 100%)'
         }}>
@@ -4408,12 +4634,12 @@ export default function MemeticEmbassyFull() {
               fontSize: 'clamp(2rem, 6vw, 4rem)',
               textAlign: 'center',
               marginBottom: '3rem',
-              background: 'linear-gradient(135deg, #ff6b6b 0%, #ffaa00 100%)',
+              background: 'linear-gradient(135deg, #8B00FF 0%, #ff6b6b 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontWeight: 'bold'
             }}>
-              🛠️ INTERACTIVE MEME TOOLS 🛠️
+              🎭 BUREAUCRATIC HORROR COMEDY ZONE 🎭
             </h2>
 
             {/* MEME MOOD MIXER */}
@@ -4593,19 +4819,63 @@ export default function MemeticEmbassyFull() {
         </div>
 
         {/* SECTION 6: MEME CREATOR STUDIO - THE MEME FORGE */}
-        <div id="section-generator" style={{
-          padding: '100px 20px',
-          background: 'linear-gradient(180deg, #000033 0%, #330066 100%)',
+        <div id="section-meme-forge" style={{
+          padding: '120px 20px',
+          background: 'linear-gradient(180deg, #1a0000 0%, #330011 30%, #330066 70%, #1a0033 100%)',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+          {/* Animated forge fire effect */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '8px',
+            background: 'linear-gradient(90deg, #ff4500, #FFD700, #ff0000, #ff4500)',
+            backgroundSize: '400% 100%',
+            animation: 'rainbow 3s linear infinite'
+          }}></div>
+          
+          {/* Floating embers */}
+          <div style={{
+            position: 'absolute',
+            top: '15%',
+            left: '5%',
+            fontSize: '2rem',
+            animation: 'float 4s ease-in-out infinite',
+            opacity: 0.5
+          }}>🔥</div>
+          <div style={{
+            position: 'absolute',
+            top: '25%',
+            right: '8%',
+            fontSize: '1.5rem',
+            animation: 'float 3s ease-in-out infinite 0.5s',
+            opacity: 0.4
+          }}>⚡</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '20%',
+            left: '10%',
+            fontSize: '1.8rem',
+            animation: 'float 3.5s ease-in-out infinite 1s',
+            opacity: 0.5
+          }}>🎨</div>
+          
+          <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
             <h2 style={{
-              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-              marginBottom: '1rem',
+              fontSize: 'clamp(3rem, 8vw, 6rem)',
+              marginBottom: '1.5rem',
               textAlign: 'center',
-              background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+              background: 'linear-gradient(135deg, #ff4500 0%, #FFD700 30%, #ff0000 60%, #ff4500 100%)',
+              backgroundSize: '300% 100%',
+              animation: 'rainbow 5s linear infinite',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              letterSpacing: '4px',
+              textShadow: '0 0 50px rgba(255,69,0,0.5)'
             }}>
               🔥 THE MEME FORGE 🔥
             </h2>
@@ -6059,8 +6329,8 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        {/* SECTION: EMBASSY LOCATIONS */}
-        <div id="section-locations" style={{
+        {/* SECTION: EMBASSY GEOGRAPHY */}
+        <div id="section-geography" style={{
           padding: '100px 20px',
           background: 'linear-gradient(180deg, #2a0000 0%, #1a0033 100%)'
         }}>
@@ -6074,7 +6344,7 @@ export default function MemeticEmbassyFull() {
               WebkitTextFillColor: 'transparent',
               fontWeight: 'bold'
             }}>
-              🏛️ EMBASSY GEOGRAPHY 🏛️
+              🗺️ EMBASSY GEOGRAPHY 🗺️
             </h2>
 
             <p style={{
@@ -6184,84 +6454,113 @@ export default function MemeticEmbassyFull() {
         </div>
 
         {/* SECTION 7: BIG PURPOSE + CITIZENSHIP */}
-        <div style={{
-          padding: '100px 20px',
-          background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)',
-          textAlign: 'center'
+        <div id="section-citizenship" style={{
+          padding: '120px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #000033 50%, #000000 100%)',
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          {/* Decorative elements */}
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            left: '5%',
+            fontSize: '4rem',
+            opacity: 0.15,
+            animation: 'rotate 30s linear infinite'
+          }}>🌐</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '10%',
+            right: '5%',
+            fontSize: '5rem',
+            opacity: 0.15,
+            animation: 'rotate 25s linear infinite reverse'
+          }}>✊</div>
+          
+          <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
             <h2 style={{
-              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              fontSize: 'clamp(3rem, 8vw, 6rem)',
               marginBottom: '3rem',
-              background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+              background: 'linear-gradient(135deg, #ff00ff 0%, #FFD700 25%, #00ffff 50%, #ff00ff 75%, #FFD700 100%)',
+              backgroundSize: '400% 100%',
+              animation: 'rainbow 8s linear infinite',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              letterSpacing: '3px'
             }}>
               THIS IS NOT "JUST MEMES"
             </h2>
 
             <div style={{
-              background: 'rgba(255,0,255,0.1)',
-              border: '3px solid #ff00ff',
-              borderRadius: '20px',
-              padding: '3rem',
-              marginBottom: '3rem'
+              background: 'rgba(255,0,255,0.08)',
+              border: '4px solid #ff00ff',
+              borderRadius: '25px',
+              padding: '3.5rem',
+              marginBottom: '4rem',
+              boxShadow: '0 0 50px rgba(255,0,255,0.3), inset 0 0 50px rgba(0,255,255,0.05)',
+              animation: 'glow 5s ease-in-out infinite'
             }}>
               <p style={{
-                fontSize: '1.5rem',
+                fontSize: '1.8rem',
                 lineHeight: '2',
                 color: '#fff',
                 marginBottom: '2rem'
               }}>
-                <strong style={{ color: '#ff00ff' }}>The Memetic Embassy is:</strong>
+                <strong style={{ color: '#ff00ff', textShadow: '0 0 20px rgba(255,0,255,0.5)' }}>The Memetic Embassy is:</strong>
               </p>
 
               <div style={{
-                fontSize: '1.3rem',
-                lineHeight: '2.2',
+                fontSize: '1.4rem',
+                lineHeight: '2.4',
                 color: '#00ffff',
                 textAlign: 'left',
-                maxWidth: '700px',
+                maxWidth: '750px',
                 margin: '0 auto'
               }}>
-                ✨ A <strong>sanctuary</strong> for the dismissed<br/>
-                🔥 A <strong>resistance tool</strong> against oppression<br/>
-                🎨 A <strong>creative rebellion</strong> that refuses silence<br/>
-                📢 A <strong>movement</strong> with humor as armor<br/>
-                🏠 A place where injured & disabled people are finally <strong>the main characters</strong><br/>
-                🌐 A <strong>nation built on truth, humor, and solidarity</strong>
+                ✨ A <strong style={{ color: '#FFD700' }}>sanctuary</strong> for the dismissed<br/>
+                🔥 A <strong style={{ color: '#ff4500' }}>resistance tool</strong> against oppression<br/>
+                🎨 A <strong style={{ color: '#ff00ff' }}>creative rebellion</strong> that refuses silence<br/>
+                📢 A <strong style={{ color: '#32CD32' }}>movement</strong> with humor as armor<br/>
+                🏠 A place where injured & disabled people are finally <strong style={{ color: '#FFD700' }}>the main characters</strong><br/>
+                🌐 A <strong style={{ color: '#00ffff' }}>nation built on truth, humor, and solidarity</strong>
               </div>
             </div>
 
             {!citizenshipClaimed ? (
               <div style={{
-                background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
-                border: '5px solid #fff',
-                borderRadius: '25px',
-                padding: '3rem',
-                animation: 'pulse 2s infinite'
+                background: 'linear-gradient(135deg, #ff00ff 0%, #8B00FF 25%, #00ffff 50%, #00ff88 75%, #ff00ff 100%)',
+                backgroundSize: '400% 400%',
+                animation: 'rainbow 10s ease infinite',
+                border: '6px solid #fff',
+                borderRadius: '30px',
+                padding: '4rem',
+                boxShadow: '0 0 60px rgba(255,0,255,0.5), 0 0 100px rgba(0,255,255,0.3)'
               }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✨🏛️✨</div>
+                <div style={{ fontSize: '4rem', marginBottom: '1.5rem', animation: 'bounce 2s infinite' }}>✨🏛️✨</div>
                 <h3 style={{
-                  fontSize: '2.5rem',
+                  fontSize: 'clamp(2rem, 5vw, 3rem)',
                   color: '#000',
-                  marginBottom: '1rem',
-                  fontWeight: 'bold'
+                  marginBottom: '1.5rem',
+                  fontWeight: 'bold',
+                  letterSpacing: '2px'
                 }}>
                   🎖️ CLAIM YOUR CITIZENSHIP 🎖️
                 </h3>
                 
                 <div style={{
-                  background: 'rgba(0,0,0,0.2)',
-                  padding: '1rem',
-                  borderRadius: '10px',
-                  marginBottom: '1.5rem'
+                  background: 'rgba(0,0,0,0.25)',
+                  padding: '1.5rem',
+                  borderRadius: '15px',
+                  marginBottom: '2rem',
+                  backdropFilter: 'blur(10px)'
                 }}>
-                  <p style={{ fontSize: '1rem', color: '#ff00ff', fontWeight: 'bold', margin: 0 }}>
+                  <p style={{ fontSize: '1.2rem', color: '#FFD700', fontWeight: 'bold', margin: 0 }}>
                     🎭 MEMETIC MAGIC INCLUDES:
                   </p>
-                  <p style={{ fontSize: '0.95rem', color: '#000', margin: '0.5rem 0 0', lineHeight: '1.5' }}>
+                  <p style={{ fontSize: '1.1rem', color: '#fff', margin: '0.75rem 0 0', lineHeight: '1.7' }}>
                     Diplomatic immunity from gaslighting • Digital passport with meme powers •
                     Access to the Memetic Forge • Protection by the Hero Squad
                   </p>
@@ -6432,42 +6731,86 @@ export default function MemeticEmbassyFull() {
           </div>
         </div>
 
-        <style jsx>{`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-
-          @keyframes slide {
-            from { transform: translateX(0); }
-            to { transform: translateX(20px); }
-          }
-
-          @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-          }
-
-          input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #ff6b6b;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255,107,107,0.8);
-          }
-
-          input[type="range"]::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #ff6b6b;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255,107,107,0.8);
-          }
-        `}</style>
+        {/* Back to Top Button */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            position: 'fixed',
+            bottom: '30px',
+            right: '30px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+            border: '3px solid #fff',
+            color: '#000',
+            fontSize: '1.8rem',
+            cursor: 'pointer',
+            zIndex: 1000,
+            boxShadow: '0 4px 20px rgba(255,0,255,0.5)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          title="Back to Top"
+        >
+          ⬆️
+        </button>
+        
+        {/* Quick Navigation Floating Menu */}
+        <div style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '30px',
+          zIndex: 1000
+        }}>
+          <div style={{
+            background: 'rgba(0,0,0,0.9)',
+            border: '2px solid #ff00ff',
+            borderRadius: '15px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+            boxShadow: '0 4px 20px rgba(255,0,255,0.4)'
+          }}>
+            <span style={{ 
+              color: '#ff00ff', 
+              fontSize: '0.7rem', 
+              textAlign: 'center',
+              marginBottom: '5px',
+              fontWeight: 'bold'
+            }}>
+              QUICK NAV
+            </span>
+            {[
+              { emoji: '⚔️', id: 'squad-showdown', title: 'Squad Showdown' },
+              { emoji: '🦸', id: 'heroes', title: 'Hero Squad' },
+              { emoji: '😈', id: 'villains', title: 'Denial Squad' },
+              { emoji: '🔥', id: 'meme-forge', title: 'Meme Forge' },
+              { emoji: '⚡', id: 'artifacts', title: 'Artifacts' }
+            ].map(nav => (
+              <button
+                key={nav.id}
+                onClick={() => document.getElementById(`section-${nav.id}`)?.scrollIntoView({ behavior: 'smooth' })}
+                title={nav.title}
+                style={{
+                  width: '35px',
+                  height: '35px',
+                  borderRadius: '8px',
+                  background: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  transition: 'all 0.2s'
+                }}
+              >
+                {nav.emoji}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
       <Footer />
     </>

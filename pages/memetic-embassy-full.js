@@ -32,6 +32,122 @@ export default function MemeticEmbassyFull() {
   const [selectedFaction, setSelectedFaction] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const canvasRef = useRef(null);
+  
+  // Squad Showdown States
+  const [showdownMode, setShowdownMode] = useState('superhero'); // 'superhero' | 'denial' | 'versus'
+  const [selectedShowdownHero, setSelectedShowdownHero] = useState(null);
+  const [selectedShowdownVillain, setSelectedShowdownVillain] = useState(null);
+  const [showdownMemeText, setShowdownMemeText] = useState({ top: '', bottom: '' });
+  const [showdownStyle, setShowdownStyle] = useState('poster'); // 'poster' | 'comic' | 'vs-battle' | 'quote'
+  const [generatedShowdownMeme, setGeneratedShowdownMeme] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const showdownCanvasRef = useRef(null);
+  const [superheroImage, setSuperheroImage] = useState(null);
+  const [denialSquadImage, setDenialSquadImage] = useState(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Load squad images on mount
+  useEffect(() => {
+    const loadImages = () => {
+      const heroImg = new Image();
+      heroImg.crossOrigin = 'anonymous';
+      heroImg.onload = () => {
+        setSuperheroImage(heroImg);
+        checkImagesLoaded();
+      };
+      heroImg.src = '/superheroes.png';
+
+      const villainImg = new Image();
+      villainImg.crossOrigin = 'anonymous';
+      villainImg.onload = () => {
+        setDenialSquadImage(villainImg);
+        checkImagesLoaded();
+      };
+      villainImg.src = '/denialsquad.png';
+    };
+
+    const checkImagesLoaded = () => {
+      if (superheroImage && denialSquadImage) {
+        setImagesLoaded(true);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      loadImages();
+    }
+  }, []);
+
+  // Character positions in the squad images (approximate crop regions)
+  // These define where each character appears in the composite image
+  // Based on actual artwork - percentages of image dimensions
+  const heroImagePositions = {
+    'captain-truth': { 
+      label: 'Captain Truth-Teller', 
+      cropX: 0, cropY: 0.08, cropW: 0.5, cropH: 0.45,
+      description: 'Commander & Chief Whistleblower',
+      color: '#1E90FF',
+      name: 'Captain Truth-Teller'
+    },
+    'sergeant-solidarity': { 
+      label: 'Sergeant Solidarity', 
+      cropX: 0.5, cropY: 0.08, cropW: 0.5, cropH: 0.45,
+      description: 'Organizing Director',
+      color: '#228B22',
+      name: 'Sergeant Solidarity'
+    },
+    'major-accessibility': { 
+      label: 'Major Accessibility', 
+      cropX: 0, cropY: 0.5, cropW: 0.33, cropH: 0.5,
+      description: 'Inclusion Officer & Disability Advocate',
+      color: '#4169E1',
+      name: 'Major Accessibility'
+    },
+    'corporal-care': { 
+      label: 'Corporal Care', 
+      cropX: 0.33, cropY: 0.5, cropW: 0.34, cropH: 0.5,
+      description: 'Mental Health & Burnout Prevention',
+      color: '#FF8C00',
+      name: 'Corporal Care'
+    },
+    'pfc-receipts': { 
+      label: 'Private First Class Receipts', 
+      cropX: 0.67, cropY: 0.5, cropW: 0.33, cropH: 0.5,
+      description: 'Intelligence & Documentation',
+      color: '#32CD32',
+      name: 'PFC Receipts'
+    }
+  };
+
+  const villainImagePositions = {
+    'delayla': { 
+      label: 'Case Manager Delayla', 
+      cropX: 0.25, cropY: 0.15, cropW: 0.25, cropH: 0.4,
+      description: 'Queen of Delay & Denials (sunglasses)',
+      color: '#FF69B4',
+      name: 'Case Manager Delayla Denywell'
+    },
+    'no-evidence': { 
+      label: 'Mr. No Evidence Required', 
+      cropX: 0.5, cropY: 0.15, cropW: 0.25, cropH: 0.4,
+      description: 'Employer Whisperer (cigar guy)',
+      color: '#8B4513',
+      name: 'Mr. No Evidence Required'
+    },
+    'doctor-files': { 
+      label: 'Dr. Who Never Reads Files', 
+      cropX: 0.3, cropY: 0.5, cropW: 0.25, cropH: 0.35,
+      description: 'Master of 3-Minute Diagnoses',
+      color: '#20B2AA',
+      name: 'Doctor Who Never Reads Files'
+    },
+    'hr-ninja': { 
+      label: 'HR Ninja Vanish', 
+      cropX: 0.7, cropY: 0.4, cropW: 0.3, cropH: 0.45,
+      description: 'The WCB Hat Guy - Vanishes When Needed',
+      color: '#2F4F4F',
+      name: 'HR Agent Ninja Vanish'
+    }
+  };
 
   // ============================================
   // HEROES - The Embassy Memetic Warrior Superhero Squad (COMPLETE)
@@ -1067,6 +1183,409 @@ export default function MemeticEmbassyFull() {
     }
   ];
 
+  // ============================================
+  // SQUAD SHOWDOWN MEME TEMPLATES - Character-Specific Auto-Generation
+  // ============================================
+  const superheroMemeTemplates = {
+    'captain-truth': [
+      { top: 'CAPTAIN TRUTH-TELLER SAYS:', bottom: '"SHOW ME THE RECEIPTS"', style: 'command' },
+      { top: 'WHEN THEY LIE ABOUT YOUR INJURY', bottom: 'CAPTAIN TRUTH-TELLER ACTIVATED', style: 'action' },
+      { top: 'WCB: "NO EVIDENCE"', bottom: 'CAPTAIN TRUTH: *PULLS OUT 47 DOCUMENTS*', style: 'confrontation' },
+      { top: 'THE TRUTH WILL SET YOU FREE', bottom: 'AND EXPOSE THEM', style: 'quote' },
+      { top: 'FOI REQUEST INCOMING', bottom: 'YOUR LIES CAN\'T HIDE ANYMORE', style: 'threat' },
+      { top: 'PROPAGANDA DETECTED', bottom: 'TRUTH BEAM: ENGAGED', style: 'action' }
+    ],
+    'sergeant-solidarity': [
+      { top: 'SERGEANT SOLIDARITY RALLIES:', bottom: '"AN INJURY TO ONE IS AN INJURY TO ALL!"', style: 'rally' },
+      { top: 'THEY DIVIDE US', bottom: 'WE MULTIPLY', style: 'power' },
+      { top: 'ONE WORKER: IGNORED', bottom: '10,000 WORKERS: UNSTOPPABLE', style: 'numbers' },
+      { top: 'SOLIDARITY FIELD: ACTIVATED', bottom: 'YOUR ISOLATION TACTICS FAILED', style: 'action' },
+      { top: 'YOU TRIED TO SILENCE ONE', bottom: 'NOW YOU FACE US ALL', style: 'threat' },
+      { top: 'TOGETHER WE RISE', bottom: 'DIVIDED WE FALL - SO WE CHOOSE TOGETHER', style: 'unity' }
+    ],
+    'lieutenant-meme': [
+      { top: 'LIEUTENANT MEME-MAKER:', bottom: 'YOUR PROPAGANDA ENDS HERE', style: 'declaration' },
+      { top: 'NICE PR SPIN', bottom: 'LET ME MAKE A MEME ABOUT THAT', style: 'sarcasm' },
+      { top: 'THEY HAVE LOBBYISTS', bottom: 'WE HAVE MEMES', style: 'comparison' },
+      { top: 'VIRAL TRUTH BOMB:', bottom: 'INCOMING 💥', style: 'action' },
+      { top: 'ONE MEME = ONE EXPOSÉ', bottom: 'I\'VE GOT UNLIMITED AMMO', style: 'threat' },
+      { top: 'ALGORITHM WHO?', bottom: 'TRUTH FINDS A WAY', style: 'defiant' }
+    ],
+    'major-accessibility': [
+      { top: 'MAJOR ACCESSIBILITY:', bottom: '"NOTHING ABOUT US WITHOUT US!"', style: 'quote' },
+      { top: 'YOUR BARRIERS', bottom: 'MY TARGETS', style: 'confrontation' },
+      { top: 'ACCOMMODATION DENIED?', bottom: 'BARRIER DESTROYER: ACTIVATED', style: 'action' },
+      { top: 'DISABILITY ≠ INABILITY', bottom: 'BUT YOUR ATTITUDE = THE PROBLEM', style: 'truth' },
+      { top: 'YOU BUILT WALLS', bottom: 'I BROUGHT DEMOLITION EQUIPMENT', style: 'power' },
+      { top: 'ACCESSIBLE = BETTER FOR EVERYONE', bottom: 'WHY IS THIS SO HARD TO UNDERSTAND?', style: 'frustration' }
+    ],
+    'corporal-care': [
+      { top: 'CORPORAL CARE REMINDS YOU:', bottom: 'REST IS RESISTANCE', style: 'reminder' },
+      { top: 'BURNOUT IS NOT WEAKNESS', bottom: 'IT\'S PROOF YOU FOUGHT TOO LONG ALONE', style: 'support' },
+      { top: 'HEALING IS REVOLUTIONARY', bottom: 'THEY WANT US BROKEN', style: 'truth' },
+      { top: 'YOU DESERVE SUPPORT', bottom: 'NOT SUSPICION', style: 'validation' },
+      { top: 'SELF-CARE ISN\'T SELFISH', bottom: 'IT\'S SURVIVAL', style: 'wisdom' },
+      { top: 'TODAY I REST', bottom: 'TOMORROW I FIGHT', style: 'balance' }
+    ],
+    'pfc-receipts': [
+      { top: 'PFC RECEIPTS HAS ENTERED THE CHAT', bottom: 'WITH 847 DOCUMENTED INCIDENTS', style: 'arrival' },
+      { top: 'YOU: "NO PROOF"', bottom: 'ME: *OPENS INFINITE POCKET COAT*', style: 'confrontation' },
+      { top: 'I KEEP RECEIPTS', bottom: 'ON YOUR RECEIPTS', style: 'meta' },
+      { top: 'ARCHIVE AVALANCHE:', bottom: 'INCOMING ⛰️📄', style: 'action' },
+      { top: 'PAPER TRAIL?', bottom: 'I AM THE PAPER TRAIL', style: 'declaration' },
+      { top: 'DELETE ALL YOU WANT', bottom: 'I ALREADY BACKED UP EVERYTHING', style: 'prepared' }
+    ],
+    'the-phoenix': [
+      { top: 'THE PHOENIX RISES:', bottom: 'FROM THE ASHES, WE RISE TOGETHER', style: 'rise' },
+      { top: 'THEY TRIED TO BREAK ME', bottom: 'I BECAME UNBREAKABLE', style: 'power' },
+      { top: 'MY TRAUMA IS MY POWER', bottom: 'MY STORY IS MY WEAPON', style: 'transformation' },
+      { top: 'EVERY TIME I FALL', bottom: 'I RISE HIGHER', style: 'resilience' },
+      { top: 'YOU CAN\'T EXTINGUISH', bottom: 'WHAT YOU CAN\'T UNDERSTAND', style: 'eternal' },
+      { top: 'I CARRY EVERYONE\'S STORIES', bottom: 'THAT\'S MY WEIGHT. THAT\'S MY STRENGTH.', style: 'burden' }
+    ]
+  };
+
+  const denialSquadMemeTemplates = {
+    'delayla': [
+      { top: 'CASE MANAGER DELAYLA:', bottom: '"YOUR CLAIM IS... PENDING"', style: 'delay' },
+      { top: 'ME: SUBMITS CLAIM', bottom: 'DELAYLA: *ACTIVATES PERPETUAL PENDING SPELL*', style: 'curse' },
+      { top: 'DAY 1: PENDING', bottom: 'DAY 847: STILL PENDING 💅', style: 'timeline' },
+      { top: 'DELAYLA\'S TO-DO LIST:', bottom: '1. DENY 2. DELAY 3. DENY AGAIN', style: 'list' },
+      { top: '"YOUR FILE IS TEMPORARILY UNAVAILABLE"', bottom: 'TRANSLATION: I LOST IT ON PURPOSE', style: 'translation' },
+      { top: 'DELAYLA APPROVING A CLAIM', bottom: 'CHALLENGE: IMPOSSIBLE', style: 'impossible' }
+    ],
+    'no-evidence': [
+      { top: 'MR. NO EVIDENCE REQUIRED:', bottom: '"THE EMPLOYER SAYS YOU\'RE FINE"', style: 'bias' },
+      { top: 'MY EVIDENCE: 3 DOCTORS, X-RAY, MRI', bottom: 'HIS EVIDENCE: EMPLOYER SAID SO', style: 'comparison' },
+      { top: 'WORKER: *PROVIDES 47 REPORTS*', bottom: 'MR. NO EVIDENCE: "INSUFFICIENT"', style: 'denial' },
+      { top: 'EMPLOYER: "NEVER HAPPENED"', bottom: 'MR. NO EVIDENCE: "CASE CLOSED"', style: 'instant' },
+      { top: 'BLIND TO WORKER EVIDENCE', bottom: '20/20 VISION FOR EMPLOYER LIES', style: 'selective' },
+      { top: 'HIS SUPERPOWER:', bottom: 'SELECTIVE EVIDENCE BLINDNESS', style: 'power' }
+    ],
+    'doctor-files': [
+      { top: 'DOCTOR WHO NEVER READS FILES:', bottom: '"HAVE YOU TRIED YOGA?"', style: 'classic' },
+      { top: '3 MINUTES INTO APPOINTMENT:', bottom: '"I RECOMMEND RETURN TO WORK"', style: 'speed' },
+      { top: 'ME: EXPLAINS 10 YEAR CONDITION', bottom: 'DOC: "HMM INTERESTING" *DIDN\'T LISTEN*', style: 'ignore' },
+      { top: 'MY FILE: 200 PAGES', bottom: 'DOCTOR: *READS ZERO*', style: 'unread' },
+      { top: 'DOCTOR\'S DIAGNOSIS:', bottom: 'WHATEVER GETS YOU OUT FASTEST', style: 'rush' },
+      { top: '"YOU SEEM FINE TO ME"', bottom: 'APPOINTMENT LENGTH: 47 SECONDS', style: 'observation' }
+    ],
+    'hr-ninja': [
+      { top: 'HR NINJA VANISH:', bottom: '"I\'LL GET BACK TO—" *POOF*', style: 'vanish' },
+      { top: 'ME: HAS A CONCERN', bottom: 'HR: *ACTIVATES SMOKE BOMB*', style: 'escape' },
+      { top: 'HR\'S FAVORITE JUTSU:', bottom: 'ACCOUNTABILITY AVOIDANCE', style: 'technique' },
+      { top: '"WE\'RE LOOKING INTO IT"', bottom: '*DISAPPEARS FOR 6 MONTHS*', style: 'ghost' },
+      { top: 'LAST SEEN:', bottom: 'MID-SENTENCE, HEADING TOWARD EXIT', style: 'sighting' },
+      { top: 'HR RESPONSE TIME:', bottom: 'SOMEWHERE BETWEEN NEVER AND NEVER', style: 'timing' }
+    ]
+  };
+
+  const versusMatchups = [
+    { hero: 'captain-truth', villain: 'no-evidence', battleCry: 'TRUTH VS LIES', epicLine: 'Evidence can\'t be ignored forever!' },
+    { hero: 'sergeant-solidarity', villain: 'delayla', battleCry: 'UNITY VS DELAY', epicLine: 'Together we break the pending spell!' },
+    { hero: 'lieutenant-meme', villain: 'hr-ninja', battleCry: 'VIRAL VS VANISH', epicLine: 'You can\'t disappear from a screenshot!' },
+    { hero: 'major-accessibility', villain: 'doctor-files', battleCry: 'ACCESS VS IGNORANCE', epicLine: 'Nothing about us without us!' },
+    { hero: 'pfc-receipts', villain: 'delayla', battleCry: 'RECEIPTS VS DENIAL', epicLine: 'Your denial letters become my ammunition!' },
+    { hero: 'corporal-care', villain: 'no-evidence', battleCry: 'CARE VS CALLOUSNESS', epicLine: 'Workers deserve belief, not suspicion!' },
+    { hero: 'the-phoenix', villain: 'all', battleCry: 'RISE VS OPPRESSION', epicLine: 'From every denial, we rise stronger!' }
+  ];
+
+  // Auto-generate Squad Showdown meme
+  const generateShowdownMeme = () => {
+    setIsGenerating(true);
+    
+    let memeData = { top: '', bottom: '', character: null, style: showdownStyle };
+    
+    if (showdownMode === 'superhero' && selectedShowdownHero) {
+      const heroData = heroImagePositions[selectedShowdownHero];
+      const templates = superheroMemeTemplates[selectedShowdownHero] || superheroMemeTemplates['captain-truth'];
+      const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+      memeData = { 
+        top: randomTemplate.top, 
+        bottom: randomTemplate.bottom, 
+        character: { id: selectedShowdownHero, name: heroData.name },
+        characterType: 'hero',
+        style: randomTemplate.style 
+      };
+    } else if (showdownMode === 'denial' && selectedShowdownVillain) {
+      const villainData = villainImagePositions[selectedShowdownVillain];
+      const templates = denialSquadMemeTemplates[selectedShowdownVillain] || denialSquadMemeTemplates['delayla'];
+      const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+      memeData = { 
+        top: randomTemplate.top, 
+        bottom: randomTemplate.bottom, 
+        character: { id: selectedShowdownVillain, name: villainData.name },
+        characterType: 'villain',
+        style: randomTemplate.style 
+      };
+    } else if (showdownMode === 'versus') {
+      // Updated versusMatchups to use only image-based characters
+      const imageBasedMatchups = [
+        { heroId: 'captain-truth', villainId: 'no-evidence', battleCry: 'TRUTH VS LIES', epicLine: 'Evidence can\'t be ignored forever!' },
+        { heroId: 'sergeant-solidarity', villainId: 'delayla', battleCry: 'UNITY VS DELAY', epicLine: 'Together we break the pending spell!' },
+        { heroId: 'major-accessibility', villainId: 'doctor-files', battleCry: 'ACCESS VS IGNORANCE', epicLine: 'Nothing about us without us!' },
+        { heroId: 'pfc-receipts', villainId: 'delayla', battleCry: 'RECEIPTS VS DENIAL', epicLine: 'Your denial letters become my ammunition!' },
+        { heroId: 'corporal-care', villainId: 'no-evidence', battleCry: 'CARE VS CALLOUSNESS', epicLine: 'Workers deserve belief, not suspicion!' },
+        { heroId: 'captain-truth', villainId: 'hr-ninja', battleCry: 'TRUTH VS EVASION', epicLine: 'You can\'t hide from documented facts!' },
+        { heroId: 'sergeant-solidarity', villainId: 'doctor-files', battleCry: 'SOLIDARITY VS DISMISSAL', epicLine: 'United workers can\'t be dismissed!' }
+      ];
+      const matchup = imageBasedMatchups[Math.floor(Math.random() * imageBasedMatchups.length)];
+      const heroData = heroImagePositions[matchup.heroId];
+      const villainData = villainImagePositions[matchup.villainId];
+      memeData = {
+        top: matchup.battleCry,
+        bottom: matchup.epicLine,
+        hero: { id: matchup.heroId, name: heroData.name },
+        villain: { id: matchup.villainId, name: villainData.name },
+        heroId: matchup.heroId,
+        villainId: matchup.villainId,
+        style: 'versus'
+      };
+    }
+    
+    setShowdownMemeText({ top: memeData.top, bottom: memeData.bottom });
+    setGeneratedShowdownMeme(memeData);
+    
+    setTimeout(() => setIsGenerating(false), 500);
+  };
+
+  // Download Squad Showdown meme with actual character images
+  const downloadShowdownMeme = async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1350; // Taller for image + text
+    const ctx = canvas.getContext('2d');
+    
+    // Determine which image and crop position to use
+    const characterId = showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain;
+    const positions = showdownMode === 'superhero' ? heroImagePositions : villainImagePositions;
+    const charPosition = positions[characterId];
+    const imageSrc = showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png';
+    
+    // Load the squad image
+    const loadImage = (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    };
+    
+    try {
+      const squadImage = await loadImage(imageSrc);
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      if (showdownMode === 'superhero') {
+        gradient.addColorStop(0, '#0a1628');
+        gradient.addColorStop(0.5, '#1a2a4a');
+        gradient.addColorStop(1, '#0f1f3a');
+      } else if (showdownMode === 'denial') {
+        gradient.addColorStop(0, '#1a0a0a');
+        gradient.addColorStop(0.5, '#2a1520');
+        gradient.addColorStop(1, '#1f0f1a');
+      } else {
+        gradient.addColorStop(0, '#1a0a2a');
+        gradient.addColorStop(1, '#0a1a2a');
+      }
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Decorative border
+      ctx.strokeStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+      
+      // Title banner
+      ctx.fillStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.fillRect(30, 30, canvas.width - 60, 70);
+      
+      ctx.font = 'bold 40px Impact, Arial Black, sans-serif';
+      ctx.fillStyle = '#000';
+      ctx.textAlign = 'center';
+      const squadTitle = showdownMode === 'superhero' ? 'SUPERHERO SQUAD' : 'DENIAL SQUAD';
+      ctx.fillText(squadTitle, canvas.width / 2, 80);
+      
+      // Draw cropped character image
+      if (charPosition && showdownMode !== 'versus') {
+        const srcX = squadImage.width * charPosition.cropX;
+        const srcY = squadImage.height * charPosition.cropY;
+        const srcW = squadImage.width * charPosition.cropW;
+        const srcH = squadImage.height * charPosition.cropH;
+        
+        // Calculate destination dimensions maintaining aspect ratio
+        const maxImgHeight = 550;
+        const maxImgWidth = canvas.width - 100;
+        const scale = Math.min(maxImgWidth / srcW, maxImgHeight / srcH);
+        const destW = srcW * scale;
+        const destH = srcH * scale;
+        const destX = (canvas.width - destW) / 2;
+        const destY = 120;
+        
+        // Draw character image with border
+        ctx.save();
+        ctx.shadowColor = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+        ctx.shadowBlur = 20;
+        ctx.drawImage(squadImage, srcX, srcY, srcW, srcH, destX, destY, destW, destH);
+        ctx.restore();
+        
+        // Character name plate
+        const charColor = charPosition.color || (showdownMode === 'superhero' ? '#FFD700' : '#ff0080');
+        ctx.fillStyle = charColor;
+        ctx.fillRect(50, destY + destH + 10, canvas.width - 100, 50);
+        
+        ctx.font = 'bold 28px Arial Black, sans-serif';
+        ctx.fillStyle = '#000';
+        ctx.textAlign = 'center';
+        ctx.fillText(charPosition.label.toUpperCase(), canvas.width / 2, destY + destH + 45);
+        
+        // Subtitle
+        ctx.font = 'italic 20px Arial, sans-serif';
+        ctx.fillStyle = '#aaa';
+        ctx.fillText(charPosition.description, canvas.width / 2, destY + destH + 80);
+      } else if (showdownMode === 'versus' && generatedShowdownMeme) {
+        // VS mode - show both images side by side
+        const heroPos = heroImagePositions[generatedShowdownMeme.heroId || selectedShowdownHero];
+        const villainPos = villainImagePositions[generatedShowdownMeme.villainId || selectedShowdownVillain];
+        
+        if (heroPos && villainPos) {
+          const heroImg = await loadImage('/superheroes.png');
+          const villainImg = await loadImage('/denialsquad.png');
+          
+          // Draw hero on left
+          const heroSrcX = heroImg.width * heroPos.cropX;
+          const heroSrcY = heroImg.height * heroPos.cropY;
+          const heroSrcW = heroImg.width * heroPos.cropW;
+          const heroSrcH = heroImg.height * heroPos.cropH;
+          ctx.drawImage(heroImg, heroSrcX, heroSrcY, heroSrcW, heroSrcH, 50, 120, 400, 450);
+          
+          // VS symbol
+          ctx.font = 'bold 80px Impact';
+          ctx.fillStyle = '#fff';
+          ctx.strokeStyle = '#000';
+          ctx.lineWidth = 4;
+          ctx.textAlign = 'center';
+          ctx.strokeText('VS', canvas.width / 2, 380);
+          ctx.fillText('VS', canvas.width / 2, 380);
+          
+          // Draw villain on right
+          const villainSrcX = villainImg.width * villainPos.cropX;
+          const villainSrcY = villainImg.height * villainPos.cropY;
+          const villainSrcW = villainImg.width * villainPos.cropW;
+          const villainSrcH = villainImg.height * villainPos.cropH;
+          ctx.drawImage(villainImg, villainSrcX, villainSrcY, villainSrcW, villainSrcH, canvas.width - 450, 120, 400, 450);
+        }
+      }
+      
+      // Top meme text
+      ctx.font = 'bold 48px Impact, Arial Black, sans-serif';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 5;
+      ctx.textAlign = 'center';
+      
+      const topText = showdownMemeText.top || '';
+      if (topText) {
+        const topLines = wrapText(ctx, topText.toUpperCase(), canvas.width - 80, 48);
+        let yPos = 820;
+        topLines.forEach(line => {
+          ctx.strokeText(line, canvas.width / 2, yPos);
+          ctx.fillText(line, canvas.width / 2, yPos);
+          yPos += 55;
+        });
+      }
+      
+      // Bottom meme text (bigger, punchline)
+      ctx.font = 'bold 56px Impact, Arial Black, sans-serif';
+      const bottomText = showdownMemeText.bottom || '';
+      if (bottomText) {
+        const bottomLines = wrapText(ctx, bottomText.toUpperCase(), canvas.width - 80, 56);
+        let yPos = canvas.height - 160;
+        bottomLines.reverse().forEach(line => {
+          ctx.strokeText(line, canvas.width / 2, yPos);
+          ctx.fillText(line, canvas.width / 2, yPos);
+          yPos -= 65;
+        });
+      }
+      
+      // Enhanced Branding Footer
+      const footerY = canvas.height - 70;
+      
+      // Footer background bar
+      ctx.fillStyle = 'rgba(0,0,0,0.8)';
+      ctx.fillRect(0, footerY, canvas.width, 70);
+      
+      // Top border line
+      ctx.strokeStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, footerY);
+      ctx.lineTo(canvas.width, footerY);
+      ctx.stroke();
+      
+      // Logo/Brand name (left)
+      ctx.font = 'bold 24px Arial Black, sans-serif';
+      ctx.fillStyle = '#FFD700';
+      ctx.textAlign = 'left';
+      ctx.fillText('✊ INJURED WORKERS UNITE', 25, footerY + 30);
+      
+      // Website (center)
+      ctx.font = 'bold 18px Arial';
+      ctx.fillStyle = '#00ffff';
+      ctx.textAlign = 'center';
+      ctx.fillText('injuredworkersunite.pages.dev', canvas.width / 2, footerY + 30);
+      
+      // Hashtags (right)
+      ctx.font = 'bold 16px Arial';
+      ctx.fillStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.textAlign = 'right';
+      ctx.fillText('#MemeticEmbassy #WorkersRights', canvas.width - 25, footerY + 30);
+      
+      // Call to action
+      ctx.font = 'italic 14px Arial';
+      ctx.fillStyle = '#aaa';
+      ctx.textAlign = 'center';
+      ctx.fillText('Create your own memes at the Memetic Embassy!', canvas.width / 2, footerY + 55);
+      
+      // Download
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${showdownMode}-meme-${characterId || 'squad'}-${Date.now()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    } catch (error) {
+      console.error('Error generating meme:', error);
+      alert('Error generating meme. Please try again.');
+    }
+  };
+  
+  // Text wrapping helper
+  const wrapText = (ctx, text, maxWidth, fontSize) => {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+    
+    words.forEach(word => {
+      const testLine = currentLine + word + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && currentLine !== '') {
+        lines.push(currentLine.trim());
+        currentLine = word + ' ';
+      } else {
+        currentLine = testLine;
+      }
+    });
+    lines.push(currentLine.trim());
+    return lines;
+  };
+
   const memeHabitats = [
     {
       id: 'spicy-activism',
@@ -1641,7 +2160,7 @@ export default function MemeticEmbassyFull() {
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}>
-            {['heroes', 'villains', 'meme-tools', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
+            {['squad-showdown', 'heroes', 'villains', 'meme-tools', 'generator', 'episodes', 'comics', 'ecosystem'].map(section => (
               <button
                 key={section}
                 onClick={() => {
@@ -1663,6 +2182,7 @@ export default function MemeticEmbassyFull() {
                   transition: 'all 0.3s'
                 }}
               >
+                {section === 'squad-showdown' && '⚔️ Squad Showdown'}
                 {section === 'heroes' && '🦸 Heroes'}
                 {section === 'villains' && '😈 Villains'}
                 {section === 'meme-tools' && '🎨 Meme Tools'}
@@ -1672,6 +2192,938 @@ export default function MemeticEmbassyFull() {
                 {section === 'ecosystem' && '🌿 Ecosystem'}
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* ============================================ */}
+        {/* SECTION: SQUAD SHOWDOWN MEME GENERATOR */}
+        {/* ============================================ */}
+        <div id="section-squad-showdown" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #1a0033 50%, #001a33 100%)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Animated background elements */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(circle at 20% 20%, rgba(255,0,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0,255,255,0.15) 0%, transparent 50%)',
+            pointerEvents: 'none'
+          }}></div>
+          
+          <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+            {/* Epic Header */}
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '3rem'
+            }}>
+              <h2 style={{
+                fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+                fontWeight: 'bold',
+                background: 'linear-gradient(135deg, #FFD700 0%, #ff00ff 50%, #00ffff 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 0 50px rgba(255,0,255,0.5)',
+                marginBottom: '1rem'
+              }}>
+                ⚔️ SQUAD SHOWDOWN ⚔️
+              </h2>
+              <p style={{
+                fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
+                color: '#00ffff',
+                maxWidth: '800px',
+                margin: '0 auto 2rem',
+                lineHeight: '1.6'
+              }}>
+                Auto-generate viral memes featuring the <strong style={{ color: '#FFD700' }}>Superhero Squad</strong> and 
+                the <strong style={{ color: '#ff0080' }}>Denial Squad</strong>. Click any character to create instant shareable content!
+              </p>
+              
+              {/* Mode Selector */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginBottom: '2rem'
+              }}>
+                {[
+                  { id: 'superhero', label: '🦸 SUPERHERO SQUAD', color: '#FFD700', desc: 'Heroes fight for justice' },
+                  { id: 'denial', label: '😈 DENIAL SQUAD', color: '#ff0080', desc: 'Villains we all recognize' },
+                  { id: 'versus', label: '⚔️ VS BATTLE', color: '#00ffff', desc: 'Epic showdowns' }
+                ].map(mode => (
+                  <button
+                    key={mode.id}
+                    onClick={() => setShowdownMode(mode.id)}
+                    style={{
+                      padding: '1.5rem 2rem',
+                      background: showdownMode === mode.id 
+                        ? `linear-gradient(135deg, ${mode.color} 0%, ${mode.color}66 100%)`
+                        : 'rgba(0,0,0,0.5)',
+                      border: `4px solid ${mode.color}`,
+                      borderRadius: '20px',
+                      color: showdownMode === mode.id ? '#000' : '#fff',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                      transform: showdownMode === mode.id ? 'scale(1.05)' : 'scale(1)',
+                      boxShadow: showdownMode === mode.id ? `0 0 30px ${mode.color}80` : 'none',
+                      minWidth: '200px'
+                    }}
+                  >
+                    <div style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                      {mode.label}
+                    </div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>
+                      {mode.desc}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Squad Images Display */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+              gap: '2rem',
+              marginBottom: '3rem'
+            }}>
+              {/* Superhero Squad Image */}
+              <div style={{
+                background: showdownMode === 'superhero' ? 'rgba(255,215,0,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : 'rgba(255,255,255,0.2)'}`,
+                borderRadius: '20px',
+                padding: '1.5rem',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+                transform: showdownMode === 'superhero' ? 'scale(1.02)' : 'scale(1)'
+              }}
+              onClick={() => setShowdownMode('superhero')}
+              >
+                <h3 style={{ 
+                  color: '#FFD700', 
+                  textAlign: 'center', 
+                  marginBottom: '1rem',
+                  fontSize: '1.5rem'
+                }}>
+                  🦸 MEET THE SUPERHERO SQUAD! 🦸
+                </h3>
+                <img 
+                  src="/superheroes.png" 
+                  alt="Superhero Squad - Captain Truth-Teller, Sergeant Solidarity, Major Accessibility, Corporal Care, Private First Class Receipts"
+                  style={{
+                    width: '100%',
+                    borderRadius: '15px',
+                    border: '3px solid #FFD700'
+                  }}
+                />
+                <p style={{ 
+                  textAlign: 'center', 
+                  marginTop: '1rem', 
+                  color: '#aaa',
+                  fontSize: '0.9rem'
+                }}>
+                  Captain Truth-Teller • Sergeant Solidarity • Major Accessibility • Corporal Care • Private Receipts
+                </p>
+              </div>
+
+              {/* Denial Squad Image */}
+              <div style={{
+                background: showdownMode === 'denial' ? 'rgba(255,0,128,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `4px solid ${showdownMode === 'denial' ? '#ff0080' : 'rgba(255,255,255,0.2)'}`,
+                borderRadius: '20px',
+                padding: '1.5rem',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+                transform: showdownMode === 'denial' ? 'scale(1.02)' : 'scale(1)'
+              }}
+              onClick={() => setShowdownMode('denial')}
+              >
+                <h3 style={{ 
+                  color: '#ff0080', 
+                  textAlign: 'center', 
+                  marginBottom: '1rem',
+                  fontSize: '1.5rem'
+                }}>
+                  😈 MEET THE DENIAL SQUAD! 😈
+                </h3>
+                <img 
+                  src="/denialsquad.png" 
+                  alt="Denial Squad - Case Manager Delayla, Mr. No Evidence, Doctor Who Never Reads Files, HR Ninja Vanish"
+                  style={{
+                    width: '100%',
+                    borderRadius: '15px',
+                    border: '3px solid #ff0080'
+                  }}
+                />
+                <p style={{ 
+                  textAlign: 'center', 
+                  marginTop: '1rem', 
+                  color: '#aaa',
+                  fontSize: '0.9rem'
+                }}>
+                  Case Manager Delayla • Mr. No Evidence • Doctor Who Never Reads Files • HR Ninja Vanish
+                </p>
+              </div>
+            </div>
+
+            {/* Character Selection Grid - Only characters from the actual images */}
+            {showdownMode !== 'versus' && (
+              <div style={{
+                background: 'rgba(0,0,0,0.5)',
+                border: `3px solid ${showdownMode === 'superhero' ? '#FFD700' : '#ff0080'}`,
+                borderRadius: '20px',
+                padding: '2rem',
+                marginBottom: '3rem'
+              }}>
+                <h3 style={{ 
+                  color: showdownMode === 'superhero' ? '#FFD700' : '#ff0080',
+                  textAlign: 'center',
+                  marginBottom: '1.5rem',
+                  fontSize: '1.5rem'
+                }}>
+                  {showdownMode === 'superhero' ? '🦸 SELECT YOUR HERO' : '😈 SELECT YOUR VILLAIN'}
+                </h3>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '1.5rem'
+                }}>
+                  {Object.entries(showdownMode === 'superhero' ? heroImagePositions : villainImagePositions).map(([id, char]) => (
+                    <button
+                      key={id}
+                      onClick={() => {
+                        if (showdownMode === 'superhero') {
+                          setSelectedShowdownHero(id);
+                        } else {
+                          setSelectedShowdownVillain(id);
+                        }
+                      }}
+                      style={{
+                        padding: '1.5rem',
+                        background: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id
+                          ? char.color
+                          : 'rgba(0,0,0,0.5)',
+                        border: `4px solid ${char.color}`,
+                        borderRadius: '15px',
+                        color: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id ? '#000' : '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+                        transform: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id ? 'scale(1.05)' : 'scale(1)',
+                        boxShadow: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id 
+                          ? `0 0 30px ${char.color}80` 
+                          : 'none'
+                      }}
+                    >
+                      {/* Character thumbnail from image */}
+                      <div style={{
+                        width: '100%',
+                        height: '120px',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        marginBottom: '0.75rem',
+                        border: '2px solid rgba(255,255,255,0.3)',
+                        background: '#000'
+                      }}>
+                        <img 
+                          src={showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png'}
+                          alt={char.label}
+                          style={{ 
+                            width: '100%', 
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      </div>
+                      <div style={{ 
+                        fontSize: '1rem', 
+                        fontWeight: 'bold',
+                        lineHeight: '1.3',
+                        marginBottom: '0.3rem'
+                      }}>
+                        {char.label}
+                      </div>
+                      <div style={{ 
+                        fontSize: '0.8rem', 
+                        opacity: 0.8
+                      }}>
+                        {char.description}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* VS Mode Hero/Villain Selection */}
+            {showdownMode === 'versus' && (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto 1fr',
+                gap: '2rem',
+                alignItems: 'center',
+                marginBottom: '3rem'
+              }}>
+                {/* Hero Side */}
+                <div style={{
+                  background: 'rgba(255,215,0,0.1)',
+                  border: '3px solid #FFD700',
+                  borderRadius: '20px',
+                  padding: '1.5rem'
+                }}>
+                  <h4 style={{ color: '#FFD700', textAlign: 'center', marginBottom: '1rem' }}>
+                    🦸 CHOOSE HERO
+                  </h4>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                    gap: '0.75rem'
+                  }}>
+                    {Object.entries(heroImagePositions).map(([id, hero]) => (
+                      <button
+                        key={id}
+                        onClick={() => setSelectedShowdownHero(id)}
+                        style={{
+                          padding: '0.75rem 0.5rem',
+                          background: selectedShowdownHero === id ? hero.color : 'rgba(0,0,0,0.5)',
+                          border: `2px solid ${hero.color}`,
+                          borderRadius: '10px',
+                          color: selectedShowdownHero === id ? '#000' : '#fff',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        <div style={{ 
+                          width: '60px', 
+                          height: '60px', 
+                          margin: '0 auto 0.5rem',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: '2px solid rgba(255,255,255,0.3)'
+                        }}>
+                          <img 
+                            src="/superheroes.png" 
+                            alt={hero.label}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                        </div>
+                        <div style={{ fontSize: '0.65rem', fontWeight: 'bold' }}>{hero.label.split(' ').pop()}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* VS Symbol */}
+                <div style={{
+                  fontSize: '4rem',
+                  color: '#fff',
+                  textShadow: '0 0 30px #ff00ff, 0 0 60px #00ffff',
+                  animation: 'pulse 1.5s ease-in-out infinite'
+                }}>
+                  ⚔️
+                </div>
+
+                {/* Villain Side */}
+                <div style={{
+                  background: 'rgba(255,0,128,0.1)',
+                  border: '3px solid #ff0080',
+                  borderRadius: '20px',
+                  padding: '1.5rem'
+                }}>
+                  <h4 style={{ color: '#ff0080', textAlign: 'center', marginBottom: '1rem' }}>
+                    😈 CHOOSE VILLAIN
+                  </h4>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                    gap: '0.75rem'
+                  }}>
+                    {Object.entries(villainImagePositions).map(([id, villain]) => (
+                      <button
+                        key={id}
+                        onClick={() => setSelectedShowdownVillain(id)}
+                        style={{
+                          padding: '0.75rem 0.5rem',
+                          background: selectedShowdownVillain === id ? villain.color : 'rgba(0,0,0,0.5)',
+                          border: `2px solid ${villain.color}`,
+                          borderRadius: '10px',
+                          color: '#fff',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        <div style={{ 
+                          width: '60px', 
+                          height: '60px', 
+                          margin: '0 auto 0.5rem',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: '2px solid rgba(255,255,255,0.3)'
+                        }}>
+                          <img 
+                            src="/denialsquad.png" 
+                            alt={villain.label}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                        </div>
+                        <div style={{ fontSize: '0.65rem', fontWeight: 'bold' }}>{villain.label.split(' ').pop()}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Auto-Generate Controls */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(255,0,255,0.2) 0%, rgba(0,255,255,0.2) 100%)',
+              border: '4px solid #ff00ff',
+              borderRadius: '25px',
+              padding: '2rem',
+              marginBottom: '2rem',
+              boxShadow: '0 0 40px rgba(255,0,255,0.3)'
+            }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '1.5rem'
+              }}>
+                {/* Custom Text Inputs */}
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    color: '#FFD700', 
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold'
+                  }}>
+                    ✏️ Custom Top Text (or auto-generate)
+                  </label>
+                  <input
+                    type="text"
+                    value={showdownMemeText.top}
+                    onChange={(e) => setShowdownMemeText({ ...showdownMemeText, top: e.target.value })}
+                    placeholder="Leave blank to auto-generate..."
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: 'rgba(0,0,0,0.7)',
+                      border: '2px solid #FFD700',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    color: '#00ffff', 
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold'
+                  }}>
+                    ✏️ Custom Bottom Text (or auto-generate)
+                  </label>
+                  <input
+                    type="text"
+                    value={showdownMemeText.bottom}
+                    onChange={(e) => setShowdownMemeText({ ...showdownMemeText, bottom: e.target.value })}
+                    placeholder="Leave blank to auto-generate..."
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: 'rgba(0,0,0,0.7)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Generate Button */}
+              <button
+                onClick={generateShowdownMeme}
+                disabled={isGenerating || (showdownMode === 'superhero' && !selectedShowdownHero) || (showdownMode === 'denial' && !selectedShowdownVillain)}
+                style={{
+                  width: '100%',
+                  padding: '1.5rem',
+                  background: isGenerating 
+                    ? 'linear-gradient(135deg, #666 0%, #888 100%)'
+                    : 'linear-gradient(135deg, #ff00ff 0%, #FFD700 50%, #00ffff 100%)',
+                  border: 'none',
+                  borderRadius: '15px',
+                  color: '#000',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  cursor: isGenerating ? 'wait' : 'pointer',
+                  transition: 'all 0.3s',
+                  boxShadow: isGenerating ? 'none' : '0 0 30px rgba(255,0,255,0.5)'
+                }}
+              >
+                {isGenerating ? '⚡ GENERATING...' : '🔥 AUTO-GENERATE VIRAL MEME 🔥'}
+              </button>
+              
+              {((showdownMode === 'superhero' && !selectedShowdownHero) || (showdownMode === 'denial' && !selectedShowdownVillain)) && showdownMode !== 'versus' && (
+                <p style={{ 
+                  textAlign: 'center', 
+                  color: '#ff6b6b', 
+                  marginTop: '1rem',
+                  fontSize: '0.9rem'
+                }}>
+                  👆 Select a character above to generate a meme
+                </p>
+              )}
+            </div>
+
+            {/* Generated Meme Preview */}
+            {generatedShowdownMeme && (
+              <div style={{
+                background: 'rgba(0,0,0,0.8)',
+                border: '5px solid #FFD700',
+                borderRadius: '25px',
+                padding: '2rem',
+                marginBottom: '2rem',
+                animation: 'fadeIn 0.5s ease'
+              }}>
+                <h3 style={{ 
+                  color: '#FFD700', 
+                  textAlign: 'center', 
+                  marginBottom: '1.5rem',
+                  fontSize: '1.5rem'
+                }}>
+                  🎨 YOUR GENERATED MEME 🎨
+                </h3>
+                
+                {/* Meme Display */}
+                <div style={{
+                  background: showdownMode === 'superhero' 
+                    ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+                    : showdownMode === 'denial'
+                    ? 'linear-gradient(135deg, #1a0011 0%, #330022 50%, #660033 100%)'
+                    : 'linear-gradient(135deg, #ff00ff33 0%, #000 50%, #00ffff33 100%)',
+                  borderRadius: '20px',
+                  padding: '3rem 2rem',
+                  minHeight: '400px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : showdownMode === 'denial' ? '#ff0080' : '#00ffff'}`,
+                  marginBottom: '1.5rem'
+                }}>
+                  {/* Top Text */}
+                  <div style={{
+                    fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+                    fontFamily: 'Impact, sans-serif',
+                    color: '#fff',
+                    textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                    textAlign: 'center',
+                    textTransform: 'uppercase',
+                    maxWidth: '90%'
+                  }}>
+                    {showdownMemeText.top || 'SELECT A CHARACTER AND GENERATE'}
+                  </div>
+
+                  {/* Character Display - Using Actual Images */}
+                  <div style={{ textAlign: 'center', position: 'relative' }}>
+                    {showdownMode === 'versus' && selectedShowdownHero && selectedShowdownVillain ? (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{
+                            width: '150px',
+                            height: '150px',
+                            borderRadius: '15px',
+                            border: '3px solid #FFD700',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.5)'
+                          }}>
+                            <img 
+                              src="/superheroes.png" 
+                              alt="Hero"
+                              style={{ 
+                                width: '300%', 
+                                height: 'auto',
+                                objectFit: 'cover',
+                                objectPosition: heroImagePositions[selectedShowdownHero] ? 
+                                  `${heroImagePositions[selectedShowdownHero].cropX * 100 + heroImagePositions[selectedShowdownHero].cropW * 50}% ${heroImagePositions[selectedShowdownHero].cropY * 100 + heroImagePositions[selectedShowdownHero].cropH * 50}%` : 
+                                  'center'
+                              }}
+                            />
+                          </div>
+                          <div style={{ color: '#FFD700', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                            {heroImagePositions[selectedShowdownHero]?.label || 'Hero'}
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '3rem', color: '#fff', textShadow: '0 0 20px #ff00ff' }}>⚔️</div>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{
+                            width: '150px',
+                            height: '150px',
+                            borderRadius: '15px',
+                            border: '3px solid #ff0080',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.5)'
+                          }}>
+                            <img 
+                              src="/denialsquad.png" 
+                              alt="Villain"
+                              style={{ 
+                                width: '300%', 
+                                height: 'auto',
+                                objectFit: 'cover',
+                                objectPosition: villainImagePositions[selectedShowdownVillain] ? 
+                                  `${villainImagePositions[selectedShowdownVillain].cropX * 100 + villainImagePositions[selectedShowdownVillain].cropW * 50}% ${villainImagePositions[selectedShowdownVillain].cropY * 100 + villainImagePositions[selectedShowdownVillain].cropH * 50}%` : 
+                                  'center'
+                              }}
+                            />
+                          </div>
+                          <div style={{ color: '#ff0080', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                            {villainImagePositions[selectedShowdownVillain]?.label || 'Villain'}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (showdownMode === 'superhero' && selectedShowdownHero) || (showdownMode === 'denial' && selectedShowdownVillain) ? (
+                      <div>
+                        <div style={{
+                          width: '280px',
+                          height: '280px',
+                          margin: '0 auto',
+                          borderRadius: '20px',
+                          border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : '#ff0080'}`,
+                          overflow: 'hidden',
+                          boxShadow: `0 0 30px ${showdownMode === 'superhero' ? 'rgba(255,215,0,0.5)' : 'rgba(255,0,128,0.5)'}`,
+                          background: 'rgba(0,0,0,0.5)'
+                        }}>
+                          <img 
+                            src={showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png'}
+                            alt={showdownMode === 'superhero' ? 'Superhero' : 'Villain'}
+                            style={{ 
+                              width: '100%', 
+                              height: '100%',
+                              objectFit: 'cover'
+                            }}
+                          />
+                        </div>
+                        <div style={{ 
+                          color: showdownMode === 'superhero' ? '#FFD700' : '#ff0080',
+                          fontSize: '1.3rem',
+                          fontWeight: 'bold',
+                          marginTop: '1rem'
+                        }}>
+                          {showdownMode === 'superhero' 
+                            ? heroImagePositions[selectedShowdownHero]?.label 
+                            : villainImagePositions[selectedShowdownVillain]?.label}
+                        </div>
+                        <div style={{ 
+                          color: '#aaa',
+                          fontSize: '0.9rem',
+                          fontStyle: 'italic',
+                          marginTop: '0.3rem'
+                        }}>
+                          {showdownMode === 'superhero' 
+                            ? heroImagePositions[selectedShowdownHero]?.description 
+                            : villainImagePositions[selectedShowdownVillain]?.description}
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ 
+                        fontSize: '5rem', 
+                        opacity: 0.5,
+                        padding: '2rem'
+                      }}>
+                        {showdownMode === 'superhero' ? '🦸' : showdownMode === 'denial' ? '😈' : '⚔️'}
+                        <div style={{ fontSize: '1rem', color: '#666', marginTop: '1rem' }}>
+                          Select a character above
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bottom Text */}
+                  <div style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                    fontFamily: 'Impact, sans-serif',
+                    color: '#fff',
+                    textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                    textAlign: 'center',
+                    textTransform: 'uppercase',
+                    maxWidth: '90%'
+                  }}>
+                    {showdownMemeText.bottom || 'YOUR PUNCHLINE HERE'}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  <button
+                    onClick={downloadShowdownMeme}
+                    style={{
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #32CD32 0%, #00ff88 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#000',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    📥 DOWNLOAD
+                  </button>
+                  <button
+                    onClick={() => generateShowdownMeme()}
+                    style={{
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #ff00ff 0%, #ff6b6b 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    🎲 REGENERATE
+                  </button>
+                  <button
+                    onClick={() => {
+                      const newMeme = {
+                        id: Date.now(),
+                        topText: showdownMemeText.top,
+                        bottomText: showdownMemeText.bottom,
+                        character: generatedShowdownMeme?.character,
+                        mode: showdownMode,
+                        created: new Date().toISOString()
+                      };
+                      const updated = [...userMemes, newMeme];
+                      setUserMemes(updated);
+                      localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+                      alert('🎨 Meme saved to your gallery!');
+                    }}
+                    style={{
+                      padding: '1rem',
+                      background: 'rgba(0,255,255,0.2)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '10px',
+                      color: '#00ffff',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    💾 SAVE
+                  </button>
+                </div>
+
+                {/* Social Sharing Row */}
+                <div style={{
+                  background: 'rgba(0,0,0,0.4)',
+                  borderRadius: '15px',
+                  padding: '1rem',
+                  marginTop: '1rem'
+                }}>
+                  <div style={{ 
+                    color: '#FFD700', 
+                    fontWeight: 'bold', 
+                    textAlign: 'center', 
+                    marginBottom: '0.75rem',
+                    fontSize: '0.9rem'
+                  }}>
+                    📢 SHARE YOUR MEME
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    justifyContent: 'center'
+                  }}>
+                    {/* Twitter/X */}
+                    <button
+                      onClick={() => {
+                        const text = encodeURIComponent(`${showdownMemeText.top}\n${showdownMemeText.bottom}\n\n#InjuredWorkersUnite #MemeticEmbassy #WorkersRights`);
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#000',
+                        border: '2px solid #fff',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      𝕏 Twitter
+                    </button>
+                    {/* Facebook */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const quote = encodeURIComponent(`${showdownMemeText.top} ${showdownMemeText.bottom} #InjuredWorkersUnite`);
+                        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#1877F2',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      📘 Facebook
+                    </button>
+                    {/* LinkedIn */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const title = encodeURIComponent('Workers Rights Meme - Injured Workers Unite');
+                        const summary = encodeURIComponent(`${showdownMemeText.top} ${showdownMemeText.bottom}`);
+                        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#0A66C2',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      💼 LinkedIn
+                    </button>
+                    {/* Reddit */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const title = encodeURIComponent(`${showdownMemeText.top} - ${showdownMemeText.bottom}`);
+                        window.open(`https://www.reddit.com/submit?url=${url}&title=${title}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#FF4500',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      🤖 Reddit
+                    </button>
+                    {/* Copy Link */}
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${showdownMemeText.top}\n${showdownMemeText.bottom}\n\nCreate your own: https://injuredworkersunite.pages.dev/memetic-embassy-full\n#InjuredWorkersUnite #MemeticEmbassy`);
+                        alert('📋 Meme text copied to clipboard!');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: 'rgba(255,255,255,0.2)',
+                        border: '2px solid #fff',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      📋 Copy Text
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Quick Templates */}
+            <div style={{
+              background: 'rgba(0,0,0,0.5)',
+              border: '3px solid #00ffff',
+              borderRadius: '20px',
+              padding: '2rem'
+            }}>
+              <h3 style={{ 
+                color: '#00ffff', 
+                textAlign: 'center', 
+                marginBottom: '1.5rem',
+                fontSize: '1.5rem'
+              }}>
+                ⚡ QUICK VIRAL TEMPLATES ⚡
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '1rem'
+              }}>
+                {[
+                  { top: 'WCB: "WE NEED MORE EVIDENCE"', bottom: 'ME: *PROVIDES 47 DOCUMENTS* 📄🤡', category: 'denial' },
+                  { top: 'MY INJURY: PERMANENT', bottom: 'THEIR CONCERN: TEMPORARY ⏰', category: 'truth' },
+                  { top: 'EMPLOYER: *LIES*', bottom: 'WSIB: "SEEMS LEGIT" 🙈', category: 'bias' },
+                  { top: 'THEY DENIED MY CLAIM', bottom: 'WE DENY THEIR LEGITIMACY ✊', category: 'resistance' },
+                  { top: '"HAVE YOU TRIED YOGA?"', bottom: '- EVERY WCB DOCTOR EVER 🧘‍♂️💀', category: 'satire' },
+                  { top: 'HR: "I\'LL GET BACK TO YOU"', bottom: '*VANISHES INTO THIN AIR* 💨🥷', category: 'ghosting' }
+                ].map((template, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setShowdownMemeText({ top: template.top, bottom: template.bottom });
+                    }}
+                    style={{
+                      padding: '1.5rem',
+                      background: 'rgba(0,255,255,0.1)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '15px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    <div style={{ fontSize: '0.95rem', marginBottom: '0.5rem', color: '#FFD700' }}>
+                      {template.top}
+                    </div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#00ffff' }}>
+                      {template.bottom}
+                    </div>
+                    <div style={{ 
+                      fontSize: '0.75rem', 
+                      marginTop: '0.5rem', 
+                      opacity: 0.7,
+                      textTransform: 'uppercase'
+                    }}>
+                      #{template.category}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

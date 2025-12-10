@@ -149,6 +149,23 @@ export default function MemeticEmbassyFull() {
     }
   };
 
+  // Mapping hero IDs to cropped image filenames
+  const heroImageMap = {
+    'captain-truth': '/characters/hero-captain-truth.png',
+    'sergeant-solidarity': '/characters/hero-sergeant-solidarity.png',
+    'major-accessibility': '/characters/hero-major-accessibility.png',
+    'corporal-care': '/characters/hero-corporal-care.png',
+    'pfc-receipts': '/characters/hero-pfc-receipts.png'
+  };
+
+  // Mapping villain IDs to cropped image filenames
+  const villainImageMap = {
+    'delayla': '/characters/villain-delayla.png',
+    'no-evidence': '/characters/villain-no-evidence.png',
+    'doctor-files': '/characters/villain-doctor-files.png',
+    'hr-ninja': '/characters/villain-hr-ninja.png'
+  };
+
   // ============================================
   // HEROES - The Embassy Memetic Warrior Superhero Squad (COMPLETE)
   // ============================================
@@ -2614,7 +2631,7 @@ export default function MemeticEmbassyFull() {
                           : 'none'
                       }}
                     >
-                      {/* Character thumbnail from image */}
+                      {/* Character thumbnail from individual cropped image */}
                       <div style={{
                         width: '100%',
                         height: '120px',
@@ -2625,7 +2642,7 @@ export default function MemeticEmbassyFull() {
                         background: '#000'
                       }}>
                         <img 
-                          src={showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png'}
+                          src={showdownMode === 'superhero' ? `/characters/hero-${id}.png` : `/characters/villain-${id}.png`}
                           alt={char.label}
                           style={{ 
                             width: '100%', 
@@ -2701,7 +2718,7 @@ export default function MemeticEmbassyFull() {
                           border: '2px solid rgba(255,255,255,0.3)'
                         }}>
                           <img 
-                            src="/superheroes.png" 
+                            src={`/characters/hero-${id}.png`}
                             alt={hero.label}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
@@ -2760,7 +2777,7 @@ export default function MemeticEmbassyFull() {
                           border: '2px solid rgba(255,255,255,0.3)'
                         }}>
                           <img 
-                            src="/denialsquad.png" 
+                            src={`/characters/villain-${id}.png`}
                             alt={villain.label}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
@@ -3428,6 +3445,29 @@ export default function MemeticEmbassyFull() {
                       : 'none'
                   }}
                 >
+                  {/* Character Image (if available) */}
+                  {heroImageMap[hero.id] && (
+                    <div style={{
+                      width: '100%',
+                      height: '180px',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      marginBottom: '1rem',
+                      border: `3px solid ${hero.color}`,
+                      boxShadow: `0 0 20px ${hero.color}40`
+                    }}>
+                      <img 
+                        src={heroImageMap[hero.id]}
+                        alt={hero.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
+                  
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -3632,6 +3672,29 @@ export default function MemeticEmbassyFull() {
                       : 'none'
                   }}
                 >
+                  {/* Character Image */}
+                  {villainImageMap[character.id] && (
+                    <div style={{
+                      width: '100%',
+                      height: '180px',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      marginBottom: '1rem',
+                      border: `3px solid ${character.color || '#ff0080'}`,
+                      boxShadow: `0 0 20px ${character.color || '#ff0080'}40`
+                    }}>
+                      <img 
+                        src={villainImageMap[character.id]}
+                        alt={character.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
+                  
                   <div style={{
                     fontSize: '4rem',
                     textAlign: 'center',

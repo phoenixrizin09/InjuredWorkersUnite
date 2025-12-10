@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import Head from 'next/head';
 import AccessibilityToolbar from '../components/AccessibilityToolbar';
+import BackToTop from '../components/BackToTop';
 
 // Accessibility Context for global settings
 export const AccessibilityContext = createContext({
@@ -456,6 +457,9 @@ export default function App({ Component, pageProps }) {
       <main id="main-content">
         <Component {...pageProps} />
       </main>
+      
+      {/* Back to Top Button - Appears on all pages */}
+      <BackToTop />
     </AccessibilityContext.Provider>
   );
 }

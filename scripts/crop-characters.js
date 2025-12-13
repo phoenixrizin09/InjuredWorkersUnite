@@ -40,22 +40,23 @@ const heroImagePositions = {
 };
 
 // Villain positions (percentages of image dimensions)
+// Image is 1024x1536 - 4 villains in 2x2 grid layout
 const villainImagePositions = {
   'delayla': { 
     label: 'Case Manager Delayla', 
-    cropX: 0.25, cropY: 0.15, cropW: 0.25, cropH: 0.4
+    cropX: 0.0, cropY: 0.05, cropW: 0.5, cropH: 0.45
   },
   'no-evidence': { 
     label: 'Mr. No Evidence Required', 
-    cropX: 0.5, cropY: 0.15, cropW: 0.25, cropH: 0.4
+    cropX: 0.5, cropY: 0.05, cropW: 0.5, cropH: 0.45
   },
   'doctor-files': { 
     label: 'Dr. Who Never Reads Files', 
-    cropX: 0.3, cropY: 0.5, cropW: 0.25, cropH: 0.35
+    cropX: 0.0, cropY: 0.5, cropW: 0.5, cropH: 0.45
   },
   'hr-ninja': { 
     label: 'HR Ninja Vanish', 
-    cropX: 0.7, cropY: 0.4, cropW: 0.3, cropH: 0.45
+    cropX: 0.5, cropY: 0.5, cropW: 0.5, cropH: 0.45
   }
 };
 

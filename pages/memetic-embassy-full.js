@@ -121,28 +121,28 @@ export default function MemeticEmbassyFull() {
   const villainImagePositions = {
     'delayla': { 
       label: 'Case Manager Delayla', 
-      cropX: 0.25, cropY: 0.15, cropW: 0.25, cropH: 0.4,
+      cropX: 0.0, cropY: 0.05, cropW: 0.5, cropH: 0.45,
       description: 'Queen of Delay & Denials (sunglasses)',
       color: '#FF69B4',
       name: 'Case Manager Delayla Denywell'
     },
     'no-evidence': { 
       label: 'Mr. No Evidence Required', 
-      cropX: 0.5, cropY: 0.15, cropW: 0.25, cropH: 0.4,
+      cropX: 0.5, cropY: 0.05, cropW: 0.5, cropH: 0.45,
       description: 'Employer Whisperer (cigar guy)',
       color: '#8B4513',
       name: 'Mr. No Evidence Required'
     },
     'doctor-files': { 
       label: 'Dr. Who Never Reads Files', 
-      cropX: 0.3, cropY: 0.5, cropW: 0.25, cropH: 0.35,
+      cropX: 0.0, cropY: 0.5, cropW: 0.5, cropH: 0.45,
       description: 'Master of 3-Minute Diagnoses',
       color: '#20B2AA',
       name: 'Doctor Who Never Reads Files'
     },
     'hr-ninja': { 
       label: 'HR Ninja Vanish', 
-      cropX: 0.7, cropY: 0.4, cropW: 0.3, cropH: 0.45,
+      cropX: 0.5, cropY: 0.5, cropW: 0.5, cropH: 0.45,
       description: 'The WCB Hat Guy - Vanishes When Needed',
       color: '#2F4F4F',
       name: 'HR Agent Ninja Vanish'

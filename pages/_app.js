@@ -1,6 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import Head from 'next/head';
-import AccessibilityToolbar from '../components/AccessibilityToolbar';
 import BackToTop from '../components/BackToTop';
 
 // Accessibility Context for global settings
@@ -315,8 +314,7 @@ export default function App({ Component, pageProps }) {
         <a href="#footer">Skip to footer</a>
       </nav>
       
-      {/* Accessibility Toolbar - Left side */}
-      <AccessibilityToolbar />
+      {/* Accessibility Toolbar now integrated into Header component */}
       
       {/* Accessibility Settings Button - Right side */}
       <button

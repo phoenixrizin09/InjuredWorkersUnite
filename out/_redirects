@@ -1,9 +1,0 @@
-# Cloudflare Pages Redirects for InjuredWorkersUnite
-# Next.js static export - each page has its own HTML file
-
-# Legacy redirects - map old routes to new unified Eye Oracle
-/eye-oracle /the-eye-oracle 301
-/the-eye /the-eye-oracle 301
-
-# Note: Cloudflare Pages automatically serves 404.html for missing files
-# No catch-all redirect needed

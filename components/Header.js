@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import AccessibilityToolbar from './AccessibilityToolbar';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -118,12 +119,17 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Social Media & Donate */}
+        {/* Accessibility Toolbar + Social Media & Donate */}
         <div style={{
           display: 'flex',
-          gap: '6px',
+          gap: '8px',
           alignItems: 'center'
         }} className="social-donate">
+          {/* Accessibility Controls - Inline in Header */}
+          <div className="a11y-header-controls">
+            <AccessibilityToolbar />
+          </div>
+
           {/* Social Icons - Hidden on mobile */}
           <div className="social-icons" role="list" aria-label="Social media links" style={{ display: 'flex', gap: '6px' }}>
             <a href="https://www.facebook.com/profile.php?id=61551426728894" target="_blank" rel="noopener noreferrer" style={socialIconStyle} aria-label="Facebook" role="listitem">
@@ -201,10 +207,16 @@ export default function Header() {
           .social-donate {
             justify-content: center !important;
           }
+          .a11y-header-controls {
+            display: none !important;
+          }
         }
         @media (max-width: 1024px) {
           .social-icons {
             display: none !important;
+          }
+          .a11y-header-controls {
+            order: -1;
           }
         }
       `}</style>

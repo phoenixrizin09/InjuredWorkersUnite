@@ -118,52 +118,45 @@ export default function AccessibilityToolbar() {
 
   return (
     <>
-      {/* Quick Access Toolbar - Fixed Left Side */}
+      {/* Compact Accessibility Controls - Designed for Header Integration */}
       <div
         role="toolbar"
         aria-label="Accessibility quick actions"
+        className="a11y-toolbar"
         style={{
-          position: 'fixed',
-          left: '10px',
-          top: '50%',
-          transform: 'translateY(-50%)',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-          zIndex: 9997,
-          background: 'rgba(26, 26, 46, 0.95)',
-          padding: '10px',
-          borderRadius: '12px',
-          border: '2px solid #4facfe',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+          alignItems: 'center',
+          gap: '4px',
+          background: 'rgba(26, 26, 46, 0.9)',
+          padding: '4px 8px',
+          borderRadius: '8px',
+          border: '1px solid #4facfe'
         }}
       >
         {/* Font Size Controls */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          <ToolbarButton
-            onClick={() => setFontSize(prev => Math.min(prev + 10, 200))}
-            label={`Increase text size (currently ${fontSize}%)`}
-            shortcut="Alt++"
-          >
-            A+
-          </ToolbarButton>
-          <ToolbarButton
-            onClick={() => setFontSize(prev => Math.max(prev - 10, 70))}
-            label={`Decrease text size (currently ${fontSize}%)`}
-            shortcut="Alt+-"
-          >
-            A-
-          </ToolbarButton>
-          <ToolbarButton
-            onClick={() => setFontSize(100)}
-            label="Reset text size to 100%"
-            shortcut="Alt+0"
-          >
-            A
-          </ToolbarButton>
-        </div>
+        <ToolbarButton
+          onClick={() => setFontSize(prev => Math.min(prev + 10, 200))}
+          label={`Increase text size (currently ${fontSize}%)`}
+          shortcut="Alt++"
+        >
+          A+
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => setFontSize(prev => Math.max(prev - 10, 70))}
+          label={`Decrease text size (currently ${fontSize}%)`}
+          shortcut="Alt+-"
+        >
+          A-
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => setFontSize(100)}
+          label="Reset text size to 100%"
+          shortcut="Alt+0"
+        >
+          A
+        </ToolbarButton>
 
-        <div style={{ height: '1px', background: '#4facfe', margin: '4px 0' }} />
+        <div style={{ width: '1px', height: '20px', background: '#4facfe', margin: '0 4px' }} />
 
         {/* Reading Guide Toggle */}
         <ToolbarButton
@@ -351,12 +344,18 @@ export default function AccessibilityToolbar() {
 
       <style jsx>{`
         @media (max-width: 768px) {
-          [role="toolbar"] {
-            left: 5px !important;
-            padding: 6px !important;
-            top: auto !important;
-            bottom: 150px !important;
-            transform: none !important;
+          .a11y-toolbar {
+            padding: 3px 5px !important;
+          }
+          .a11y-toolbar button {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 11px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .a11y-toolbar {
+            display: none !important;
           }
         }
       `}</style>

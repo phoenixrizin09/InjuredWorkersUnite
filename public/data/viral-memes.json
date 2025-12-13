@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-09T19:37:52.935Z",
+  "generated_at": "2025-12-13T21:16:22.146Z",
   "data_sources": [
     "reddit.com (real discussions)",
     "The Eye Oracle v2.0",
@@ -172,7 +172,7 @@
         "verified": true
       },
       {
-        "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. Unsafe staffing ratios - residents left in soiled beds for hours. Official source: Ontario Health Coalition.",
+        "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. Employers stealing wages through illegal deductions, unpaid overtime, contract violations.. Official source: Migrant Rights Network.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
@@ -180,7 +180,7 @@
         "oracle_verified": true
       },
       {
-        "text": "The Eye v2.0 has analyzed official government data. Maximum single rate $1,308 while Toronto poverty line is $2,500+...",
+        "text": "Statistics Canada publishes child poverty rates using various measures (LICO, MBM, LIM). Canada Child Benefit introduced 2016 reduced child poverty but gaps remain.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
@@ -188,7 +188,7 @@
         "oracle_verified": true
       },
       {
-        "text": "The Eye v2.0 has analyzed official government data. 4,000+ Indigenous women missing or murdered - called genocide by inquiry...",
+        "text": "Canada-Wide Early Learning and Child Care agreements signed with all provinces/territories. Target: average $10/day regulated childcare by 2025-26. Progress varies by province.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
@@ -196,7 +196,7 @@
         "oracle_verified": true
       },
       {
-        "text": "The Eye v2.0 has analyzed official government data. 187 unhoused people died in Toronto in 2023 - preventable deaths...",
+        "text": "Immigration and Refugee Board publishes quarterly statistics on refugee claims received, finalized, and pending. Check source for current backlog and wait times.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
@@ -204,52 +204,12 @@
         "oracle_verified": true
       },
       {
-        "text": "The Eye v2.0 has analyzed official government data. Recipients forced to work for below minimum wage or lose benefits...",
+        "text": "Federal government announced TFWP reforms in August 2024 including reducing low-wage stream cap from 20% to 10% and ending LMIA exemptions for some streams.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
         "verified": true,
         "oracle_verified": true
-      },
-      {
-        "text": "Active discussion in r/canada",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/canada (204↑, 118 comments)",
-        "source_url": "https://reddit.com/r/canada/comments/1pbdhbd/this_is_the_new_slavery_migrant_farm_workers/",
-        "verified": false
-      },
-      {
-        "text": "Active discussion in r/onguardforthee",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/onguardforthee (706↑, 52 comments)",
-        "source_url": "https://reddit.com/r/onguardforthee/comments/1p7hj7x/canadian_farmers_to_lobby_federal_government_to/",
-        "verified": false
-      },
-      {
-        "text": "While I was away on vacation for the first time in many, many years, I got to enjoy some family time with my sister and niece. \n\nMy fiance of almost 5 years texted me and told me that he had changed the locks and that I need to collect my things when I get back. \n\nI was in shock,",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/legaladvicecanada (38↑, 42 comments)",
-        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1p07mjp/lost_and_homeless/",
-        "verified": false
-      },
-      {
-        "text": "A Telus employee came to my door and said they had to gain access to my yard to go up a pole in my yard (for some random customers ticket, not ours). This isn’t unusual, they asked if they could go in my yard through my gate and I said yes. For what it’s worth I do have cameras i",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/legaladvicecanada (282↑, 91 comments)",
-        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1oy3p5e/telus_employee_fell_in_my_yard/",
-        "verified": false
-      },
-      {
-        "text": "Location: Ontario Canada\n\nMyself and 3 other female employees at my work have just started maternity leave.\n\nOur current collective agreement allows 18 weeks of top up pay while on maternity leave.\n\nWe are entering a new collective agreement as of January 1, in which maternity to",
-        "category": "⚡ LIVE ALERTS",
-        "engagement": "High",
-        "source": "r/legaladvicecanada (16↑, 39 comments)",
-        "source_url": "https://reddit.com/r/legaladvicecanada/comments/1orvbgg/denied_extended_maternity_benefits_ontario/",
-        "verified": false
       }
     ],
     "meme_templates": [
@@ -449,21 +409,11 @@
     ],
     "infographic_data": [
       {
-        "id": "oracle_infographic_1",
-        "title": "👁️ The Eye Oracle: ODSP Rates Below Poverty Line: $1,308/month",
+        "id": "oracle_infographic_0",
+        "title": "👁️ The Eye Oracle: Temporary Foreign Workers: Wage Theft $500M+ Annually",
         "stats": [
-          "$1,308"
-        ],
-        "category": "corruption_exposed",
-        "verified": true,
-        "source": "The Eye Oracle v2.0",
-        "viral_potential": "maximum"
-      },
-      {
-        "id": "oracle_infographic_2",
-        "title": "👁️ The Eye Oracle: Missing & Murdered Indigenous Women: 4,000+ Cases",
-        "stats": [
-          "4,000+ Cases"
+          "$500M",
+          "$500M"
         ],
         "category": "corruption_exposed",
         "verified": true,
@@ -472,10 +422,10 @@
       }
     ],
     "stats": {
-      "total_tweets": 28,
+      "total_tweets": 23,
       "total_templates": 13,
       "total_slogans": 7,
-      "total_infographics": 2
+      "total_infographics": 1
     }
   }
 }

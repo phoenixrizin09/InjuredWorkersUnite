@@ -225,19 +225,47 @@ async function generateDailyViralReport() {
   const intro = intros[Math.floor(Math.random() * intros.length)];
   
   // Generate main findings from justice report
-  const violations = justiceReport?.violations || [];
+  // Handle violations as object with severity keys (critical, high, medium, low) or as array
+  let violations = [];
+  const rawViolations = justiceReport?.violations;
+  
+  if (Array.isArray(rawViolations)) {
+    violations = rawViolations;
+  } else if (rawViolations && typeof rawViolations === 'object') {
+    // Flatten object with severity keys into array
+    violations = [
+      ...(rawViolations.critical || []).map(v => ({ ...v, severity: 'critical' })),
+      ...(rawViolations.high || []).map(v => ({ ...v, severity: 'high' })),
+      ...(rawViolations.medium || []).map(v => ({ ...v, severity: 'medium' })),
+      ...(rawViolations.low || []).map(v => ({ ...v, severity: 'low' }))
+    ];
+  }
+  
   const violationCount = violations.length;
   const criticalCount = violations.filter(v => v.severity === 'critical' || v.severity === 'high').length;
   
   // Get top issues
   const topIssues = violations.slice(0, 3).map(v => ({
-    title: v.title || v.finding || 'Systemic issue detected',
+    title: v.title || v.name || v.finding || 'Systemic issue detected',
     severity: v.severity || 'high',
     type: v.type || 'GENERAL'
   }));
   
-  // Get population impact
-  const populations = justiceReport?.impactedPopulations || [];
+  // Get population impact - handle both array and object formats
+  let populations = [];
+  const rawPopulations = justiceReport?.impactedPopulations || justiceReport?.populationImpact;
+  
+  if (Array.isArray(rawPopulations)) {
+    populations = rawPopulations;
+  } else if (rawPopulations && typeof rawPopulations === 'object') {
+    // Convert object format to array
+    populations = Object.entries(rawPopulations).map(([key, data]) => ({
+      name: key.replace(/([A-Z])/g, ' $1').trim().replace(/^./, s => s.toUpperCase()),
+      issueCount: data.count || data.issues?.length || 0,
+      issues: data.issues || []
+    }));
+  }
+  
   const totalAffected = populations.reduce((sum, p) => sum + (p.issueCount || 0), 0);
   
   // Generate headline

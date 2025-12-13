@@ -213,18 +213,19 @@ export default function Header() {
 }
 
 const navLinkStyle = {
-  color: '#fff',
+  color: '#ffffff',
   textDecoration: 'none',
-  padding: '4px 8px',
+  padding: '6px 10px',
   borderRadius: '5px',
   transition: 'all 0.3s ease',
-  fontSize: '12px',
+  fontSize: '13px',
   fontFamily: 'monospace',
   fontWeight: 'bold',
-  background: 'rgba(255,255,255,0.05)',
-  border: '1px solid rgba(0,255,255,0.3)',
+  background: 'rgba(0, 100, 150, 0.7)',
+  border: '1px solid rgba(0,255,255,0.5)',
   whiteSpace: 'nowrap',
-  display: 'inline-block'
+  display: 'inline-block',
+  textShadow: '0 1px 2px rgba(0,0,0,0.8)'
 };
 
 const socialIconStyle = {

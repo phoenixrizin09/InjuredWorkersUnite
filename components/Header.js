@@ -89,34 +89,23 @@ export default function Header() {
           <Link href="/" style={navLinkStyle}>Home</Link>
           <Link href="/about" style={navLinkStyle}>About</Link>
           <Link href="/blog" style={navLinkStyle}>Blog</Link>
-          <Link href="/eye-oracle-reports" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)', color: '#000', fontWeight: 'bold'}}>
-            <span aria-hidden="true">👁️</span> Daily Reports
-          </Link>
           <Link href="/the-eye-oracle" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)', color: '#000', fontWeight: 'bold'}}>
-            <span aria-hidden="true">👁️</span> The Eye Oracle
+            <span aria-hidden="true">👁️</span> The Eye
           </Link>
-          <Link href="/automated-monitoring" style={navLinkStyle}>Monitoring</Link>
+          <Link href="/reports" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)', color: '#000', fontWeight: 'bold'}}>
+            <span aria-hidden="true">📋</span> Reports
+          </Link>
+          <Link href="/target-acquisition" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff4444 0%, #ff8800 100%)', color: '#fff', fontWeight: 'bold'}}>
+            <span aria-hidden="true">🎯</span> Targets
+          </Link>
+          <Link href="/template-letters" style={navLinkStyle}>Templates</Link>
           <Link href="/legislative-tracking" style={navLinkStyle}>Bills</Link>
+          <Link href="/violation-map" style={navLinkStyle}>Map</Link>
           <Link href="/memetic-embassy" style={{...navLinkStyle, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', fontWeight: 'bold'}}>
-            <span aria-hidden="true">🏛️</span> Embassy
+            <span aria-hidden="true">🏛️</span> Memes
           </Link>
-          <Link href="/target-acquisition" style={navLinkStyle}>Targets</Link>
-          <Link href="/alerts" style={navLinkStyle}>Alerts</Link>
-          <Link href="/violation-map" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ff4444 0%, #ff8800 100%)', color: '#fff', fontWeight: 'bold'}}>
-            <span aria-hidden="true">🗺️</span> Map
-          </Link>
-          <Link href="/submit-tip" style={{...navLinkStyle, background: 'linear-gradient(135deg, #00ff88 0%, #00ccff 100%)', color: '#000', fontWeight: 'bold'}}>
-            <span aria-hidden="true">📩</span> Submit Tip
-          </Link>
-          <Link href="/template-letters" style={{...navLinkStyle, background: 'linear-gradient(135deg, #ffdd00 0%, #ff8800 100%)', color: '#000', fontWeight: 'bold'}}>
-            <span aria-hidden="true">📝</span> Templates
-          </Link>
-          <Link href="/meme-gallery" style={navLinkStyle}>Memes</Link>
+          <Link href="/submit-tip" style={navLinkStyle}>Submit Tip</Link>
           <Link href="/contact" style={navLinkStyle}>Contact</Link>
-          <Link href="/legal" style={navLinkStyle}>Legal</Link>
-          <Link href="/accessibility" style={{...navLinkStyle, background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: '#000', fontWeight: 'bold'}}>
-            <span aria-hidden="true">♿</span> A11y
-          </Link>
         </nav>
 
         {/* Accessibility Toolbar + Social Media & Donate */}

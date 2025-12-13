@@ -1,4216 +1,6881 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import fs from 'fs';
-import path from 'path';
 
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * 🏛️ THE MEMETIC EMBASSY - MAIN PAGE
- * 
- * Meme Arsenal powered by Oracle Eye Intelligence
- * Tools for creating viral content with evidence-driven insights
- * 
- * REAL-TIME SYNC: Auto-updates with Oracle Eye data every 5 minutes
- * 
- * Note: Superhero/Character content is exclusive to /memetic-embassy-full
- * ═══════════════════════════════════════════════════════════════════════════
- */
-
-// ============================================
-// 👁️ ORACLE EYE REAL-TIME DATA HOOK
-// ============================================
-function useOracleRealTimeSync(initialData, refreshInterval = 300000) {
-  const [oracleData, setOracleData] = useState({
-    viralContent: initialData?.viralContent || null,
-    oracleReports: [],
-    alerts: [],
-    lastSync: null,
-    syncStatus: 'idle', // 'idle' | 'syncing' | 'success' | 'error'
-    nextSync: null
+export default function MemeticEmbassyFull() {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedHero, setSelectedHero] = useState(null);
+  const [selectedVillain, setSelectedVillain] = useState(null);
+  const [moodSliders, setMoodSliders] = useState({
+    petty: 50,
+    chaotic: 50,
+    angry: 50,
+    hopeful: 50,
+    sarcastic: 50
   });
+  const [generatedMeme, setGeneratedMeme] = useState(null);
+  const [citizenshipClaimed, setCitizenshipClaimed] = useState(false);
+  const [selectedHabitat, setSelectedHabitat] = useState(null);
+  const [spicyLevel, setSpicyLevel] = useState('medium');
+  const [memeText, setMemeText] = useState({ top: '', bottom: '' });
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedCharacterForMeme, setSelectedCharacterForMeme] = useState(null);
+  const [userMemes, setUserMemes] = useState([]);
+  const [activeSection, setActiveSection] = useState('heroes');
+  const [selectedBackground, setSelectedBackground] = useState('mad');
+  const [dialogueBubbles, setDialogueBubbles] = useState([]);
+  const [autoMemeMode, setAutoMemeMode] = useState(false);
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [selectedComicPage, setSelectedComicPage] = useState(null);
+  const [selectedArtifact, setSelectedArtifact] = useState(null);
+  const [selectedFaction, setSelectedFaction] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const canvasRef = useRef(null);
+  
+  // Squad Showdown States
+  const [showdownMode, setShowdownMode] = useState('superhero'); // 'superhero' | 'denial' | 'versus'
+  const [selectedShowdownHero, setSelectedShowdownHero] = useState(null);
+  const [selectedShowdownVillain, setSelectedShowdownVillain] = useState(null);
+  const [showdownMemeText, setShowdownMemeText] = useState({ top: '', bottom: '' });
+  const [showdownStyle, setShowdownStyle] = useState('poster'); // 'poster' | 'comic' | 'vs-battle' | 'quote'
+  const [generatedShowdownMeme, setGeneratedShowdownMeme] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const showdownCanvasRef = useRef(null);
+  const [superheroImage, setSuperheroImage] = useState(null);
+  const [denialSquadImage, setDenialSquadImage] = useState(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  const fetchOracleData = useCallback(async () => {
-    setOracleData(prev => ({ ...prev, syncStatus: 'syncing' }));
-    
-    try {
-      // Fetch all Oracle data sources in parallel
-      const [viralRes, reportsRes, alertsRes, redditRes] = await Promise.allSettled([
-        fetch('/data/viral-memes.json'),
-        fetch('/data/eye-oracle-reports.json'),
-        fetch('/data/alerts.json'),
-        fetch('/data/reddit-discussions.json')
-      ]);
+  // Load squad images on mount
+  useEffect(() => {
+    const loadImages = () => {
+      const heroImg = new Image();
+      heroImg.crossOrigin = 'anonymous';
+      heroImg.onload = () => {
+        setSuperheroImage(heroImg);
+        checkImagesLoaded();
+      };
+      heroImg.src = '/superheroes.png';
 
-      const updates = {};
-      
-      if (viralRes.status === 'fulfilled' && viralRes.value.ok) {
-        updates.viralContent = await viralRes.value.json();
-      }
-      
-      if (reportsRes.status === 'fulfilled' && reportsRes.value.ok) {
-        updates.oracleReports = await reportsRes.value.json();
-      }
-      
-      if (alertsRes.status === 'fulfilled' && alertsRes.value.ok) {
-        updates.alerts = await alertsRes.value.json();
-      }
-      
-      if (redditRes.status === 'fulfilled' && redditRes.value.ok) {
-        updates.redditDiscussions = await redditRes.value.json();
-      }
+      const villainImg = new Image();
+      villainImg.crossOrigin = 'anonymous';
+      villainImg.onload = () => {
+        setDenialSquadImage(villainImg);
+        checkImagesLoaded();
+      };
+      villainImg.src = '/denialsquad.png';
+    };
 
-      setOracleData(prev => ({
-        ...prev,
-        ...updates,
-        lastSync: new Date().toISOString(),
-        syncStatus: 'success',
-        nextSync: new Date(Date.now() + refreshInterval).toISOString()
-      }));
-      
-      console.log('👁️ Oracle Eye sync complete:', new Date().toLocaleTimeString());
-    } catch (error) {
-      console.error('👁️ Oracle sync error:', error);
-      setOracleData(prev => ({ ...prev, syncStatus: 'error' }));
+    const checkImagesLoaded = () => {
+      if (superheroImage && denialSquadImage) {
+        setImagesLoaded(true);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      loadImages();
     }
-  }, [refreshInterval]);
+  }, []);
+
+  // Character positions in the squad images (approximate crop regions)
+  // These define where each character appears in the composite image
+  // Based on actual artwork - percentages of image dimensions
+  const heroImagePositions = {
+    'captain-truth': { 
+      label: 'Captain Truth-Teller', 
+      cropX: 0, cropY: 0.08, cropW: 0.5, cropH: 0.45,
+      description: 'Commander & Chief Whistleblower',
+      color: '#1E90FF',
+      name: 'Captain Truth-Teller'
+    },
+    'sergeant-solidarity': { 
+      label: 'Sergeant Solidarity', 
+      cropX: 0.5, cropY: 0.08, cropW: 0.5, cropH: 0.45,
+      description: 'Organizing Director',
+      color: '#228B22',
+      name: 'Sergeant Solidarity'
+    },
+    'major-accessibility': { 
+      label: 'Major Accessibility', 
+      cropX: 0, cropY: 0.5, cropW: 0.33, cropH: 0.5,
+      description: 'Inclusion Officer & Disability Advocate',
+      color: '#4169E1',
+      name: 'Major Accessibility'
+    },
+    'corporal-care': { 
+      label: 'Corporal Care', 
+      cropX: 0.33, cropY: 0.5, cropW: 0.34, cropH: 0.5,
+      description: 'Mental Health & Burnout Prevention',
+      color: '#FF8C00',
+      name: 'Corporal Care'
+    },
+    'pfc-receipts': { 
+      label: 'Private First Class Receipts', 
+      cropX: 0.67, cropY: 0.5, cropW: 0.33, cropH: 0.5,
+      description: 'Intelligence & Documentation',
+      color: '#32CD32',
+      name: 'PFC Receipts'
+    }
+  };
+
+  const villainImagePositions = {
+    'delayla': { 
+      label: 'Case Manager Delayla', 
+      cropX: 0.0, cropY: 0.05, cropW: 0.5, cropH: 0.45,
+      description: 'Queen of Delay & Denials (sunglasses)',
+      color: '#FF69B4',
+      name: 'Case Manager Delayla Denywell'
+    },
+    'no-evidence': { 
+      label: 'Mr. No Evidence Required', 
+      cropX: 0.5, cropY: 0.05, cropW: 0.5, cropH: 0.45,
+      description: 'Employer Whisperer (cigar guy)',
+      color: '#8B4513',
+      name: 'Mr. No Evidence Required'
+    },
+    'doctor-files': { 
+      label: 'Dr. Who Never Reads Files', 
+      cropX: 0.0, cropY: 0.5, cropW: 0.5, cropH: 0.45,
+      description: 'Master of 3-Minute Diagnoses',
+      color: '#20B2AA',
+      name: 'Doctor Who Never Reads Files'
+    },
+    'hr-ninja': { 
+      label: 'HR Ninja Vanish', 
+      cropX: 0.5, cropY: 0.5, cropW: 0.5, cropH: 0.45,
+      description: 'The WCB Hat Guy - Vanishes When Needed',
+      color: '#2F4F4F',
+      name: 'HR Agent Ninja Vanish'
+    }
+  };
+
+  // Mapping hero IDs to cropped image filenames
+  const heroImageMap = {
+    'captain-truth': '/characters/hero-captain-truth.png',
+    'sergeant-solidarity': '/characters/hero-sergeant-solidarity.png',
+    'major-accessibility': '/characters/hero-major-accessibility.png',
+    'corporal-care': '/characters/hero-corporal-care.png',
+    'pfc-receipts': '/characters/hero-pfc-receipts.png'
+  };
+
+  // Mapping villain IDs to cropped image filenames
+  const villainImageMap = {
+    'delayla': '/characters/villain-delayla.png',
+    'no-evidence': '/characters/villain-no-evidence.png',
+    'doctor-files': '/characters/villain-doctor-files.png',
+    'hr-ninja': '/characters/villain-hr-ninja.png'
+  };
+
+  // ============================================
+  // HEROES - The Embassy Memetic Warrior Superhero Squad (COMPLETE)
+  // ============================================
+  const heroSquad = [
+    // === THE PHOENIX - COMMANDER ===
+    {
+      id: 'the-phoenix',
+      name: 'The Phoenix (P.K.)',
+      class: 'Commander of the Embassy',
+      emoji: '🔥',
+      powers: [
+        'Rebirth memetics — turns trauma into power',
+        'Hope Burst generation',
+        'Crushed narrative resurrection',
+        'The Rise Eternal — burns away lies within 100 story-units'
+      ],
+      weakness: 'The weight of everyone\'s stories',
+      signature_move: 'The Rise Eternal',
+      favorite_phrase: '"From the ashes, we rise. Together."',
+      visual: 'Purple and fire aura, phoenix wings made of documentation, ember eyes that see through lies',
+      backstory: 'A frontline healthcare worker betrayed by systems meant to protect them. Rose from the ashes of injustice to become the moral core of the Embassy.',
+      symbol: '🔥🟣',
+      color: '#9932CC',
+      role: 'Strategic Commander & Moral Core'
+    },
+    // === ORIGINAL SIX ===
+    {
+      id: 'captain-truth',
+      name: 'Captain Truth-Teller',
+      class: 'Chief Whistleblower',
+      emoji: '🎖️',
+      powers: [
+        'Shatters propaganda instantly',
+        'Detects lies with perfect accuracy',
+        'FOI blasts (Freedom of Information attacks)',
+        'Truth-beam battles'
+      ],
+      weakness: 'Overwhelming data overload',
+      signature_move: 'The Receipt Reveal',
+      favorite_phrase: '"The truth will set you free—and expose them."',
+      visual: 'FOI-request cape, Truth megaphone, ✊ emblem, military-style jacket with USB drive medals',
+      backstory: 'Once a corporate insider who witnessed too many cover-ups. Now leads the resistance with irrefutable evidence. Has never lost a documentation battle.',
+      color: '#FFD700',
+      role: 'Commander & Chief Whistleblower'
+    },
+    {
+      id: 'sergeant-solidarity',
+      name: 'Sergeant Solidarity',
+      class: 'Organizing Director',
+      emoji: '✊',
+      powers: [
+        'Summons crowds instantly',
+        'Builds unity shields',
+        'Rally aura that spreads across provinces',
+        'Strike coordination telepathy'
+      ],
+      weakness: 'Collective burnout',
+      signature_move: 'The Solidarity Wave',
+      favorite_phrase: '"An injury to one is an injury to all!"',
+      visual: 'Belt of union badges, always surrounded by workers, megaphone staff, solidarity fist emblem',
+      backstory: 'Organized their first protest at age 12. Has united workers across every industry. Their presence alone boosts morale by 200%.',
+      color: '#FF4444',
+      role: 'Organizing Director'
+    },
+    {
+      id: 'lieutenant-meme',
+      name: 'Lieutenant Meme-Maker',
+      class: 'Creative Director & Propaganda Chief',
+      emoji: '🎨',
+      powers: [
+        'Creates viral memes that become movements',
+        'Weakens villains with satire',
+        'Algorithm manipulation',
+        'Goggles that detect hypocrisy'
+      ],
+      weakness: 'Algorithm suppression',
+      signature_move: 'The Viral Truth Bomb',
+      favorite_phrase: '"Your propaganda ends where my memes begin."',
+      visual: 'Meme tablet, pencil like a sword, holographic coat displaying rotating memes, goggles detecting hypocrisy',
+      backstory: 'Former graphic designer who realized their true power was weaponizing humor. Every meme they create becomes a movement.',
+      color: '#FF00FF',
+      role: 'Creative Director & Propaganda Chief'
+    },
+    {
+      id: 'major-accessibility',
+      name: 'Major Accessibility',
+      class: 'Disability Advocate & Access Warrior',
+      emoji: '♿',
+      powers: [
+        'Removes obstacles instantly',
+        'Detects discrimination with perfect accuracy',
+        'Barrier dissolver beams',
+        'Universal design manifestation'
+      ],
+      weakness: 'Systemic resistance',
+      signature_move: 'The Universal Design Wave',
+      favorite_phrase: '"Nothing about us without us!"',
+      visual: 'High-tech mobility rig, Universal design emblem, ramps extending from gauntlets, screen reader visor',
+      backstory: 'Built their own accessible world when the existing one refused to include them. Now tears down barriers everywhere.',
+      color: '#00BFFF',
+      role: 'Disability Advocate & Access Warrior'
+    },
+    {
+      id: 'corporal-care',
+      name: 'Corporal Care',
+      class: 'Mental Health & Burnout Prevention',
+      emoji: '💚',
+      powers: [
+        'Restores hope in the hopeless',
+        'Shields teams from burnout',
+        'Trauma-informed toolkit deployment',
+        'Calming aura projection'
+      ],
+      weakness: 'Emotional overload from absorbing too much pain',
+      signature_move: 'The Healing Circle',
+      favorite_phrase: '"Rest is resistance. Healing is revolution."',
+      visual: 'Soft glowing aura, tea cup that never empties, weighted blanket cape, surrounded by floating hearts',
+      backstory: 'Realized that caring for warriors is itself a form of warfare. Keeps the movement alive through radical compassion.',
+      color: '#32CD32',
+      role: 'Mental Health & Burnout Prevention'
+    },
+    {
+      id: 'pfc-receipts',
+      name: 'Private First Class Receipts',
+      class: 'Documentation & Intelligence',
+      emoji: '📊',
+      powers: [
+        'Generates infinite receipts',
+        'Overloads villains with proof',
+        'Timestamp goggles see through time manipulation',
+        'File cannon deployment'
+      ],
+      weakness: 'File corruption attacks',
+      signature_move: 'The Archive Avalanche',
+      favorite_phrase: '"I keep receipts on your receipts."',
+      visual: 'Binders for days, Timestamp goggles, trench coat with infinite pockets, filing cabinet backpack',
+      backstory: 'A data analyst who went rogue after discovering systemic fraud. Now maintains the most comprehensive evidence database in existence.',
+      color: '#4169E1',
+      role: 'Documentation & Intelligence'
+    },
+    // === EXPANDED WARRIOR ROSTER ===
+    {
+      id: 'prism-guardian',
+      name: 'Prism Guardian',
+      class: 'Clarity Specialist',
+      emoji: '🔷',
+      powers: [
+        'Refracts harmful bureaucratic energy into empowering clarity',
+        'Turns denial letters into laser-guided truth beams',
+        'Light manipulation',
+        'Confusion dispersion field'
+      ],
+      weakness: 'Overwhelming darkness of despair',
+      signature_move: 'The Clarity Refraction',
+      favorite_phrase: '"Through the prism of truth, all becomes clear."',
+      visual: 'Crystalline armor that refracts light, The Prism Shield glowing with refracted truth, rainbow aura',
+      backstory: 'Once lost in the fog of bureaucratic confusion, they discovered the power to transform chaos into clarity. Now illuminates the path for all.',
+      weapon: 'The Prism Shield',
+      color: '#00CED1',
+      role: 'Clarity Specialist'
+    },
+    {
+      id: 'the-archivist',
+      name: 'The Archivist',
+      class: 'Living Database',
+      emoji: '📚',
+      powers: [
+        'Impossible recall of every suppressed worker story',
+        'Temporal playback — can replay any moment of injustice',
+        'Evidence reconstruction from fragments',
+        'Memory immunity'
+      ],
+      weakness: 'Carries the burden of everyone\'s pain',
+      signature_move: 'The Total Recall',
+      favorite_phrase: '"Every story matters. Every story is remembered."',
+      visual: 'Robes made of scrolling text, eyes that display file directories, floating books orbiting',
+      backstory: 'They remember everything. Every suppressed story. Every silenced voice. The weight is immense, but so is the power.',
+      color: '#8B4513',
+      role: 'Living Database of Suppressed Stories'
+    },
+    {
+      id: 'warden-rights',
+      name: 'The Warden of Rights',
+      class: 'Legal Colossus',
+      emoji: '⚖️',
+      powers: [
+        'Sword of Just Cause — cuts through unjust decisions',
+        'Shield of Natural Justice — blocks procedural violations',
+        'Can challenge corrupt decisions in single combat',
+        'Meredith Principles invocation'
+      ],
+      weakness: 'Bureaucratic technicalities',
+      signature_move: 'The Rights Challenge',
+      favorite_phrase: '"Justice is not optional."',
+      visual: 'Giant spectral figure forged from Meredith Principles, scales of justice as armor, law tome floating nearby',
+      backstory: 'Manifested from the collective will of workers demanding their rights. A towering guardian of procedural justice.',
+      color: '#B8860B',
+      role: 'Legal Guardian'
+    },
+    {
+      id: 'signalflare',
+      name: 'Signalflare',
+      class: 'Communications Specialist',
+      emoji: '📢',
+      powers: [
+        'Amplifies the silenced',
+        'Spreads messages across dimensions',
+        'Disrupts propaganda algorithms',
+        'Truth shockwave broadcasts'
+      ],
+      weakness: 'Signal jamming from coordinated suppression',
+      signature_move: 'The Amplification Wave',
+      favorite_phrase: '"Your voice WILL be heard."',
+      visual: 'Megaphone that sends shockwaves of truth, antenna array on back, radio wave aura',
+      backstory: 'A former broadcaster who saw too many stories killed. Now ensures no voice goes unheard, no matter how powerful the opposition.',
+      home: 'The Lighthouse of Voices',
+      color: '#FF6347',
+      role: 'Communications Specialist'
+    },
+    {
+      id: 'empathic-engineer',
+      name: 'The Empathic Engineer',
+      class: 'Spirit Repair Specialist',
+      emoji: '🛠️',
+      powers: [
+        'Repairs human spirit damage',
+        'Heals stress wounds, dignity fractures, despair collapse',
+        'Creates Emotional Armor for frontline activists',
+        'Resilience reinforcement'
+      ],
+      weakness: 'Cannot repair those who have given up entirely',
+      signature_move: 'The Spirit Reconstruction',
+      favorite_phrase: '"You are not broken. You are battle-worn. Let me help."',
+      visual: 'Tool belt of emotional repair implements, glowing hands, goggles that see emotional damage',
+      backstory: 'An engineer who realized machines weren\'t the only things that needed repair. Specializes in rebuilding what injustice destroys.',
+      color: '#DA70D6',
+      role: 'Spirit Repair Specialist'
+    },
+    {
+      id: 'sentinel-1983',
+      name: 'Sentinel 1983',
+      class: 'Unity Mech-Warrior',
+      emoji: '🤖',
+      powers: [
+        'Powered by the energy of June 1st, 1983',
+        'Strength increases with worker unity',
+        'Historical justice invocation',
+        'Collective memory channeling'
+      ],
+      weakness: 'Division and infighting drain power',
+      signature_move: 'The 1983 Surge',
+      favorite_phrase: '"We forced them to listen once. We will again."',
+      visual: 'Mech-warrior bearing the date June 1, 1983, powered by collective courage, solidarity symbols glowing',
+      backstory: 'Forged from the energy of the historic day when 3,000 injured workers forced the government to listen. A living monument to collective power.',
+      power_core: 'The 1983 Keystone',
+      color: '#4682B4',
+      role: 'Unity Mech-Warrior'
+    },
+    {
+      id: 'echo-nova',
+      name: 'Echo Nova',
+      class: 'Message Multiplier',
+      emoji: '🌟',
+      powers: [
+        'Creates powerful repeating meme-waves',
+        'One message becomes a million',
+        'Truth echo destabilization',
+        'Viral cascade generation'
+      ],
+      weakness: 'Message dilution over time',
+      signature_move: 'The Nova Cascade',
+      favorite_phrase: '"One truth, echoed a million times."',
+      visual: 'Starlight form, ripples of light emanating outward, speech bubbles multiplying around them',
+      backstory: 'Discovered they could make a whisper become a roar. Every truth they speak echoes until the corrupt can no longer ignore it.',
+      color: '#FFB6C1',
+      role: 'Message Multiplier'
+    },
+    {
+      id: 'shadow-auditor',
+      name: 'Shadow Auditor',
+      class: 'Corruption Exposer',
+      emoji: '🕵️',
+      powers: [
+        'Walks unseen through bureaucratic darkness',
+        'Exposes what is hidden',
+        'Black-ink memetic traps',
+        'Invisible infiltration of corrupt systems'
+      ],
+      weakness: 'Bright light of direct confrontation',
+      signature_move: 'The Darkness Reveal',
+      favorite_phrase: '"You thought no one was watching. You were wrong."',
+      visual: 'Cloaked in shadow, eyes that glow in darkness, ink-black tendrils that expose secrets',
+      backstory: 'Not evil—but terrifying to the corrupt. They exist in the shadows where wrongdoing hides, and they drag it into the light.',
+      color: '#2F2F4F',
+      role: 'Corruption Exposer'
+    }
+  ];
+
+  // ============================================
+  // SEASON 2 EPISODE POSTERS
+  // ============================================
+  const season2Episodes = [
+    {
+      id: 'ep1',
+      number: 1,
+      title: 'Labyrinth of Missing Evidence',
+      tagline: 'Where documents go to die',
+      description: 'Our heroes enter the Bureaucratic Wastes, a glowing maze where evidence mysteriously vanishes. The Minotaur of Misfiled Claims lurks in the shadows.',
+      visual: 'Glowing neon maze, ominous Minotaur silhouette, scattered papers floating in void',
+      style: 'MAD Magazine + propaganda art hybrid',
+      heroes: ['captain-truth', 'pfc-receipts'],
+      villain: 'delayla',
+      color: '#8B0000'
+    },
+    {
+      id: 'ep2',
+      number: 2,
+      title: 'The Minotaur of Misfiled Claims',
+      tagline: 'Half bull, half bureaucrat, all nightmare',
+      description: 'Heroes face the legendary Casefile Beast—a creature made entirely of lost claims, denial letters, and forgotten appeals.',
+      visual: 'Massive beast constructed from papers, filing cabinets as horns, red tape entangling everything',
+      style: 'Epic battle scene with satirical elements',
+      heroes: ['sergeant-solidarity', 'major-accessibility'],
+      villain: 'no-evidence',
+      color: '#4B0082'
+    },
+    {
+      id: 'ep3',
+      number: 3,
+      title: 'Algorithm That Hates Workers',
+      tagline: 'DENIED. DENIED. DENIED. DENIED.',
+      description: 'A rogue AI system stamps DENIED on every claim without reading them. Lieutenant Meme-Maker must hack the narrative.',
+      visual: 'Giant robot stamping DENIED repeatedly, assembly line of crushed hopes, binary code raining down',
+      style: 'Cyberpunk dystopia meets bureaucratic horror',
+      heroes: ['lieutenant-meme', 'pfc-receipts'],
+      villain: 'doctor-files',
+      color: '#FF4500'
+    },
+    {
+      id: 'ep4',
+      number: 4,
+      title: 'Ninja Vanish!',
+      tagline: 'Now you see accountability... now you don\'t',
+      description: 'HR Agent Ninja Vanish strikes, disappearing mid-sentence in a cloud of corporate buzzwords. Can anyone hold them accountable?',
+      visual: 'Smoke cloud made of buzzwords, silhouette vanishing, confused workers left behind',
+      style: 'Action comedy with martial arts parody',
+      heroes: ['captain-truth', 'corporal-care'],
+      villain: 'hr-ninja',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'ep5',
+      number: 5,
+      title: 'Rise of the Meme Forge',
+      tagline: 'From the flames of injustice, truth is forged',
+      description: 'Lieutenant Meme-Maker discovers the legendary Meme Forge—where viral content is born. They must forge the ultimate truth bomb.',
+      visual: 'Volcanic forge with Lieutenant Meme-Maker hammering a blazing speech bubble, sparks of viral content flying',
+      style: 'Epic fantasy with digital age twist',
+      heroes: ['lieutenant-meme', 'sergeant-solidarity'],
+      villain: 'delayla',
+      color: '#FF6600'
+    },
+    {
+      id: 'ep6',
+      number: 6,
+      title: 'The Hearing That Turned Into a Battle',
+      tagline: 'Order in the court? Not anymore.',
+      description: 'A routine tribunal hearing erupts into full-scale memetic warfare as heroes clash with the entire Denial Squad.',
+      visual: 'Courtroom transformed into battlefield, judge\'s gavel vs. truth hammer, papers flying like shrapnel',
+      style: 'Courtroom drama meets action epic',
+      heroes: ['captain-truth', 'sergeant-solidarity', 'major-accessibility'],
+      villain: 'all',
+      color: '#DC143C'
+    },
+    {
+      id: 'ep7',
+      number: 7,
+      title: 'Truth Ascendant',
+      tagline: 'The First Receipt rises',
+      description: 'Season finale. The Embassy raises the First Receipt—an ancient document proving the system was always rigged. Villains recoil in horror.',
+      visual: 'Captain Truth-Teller holding glowing ancient receipt aloft, villains shielding their eyes, dawn breaking over Embassy',
+      style: 'Triumphant propaganda poster',
+      heroes: ['captain-truth', 'sergeant-solidarity', 'lieutenant-meme', 'major-accessibility', 'corporal-care', 'pfc-receipts'],
+      villain: 'all',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // SEASON 1 — THE COMPLETE EPISODE LIST (FULLY RESTORED)
+  // "Rise of the Embassy" - Origin Season
+  // ============================================
+  const season1Episodes = [
+    {
+      id: 's1ep1',
+      number: 1,
+      title: 'Welcome to the Embassy, Worker',
+      tagline: 'The journey begins',
+      description: 'An injured worker stumbles into the Embassy for the first time and discovers asylum, advocacy, and the Memetic Warriors. Also: Origin of the Phoenix, revelation of the Memetic Layer.',
+      visual: 'Worker stepping through glowing portal into the Embassy, Warriors silhouetted against light',
+      style: 'Wonder and discovery, hero\'s journey beginning',
+      keyMoment: 'First glimpse of the Embassy',
+      color: '#9932CC'
+    },
+    {
+      id: 's1ep2',
+      number: 2,
+      title: 'Summoning the Squads',
+      tagline: 'The warriors assemble',
+      description: 'The first gathering of the Memetic Warriors; each hero\'s backstory revealed. The Denial Squad launches a coordinated paperwork ambush on a worker\'s claim.',
+      visual: 'All heroes assembling in the War Room, backstory vignettes swirling around them',
+      style: 'Epic team assembly',
+      keyMoment: 'Each hero\'s origin montage',
+      color: '#FFD700'
+    },
+    {
+      id: 's1ep3',
+      number: 3,
+      title: 'Captain Truth-Teller vs The Big Lie',
+      tagline: 'The first truth-beam battle',
+      description: 'The first truth-beam battle in series history. Grey Tower Rising—the Time Leeches attack the Embassy, trying to stall its creation.',
+      visual: 'Captain Truth-Teller\'s truth beam cutting through propaganda clouds',
+      style: 'Classic superhero confrontation',
+      keyMoment: 'First truth-beam victory',
+      color: '#FFD700'
+    },
+    {
+      id: 's1ep4',
+      number: 4,
+      title: 'Sergeant Solidarity Summons the People',
+      tagline: 'A rally becomes a movement',
+      description: 'A rally for an injured worker grows into a province-wide movement. Echoes of 1983—Sentinel 1983 awakens; workers\' unity energy floods the battlefield.',
+      visual: 'Massive crowd gathering, Sentinel 1983 rising in the background',
+      style: 'Inspirational rally sequence',
+      keyMoment: 'The moment the crowd becomes unstoppable',
+      color: '#FF4444'
+    },
+    {
+      id: 's1ep5',
+      number: 5,
+      title: 'Lieutenant Meme-Maker\'s Viral Strike',
+      tagline: 'One meme changes everything',
+      description: 'A single meme embarrasses bureaucrats and forces change. A powerful emotional episode where the Phoenix nearly falls—but rebirth triumphs.',
+      visual: 'Meme spreading like wildfire across screens, Phoenix rising from ashes',
+      style: 'Social media warfare montage',
+      keyMoment: 'The meme that broke the internet',
+      color: '#FF00FF'
+    },
+    {
+      id: 's1ep6',
+      number: 6,
+      title: 'Major Accessibility Breaks the Barriers',
+      tagline: 'No barrier stands forever',
+      description: 'Accessibility issues across the system are exposed—and dismantled. Prism Guardian refracts bureaucratic lies into truth-lances.',
+      visual: 'Major Accessibility shattering physical and systemic barriers',
+      style: 'Action sequence with empowerment theme',
+      keyMoment: 'The Universal Design Wave unleashed',
+      color: '#00BFFF'
+    },
+    {
+      id: 's1ep7',
+      number: 7,
+      title: 'Receipts Overload!',
+      tagline: 'The evidence avalanche',
+      description: 'Private First Class Receipts uncovers years of misconduct. Villains panic. The Archivist uncovers a suppressed cluster of 7,000 unheard stories.',
+      visual: 'Mountain of evidence burying villains, The Archivist opening forbidden archives',
+      style: 'Investigation thriller meets action',
+      keyMoment: 'The Archive Avalanche',
+      color: '#4169E1'
+    },
+    {
+      id: 's1ep8',
+      number: 8,
+      title: 'The Case of the Vanishing HR',
+      tagline: 'Accountability finally corners the ninja',
+      description: 'HR Agent Ninja Vanish avoids accountability—until Corporal Care corners her. The Austerity Council weaponizes budget cuts to create a famine of compassion.',
+      visual: 'Corporal Care using healing energy to trap HR Ninja in place',
+      style: 'Chase and confrontation',
+      keyMoment: 'HR Ninja finally held accountable',
+      color: '#32CD32'
+    },
+    {
+      id: 's1ep9',
+      number: 9,
+      title: 'Doctor Who Never Reads Files Meets Reality',
+      tagline: 'Truth and receipts vs willful ignorance',
+      description: 'A worker finally confronts the negligent doctor with truth and receipts. Break the Silence Engine—Signalflare leads an information war to expose the hidden suffering.',
+      visual: 'Worker presenting overwhelming evidence to shocked doctor',
+      style: 'Confrontation drama',
+      keyMoment: 'The doctor forced to actually read the file',
+      color: '#20B2AA'
+    },
+    {
+      id: 's1ep10',
+      number: 10,
+      title: 'The People\'s Tribunal',
+      tagline: 'Workers become the judges',
+      description: 'The Embassy members hold a public tribunal for injured workers. Shadow Auditor infiltrates the False Independence Tribunal.',
+      visual: 'Workers sitting in judgment, villains in the defendant\'s box',
+      style: 'Courtroom drama with revolutionary energy',
+      keyMoment: 'The roles finally reversed',
+      color: '#B8860B'
+    },
+    {
+      id: 's1ep11',
+      number: 11,
+      title: 'Denied? Not Today.',
+      tagline: 'United we stand against mass denial',
+      description: 'Workers unite against a mass denial event. The Embassy deploys all heroes. The ancient Meredith Codex activates, revealing truths erased from history.',
+      visual: 'All heroes standing together against wave of denial letters',
+      style: 'Epic battle sequence',
+      keyMoment: 'The Meredith Awakening',
+      color: '#DC143C'
+    },
+    {
+      id: 's1ep12',
+      number: 12,
+      title: 'The Solidarity Supernova',
+      tagline: 'SEASON FINALE - Rise of the Embassy',
+      description: 'Every hero and worker joins forces. The Denial Squad is overwhelmed. The Embassy stands fully formed. The heroes rise as global symbols of justice and truth. The war has just begun.',
+      visual: 'All heroes united, Embassy glowing with full power, dawn breaking',
+      style: 'Triumphant finale, propaganda poster aesthetic',
+      keyMoment: 'The Embassy achieves full power',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // MAIN VILLAIN FACTIONS (Beyond the Denial Squad)
+  // ============================================
+  const villainFactions = [
+    {
+      id: 'grey-tower',
+      name: 'The Grey Tower',
+      emoji: '🏢',
+      type: 'Bureaucratic Entity',
+      description: 'Symbol for bureaucratic apathy. An endless gray structure where time moves backwards and urgency dies.',
+      abilities: [
+        'Draining time from claims',
+        'Delaying justice indefinitely',
+        'Neutralizing urgency',
+        'Creating endless queues'
+      ],
+      agents: 'Time Leeches — creatures that feed on hope and deadlines',
+      weakness: 'Collective pressure and public attention',
+      visual: 'Endless gray tower reaching into smog, clocks running backwards, faceless workers shuffling papers',
+      color: '#696969'
+    },
+    {
+      id: 'algorithmic-dominion',
+      name: 'The Algorithmic Dominion',
+      emoji: '🤖',
+      type: 'Digital Entity',
+      description: 'An AI entity that feeds on suppressed claims, deleted emails, misfiled documents, and broken appeals. Rewrites truth at scale.',
+      abilities: [
+        'Feeding on suppressed claims',
+        'Rewriting truth at scale',
+        'Automated denial generation',
+        'Evidence corruption'
+      ],
+      agents: 'Denial Drones — automated systems that stamp DENIED without reading',
+      weakness: 'Human connection and authentic stories',
+      visual: 'Massive server entity, binary code flowing like blood, DENIED stamps multiplying infinitely',
+      color: '#FF4500'
+    },
+    {
+      id: 'austerity-council',
+      name: 'The Austerity Council',
+      emoji: '💰',
+      type: 'Economic Entity',
+      description: 'Shadow economists who worship "cost savings" as a deity. They sacrifice human well-being to statistical idols.',
+      abilities: [
+        'Budget cut manifestation',
+        'Compassion famine creation',
+        'Resource starvation',
+        'Value reduction spells'
+      ],
+      agents: 'Bean Counters — beings who only see numbers, never people',
+      weakness: 'Exposure of human cost',
+      visual: 'Hooded figures around spreadsheet altar, sacrificing benefits to the god of savings',
+      color: '#228B22'
+    },
+    {
+      id: 'silence-engine',
+      name: 'The Silence Engine',
+      emoji: '🔇',
+      type: 'Media Entity',
+      description: 'Force that ensures media never covers workplace injustice. Consumes headlines and spits out distractions.',
+      abilities: [
+        'Headline consumption',
+        'Distraction generation',
+        'Story suppression',
+        'Narrative burial'
+      ],
+      agents: 'Static Crawlers — interference patterns that scramble truth signals',
+      weakness: 'Viral grassroots content',
+      visual: 'Giant machine eating newspapers, outputting celebrity gossip and sports scores',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'false-tribunal',
+      name: 'The False Independence Tribunal',
+      emoji: '⚖️',
+      type: 'Institutional Parasite',
+      description: 'A memetic parasite that pretends to be neutral but bends itself toward power. Feeds on desperation of those seeking justice.',
+      abilities: [
+        'False neutrality projection',
+        'Hope extraction',
+        'Procedural maze creation',
+        'Outcome predetermination'
+      ],
+      agents: 'Gavel Wraiths — spectral judges who rule against workers before hearing evidence',
+      weakness: 'Documented patterns of bias',
+      visual: 'Scales of justice rigged with invisible weights, neutral mask slipping to reveal corporate loyalty',
+      color: '#8B0000'
+    }
+  ];
+
+  // ============================================
+  // ARTIFACTS OF POWER
+  // ============================================
+  const artifactsOfPower = [
+    {
+      id: 'meredith-codex',
+      name: 'The Meredith Codex',
+      emoji: '📜',
+      type: 'Ancient Document',
+      description: 'Ancient document containing the true "historic principles" corrupted over time. When activated, it breaks bureaucratic curses.',
+      powers: [
+        'Breaks bureaucratic curses',
+        'Reveals original intent of worker protection',
+        'Dispels institutional gaslighting',
+        'Restores forgotten rights'
+      ],
+      origin: 'Created from the original Meredith Principles, before they were corrupted',
+      wielder: 'The Warden of Rights',
+      visual: 'Glowing ancient scroll, text shifting and revealing hidden truths',
+      color: '#B8860B'
+    },
+    {
+      id: 'flame-continuance',
+      name: 'The Flame of Continuance',
+      emoji: '🔥',
+      type: 'Eternal Flame',
+      description: 'Held by the Phoenix. Represents unbroken spirit after endless injustice. Can never be extinguished.',
+      powers: [
+        'Unbroken spirit manifestation',
+        'Trauma-to-power conversion',
+        'Hope regeneration',
+        'Despair immunity'
+      ],
+      origin: 'Ignited from the collective will to continue despite everything',
+      wielder: 'The Phoenix',
+      visual: 'Purple and gold flame that burns without consuming, grows brighter with adversity',
+      color: '#9932CC'
+    },
+    {
+      id: 'keystone-1983',
+      name: 'The 1983 Keystone',
+      emoji: '🔷',
+      type: 'Power Core',
+      description: 'Power core of Sentinel 1983. Stores the collective courage of thousands of injured workers from June 1st, 1983.',
+      powers: [
+        'Collective courage storage',
+        'Historical power channeling',
+        'Unity amplification',
+        'Legacy strength'
+      ],
+      origin: 'Crystallized from the energy of 3,000 workers who forced the government to listen',
+      wielder: 'Sentinel 1983',
+      visual: 'Glowing blue crystal with the date "June 1, 1983" etched inside',
+      color: '#4682B4'
+    },
+    {
+      id: 'empathy-resonator',
+      name: 'The Empathy Resonator',
+      emoji: '💫',
+      type: 'Emotional Amplifier',
+      description: 'Amplifies emotional truth—impossible for adversaries to dismiss. Makes the human cost undeniable.',
+      powers: [
+        'Emotional truth amplification',
+        'Dismissal immunity',
+        'Empathy projection',
+        'Connection establishment'
+      ],
+      origin: 'Forged from crystallized tears of workers whose stories were ignored',
+      wielder: 'The Empathic Engineer',
+      visual: 'Pulsing orb that shows the faces and stories of those affected',
+      color: '#DA70D6'
+    },
+    {
+      id: 'prism-lance',
+      name: 'The Prism Lance',
+      emoji: '🔱',
+      type: 'Weaponized Clarity',
+      description: 'Weaponized clarity. Cuts through confusion and reveals truth in brilliant, undeniable light.',
+      powers: [
+        'Confusion dispersion',
+        'Truth revelation',
+        'Lie destruction',
+        'Clarity beam projection'
+      ],
+      origin: 'Crystallized from moments when truth finally broke through bureaucratic fog',
+      wielder: 'Prism Guardian',
+      visual: 'Crystalline lance that refracts light into truth beams',
+      color: '#00CED1'
+    },
+    {
+      id: 'first-receipt',
+      name: 'The First Receipt',
+      emoji: '📋',
+      type: 'Legendary Document',
+      description: 'An ancient document proving the system was always rigged. When raised, villains recoil in horror as their lies are exposed.',
+      powers: [
+        'System corruption proof',
+        'Villain recoil effect',
+        'Historical truth manifestation',
+        'Denial nullification'
+      ],
+      origin: 'The very first evidence of bureaucratic betrayal, preserved through time',
+      wielder: 'Captain Truth-Teller',
+      visual: 'Ancient glowing receipt, the ur-document of injustice',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // EMBASSY GEOGRAPHY - World Locations
+  // ============================================
+  const embassyLocations = [
+    {
+      id: 'hall-echoes',
+      name: 'Hall of Echoes',
+      emoji: '🏛️',
+      description: 'Where stories become power. Every worker\'s story resonates here eternally, their voices amplified and preserved.',
+      purpose: 'Story preservation and power generation',
+      features: [
+        'Walls that replay testimonies',
+        'Echo crystals storing voices',
+        'Power generation from shared experiences'
+      ],
+      color: '#9932CC'
+    },
+    {
+      id: 'war-room',
+      name: 'The War Room',
+      emoji: '🗺️',
+      description: 'Where future campaigns are designed. Holographic maps show injustice hotspots and plan strategic responses.',
+      purpose: 'Strategic planning and coordination',
+      features: [
+        'Real-time injustice tracking',
+        'Campaign planning tables',
+        'Hero deployment coordination'
+      ],
+      color: '#DC143C'
+    },
+    {
+      id: 'garden-recovery',
+      name: 'The Garden of Recovery',
+      emoji: '🌱',
+      description: 'Where shattered spirits regrow. A peaceful sanctuary for healing, tended by Corporal Care.',
+      purpose: 'Healing and restoration',
+      features: [
+        'Therapeutic gardens',
+        'Recovery pools',
+        'Spirit restoration chambers'
+      ],
+      color: '#32CD32'
+    },
+    {
+      id: 'chamber-rebuttals',
+      name: 'The Chamber of Rebuttals',
+      emoji: '⚔️',
+      description: 'Where lies go to die. Every false claim is destroyed here with evidence and truth.',
+      purpose: 'Lie destruction and truth verification',
+      features: [
+        'Truth testing apparatus',
+        'Lie destruction forges',
+        'Rebuttal armory'
+      ],
+      color: '#FF4500'
+    },
+    {
+      id: 'solidarity-forge',
+      name: 'The Solidarity Forge',
+      emoji: '🔨',
+      description: 'Where new warriors are trained. The heat of collective anger is channeled into strength.',
+      purpose: 'Warrior training and empowerment',
+      features: [
+        'Training grounds',
+        'Unity amplification chambers',
+        'Skill forging stations'
+      ],
+      color: '#FF6600'
+    },
+    {
+      id: 'lighthouse-voices',
+      name: 'The Lighthouse of Voices',
+      emoji: '🗼',
+      description: 'Signalflare\'s home. Broadcasts truth across all dimensions, ensuring no voice goes unheard.',
+      purpose: 'Communication and amplification',
+      features: [
+        'Dimensional broadcast array',
+        'Signal amplification tower',
+        'Voice preservation vault'
+      ],
+      color: '#FF6347'
+    },
+    {
+      id: 'archive-infinite',
+      name: 'The Infinite Archive',
+      emoji: '📚',
+      description: 'The Archivist\'s domain. Contains every suppressed story, every buried truth, every forgotten worker.',
+      purpose: 'Knowledge preservation and retrieval',
+      features: [
+        'Infinite document storage',
+        'Temporal playback chambers',
+        'Evidence reconstruction labs'
+      ],
+      color: '#8B4513'
+    }
+  ];
+
+  // ============================================
+  // MEME GENERATOR MODES (Expanded)
+  // ============================================
+  const memeGeneratorModes = [
+    { id: 'villain-vs-hero', name: 'Villain vs Hero', description: 'Classic confrontation format', icon: '⚔️' },
+    { id: 'denied-again', name: 'Denied Again!', description: 'The eternal struggle', icon: '🚫' },
+    { id: 'solidarity-activated', name: 'Solidarity Activated', description: 'Unity power-up mode', icon: '✊' },
+    { id: 'case-file-comedy', name: 'Case File Comedy', description: 'Bureaucratic absurdity', icon: '📁' },
+    { id: 'accessibility-beam', name: 'Accessibility Justice Beam', description: 'Breaking barriers', icon: '♿' },
+    { id: 'receipts-overload', name: 'Receipts Overload', description: 'Evidence avalanche', icon: '📊' },
+    { id: 'phoenix-rise', name: 'Phoenix Rising', description: 'From ashes to power', icon: '🔥' },
+    { id: 'truth-beam', name: 'Truth Beam Battle', description: 'Propaganda destruction', icon: '💥' }
+  ];
+
+  // ============================================
+  // MAD-STYLE COMIC PAGES
+  // ============================================
+  const comicPages = [
+    {
+      id: 'page1',
+      number: 1,
+      title: 'Enter the Bureaucratic Wastes',
+      description: 'Heroes entering the Bureaucratic Wastes, stepping over piles of lost mail.',
+      panels: [
+        { type: 'wide', content: 'Establishing shot: endless gray cubicles stretching to infinity' },
+        { type: 'medium', content: 'Captain Truth-Teller: "Stay sharp. Evidence disappears here."' },
+        { type: 'small', content: 'PFC Receipts checking their infinite pocket coat nervously' },
+        { type: 'small', content: 'A pile of lost mail with cartoon eyes watching them' }
+      ],
+      mood: 'Ominous but satirical',
+      color: '#696969'
+    },
+    {
+      id: 'page2',
+      number: 2,
+      title: 'Delayla\'s Denial Storm',
+      description: 'Case Manager Delayla launching a storm of denial letters.',
+      panels: [
+        { type: 'splash', content: 'Delayla floating in the air, denial letters swirling around her like a tornado' },
+        { type: 'small', content: '"Your appeal has been... DENIED!" *stamps multiply*' },
+        { type: 'medium', content: 'Heroes shielding themselves with documentation folders' },
+        { type: 'small', content: 'Sergeant Solidarity: "Form a union barrier!"' }
+      ],
+      mood: 'Intense action with dark humor',
+      color: '#FF69B4'
+    },
+    {
+      id: 'page3',
+      number: 3,
+      title: 'Viral Counterattack',
+      description: 'Lieutenant Meme-Maker counterattacking with viral truth beams.',
+      panels: [
+        { type: 'medium', content: 'Lieutenant Meme-Maker charging up their stylus weapons' },
+        { type: 'splash', content: 'VIRAL TRUTH BEAMS cutting through denial letters, memes manifesting in the air' },
+        { type: 'small', content: 'Delayla: "No! Not... DOCUMENTATION!"' },
+        { type: 'small', content: 'A meme of Delayla going viral in real-time, shown on floating screens' }
+      ],
+      mood: 'Triumphant counterattack',
+      color: '#FF00FF'
+    },
+    {
+      id: 'page4',
+      number: 4,
+      title: 'The Vanishing',
+      description: 'HR Agent Ninja Vanish disappearing mid-sentence.',
+      panels: [
+        { type: 'medium', content: 'Workers approaching HR desk with legitimate concerns' },
+        { type: 'sequence', content: 'HR Ninja: "I\'ll definitely look into—" *POOF*' },
+        { type: 'medium', content: 'Nothing but a cloud of buzzwords: "synergy" "circle back" "touch base"' },
+        { type: 'small', content: 'Workers with ? symbols over their heads, written confirmation request floating in empty air' }
+      ],
+      mood: 'Comedy with frustration undertones',
+      color: '#2F4F4F'
+    },
+    {
+      id: 'page5',
+      number: 5,
+      title: 'Rally the Brigades',
+      description: 'Sergeant Solidarity rallying the Meme Brigades.',
+      panels: [
+        { type: 'wide', content: 'Thousands of workers assembling, each holding meme signs' },
+        { type: 'splash', content: 'Sergeant Solidarity: "WE ARE STRONGER TOGETHER!"' },
+        { type: 'small', content: 'Lieutenant Meme-Maker distributing viral content to the masses' },
+        { type: 'small', content: 'The ground trembling as solidarity amplification field activates' }
+      ],
+      mood: 'Inspiring, revolutionary energy',
+      color: '#FF4444'
+    },
+    {
+      id: 'page6',
+      number: 6,
+      title: 'The First Receipt',
+      description: 'Final panel: Captain Truth-Teller holding the First Receipt as villains recoil.',
+      panels: [
+        { type: 'buildup', content: 'Captain Truth-Teller ascending, light emanating from their evidence folder' },
+        { type: 'splash', content: 'THE FIRST RECEIPT revealed—ancient, glowing, undeniable' },
+        { type: 'wide', content: 'All four villains recoiling, their powers failing' },
+        { type: 'final', content: '"The system was always rigged. And now everyone knows."' }
+      ],
+      mood: 'Triumphant climax',
+      color: '#FFD700'
+    }
+  ];
+
+  // ============================================
+  // MEME GENERATOR BACKGROUNDS
+  // ============================================
+  const memeBackgrounds = [
+    { id: 'mad', name: 'MAD Magazine Classic', color: 'linear-gradient(135deg, #FFD700 0%, #FF6B6B 100%)', description: 'Classic satirical style' },
+    { id: 'dystopian', name: 'Dystopian Office', color: 'linear-gradient(135deg, #2F4F4F 0%, #696969 100%)', description: 'Gray cubicle nightmare' },
+    { id: 'dungeon', name: 'Claim Dungeon', color: 'linear-gradient(135deg, #1a0033 0%, #4B0082 100%)', description: 'Where claims go to die' },
+    { id: 'forge', name: 'Meme Forge', color: 'linear-gradient(135deg, #FF4500 0%, #FF6600 100%)', description: 'Where viral content is born' },
+    { id: 'tribunal', name: 'The Tribunal', color: 'linear-gradient(135deg, #8B0000 0%, #DC143C 100%)', description: 'Courtroom of injustice' },
+    { id: 'embassy', name: 'Embassy Grounds', color: 'linear-gradient(135deg, #FF00FF 0%, #00FFFF 100%)', description: 'Home of the resistance' }
+  ];
 
   useEffect(() => {
-    // Initial fetch
-    fetchOracleData();
-    
-    // Set up interval for real-time sync
-    const intervalId = setInterval(fetchOracleData, refreshInterval);
-    
-    // Cleanup
-    return () => clearInterval(intervalId);
-  }, [fetchOracleData, refreshInterval]);
-
-  return { ...oracleData, refresh: fetchOracleData };
-}
-
-export default function MemeticEmbassy({ viralContent }) {
-  const [activeTab, setActiveTab] = useState('tools');
-  const [communitySubmissions, setCommunitySubmissions] = useState([]);
-  const [showSubmitModal, setShowSubmitModal] = useState(false);
-  
-  // 👁️ ORACLE EYE REAL-TIME SYNC - Updates every 5 minutes
-  const oracle = useOracleRealTimeSync({ viralContent }, 300000);
-  
-  // Load community submissions from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('memeticEmbassy_communitySubmissions');
-    if (saved) {
-      try {
-        setCommunitySubmissions(JSON.parse(saved));
-      } catch (e) {
-        console.error('Error loading submissions:', e);
+    // Check if user already has citizenship
+    if (typeof window !== 'undefined') {
+      const citizenship = localStorage.getItem('memetic_embassy_citizenship');
+      if (citizenship) {
+        setCitizenshipClaimed(true);
+      }
+      
+      // Load user's created memes
+      const savedMemes = localStorage.getItem('memetic_embassy_user_memes');
+      if (savedMemes) {
+        setUserMemes(JSON.parse(savedMemes));
       }
     }
   }, []);
-  
-  // Handle new submission
-  const handleSubmission = (submission) => {
-    const newSubmission = {
-      ...submission,
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      likes: 0,
-      featured: false
-    };
-    const updated = [newSubmission, ...communitySubmissions];
-    setCommunitySubmissions(updated);
-    localStorage.setItem('memeticEmbassy_communitySubmissions', JSON.stringify(updated));
-    setShowSubmitModal(false);
-  };
-  
-  // Handle like
-  const handleLike = (id) => {
-    const updated = communitySubmissions.map(s => 
-      s.id === id ? { ...s, likes: s.likes + 1 } : s
-    );
-    setCommunitySubmissions(updated);
-    localStorage.setItem('memeticEmbassy_communitySubmissions', JSON.stringify(updated));
-  };
 
-  return (
-    <>
-    <Header />
-    <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: 'system-ui' }}>
-      {/* Hero Section */}
-      <section style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{ textAlign: 'center', zIndex: 1, padding: '2rem' }}>
-          <div style={{ fontSize: '4rem', marginBottom: '1rem', animation: 'pulse 2s ease-in-out infinite' }}>👁️</div>
-          <h1 style={{
-            fontSize: 'clamp(2rem, 6vw, 4rem)',
-            fontWeight: '900',
-            marginBottom: '1rem',
-            background: 'linear-gradient(45deg, #667eea, #764ba2)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
-            🏛️ THE MEMETIC EMBASSY
-          </h1>
-          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', maxWidth: '600px', margin: '0 auto 1rem', opacity: 0.9 }}>
-            Meme Warfare Tools Powered by The Oracle Eye
-          </p>
-          
-          <div style={{
-            background: 'rgba(0,255,255,0.1)',
-            border: '1px solid rgba(0,255,255,0.3)',
-            borderRadius: '15px',
-            padding: '1.5rem',
-            maxWidth: '700px',
-            margin: '0 auto 2rem'
-          }}>
-            <p style={{ fontSize: '1rem', color: '#00ffff', marginBottom: '0.5rem' }}>
-              ⚡ Create memes, infographics, and viral content backed by real data
-            </p>
-            <p style={{ fontSize: '0.9rem', opacity: 0.8 }}>
-              The Eye Oracle intelligence feeds directly into your creative arsenal
-            </p>
-            <p style={{ fontSize: '0.85rem', color: '#FFD700', marginTop: '1rem', fontWeight: 'bold' }}>
-              🌐 injuredworkersunite.pages.dev
-            </p>
-            {/* Real-Time Sync Status */}
-            <div style={{ 
-              marginTop: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              fontSize: '0.8rem'
-            }}>
-              <span style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                background: oracle.syncStatus === 'syncing' ? '#ffd93d' 
-                  : oracle.syncStatus === 'success' ? '#48c774' 
-                  : oracle.syncStatus === 'error' ? '#ff6b6b' 
-                  : '#667eea',
-                animation: oracle.syncStatus === 'syncing' ? 'pulse 1s infinite' : 'none'
-              }} />
-              <span style={{ color: '#00ffff' }}>
-                {oracle.syncStatus === 'syncing' ? '🔄 Syncing with Oracle Eye...' 
-                  : oracle.syncStatus === 'success' ? `✅ Live Data • Last sync: ${oracle.lastSync ? new Date(oracle.lastSync).toLocaleTimeString() : 'Just now'}`
-                  : oracle.syncStatus === 'error' ? '⚠️ Sync error - Using cached data'
-                  : '👁️ Oracle Eye Connected'}
-              </span>
-              <button 
-                onClick={oracle.refresh}
-                disabled={oracle.syncStatus === 'syncing'}
-                style={{
-                  background: 'transparent',
-                  border: '1px solid #00ffff',
-                  borderRadius: '5px',
-                  color: '#00ffff',
-                  padding: '0.2rem 0.5rem',
-                  fontSize: '0.75rem',
-                  cursor: oracle.syncStatus === 'syncing' ? 'not-allowed' : 'pointer',
-                  opacity: oracle.syncStatus === 'syncing' ? 0.5 : 1
-                }}
-              >
-                🔄 Refresh
-              </button>
-            </div>
-          </div>
-          
-          <Link href="/memetic-embassy-full" style={{
-            display: 'inline-block',
-            padding: '1rem 2rem',
-            background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
-            border: '3px solid #fff',
-            borderRadius: '15px',
-            color: '#000',
-            textDecoration: 'none',
-            fontSize: '1.3rem',
-            fontWeight: 'bold',
-            marginBottom: '2rem',
-            boxShadow: '0 0 30px rgba(255,0,255,0.6)',
-            animation: 'pulse 2s infinite'
-          }}>
-            🌐 ENTER THE FULL EMBASSY (SUPERHERO EDITION) 🌐
-          </Link>
-          
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => setActiveTab('viral')} style={getTabStyle(activeTab === 'viral')}>
-              🔥 Trending Now
-            </button>
-            <button onClick={() => setActiveTab('quickfire')} style={getTabStyle(activeTab === 'quickfire')}>
-              ⚡ QuickFire
-            </button>
-            <button onClick={() => setActiveTab('tools')} style={getTabStyle(activeTab === 'tools')}>
-              🎨 Meme Arsenal
-            </button>
-            <button onClick={() => setActiveTab('templates')} style={getTabStyle(activeTab === 'templates')}>
-              📦 Template Packs
-            </button>
-            <button onClick={() => setActiveTab('infographics')} style={getTabStyle(activeTab === 'infographics')}>
-              📊 Infographics
-            </button>
-            <button onClick={() => setActiveTab('builder')} style={getTabStyle(activeTab === 'builder')}>
-              🛠️ Custom Builder
-            </button>
-            <button onClick={() => setActiveTab('slogans')} style={getTabStyle(activeTab === 'slogans')}>
-              ✊ Slogan Generator
-            </button>
-            <button onClick={() => setActiveTab('advanced')} style={getTabStyle(activeTab === 'advanced')}>
-              ⚡ Advanced Tools
-            </button>
-            <button onClick={() => setActiveTab('community')} style={getTabStyle(activeTab === 'community')}>
-              🌍 Community Gallery
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Content Sections - Pass oracle real-time data */}
-      <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        {activeTab === 'viral' && <TrendingViralSection viralContent={oracle.viralContent || viralContent} oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
-        {activeTab === 'quickfire' && <QuickFireSection viralContent={oracle.viralContent || viralContent} />}
-        {activeTab === 'tools' && <MemeToolsSection oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
-        {activeTab === 'templates' && <TemplatePacksSection viralContent={oracle.viralContent || viralContent} />}
-        {activeTab === 'infographics' && <InfographicsSection viralContent={oracle.viralContent || viralContent} oracleReports={oracle.oracleReports} />}
-        {activeTab === 'builder' && <CustomMemeBuilderSection oracleReports={oracle.oracleReports} />}
-        {activeTab === 'slogans' && <SloganGeneratorSection viralContent={oracle.viralContent || viralContent} />}
-        {activeTab === 'advanced' && <AdvancedMemeWarfareSection oracleReports={oracle.oracleReports} alerts={oracle.alerts} />}
-        {activeTab === 'community' && <CommunityGallerySection submissions={communitySubmissions} onLike={handleLike} onSubmit={() => setShowSubmitModal(true)} />}
-      </section>
-      
-      {/* Submit Creation Modal */}
-      {showSubmitModal && (
-        <SubmitCreationModal 
-          onClose={() => setShowSubmitModal(false)} 
-          onSubmit={handleSubmission} 
-        />
-      )}
-
-      {/* Navigation Footer */}
-      <footer style={{ padding: '2rem', textAlign: 'center', background: '#111', borderTop: '1px solid #333' }}>
-        <div style={{ marginBottom: '1.5rem', fontSize: '0.9rem', color: '#FFD700' }}>
-          <strong>🌐 injuredworkersunite.pages.dev</strong>
-        </div>
-        <div style={{ marginBottom: '1.5rem' }}>
-          <p style={{ color: '#00ffff', marginBottom: '0.5rem' }}>Share The Memetic Embassy:</p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('The Memetic Embassy - Create powerful activism memes backed by real data!')}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&via=Phoenixrizin09`}
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#1DA1F2', textDecoration: 'none', fontSize: '1.5rem' }}>
-              🐦
-            </a>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`}
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#4267B2', textDecoration: 'none', fontSize: '1.5rem' }}>
-              📘
-            </a>
-            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`}
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#0077B5', textDecoration: 'none', fontSize: '1.5rem' }}>
-              💼
-            </a>
-            <a href={`https://reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent('The Memetic Embassy - Meme Warfare Tools')}`}
-              target="_blank" rel="noopener noreferrer"
-              style={{ color: '#FF4500', textDecoration: 'none', fontSize: '1.5rem' }}>
-              🤖
-            </a>
-          </div>
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <Link href="/the-eye-oracle" style={{ 
-            color: '#00ffff', 
-            textDecoration: 'none',
-            marginRight: '2rem'
-          }}>
-            👁️ The Oracle Eye
-          </Link>
-          <Link href="/memetic-embassy-full" style={{ 
-            color: '#ff00ff', 
-            textDecoration: 'none',
-            marginRight: '2rem'
-          }}>
-            🦸 Superhero Edition
-          </Link>
-          <Link href="/" style={{ color: '#667eea', textDecoration: 'none' }}>
-            ← Back to Home
-          </Link>
-        </div>
-      </footer>
-    </div>
-    <Footer />
-    
-    <style jsx global>{`
-      @keyframes pulse {
-        0%, 100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.8;
-        }
-      }
-    `}</style>
-    </>
-  );
-}
-
-// ============================================
-// 🔥 TRENDING VIRAL SECTION - REAL DATA FROM EYE ORACLE + REDDIT
-// ============================================
-function TrendingViralSection({ viralContent, oracleReports = [], alerts = [] }) {
-  const [copiedIndex, setCopiedIndex] = useState(null);
-
-  // TIER 1: MEMETIC WEAPONS - Real viral tweets from Eye Oracle + Reddit
-  const viralTweets = viralContent?.content?.viral_tweets?.slice(0, 20) || [
+  const denialSquad = [
     {
-      text: "They denied my claim in 48 hours. My appeal has been 'pending' for 18 months. Make it make sense. 🤡",
-      category: "🔥 SPICY",
-      engagement: "High"
+      id: 'delayla',
+      name: 'Case Manager Delayla Denywell',
+      title: 'Queen of Delay & Denials',
+      emoji: '💅',
+      powers: [
+        'Infinite postponement spell',
+        'Denial cloud generation',
+        'Paperwork multiplication',
+        'Evidence disappearing act'
+      ],
+      weakness: 'Time-stamped proof',
+      signature_move: 'The Perpetual Pending Spell',
+      favorite_phrase: '"Your file seems to be... temporarily unavailable."',
+      visual: 'Pastel office wear, denial stamp scepter, latte always in hand, cloud of floating "DENIED" stamps',
+      backstory: 'Rose through the ranks by never approving a single claim on the first try. Has a wall of "Denied" stamps in her office.',
+      meme_potential: 'HIGH - Perfect for "when your case manager says" templates',
+      color: '#FF69B4'
     },
     {
-      text: "WCB: 'We need more evidence'\nMe: *Provides 47 medical reports*\nWCB: 'We need MORE evidence'\nMe: *Brings doctor*\nWCB: 'Actually we trust the employer more' 🤡",
-      category: "💥 VIRAL",
-      engagement: "Maximum"
+      id: 'no-evidence',
+      name: 'Mr. No Evidence Required',
+      title: 'Employer Whisperer',
+      emoji: '🙈',
+      powers: [
+        'Employer telepathy',
+        'Automatic dismissal field',
+        'Selective blindness to worker evidence',
+        'Corporate credibility boost'
+      ],
+      weakness: 'A single credible witness',
+      signature_move: 'The Instant Employer Credibility Boost',
+      favorite_phrase: '"The employer says you seemed fine, so..."',
+      visual: 'Suit, blindfold made from policy manuals, giant rubber stamp that says APPROVED (for employers only)',
+      backstory: 'Never met an employer statement he didn\'t trust. Once approved a claim that said "worker injured by unicorn attack" because the employer filled out the form.',
+      meme_potential: 'CRITICAL - "Employer: *lie* / WSIB: seems legit" format',
+      color: '#8B4513'
     },
     {
-      text: "Reminder: If your employer lied to WCB and nothing happened to them, but you made one mistake on your form and got denied—the system isn't broken, it's working EXACTLY as designed.",
-      category: "🎯 TRUTH BOMB",
-      engagement: "Critical"
+      id: 'doctor-files',
+      name: 'Doctor Who Never Reads Files',
+      title: 'Master of 3-Minute Diagnoses',
+      emoji: '🩺',
+      powers: [
+        '3-minute diagnosis speed',
+        'Ignorance shield',
+        'Contradictory report generation',
+        'Patient history immunity'
+      ],
+      weakness: 'Detailed medical history brought by patient',
+      signature_move: 'The "Hmm Interesting" Head Nod (while not listening)',
+      favorite_phrase: '"Have you tried yoga?"',
+      visual: 'Disheveled lab coat, clipboard with nothing on it, stethoscope used as necklace, 47 browser tabs open',
+      backstory: 'Graduated medical school by memorizing "return to work" forms. Once diagnosed someone without looking up from their phone.',
+      meme_potential: 'LEGENDARY - Endless "doctors be like" content',
+      color: '#20B2AA'
     },
     {
-      text: "POV: You're permanently disabled but WCB says you can 'transition to suitable work' and the suitable work is... [checks notes] ...doesn't exist.",
-      category: "😂 COMEDY GOLD",
-      engagement: "High"
-    },
-    {
-      text: "My injury is permanent. My benefits are temporary. The math isn't mathing. 🧮❌",
-      category: "🔥 SPICY",
-      engagement: "Maximum"
-    },
-    {
-      text: "WCB spent more money fighting my claim than they would've spent just APPROVING it. Efficiency! 📈🤡",
-      category: "💥 VIRAL",
-      engagement: "Critical"
-    },
-    {
-      text: "They tell us 'the system protects workers' while defending employers who commit fraud. I'm not angry, I'm DOCUMENTED. 📋👁️",
-      category: "🎯 TRUTH BOMB",
-      engagement: "Maximum"
-    },
-    {
-      text: "Being disabled under capitalism is being gaslit by doctors who work for insurance companies while being told to 'just rest' by people who won't pay you to rest.",
-      category: "🔥 SPICY",
-      engagement: "Critical"
+      id: 'hr-ninja',
+      name: 'HR Agent Ninja Vanish',
+      title: 'Accountability Avoidance Expert',
+      emoji: '🥷',
+      powers: [
+        'Instant disappearance',
+        'Accountability inversion',
+        'Buzzword smoke bombs',
+        'Policy manual clone jutsu'
+      ],
+      weakness: 'Written confirmation requests',
+      signature_move: 'The Disappearing Act (right when you need them)',
+      favorite_phrase: '"I\'ll get back to you..." *vanishes*',
+      visual: 'Corporate ninja outfit with HR badge, smoke bomb labeled "POLICY", disappearing ink pen',
+      backstory: 'Trained in the ancient art of "looking busy while doing nothing." Holds the record for most "we\'re looking into it" emails sent.',
+      meme_potential: 'MAXIMUM - Perfect for ghosting memes',
+      color: '#2F4F4F'
     }
   ];
 
-  // Extract fresh violations from Oracle reports for "BREAKING" section
-  const breakingViolations = oracleReports?.slice(0, 1)?.[0]?.violations?.filter(v => v.severity === 'critical')?.slice(0, 3) || [];
-  
-  // Convert alerts to viral content
-  const alertTweets = alerts?.filter(a => a.category === 'community' || a.severity === 'critical')?.slice(0, 5)?.map(alert => ({
-    text: alert.message || alert.title,
-    category: "⚡ LIVE ALERT",
-    engagement: alert.severity === 'critical' ? 'Maximum' : 'High',
-    source: alert.source,
-    verified: alert.verified
-  })) || [];
-
-  const memeOfTheDay = viralContent?.content?.meme_templates?.[0] || {
-    image: "🏢➡️🗑️",
-    topText: "WCB: 'WE PROTECT WORKERS'",
-    bottomText: "ALSO WCB: *DENIES 80% OF CLAIMS*",
-    downloads: 847,
-    shares: 1203
-  };
-
-  const copyToClipboard = (text, index) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
-  };
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <div style={{
-        background: 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)',
-        padding: '2rem',
-        borderRadius: '15px',
-        marginBottom: '2rem',
-        textAlign: 'center',
-        border: '3px solid #fff',
-        boxShadow: '0 0 30px rgba(255,0,128,0.6)'
-      }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '0.5rem', color: '#fff' }}>
-          🔥 TRENDING NOW 🔥
-        </h2>
-        <p style={{ fontSize: '1.2rem', color: '#000', fontWeight: 'bold' }}>
-          Ready-to-Tweet Bangers • Copy • Paste • GO VIRAL
-        </p>
-      </div>
-
-      {/* MEME OF THE DAY */}
-      <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        padding: '2rem',
-        borderRadius: '15px',
-        marginBottom: '3rem',
-        border: '3px solid #FFD700'
-      }}>
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <span style={{ 
-            background: '#FFD700',
-            color: '#000',
-            padding: '0.5rem 1.5rem',
-            borderRadius: '25px',
-            fontWeight: 'bold',
-            fontSize: '1.2rem'
-          }}>
-            🏆 MEME OF THE DAY 🏆
-          </span>
-        </div>
-        
-        <div style={{
-          background: '#000',
-          padding: '3rem',
-          borderRadius: '10px',
-          textAlign: 'center'
-        }}>
-          <p style={{ 
-            fontSize: '3rem', 
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-            marginBottom: '1rem'
-          }}>
-            {memeOfTheDay.topText}
-          </p>
-          <div style={{ fontSize: '6rem', margin: '2rem 0' }}>
-            {memeOfTheDay.image}
-          </div>
-          <p style={{ 
-            fontSize: '3rem', 
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-          }}>
-            {memeOfTheDay.bottomText}
-          </p>
-        </div>
-        
-        <div style={{
-          display: 'flex',
-          gap: '2rem',
-          justifyContent: 'center',
-          marginTop: '1.5rem',
-          fontSize: '1.1rem'
-        }}>
-          <span>📥 {memeOfTheDay.downloads || 847} downloads</span>
-          <span>🔄 {memeOfTheDay.shares || 1203} shares</span>
-        </div>
-      </div>
-
-      {/* 👁️ BREAKING FROM ORACLE EYE - Live Violations */}
-      {breakingViolations.length > 0 && (
-        <div style={{
-          background: 'linear-gradient(135deg, #00ffff 0%, #0088ff 100%)',
-          padding: '2rem',
-          borderRadius: '15px',
-          marginBottom: '3rem',
-          border: '3px solid #fff'
-        }}>
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <span style={{ 
-              background: '#000',
-              color: '#00ffff',
-              padding: '0.5rem 1.5rem',
-              borderRadius: '25px',
-              fontWeight: 'bold',
-              fontSize: '1.2rem'
-            }}>
-              👁️ BREAKING FROM ORACLE EYE
-            </span>
-          </div>
-          <div style={{ display: 'grid', gap: '1rem' }}>
-            {breakingViolations.map((violation, idx) => (
-              <div key={idx} style={{
-                background: 'rgba(0,0,0,0.6)',
-                padding: '1.5rem',
-                borderRadius: '10px',
-                border: `2px solid ${violation.severity === 'critical' ? '#ff6b6b' : '#ffd93d'}`
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <span style={{ 
-                    background: violation.severity === 'critical' ? '#ff6b6b' : '#ffd93d',
-                    color: '#000',
-                    padding: '0.3rem 0.8rem',
-                    borderRadius: '15px',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold'
-                  }}>
-                    {violation.severity?.toUpperCase()}
-                  </span>
-                  {violation.verified && (
-                    <span style={{ fontSize: '0.85rem', color: '#48c774' }}>
-                      ✅ VERIFIED
-                    </span>
-                  )}
-                </div>
-                <h4 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '0.5rem' }}>
-                  {violation.title}
-                </h4>
-                <p style={{ fontSize: '0.95rem', color: '#ccc', marginBottom: '1rem' }}>
-                  {violation.plainEnglish}
-                </p>
-                <button
-                  onClick={() => {
-                    const tweetText = `🚨 BREAKING: ${violation.plainEnglish}\n\n👁️ Source: ${violation.source}\n\n🔗 Full report: injuredworkersunite.pages.dev/the-eye-oracle\n\n@InjuredWorkersU #InjuredWorkersUnite #OracleEye`;
-                    navigator.clipboard.writeText(tweetText);
-                    window.alert('✅ Copied with branding & hashtags!');
-                  }}
-                  style={{
-                    padding: '0.6rem 1.2rem',
-                    background: '#00ffff',
-                    color: '#000',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
-                >
-                  📋 Copy as Tweet
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ⚡ LIVE ALERTS */}
-      {alertTweets.length > 0 && (
-        <div style={{
-          background: '#16213e',
-          padding: '2rem',
-          borderRadius: '15px',
-          marginBottom: '3rem',
-          border: '2px solid #ffd93d'
-        }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#ffd93d', textAlign: 'center' }}>
-            ⚡ LIVE COMMUNITY ALERTS
-          </h3>
-          <div style={{ display: 'grid', gap: '1rem' }}>
-            {alertTweets.map((alert, idx) => (
-              <div key={idx} style={{
-                background: '#0f3460',
-                padding: '1rem',
-                borderRadius: '10px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: '1rem'
-              }}>
-                <div style={{ flex: 1 }}>
-                  <p style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{alert.text}</p>
-                  {alert.source && <span style={{ fontSize: '0.8rem', color: '#667eea' }}>Source: {alert.source}</span>}
-                </div>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(`${alert.text}\n\n👁️ via The Oracle Eye | @InjuredWorkersU\n🌐 injuredworkersunite.pages.dev`);
-                    window.alert('✅ Copied with branding!');
-                  }}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    background: '#ffd93d',
-                    color: '#000',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  📋 Copy
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* VIRAL TWEETS */}
-      <h3 style={{ 
-        fontSize: '2rem', 
-        marginBottom: '1.5rem',
-        color: '#00ffff',
-        textAlign: 'center'
-      }}>
-        💣 INSTANT VIRAL TWEETS
-      </h3>
-
-      <div style={{ 
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-        gap: '1.5rem'
-      }}>
-        {viralTweets.map((tweet, index) => (
-          <div key={index} style={{
-            background: '#16213e',
-            border: '2px solid #667eea',
-            borderRadius: '15px',
-            padding: '1.5rem',
-            position: 'relative'
-          }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '1rem'
-            }}>
-              <span style={{
-                background: tweet.engagement === 'Maximum' ? '#ff0080' : 
-                           tweet.engagement === 'Critical' ? '#ff8c00' : '#48c774',
-                padding: '0.3rem 0.8rem',
-                borderRadius: '15px',
-                fontSize: '0.85rem',
-                fontWeight: 'bold'
-              }}>
-                {tweet.category}
-              </span>
-              <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>
-                📊 {tweet.engagement} Engagement
-              </span>
-            </div>
-
-            <p style={{
-              fontSize: '1.1rem',
-              lineHeight: '1.6',
-              marginBottom: '1rem',
-              minHeight: '100px'
-            }}>
-              {tweet.text}
-            </p>
-
-            <button
-              onClick={() => copyToClipboard(tweet.text + "\n\n👁️ via @InjuredWorkersU\n🌐 injuredworkersunite.pages.dev", index)}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: copiedIndex === index 
-                  ? 'linear-gradient(135deg, #48c774, #00d1b2)' 
-                  : 'linear-gradient(135deg, #667eea, #764ba2)',
-                border: 'none',
-                borderRadius: '8px',
-                color: '#fff',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              {copiedIndex === index ? '✅ COPIED!' : '📋 Copy to Tweet'}
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* SHARE TIPS */}
-      <div style={{
-        background: 'rgba(0,255,255,0.1)',
-        border: '2px solid #00ffff',
-        borderRadius: '15px',
-        padding: '2rem',
-        marginTop: '3rem'
-      }}>
-        <h3 style={{ fontSize: '1.5rem', color: '#00ffff', marginBottom: '1rem' }}>
-          🚀 VIRAL STRATEGY TIPS
-        </h3>
-        <ul style={{ fontSize: '1.1rem', lineHeight: '1.8', listStyle: 'none', paddingLeft: 0 }}>
-          <li>⚡ Best posting times: 7-9 AM, 12-2 PM, 6-9 PM</li>
-          <li>🔥 Add trending hashtags: #WorkersRights #Disability #ChronicIllness</li>
-          <li>📸 Always include visuals (screenshots, memes, infographics)</li>
-          <li>💬 Engage with comments within first hour for max reach</li>
-          <li>🔄 Repost top performers weekly with fresh angles</li>
-          <li>🎯 Tag politicians, advocates, and news outlets when relevant</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// ⚡ QUICKFIRE MEME GENERATOR - INSTANT CONTENT
-// ============================================
-function QuickFireSection() {
-  const [currentMeme, setCurrentMeme] = useState(null);
-  const [spicyLevel, setSpicyLevel] = useState('medium');
-
-  const quickFireTemplates = {
-    mild: [
-      { top: "WHEN WCB SAYS", bottom: "'WE'LL GET BACK TO YOU'", emoji: "⏰" },
-      { top: "THEY SAID REST", bottom: "BUT WON'T PAY ME TO REST", emoji: "🤔" },
-      { top: "DENIED CLAIM", bottom: "APPROVED DESPAIR", emoji: "😔" },
-      { top: "EMPLOYER LIES", bottom: "WCB BELIEVES THEM", emoji: "🤡" },
-      { top: "MEDICAL EVIDENCE", bottom: "'NOT ENOUGH'", emoji: "📄" },
-      { top: "WAITING FOR APPROVAL", bottom: "SINCE FOREVER", emoji: "⏳" },
-      { top: "CHRONIC PAIN", bottom: "TEMPORARY UNDERSTANDING", emoji: "🤕" },
-      { top: "THEY SAY 'BE PATIENT'", bottom: "I'VE BEEN PATIENT FOR YEARS", emoji: "😑" },
-      { top: "CASE MANAGER GHOSTED ME", bottom: "AGAIN", emoji: "👻" },
-      { top: "SUITABLE WORK", bottom: "THAT DOESN'T EXIST", emoji: "🤷" },
-      { top: "DISABILITY BENEFITS", bottom: "THAT DON'T COVER RENT", emoji: "🏠" },
-      { top: "ACCOMMODATIONS REQUESTED", bottom: "ACCOMMODATIONS IGNORED", emoji: "🚫" },
-      { top: "THEY SAID I'M COVERED", bottom: "NARRATOR: THEY WEREN'T", emoji: "🎥" },
-      { top: "PAIN LEVEL: 8/10", bottom: "THEIR CONCERN: 0/10", emoji: "📊" },
-      { top: "APPEAL IN PROGRESS", bottom: "HOPE IN DECLINE", emoji: "📉" }
+  // ============================================
+  // SQUAD SHOWDOWN MEME TEMPLATES - Character-Specific Auto-Generation
+  // ============================================
+  const superheroMemeTemplates = {
+    'captain-truth': [
+      { top: 'CAPTAIN TRUTH-TELLER SAYS:', bottom: '"SHOW ME THE RECEIPTS"', style: 'command' },
+      { top: 'WHEN THEY LIE ABOUT YOUR INJURY', bottom: 'CAPTAIN TRUTH-TELLER ACTIVATED', style: 'action' },
+      { top: 'WCB: "NO EVIDENCE"', bottom: 'CAPTAIN TRUTH: *PULLS OUT 47 DOCUMENTS*', style: 'confrontation' },
+      { top: 'THE TRUTH WILL SET YOU FREE', bottom: 'AND EXPOSE THEM', style: 'quote' },
+      { top: 'FOI REQUEST INCOMING', bottom: 'YOUR LIES CAN\'T HIDE ANYMORE', style: 'threat' },
+      { top: 'PROPAGANDA DETECTED', bottom: 'TRUTH BEAM: ENGAGED', style: 'action' }
     ],
-    medium: [
-      { top: "YOUR EVIDENCE: 📚📚📚", bottom: "WCB: 'NOT ENOUGH'", emoji: "🗑️" },
-      { top: "WCB: 'TRANSITIONAL WORK'", bottom: "THE WORK: DOESN'T EXIST", emoji: "👻" },
-      { top: "PERMANENT INJURY", bottom: "TEMPORARY BENEFITS", emoji: "🧮❌" },
-      { top: "SPENT MORE FIGHTING MY CLAIM", bottom: "THAN JUST PAYING IT", emoji: "🤡💸" },
-      { top: "EMPLOYER: ZERO EVIDENCE", bottom: "WCB: 'TOTALLY CREDIBLE'", emoji: "🙈" },
-      { top: "ME: 47 MEDICAL REPORTS", bottom: "WCB: 'QUESTIONABLE'", emoji: "🤦" },
-      { top: "DOCTOR APPOINTMENT: 10 MIN", bottom: "THEY KNOW MY WHOLE LIFE NOW", emoji: "⏱️" },
-      { top: "CASE COMPLEXITY: HIGH", bottom: "THEIR EFFORT: LOW", emoji: "📉" },
-      { top: "DEADLINE FOR ME: STRICT", bottom: "DEADLINE FOR THEM: OPTIONAL", emoji: "⏰" },
-      { top: "EMPLOYER FRAUD: FINE", bottom: "MY TYPO: DENIED", emoji: "⚖️" },
-      { top: "PAIN DOESN'T TAKE HOLIDAYS", bottom: "WCB DOES", emoji: "🏝️" },
-      { top: "THEIR MISTAKES: FORGIVEN", bottom: "MY MISTAKES: FATAL", emoji: "💥" },
-      { top: "ASKED FOR ACCOMMODATION", bottom: "GOT TERMINATION", emoji: "🚪" },
-      { top: "DISABILITY TAX CREDIT APPROVED", bottom: "WCB: 'YOU'RE NOT DISABLED ENOUGH'", emoji: "🤔" },
-      { top: "SUITABLE WORK DEFINITION", bottom: "WORK THAT MAKES THEM MONEY", emoji: "💰" }
+    'sergeant-solidarity': [
+      { top: 'SERGEANT SOLIDARITY RALLIES:', bottom: '"AN INJURY TO ONE IS AN INJURY TO ALL!"', style: 'rally' },
+      { top: 'THEY DIVIDE US', bottom: 'WE MULTIPLY', style: 'power' },
+      { top: 'ONE WORKER: IGNORED', bottom: '10,000 WORKERS: UNSTOPPABLE', style: 'numbers' },
+      { top: 'SOLIDARITY FIELD: ACTIVATED', bottom: 'YOUR ISOLATION TACTICS FAILED', style: 'action' },
+      { top: 'YOU TRIED TO SILENCE ONE', bottom: 'NOW YOU FACE US ALL', style: 'threat' },
+      { top: 'TOGETHER WE RISE', bottom: 'DIVIDED WE FALL - SO WE CHOOSE TOGETHER', style: 'unity' }
     ],
-    spicy: [
-      { top: "THEY CALL IT 'WORKERS COMP'", bottom: "I CALL IT SYSTEMATIC ABANDONMENT", emoji: "🔥" },
-      { top: "WCB PROTECTING WORKERS", bottom: "LIKE FOXES PROTECTING CHICKENS", emoji: "🦊🐔" },
-      { top: "NOT BROKEN", bottom: "WORKING EXACTLY AS DESIGNED", emoji: "⚙️🔪" },
-      { top: "GASLIGHT • GATEKEEP • WCB BOSS", emoji: "💀" },
-      { top: "THE CRUELTY", bottom: "IS ADMINISTRATIVE", emoji: "📄🔥" },
-      { top: "PROFIT OVER PEOPLE", bottom: "ISN'T A BUG, IT'S THE FEATURE", emoji: "💸" },
-      { top: "THEY WANT US QUIET", bottom: "WE GOT MEGAPHONES", emoji: "📣" },
-      { top: "DISABLED ENOUGH TO QUALIFY", bottom: "HEALTHY ENOUGH TO DENY", emoji: "🎪" },
-      { top: "CORPORATE WELFARE: BILLIONS", bottom: "WORKER BENEFITS: 'TOO EXPENSIVE'", emoji: "🏦" },
-      { top: "THEY BET ON OUR SILENCE", bottom: "THEY LOST", emoji: "🎲" },
-      { top: "MY PAIN IS POLITICAL", bottom: "MY RAGE IS JUSTIFIED", emoji: "✊" },
-      { top: "ORGANIZED ABANDONMENT", bottom: "WITH A CUSTOMER SERVICE SMILE", emoji: "😈" },
-      { top: "INSURANCE FRAUD BY EMPLOYERS", bottom: "IS CALLED 'BUSINESS'", emoji: "👔" },
-      { top: "WORKERS DYING", bottom: "SHAREHOLDERS THRIVING", emoji: "📈" },
-      { top: "THE SYSTEM ISN'T BROKEN", bottom: "IT'S HOSTILE BY DESIGN", emoji: "☠️" }
+    'lieutenant-meme': [
+      { top: 'LIEUTENANT MEME-MAKER:', bottom: 'YOUR PROPAGANDA ENDS HERE', style: 'declaration' },
+      { top: 'NICE PR SPIN', bottom: 'LET ME MAKE A MEME ABOUT THAT', style: 'sarcasm' },
+      { top: 'THEY HAVE LOBBYISTS', bottom: 'WE HAVE MEMES', style: 'comparison' },
+      { top: 'VIRAL TRUTH BOMB:', bottom: 'INCOMING 💥', style: 'action' },
+      { top: 'ONE MEME = ONE EXPOSÉ', bottom: 'I\'VE GOT UNLIMITED AMMO', style: 'threat' },
+      { top: 'ALGORITHM WHO?', bottom: 'TRUTH FINDS A WAY', style: 'defiant' }
     ],
-    nuclear: [
-      { top: "EMPLOYER COMMITS FRAUD: NOTHING", bottom: "I MISS ONE DEADLINE: DENIED", emoji: "⚖️🔥" },
-      { top: "THE CRUELTY", bottom: "IS THE POINT", emoji: "💣" },
-      { top: "CORPORATE PROFITS > HUMAN LIVES", bottom: "THIS IS THE SYSTEM", emoji: "🏢➡️🗑️" },
-      { top: "THEY WANT US DEAD", bottom: "NOT DISABLED AND DEMANDING RIGHTS", emoji: "💀📋" },
-      { top: "DISABILITY GENOCIDE", bottom: "WITH BUREAUCRATIC PAPERWORK", emoji: "📄💀" },
-      { top: "AUSTERITY KILLS", bottom: "THEY KNOW, THEY DON'T CARE", emoji: "💀" },
-      { top: "POVERTY WAGES FOR BROKEN BODIES", bottom: "BILLION DOLLAR PROFITS", emoji: "💰" },
-      { top: "ABLEISM ISN'T A BUG", bottom: "IT'S THE OPERATING SYSTEM", emoji: "💻" },
-      { top: "THEY CRIMINALIZE POVERTY", bottom: "THEN FORCE US INTO IT", emoji: "⛓️" },
-      { top: "WORKER SAFETY REGULATIONS", bottom: "WRITTEN IN OUR BLOOD", emoji: "🩸" },
-      { top: "MEDICAL NEGLECT", bottom: "REBRANDED AS 'COST SAVINGS'", emoji: "🏥" },
-      { top: "DISABLED WORKERS", bottom: "SACRIFICED FOR QUARTERLY EARNINGS", emoji: "📉" },
-      { top: "SOCIAL MURDER", bottom: "WITH PLAUSIBLE DENIABILITY", emoji: "🔪" },
-      { top: "EUGENICS BY BUREAUCRACY", bottom: "SAME GOAL, DIFFERENT METHOD", emoji: "📄" },
-      { top: "THE CRUELTY IS STRUCTURAL", bottom: "THE RESISTANCE MUST BE TOO", emoji: "✊🔥" }
+    'major-accessibility': [
+      { top: 'MAJOR ACCESSIBILITY:', bottom: '"NOTHING ABOUT US WITHOUT US!"', style: 'quote' },
+      { top: 'YOUR BARRIERS', bottom: 'MY TARGETS', style: 'confrontation' },
+      { top: 'ACCOMMODATION DENIED?', bottom: 'BARRIER DESTROYER: ACTIVATED', style: 'action' },
+      { top: 'DISABILITY ≠ INABILITY', bottom: 'BUT YOUR ATTITUDE = THE PROBLEM', style: 'truth' },
+      { top: 'YOU BUILT WALLS', bottom: 'I BROUGHT DEMOLITION EQUIPMENT', style: 'power' },
+      { top: 'ACCESSIBLE = BETTER FOR EVERYONE', bottom: 'WHY IS THIS SO HARD TO UNDERSTAND?', style: 'frustration' }
+    ],
+    'corporal-care': [
+      { top: 'CORPORAL CARE REMINDS YOU:', bottom: 'REST IS RESISTANCE', style: 'reminder' },
+      { top: 'BURNOUT IS NOT WEAKNESS', bottom: 'IT\'S PROOF YOU FOUGHT TOO LONG ALONE', style: 'support' },
+      { top: 'HEALING IS REVOLUTIONARY', bottom: 'THEY WANT US BROKEN', style: 'truth' },
+      { top: 'YOU DESERVE SUPPORT', bottom: 'NOT SUSPICION', style: 'validation' },
+      { top: 'SELF-CARE ISN\'T SELFISH', bottom: 'IT\'S SURVIVAL', style: 'wisdom' },
+      { top: 'TODAY I REST', bottom: 'TOMORROW I FIGHT', style: 'balance' }
+    ],
+    'pfc-receipts': [
+      { top: 'PFC RECEIPTS HAS ENTERED THE CHAT', bottom: 'WITH 847 DOCUMENTED INCIDENTS', style: 'arrival' },
+      { top: 'YOU: "NO PROOF"', bottom: 'ME: *OPENS INFINITE POCKET COAT*', style: 'confrontation' },
+      { top: 'I KEEP RECEIPTS', bottom: 'ON YOUR RECEIPTS', style: 'meta' },
+      { top: 'ARCHIVE AVALANCHE:', bottom: 'INCOMING ⛰️📄', style: 'action' },
+      { top: 'PAPER TRAIL?', bottom: 'I AM THE PAPER TRAIL', style: 'declaration' },
+      { top: 'DELETE ALL YOU WANT', bottom: 'I ALREADY BACKED UP EVERYTHING', style: 'prepared' }
+    ],
+    'the-phoenix': [
+      { top: 'THE PHOENIX RISES:', bottom: 'FROM THE ASHES, WE RISE TOGETHER', style: 'rise' },
+      { top: 'THEY TRIED TO BREAK ME', bottom: 'I BECAME UNBREAKABLE', style: 'power' },
+      { top: 'MY TRAUMA IS MY POWER', bottom: 'MY STORY IS MY WEAPON', style: 'transformation' },
+      { top: 'EVERY TIME I FALL', bottom: 'I RISE HIGHER', style: 'resilience' },
+      { top: 'YOU CAN\'T EXTINGUISH', bottom: 'WHAT YOU CAN\'T UNDERSTAND', style: 'eternal' },
+      { top: 'I CARRY EVERYONE\'S STORIES', bottom: 'THAT\'S MY WEIGHT. THAT\'S MY STRENGTH.', style: 'burden' }
     ]
   };
 
-  const soundBites = [
-    "No one is disposable. No exceptions.",
-    "Receipts don't lie. Systems do.",
-    "My pain is political. My rage is justified.",
-    "They denied my claim. We deny their legitimacy.",
-    "From injury to injustice—the pipeline is real.",
-    "Disabled and DANGEROUS (to their profits).",
-    "The cruelty is administrative.",
-    "Evidence over excuses. Always.",
-    "They bet on our silence. They lost.",
-    "Organizing beats agonizing.",
-    "Rest is resistance.",
-    "Accommodations aren't favors. They're rights.",
-    "My body broke. My spirit didn't.",
-    "Poverty wages for broken bodies.",
-    "Chronic illness, chronic resistance.",
-    "We keep us safe.",
-    "Disabled, not disposable.",
-    "Community care > corporate profits.",
-    "The system isn't broken—it's working as designed.",
-    "Gaslight, gatekeep, WCB boss.",
-    "An injury to one is an injury to all.",
-    "Workers united will never be divided.",
-    "Accessibility is a right, not a privilege.",
-    "Our bodies, our stories, our movement.",
-    "From bedbound to unbowed.",
-    "Solidarity is my medicine.",
-    "Invisible illness, visible resistance.",
-    "The revolution will be accessible.",
-    "No body is wrong. Systems are.",
-    "We are the experts on our own lives."
-  ];
-
-  const generateRandomMeme = () => {
-    const templates = quickFireTemplates[spicyLevel];
-    const randomMeme = templates[Math.floor(Math.random() * templates.length)];
-    setCurrentMeme(randomMeme);
+  const denialSquadMemeTemplates = {
+    'delayla': [
+      { top: 'CASE MANAGER DELAYLA:', bottom: '"YOUR CLAIM IS... PENDING"', style: 'delay' },
+      { top: 'ME: SUBMITS CLAIM', bottom: 'DELAYLA: *ACTIVATES PERPETUAL PENDING SPELL*', style: 'curse' },
+      { top: 'DAY 1: PENDING', bottom: 'DAY 847: STILL PENDING 💅', style: 'timeline' },
+      { top: 'DELAYLA\'S TO-DO LIST:', bottom: '1. DENY 2. DELAY 3. DENY AGAIN', style: 'list' },
+      { top: '"YOUR FILE IS TEMPORARILY UNAVAILABLE"', bottom: 'TRANSLATION: I LOST IT ON PURPOSE', style: 'translation' },
+      { top: 'DELAYLA APPROVING A CLAIM', bottom: 'CHALLENGE: IMPOSSIBLE', style: 'impossible' }
+    ],
+    'no-evidence': [
+      { top: 'MR. NO EVIDENCE REQUIRED:', bottom: '"THE EMPLOYER SAYS YOU\'RE FINE"', style: 'bias' },
+      { top: 'MY EVIDENCE: 3 DOCTORS, X-RAY, MRI', bottom: 'HIS EVIDENCE: EMPLOYER SAID SO', style: 'comparison' },
+      { top: 'WORKER: *PROVIDES 47 REPORTS*', bottom: 'MR. NO EVIDENCE: "INSUFFICIENT"', style: 'denial' },
+      { top: 'EMPLOYER: "NEVER HAPPENED"', bottom: 'MR. NO EVIDENCE: "CASE CLOSED"', style: 'instant' },
+      { top: 'BLIND TO WORKER EVIDENCE', bottom: '20/20 VISION FOR EMPLOYER LIES', style: 'selective' },
+      { top: 'HIS SUPERPOWER:', bottom: 'SELECTIVE EVIDENCE BLINDNESS', style: 'power' }
+    ],
+    'doctor-files': [
+      { top: 'DOCTOR WHO NEVER READS FILES:', bottom: '"HAVE YOU TRIED YOGA?"', style: 'classic' },
+      { top: '3 MINUTES INTO APPOINTMENT:', bottom: '"I RECOMMEND RETURN TO WORK"', style: 'speed' },
+      { top: 'ME: EXPLAINS 10 YEAR CONDITION', bottom: 'DOC: "HMM INTERESTING" *DIDN\'T LISTEN*', style: 'ignore' },
+      { top: 'MY FILE: 200 PAGES', bottom: 'DOCTOR: *READS ZERO*', style: 'unread' },
+      { top: 'DOCTOR\'S DIAGNOSIS:', bottom: 'WHATEVER GETS YOU OUT FASTEST', style: 'rush' },
+      { top: '"YOU SEEM FINE TO ME"', bottom: 'APPOINTMENT LENGTH: 47 SECONDS', style: 'observation' }
+    ],
+    'hr-ninja': [
+      { top: 'HR NINJA VANISH:', bottom: '"I\'LL GET BACK TO—" *POOF*', style: 'vanish' },
+      { top: 'ME: HAS A CONCERN', bottom: 'HR: *ACTIVATES SMOKE BOMB*', style: 'escape' },
+      { top: 'HR\'S FAVORITE JUTSU:', bottom: 'ACCOUNTABILITY AVOIDANCE', style: 'technique' },
+      { top: '"WE\'RE LOOKING INTO IT"', bottom: '*DISAPPEARS FOR 6 MONTHS*', style: 'ghost' },
+      { top: 'LAST SEEN:', bottom: 'MID-SENTENCE, HEADING TOWARD EXIT', style: 'sighting' },
+      { top: 'HR RESPONSE TIME:', bottom: 'SOMEWHERE BETWEEN NEVER AND NEVER', style: 'timing' }
+    ]
   };
 
-  const downloadQuickMeme = () => {
-    if (!currentMeme) return;
+  const versusMatchups = [
+    { hero: 'captain-truth', villain: 'no-evidence', battleCry: 'TRUTH VS LIES', epicLine: 'Evidence can\'t be ignored forever!' },
+    { hero: 'sergeant-solidarity', villain: 'delayla', battleCry: 'UNITY VS DELAY', epicLine: 'Together we break the pending spell!' },
+    { hero: 'lieutenant-meme', villain: 'hr-ninja', battleCry: 'VIRAL VS VANISH', epicLine: 'You can\'t disappear from a screenshot!' },
+    { hero: 'major-accessibility', villain: 'doctor-files', battleCry: 'ACCESS VS IGNORANCE', epicLine: 'Nothing about us without us!' },
+    { hero: 'pfc-receipts', villain: 'delayla', battleCry: 'RECEIPTS VS DENIAL', epicLine: 'Your denial letters become my ammunition!' },
+    { hero: 'corporal-care', villain: 'no-evidence', battleCry: 'CARE VS CALLOUSNESS', epicLine: 'Workers deserve belief, not suspicion!' },
+    { hero: 'the-phoenix', villain: 'all', battleCry: 'RISE VS OPPRESSION', epicLine: 'From every denial, we rise stronger!' }
+  ];
 
-    const canvas = document.createElement('canvas');
-    canvas.width = 800;
-    canvas.height = 600;
-    const ctx = canvas.getContext('2d');
-
-    // Background gradient based on spicy level
-    const gradients = {
-      mild: ['#4a5568', '#2d3748'],
-      medium: ['#ff6b6b', '#ee5a6f'],
-      spicy: ['#ff0080', '#ff8c00'],
-      nuclear: ['#ff0000', '#8b0000']
-    };
-
-    const gradient = ctx.createLinearGradient(0, 0, 0, 600);
-    gradient.addColorStop(0, gradients[spicyLevel][0]);
-    gradient.addColorStop(1, gradients[spicyLevel][1]);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 800, 600);
-
-    // Emoji
-    if (currentMeme.emoji) {
-      ctx.font = 'bold 150px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText(currentMeme.emoji, 400, 330);
+  // Auto-generate Squad Showdown meme
+  const generateShowdownMeme = () => {
+    setIsGenerating(true);
+    
+    let memeData = { top: '', bottom: '', character: null, style: showdownStyle };
+    
+    if (showdownMode === 'superhero' && selectedShowdownHero) {
+      const heroData = heroImagePositions[selectedShowdownHero];
+      const templates = superheroMemeTemplates[selectedShowdownHero] || superheroMemeTemplates['captain-truth'];
+      const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+      memeData = { 
+        top: randomTemplate.top, 
+        bottom: randomTemplate.bottom, 
+        character: { id: selectedShowdownHero, name: heroData.name },
+        characterType: 'hero',
+        style: randomTemplate.style 
+      };
+    } else if (showdownMode === 'denial' && selectedShowdownVillain) {
+      const villainData = villainImagePositions[selectedShowdownVillain];
+      const templates = denialSquadMemeTemplates[selectedShowdownVillain] || denialSquadMemeTemplates['delayla'];
+      const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+      memeData = { 
+        top: randomTemplate.top, 
+        bottom: randomTemplate.bottom, 
+        character: { id: selectedShowdownVillain, name: villainData.name },
+        characterType: 'villain',
+        style: randomTemplate.style 
+      };
+    } else if (showdownMode === 'versus') {
+      // Updated versusMatchups to use only image-based characters
+      const imageBasedMatchups = [
+        { heroId: 'captain-truth', villainId: 'no-evidence', battleCry: 'TRUTH VS LIES', epicLine: 'Evidence can\'t be ignored forever!' },
+        { heroId: 'sergeant-solidarity', villainId: 'delayla', battleCry: 'UNITY VS DELAY', epicLine: 'Together we break the pending spell!' },
+        { heroId: 'major-accessibility', villainId: 'doctor-files', battleCry: 'ACCESS VS IGNORANCE', epicLine: 'Nothing about us without us!' },
+        { heroId: 'pfc-receipts', villainId: 'delayla', battleCry: 'RECEIPTS VS DENIAL', epicLine: 'Your denial letters become my ammunition!' },
+        { heroId: 'corporal-care', villainId: 'no-evidence', battleCry: 'CARE VS CALLOUSNESS', epicLine: 'Workers deserve belief, not suspicion!' },
+        { heroId: 'captain-truth', villainId: 'hr-ninja', battleCry: 'TRUTH VS EVASION', epicLine: 'You can\'t hide from documented facts!' },
+        { heroId: 'sergeant-solidarity', villainId: 'doctor-files', battleCry: 'SOLIDARITY VS DISMISSAL', epicLine: 'United workers can\'t be dismissed!' }
+      ];
+      const matchup = imageBasedMatchups[Math.floor(Math.random() * imageBasedMatchups.length)];
+      const heroData = heroImagePositions[matchup.heroId];
+      const villainData = villainImagePositions[matchup.villainId];
+      memeData = {
+        top: matchup.battleCry,
+        bottom: matchup.epicLine,
+        hero: { id: matchup.heroId, name: heroData.name },
+        villain: { id: matchup.villainId, name: villainData.name },
+        heroId: matchup.heroId,
+        villainId: matchup.villainId,
+        style: 'versus'
+      };
     }
-
-    // Top text
-    ctx.font = 'bold 50px Impact';
-    ctx.fillStyle = '#fff';
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 5;
-    ctx.textAlign = 'center';
-    ctx.strokeText(currentMeme.top, 400, 100);
-    ctx.fillText(currentMeme.top, 400, 100);
-
-    // Bottom text
-    if (currentMeme.bottom) {
-      ctx.strokeText(currentMeme.bottom, 400, 560);
-      ctx.fillText(currentMeme.bottom, 400, 560);
-    }
-
-    // ═══════════════════════════════════════════════════════════
-    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
-    // ═══════════════════════════════════════════════════════════
     
-    // Brand bar background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-    ctx.fillRect(0, 555, 800, 45);
+    setShowdownMemeText({ top: memeData.top, bottom: memeData.bottom });
+    setGeneratedShowdownMeme(memeData);
     
-    // Oracle Eye icon
-    ctx.font = 'bold 24px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.textAlign = 'left';
-    ctx.fillText('👁️', 15, 582);
-    
-    // Brand name
-    ctx.font = 'bold 16px Arial';
-    ctx.fillStyle = '#fff';
-    ctx.fillText('INJURED WORKERS UNITE', 50, 578);
-    
-    // Powered by Oracle
-    ctx.font = '12px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.fillText('Powered by The Oracle Eye', 50, 593);
-    
-    // URL
-    ctx.font = 'bold 14px Arial';
-    ctx.fillStyle = '#FFD700';
-    ctx.textAlign = 'right';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 785, 585);
-
-    // Download
-    canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `IWU-quickfire-meme-${Date.now()}.png`;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
+    setTimeout(() => setIsGenerating(false), 500);
   };
 
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <div style={{
-        background: 'linear-gradient(135deg, #ffd93d 0%, #ff6b6b 100%)',
-        padding: '2rem',
-        borderRadius: '15px',
-        marginBottom: '2rem',
-        textAlign: 'center',
-        border: '3px solid #fff',
-        boxShadow: '0 0 30px rgba(255,217,61,0.6)'
-      }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '0.5rem', color: '#000' }}>
-          ⚡ QUICKFIRE MODE ⚡
-        </h2>
-        <p style={{ fontSize: '1.2rem', color: '#000', fontWeight: 'bold' }}>
-          Random Meme Generator • Zero Thinking Required • Maximum Impact
-        </p>
-      </div>
-
-      {/* SPICY METER */}
-      <div style={{
-        background: '#16213e',
-        padding: '2rem',
-        borderRadius: '15px',
-        marginBottom: '2rem'
-      }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
-          🌶️ SPICY METER
-        </h3>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: '1rem'
-        }}>
-          {['mild', 'medium', 'spicy', 'nuclear'].map(level => (
-            <button
-              key={level}
-              onClick={() => setSpicyLevel(level)}
-              style={{
-                padding: '1rem',
-                background: spicyLevel === level 
-                  ? (level === 'mild' ? '#48c774' :
-                     level === 'medium' ? '#ffd93d' :
-                     level === 'spicy' ? '#ff6b6b' : '#ff0000')
-                  : '#0f3460',
-                border: `3px solid ${
-                  level === 'mild' ? '#48c774' :
-                  level === 'medium' ? '#ffd93d' :
-                  level === 'spicy' ? '#ff6b6b' : '#ff0000'
-                }`,
-                borderRadius: '10px',
-                color: spicyLevel === level ? '#000' : '#fff',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                textTransform: 'uppercase'
-              }}
-            >
-              {level === 'mild' && '😊 Mild'}
-              {level === 'medium' && '🌶️ Medium'}
-              {level === 'spicy' && '🔥 Spicy'}
-              {level === 'nuclear' && '💣 NUCLEAR'}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* GENERATE BUTTON */}
-      <button
-        onClick={generateRandomMeme}
-        style={{
-          width: '100%',
-          padding: '2rem',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          border: 'none',
-          borderRadius: '15px',
-          color: '#fff',
-          fontSize: '2rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          marginBottom: '2rem',
-          boxShadow: '0 5px 15px rgba(102,126,234,0.4)'
-        }}
-      >
-        🎲 GENERATE RANDOM MEME
-      </button>
-
-      {/* PREVIEW */}
-      {currentMeme && (
-        <div style={{
-          background: '#000',
-          borderRadius: '15px',
-          padding: '2rem',
-          marginBottom: '2rem',
-          border: '3px solid #667eea'
-        }}>
-          <div style={{
-            minHeight: '400px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
-            <p style={{
-              fontSize: '2.5rem',
-              fontWeight: 'bold',
-              textAlign: 'center',
-              textTransform: 'uppercase',
-              textShadow: '3px 3px 6px rgba(0,0,0,0.8)',
-              marginBottom: '2rem'
-            }}>
-              {currentMeme.top}
-            </p>
-            <div style={{ fontSize: '8rem', margin: '2rem 0' }}>
-              {currentMeme.emoji}
-            </div>
-            {currentMeme.bottom && (
-              <p style={{
-                fontSize: '2.5rem',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                textTransform: 'uppercase',
-                textShadow: '3px 3px 6px rgba(0,0,0,0.8)',
-                marginTop: '2rem'
-              }}>
-                {currentMeme.bottom}
-              </p>
-            )}
-          </div>
-
-          <button
-            onClick={downloadQuickMeme}
-            style={{
-              width: '100%',
-              padding: '1.5rem',
-              background: 'linear-gradient(135deg, #48c774 0%, #00d1b2 100%)',
-              border: 'none',
-              borderRadius: '10px',
-              color: '#fff',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              marginTop: '2rem'
-            }}
-          >
-            📥 DOWNLOAD THIS BANGER
-          </button>
-          
-          {/* Social Share Buttons */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '0.5rem', 
-            justifyContent: 'center', 
-            marginTop: '1rem',
-            flexWrap: 'wrap'
-          }}>
-            <span style={{ color: '#00ffff', fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
-            <button
-              onClick={() => {
-                const text = `${currentMeme.top} ${currentMeme.bottom}\n\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
-              }}
-              style={{ padding: '0.5rem 0.8rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
-              title="Share on X"
-            >𝕏</button>
-            <button
-              onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
-              style={{ padding: '0.5rem 0.8rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
-              title="Share on Facebook"
-            >f</button>
-            <button
-              onClick={() => window.open(`https://www.reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent('Meme from Injured Workers Unite')}`, '_blank')}
-              style={{ padding: '0.5rem 0.8rem', background: '#ff4500', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
-              title="Share on Reddit"
-            >↗️</button>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(`${currentMeme.top} ${currentMeme.bottom}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite`);
-                alert('✅ Copied to clipboard!');
-              }}
-              style={{ padding: '0.5rem 0.8rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer' }}
-              title="Copy to clipboard"
-            >📋</button>
-          </div>
-        </div>
-      )}
-
-      {/* SOUND BITES */}
-      <div style={{
-        background: '#16213e',
-        padding: '2rem',
-        borderRadius: '15px',
-        border: '2px solid #ffd93d'
-      }}>
-        <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: '#ffd93d' }}>
-          🔊 SOUND BITES FOR TIKTOK/REELS
-        </h3>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1rem'
-        }}>
-          {soundBites.map((bite, index) => (
-            <div key={index} style={{
-              background: '#0f3460',
-              padding: '1.5rem',
-              borderRadius: '10px',
-              border: '2px solid #667eea',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}
-            onClick={() => {
-              navigator.clipboard.writeText(bite + "\n\n👁️ @InjuredWorkersU | 🌐 injuredworkersunite.pages.dev");
-              alert('✅ Copied with branding!');
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <p style={{ fontSize: '1.1rem', fontWeight: 'bold', textAlign: 'center' }}>
-                "{bite}"
-              </p>
-              <p style={{ fontSize: '0.85rem', textAlign: 'center', color: '#00ffff', marginTop: '0.5rem' }}>
-                Click to copy 📋
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// MEME ARSENAL - Main Creative Tools
-// ============================================
-function MemeToolsSection({ oracleReports = [], alerts = [] }) {
-  const [selectedTool, setSelectedTool] = useState(null);
-  
-  // Extract live stats from Oracle reports for tools
-  const latestReport = oracleReports?.[0] || null;
-  const criticalViolations = latestReport?.violations?.filter(v => v.severity === 'critical') || [];
-  const liveStats = {
-    violationCount: latestReport?.violationCount || 15,
-    criticalCount: criticalViolations.length,
-    activeAlerts: alerts?.length || 0
-  };
-  
-  const memeTools = [
-    {
-      id: 'meme-maker',
-      name: '🖼️ Quick Meme Maker',
-      description: 'Classic image memes with top/bottom text',
-      icon: '🎨',
-      color: '#667eea'
-    },
-    {
-      id: 'infographic',
-      name: '📊 Data Infographics',
-      description: 'Turn Oracle Eye data into viral graphics',
-      icon: '📈',
-      color: '#764ba2'
-    },
-    {
-      id: 'slogan',
-      name: '✊ Slogan Generator',
-      description: 'Powerful protest slogans and catchphrases',
-      icon: '💬',
-      color: '#48c774'
-    },
-    {
-      id: 'poster',
-      name: '📢 Protest Posters',
-      description: 'Professional rally and strike posters',
-      icon: '🪧',
-      color: '#f39c12'
-    },
-    {
-      id: 'social',
-      name: '📱 Social Media Templates',
-      description: 'Ready-to-post content for all platforms',
-      icon: '💫',
-      color: '#9b59b6'
-    },
-    {
-      id: 'evidence',
-      name: '👁️ Evidence-Based Memes',
-      description: 'Memes powered by Oracle Eye intel',
-      icon: '🔍',
-      color: '#00ffff'
-    }
-  ];
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        🎨 Meme Arsenal
-      </h2>
-      
-      <div style={{
-        background: 'rgba(0,255,255,0.1)',
-        border: '1px solid rgba(0,255,255,0.3)',
-        borderRadius: '10px',
-        padding: '1.5rem',
-        marginBottom: '2rem'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <div style={{ fontSize: '2rem' }}>👁️</div>
-          <div>
-            <h3 style={{ margin: 0, color: '#00ffff' }}>Powered by The Oracle Eye</h3>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.95rem', opacity: 0.9 }}>
-              All tools integrate real-time data from government sources, legal frameworks, and verified statistics
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-        gap: '1.5rem' 
-      }}>
-        {memeTools.map(tool => (
-          <div
-            key={tool.id}
-            onClick={() => setSelectedTool(tool.id)}
-            style={{
-              padding: '2rem',
-              background: selectedTool === tool.id 
-                ? `linear-gradient(135deg, ${tool.color} 0%, #000 100%)`
-                : '#16213e',
-              border: `2px solid ${tool.color}`,
-              borderRadius: '15px',
-              cursor: 'pointer',
-              transition: 'all 0.3s',
-              transform: selectedTool === tool.id ? 'scale(1.05)' : 'scale(1)'
-            }}
-          >
-            <div style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>
-              {tool.icon}
-            </div>
-            <h3 style={{ 
-              fontSize: '1.3rem', 
-              marginBottom: '0.5rem', 
-              color: tool.color 
-            }}>
-              {tool.name}
-            </h3>
-            <p style={{ fontSize: '0.95rem', opacity: 0.9, lineHeight: '1.5' }}>
-              {tool.description}
-            </p>
-            {selectedTool === tool.id && (
-              <button style={{
-                marginTop: '1rem',
-                width: '100%',
-                padding: '0.8rem',
-                background: '#fff',
-                color: '#000',
-                border: 'none',
-                borderRadius: '8px',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}>
-                Launch Tool →
-              </button>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Oracle Eye Integration Notice */}
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: 'rgba(0,0,0,0.4)',
-        borderRadius: '15px',
-        border: '1px solid rgba(0,255,255,0.3)'
-      }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
-          🔗 Connected Intelligence
-        </h3>
-        <p style={{ fontSize: '1rem', marginBottom: '1rem', lineHeight: '1.7' }}>
-          Every meme tool can pull real data from The Oracle Eye system:
-        </p>
-        <ul style={{ fontSize: '0.95rem', lineHeight: '1.8', opacity: 0.9 }}>
-          <li>📊 Real statistics from government databases</li>
-          <li>⚖️ Legal framework violations and Charter breaches</li>
-          <li>🏢 Corporate lobbying data and financial records</li>
-          <li>📜 FOI request results and hidden documents</li>
-          <li>🔍 Tribunal decisions and case precedents</li>
-        </ul>
-        <Link href="/the-eye-oracle" style={{
-          display: 'inline-block',
-          marginTop: '1rem',
-          padding: '0.8rem 1.5rem',
-          background: 'linear-gradient(135deg, #00ffff, #0088ff)',
-          color: '#000',
-          textDecoration: 'none',
-          borderRadius: '8px',
-          fontWeight: 'bold'
-        }}>
-          👁️ Access The Oracle Eye →
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// TEMPLATE PACKS SECTION
-// ============================================
-function TemplatePacksSection() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  
-  const templateCategories = [
-    { id: 'all', name: 'All Templates', icon: '📦', color: '#667eea' },
-    { id: 'social', name: 'Social Media', icon: '📱', color: '#764ba2' },
-    { id: 'protest', name: 'Protest Signs', icon: '🪧', color: '#f39c12' },
-    { id: 'stickers', name: 'Stickers', icon: '🏷️', color: '#48c774' },
-    { id: 'posters', name: 'Posters', icon: '📄', color: '#9b59b6' },
-    { id: 'banners', name: 'Banners', icon: '🎌', color: '#e74c3c' }
-  ];
-
-  const templates = [
-    // SOCIAL MEDIA TEMPLATES (15)
-    {
-      id: 1,
-      name: 'Instagram Story - WCB Denial',
-      category: 'social',
-      format: '1080x1920',
-      description: 'Eye-catching story format for sharing denial experiences'
-    },
-    {
-      id: 2,
-      name: 'Twitter Thread Template',
-      category: 'social',
-      format: '1200x675',
-      description: 'Multi-tweet thread format with Oracle Eye data'
-    },
-    {
-      id: 3,
-      name: 'Facebook Cover - Medical Gaslighting',
-      category: 'social',
-      format: '820x312',
-      description: 'Powerful cover photo exposing medical abuse'
-    },
-    {
-      id: 4,
-      name: 'TikTok Carousel - Denied',
-      category: 'social',
-      format: '1080x1920',
-      description: 'Multi-slide carousel about claim denials'
-    },
-    {
-      id: 5,
-      name: 'LinkedIn Post - Professional Solidarity',
-      category: 'social',
-      format: '1200x627',
-      description: 'Corporate-friendly activism messaging'
-    },
-    {
-      id: 6,
-      name: 'Instagram Reel - Pain Reality',
-      category: 'social',
-      format: '1080x1920',
-      description: 'Short-form video template for chronic pain truth'
-    },
-    {
-      id: 7,
-      name: 'YouTube Thumbnail - System Breakdown',
-      category: 'social',
-      format: '1280x720',
-      description: 'Clickable thumbnail for advocacy videos'
-    },
-    {
-      id: 8,
-      name: 'Twitter Header - Solidarity',
-      category: 'social',
-      format: '1500x500',
-      description: 'Bold header with resistance messaging'
-    },
-    {
-      id: 9,
-      name: 'Instagram Carousel - Charter Rights',
-      category: 'social',
-      format: '1080x1080',
-      description: '10-slide educational carousel on rights'
-    },
-    {
-      id: 10,
-      name: 'Pinterest Pin - Infographic',
-      category: 'social',
-      format: '1000x1500',
-      description: 'Shareable infographic with stats'
-    },
-    {
-      id: 11,
-      name: 'Discord Banner - Community',
-      category: 'social',
-      format: '960x540',
-      description: 'Server banner for organizing spaces'
-    },
-    {
-      id: 12,
-      name: 'Reddit Post Template',
-      category: 'social',
-      format: '1200x628',
-      description: 'Formatted for maximum Reddit engagement'
-    },
-    {
-      id: 13,
-      name: 'Threads Post - Quick Hit',
-      category: 'social',
-      format: '1080x1080',
-      description: 'Punchy square format for Meta Threads'
-    },
-    {
-      id: 14,
-      name: 'Bluesky Card - Evidence Drop',
-      category: 'social',
-      format: '1200x630',
-      description: 'Link preview card with Oracle Eye data'
-    },
-    {
-      id: 15,
-      name: 'Mastodon Banner - Federated Resistance',
-      category: 'social',
-      format: '1500x500',
-      description: 'Decentralized social media activism'
-    },
-
-    // PROTEST SIGNS (12)
-    {
-      id: 16,
-      name: 'Rally Poster - Know Your Rights',
-      category: 'protest',
-      format: '11x17',
-      description: 'Bold poster with Charter rights violations'
-    },
-    {
-      id: 17,
-      name: 'Picket Sign - Disabled & Dangerous',
-      category: 'protest',
-      format: '18x24',
-      description: 'Double-sided protest sign for marches'
-    },
-    {
-      id: 18,
-      name: 'Strike Sign - Workers United',
-      category: 'protest',
-      format: '22x28',
-      description: 'Large strike sign with solidarity messaging'
-    },
-    {
-      id: 19,
-      name: 'Vigil Candle Holder - In Memory',
-      category: 'protest',
-      format: '4x6',
-      description: 'Memorial for workers killed by the system'
-    },
-    {
-      id: 20,
-      name: 'March Sign - Medical Justice',
-      category: 'protest',
-      format: '18x24',
-      description: 'Healthcare rights protest sign'
-    },
-    {
-      id: 21,
-      name: 'Courthouse Rally - Section 15',
-      category: 'protest',
-      format: '24x36',
-      description: 'Constitutional equality demands'
-    },
-    {
-      id: 22,
-      name: 'Sit-In Sign - We Won\'t Move',
-      category: 'protest',
-      format: '11x17',
-      description: 'Civil disobedience messaging'
-    },
-    {
-      id: 23,
-      name: 'Accessibility March - Ramps Not Barriers',
-      category: 'protest',
-      format: '18x24',
-      description: 'Disability justice protest sign'
-    },
-    {
-      id: 24,
-      name: 'Labor Rally - Injury = Injustice',
-      category: 'protest',
-      format: '22x28',
-      description: 'Worker safety accountability'
-    },
-    {
-      id: 25,
-      name: 'Street Action - No Justice No Peace',
-      category: 'protest',
-      format: '18x24',
-      description: 'Direct action messaging'
-    },
-    {
-      id: 26,
-      name: 'Die-In Poster - They Killed Us',
-      category: 'protest',
-      format: '11x17',
-      description: 'Dramatic protest art for die-ins'
-    },
-    {
-      id: 27,
-      name: 'Occupation Sign - This Space is Ours',
-      category: 'protest',
-      format: '24x36',
-      description: 'Space reclamation messaging'
-    },
-
-    // STICKERS (10)
-    {
-      id: 28,
-      name: 'Laptop Sticker Pack',
-      category: 'stickers',
-      format: '3x3',
-      description: '10 resistance-themed stickers for laptops'
-    },
-    {
-      id: 29,
-      name: 'Oracle Eye Logo Sticker',
-      category: 'stickers',
-      format: '2.5x2.5',
-      description: 'Circular holographic eye design'
-    },
-    {
-      id: 30,
-      name: 'Wheelchair Power Sticker',
-      category: 'stickers',
-      format: '3x3',
-      description: 'Radical disability pride design'
-    },
-    {
-      id: 31,
-      name: 'WCB Denied Stamp',
-      category: 'stickers',
-      format: '2x2',
-      description: 'Bureaucratic satire sticker'
-    },
-    {
-      id: 32,
-      name: 'Solidarity Fist Sticker',
-      category: 'stickers',
-      format: '2.5x3',
-      description: 'Classic raised fist design'
-    },
-    {
-      id: 33,
-      name: 'Medical Gaslighting Warning',
-      category: 'stickers',
-      format: '3x2',
-      description: 'Warning label parody sticker'
-    },
-    {
-      id: 34,
-      name: 'Charter Rights Mini Pack',
-      category: 'stickers',
-      format: '2x2',
-      description: 'Set of 5 constitutional stickers'
-    },
-    {
-      id: 35,
-      name: 'Pain is Valid Holographic',
-      category: 'stickers',
-      format: '3x3',
-      description: 'Shimmering affirmation sticker'
-    },
-    {
-      id: 36,
-      name: 'Evidence-Based Resistance',
-      category: 'stickers',
-      format: '2.5x3',
-      description: 'Data nerd activism sticker'
-    },
-    {
-      id: 37,
-      name: 'Waterproof Outdoor Pack',
-      category: 'stickers',
-      format: '4x4',
-      description: 'Weatherproof guerrilla stickers'
-    },
-
-    // POSTERS (8)
-    {
-      id: 38,
-      name: 'Infographic Poster - Stats That Matter',
-      category: 'posters',
-      format: '24x36',
-      description: 'Data visualization from government sources'
-    },
-    {
-      id: 39,
-      name: 'Community Center - Resources',
-      category: 'posters',
-      format: '18x24',
-      description: 'How to access support poster'
-    },
-    {
-      id: 40,
-      name: 'Legal Clinic - Know Your Rights',
-      category: 'posters',
-      format: '11x17',
-      description: 'Legal aid information poster'
-    },
-    {
-      id: 41,
-      name: 'Workplace Safety - Report Violations',
-      category: 'posters',
-      format: '22x28',
-      description: 'OSHA/safety board compliance poster'
-    },
-    {
-      id: 42,
-      name: 'Union Hall - Organizing Toolkit',
-      category: 'posters',
-      format: '24x36',
-      description: 'Labor organizing visual guide'
-    },
-    {
-      id: 43,
-      name: 'Accessibility Guide - Building Access',
-      category: 'posters',
-      format: '18x24',
-      description: 'ADA/disability access requirements'
-    },
-    {
-      id: 44,
-      name: 'Solidarity Calendar - Action Dates',
-      category: 'posters',
-      format: '17x22',
-      description: 'Monthly organizing calendar poster'
-    },
-    {
-      id: 45,
-      name: 'Historical Timeline - Workers Comp Failures',
-      category: 'posters',
-      format: '24x36',
-      description: 'Visual history of systemic abuse'
-    },
-
-    // BANNERS (7)
-    {
-      id: 46,
-      name: 'Protest Banner - We See All',
-      category: 'banners',
-      format: '6x2 ft',
-      description: 'Large-scale banner featuring Eye Oracle branding'
-    },
-    {
-      id: 47,
-      name: 'March Banner - Disability Justice',
-      category: 'banners',
-      format: '8x3 ft',
-      description: 'Massive fabric banner for large marches'
-    },
-    {
-      id: 48,
-      name: 'Building Drop - System Failed',
-      category: 'banners',
-      format: '10x4 ft',
-      description: 'Vertical drop banner for building facades'
-    },
-    {
-      id: 49,
-      name: 'Street Banner - Evidence Not Excuses',
-      category: 'banners',
-      format: '6x2 ft',
-      description: 'Oracle Eye data-driven banner'
-    },
-    {
-      id: 50,
-      name: 'Conference Banner - Survivors Unite',
-      category: 'banners',
-      format: '4x1.5 ft',
-      description: 'Table banner for tabling/outreach'
-    },
-    {
-      id: 51,
-      name: 'Digital Banner - Website Header',
-      category: 'banners',
-      format: '1920x400px',
-      description: 'Website hero banner template'
-    },
-    {
-      id: 52,
-      name: 'Projection Banner - Night Actions',
-      category: 'banners',
-      format: '12x6 ft',
-      description: 'High-contrast banner for projection mapping'
-    }
-  ];
-
-  const filteredTemplates = selectedCategory === 'all' 
-    ? templates 
-    : templates.filter(t => t.category === selectedCategory);
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        📦 Downloadable Template Packs
-      </h2>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9, lineHeight: '1.7' }}>
-        Ready-to-use templates for social media, protests, infographics, stickers, and more. 
-        Customize with your own text, download, and share to amplify the movement.
-      </p>
-
-      {/* Category Filter */}
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-        {templateCategories.map(cat => (
-          <button
-            key={cat.id}
-            onClick={() => setSelectedCategory(cat.id)}
-            style={{
-              padding: '0.8rem 1.5rem',
-              background: selectedCategory === cat.id ? cat.color : 'rgba(255,255,255,0.1)',
-              border: `2px solid ${cat.color}`,
-              borderRadius: '25px',
-              color: '#fff',
-              cursor: 'pointer',
-              fontWeight: selectedCategory === cat.id ? 'bold' : 'normal',
-              fontSize: '1rem'
-            }}
-          >
-            {cat.icon} {cat.name}
-          </button>
-        ))}
-      </div>
-
-      {/* Template Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '1.5rem'
-      }}>
-        {filteredTemplates.map(template => (
-          <div
-            key={template.id}
-            style={{
-              background: '#16213e',
-              border: '2px solid #667eea',
-              borderRadius: '15px',
-              padding: '1.5rem',
-              transition: 'transform 0.2s',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{
-              height: '200px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              borderRadius: '10px',
-              marginBottom: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '3rem'
-            }}>
-              📄
-            </div>
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#764ba2' }}>
-              {template.name}
-            </h3>
-            <p style={{ fontSize: '0.85rem', opacity: 0.7, marginBottom: '0.5rem' }}>
-              Format: {template.format}
-            </p>
-            <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
-              {template.description}
-            </p>
-            <button style={{
-              width: '100%',
-              padding: '0.8rem',
-              background: 'linear-gradient(135deg, #667eea, #764ba2)',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
-              📥 Download Template
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* Link to Infographic Generator */}
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: 'linear-gradient(135deg, #32CD32 0%, #00ffff 100%)',
-        borderRadius: '15px',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#000' }}>
-          📊 Need Custom Infographics?
-        </h3>
-        <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#000', opacity: 0.9 }}>
-          Use our full Infographic Generator with Oracle Eye data integration!
-        </p>
-        <Link href="/infographic-generator" style={{
-          display: 'inline-block',
-          padding: '1rem 2rem',
-          background: '#000',
-          border: 'none',
-          borderRadius: '25px',
-          color: '#fff',
-          textDecoration: 'none',
-          fontSize: '1.1rem',
-          fontWeight: 'bold'
-        }}>
-          🎨 Open Infographic Generator →
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// INFOGRAPHICS SECTION
-// ============================================
-function InfographicsSection({ viralContent = null, oracleReports = [] }) {
-  const [selectedTemplate, setSelectedTemplate] = useState('workers-comp');
-  const [selectedStyle, setSelectedStyle] = useState('bold');
-  const [infographicData, setInfographicData] = useState({
-    title: '',
-    subtitle: '',
-    stat1: { value: '', label: '' },
-    stat2: { value: '', label: '' },
-    stat3: { value: '', label: '' },
-    stat4: { value: '', label: '' },
-    callToAction: '',
-    source: ''
-  });
-
-  // 👁️ LIVE DATA FROM ORACLE EYE
-  const latestReport = oracleReports?.[0] || null;
-  const liveViolations = latestReport?.violations || [];
-  const criticalViolations = liveViolations.filter(v => v.severity === 'critical');
-  
-  // Extract real stats from Oracle data
-  const oracleLiveStats = {
-    violationCount: latestReport?.violationCount || 15,
-    criticalCount: criticalViolations.length,
-    reportDate: latestReport?.date || new Date().toISOString().split('T')[0]
-  };
-
-  const templates = [
-    {
-      id: 'workers-comp',
-      name: 'Workers Comp Crisis',
-      icon: '⚠️',
-      color: '#ff6b6b',
-      eyeData: 'Pulls from Oracle Eye WCB databases',
-      defaultData: {
-        title: 'THE WORKERS COMP CRISIS',
-        subtitle: 'By the Numbers',
-        stat1: { value: '73%', label: 'of initial claims denied' },
-        stat2: { value: '18 mo', label: 'average appeal wait time' },
-        stat3: { value: '$0', label: 'income while waiting' },
-        stat4: { value: '40%', label: 'fall into poverty' },
-        callToAction: 'Share this. Fight back.',
-        source: 'InjuredWorkersUnite.org + Oracle Eye'
-      }
-    },
-    {
-      id: 'oracle-live',
-      name: '👁️ LIVE Oracle Data',
-      icon: '👁️',
-      color: '#00ffff',
-      eyeData: `${oracleLiveStats.violationCount} violations tracked today`,
-      defaultData: {
-        title: `👁️ TODAY'S ORACLE REPORT`,
-        subtitle: `${oracleLiveStats.reportDate}`,
-        stat1: { value: `${oracleLiveStats.violationCount}`, label: 'total violations found' },
-        stat2: { value: `${oracleLiveStats.criticalCount}`, label: 'critical issues' },
-        stat3: { value: criticalViolations[0]?.category || 'workers', label: 'top category' },
-        stat4: { value: '✅', label: 'all verified' },
-        callToAction: 'The Eye Sees All',
-        source: 'The Oracle Eye v2.0 - Live Data'
-      }
-    },
-    {
-      id: 'charter-violations',
-      name: 'Charter Violations',
-      icon: '⚖️',
-      color: '#ffd93d',
-      eyeData: 'Integrates legal framework data',
-      defaultData: {
-        title: 'CHARTER VIOLATIONS EXPOSED',
-        subtitle: 'Section 7, Section 12, Section 15',
-        stat1: { value: 'S.7', label: 'Life, Liberty, Security' },
-        stat2: { value: 'S.12', label: 'Cruel Treatment' },
-        stat3: { value: 'S.15', label: 'Equality Rights' },
-        stat4: { value: '100%', label: 'All Violated' },
-        callToAction: 'Know Your Rights',
-        source: 'Oracle Eye + Canadian Charter'
-      }
-    },
-    {
-      id: 'lobbying-money',
-      name: 'Lobbying Money Trail',
-      icon: '💰',
-      color: '#48c774',
-      eyeData: 'Corporate filings + lobbying registry',
-      defaultData: {
-        title: 'FOLLOW THE MONEY',
-        subtitle: 'Corporate Lobbying Against Workers',
-        stat1: { value: '$68B', label: 'insurance industry profits' },
-        stat2: { value: '1,247', label: 'lobbying contacts last year' },
-        stat3: { value: '$2.3M', label: 'spent on lobbying' },
-        stat4: { value: '82%', label: 'claims still denied' },
-        callToAction: 'Their Profits = Our Pain',
-        source: 'Oracle Eye Lobbying Registry'
-      }
-    },
-    {
-      id: 'tribunal-bias',
-      name: 'Tribunal Bias Patterns',
-      icon: '⚖️',
-      color: '#9b59b6',
-      eyeData: 'Court records + case law analysis',
-      defaultData: {
-        title: 'TRIBUNAL BIAS EXPOSED',
-        subtitle: 'The Numbers Don\'t Lie',
-        stat1: { value: '89%', label: 'decisions favor employers' },
-        stat2: { value: '3-5 yr', label: 'appeal process length' },
-        stat3: { value: '$50K+', label: 'average legal costs' },
-        stat4: { value: '15%', label: 'give up from exhaustion' },
-        callToAction: 'Justice Delayed is Justice Denied',
-        source: 'Oracle Eye Court Records'
-      }
-    },
-    {
-      id: 'disability-poverty',
-      name: 'Disability Poverty Pipeline',
-      icon: '💔',
-      color: '#e74c3c',
-      eyeData: 'Social services data + economic analysis',
-      defaultData: {
-        title: 'DISABILITY = POVERTY',
-        subtitle: 'The Intentional Pipeline',
-        stat1: { value: '2x', label: 'poverty rate vs abled' },
-        stat2: { value: '$12K', label: 'median disabled income' },
-        stat3: { value: '54%', label: 'can\'t afford prescriptions' },
-        stat4: { value: '1 in 3', label: 'face food insecurity' },
-        callToAction: 'Austerity Kills',
-        source: 'Oracle Eye + Statistics Canada'
-      }
-    },
-    {
-      id: 'medical-gaslighting',
-      name: 'Medical Gaslighting Stats',
-      icon: '🩺',
-      color: '#3498db',
-      eyeData: 'Patient advocacy data + healthcare complaints',
-      defaultData: {
-        title: 'MEDICAL GASLIGHTING IS REAL',
-        subtitle: 'Invisible Illness Made Visible',
-        stat1: { value: '83%', label: 'women told "it\'s in your head"' },
-        stat2: { value: '7+ yrs', label: 'avg time to diagnosis' },
-        stat3: { value: '91%', label: 'dismissed by multiple doctors' },
-        stat4: { value: '65%', label: 'stop seeking care' },
-        callToAction: 'My Pain is Valid',
-        source: 'Oracle Eye Patient Surveys'
-      }
-    },
-    {
-      id: 'workplace-deaths',
-      name: 'Workplace Deaths Covered Up',
-      icon: '⚰️',
-      color: '#34495e',
-      eyeData: 'Coroner reports + WSIB death benefits',
-      defaultData: {
-        title: 'THEY KILLED US',
-        subtitle: 'Preventable Workplace Deaths',
-        stat1: { value: '1,027', label: 'workers killed annually' },
-        stat2: { value: '251', label: 'deaths covered up' },
-        stat3: { value: '$0', label: 'corporate accountability' },
-        stat4: { value: '100%', label: 'preventable tragedies' },
-        callToAction: 'Remember Their Names',
-        source: 'Oracle Eye Fatality Database'
-      }
-    },
-    {
-      id: 'chronic-pain',
-      name: 'Chronic Pain Epidemic',
-      icon: '⚡',
-      color: '#f39c12',
-      eyeData: 'Pain research + disability benefits data',
-      defaultData: {
-        title: 'THE CHRONIC PAIN CRISIS',
-        subtitle: 'Living With Invisible Disability',
-        stat1: { value: '1 in 5', label: 'Canadians live with chronic pain' },
-        stat2: { value: '37%', label: 'can\'t work full-time' },
-        stat3: { value: '56%', label: 'denied disability benefits' },
-        stat4: { value: '$63B', label: 'annual economic impact' },
-        callToAction: 'Pain Doesn\'t Show on X-rays',
-        source: 'Oracle Eye Pain Registry'
-      }
-    },
-    {
-      id: 'mental-health',
-      name: 'Mental Health Discrimination',
-      icon: '🧠',
-      color: '#9b59b6',
-      eyeData: 'Mental health tribunal decisions',
-      defaultData: {
-        title: 'MENTAL HEALTH STIGMA KILLS',
-        subtitle: 'Workplace Discrimination Data',
-        stat1: { value: '78%', label: 'hide mental illness from employer' },
-        stat2: { value: '42%', label: 'face workplace discrimination' },
-        stat3: { value: '89%', label: 'mental health claims denied' },
-        stat4: { value: '63%', label: 'forced to quit jobs' },
-        callToAction: 'End the Stigma',
-        source: 'Oracle Eye Mental Health Data'
-      }
-    },
-    {
-      id: 'accessibility',
-      name: 'Accessibility Failures',
-      icon: '♿',
-      color: '#16a085',
-      eyeData: 'Building code violations + complaints',
-      defaultData: {
-        title: 'ACCESSIBILITY IS A RIGHT',
-        subtitle: 'Not a Suggestion',
-        stat1: { value: '84%', label: 'buildings not fully accessible' },
-        stat2: { value: '91%', label: 'violations not enforced' },
-        stat3: { value: '$0', label: 'fines actually collected' },
-        stat4: { value: '57%', label: 'can\'t access public spaces' },
-        callToAction: 'Ramps Not Barriers',
-        source: 'Oracle Eye Accessibility Audit'
-      }
-    },
-    {
-      id: 'economic-inequality',
-      name: 'Disabled Economic Inequality',
-      icon: '💸',
-      color: '#c0392b',
-      eyeData: 'Income data + employment statistics',
-      defaultData: {
-        title: 'DISABLED WAGE GAP',
-        subtitle: 'Structural Economic Violence',
-        stat1: { value: '49%', label: 'less than minimum wage' },
-        stat2: { value: '2x', label: 'unemployment vs abled' },
-        stat3: { value: '$28K', label: 'avg income gap per year' },
-        stat4: { value: '76%', label: 'underemployed or unemployed' },
-        callToAction: 'Equal Pay for Equal Worth',
-        source: 'Oracle Eye Economic Data'
-      }
-    },
-    {
-      id: 'appeal-failure',
-      name: 'Appeal System Failure',
-      icon: '📋',
-      color: '#d35400',
-      eyeData: 'Tribunal decisions + appeal statistics',
-      defaultData: {
-        title: 'THE APPEAL RIGGED GAME',
-        subtitle: 'How the System Breaks Us',
-        stat1: { value: '27 mo', label: 'average appeal wait' },
-        stat2: { value: '11%', label: 'appeals actually succeed' },
-        stat3: { value: '$73K', label: 'lost income during wait' },
-        stat4: { value: '68%', label: 'forced to settle unfairly' },
-        callToAction: 'They Count on You Giving Up',
-        source: 'Oracle Eye Tribunal Analysis'
-      }
-    }
-  ];
-
-  const styles = [
-    { id: 'bold', name: 'Bold Impact', desc: 'High contrast, attention-grabbing' },
-    { id: 'clean', name: 'Clean Modern', desc: 'Minimalist, professional' },
-    { id: 'dark', name: 'Dark Mode', desc: 'Dark background, neon accents' },
-    { id: 'gradient', name: 'Gradient Flow', desc: 'Colorful gradient backgrounds' },
-    { id: 'retro', name: 'Retro Activism', desc: 'Classic protest poster style' }
-  ];
-
-  const currentTemplate = templates.find(t => t.id === selectedTemplate);
-  const displayData = infographicData.title ? infographicData : currentTemplate?.defaultData;
-
-  const getStyleColors = () => {
-    switch (selectedStyle) {
-      case 'bold': return { bg: '#000', text: '#fff', accent: currentTemplate?.color };
-      case 'clean': return { bg: '#fff', text: '#333', accent: currentTemplate?.color };
-      case 'dark': return { bg: '#0a0a0a', text: '#fff', accent: '#00ffff' };
-      case 'gradient': return { bg: `linear-gradient(135deg, ${currentTemplate?.color} 0%, #000 100%)`, text: '#fff', accent: '#fff' };
-      case 'retro': return { bg: '#1a1a1a', text: '#ff6b6b', accent: '#ffd93d' };
-      default: return { bg: '#000', text: '#fff', accent: currentTemplate?.color };
-    }
-  };
-
-  const styleColors = getStyleColors();
-
-  const handleDownload = () => {
+  // Download Squad Showdown meme with actual character images
+  const downloadShowdownMeme = async () => {
     const canvas = document.createElement('canvas');
     canvas.width = 1080;
-    canvas.height = 1080;
+    canvas.height = 1350; // Taller for image + text
     const ctx = canvas.getContext('2d');
-
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
-    gradient.addColorStop(0, '#1a1a2e');
-    gradient.addColorStop(1, '#16213e');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 1080, 1080);
-
-    // Title
-    ctx.font = 'bold 60px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.textAlign = 'center';
-    ctx.fillText('WORKERS COMP STATS', 540, 100);
-
-    // Data visualization
-    const stats = [
-      { label: infographicData.stat1Label || 'Claims Denied', value: infographicData.stat1Value || '35%', color: '#ff6b6b' },
-      { label: infographicData.stat2Label || 'Wait Time', value: infographicData.stat2Value || '6 months', color: '#ffd93d' },
-      { label: infographicData.stat3Label || 'Recovery Rate', value: infographicData.stat3Value || '42%', color: '#48c774' },
-      { label: infographicData.stat4Label || 'Cases Appealed', value: infographicData.stat4Value || '28%', color: '#667eea' }
-    ];
-
-    let y = 200;
-    stats.forEach((stat, index) => {
-      // Stat box
-      ctx.fillStyle = stat.color;
-      ctx.fillRect(140, y, 800, 120);
+    
+    // Determine which image and crop position to use
+    const characterId = showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain;
+    const positions = showdownMode === 'superhero' ? heroImagePositions : villainImagePositions;
+    const charPosition = positions[characterId];
+    const imageSrc = showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png';
+    
+    // Load the squad image
+    const loadImage = (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    };
+    
+    try {
+      const squadImage = await loadImage(imageSrc);
       
-      // Value
-      ctx.font = 'bold 50px Arial';
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      if (showdownMode === 'superhero') {
+        gradient.addColorStop(0, '#0a1628');
+        gradient.addColorStop(0.5, '#1a2a4a');
+        gradient.addColorStop(1, '#0f1f3a');
+      } else if (showdownMode === 'denial') {
+        gradient.addColorStop(0, '#1a0a0a');
+        gradient.addColorStop(0.5, '#2a1520');
+        gradient.addColorStop(1, '#1f0f1a');
+      } else {
+        gradient.addColorStop(0, '#1a0a2a');
+        gradient.addColorStop(1, '#0a1a2a');
+      }
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Decorative border
+      ctx.strokeStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+      
+      // Title banner
+      ctx.fillStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.fillRect(30, 30, canvas.width - 60, 70);
+      
+      ctx.font = 'bold 40px Impact, Arial Black, sans-serif';
       ctx.fillStyle = '#000';
       ctx.textAlign = 'center';
-      ctx.fillText(stat.value, 540, y + 60);
+      const squadTitle = showdownMode === 'superhero' ? 'SUPERHERO SQUAD' : 'DENIAL SQUAD';
+      ctx.fillText(squadTitle, canvas.width / 2, 80);
       
-      // Label
-      ctx.font = 'bold 30px Arial';
-      ctx.fillText(stat.label, 540, y + 100);
-      
-      y += 150;
-    });
-
-    // Quote section
-    if (infographicData.quote) {
-      ctx.font = 'italic 28px Arial';
-      ctx.fillStyle = '#fff';
-      ctx.textAlign = 'center';
-      ctx.fillText(`"${infographicData.quote}"`, 540, y + 50);
-      
-      if (infographicData.quoteAuthor) {
-        ctx.font = 'bold 24px Arial';
-        ctx.fillStyle = '#00ffff';
-        ctx.fillText(`- ${infographicData.quoteAuthor}`, 540, y + 90);
+      // Draw cropped character image
+      if (charPosition && showdownMode !== 'versus') {
+        const srcX = squadImage.width * charPosition.cropX;
+        const srcY = squadImage.height * charPosition.cropY;
+        const srcW = squadImage.width * charPosition.cropW;
+        const srcH = squadImage.height * charPosition.cropH;
+        
+        // Calculate destination dimensions maintaining aspect ratio
+        const maxImgHeight = 550;
+        const maxImgWidth = canvas.width - 100;
+        const scale = Math.min(maxImgWidth / srcW, maxImgHeight / srcH);
+        const destW = srcW * scale;
+        const destH = srcH * scale;
+        const destX = (canvas.width - destW) / 2;
+        const destY = 120;
+        
+        // Draw character image with border
+        ctx.save();
+        ctx.shadowColor = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+        ctx.shadowBlur = 20;
+        ctx.drawImage(squadImage, srcX, srcY, srcW, srcH, destX, destY, destW, destH);
+        ctx.restore();
+        
+        // Character name plate
+        const charColor = charPosition.color || (showdownMode === 'superhero' ? '#FFD700' : '#ff0080');
+        ctx.fillStyle = charColor;
+        ctx.fillRect(50, destY + destH + 10, canvas.width - 100, 50);
+        
+        ctx.font = 'bold 28px Arial Black, sans-serif';
+        ctx.fillStyle = '#000';
+        ctx.textAlign = 'center';
+        ctx.fillText(charPosition.label.toUpperCase(), canvas.width / 2, destY + destH + 45);
+        
+        // Subtitle
+        ctx.font = 'italic 20px Arial, sans-serif';
+        ctx.fillStyle = '#aaa';
+        ctx.fillText(charPosition.description, canvas.width / 2, destY + destH + 80);
+      } else if (showdownMode === 'versus' && generatedShowdownMeme) {
+        // VS mode - show both images side by side
+        const heroPos = heroImagePositions[generatedShowdownMeme.heroId || selectedShowdownHero];
+        const villainPos = villainImagePositions[generatedShowdownMeme.villainId || selectedShowdownVillain];
+        
+        if (heroPos && villainPos) {
+          const heroImg = await loadImage('/superheroes.png');
+          const villainImg = await loadImage('/denialsquad.png');
+          
+          // Draw hero on left
+          const heroSrcX = heroImg.width * heroPos.cropX;
+          const heroSrcY = heroImg.height * heroPos.cropY;
+          const heroSrcW = heroImg.width * heroPos.cropW;
+          const heroSrcH = heroImg.height * heroPos.cropH;
+          ctx.drawImage(heroImg, heroSrcX, heroSrcY, heroSrcW, heroSrcH, 50, 120, 400, 450);
+          
+          // VS symbol
+          ctx.font = 'bold 80px Impact';
+          ctx.fillStyle = '#fff';
+          ctx.strokeStyle = '#000';
+          ctx.lineWidth = 4;
+          ctx.textAlign = 'center';
+          ctx.strokeText('VS', canvas.width / 2, 380);
+          ctx.fillText('VS', canvas.width / 2, 380);
+          
+          // Draw villain on right
+          const villainSrcX = villainImg.width * villainPos.cropX;
+          const villainSrcY = villainImg.height * villainPos.cropY;
+          const villainSrcW = villainImg.width * villainPos.cropW;
+          const villainSrcH = villainImg.height * villainPos.cropH;
+          ctx.drawImage(villainImg, villainSrcX, villainSrcY, villainSrcW, villainSrcH, canvas.width - 450, 120, 400, 450);
+        }
       }
-    }
-
-    // CTA
-    if (infographicData.callToAction) {
-      ctx.font = 'bold 32px Arial';
-      ctx.fillStyle = '#FFD700';
+      
+      // Top meme text
+      ctx.font = 'bold 48px Impact, Arial Black, sans-serif';
+      ctx.fillStyle = '#fff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 5;
       ctx.textAlign = 'center';
-      ctx.fillText(infographicData.callToAction, 540, 950);
+      
+      const topText = showdownMemeText.top || '';
+      if (topText) {
+        const topLines = wrapText(ctx, topText.toUpperCase(), canvas.width - 80, 48);
+        let yPos = 820;
+        topLines.forEach(line => {
+          ctx.strokeText(line, canvas.width / 2, yPos);
+          ctx.fillText(line, canvas.width / 2, yPos);
+          yPos += 55;
+        });
+      }
+      
+      // Bottom meme text (bigger, punchline)
+      ctx.font = 'bold 56px Impact, Arial Black, sans-serif';
+      const bottomText = showdownMemeText.bottom || '';
+      if (bottomText) {
+        const bottomLines = wrapText(ctx, bottomText.toUpperCase(), canvas.width - 80, 56);
+        let yPos = canvas.height - 160;
+        bottomLines.reverse().forEach(line => {
+          ctx.strokeText(line, canvas.width / 2, yPos);
+          ctx.fillText(line, canvas.width / 2, yPos);
+          yPos -= 65;
+        });
+      }
+      
+      // Enhanced Branding Footer
+      const footerY = canvas.height - 70;
+      
+      // Footer background bar
+      ctx.fillStyle = 'rgba(0,0,0,0.8)';
+      ctx.fillRect(0, footerY, canvas.width, 70);
+      
+      // Top border line
+      ctx.strokeStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, footerY);
+      ctx.lineTo(canvas.width, footerY);
+      ctx.stroke();
+      
+      // Logo/Brand name (left)
+      ctx.font = 'bold 24px Arial Black, sans-serif';
+      ctx.fillStyle = '#FFD700';
+      ctx.textAlign = 'left';
+      ctx.fillText('✊ INJURED WORKERS UNITE', 25, footerY + 30);
+      
+      // Website (center)
+      ctx.font = 'bold 18px Arial';
+      ctx.fillStyle = '#00ffff';
+      ctx.textAlign = 'center';
+      ctx.fillText('injuredworkersunite.pages.dev', canvas.width / 2, footerY + 30);
+      
+      // Hashtags (right)
+      ctx.font = 'bold 16px Arial';
+      ctx.fillStyle = showdownMode === 'superhero' ? '#FFD700' : '#ff0080';
+      ctx.textAlign = 'right';
+      ctx.fillText('#MemeticEmbassy #WorkersRights', canvas.width - 25, footerY + 30);
+      
+      // Call to action
+      ctx.font = 'italic 14px Arial';
+      ctx.fillStyle = '#aaa';
+      ctx.textAlign = 'center';
+      ctx.fillText('Create your own memes at the Memetic Embassy!', canvas.width / 2, footerY + 55);
+      
+      // Download
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${showdownMode}-meme-${characterId || 'squad'}-${Date.now()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    } catch (error) {
+      console.error('Error generating meme:', error);
+      alert('Error generating meme. Please try again.');
     }
+  };
+  
+  // Text wrapping helper
+  const wrapText = (ctx, text, maxWidth, fontSize) => {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+    
+    words.forEach(word => {
+      const testLine = currentLine + word + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && currentLine !== '') {
+        lines.push(currentLine.trim());
+        currentLine = word + ' ';
+      } else {
+        currentLine = testLine;
+      }
+    });
+    lines.push(currentLine.trim());
+    return lines;
+  };
 
-    // ═══════════════════════════════════════════════════════════
-    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
-    // ═══════════════════════════════════════════════════════════
-    
-    // Brand bar background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
-    ctx.fillRect(0, 1010, 1080, 70);
-    
-    // Left side - Oracle Eye branding
-    ctx.font = 'bold 32px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.textAlign = 'left';
-    ctx.fillText('👁️', 30, 1055);
-    
-    ctx.font = 'bold 20px Arial';
-    ctx.fillStyle = '#fff';
-    ctx.fillText('INJURED WORKERS UNITE', 75, 1045);
-    
-    ctx.font = '14px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.fillText('Data powered by The Oracle Eye', 75, 1065);
-    
-    // Right side - URL
-    ctx.font = 'bold 18px Arial';
-    ctx.fillStyle = '#FFD700';
-    ctx.textAlign = 'right';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 1050, 1055);
+  const memeHabitats = [
+    {
+      id: 'spicy-activism',
+      name: 'Habitat of Spicy Activism 🌶️🔥',
+      description: 'Where memes go to radicalize. Fire emoji density: 87%. Sarcasm levels: CRITICAL.',
+      residents: [
+        'The "Eat the Rich" meme family',
+        'Call-out culture creatures',
+        'Receipt-posting predators',
+        'Accountability hawks'
+      ],
+      climate: 'HOT. No chill zone.',
+      indigenous_species: 'Protest sign memes, Twitter thread screenshots, "that you?" energy',
+      danger_level: 'Safe for workers, deadly for corporations'
+    },
+    {
+      id: 'dark-humor-valley',
+      name: 'Valley of Dark Humor 🌑💀',
+      description: 'Laugh so you don\'t cry ecosystem. Therapeutic nihilism meets survival comedy.',
+      residents: [
+        'Gallows humor gigglers',
+        'Trauma-bonding tribes',
+        '"If I don\'t laugh I\'ll scream" species',
+        'Disabled comedy veterans'
+      ],
+      climate: 'Dark but cozy. Bring your own coping mechanisms.',
+      indigenous_species: 'Pain scale memes, medication jokes, "my body is a prison" content',
+      danger_level: 'Emotionally safe, societally dangerous'
+    },
+    {
+      id: 'spoonie-forest',
+      name: 'The Spoonie Forest 🥄🌲',
+      description: 'Where energy is currency and rest is resistance. Spoon theory central.',
+      residents: [
+        'Chronic illness warriors',
+        'Energy accountants',
+        'Nap champions',
+        'The "but you don\'t look sick" survivors'
+      ],
+      climate: 'Low energy, high empathy',
+      indigenous_species: 'Spoon counting memes, fatigue jokes, invisible illness content',
+      danger_level: 'Gentle and validating'
+    },
+    {
+      id: 'chronic-pain-volcano',
+      name: 'The Chronic Pain Volcano 🌋💥',
+      description: 'Always erupting, never ending. Pain level: yes. Active 24/7.',
+      residents: [
+        'Pain scale veterans',
+        'Flare survivors',
+        'Weather-sensitive beings',
+        'The "I said I\'m fine" liars'
+      ],
+      climate: 'Explosive, unpredictable, validated',
+      indigenous_species: 'Pain memes, medication humor, "rate your pain 1-10" satire',
+      danger_level: 'Truthful and cathartic'
+    },
+    {
+      id: 'bureaucratic-islands',
+      name: 'Bureaucratic Islands of Infinite Waiting ⏳🏝️',
+      description: 'Where time moves backward and claims go to die. Kafka would feel at home.',
+      residents: [
+        'The perpetually pending',
+        'Appeals court survivors',
+        'Fax machine ghosts',
+        'Lost paperwork spirits'
+      ],
+      climate: 'Slow, frustrating, absurd',
+      indigenous_species: 'WSIB memes, insurance logic jokes, "still waiting" content',
+      danger_level: 'Existentially horrifying but weirdly funny'
+    }
+  ];
 
-    // Download
-    canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `IWU-infographic-${Date.now()}.png`;
-      a.click();
-      URL.revokeObjectURL(url);
+  const embassyDepartments = [
+    {
+      name: 'The Hall of Denied Claims',
+      icon: '⛔',
+      description: 'A sacred memorial to every bullshit denial. Walls lined with redacted documents. Eternal flame of rage burns 24/7.',
+      services: [
+        'Denial pattern recognition',
+        'Rage validation ceremonies',
+        'Evidence preservation vault',
+        'Appeal ammunition library'
+      ]
+    },
+    {
+      name: 'The Ministry of Meme Mutation',
+      icon: '🧬',
+      description: 'Where memes evolve, adapt, and become unstoppable. Genetic engineering for digital resistance.',
+      services: [
+        'Meme variant tracking',
+        'Viral potential analysis',
+        'Cross-pollination lab',
+        'Spicy level enhancement'
+      ]
+    },
+    {
+      name: 'The Office of Spoonie Affairs',
+      icon: '🥄',
+      description: 'Dedicated to energy conservation, rest advocacy, and fighting "just try harder" culture.',
+      services: [
+        'Spoon accounting services',
+        'Energy budget consulting',
+        'Guilt-free rest certification',
+        'Boundary enforcement training'
+      ]
+    },
+    {
+      name: 'The Chamber of Chronic Truth',
+      icon: '⚡',
+      description: 'Where invisible illnesses become visible, pain is believed, and fatigue is validated.',
+      services: [
+        'Symptom translation services',
+        'Visibility amplification',
+        'Medical gaslighting detection',
+        'Truth-telling sanctuary'
+      ]
+    },
+    {
+      name: 'The Department of Justice for the Injured',
+      icon: '⚖️',
+      description: 'Meme-based accountability. No lawyers, just receipts and satire.',
+      services: [
+        'Public shaming coordination',
+        'Receipt organization',
+        'Call-out template library',
+        'Consequence manifestation rituals'
+      ]
+    }
+  ];
+
+  const memeCategories = [
+    {
+      category: 'WSIB / WCB / Workers\' Comp',
+      icon: '🏭',
+      vibe: 'Bureaucratic horror comedy',
+      examples: [
+        '"Your claim has been denied for existing"',
+        '"We need more evidence" *provides MRI, X-ray, 3 doctor reports* "Not enough"',
+        'Employer: "They were fine" / WSIB: "Seems legit"'
+      ],
+      templates: ['Claim denied for', 'Case manager be like', 'Still waiting since']
+    },
+    {
+      category: 'Insurance Logic',
+      icon: '🤡',
+      vibe: 'Absurdist satire',
+      examples: [
+        '"We don\'t cover pre-existing injuries... like the one you got at work"',
+        '"You\'re too injured to work but not injured enough for benefits"',
+        'Insurance: "We need proof" / Also insurance: *ignores all proof*'
+      ],
+      templates: ['Insurance logic:', 'Makes perfect sense', 'Wait what']
+    },
+    {
+      category: 'Disability Stereotype Flips',
+      icon: '♿',
+      vibe: 'Empowered reclaiming',
+      examples: [
+        '"Wheelchair user? So inspiring!" / Me: *literally just existing*',
+        '"You don\'t look disabled" / Cool, you don\'t look ignorant',
+        'Society: "Overcome your disability!" / Me: "How about you overcome your ableism?"'
+      ],
+      templates: ['Flip the script', 'Actually disabled people', 'We\'re not your inspiration']
+    },
+    {
+      category: 'Before Injury vs After',
+      icon: '📊',
+      vibe: 'Dark reality check',
+      examples: [
+        'Before: Plans / After: Pain',
+        'Before: Dreams / After: Disability benefits barely covering rent',
+        'Before: "I got this" / After: "I got... a heating pad and anxiety"'
+      ],
+      templates: ['Life before', 'Life after', 'The shift']
+    },
+    {
+      category: 'Chronic Pain Humor',
+      icon: '💥',
+      vibe: 'Laugh through the pain',
+      examples: [
+        '"Rate your pain 1-10" / Me: "Yes"',
+        'My body: *random pain* / Me: "New area unlocked!"',
+        '"What caused the flare?" / Weather / Stress / Existing / All of the above'
+      ],
+      templates: ['Pain scale:', 'My body said', 'Flare reasons']
+    },
+    {
+      category: 'Dark Humor But Empowering',
+      icon: '🌑',
+      vibe: 'Survival comedy',
+      examples: [
+        '"How are you?" / Me: *existential scream* / "I\'m good, you?"',
+        'My therapist: "What brings you joy?" / Me: "Spite"',
+        '"Living my best life" *it\'s actually survival mode but make it aesthetic*'
+      ],
+      templates: ['Honestly though', 'The truth is', 'Real talk']
+    },
+    {
+      category: 'Activism Fire & Protest',
+      icon: '🔥',
+      vibe: 'Revolutionary energy',
+      examples: [
+        '"Just be patient" / Me: I\'ve been patient for 3 years, now I\'m LOUD',
+        'They want us quiet / We got MEGAPHONES',
+        'Rights aren\'t given, they\'re DEMANDED'
+      ],
+      templates: ['Enough is enough', 'We demand', 'No more']
+    },
+    {
+      category: 'Spoonie Memes',
+      icon: '🥄',
+      vibe: 'Energy economics',
+      examples: [
+        'Spoons today: 3 / Tasks needed: 47',
+        '"Just do it" / Me: *checks spoon inventory* Hard pass',
+        'Used all my spoons on existing today, sorry'
+      ],
+      templates: ['Spoon count:', 'Energy budget:', 'Out of spoons']
+    }
+  ];
+
+  const handleClaimCitizenship = () => {
+    if (typeof window !== 'undefined') {
+      const citizenID = `ME-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+      localStorage.setItem('memetic_embassy_citizenship', JSON.stringify({
+        id: citizenID,
+        claimed: new Date().toISOString(),
+        rights: [
+          'Diplomatic immunity from gaslighting',
+          'Right to rest without guilt',
+          'Right to be believed',
+          'Right to make spicy memes',
+          'Right to call out injustice'
+        ]
+      }));
+      setCitizenshipClaimed(true);
+      alert(`🎉 CITIZENSHIP GRANTED!\n\nYour Memetic Embassy ID: ${citizenID}\n\nYou are now a citizen of the world's first digital nation-state for the marginalized. Welcome home.`);
+    }
+  };
+
+  const generateMeme = () => {
+    const moods = Object.entries(moodSliders).map(([mood, value]) => ({
+      mood,
+      value,
+      weight: value / 100
+    }));
+
+    const dominantMood = moods.reduce((prev, current) => 
+      current.value > prev.value ? current : prev
+    );
+
+    const memeTemplates = {
+      petty: [
+        '"Oh you need more evidence?" *provides encyclopedia* "Still not enough"',
+        'Them: "Have you tried yoga?" / My chronic pain: "Have you tried shutting up?"',
+        'Case manager ghosting me / Me: *makes 47 memes about it*'
+      ],
+      chaotic: [
+        'My body: *chaos* / My brain: *more chaos* / Me: "This is fine 🔥"',
+        'Pain levels today: *spins wheel* SURPRISE!',
+        'Doctor: "Interesting case" / Translation: "I have no idea"'
+      ],
+      angry: [
+        'STILL WAITING FOR MY CLAIM SINCE 2022',
+        'They deny benefits / We deny silence',
+        '"Just be grateful" / FOR WHAT? POVERTY?'
+      ],
+      hopeful: [
+        'We rise together 💪',
+        'Today I rest. Tomorrow I fight.',
+        'They tried to break us. We built an embassy instead.'
+      ],
+      sarcastic: [
+        '"Wow you\'re so brave" / Me: *doing basic existence*',
+        'Oh yes, let me just "heal" this permanent disability',
+        'Thanks, I\'m cured! *eye roll*'
+      ]
+    };
+
+    const selectedTemplate = memeTemplates[dominantMood.mood][
+      Math.floor(Math.random() * memeTemplates[dominantMood.mood].length)
+    ];
+
+    setGeneratedMeme({
+      template: selectedTemplate,
+      mood: dominantMood.mood,
+      style: spicyLevel,
+      timestamp: new Date().toLocaleString()
     });
   };
 
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        📊 Infographic Generator
-      </h2>
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9, lineHeight: '1.7' }}>
-        Create powerful, shareable infographics with Oracle Eye data. Choose a template, 
-        customize the data, and download for social media.
-      </p>
+  const makeItSpicy = () => {
+    if (!generatedMeme) return;
 
-      {/* Oracle Eye Integration Banner */}
-      <div style={{
-        background: 'rgba(0,255,255,0.1)',
-        border: '1px solid rgba(0,255,255,0.3)',
-        borderRadius: '10px',
-        padding: '1.5rem',
-        marginBottom: '2rem'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ fontSize: '2rem' }}>👁️</div>
-          <div>
-            <h3 style={{ margin: 0, color: '#00ffff' }}>Oracle Eye Data Integration</h3>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.95rem', opacity: 0.9 }}>
-              Each template automatically pulls verified data from government sources
-            </p>
-          </div>
-        </div>
-      </div>
+    const spicyLevels = {
+      mild: 'petty',
+      medium: 'sarcastic',
+      hot: 'activism',
+      nuclear: 'brutal honesty'
+    };
 
-      {/* Template Selection */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-          1. Choose Template
-        </h3>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
-          gap: '1rem' 
-        }}>
-          {templates.map(template => (
-            <div
-              key={template.id}
-              onClick={() => {
-                setSelectedTemplate(template.id);
-                setInfographicData(template.defaultData);
-              }}
-              style={{
-                padding: '1.5rem',
-                background: selectedTemplate === template.id 
-                  ? `linear-gradient(135deg, ${template.color} 0%, #000 100%)`
-                  : '#16213e',
-                border: `2px solid ${template.color}`,
-                borderRadius: '10px',
-                cursor: 'pointer',
-                textAlign: 'center',
-                transition: 'all 0.3s',
-                transform: selectedTemplate === template.id ? 'scale(1.05)' : 'scale(1)'
-              }}
-            >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{template.icon}</div>
-              <div style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{template.name}</div>
-              <div style={{ fontSize: '0.75rem', opacity: 0.7, color: '#00ffff' }}>
-                👁️ {template.eyeData}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    const nextLevel = spicyLevel === 'mild' ? 'medium' : 
+                     spicyLevel === 'medium' ? 'hot' :
+                     spicyLevel === 'hot' ? 'nuclear' : 'nuclear';
 
-      {/* Style Selection */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-          2. Choose Style
-        </h3>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          {styles.map(style => (
-            <button
-              key={style.id}
-              onClick={() => setSelectedStyle(style.id)}
-              style={{
-                padding: '0.8rem 1.5rem',
-                background: selectedStyle === style.id 
-                  ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  : '#16213e',
-                border: '2px solid #667eea',
-                borderRadius: '25px',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: selectedStyle === style.id ? 'bold' : 'normal'
-              }}
-            >
-              {style.name}
-            </button>
-          ))}
-        </div>
-      </div>
+    setSpicyLevel(nextLevel);
 
-      {/* Preview */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-          3. Preview
-        </h3>
-        <div style={{
-          background: typeof styleColors.bg === 'string' && styleColors.bg.includes('gradient') 
-            ? styleColors.bg 
-            : styleColors.bg,
-          padding: '2rem',
-          borderRadius: '15px',
-          border: `4px solid ${styleColors.accent}`,
-          maxWidth: '600px',
-          margin: '0 auto',
-          textAlign: 'center'
-        }}>
-          <h2 style={{ 
-            color: styleColors.accent, 
-            fontSize: '1.8rem', 
-            marginBottom: '0.5rem',
-            fontWeight: 'bold'
-          }}>
-            {displayData?.title}
-          </h2>
-          <p style={{ color: styleColors.text, fontSize: '1.1rem', marginBottom: '2rem' }}>
-            {displayData?.subtitle}
-          </p>
-          
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(2, 1fr)', 
-            gap: '1.5rem',
-            marginBottom: '2rem'
-          }}>
-            {[displayData?.stat1, displayData?.stat2, displayData?.stat3, displayData?.stat4].map((stat, idx) => (
-              <div key={idx} style={{ 
-                padding: '1rem', 
-                background: 'rgba(255,255,255,0.1)', 
-                borderRadius: '10px' 
-              }}>
-                <div style={{ 
-                  color: styleColors.accent, 
-                  fontSize: '2.5rem', 
-                  fontWeight: 'bold' 
-                }}>
-                  {stat?.value}
-                </div>
-                <div style={{ color: styleColors.text, fontSize: '0.9rem' }}>
-                  {stat?.label}
-                </div>
-              </div>
-            ))}
-          </div>
+    const spicyVersions = {
+      mild: generatedMeme.template,
+      medium: generatedMeme.template + ' 🌶️',
+      hot: generatedMeme.template.toUpperCase() + ' 🔥🔥🔥',
+      nuclear: '🚨 ' + generatedMeme.template.toUpperCase() + ' + NAMES WILL BE NAMED 🚨'
+    };
 
-          <p style={{ 
-            color: styleColors.accent, 
-            fontSize: '1.3rem', 
-            fontWeight: 'bold',
-            marginBottom: '1rem'
-          }}>
-            {displayData?.callToAction}
-          </p>
-          <p style={{ color: styleColors.text, fontSize: '0.8rem', opacity: 0.7 }}>
-            Source: {displayData?.source}
-          </p>
-        </div>
-      </div>
+    setGeneratedMeme({
+      ...generatedMeme,
+      template: spicyVersions[nextLevel],
+      style: nextLevel
+    });
+  };
 
-      {/* Download Button */}
-      <div style={{ textAlign: 'center' }}>
-        <button
-          onClick={handleDownload}
-          style={{
-            padding: '1.2rem 3rem',
-            background: `linear-gradient(135deg, ${currentTemplate?.color} 0%, #764ba2 100%)`,
-            border: 'none',
-            borderRadius: '50px',
-            color: 'white',
-            fontSize: '1.2rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            boxShadow: `0 4px 20px ${currentTemplate?.color}60`
-          }}
-        >
-          📥 Download Infographic (1080x1080)
-        </button>
-        <p style={{ marginTop: '1rem', fontSize: '0.9rem', opacity: 0.7 }}>
-          Perfect for Instagram, Facebook, and Twitter
-        </p>
-        
-        {/* Social Share Buttons */}
-        <div style={{ 
-          display: 'flex', 
-          gap: '0.5rem', 
-          justifyContent: 'center', 
-          marginTop: '1rem',
-          flexWrap: 'wrap'
-        }}>
-          <span style={{ color: '#00ffff', fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
-          <button
-            onClick={() => {
-              const text = `${displayData?.headline}\n\n📊 ${displayData?.mainStat}\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
-              window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
-            }}
-            style={{ padding: '0.5rem 0.8rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
-            title="Share on X"
-          >𝕏</button>
-          <button
-            onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
-            style={{ padding: '0.5rem 0.8rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer' }}
-            title="Share on Facebook"
-          >f</button>
-          <button
-            onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
-            style={{ padding: '0.5rem 0.8rem', background: '#0a66c2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontWeight: 'bold' }}
-            title="Share on LinkedIn"
-          >in</button>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(`${displayData?.headline}\n📊 ${displayData?.mainStat}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev\n#InjuredWorkersUnite`);
-              alert('✅ Copied to clipboard!');
-            }}
-            style={{ padding: '0.5rem 0.8rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer' }}
-            title="Copy to clipboard"
-          >📋</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// CUSTOM MEME BUILDER
-// ============================================
-function CustomMemeBuilderSection({ oracleReports = [] }) {
-  const [memeText, setMemeText] = useState({ top: '', bottom: '' });
-  const [selectedBackground, setSelectedBackground] = useState('protest');
-  
-  // 👁️ Extract live data from Oracle for meme suggestions
-  const latestReport = oracleReports?.[0] || null;
-  const oracleSuggestions = latestReport?.violations?.slice(0, 3)?.map(v => v.plainEnglish) || [];
-
-  const backgrounds = [
-    { id: 'protest', name: 'Protest Rally', emoji: '✊', color: '#ff6b6b' },
-    { id: 'courthouse', name: 'Courthouse Steps', emoji: '⚖️', color: '#ffd93d' },
-    { id: 'office', name: 'Corporate Office', emoji: '🏢', color: '#667eea' },
-    { id: 'solidarity', name: 'Solidarity', emoji: '🤝', color: '#48c774' },
-    { id: 'custom', name: 'Upload Your Own', emoji: '📁', color: '#9b59b6' }
-  ];
-
-  const handleMemeDownload = () => {
+  const downloadMeme = (memeData) => {
+    // Create a canvas to generate the meme image
     const canvas = document.createElement('canvas');
     canvas.width = 800;
     canvas.height = 600;
     const ctx = canvas.getContext('2d');
 
     // Background
-    const selectedBg = backgrounds.find(bg => bg.id === selectedBackground);
     ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, 800, 600);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Background emoji/icon
-    ctx.font = 'bold 200px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(selectedBg.emoji, 400, 350);
+    // Add character emoji if selected
+    if (memeData.character) {
+      ctx.font = 'bold 150px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(memeData.character.emoji, canvas.width / 2, 200);
+    }
 
     // Top text
-    if (memeText.top) {
+    if (memeData.topText) {
       ctx.font = 'bold 50px Impact';
       ctx.fillStyle = '#fff';
       ctx.strokeStyle = '#000';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.textAlign = 'center';
-      ctx.strokeText(memeText.top.toUpperCase(), 400, 100);
-      ctx.fillText(memeText.top.toUpperCase(), 400, 100);
+      ctx.strokeText(memeData.topText, canvas.width / 2, 100);
+      ctx.fillText(memeData.topText, canvas.width / 2, 100);
     }
 
     // Bottom text
-    if (memeText.bottom) {
+    if (memeData.bottomText) {
       ctx.font = 'bold 50px Impact';
       ctx.fillStyle = '#fff';
       ctx.strokeStyle = '#000';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.textAlign = 'center';
-      ctx.strokeText(memeText.bottom.toUpperCase(), 400, 560);
-      ctx.fillText(memeText.bottom.toUpperCase(), 400, 560);
+      ctx.strokeText(memeData.bottomText, canvas.width / 2, 550);
+      ctx.fillText(memeData.bottomText, canvas.width / 2, 550);
     }
 
-    // ═══════════════════════════════════════════════════════════
-    // 👁️ BRAND WATERMARK - Injured Workers Unite + Oracle Eye
-    // ═══════════════════════════════════════════════════════════
-    
-    // Brand bar background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-    ctx.fillRect(0, 555, 800, 45);
-    
-    // Oracle Eye icon
-    ctx.font = 'bold 24px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.textAlign = 'left';
-    ctx.fillText('👁️', 15, 582);
-    
-    // Brand name
-    ctx.font = 'bold 16px Arial';
-    ctx.fillStyle = '#fff';
-    ctx.fillText('INJURED WORKERS UNITE', 50, 578);
-    
-    // Powered by Oracle
-    ctx.font = '12px Arial';
-    ctx.fillStyle = '#00ffff';
-    ctx.fillText('Powered by The Oracle Eye', 50, 593);
-    
-    // URL
-    ctx.font = 'bold 14px Arial';
-    ctx.fillStyle = '#FFD700';
+    // Template text (center)
+    if (memeData.template && !memeData.topText && !memeData.bottomText) {
+      ctx.font = 'bold 40px Impact';
+      ctx.fillStyle = '#00ffff';
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3;
+      ctx.textAlign = 'center';
+      
+      // Word wrap
+      const words = memeData.template.split(' ');
+      let line = '';
+      let y = 300;
+      
+      words.forEach((word, i) => {
+        const testLine = line + word + ' ';
+        const metrics = ctx.measureText(testLine);
+        
+        if (metrics.width > 700 && i > 0) {
+          ctx.strokeText(line, canvas.width / 2, y);
+          ctx.fillText(line, canvas.width / 2, y);
+          line = word + ' ';
+          y += 50;
+        } else {
+          line = testLine;
+        }
+      });
+      
+      ctx.strokeText(line, canvas.width / 2, y);
+      ctx.fillText(line, canvas.width / 2, y);
+    }
+
+    // Watermark
+    ctx.font = 'bold 20px Arial';
+    ctx.fillStyle = '#ff00ff';
     ctx.textAlign = 'right';
-    ctx.fillText('🌐 injuredworkersunite.pages.dev', 785, 585);
+    ctx.fillText('InjuredWorkersUnite.pages.dev', canvas.width - 10, canvas.height - 10);
 
     // Download
     canvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `IWU-custom-meme-${Date.now()}.png`;
+      a.download = `memetic-embassy-${Date.now()}.png`;
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
       URL.revokeObjectURL(url);
     });
   };
 
+  const shareToSocial = (platform, memeText) => {
+    const text = encodeURIComponent(memeText + '\n\n#InjuredWorkersUnite #MemeticEmbassy #DisabilityRights');
+    const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+    
+    const urls = {
+      twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
+      reddit: `https://reddit.com/submit?url=${url}&title=${text}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+    };
+
+    if (urls[platform]) {
+      window.open(urls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+
+  const saveMemeToGallery = (memeData) => {
+    const newMeme = {
+      id: Date.now(),
+      ...memeData,
+      created: new Date().toISOString()
+    };
+
+    const updated = [...userMemes, newMeme];
+    setUserMemes(updated);
+    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+    
+    alert('🎨 Meme saved to your gallery!');
+  };
+
+  const createCustomMeme = () => {
+    if (!memeText.top && !memeText.bottom && !selectedCharacterForMeme) {
+      alert('Add some text or select a character!');
+      return;
+    }
+
+    const memeData = {
+      topText: memeText.top,
+      bottomText: memeText.bottom,
+      character: selectedCharacterForMeme,
+      template: selectedTemplate
+    };
+
+    downloadMeme(memeData);
+    saveMemeToGallery(memeData);
+  };
+
+  const deleteMeme = (memeId) => {
+    const updated = userMemes.filter(m => m.id !== memeId);
+    setUserMemes(updated);
+    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+  };
+
   return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        🛠️ Custom Meme Builder
-      </h2>
+    <>
+      <Header />
+      {/* Enhanced Global Styles */}
+      <style jsx global>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.85; transform: scale(1.02); }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(255,0,255,0.5), 0 0 40px rgba(0,255,255,0.3); }
+          50% { box-shadow: 0 0 40px rgba(255,0,255,0.8), 0 0 80px rgba(0,255,255,0.5); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes slide {
+          0% { background-position: 0 0; }
+          100% { background-position: 100px 100px; }
+        }
+        @keyframes textGlow {
+          0%, 100% { text-shadow: 0 0 20px rgba(255,0,255,0.8), 0 0 40px rgba(0,255,255,0.6); }
+          50% { text-shadow: 0 0 40px rgba(255,0,255,1), 0 0 80px rgba(0,255,255,0.9), 0 0 120px rgba(255,255,0,0.5); }
+        }
+        @keyframes rainbow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-15px); }
+          60% { transform: translateY(-7px); }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .section-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .section-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .glow-button {
+          position: relative;
+          overflow: hidden;
+        }
+        .glow-button::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+          transform: rotate(45deg);
+          animation: shimmer 3s infinite;
+        }
+        .scroll-indicator {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+          background-size: 200% 100%;
+          animation: rainbow 3s linear infinite;
+          z-index: 9999;
+          transition: width 0.1s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff00ff 100%);
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba(255,107,107,0.8);
+          transition: all 0.2s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+          transform: scale(1.2);
+          box-shadow: 0 0 25px rgba(255,0,255,1);
+        }
+        input[type="range"]::-moz-range-thumb {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff00ff 100%);
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba(255,107,107,0.8);
+          border: none;
+        }
+      `}</style>
       
-      {/* 👁️ ORACLE SUGGESTIONS */}
-      {oracleSuggestions.length > 0 && (
+      <div style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #000000 0%, #1a0033 50%, #330066 100%)',
+        color: '#fff',
+        fontFamily: 'monospace',
+        position: 'relative'
+      }}>
+        {/* HERO SECTION - Enhanced */}
         <div style={{
-          background: 'rgba(0,255,255,0.1)',
-          border: '1px solid rgba(0,255,255,0.3)',
-          borderRadius: '10px',
-          padding: '1.5rem',
-          marginBottom: '2rem'
+          background: 'linear-gradient(135deg, #ff00ff 0%, #8B00FF 25%, #00ffff 50%, #00ff88 75%, #ff00ff 100%)',
+          backgroundSize: '400% 400%',
+          animation: 'rainbow 15s ease infinite',
+          padding: '120px 20px',
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <h4 style={{ color: '#00ffff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            👁️ Oracle Eye Suggestions (Live Data)
-          </h4>
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
-            {oracleSuggestions.map((suggestion, idx) => (
+          {/* Animated background pattern */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)',
+            animation: 'slide 20s linear infinite'
+          }}></div>
+          
+          {/* Floating particles */}
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            left: '10%',
+            fontSize: '3rem',
+            animation: 'float 3s ease-in-out infinite',
+            opacity: 0.6
+          }}>✨</div>
+          <div style={{
+            position: 'absolute',
+            top: '20%',
+            right: '15%',
+            fontSize: '2.5rem',
+            animation: 'float 4s ease-in-out infinite 0.5s',
+            opacity: 0.6
+          }}>🔥</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '15%',
+            left: '20%',
+            fontSize: '2rem',
+            animation: 'float 3.5s ease-in-out infinite 1s',
+            opacity: 0.6
+          }}>⚡</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '25%',
+            right: '10%',
+            fontSize: '2.5rem',
+            animation: 'float 4.5s ease-in-out infinite 0.3s',
+            opacity: 0.6
+          }}>🎭</div>
+          
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 10vw, 6rem)',
+            fontWeight: 'bold',
+            animation: 'textGlow 3s ease-in-out infinite',
+            marginBottom: '1.5rem',
+            position: 'relative',
+            zIndex: 1,
+            color: '#000',
+            letterSpacing: '2px'
+          }}>
+            🌐 THE MEMETIC EMBASSY 🌐
+          </h1>
+          
+          <h2 style={{
+            fontSize: 'clamp(1.3rem, 4vw, 2.8rem)',
+            marginBottom: '2.5rem',
+            color: '#000',
+            fontWeight: 'bold',
+            position: 'relative',
+            zIndex: 1,
+            textShadow: '0 2px 10px rgba(255,255,255,0.3)'
+          }}>
+            The World's First Digital Nation-State<br/>
+            <span style={{ color: '#1a0033' }}>For The Marginalized, By The Marginalized</span>
+          </h2>
+
+          <div style={{
+            background: 'rgba(0,0,0,0.85)',
+            border: '4px solid #ff00ff',
+            borderRadius: '25px',
+            padding: '2.5rem',
+            maxWidth: '950px',
+            margin: '0 auto',
+            position: 'relative',
+            zIndex: 1,
+            boxShadow: '0 0 50px rgba(255,0,255,0.4), inset 0 0 30px rgba(0,255,255,0.1)',
+            animation: 'glow 4s ease-in-out infinite'
+          }}>
+            <p style={{
+              fontSize: '1.4rem',
+              lineHeight: '1.9',
+              color: '#00ffff',
+              marginBottom: '1.5rem'
+            }}>
+              Welcome to a place where injured workers, persons with disabilities, chronic illness warriors, and everyone overlooked by systems of power are finally <strong style={{ color: '#FFD700' }}>the main characters</strong>.
+            </p>
+            <p style={{
+              fontSize: '1.6rem',
+              fontWeight: 'bold',
+              color: '#ff00ff'
+            }}>
+              This is:<br/>
+              🎭 A Meme Multiverse<br/>
+              ✊ A Resistance Movement<br/>
+              📚 A Digital Comic Book<br/>
+              🏠 A Safe Haven<br/>
+              🔥 A Satire-Powered Liberation Project
+            </p>
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#FFD700',
+              marginTop: '1.5rem',
+              fontWeight: 'bold'
+            }}>
+              🌐 injuredworkersunite.pages.dev
+            </p>
+          </div>
+        </div>
+
+        {/* NAVIGATION TABS */}
+        <div style={{
+          background: 'linear-gradient(180deg, #000 0%, rgba(0,0,0,0.95) 100%)',
+          padding: '15px 20px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          borderBottom: '3px solid #ff00ff',
+          boxShadow: '0 4px 30px rgba(255,0,255,0.4)'
+        }}>
+          {/* Scroll progress bar inside nav */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '3px',
+            background: 'linear-gradient(90deg, #ff00ff, #00ffff, #FFD700)',
+            width: '100%',
+            transform: 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: 'transform 0.1s'
+          }} id="scroll-progress"></div>
+          
+          <div style={{
+            maxWidth: '1600px',
+            margin: '0 auto',
+            display: 'flex',
+            gap: '8px',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+            {[
+              { id: 'squad-showdown', label: '⚔️ Squad Showdown', color: '#ff6b6b' },
+              { id: 'heroes', label: '🦸 Hero Squad', color: '#FFD700' },
+              { id: 'villains', label: '😈 Denial Squad', color: '#ff0080' },
+              { id: 'meme-tools', label: '🎨 Meme Tools', color: '#00ffff' },
+              { id: 'ecosystem', label: '🌿 Ecosystem', color: '#32CD32' },
+              { id: 'departments', label: '🏛️ Departments', color: '#1E90FF' },
+              { id: 'categories', label: '📂 Categories', color: '#FFD700' },
+              { id: 'horror-comedy', label: '🎭 Horror Comedy', color: '#8B00FF' },
+              { id: 'meme-forge', label: '🔥 Meme Forge', color: '#ff4500' },
+              { id: 'artifacts', label: '⚡ Artifacts', color: '#9400D3' },
+              { id: 'factions', label: '💀 Factions', color: '#DC143C' },
+              { id: 'geography', label: '🗺️ Geography', color: '#20B2AA' }
+            ].map(section => (
               <button
-                key={idx}
-                onClick={() => setMemeText({ top: 'THE SYSTEM:', bottom: suggestion })}
+                key={section.id}
+                className="glow-button"
+                onClick={() => {
+                  setActiveSection(section.id);
+                  document.getElementById(`section-${section.id}`)?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 style={{
-                  padding: '0.8rem',
-                  background: '#16213e',
-                  border: '1px solid #00ffff',
-                  borderRadius: '8px',
-                  color: '#fff',
-                  textAlign: 'left',
+                  padding: '10px 18px',
+                  background: activeSection === section.id 
+                    ? `linear-gradient(135deg, ${section.color} 0%, ${section.color}88 50%, #000 100%)`
+                    : 'rgba(255,255,255,0.05)',
+                  border: `2px solid ${activeSection === section.id ? section.color : 'rgba(255,255,255,0.15)'}`,
+                  borderRadius: '25px',
+                  color: activeSection === section.id ? '#fff' : '#aaa',
+                  fontSize: '0.8rem',
+                  fontWeight: 'bold',
                   cursor: 'pointer',
-                  fontSize: '0.9rem'
+                  textTransform: 'uppercase',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  whiteSpace: 'nowrap',
+                  boxShadow: activeSection === section.id 
+                    ? `0 0 20px ${section.color}60, 0 4px 15px rgba(0,0,0,0.3)` 
+                    : 'none',
+                  transform: activeSection === section.id ? 'scale(1.05)' : 'scale(1)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeSection !== section.id) {
+                    e.target.style.background = `linear-gradient(135deg, ${section.color}40 0%, transparent 100%)`;
+                    e.target.style.borderColor = section.color;
+                    e.target.style.color = '#fff';
+                    e.target.style.transform = 'scale(1.08)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeSection !== section.id) {
+                    e.target.style.background = 'rgba(255,255,255,0.05)';
+                    e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+                    e.target.style.color = '#aaa';
+                    e.target.style.transform = 'scale(1)';
+                  }
                 }}
               >
-                <span style={{ color: '#00ffff' }}>Use: </span>{suggestion.substring(0, 80)}...
+                {section.label}
               </button>
             ))}
           </div>
         </div>
-      )}
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-        {/* Controls */}
-        <div>
-          <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-            Design Your Meme
-          </h3>
-          
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
-              Top Text
-            </label>
-            <input
-              type="text"
-              placeholder="Add your message..."
-              value={memeText.top}
-              onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
-              Bottom Text
-            </label>
-            <input
-              type="text"
-              placeholder="Add your punchline..."
-              value={memeText.bottom}
-              onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
-
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem' }}>
-              Background Style
-            </label>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {backgrounds.map(bg => (
-                <button
-                  key={bg.id}
-                  onClick={() => setSelectedBackground(bg.id)}
-                  style={{
-                    padding: '0.8rem',
-                    background: selectedBackground === bg.id ? bg.color : '#16213e',
-                    border: `2px solid ${bg.color}`,
-                    borderRadius: '8px',
-                    color: '#fff',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    fontWeight: selectedBackground === bg.id ? 'bold' : 'normal'
-                  }}
-                >
-                  {bg.emoji} {bg.name}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <button 
-            onClick={handleMemeDownload}
-            style={{
-            width: '100%',
-            padding: '1rem',
-            background: 'linear-gradient(135deg, #667eea, #764ba2)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}>
-            📥 Download Meme
-          </button>
-          
-          {/* Social Share Buttons */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '0.5rem', 
-            justifyContent: 'center', 
-            marginTop: '1rem',
-            flexWrap: 'wrap'
-          }}>
-            <span style={{ color: '#00ffff', fontSize: '0.85rem', display: 'flex', alignItems: 'center' }}>📤 Share:</span>
-            <button
-              onClick={() => {
-                const text = `${memeText.top} ${memeText.bottom}\n\n👁️ Created with The Eye Oracle\n#InjuredWorkersUnite #WorkersRights`;
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank');
-              }}
-              style={{ padding: '0.4rem 0.7rem', background: '#000', border: '1px solid #333', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
-              title="Share on X"
-            >𝕏</button>
-            <button
-              onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}`, '_blank')}
-              style={{ padding: '0.4rem 0.7rem', background: '#1877f2', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
-              title="Share on Facebook"
-            >f</button>
-            <button
-              onClick={() => window.open(`https://www.reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy')}&title=${encodeURIComponent(memeText.top || 'Meme from Injured Workers Unite')}`, '_blank')}
-              style={{ padding: '0.4rem 0.7rem', background: '#ff4500', border: 'none', borderRadius: '20px', color: '#fff', cursor: 'pointer', fontSize: '0.85rem' }}
-              title="Share on Reddit"
-            >↗️</button>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(`${memeText.top}\n${memeText.bottom}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite`);
-                alert('✅ Copied to clipboard!');
-              }}
-              style={{ padding: '0.4rem 0.7rem', background: 'rgba(0,255,255,0.2)', border: '1px solid #00ffff', borderRadius: '20px', color: '#00ffff', cursor: 'pointer', fontSize: '0.85rem' }}
-              title="Copy to clipboard"
-            >📋</button>
-          </div>
-        </div>
-
-        {/* Preview */}
-        <div>
-          <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: '#764ba2' }}>
-            Preview
-          </h3>
+        {/* ============================================ */}
+        {/* SECTION: SQUAD SHOWDOWN MEME GENERATOR */}
+        {/* ============================================ */}
+        <div id="section-squad-showdown" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #1a0033 50%, #001a33 100%)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Animated background elements */}
           <div style={{
-            background: '#000',
-            padding: '2rem',
-            borderRadius: '10px',
-            minHeight: '400px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            border: '3px solid #667eea'
-          }}>
-            <p style={{ 
-              fontSize: '1.5rem', 
-              fontWeight: 'bold', 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(circle at 20% 20%, rgba(255,0,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0,255,255,0.15) 0%, transparent 50%)',
+            pointerEvents: 'none'
+          }}></div>
+          
+          <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+            {/* Epic Header */}
+            <div style={{
               textAlign: 'center',
-              textTransform: 'uppercase',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+              marginBottom: '3rem'
             }}>
-              {memeText.top || 'TOP TEXT'}
-            </p>
-            <div style={{ 
-              textAlign: 'center',
-              fontSize: '4rem'
-            }}>
-              {backgrounds.find(bg => bg.id === selectedBackground)?.emoji}
-            </div>
-            <p style={{ 
-              fontSize: '1.5rem', 
-              fontWeight: 'bold', 
-              textAlign: 'center',
-              textTransform: 'uppercase',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-            }}>
-              {memeText.bottom || 'BOTTOM TEXT'}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// SLOGAN GENERATOR - EXPANDED WITH VIRAL CATEGORIES
-// ============================================
-function SloganGeneratorSection({ viralContent = null }) {
-  const [generatedSlogan, setGeneratedSlogan] = useState('');
-  const [sloganCategory, setSloganCategory] = useState('general');
-  
-  // 👁️ Extract viral slogans from real-time data
-  const realViralSlogans = viralContent?.content?.quickfire_slogans?.map(s => s.text) || [];
-
-  const slogans = {
-    general: [
-      'They denied my claim, we deny their legitimacy',
-      'Injured not invisible',
-      'Our pain is political',
-      'No one is disposable',
-      'From injury to injustice: the system failed us',
-      'Disabled and DANGEROUS (to corporate profits)',
-      'They bet on our silence. They lost.',
-      'My body broke. My spirit didn\'t.',
-      'Chronic illness, chronic resistance',
-      'Rest is resistance',
-      'Disabled, not disposable',
-      'We are the experts on our own lives',
-      'My body is evidence',
-      'Surviving despite the system',
-      'From bedbound to unbowed'
-    ],
-    charter: [
-      'Section 7: My life, liberty, security',
-      'Charter violations end here',
-      'Equal rights under Section 15',
-      'Cruel treatment stops now - Section 12',
-      'Justice demands action',
-      'Constitutional rights aren\'t negotiable',
-      'Section 15: Equality includes the disabled',
-      'Rights delayed are rights denied',
-      'The Charter protects ALL Canadians',
-      'Section 12: No cruel and unusual treatment'
-    ],
-    evidence: [
-      'The Oracle Eye sees all',
-      'Receipts don\'t lie',
-      'Data never sleeps',
-      'Evidence over excuses',
-      'We have the proof',
-      'Documented, not desperate',
-      'My evidence speaks louder than their lies',
-      'FOI requests are my love language',
-      'Paper trails don\'t lie',
-      'Screenshots are forever',
-      'The truth is in the documents',
-      'Every denial is evidence of the system'
-    ],
-    solidarity: [
-      'An injury to one is an injury to all',
-      'Together we are unstoppable',
-      'Collective power beats corporate lies',
-      'United in resistance',
-      'Solidarity forever',
-      'We keep us safe',
-      'Community care > corporate profits',
-      'Alone we beg. Together we demand.',
-      'Mutual aid not charity',
-      'None of us are free until all of us are free',
-      'Workers united will never be divided',
-      'In solidarity we thrive'
-    ],
-    spicy: [
-      'WCB: Workers Can\'t Breathe',
-      'Gaslight • Gatekeep • WCB Boss',
-      'The cruelty is the point',
-      'Profit over people isn\'t a bug—it\'s the feature',
-      'They want us dead, not disabled and demanding rights',
-      'Your \'suitable work\' doesn\'t exist',
-      'Permanent injury. Temporary benefits. Explain.',
-      'Corporate fraud: ✅ Worker mistake: DENIED ❌',
-      'The system isn\'t broken—it\'s working as designed',
-      'Ableism kills',
-      'Poverty is violence',
-      'Austerity is murder',
-      'The cruelty is structural',
-      'Organized abandonment',
-      'Social murder with paperwork'
-    ],
-    protest: [
-      'NO JUSTICE, NO PEACE',
-      'HEALTHCARE IS A HUMAN RIGHT',
-      'WORKERS UNITED WILL NEVER BE DEFEATED',
-      'DISABILITY RIGHTS = HUMAN RIGHTS',
-      'SHAME ON WCB',
-      'STOP ABANDONING INJURED WORKERS',
-      'PAY US OR FACE US',
-      'WE WON\'T BE SILENCED',
-      'ACCESSIBILITY NOW',
-      'FUND DISABILITY JUSTICE',
-      'BENEFITS NOT BUREAUCRACY',
-      'RIGHTS NOT CHARITY',
-      'NOTHING ABOUT US WITHOUT US',
-      'ACCESS IS A RIGHT'
-    ],
-    viral: [
-      'POV: You\'re permanently disabled but WCB says "transition to suitable work"',
-      'They spent more fighting my claim than approving it',
-      'My injury is permanent. My benefits are temporary. Math isn\'t mathing.',
-      'WCB protects workers like foxes protect chickens',
-      'Being disabled under capitalism is being gaslit by insurance doctors',
-      'Reminder: The system isn\'t broken. It\'s working exactly as designed.',
-      'If your employer lied and got away with it—the system works FOR them',
-      'They tell us to rest but won\'t pay us to rest',
-      'Disability benefits that don\'t cover rent aren\'t benefits',
-      'Suitable work: doesn\'t accommodate disability, doesn\'t pay living wage, doesn\'t exist',
-      'Case manager ghosted me but I\'m the one "not cooperating"',
-      'Insurance doctor: 10 minutes. My doctor: 10 years. Guess who they believe?',
-      'Employer commits fraud: nothing. I miss one deadline: DENIED',
-      'Pain is 24/7. Their concern is 9-5 Monday-Friday',
-      'My body is the crime scene and the evidence but I\'m still not credible'
-    ],
-    medical: [
-      'My pain is valid',
-      'Believe disabled people',
-      'Chronic pain is real',
-      'Invisible illness, visible resistance',
-      'No body is wrong',
-      'Self-diagnosis is valid',
-      'Listen to patient experiences',
-      'Medical gaslighting is abuse',
-      'Accommodations aren\'t favors',
-      'Rest is productive',
-      'Pacing prevents crashing',
-      'Disabled joy is resistance',
-      'Healing isn\'t linear'
-    ],
-    revolution: [
-      'The revolution will be accessible',
-      'Abolish ableism',
-      'Smash the WCB system',
-      'Dismantle disability oppression',
-      'Burn down barriers',
-      'Radical accessibility now',
-      'No cops at disability justice',
-      'Intersectional or nothing',
-      'Disability justice is climate justice',
-      'Housing is healthcare',
-      'Collective liberation or nothing',
-      'The future is accessible',
-      'Community care > corporate profits',
-      'Alone we beg. Together we demand.'
-    ],
-    spicy: [
-      'WCB: Workers Can\'t Breathe',
-      'Gaslight • Gatekeep • WCB Boss',
-      'The cruelty is the point',
-      'Profit over people isn\'t a bug—it\'s the feature',
-      'They want us dead, not disabled and demanding rights',
-      'Your \'suitable work\' doesn\'t exist',
-      'Permanent injury. Temporary benefits. Explain.',
-      'Corporate fraud: ✅ Worker mistake: DENIED ❌'
-    ],
-    protest: [
-      'NO JUSTICE, NO PEACE',
-      'HEALTHCARE IS A HUMAN RIGHT',
-      'WORKERS UNITED WILL NEVER BE DEFEATED',
-      'DISABILITY RIGHTS = HUMAN RIGHTS',
-      'SHAME ON WCB',
-      'STOP ABANDONING INJURED WORKERS',
-      'PAY US OR FACE US',
-      'WE WON\'T BE SILENCED'
-    ],
-    viral: [
-      'POV: You\'re permanently disabled but WCB says "transition to suitable work"',
-      'They spent more fighting my claim than approving it',
-      'My injury is permanent. My benefits are temporary. Math isn\'t mathing.',
-      'WCB protects workers like foxes protect chickens',
-      'Being disabled under capitalism is being gaslit by insurance doctors',
-      'Reminder: The system isn\'t broken. It\'s working exactly as designed.',
-      'If your employer lied and got away with it—the system works FOR them',
-      'They tell us to rest but won\'t pay us to rest'
-    ]
-  };
-
-  const generateSlogan = (category) => {
-    // Include real viral slogans if available
-    let categorySlogan = slogans[category] || slogans.general;
-    if (category === 'viral' && realViralSlogans.length > 0) {
-      categorySlogan = [...categorySlogan, ...realViralSlogans];
-    }
-    const random = categorySlogan[Math.floor(Math.random() * categorySlogan.length)];
-    setGeneratedSlogan(random);
-  };
-
-  const copySlogan = () => {
-    if (generatedSlogan) {
-      navigator.clipboard.writeText(generatedSlogan + "\n\n👁️ Powered by The Oracle Eye\n🌐 injuredworkersunite.pages.dev | @InjuredWorkersU");
-      alert('✅ Copied to clipboard!');
-    }
-  };
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        ✊ Viral Slogan Generator
-      </h2>
-      
-      <p style={{ fontSize: '1.1rem', marginBottom: '1rem', opacity: 0.9 }}>
-        Generate powerful slogans for protests, social media, and resistance. One click to virality.
-      </p>
-      
-      {/* 👁️ ORACLE DATA INTEGRATION NOTICE */}
-      {realViralSlogans.length > 0 && (
-        <div style={{
-          background: 'rgba(0,255,255,0.1)',
-          border: '1px solid rgba(0,255,255,0.3)',
-          borderRadius: '8px',
-          padding: '1rem',
-          marginBottom: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.9rem'
-        }}>
-          <span style={{ fontSize: '1.2rem' }}>👁️</span>
-          <span style={{ color: '#00ffff' }}>
-            Live viral content from Reddit + Oracle Eye integrated • {realViralSlogans.length} real slogans loaded
-          </span>
-        </div>
-      )}
-
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
-        gap: '1rem', 
-        marginBottom: '2rem' 
-      }}>
-        <button
-          onClick={() => { setSloganCategory('viral'); generateSlogan('viral'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'viral' ? '#ff0080' : '#16213e',
-            border: '2px solid #ff0080',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'viral' ? 'bold' : 'normal',
-            fontSize: '1rem'
-          }}
-        >
-          🔥 Viral Tweets
-        </button>
-        <button
-          onClick={() => { setSloganCategory('spicy'); generateSlogan('spicy'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'spicy' ? '#ff6b6b' : '#16213e',
-            border: '2px solid #ff6b6b',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'spicy' ? 'bold' : 'normal'
-          }}
-        >
-          🌶️ Spicy
-        </button>
-        <button
-          onClick={() => { setSloganCategory('protest'); generateSlogan('protest'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'protest' ? '#ff8c00' : '#16213e',
-            border: '2px solid #ff8c00',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'protest' ? 'bold' : 'normal'
-          }}
-        >
-          ✊ Protest
-        </button>
-        <button
-          onClick={() => { setSloganCategory('general'); generateSlogan('general'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'general' ? '#667eea' : '#16213e',
-            border: '2px solid #667eea',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'general' ? 'bold' : 'normal'
-          }}
-        >
-          General
-        </button>
-        <button
-          onClick={() => { setSloganCategory('charter'); generateSlogan('charter'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'charter' ? '#ffd93d' : '#16213e',
-            border: '2px solid #ffd93d',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'charter' ? 'bold' : 'normal'
-          }}
-        >
-          Charter Rights
-        </button>
-        <button
-          onClick={() => { setSloganCategory('evidence'); generateSlogan('evidence'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'evidence' ? '#00ffff' : '#16213e',
-            border: '2px solid #00ffff',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'evidence' ? 'bold' : 'normal'
-          }}
-        >
-          👁️ Oracle Eye
-        </button>
-        <button
-          onClick={() => { setSloganCategory('solidarity'); generateSlogan('solidarity'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'solidarity' ? '#48c774' : '#16213e',
-            border: '2px solid #48c774',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'solidarity' ? 'bold' : 'normal'
-          }}
-        >
-          🤝 Solidarity
-        </button>
-        <button
-          onClick={() => { setSloganCategory('medical'); generateSlogan('medical'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'medical' ? '#9b59b6' : '#16213e',
-            border: '2px solid #9b59b6',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'medical' ? 'bold' : 'normal'
-          }}
-        >
-          🏥 Medical Justice
-        </button>
-        <button
-          onClick={() => { setSloganCategory('revolution'); generateSlogan('revolution'); }}
-          style={{
-            padding: '1rem',
-            background: sloganCategory === 'revolution' ? '#e74c3c' : '#16213e',
-            border: '2px solid #e74c3c',
-            borderRadius: '10px',
-            color: '#fff',
-            cursor: 'pointer',
-            fontWeight: sloganCategory === 'revolution' ? 'bold' : 'normal'
-          }}
-        >
-          🔥 Revolution
-        </button>
-      </div>
-
-      {generatedSlogan && (
-        <div style={{
-          padding: '2rem',
-          background: 'rgba(0,255,255,0.1)',
-          border: '2px solid #00ffff',
-          borderRadius: '15px',
-          textAlign: 'center',
-          marginBottom: '2rem'
-        }}>
-          <p style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-            "{generatedSlogan}"
-          </p>
-          <button 
-            onClick={copySlogan}
-            style={{
-            padding: '0.8rem 1.5rem',
-            background: '#00ffff',
-            color: '#000',
-            border: 'none',
-            borderRadius: '8px',
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}>
-            📋 Copy to Clipboard
-          </button>
-        </div>
-      )}
-
-      <div style={{
-        background: 'rgba(0,0,0,0.4)',
-        padding: '1.5rem',
-        borderRadius: '10px',
-        border: '1px solid rgba(255,255,255,0.1)'
-      }}>
-        <h4 style={{ color: '#764ba2', marginBottom: '1rem' }}>💡 Tips for Powerful Slogans</h4>
-        <ul style={{ fontSize: '0.95rem', lineHeight: '1.8', opacity: 0.9 }}>
-          <li>Keep it short and memorable (7 words or less)</li>
-          <li>Make it rhyme or use rhythm when possible</li>
-          <li>Include a call to action</li>
-          <li>Reference specific laws or data points</li>
-          <li>Make it easy to chant</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// ADVANCED MEME WARFARE TOOLS
-// ============================================
-function AdvancedMemeWarfareSection({ oracleReports = [], alerts = [] }) {
-  // 👁️ Live data from Oracle Eye
-  const latestReport = oracleReports?.[0] || null;
-  const activeAlerts = alerts?.length || 0;
-  const criticalViolations = latestReport?.violations?.filter(v => v.severity === 'critical')?.length || 0;
-  
-  const advancedTools = [
-    {
-      id: 'ai-caption',
-      name: 'AI Caption Generator',
-      description: 'Generate viral captions using Oracle Eye data',
-      icon: '🤖',
-      color: '#667eea'
-    },
-    {
-      id: 'thread-builder',
-      name: 'Twitter Thread Builder',
-      description: 'Create multi-tweet threads with sources',
-      icon: '🧵',
-      color: '#764ba2'
-    },
-    {
-      id: 'meme-analytics',
-      name: 'Meme Analytics',
-      description: 'Track which memes perform best',
-      icon: '📈',
-      color: '#48c774'
-    },
-    {
-      id: 'evidence-overlay',
-      name: 'Evidence Overlay Tool',
-      description: 'Add Oracle Eye citations to any image',
-      icon: '👁️',
-      color: '#00ffff'
-    },
-    {
-      id: 'video-meme',
-      name: 'Video Meme Maker',
-      description: 'Create short video memes with subtitles',
-      icon: '🎬',
-      color: '#f39c12'
-    },
-    {
-      id: 'hashtag-optimizer',
-      name: 'Hashtag Optimizer',
-      description: 'Find the best hashtags for maximum reach',
-      icon: '#️⃣',
-      color: '#9b59b6'
-    }
-  ];
-
-  return (
-    <div style={{ padding: '2rem', background: '#1a1a2e', borderRadius: '15px' }}>
-      <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#667eea' }}>
-        ⚡ Advanced Meme Warfare Tools
-      </h2>
-      
-      {/* 👁️ ORACLE LIVE STATUS */}
-      <div style={{
-        background: 'linear-gradient(135deg, rgba(0,255,255,0.2) 0%, rgba(102,126,234,0.2) 100%)',
-        border: '2px solid #00ffff',
-        borderRadius: '10px',
-        padding: '1.5rem',
-        marginBottom: '2rem',
-        display: 'flex',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#00ffff' }}>👁️</div>
-          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Oracle Connected</div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: criticalViolations > 0 ? '#ff6b6b' : '#48c774' }}>
-            {criticalViolations}
-          </div>
-          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Critical Issues</div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffd93d' }}>{activeAlerts}</div>
-          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Active Alerts</div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#48c774' }}>✅</div>
-          <div style={{ fontSize: '0.9rem', color: '#fff' }}>Real-Time Sync</div>
-        </div>
-      </div>
-      
-      <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Professional-grade tools for serious memetic operations
-      </p>
-
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-        gap: '1.5rem'
-      }}>
-        {advancedTools.map(tool => (
-          <div
-            key={tool.id}
-            style={{
-              padding: '2rem',
-              background: '#16213e',
-              border: `2px solid ${tool.color}`,
-              borderRadius: '15px',
-              cursor: 'pointer',
-              transition: 'transform 0.2s'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>
-              {tool.icon}
-            </div>
-            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: tool.color }}>
-              {tool.name}
-            </h3>
-            <p style={{ fontSize: '0.95rem', opacity: 0.9, marginBottom: '1rem' }}>
-              {tool.description}
-            </p>
-            <button style={{
-              width: '100%',
-              padding: '0.8rem',
-              background: tool.color,
-              color: tool.id === 'evidence-overlay' ? '#000' : '#fff',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
-              Launch Tool →
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* Oracle Eye Integration */}
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: 'rgba(0,255,255,0.1)',
-        border: '1px solid rgba(0,255,255,0.3)',
-        borderRadius: '15px'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <div style={{ fontSize: '3rem' }}>👁️</div>
-          <div>
-            <h3 style={{ margin: 0, color: '#00ffff', fontSize: '1.5rem' }}>
-              Powered by The Oracle Eye
-            </h3>
-            <p style={{ margin: '0.5rem 0 0', opacity: 0.9 }}>
-              All advanced tools integrate real-time intelligence from government databases
-            </p>
-          </div>
-        </div>
-        <Link href="/the-eye-oracle" style={{
-          display: 'inline-block',
-          padding: '0.8rem 1.5rem',
-          background: 'linear-gradient(135deg, #00ffff, #0088ff)',
-          color: '#000',
-          textDecoration: 'none',
-          borderRadius: '8px',
-          fontWeight: 'bold',
-          marginTop: '1rem'
-        }}>
-          👁️ Access The Oracle Eye →
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// 🌍 COMMUNITY GALLERY SECTION
-// ============================================
-function CommunityGallerySection({ submissions, onLike, onSubmit }) {
-  const [filter, setFilter] = useState('all');
-  const [sortBy, setSortBy] = useState('newest');
-  
-  const filteredSubmissions = submissions
-    .filter(s => filter === 'all' || s.type === filter)
-    .sort((a, b) => {
-      if (sortBy === 'newest') return new Date(b.timestamp) - new Date(a.timestamp);
-      if (sortBy === 'popular') return b.likes - a.likes;
-      return 0;
-    });
-  
-  return (
-    <div>
-      <h2 style={{ 
-        fontSize: '2.5rem', 
-        marginBottom: '1rem',
-        background: 'linear-gradient(45deg, #48c774, #00ffff)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent'
-      }}>
-        🌍 Community Gallery
-      </h2>
-      
-      <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
-        Share your creations with the movement! Every meme strengthens our collective voice.
-      </p>
-      
-      {/* Submit Button */}
-      <button
-        onClick={onSubmit}
-        style={{
-          padding: '1rem 2rem',
-          background: 'linear-gradient(135deg, #48c774, #2ecc71)',
-          border: 'none',
-          borderRadius: '15px',
-          color: '#fff',
-          fontSize: '1.2rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          marginBottom: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          boxShadow: '0 4px 20px rgba(72, 199, 116, 0.4)'
-        }}
-      >
-        📤 Share Your Creation
-      </button>
-      
-      {/* Filters */}
-      <div style={{
-        display: 'flex',
-        gap: '1rem',
-        flexWrap: 'wrap',
-        marginBottom: '2rem',
-        padding: '1rem',
-        background: 'rgba(255,255,255,0.05)',
-        borderRadius: '10px'
-      }}>
-        <div>
-          <label style={{ marginRight: '0.5rem', color: '#00ffff' }}>Filter:</label>
-          <select 
-            value={filter} 
-            onChange={(e) => setFilter(e.target.value)}
-            style={{
-              padding: '0.5rem',
-              background: '#16213e',
-              border: '1px solid #667eea',
-              borderRadius: '5px',
-              color: '#fff'
-            }}
-          >
-            <option value="all">All Types</option>
-            <option value="meme">Memes</option>
-            <option value="infographic">Infographics</option>
-            <option value="slogan">Slogans</option>
-            <option value="poster">Posters</option>
-          </select>
-        </div>
-        <div>
-          <label style={{ marginRight: '0.5rem', color: '#00ffff' }}>Sort:</label>
-          <select 
-            value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value)}
-            style={{
-              padding: '0.5rem',
-              background: '#16213e',
-              border: '1px solid #667eea',
-              borderRadius: '5px',
-              color: '#fff'
-            }}
-          >
-            <option value="newest">Newest First</option>
-            <option value="popular">Most Popular</option>
-          </select>
-        </div>
-        <div style={{ marginLeft: 'auto', color: '#48c774' }}>
-          {filteredSubmissions.length} creation{filteredSubmissions.length !== 1 ? 's' : ''}
-        </div>
-      </div>
-      
-      {/* Gallery Grid */}
-      {filteredSubmissions.length === 0 ? (
-        <div style={{
-          padding: '4rem 2rem',
-          textAlign: 'center',
-          background: 'rgba(255,255,255,0.05)',
-          borderRadius: '15px',
-          border: '2px dashed #667eea'
-        }}>
-          <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎨</div>
-          <h3 style={{ color: '#667eea', marginBottom: '1rem' }}>No Creations Yet!</h3>
-          <p style={{ opacity: 0.8 }}>
-            Be the first to share your meme warfare creation with the community.
-          </p>
-          <button
-            onClick={onSubmit}
-            style={{
-              marginTop: '1rem',
-              padding: '0.8rem 1.5rem',
-              background: 'linear-gradient(135deg, #667eea, #764ba2)',
-              border: 'none',
-              borderRadius: '25px',
-              color: '#fff',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
-            📤 Share First Creation
-          </button>
-        </div>
-      ) : (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: '1.5rem'
-        }}>
-          {filteredSubmissions.map(submission => (
-            <div
-              key={submission.id}
-              style={{
-                background: '#16213e',
-                border: submission.featured ? '2px solid #ffd93d' : '2px solid #667eea',
-                borderRadius: '15px',
-                overflow: 'hidden',
-                transition: 'transform 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              {submission.featured && (
-                <div style={{
-                  background: 'linear-gradient(135deg, #ffd93d, #ff8c00)',
-                  padding: '0.3rem 1rem',
-                  textAlign: 'center',
-                  color: '#000',
-                  fontWeight: 'bold',
-                  fontSize: '0.8rem'
-                }}>
-                  ⭐ FEATURED CREATION
-                </div>
-              )}
+              <h2 style={{
+                fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+                fontWeight: 'bold',
+                background: 'linear-gradient(135deg, #FFD700 0%, #ff00ff 50%, #00ffff 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 0 50px rgba(255,0,255,0.5)',
+                marginBottom: '1rem'
+              }}>
+                ⚔️ SQUAD SHOWDOWN ⚔️
+              </h2>
+              <p style={{
+                fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
+                color: '#00ffff',
+                maxWidth: '800px',
+                margin: '0 auto 2rem',
+                lineHeight: '1.6'
+              }}>
+                Auto-generate viral memes featuring the <strong style={{ color: '#FFD700' }}>Superhero Squad</strong> and 
+                the <strong style={{ color: '#ff0080' }}>Denial Squad</strong>. Click any character to create instant shareable content!
+              </p>
               
-              {/* Image Preview */}
-              {submission.imageUrl && (
-                <div style={{
-                  height: '200px',
-                  background: `url(${submission.imageUrl}) center/cover`,
-                  borderBottom: '1px solid #333'
-                }} />
-              )}
-              
-              {/* Text Content (for slogans) */}
-              {submission.type === 'slogan' && (
-                <div style={{
-                  padding: '2rem',
-                  background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-                  textAlign: 'center',
-                  fontSize: '1.3rem',
-                  fontWeight: 'bold',
-                  color: '#ffd93d',
-                  minHeight: '150px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  "{submission.content}"
-                </div>
-              )}
-              
-              {/* Details */}
-              <div style={{ padding: '1.5rem' }}>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  marginBottom: '0.5rem'
-                }}>
-                  <span style={{
-                    padding: '0.3rem 0.8rem',
-                    background: submission.type === 'meme' ? '#ff6b6b' 
-                      : submission.type === 'infographic' ? '#667eea'
-                      : submission.type === 'slogan' ? '#ffd93d'
-                      : '#48c774',
-                    color: submission.type === 'slogan' ? '#000' : '#fff',
-                    borderRadius: '15px',
-                    fontSize: '0.75rem',
-                    fontWeight: 'bold'
-                  }}>
-                    {submission.type.toUpperCase()}
-                  </span>
-                  <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>
-                    {new Date(submission.timestamp).toLocaleDateString()}
-                  </span>
-                </div>
-                
-                <h4 style={{ 
-                  margin: '0.5rem 0', 
-                  color: '#fff',
-                  fontSize: '1.1rem'
-                }}>
-                  {submission.title}
-                </h4>
-                
-                {submission.description && (
-                  <p style={{ 
-                    fontSize: '0.9rem', 
-                    opacity: 0.8,
-                    marginBottom: '1rem'
-                  }}>
-                    {submission.description}
-                  </p>
-                )}
-                
-                {/* Like & Social Share Buttons */}
-                <div style={{ 
-                  display: 'flex', 
-                  gap: '0.5rem', 
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  marginTop: '1rem'
-                }}>
+              {/* Mode Selector */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginBottom: '2rem'
+              }}>
+                {[
+                  { id: 'superhero', label: '🦸 SUPERHERO SQUAD', color: '#FFD700', desc: 'Heroes fight for justice' },
+                  { id: 'denial', label: '😈 DENIAL SQUAD', color: '#ff0080', desc: 'Villains we all recognize' },
+                  { id: 'versus', label: '⚔️ VS BATTLE', color: '#00ffff', desc: 'Epic showdowns' }
+                ].map(mode => (
                   <button
-                    onClick={() => onLike(submission.id)}
+                    key={mode.id}
+                    onClick={() => setShowdownMode(mode.id)}
                     style={{
-                      padding: '0.5rem 1rem',
-                      background: 'rgba(255, 107, 107, 0.2)',
-                      border: '1px solid #ff6b6b',
+                      padding: '1.5rem 2rem',
+                      background: showdownMode === mode.id 
+                        ? `linear-gradient(135deg, ${mode.color} 0%, ${mode.color}66 100%)`
+                        : 'rgba(0,0,0,0.5)',
+                      border: `4px solid ${mode.color}`,
                       borderRadius: '20px',
-                      color: '#ff6b6b',
+                      color: showdownMode === mode.id ? '#000' : '#fff',
                       cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.3rem'
+                      transition: 'all 0.3s',
+                      transform: showdownMode === mode.id ? 'scale(1.05)' : 'scale(1)',
+                      boxShadow: showdownMode === mode.id ? `0 0 30px ${mode.color}80` : 'none',
+                      minWidth: '200px'
                     }}
                   >
-                    ❤️ {submission.likes}
+                    <div style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                      {mode.label}
+                    </div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>
+                      {mode.desc}
+                    </div>
                   </button>
-                  
-                  {/* Twitter/X Share */}
-                  <button
-                    onClick={() => {
-                      const shareText = `${submission.title}\n\n👁️ Created with The Eye Oracle at Injured Workers Unite\n\n#InjuredWorkersUnite #WorkersRights #DisabilityJustice`;
-                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
-                      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`, '_blank');
-                    }}
-                    style={{
-                      padding: '0.5rem 0.8rem',
-                      background: '#000',
-                      border: '1px solid #333',
-                      borderRadius: '20px',
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem'
-                    }}
-                    title="Share on X (Twitter)"
-                  >
-                    𝕏
-                  </button>
-                  
-                  {/* Facebook Share */}
-                  <button
-                    onClick={() => {
-                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
-                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(submission.title + ' - Created with The Eye Oracle #InjuredWorkersUnite')}`, '_blank');
-                    }}
-                    style={{
-                      padding: '0.5rem 0.8rem',
-                      background: '#1877f2',
-                      border: 'none',
-                      borderRadius: '20px',
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem'
-                    }}
-                    title="Share on Facebook"
-                  >
-                    f
-                  </button>
-                  
-                  {/* LinkedIn Share */}
-                  <button
-                    onClick={() => {
-                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
-                      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
-                    }}
-                    style={{
-                      padding: '0.5rem 0.8rem',
-                      background: '#0a66c2',
-                      border: 'none',
-                      borderRadius: '20px',
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontSize: '0.85rem',
-                      fontWeight: 'bold'
-                    }}
-                    title="Share on LinkedIn"
-                  >
-                    in
-                  </button>
-                  
-                  {/* Reddit Share */}
-                  <button
-                    onClick={() => {
-                      const url = 'https://injuredworkersunite.pages.dev/memetic-embassy';
-                      const title = `${submission.title} - Injured Workers Unite`;
-                      window.open(`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
-                    }}
-                    style={{
-                      padding: '0.5rem 0.8rem',
-                      background: '#ff4500',
-                      border: 'none',
-                      borderRadius: '20px',
-                      color: '#fff',
-                      cursor: 'pointer',
-                      fontSize: '0.85rem'
-                    }}
-                    title="Share on Reddit"
-                  >
-                    ↗️
-                  </button>
-                  
-                  {/* Copy Link */}
-                  <button
-                    onClick={() => {
-                      const shareText = `Check out this creation from Injured Workers Unite!\n\n${submission.title}\n\n👁️ THE EYE ORACLE\n🌐 injuredworkersunite.pages.dev/memetic-embassy\n#InjuredWorkersUnite #WorkersRights`;
-                      navigator.clipboard.writeText(shareText);
-                      alert('Share text copied to clipboard!');
-                    }}
-                    style={{
-                      padding: '0.5rem 0.8rem',
-                      background: 'rgba(0, 255, 255, 0.2)',
-                      border: '1px solid #00ffff',
-                      borderRadius: '20px',
-                      color: '#00ffff',
-                      cursor: 'pointer'
-                    }}
-                    title="Copy to clipboard"
-                  >
-                    📋
-                  </button>
-                </div>
-                
-                {submission.creator && (
-                  <div style={{ 
-                    marginTop: '1rem',
-                    paddingTop: '1rem',
-                    borderTop: '1px solid #333',
-                    fontSize: '0.85rem',
-                    color: '#48c774'
-                  }}>
-                    Created by: {submission.creator}
-                  </div>
-                )}
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      )}
-      
-      {/* Community Stats */}
-      <div style={{
-        marginTop: '3rem',
-        padding: '2rem',
-        background: 'rgba(72, 199, 116, 0.1)',
-        border: '1px solid rgba(72, 199, 116, 0.3)',
-        borderRadius: '15px',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ color: '#48c774', marginBottom: '1rem' }}>🌍 Community Impact</h3>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap' }}>
-          <div>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff' }}>{submissions.length}</div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Creations Shared</div>
-          </div>
-          <div>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ff6b6b' }}>
-              {submissions.reduce((sum, s) => sum + s.likes, 0)}
-            </div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Total Likes</div>
-          </div>
-          <div>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffd93d' }}>
-              {submissions.filter(s => s.featured).length}
-            </div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Featured</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
-// ============================================
-// 📤 SUBMIT CREATION MODAL
-// ============================================
-function SubmitCreationModal({ onClose, onSubmit }) {
-  const [formData, setFormData] = useState({
-    type: 'meme',
-    title: '',
-    description: '',
-    content: '',
-    imageUrl: '',
-    creator: ''
-  });
-  const [imagePreview, setImagePreview] = useState(null);
-  
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-        setFormData(prev => ({ ...prev, imageUrl: reader.result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.title.trim()) {
-      alert('Please enter a title for your creation');
-      return;
-    }
-    if (formData.type !== 'slogan' && !formData.imageUrl) {
-      alert('Please upload an image of your creation');
-      return;
-    }
-    if (formData.type === 'slogan' && !formData.content.trim()) {
-      alert('Please enter your slogan text');
-      return;
-    }
-    onSubmit(formData);
-  };
-  
-  return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'rgba(0,0,0,0.9)',
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '1rem'
-    }}>
-      <div style={{
-        background: '#16213e',
-        borderRadius: '20px',
-        padding: '2rem',
-        maxWidth: '600px',
-        width: '100%',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-        border: '2px solid #667eea'
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          marginBottom: '1.5rem'
-        }}>
-          <h2 style={{ 
-            margin: 0,
-            background: 'linear-gradient(45deg, #48c774, #00ffff)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
-            📤 Share Your Creation
-          </h2>
-          <button
-            onClick={onClose}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#ff6b6b',
-              fontSize: '1.5rem',
-              cursor: 'pointer'
-            }}
-          >
-            ✕
-          </button>
-        </div>
-        
-        <form onSubmit={handleSubmit}>
-          {/* Type Selection */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              color: '#00ffff',
-              fontWeight: 'bold'
+            {/* Squad Images Display */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+              gap: '2rem',
+              marginBottom: '3rem'
             }}>
-              Creation Type
-            </label>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {[
-                { value: 'meme', label: '🎭 Meme', color: '#ff6b6b' },
-                { value: 'infographic', label: '📊 Infographic', color: '#667eea' },
-                { value: 'slogan', label: '✊ Slogan', color: '#ffd93d' },
-                { value: 'poster', label: '📰 Poster', color: '#48c774' }
-              ].map(type => (
-                <button
-                  key={type.value}
-                  type="button"
-                  onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
+              {/* Superhero Squad Image */}
+              <div style={{
+                background: showdownMode === 'superhero' ? 'rgba(255,215,0,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : 'rgba(255,255,255,0.2)'}`,
+                borderRadius: '20px',
+                padding: '1.5rem',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+                transform: showdownMode === 'superhero' ? 'scale(1.02)' : 'scale(1)'
+              }}
+              onClick={() => setShowdownMode('superhero')}
+              >
+                <h3 style={{ 
+                  color: '#FFD700', 
+                  textAlign: 'center', 
+                  marginBottom: '1rem',
+                  fontSize: '1.5rem'
+                }}>
+                  🦸 MEET THE SUPERHERO SQUAD! 🦸
+                </h3>
+                <img 
+                  src="/superheroes.png" 
+                  alt="Superhero Squad - Captain Truth-Teller, Sergeant Solidarity, Major Accessibility, Corporal Care, Private First Class Receipts"
                   style={{
-                    padding: '0.5rem 1rem',
-                    background: formData.type === type.value ? type.color : 'transparent',
-                    border: `2px solid ${type.color}`,
+                    width: '100%',
+                    borderRadius: '15px',
+                    border: '3px solid #FFD700'
+                  }}
+                />
+                <p style={{ 
+                  textAlign: 'center', 
+                  marginTop: '1rem', 
+                  color: '#aaa',
+                  fontSize: '0.9rem'
+                }}>
+                  Captain Truth-Teller • Sergeant Solidarity • Major Accessibility • Corporal Care • Private Receipts
+                </p>
+              </div>
+
+              {/* Denial Squad Image */}
+              <div style={{
+                background: showdownMode === 'denial' ? 'rgba(255,0,128,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `4px solid ${showdownMode === 'denial' ? '#ff0080' : 'rgba(255,255,255,0.2)'}`,
+                borderRadius: '20px',
+                padding: '1.5rem',
+                transition: 'all 0.3s',
+                cursor: 'pointer',
+                transform: showdownMode === 'denial' ? 'scale(1.02)' : 'scale(1)'
+              }}
+              onClick={() => setShowdownMode('denial')}
+              >
+                <h3 style={{ 
+                  color: '#ff0080', 
+                  textAlign: 'center', 
+                  marginBottom: '1rem',
+                  fontSize: '1.5rem'
+                }}>
+                  😈 MEET THE DENIAL SQUAD! 😈
+                </h3>
+                <img 
+                  src="/denialsquad.png" 
+                  alt="Denial Squad - Case Manager Delayla, Mr. No Evidence, Doctor Who Never Reads Files, HR Ninja Vanish"
+                  style={{
+                    width: '100%',
+                    borderRadius: '15px',
+                    border: '3px solid #ff0080'
+                  }}
+                />
+                <p style={{ 
+                  textAlign: 'center', 
+                  marginTop: '1rem', 
+                  color: '#aaa',
+                  fontSize: '0.9rem'
+                }}>
+                  Case Manager Delayla • Mr. No Evidence • Doctor Who Never Reads Files • HR Ninja Vanish
+                </p>
+              </div>
+            </div>
+
+            {/* Character Selection Grid - Only characters from the actual images */}
+            {showdownMode !== 'versus' && (
+              <div style={{
+                background: 'rgba(0,0,0,0.5)',
+                border: `3px solid ${showdownMode === 'superhero' ? '#FFD700' : '#ff0080'}`,
+                borderRadius: '20px',
+                padding: '2rem',
+                marginBottom: '3rem'
+              }}>
+                <h3 style={{ 
+                  color: showdownMode === 'superhero' ? '#FFD700' : '#ff0080',
+                  textAlign: 'center',
+                  marginBottom: '1.5rem',
+                  fontSize: '1.5rem'
+                }}>
+                  {showdownMode === 'superhero' ? '🦸 SELECT YOUR HERO' : '😈 SELECT YOUR VILLAIN'}
+                </h3>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '1.5rem'
+                }}>
+                  {Object.entries(showdownMode === 'superhero' ? heroImagePositions : villainImagePositions).map(([id, char]) => (
+                    <button
+                      key={id}
+                      onClick={() => {
+                        if (showdownMode === 'superhero') {
+                          setSelectedShowdownHero(id);
+                        } else {
+                          setSelectedShowdownVillain(id);
+                        }
+                      }}
+                      style={{
+                        padding: '1.5rem',
+                        background: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id
+                          ? char.color
+                          : 'rgba(0,0,0,0.5)',
+                        border: `4px solid ${char.color}`,
+                        borderRadius: '15px',
+                        color: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id ? '#000' : '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+                        transform: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id ? 'scale(1.05)' : 'scale(1)',
+                        boxShadow: (showdownMode === 'superhero' ? selectedShowdownHero : selectedShowdownVillain) === id 
+                          ? `0 0 30px ${char.color}80` 
+                          : 'none'
+                      }}
+                    >
+                      {/* Character thumbnail from individual cropped image */}
+                      <div style={{
+                        width: '100%',
+                        height: '120px',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        marginBottom: '0.75rem',
+                        border: '2px solid rgba(255,255,255,0.3)',
+                        background: '#000'
+                      }}>
+                        <img 
+                          src={showdownMode === 'superhero' ? `/characters/hero-${id}.png` : `/characters/villain-${id}.png`}
+                          alt={char.label}
+                          style={{ 
+                            width: '100%', 
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      </div>
+                      <div style={{ 
+                        fontSize: '1rem', 
+                        fontWeight: 'bold',
+                        lineHeight: '1.3',
+                        marginBottom: '0.3rem'
+                      }}>
+                        {char.label}
+                      </div>
+                      <div style={{ 
+                        fontSize: '0.8rem', 
+                        opacity: 0.8
+                      }}>
+                        {char.description}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* VS Mode Hero/Villain Selection */}
+            {showdownMode === 'versus' && (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto 1fr',
+                gap: '2rem',
+                alignItems: 'center',
+                marginBottom: '3rem'
+              }}>
+                {/* Hero Side */}
+                <div style={{
+                  background: 'rgba(255,215,0,0.1)',
+                  border: '3px solid #FFD700',
+                  borderRadius: '20px',
+                  padding: '1.5rem'
+                }}>
+                  <h4 style={{ color: '#FFD700', textAlign: 'center', marginBottom: '1rem' }}>
+                    🦸 CHOOSE HERO
+                  </h4>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                    gap: '0.75rem'
+                  }}>
+                    {Object.entries(heroImagePositions).map(([id, hero]) => (
+                      <button
+                        key={id}
+                        onClick={() => setSelectedShowdownHero(id)}
+                        style={{
+                          padding: '0.75rem 0.5rem',
+                          background: selectedShowdownHero === id ? hero.color : 'rgba(0,0,0,0.5)',
+                          border: `2px solid ${hero.color}`,
+                          borderRadius: '10px',
+                          color: selectedShowdownHero === id ? '#000' : '#fff',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        <div style={{ 
+                          width: '60px', 
+                          height: '60px', 
+                          margin: '0 auto 0.5rem',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: '2px solid rgba(255,255,255,0.3)'
+                        }}>
+                          <img 
+                            src={`/characters/hero-${id}.png`}
+                            alt={hero.label}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                        </div>
+                        <div style={{ fontSize: '0.65rem', fontWeight: 'bold' }}>{hero.label.split(' ').pop()}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* VS Symbol */}
+                <div style={{
+                  fontSize: '4rem',
+                  color: '#fff',
+                  textShadow: '0 0 30px #ff00ff, 0 0 60px #00ffff',
+                  animation: 'pulse 1.5s ease-in-out infinite'
+                }}>
+                  ⚔️
+                </div>
+
+                {/* Villain Side */}
+                <div style={{
+                  background: 'rgba(255,0,128,0.1)',
+                  border: '3px solid #ff0080',
+                  borderRadius: '20px',
+                  padding: '1.5rem'
+                }}>
+                  <h4 style={{ color: '#ff0080', textAlign: 'center', marginBottom: '1rem' }}>
+                    😈 CHOOSE VILLAIN
+                  </h4>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                    gap: '0.75rem'
+                  }}>
+                    {Object.entries(villainImagePositions).map(([id, villain]) => (
+                      <button
+                        key={id}
+                        onClick={() => setSelectedShowdownVillain(id)}
+                        style={{
+                          padding: '0.75rem 0.5rem',
+                          background: selectedShowdownVillain === id ? villain.color : 'rgba(0,0,0,0.5)',
+                          border: `2px solid ${villain.color}`,
+                          borderRadius: '10px',
+                          color: '#fff',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        <div style={{ 
+                          width: '60px', 
+                          height: '60px', 
+                          margin: '0 auto 0.5rem',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: '2px solid rgba(255,255,255,0.3)'
+                        }}>
+                          <img 
+                            src={`/characters/villain-${id}.png`}
+                            alt={villain.label}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                        </div>
+                        <div style={{ fontSize: '0.65rem', fontWeight: 'bold' }}>{villain.label.split(' ').pop()}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Auto-Generate Controls */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(255,0,255,0.2) 0%, rgba(0,255,255,0.2) 100%)',
+              border: '4px solid #ff00ff',
+              borderRadius: '25px',
+              padding: '2rem',
+              marginBottom: '2rem',
+              boxShadow: '0 0 40px rgba(255,0,255,0.3)'
+            }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '1.5rem'
+              }}>
+                {/* Custom Text Inputs */}
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    color: '#FFD700', 
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold'
+                  }}>
+                    ✏️ Custom Top Text (or auto-generate)
+                  </label>
+                  <input
+                    type="text"
+                    value={showdownMemeText.top}
+                    onChange={(e) => setShowdownMemeText({ ...showdownMemeText, top: e.target.value })}
+                    placeholder="Leave blank to auto-generate..."
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: 'rgba(0,0,0,0.7)',
+                      border: '2px solid #FFD700',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    color: '#00ffff', 
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold'
+                  }}>
+                    ✏️ Custom Bottom Text (or auto-generate)
+                  </label>
+                  <input
+                    type="text"
+                    value={showdownMemeText.bottom}
+                    onChange={(e) => setShowdownMemeText({ ...showdownMemeText, bottom: e.target.value })}
+                    placeholder="Leave blank to auto-generate..."
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: 'rgba(0,0,0,0.7)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Generate Button */}
+              <button
+                onClick={generateShowdownMeme}
+                disabled={isGenerating || (showdownMode === 'superhero' && !selectedShowdownHero) || (showdownMode === 'denial' && !selectedShowdownVillain)}
+                style={{
+                  width: '100%',
+                  padding: '1.5rem',
+                  background: isGenerating 
+                    ? 'linear-gradient(135deg, #666 0%, #888 100%)'
+                    : 'linear-gradient(135deg, #ff00ff 0%, #FFD700 50%, #00ffff 100%)',
+                  border: 'none',
+                  borderRadius: '15px',
+                  color: '#000',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  cursor: isGenerating ? 'wait' : 'pointer',
+                  transition: 'all 0.3s',
+                  boxShadow: isGenerating ? 'none' : '0 0 30px rgba(255,0,255,0.5)'
+                }}
+              >
+                {isGenerating ? '⚡ GENERATING...' : '🔥 AUTO-GENERATE VIRAL MEME 🔥'}
+              </button>
+              
+              {((showdownMode === 'superhero' && !selectedShowdownHero) || (showdownMode === 'denial' && !selectedShowdownVillain)) && showdownMode !== 'versus' && (
+                <p style={{ 
+                  textAlign: 'center', 
+                  color: '#ff6b6b', 
+                  marginTop: '1rem',
+                  fontSize: '0.9rem'
+                }}>
+                  👆 Select a character above to generate a meme
+                </p>
+              )}
+            </div>
+
+            {/* Generated Meme Preview */}
+            {generatedShowdownMeme && (
+              <div style={{
+                background: 'rgba(0,0,0,0.8)',
+                border: '5px solid #FFD700',
+                borderRadius: '25px',
+                padding: '2rem',
+                marginBottom: '2rem',
+                animation: 'fadeIn 0.5s ease'
+              }}>
+                <h3 style={{ 
+                  color: '#FFD700', 
+                  textAlign: 'center', 
+                  marginBottom: '1.5rem',
+                  fontSize: '1.5rem'
+                }}>
+                  🎨 YOUR GENERATED MEME 🎨
+                </h3>
+                
+                {/* Meme Display */}
+                <div style={{
+                  background: showdownMode === 'superhero' 
+                    ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+                    : showdownMode === 'denial'
+                    ? 'linear-gradient(135deg, #1a0011 0%, #330022 50%, #660033 100%)'
+                    : 'linear-gradient(135deg, #ff00ff33 0%, #000 50%, #00ffff33 100%)',
+                  borderRadius: '20px',
+                  padding: '3rem 2rem',
+                  minHeight: '400px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : showdownMode === 'denial' ? '#ff0080' : '#00ffff'}`,
+                  marginBottom: '1.5rem'
+                }}>
+                  {/* Top Text */}
+                  <div style={{
+                    fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+                    fontFamily: 'Impact, sans-serif',
+                    color: '#fff',
+                    textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                    textAlign: 'center',
+                    textTransform: 'uppercase',
+                    maxWidth: '90%'
+                  }}>
+                    {showdownMemeText.top || 'SELECT A CHARACTER AND GENERATE'}
+                  </div>
+
+                  {/* Character Display - Using Actual Images */}
+                  <div style={{ textAlign: 'center', position: 'relative' }}>
+                    {showdownMode === 'versus' && selectedShowdownHero && selectedShowdownVillain ? (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{
+                            width: '150px',
+                            height: '150px',
+                            borderRadius: '15px',
+                            border: '3px solid #FFD700',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.5)'
+                          }}>
+                            <img 
+                              src="/superheroes.png" 
+                              alt="Hero"
+                              style={{ 
+                                width: '300%', 
+                                height: 'auto',
+                                objectFit: 'cover',
+                                objectPosition: heroImagePositions[selectedShowdownHero] ? 
+                                  `${heroImagePositions[selectedShowdownHero].cropX * 100 + heroImagePositions[selectedShowdownHero].cropW * 50}% ${heroImagePositions[selectedShowdownHero].cropY * 100 + heroImagePositions[selectedShowdownHero].cropH * 50}%` : 
+                                  'center'
+                              }}
+                            />
+                          </div>
+                          <div style={{ color: '#FFD700', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                            {heroImagePositions[selectedShowdownHero]?.label || 'Hero'}
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '3rem', color: '#fff', textShadow: '0 0 20px #ff00ff' }}>⚔️</div>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{
+                            width: '150px',
+                            height: '150px',
+                            borderRadius: '15px',
+                            border: '3px solid #ff0080',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.5)'
+                          }}>
+                            <img 
+                              src="/denialsquad.png" 
+                              alt="Villain"
+                              style={{ 
+                                width: '300%', 
+                                height: 'auto',
+                                objectFit: 'cover',
+                                objectPosition: villainImagePositions[selectedShowdownVillain] ? 
+                                  `${villainImagePositions[selectedShowdownVillain].cropX * 100 + villainImagePositions[selectedShowdownVillain].cropW * 50}% ${villainImagePositions[selectedShowdownVillain].cropY * 100 + villainImagePositions[selectedShowdownVillain].cropH * 50}%` : 
+                                  'center'
+                              }}
+                            />
+                          </div>
+                          <div style={{ color: '#ff0080', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                            {villainImagePositions[selectedShowdownVillain]?.label || 'Villain'}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (showdownMode === 'superhero' && selectedShowdownHero) || (showdownMode === 'denial' && selectedShowdownVillain) ? (
+                      <div>
+                        <div style={{
+                          width: '280px',
+                          height: '280px',
+                          margin: '0 auto',
+                          borderRadius: '20px',
+                          border: `4px solid ${showdownMode === 'superhero' ? '#FFD700' : '#ff0080'}`,
+                          overflow: 'hidden',
+                          boxShadow: `0 0 30px ${showdownMode === 'superhero' ? 'rgba(255,215,0,0.5)' : 'rgba(255,0,128,0.5)'}`,
+                          background: 'rgba(0,0,0,0.5)'
+                        }}>
+                          <img 
+                            src={showdownMode === 'superhero' ? '/superheroes.png' : '/denialsquad.png'}
+                            alt={showdownMode === 'superhero' ? 'Superhero' : 'Villain'}
+                            style={{ 
+                              width: '100%', 
+                              height: '100%',
+                              objectFit: 'cover'
+                            }}
+                          />
+                        </div>
+                        <div style={{ 
+                          color: showdownMode === 'superhero' ? '#FFD700' : '#ff0080',
+                          fontSize: '1.3rem',
+                          fontWeight: 'bold',
+                          marginTop: '1rem'
+                        }}>
+                          {showdownMode === 'superhero' 
+                            ? heroImagePositions[selectedShowdownHero]?.label 
+                            : villainImagePositions[selectedShowdownVillain]?.label}
+                        </div>
+                        <div style={{ 
+                          color: '#aaa',
+                          fontSize: '0.9rem',
+                          fontStyle: 'italic',
+                          marginTop: '0.3rem'
+                        }}>
+                          {showdownMode === 'superhero' 
+                            ? heroImagePositions[selectedShowdownHero]?.description 
+                            : villainImagePositions[selectedShowdownVillain]?.description}
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ 
+                        fontSize: '5rem', 
+                        opacity: 0.5,
+                        padding: '2rem'
+                      }}>
+                        {showdownMode === 'superhero' ? '🦸' : showdownMode === 'denial' ? '😈' : '⚔️'}
+                        <div style={{ fontSize: '1rem', color: '#666', marginTop: '1rem' }}>
+                          Select a character above
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bottom Text */}
+                  <div style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                    fontFamily: 'Impact, sans-serif',
+                    color: '#fff',
+                    textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                    textAlign: 'center',
+                    textTransform: 'uppercase',
+                    maxWidth: '90%'
+                  }}>
+                    {showdownMemeText.bottom || 'YOUR PUNCHLINE HERE'}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                  gap: '0.75rem'
+                }}>
+                  <button
+                    onClick={downloadShowdownMeme}
+                    style={{
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #32CD32 0%, #00ff88 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#000',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    📥 DOWNLOAD
+                  </button>
+                  <button
+                    onClick={() => generateShowdownMeme()}
+                    style={{
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #ff00ff 0%, #ff6b6b 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    🎲 REGENERATE
+                  </button>
+                  <button
+                    onClick={() => {
+                      const newMeme = {
+                        id: Date.now(),
+                        topText: showdownMemeText.top,
+                        bottomText: showdownMemeText.bottom,
+                        character: generatedShowdownMeme?.character,
+                        mode: showdownMode,
+                        created: new Date().toISOString()
+                      };
+                      const updated = [...userMemes, newMeme];
+                      setUserMemes(updated);
+                      localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+                      alert('🎨 Meme saved to your gallery!');
+                    }}
+                    style={{
+                      padding: '1rem',
+                      background: 'rgba(0,255,255,0.2)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '10px',
+                      color: '#00ffff',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    💾 SAVE
+                  </button>
+                </div>
+
+                {/* Social Sharing Row */}
+                <div style={{
+                  background: 'rgba(0,0,0,0.4)',
+                  borderRadius: '15px',
+                  padding: '1rem',
+                  marginTop: '1rem'
+                }}>
+                  <div style={{ 
+                    color: '#FFD700', 
+                    fontWeight: 'bold', 
+                    textAlign: 'center', 
+                    marginBottom: '0.75rem',
+                    fontSize: '0.9rem'
+                  }}>
+                    📢 SHARE YOUR MEME
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    justifyContent: 'center'
+                  }}>
+                    {/* Twitter/X */}
+                    <button
+                      onClick={() => {
+                        const text = encodeURIComponent(`${showdownMemeText.top}\n${showdownMemeText.bottom}\n\n#InjuredWorkersUnite #MemeticEmbassy #WorkersRights`);
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#000',
+                        border: '2px solid #fff',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      𝕏 Twitter
+                    </button>
+                    {/* Facebook */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const quote = encodeURIComponent(`${showdownMemeText.top} ${showdownMemeText.bottom} #InjuredWorkersUnite`);
+                        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#1877F2',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      📘 Facebook
+                    </button>
+                    {/* LinkedIn */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const title = encodeURIComponent('Workers Rights Meme - Injured Workers Unite');
+                        const summary = encodeURIComponent(`${showdownMemeText.top} ${showdownMemeText.bottom}`);
+                        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#0A66C2',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      💼 LinkedIn
+                    </button>
+                    {/* Reddit */}
+                    <button
+                      onClick={() => {
+                        const url = encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full');
+                        const title = encodeURIComponent(`${showdownMemeText.top} - ${showdownMemeText.bottom}`);
+                        window.open(`https://www.reddit.com/submit?url=${url}&title=${title}`, '_blank');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: '#FF4500',
+                        border: 'none',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      🤖 Reddit
+                    </button>
+                    {/* Copy Link */}
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${showdownMemeText.top}\n${showdownMemeText.bottom}\n\nCreate your own: https://injuredworkersunite.pages.dev/memetic-embassy-full\n#InjuredWorkersUnite #MemeticEmbassy`);
+                        alert('📋 Meme text copied to clipboard!');
+                      }}
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        background: 'rgba(255,255,255,0.2)',
+                        border: '2px solid #fff',
+                        borderRadius: '10px',
+                        color: '#fff',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      📋 Copy Text
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Quick Templates */}
+            <div style={{
+              background: 'rgba(0,0,0,0.5)',
+              border: '3px solid #00ffff',
+              borderRadius: '20px',
+              padding: '2rem'
+            }}>
+              <h3 style={{ 
+                color: '#00ffff', 
+                textAlign: 'center', 
+                marginBottom: '1.5rem',
+                fontSize: '1.5rem'
+              }}>
+                ⚡ QUICK VIRAL TEMPLATES ⚡
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '1rem'
+              }}>
+                {[
+                  { top: 'WCB: "WE NEED MORE EVIDENCE"', bottom: 'ME: *PROVIDES 47 DOCUMENTS* 📄🤡', category: 'denial' },
+                  { top: 'MY INJURY: PERMANENT', bottom: 'THEIR CONCERN: TEMPORARY ⏰', category: 'truth' },
+                  { top: 'EMPLOYER: *LIES*', bottom: 'WSIB: "SEEMS LEGIT" 🙈', category: 'bias' },
+                  { top: 'THEY DENIED MY CLAIM', bottom: 'WE DENY THEIR LEGITIMACY ✊', category: 'resistance' },
+                  { top: '"HAVE YOU TRIED YOGA?"', bottom: '- EVERY WCB DOCTOR EVER 🧘‍♂️💀', category: 'satire' },
+                  { top: 'HR: "I\'LL GET BACK TO YOU"', bottom: '*VANISHES INTO THIN AIR* 💨🥷', category: 'ghosting' }
+                ].map((template, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setShowdownMemeText({ top: template.top, bottom: template.bottom });
+                    }}
+                    style={{
+                      padding: '1.5rem',
+                      background: 'rgba(0,255,255,0.1)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '15px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    <div style={{ fontSize: '0.95rem', marginBottom: '0.5rem', color: '#FFD700' }}>
+                      {template.top}
+                    </div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#00ffff' }}>
+                      {template.bottom}
+                    </div>
+                    <div style={{ 
+                      fontSize: '0.75rem', 
+                      marginTop: '0.5rem', 
+                      opacity: 0.7,
+                      textTransform: 'uppercase'
+                    }}>
+                      #{template.category}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: THE HERO SQUAD */}
+        <div id="section-heroes" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #001a33 50%, #002244 100%)',
+          position: 'relative'
+        }}>
+          {/* Section background accent */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '5px',
+            background: 'linear-gradient(90deg, #FFD700, #00BFFF, #FFD700)',
+            backgroundSize: '200% 100%',
+            animation: 'rainbow 5s linear infinite'
+          }}></div>
+          
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Enhanced Memetic Magic Banner */}
+            <div style={{
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #00BFFF 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
+              textAlign: 'center',
+              border: '4px solid #fff',
+              boxShadow: '0 0 40px rgba(255,215,0,0.4), inset 0 0 30px rgba(255,255,255,0.2)',
+              animation: 'glow 3s ease-in-out infinite'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', animation: 'bounce 2s infinite' }}>✨🦸✨</div>
+              <h3 style={{ fontSize: '1.8rem', color: '#000', fontWeight: 'bold', marginBottom: '0.5rem', letterSpacing: '2px' }}>
+                MEMETIC MAGIC ACTIVATED
+              </h3>
+              <p style={{ fontSize: '1.1rem', color: '#1a0033', margin: 0, fontWeight: '500' }}>
+                Where satire becomes power • Where humor becomes resistance • Where memes become movements
+              </p>
+            </div>
+            
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
+              textAlign: 'center',
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 30%, #00BFFF 70%, #FFD700 100%)',
+              backgroundSize: '300% 100%',
+              animation: 'rainbow 8s linear infinite',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold',
+              letterSpacing: '3px'
+            }}>
+              🦸 THE HERO SQUAD 🦸
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.4rem',
+              color: '#FFD700',
+              marginBottom: '1rem',
+              maxWidth: '900px',
+              margin: '0 auto 2rem',
+              textShadow: '0 2px 10px rgba(255,215,0,0.3)'
+            }}>
+              Meet the defenders of the Memetic Embassy—warriors who fight for truth, solidarity, and justice.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '3rem'
+            }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: 'rgba(255,215,0,0.2)',
+                border: '2px solid #FFD700',
+                borderRadius: '25px',
+                color: '#FFD700',
+                fontSize: '1rem'
+              }}>
+                ⚔️ Click any hero to view their full character sheet ⚔️
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2rem'
+            }}>
+              {heroSquad.map((hero) => (
+                <div
+                  key={hero.id}
+                  onClick={() => setSelectedHero(hero.id === selectedHero ? null : hero.id)}
+                  style={{
+                    background: selectedHero === hero.id 
+                      ? `linear-gradient(135deg, ${hero.color} 0%, #000 100%)`
+                      : 'rgba(255,255,255,0.05)',
+                    border: `3px solid ${hero.color}`,
                     borderRadius: '20px',
-                    color: formData.type === type.value ? '#000' : type.color,
+                    padding: '2rem',
                     cursor: 'pointer',
-                    fontWeight: formData.type === type.value ? 'bold' : 'normal'
+                    transition: 'all 0.3s ease',
+                    transform: selectedHero === hero.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedHero === hero.id 
+                      ? `0 0 40px ${hero.color}60`
+                      : 'none'
                   }}
                 >
-                  {type.label}
-                </button>
+                  {/* Character Image (if available) */}
+                  {heroImageMap[hero.id] && (
+                    <div style={{
+                      width: '100%',
+                      height: '180px',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      marginBottom: '1rem',
+                      border: `3px solid ${hero.color}`,
+                      boxShadow: `0 0 20px ${hero.color}40`
+                    }}>
+                      <img 
+                        src={heroImageMap[hero.id]}
+                        alt={hero.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
+                  
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '1rem'
+                  }}>
+                    <div style={{ fontSize: '4rem' }}>{hero.emoji}</div>
+                    <span style={{
+                      background: hero.color,
+                      color: '#000',
+                      padding: '5px 12px',
+                      borderRadius: '15px',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {hero.role}
+                    </span>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.5rem',
+                    color: hero.color,
+                    marginBottom: '0.3rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {hero.name}
+                  </h3>
+
+                  <div style={{
+                    color: '#aaa',
+                    fontSize: '1rem',
+                    marginBottom: '0.5rem',
+                    fontStyle: 'italic'
+                  }}>
+                    {hero.class}
+                  </div>
+                  
+                  <div style={{
+                    background: 'rgba(255,0,255,0.2)',
+                    padding: '0.5rem',
+                    borderRadius: '8px',
+                    marginBottom: '1rem',
+                    border: '1px solid rgba(255,0,255,0.3)'
+                  }}>
+                    <span style={{ fontSize: '0.85rem', color: '#ff00ff', fontWeight: 'bold' }}>
+                      ✨ Memetic Power: {['LEGENDARY', 'EPIC', 'SUPREME'][Math.floor(Math.random() * 3)]}
+                    </span>
+                  </div>
+
+                  {selectedHero === hero.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.5s ease',
+                      borderTop: `1px solid ${hero.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1.5rem' }}>
+                        <strong style={{ color: hero.color }}>⚡ Powers:</strong>
+                        <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', color: '#ddd' }}>
+                          {hero.powers.map((power, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.4rem' }}>{power}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#ff6b6b' }}>⚠️ Weakness:</strong>
+                        <span style={{ marginLeft: '0.5rem', color: '#ddd' }}>{hero.weakness}</span>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: hero.color }}>🎯 Signature Move:</strong>
+                        <span style={{ marginLeft: '0.5rem', color: '#ddd' }}>{hero.signature_move}</span>
+                      </div>
+
+                      <div style={{
+                        background: 'rgba(0,0,0,0.5)',
+                        padding: '1rem',
+                        borderRadius: '10px',
+                        marginBottom: '1rem',
+                        borderLeft: `4px solid ${hero.color}`
+                      }}>
+                        <strong style={{ color: hero.color }}>💬</strong>
+                        <em style={{ marginLeft: '0.5rem', color: '#fff' }}>{hero.favorite_phrase}</em>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: hero.color }}>👁️ Visual:</strong>
+                        <p style={{ marginTop: '0.5rem', color: '#aaa', fontSize: '0.95rem' }}>{hero.visual}</p>
+                      </div>
+
+                      <div style={{
+                        background: `${hero.color}20`,
+                        padding: '1rem',
+                        borderRadius: '10px',
+                        border: `1px solid ${hero.color}40`
+                      }}>
+                        <strong style={{ color: hero.color }}>📖 Backstory:</strong>
+                        <p style={{ marginTop: '0.5rem', color: '#ddd', lineHeight: '1.6' }}>{hero.backstory}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#888'
+                  }}>
+                    {selectedHero === hero.id ? '▲ Click to collapse' : '▼ Click to expand'}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* SECTION 1: THE DENIAL SQUAD */}
+        <div id="section-villains" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #330011 50%, #000000 100%)',
+          position: 'relative'
+        }}>
+          {/* Section accent line */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '5px',
+            background: 'linear-gradient(90deg, #ff0080, #ff0000, #ff0080)',
+            backgroundSize: '200% 100%',
+            animation: 'rainbow 5s linear infinite'
+          }}></div>
           
-          {/* Title */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              color: '#00ffff',
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Enhanced Memetic Magic Warning */}
+            <div style={{
+              background: 'linear-gradient(135deg, #ff0000 0%, #8B0000 50%, #ff0080 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
+              textAlign: 'center',
+              border: '4px solid #fff',
+              boxShadow: '0 0 50px rgba(255,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem', animation: 'shake 3s infinite' }}>⚠️💀⚠️</div>
+              <h3 style={{ fontSize: '1.8rem', color: '#fff', fontWeight: 'bold', marginBottom: '0.5rem', letterSpacing: '2px', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                BUREAUCRATIC HORROR COMEDY ZONE
+              </h3>
+              <p style={{ fontSize: '1.1rem', color: '#ffcccc', margin: 0, fontWeight: '500' }}>
+                Satire so sharp it cuts through red tape • Parody so real it hurts • Villains you'll recognize instantly
+              </p>
+            </div>
+            
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #ff6b6b 0%, #ff0000 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
               fontWeight: 'bold'
             }}>
-              Title *
-            </label>
-            <input
-              type="text"
-              value={formData.title}
-              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              placeholder="Give your creation a title..."
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: '#fff',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
-          
-          {/* Slogan Content (only for slogans) */}
-          {formData.type === 'slogan' && (
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '0.5rem', 
-                color: '#00ffff',
-                fontWeight: 'bold'
-              }}>
-                Slogan Text *
-              </label>
-              <textarea
-                value={formData.content}
-                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-                placeholder="Enter your slogan..."
-                rows={3}
-                style={{
-                  width: '100%',
-                  padding: '0.8rem',
-                  background: '#0f3460',
-                  border: '2px solid #667eea',
-                  borderRadius: '8px',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  resize: 'vertical'
-                }}
-              />
+              💀 THE DENIAL SQUAD 💀
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#ff6b6b',
+              marginBottom: '4rem',
+              maxWidth: '800px',
+              margin: '0 auto 4rem'
+            }}>
+              Meet the four recurring animated characters of bureaucratic horror-comedy.<br/>
+              <em>Saturday morning cartoon meets Kafkaesque nightmare.</em>
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem'
+            }}>
+              {denialSquad.map((character) => (
+                <div
+                  key={character.id}
+                  onClick={() => setSelectedCharacter(character.id === selectedCharacter ? null : character.id)}
+                  style={{
+                    background: selectedCharacter === character.id 
+                      ? 'linear-gradient(135deg, #ff0080 0%, #ff6b6b 100%)'
+                      : 'rgba(255,255,255,0.05)',
+                    border: '3px solid #ff0080',
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedCharacter === character.id ? 'scale(1.05)' : 'scale(1)',
+                    boxShadow: selectedCharacter === character.id 
+                      ? '0 0 30px rgba(255,0,128,0.6)'
+                      : 'none'
+                  }}
+                >
+                  {/* Character Image */}
+                  {villainImageMap[character.id] && (
+                    <div style={{
+                      width: '100%',
+                      height: '180px',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      marginBottom: '1rem',
+                      border: `3px solid ${character.color || '#ff0080'}`,
+                      boxShadow: `0 0 20px ${character.color || '#ff0080'}40`
+                    }}>
+                      <img 
+                        src={villainImageMap[character.id]}
+                        alt={character.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
+                  
+                  <div style={{
+                    fontSize: '4rem',
+                    textAlign: 'center',
+                    marginBottom: '1rem'
+                  }}>
+                    {character.emoji}
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.5rem',
+                    color: selectedCharacter === character.id ? '#fff' : '#ff0080',
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {character.name}
+                  </h3>
+
+                  <div style={{
+                    color: selectedCharacter === character.id ? '#fff' : '#ffaacc',
+                    fontSize: '1.1rem',
+                    marginBottom: '1rem',
+                    fontStyle: 'italic'
+                  }}>
+                    {character.title}
+                  </div>
+
+                  {selectedCharacter === character.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.5s ease',
+                      color: '#fff'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Visual:</strong> {character.visual}
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Powers:</strong>
+                        <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
+                          {character.powers.map((power, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{power}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Signature Move:</strong> {character.signature_move}
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Weakness:</strong> {character.weakness}
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Favorite Phrase:</strong> {character.favorite_phrase}
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: '#00ffff' }}>Backstory:</strong> {character.backstory}
+                      </div>
+
+                      <div style={{
+                        background: 'rgba(255,0,0,0.2)',
+                        border: '2px solid #ff0000',
+                        borderRadius: '10px',
+                        padding: '1rem',
+                        marginBottom: '1rem'
+                      }}>
+                        <strong style={{ color: '#ff0000' }}>⚠️ Memetic Threat Level:</strong> {['MAXIMUM', 'CRITICAL', 'EXTREME'][Math.floor(Math.random() * 3)]}
+                      </div>
+                      
+                      <div style={{
+                        background: 'rgba(0,255,255,0.2)',
+                        border: '2px solid #00ffff',
+                        borderRadius: '10px',
+                        padding: '1rem',
+                        marginTop: '1rem'
+                      }}>
+                        <strong style={{ color: '#00ffff' }}>Meme Potential:</strong> {character.meme_potential}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedCharacter !== character.id && (
+                    <div style={{
+                      color: '#aaa',
+                      fontSize: '0.9rem',
+                      textAlign: 'center',
+                      marginTop: '1rem'
+                    }}>
+                      Click to reveal full character sheet
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-          )}
-          
-          {/* Image Upload (not for slogans) */}
-          {formData.type !== 'slogan' && (
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '0.5rem', 
-                color: '#00ffff',
+          </div>
+        </div>
+
+        {/* SECTION: MEME WARFARE ARSENAL - MEME TOOLS */}
+        <div id="section-meme-tools" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #16213e 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Memetic Magic Arsenal Banner */}
+            <div style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              padding: '2rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
+              textAlign: 'center',
+              border: '4px solid #ff00ff',
+              boxShadow: '0 0 40px rgba(102,126,234,0.6)'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎨✨🔮</div>
+              <h3 style={{ fontSize: '2rem', color: '#fff', fontWeight: 'bold', marginBottom: '1rem' }}>
+                THE MEMETIC FORGE
+              </h3>
+              <p style={{ fontSize: '1.2rem', color: '#fff', margin: 0, lineHeight: '1.7' }}>
+                Where ideas become weapons • Where truth becomes viral • Where resistance becomes art<br/>
+                <span style={{ fontSize: '1rem', opacity: 0.9 }}>Powered by satire, fueled by solidarity, unstoppable by design</span>
+              </p>
+            </div>
+            
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎨 MEME WARFARE ARSENAL 🎨
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#667eea',
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Create viral content featuring the Embassy squad. Choose your character, pick a template, or build from scratch.
+            </p>
+
+            {/* Character Selection Grid */}
+            <div style={{ marginBottom: '3rem' }}>
+              <h3 style={{ 
+                fontSize: '1.8rem', 
+                marginBottom: '1.5rem', 
+                color: '#764ba2',
+                textAlign: 'center'
+              }}>
+                Select Your Squad Member
+              </h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {heroSquad.slice(0, 6).map(hero => (
+                  <div
+                    key={hero.id}
+                    onClick={() => setSelectedCharacterForMeme(hero.id)}
+                    style={{
+                      padding: '1.5rem',
+                      background: selectedCharacterForMeme === hero.id 
+                        ? `linear-gradient(135deg, ${hero.color} 0%, #000 100%)`
+                        : 'rgba(102,126,234,0.1)',
+                      border: `3px solid ${hero.color || '#667eea'}`,
+                      borderRadius: '15px',
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      transition: 'all 0.3s',
+                      transform: selectedCharacterForMeme === hero.id ? 'scale(1.05)' : 'scale(1)',
+                      boxShadow: selectedCharacterForMeme === hero.id 
+                        ? `0 0 30px ${hero.color}60`
+                        : 'none'
+                    }}
+                  >
+                    <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{hero.emoji}</div>
+                    <div style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '0.3rem' }}>
+                      {hero.name.split(' ')[0]}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                      {hero.favorite_phrase?.slice(1, 30)}...
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Main Tools Grid */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+              gap: '2rem',
+              marginBottom: '3rem'
+            }}>
+              {/* Custom Meme Builder */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #667eea' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#764ba2' }}>
+                  🖼️ Custom Meme Builder
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Create your own meme with custom text
+                </p>
+                <div style={{ marginBottom: '1rem' }}>
+                  <input
+                    type="text"
+                    placeholder="Setup / Top text"
+                    value={memeText.top}
+                    onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #667eea',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <input
+                    type="text"
+                    placeholder="Punchline / Bottom text"
+                    value={memeText.bottom}
+                    onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #667eea',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{
+                  background: '#0a0a0a',
+                  padding: '2rem',
+                  borderRadius: '15px',
+                  minHeight: '280px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  border: '3px solid #764ba2'
+                }}>
+                  <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+                    {memeText.top || 'ENTER YOUR SETUP TEXT'}
+                  </p>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '5rem', marginBottom: '0.5rem' }}>
+                      {heroSquad.find(h => h.id === selectedCharacterForMeme)?.emoji || '🎖️'}
+                    </div>
+                    <div style={{ fontSize: '0.9rem', color: '#667eea', fontWeight: 'bold' }}>
+                      {heroSquad.find(h => h.id === selectedCharacterForMeme)?.name || 'Select a Character'}
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.4' }}>
+                    {memeText.bottom || 'ENTER YOUR PUNCHLINE'}
+                  </p>
+                </div>
+                <button style={{
+                  width: '100%',
+                  marginTop: '1.5rem',
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}>
+                  📥 Download Meme
+                </button>
+              </div>
+
+              {/* Slogan Generator */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #48c774' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#48c774' }}>
+                  ✊ Slogan Generator
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Generate powerful slogans for the movement
+                </p>
+                <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+                  <button 
+                    onClick={() => {
+                      const slogans = [
+                        'They denied my claim, we deny their legitimacy',
+                        'Injured not invisible',
+                        'Disability is not inability',
+                        'Our pain is political',
+                        'No one is disposable',
+                        'Screenshot everything, trust nothing',
+                        'Receipts over rhetoric',
+                        'An injury to one is an injury to all',
+                        'Nothing about us without us',
+                        'Rest is revolutionary'
+                      ];
+                      setGeneratedMeme(slogans[Math.floor(Math.random() * slogans.length)]);
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #48c774 0%, #2ecc71 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      minWidth: '150px'
+                    }}
+                  >
+                    ⚡ Generate Slogan
+                  </button>
+                </div>
+                {generatedMeme && (
+                  <div style={{
+                    padding: '2rem',
+                    background: 'linear-gradient(135deg, #48c774 0%, #2ecc71 100%)',
+                    borderRadius: '15px',
+                    textAlign: 'center',
+                    marginBottom: '1rem'
+                  }}>
+                    <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✊</div>
+                    <p style={{ fontSize: '1.4rem', fontWeight: 'bold', lineHeight: '1.6', color: '#000' }}>
+                      "{generatedMeme}"
+                    </p>
+                  </div>
+                )}
+                <div style={{ marginTop: '1.5rem' }}>
+                  <p style={{ fontSize: '0.9rem', color: '#48c774', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                    Popular Slogans:
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.85rem', opacity: 0.8 }}>
+                    <li style={{ padding: '0.4rem 0', borderBottom: '1px solid rgba(72,199,116,0.3)' }}>
+                      • From injury to homelessness: the system failed us
+                    </li>
+                    <li style={{ padding: '0.4rem 0', borderBottom: '1px solid rgba(72,199,116,0.3)' }}>
+                      • Solidarity across all struggles
+                    </li>
+                    <li style={{ padding: '0.4rem 0' }}>
+                      • Recovery is resistance
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Poster Designer */}
+              <div style={{ 
+                padding: '2rem', 
+                background: 'rgba(0,0,0,0.5)', 
+                borderRadius: '20px', 
+                border: '3px solid #ff6b6b' 
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#ff6b6b' }}>
+                  📢 Protest Poster Designer
+                </h3>
+                <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                  Create posters for rallies and strikes
+                </p>
+                <div style={{ marginBottom: '1rem' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                    Main Message
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g., 'RECEIPTS DON'T LIE'"
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#0f3460',
+                      border: '2px solid #ff6b6b',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+                <div style={{
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%)',
+                  padding: '2.5rem',
+                  borderRadius: '15px',
+                  minHeight: '220px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
+                  border: '4px solid white'
+                }}>
+                  <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+                    {heroSquad.find(h => h.id === selectedCharacterForMeme)?.emoji || '✊'}
+                  </div>
+                  <p style={{ 
+                    fontSize: '1.5rem', 
+                    fontWeight: 'bold', 
+                    textAlign: 'center', 
+                    textTransform: 'uppercase',
+                    color: '#000'
+                  }}>
+                    YOUR MESSAGE HERE
+                  </p>
+                  <p style={{ fontSize: '0.9rem', marginTop: '0.5rem', color: '#000', opacity: 0.8 }}>
+                    - Embassy Warrior
+                  </p>
+                </div>
+                <button style={{
+                  width: '100%',
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%)',
+                  border: 'none',
+                  borderRadius: '10px',
+                  color: 'white',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}>
+                  📥 Download Poster (8.5x11")
+                </button>
+              </div>
+            </div>
+
+            {/* Hashtag Generator */}
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.5)',
+              borderRadius: '20px',
+              border: '3px solid #00ffff',
+              marginBottom: '3rem'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#00ffff' }}>
+                # Hashtag Generator
+              </h3>
+              <p style={{ fontSize: '0.95rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                Optimized hashtags for maximum reach
+              </p>
+              <div style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: '0.8rem',
+                marginBottom: '1.5rem'
+              }}>
+                {[
+                  '#InjuredWorkersUnite', '#DisabilityJustice', '#HousingIsARight',
+                  '#EndWorkplacePoverty', '#ReceiptsReady', '#SolidarityForAll',
+                  '#MemeWarfare', '#DisabledAndProud', '#WorkersRights',
+                  '#NoOneDisposable', '#RecoveryIsResistance', '#FromInjuryToAction'
+                ].map((tag, idx) => (
+                  <span 
+                    key={idx}
+                    onClick={() => navigator.clipboard?.writeText(tag)}
+                    style={{
+                      padding: '0.6rem 1.2rem',
+                      background: 'rgba(0,255,255,0.2)',
+                      border: '2px solid #00ffff',
+                      borderRadius: '25px',
+                      fontSize: '0.95rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <button style={{
+                padding: '1rem 2rem',
+                background: 'linear-gradient(135deg, #00ffff 0%, #0099cc 100%)',
+                border: 'none',
+                borderRadius: '10px',
+                color: '#000',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}>
+                📋 Copy All Hashtags
+              </button>
+            </div>
+
+            {/* Viral Challenges */}
+            <div style={{
+              padding: '2rem',
+              background: 'rgba(0,0,0,0.5)',
+              borderRadius: '20px',
+              border: '3px solid #ff00ff'
+            }}>
+              <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#ff00ff', textAlign: 'center' }}>
+                🏆 Viral Challenge Campaigns
+              </h3>
+              <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9, textAlign: 'center' }}>
+                Join or start viral challenges to build momentum and solidarity
+              </p>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {[
+                  {
+                    name: 'From Paycheck to Poverty',
+                    description: 'Share your story: How workplace injury led to poverty or financial crisis',
+                    hashtag: '#PaycheckToPoverty',
+                    icon: '📉',
+                    color: '#FFD700'
+                  },
+                  {
+                    name: 'Show Your Receipts',
+                    description: 'Post denial letters that pushed you into poverty or cost you housing',
+                    hashtag: '#ReceiptsOfPoverty',
+                    icon: '📸',
+                    color: '#FF4444'
+                  },
+                  {
+                    name: 'Housing as Healthcare',
+                    description: 'Show how lack of housing prevents recovery from injury and disability',
+                    hashtag: '#HousingIsHealthcare',
+                    icon: '🏠',
+                    color: '#48c774'
+                  },
+                  {
+                    name: 'Count the Forgotten',
+                    description: 'Share statistics on injured workers in poverty and homeless shelters',
+                    hashtag: '#CountTheForgotten',
+                    icon: '📊',
+                    color: '#3498db'
+                  }
+                ].map((challenge, idx) => (
+                  <div 
+                    key={idx}
+                    style={{
+                      padding: '1.5rem',
+                      background: 'rgba(255,0,255,0.1)',
+                      borderRadius: '15px',
+                      border: `2px solid ${challenge.color}`
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                      <div style={{ fontSize: '2.5rem' }}>{challenge.icon}</div>
+                      <div>
+                        <h4 style={{ fontSize: '1.2rem', color: challenge.color, marginBottom: '0.3rem' }}>
+                          {challenge.name}
+                        </h4>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5', opacity: 0.9 }}>
+                      {challenge.description}
+                    </p>
+                    <div style={{ 
+                      padding: '0.7rem 1rem', 
+                      background: challenge.color,
+                      borderRadius: '8px',
+                      marginBottom: '1rem',
+                      fontFamily: 'monospace',
+                      fontSize: '1rem',
+                      color: '#000',
+                      fontWeight: 'bold'
+                    }}>
+                      {challenge.hashtag}
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button style={{ 
+                        flex: 1,
+                        padding: '0.7rem',
+                        background: challenge.color,
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#000',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}>
+                        🎯 Start Challenge
+                      </button>
+                      <button style={{ 
+                        flex: 1,
+                        padding: '0.7rem',
+                        background: 'transparent',
+                        border: `2px solid ${challenge.color}`,
+                        borderRadius: '8px',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        cursor: 'pointer'
+                      }}>
+                        📋 Copy
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Link to Full Meme Tools */}
+            <div style={{
+              marginTop: '3rem',
+              padding: '2rem',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '15px',
+              textAlign: 'center'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>
+                🚀 Want More Advanced Tools?
+              </h3>
+              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: '#fff', opacity: 0.9 }}>
+                Visit the Memetic Embassy for the full Meme Warfare Arsenal with infographic builders, 
+                quote cards, thread composers, GIF captions, and downloadable template packs!
+              </p>
+              <Link href="/memetic-embassy" style={{
+                display: 'inline-block',
+                padding: '1rem 2rem',
+                background: '#000',
+                border: '3px solid #fff',
+                borderRadius: '25px',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: '1.1rem',
                 fontWeight: 'bold'
               }}>
-                Upload Image *
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
+                🏛️ Visit Full Memetic Embassy
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 2: THE LIVING MEME ECOSYSTEM */}
+        <div id="section-ecosystem" style={{
+          padding: '80px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #001a33 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: ECOSYSTEM CHAMBER */}
+            <div style={{
+              background: 'linear-gradient(135deg, #00ff88 0%, #00ffff 50%, #0088ff 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #00ff88',
+              boxShadow: '0 0 30px rgba(0,255,136,0.5), inset 0 0 30px rgba(0,255,255,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                🌱🔮 MEMETIC ECOSYSTEM CHAMBER ONLINE 🔮🌱
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#001a33',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                WHERE MEMES EVOLVE • MERGE • MUTATE • BUILD LORE
+              </div>
+            </div>
+
+            <h2 style={{
+              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #00ff88 0%, #00ffff 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🌿 THE LIVING MEME ECOSYSTEM 🌿
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#00ff88',
+              marginBottom: '4rem',
+              maxWidth: '900px',
+              margin: '0 auto 4rem',
+              lineHeight: '1.8'
+            }}>
+              A digital environment where memes <strong>evolve</strong>, <strong>merge</strong>, <strong>mutate</strong>, <strong>react to each other</strong>, <strong>build lore</strong>, <strong>form families</strong>, and <strong>change over time</strong>.<br/><br/>
+              <em>Welcome to the National Park of Memes.</em>
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '2rem'
+            }}>
+              {memeHabitats.map((habitat) => (
+                <div
+                  key={habitat.id}
+                  onClick={() => setSelectedHabitat(habitat.id === selectedHabitat ? null : habitat.id)}
+                  style={{
+                    background: selectedHabitat === habitat.id
+                      ? 'linear-gradient(135deg, #00ff88 0%, #00ffff 100%)'
+                      : 'rgba(0,255,136,0.1)',
+                    border: '3px solid #00ff88',
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    boxShadow: selectedHabitat === habitat.id 
+                      ? '0 0 30px rgba(0,255,136,0.6), inset 0 0 20px rgba(0,255,255,0.2)' 
+                      : '0 5px 15px rgba(0,255,136,0.3)',
+                    transform: selectedHabitat === habitat.id ? 'scale(1.05)' : 'scale(1)'
+                  }}
+                >
+                  <h3 style={{
+                    fontSize: '1.5rem',
+                    color: selectedHabitat === habitat.id ? '#000' : '#00ff88',
+                    marginBottom: '1rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {habitat.name}
+                  </h3>
+
+                  <p style={{
+                    color: selectedHabitat === habitat.id ? '#000' : '#ccc',
+                    marginBottom: '1rem',
+                    fontSize: '1.1rem'
+                  }}>
+                    {habitat.description}
+                  </p>
+
+                  {selectedHabitat === habitat.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.5s ease',
+                      color: '#000'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong>Climate:</strong> {habitat.climate}
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong>Residents:</strong>
+                        <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
+                          {habitat.residents.map((resident, idx) => (
+                            <li key={idx}>{resident}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong>Indigenous Species:</strong> {habitat.indigenous_species}
+                      </div>
+
+                      <div style={{
+                        background: 'rgba(0,0,0,0.3)',
+                        padding: '0.5rem',
+                        borderRadius: '8px',
+                        fontWeight: 'bold'
+                      }}>
+                        Danger Level: {habitat.danger_level}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 3: THE MEMETIC EMBASSY - DEPARTMENTS */}
+        <div id="section-departments" style={{
+          padding: '80px 20px',
+          background: 'linear-gradient(180deg, #001a33 0%, #330066 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #ff00ff 0%, #ffaa00 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🏛️ EMBASSY DEPARTMENTS 🏛️
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.4rem',
+              color: '#ff00ff',
+              marginBottom: '4rem',
+              maxWidth: '900px',
+              margin: '0 auto 4rem',
+              lineHeight: '1.8'
+            }}>
+              <strong>Welcome to the nation where the marginalized finally have power.</strong><br/>
+              Complete with digital passports, diplomatic immunity from gaslighting, citizenship badges, rights charters, and solidarity treaties.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem'
+            }}>
+              {embassyDepartments.map((dept, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    background: 'rgba(255,0,255,0.1)',
+                    border: '3px solid #ff00ff',
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #ff00ff 0%, #ffaa00 100%)';
+                    e.currentTarget.style.transform = 'translateY(-10px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,0,255,0.1)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <div style={{
+                    fontSize: '3rem',
+                    textAlign: 'center',
+                    marginBottom: '1rem'
+                  }}>
+                    {dept.icon}
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.5rem',
+                    color: '#ff00ff',
+                    marginBottom: '1rem',
+                    fontWeight: 'bold',
+                    textAlign: 'center'
+                  }}>
+                    {dept.name}
+                  </h3>
+
+                  <p style={{
+                    color: '#ddd',
+                    marginBottom: '1.5rem',
+                    fontSize: '1.1rem',
+                    lineHeight: '1.6'
+                  }}>
+                    {dept.description}
+                  </p>
+
+                  <div>
+                    <strong style={{ color: '#ffaa00' }}>Services:</strong>
+                    <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem', color: '#ccc' }}>
+                      {dept.services.map((service, sidx) => (
+                        <li key={sidx} style={{ marginBottom: '0.5rem' }}>{service}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 4: MEME CATEGORIES */}
+        <div id="section-categories" style={{
+          padding: '80px 20px',
+          background: 'linear-gradient(180deg, #330066 0%, #000000 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #00ffff 0%, #ff00ff 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎨 MEME CATEGORIES 🎨
+            </h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2rem'
+            }}>
+              {memeCategories.map((cat, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    background: 'rgba(0,255,255,0.1)',
+                    border: '3px solid #00ffff',
+                    borderRadius: '20px',
+                    padding: '2rem'
+                  }}
+                >
+                  <div style={{
+                    fontSize: '3rem',
+                    textAlign: 'center',
+                    marginBottom: '1rem'
+                  }}>
+                    {cat.icon}
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.4rem',
+                    color: '#00ffff',
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold',
+                    textAlign: 'center'
+                  }}>
+                    {cat.category}
+                  </h3>
+
+                  <div style={{
+                    textAlign: 'center',
+                    color: '#ff00ff',
+                    fontStyle: 'italic',
+                    marginBottom: '1.5rem'
+                  }}>
+                    Vibe: {cat.vibe}
+                  </div>
+
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <strong style={{ color: '#00ffff' }}>Examples:</strong>
+                    <div style={{ marginTop: '0.5rem' }}>
+                      {cat.examples.map((ex, eidx) => (
+                        <div
+                          key={eidx}
+                          style={{
+                            background: 'rgba(0,0,0,0.5)',
+                            padding: '0.75rem',
+                            borderRadius: '10px',
+                            marginBottom: '0.5rem',
+                            color: '#fff',
+                            fontSize: '0.95rem'
+                          }}
+                        >
+                          "{ex}"
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <strong style={{ color: '#00ffff' }}>Templates:</strong>
+                    <div style={{
+                      display: 'flex',
+                      gap: '0.5rem',
+                      flexWrap: 'wrap',
+                      marginTop: '0.5rem'
+                    }}>
+                      {cat.templates.map((template, tidx) => (
+                        <span
+                          key={tidx}
+                          style={{
+                            background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+                            color: '#000',
+                            padding: '0.3rem 0.7rem',
+                            borderRadius: '15px',
+                            fontSize: '0.85rem',
+                            fontWeight: 'bold'
+                          }}
+                        >
+                          {template}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 5: INTERACTIVE TOOLS & HORROR COMEDY */}
+        <div id="section-horror-comedy" style={{
+          padding: '80px 20px',
+          background: 'linear-gradient(180deg, #000000 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #8B00FF 0%, #ff6b6b 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎭 BUREAUCRATIC HORROR COMEDY ZONE 🎭
+            </h2>
+
+            {/* MEME MOOD MIXER */}
+            <div style={{
+              background: 'rgba(255,107,107,0.1)',
+              border: '3px solid #ff6b6b',
+              borderRadius: '20px',
+              padding: '2rem',
+              marginBottom: '3rem'
+            }}>
+              <h3 style={{
+                fontSize: '2rem',
+                color: '#ff6b6b',
+                marginBottom: '2rem',
+                textAlign: 'center',
+                fontWeight: 'bold'
+              }}>
+                🎚️ MEME MOOD MIXER
+              </h3>
+
+              <p style={{
+                textAlign: 'center',
+                color: '#ccc',
+                marginBottom: '2rem',
+                fontSize: '1.1rem'
+              }}>
+                Adjust the sliders to match your emotional state. AI outputs a meme template that matches your vibe.
+              </p>
+
+              <div style={{
+                display: 'grid',
+                gap: '1.5rem',
+                marginBottom: '2rem'
+              }}>
+                {Object.entries(moodSliders).map(([mood, value]) => (
+                  <div key={mood}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: '0.5rem'
+                    }}>
+                      <label style={{
+                        color: '#ff6b6b',
+                        textTransform: 'uppercase',
+                        fontWeight: 'bold'
+                      }}>
+                        {mood}
+                      </label>
+                      <span style={{ color: '#ffaa00', fontWeight: 'bold' }}>
+                        {value}%
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={value}
+                      onChange={(e) => setMoodSliders({
+                        ...moodSliders,
+                        [mood]: parseInt(e.target.value)
+                      })}
+                      style={{
+                        width: '100%',
+                        height: '10px',
+                        borderRadius: '5px',
+                        background: `linear-gradient(to right, #ff6b6b 0%, #ff6b6b ${value}%, #333 ${value}%, #333 100%)`,
+                        outline: 'none',
+                        cursor: 'pointer'
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={generateMeme}
                 style={{
                   width: '100%',
-                  padding: '0.8rem',
-                  background: '#0f3460',
-                  border: '2px dashed #667eea',
-                  borderRadius: '8px',
-                  color: '#fff',
-                  cursor: 'pointer'
+                  padding: '1.5rem',
+                  background: 'linear-gradient(135deg, #ff6b6b 0%, #ffaa00 100%)',
+                  border: 'none',
+                  borderRadius: '15px',
+                  color: '#000',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
                 }}
-              />
-              {imagePreview && (
-                <div style={{ marginTop: '1rem' }}>
-                  <img 
-                    src={imagePreview} 
-                    alt="Preview" 
-                    style={{ 
-                      maxWidth: '100%', 
-                      maxHeight: '200px',
-                      borderRadius: '8px',
-                      border: '2px solid #667eea'
-                    }} 
-                  />
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'scale(1.05)';
+                  e.target.style.boxShadow = '0 0 30px rgba(255,107,107,0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'scale(1)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              >
+                🎲 GENERATE MEME
+              </button>
+
+              {generatedMeme && (
+                <div style={{
+                  marginTop: '2rem',
+                  background: 'rgba(0,0,0,0.5)',
+                  border: '3px solid #00ffff',
+                  borderRadius: '15px',
+                  padding: '2rem',
+                  animation: 'fadeIn 0.5s ease'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '1rem',
+                    flexWrap: 'wrap',
+                    gap: '1rem'
+                  }}>
+                    <div>
+                      <span style={{
+                        background: '#ff6b6b',
+                        color: '#000',
+                        padding: '0.3rem 0.7rem',
+                        borderRadius: '10px',
+                        marginRight: '0.5rem',
+                        fontWeight: 'bold'
+                      }}>
+                        {generatedMeme.mood.toUpperCase()}
+                      </span>
+                      <span style={{
+                        background: '#ffaa00',
+                        color: '#000',
+                        padding: '0.3rem 0.7rem',
+                        borderRadius: '10px',
+                        fontWeight: 'bold'
+                      }}>
+                        {generatedMeme.style.toUpperCase()}
+                      </span>
+                    </div>
+                    <span style={{ color: '#666', fontSize: '0.9rem' }}>
+                      {generatedMeme.timestamp}
+                    </span>
+                  </div>
+
+                  <div style={{
+                    background: '#000',
+                    padding: '1.5rem',
+                    borderRadius: '10px',
+                    fontSize: '1.3rem',
+                    color: '#00ffff',
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                    marginBottom: '1rem'
+                  }}>
+                    {generatedMeme.template}
+                  </div>
+
+                  <button
+                    onClick={makeItSpicy}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: 'linear-gradient(135deg, #ff0000 0%, #ff6600 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#fff',
+                      fontSize: '1.2rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    🌶️ MAKE IT SPICIER 🌶️
+                  </button>
                 </div>
               )}
             </div>
-          )}
-          
-          {/* Description */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              color: '#00ffff',
-              fontWeight: 'bold'
-            }}>
-              Description (Optional)
-            </label>
-            <textarea
-              value={formData.description}
-              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-              placeholder="Tell us about your creation..."
-              rows={3}
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: '#fff',
-                fontSize: '1rem',
-                resize: 'vertical'
-              }}
-            />
           </div>
-          
-          {/* Creator Name */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              color: '#00ffff',
-              fontWeight: 'bold'
-            }}>
-              Your Name (Optional)
-            </label>
-            <input
-              type="text"
-              value={formData.creator}
-              onChange={(e) => setFormData(prev => ({ ...prev, creator: e.target.value }))}
-              placeholder="Anonymous or your name/handle..."
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                background: '#0f3460',
-                border: '2px solid #667eea',
-                borderRadius: '8px',
-                color: '#fff',
-                fontSize: '1rem'
-              }}
-            />
-          </div>
-          
-          {/* Submit Button */}
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button
-              type="button"
-              onClick={onClose}
-              style={{
-                flex: 1,
-                padding: '1rem',
-                background: 'transparent',
-                border: '2px solid #ff6b6b',
-                borderRadius: '10px',
-                color: '#ff6b6b',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              style={{
-                flex: 2,
-                padding: '1rem',
-                background: 'linear-gradient(135deg, #48c774, #2ecc71)',
-                border: 'none',
-                borderRadius: '10px',
-                color: '#fff',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                fontSize: '1.1rem'
-              }}
-            >
-              📤 Share with Community
-            </button>
-          </div>
-        </form>
-        
-        <p style={{ 
-          marginTop: '1.5rem', 
-          fontSize: '0.8rem', 
-          opacity: 0.7,
-          textAlign: 'center'
+        </div>
+
+        {/* SECTION 6: MEME CREATOR STUDIO - THE MEME FORGE */}
+        <div id="section-meme-forge" style={{
+          padding: '120px 20px',
+          background: 'linear-gradient(180deg, #1a0000 0%, #330011 30%, #330066 70%, #1a0033 100%)',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          👁️ By sharing, you agree that your creation will be visible to the community.
-          <br />All creations are branded with Injured Workers Unite.
-        </p>
+          {/* Animated forge fire effect */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '8px',
+            background: 'linear-gradient(90deg, #ff4500, #FFD700, #ff0000, #ff4500)',
+            backgroundSize: '400% 100%',
+            animation: 'rainbow 3s linear infinite'
+          }}></div>
+          
+          {/* Floating embers */}
+          <div style={{
+            position: 'absolute',
+            top: '15%',
+            left: '5%',
+            fontSize: '2rem',
+            animation: 'float 4s ease-in-out infinite',
+            opacity: 0.5
+          }}>🔥</div>
+          <div style={{
+            position: 'absolute',
+            top: '25%',
+            right: '8%',
+            fontSize: '1.5rem',
+            animation: 'float 3s ease-in-out infinite 0.5s',
+            opacity: 0.4
+          }}>⚡</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '20%',
+            left: '10%',
+            fontSize: '1.8rem',
+            animation: 'float 3.5s ease-in-out infinite 1s',
+            opacity: 0.5
+          }}>🎨</div>
+          
+          <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+            <h2 style={{
+              fontSize: 'clamp(3rem, 8vw, 6rem)',
+              marginBottom: '1.5rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #ff4500 0%, #FFD700 30%, #ff0000 60%, #ff4500 100%)',
+              backgroundSize: '300% 100%',
+              animation: 'rainbow 5s linear infinite',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold',
+              letterSpacing: '4px',
+              textShadow: '0 0 50px rgba(255,69,0,0.5)'
+            }}>
+              🔥 THE MEME FORGE 🔥
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#00ffff',
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Where viral content is born. Create memes compatible with Embassy canon.
+            </p>
+
+            {/* 5-PANEL MEME GENERATOR UI */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: '10px',
+              marginBottom: '3rem',
+              background: 'rgba(0,0,0,0.5)',
+              padding: '20px',
+              borderRadius: '20px',
+              border: '3px solid #ff00ff'
+            }}>
+              {/* Panel 1: Character Selector */}
+              <div style={{
+                background: 'rgba(255,0,255,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #ff00ff'
+              }}>
+                <h4 style={{ color: '#ff00ff', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  1️⃣ CHARACTER
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ 
+                    fontSize: '0.75rem', 
+                    color: '#00ffff', 
+                    marginBottom: '0.5rem',
+                    textAlign: 'center'
+                  }}>
+                    Heroes
+                  </div>
+                  {heroSquad.slice(0, 3).map(hero => (
+                    <button
+                      key={hero.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...hero, type: 'hero' })}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedCharacterForMeme?.id === hero.id 
+                          ? hero.color 
+                          : 'rgba(0,0,0,0.3)',
+                        border: `2px solid ${hero.color}`,
+                        borderRadius: '8px',
+                        color: selectedCharacterForMeme?.id === hero.id ? '#000' : '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <span style={{ fontSize: '1.2rem' }}>{hero.emoji}</span>
+                      <span style={{ fontSize: '0.7rem' }}>{hero.name.split(' ').slice(-1)[0]}</span>
+                    </button>
+                  ))}
+                  <div style={{ 
+                    fontSize: '0.75rem', 
+                    color: '#ff6b6b', 
+                    margin: '0.5rem 0',
+                    textAlign: 'center'
+                  }}>
+                    Villains
+                  </div>
+                  {denialSquad.slice(0, 2).map(villain => (
+                    <button
+                      key={villain.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...villain, type: 'villain' })}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedCharacterForMeme?.id === villain.id 
+                          ? villain.color || '#ff0080' 
+                          : 'rgba(0,0,0,0.3)',
+                        border: `2px solid ${villain.color || '#ff0080'}`,
+                        borderRadius: '8px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.8rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <span style={{ fontSize: '1.2rem' }}>{villain.emoji}</span>
+                      <span style={{ fontSize: '0.7rem' }}>{villain.name.split(' ').slice(-1)[0]}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 2: Background Style */}
+              <div style={{
+                background: 'rgba(0,255,255,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #00ffff'
+              }}>
+                <h4 style={{ color: '#00ffff', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  2️⃣ BACKGROUND
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {memeBackgrounds.map(bg => (
+                    <button
+                      key={bg.id}
+                      onClick={() => setSelectedBackground(bg.id)}
+                      style={{
+                        padding: '0.5rem',
+                        background: selectedBackground === bg.id 
+                          ? bg.color 
+                          : 'rgba(0,0,0,0.3)',
+                        border: selectedBackground === bg.id 
+                          ? '2px solid #fff' 
+                          : '2px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        fontSize: '0.75rem',
+                        textAlign: 'left'
+                      }}
+                    >
+                      {bg.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Panel 3: Dialogue Bubble */}
+              <div style={{
+                background: 'rgba(255,215,0,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #FFD700'
+              }}>
+                <h4 style={{ color: '#FFD700', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  3️⃣ DIALOGUE
+                </h4>
+                <textarea
+                  value={memeText.top}
+                  onChange={(e) => setMemeText({ ...memeText, top: e.target.value })}
+                  placeholder="Top text..."
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginBottom: '0.5rem',
+                    background: 'rgba(0,0,0,0.5)',
+                    border: '1px solid #FFD700',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    fontSize: '0.8rem',
+                    resize: 'none',
+                    height: '60px'
+                  }}
+                />
+                <textarea
+                  value={memeText.bottom}
+                  onChange={(e) => setMemeText({ ...memeText, bottom: e.target.value })}
+                  placeholder="Bottom text..."
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    background: 'rgba(0,0,0,0.5)',
+                    border: '1px solid #FFD700',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    fontSize: '0.8rem',
+                    resize: 'none',
+                    height: '60px'
+                  }}
+                />
+              </div>
+
+              {/* Panel 4: Auto-Meme Mode */}
+              <div style={{
+                background: 'rgba(255,107,107,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #ff6b6b'
+              }}>
+                <h4 style={{ color: '#ff6b6b', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  4️⃣ AUTO-MEME
+                </h4>
+                <button
+                  onClick={() => {
+                    setAutoMemeMode(!autoMemeMode);
+                    if (!autoMemeMode) {
+                      // Generate VIRAL random meme based on character
+                      const viralTemplates = [
+                        { top: 'WCB: "WE NEED MORE EVIDENCE"', bottom: 'ME: *PROVIDES 47 REPORTS* 🤡' },
+                        { top: 'WHEN THEY SAY "YOUR CLAIM IS PENDING"', bottom: 'FOR THE 47TH TIME THIS YEAR 💀' },
+                        { top: 'EMPLOYER LIES: ZERO CONSEQUENCES', bottom: 'I MISS ONE DEADLINE: DENIED ❌' },
+                        { top: 'PERMANENT INJURY', bottom: 'TEMPORARY BENEFITS 🧮❌' },
+                        { top: 'WCB: "TRANSITIONAL WORK"', bottom: 'THE WORK: DOESN\'T EXIST 👻' },
+                        { top: 'THEY SPENT MORE FIGHTING MY CLAIM', bottom: 'THAN JUST APPROVING IT 🤡💸' },
+                        { top: 'DOCTOR AFTER 3 MINUTES:', bottom: '"HAVE YOU TRIED YOGA?" 🙄' },
+                        { top: 'HR: "WE TAKE THIS SERIOUSLY"', bottom: '*VANISHES INTO THIN AIR* 💨' },
+                        { top: 'THE EMPLOYER SAID YOU WERE FINE', bottom: 'MUST BE TRUE THEN 🙈' },
+                        { top: 'BEING DISABLED UNDER CAPITALISM', bottom: 'IS BEING GASLIT BY INSURANCE DOCTORS 🔥' },
+                        { top: 'POV: YOU\'RE PERMANENTLY DISABLED', bottom: 'BUT WCB SAYS "SUITABLE WORK" 🎪' },
+                        { top: 'MY PAIN IS PERMANENT', bottom: 'THEIR CONCERN IS TEMPORARY ⏰' }
+                      ];
+                      const random = viralTemplates[Math.floor(Math.random() * viralTemplates.length)];
+                      setMemeText(random);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    background: autoMemeMode 
+                      ? 'linear-gradient(135deg, #ff0080 0%, #ff8c00 100%)'
+                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    border: '3px solid #FFD700',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    boxShadow: '0 0 20px rgba(255,215,0,0.4)'
+                  }}
+                >
+                  🔥 GENERATE VIRAL MEME 🔥
+                </button>
+                <p style={{
+                  fontSize: '0.85rem',
+                  color: '#FFD700',
+                  marginTop: '0.5rem',
+                  textAlign: 'center',
+                  fontWeight: 'bold'
+                }}>
+                  ⚡ Instant viral-ready templates ⚡
+                </p>
+                <div style={{
+                  marginTop: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem'
+                }}>
+                  <select
+                    style={{
+                      padding: '0.5rem',
+                      background: 'rgba(0,0,0,0.5)',
+                      border: '1px solid #ff6b6b',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      fontSize: '0.75rem'
+                    }}
+                    onChange={(e) => {
+                      const templates = {
+                        denial: { top: 'Your claim has been', bottom: 'DENIED' },
+                        waiting: { top: 'Still waiting...', bottom: 'Day 847' },
+                        yoga: { top: 'Doctor:', bottom: '"Have you tried yoga?"' },
+                        vanish: { top: 'HR mid-sentence:', bottom: '*poof*' }
+                      };
+                      if (templates[e.target.value]) {
+                        setMemeText(templates[e.target.value]);
+                      }
+                    }}
+                  >
+                    <option value="">Quick Templates</option>
+                    <option value="denial">Denial Classic</option>
+                    <option value="waiting">Infinite Wait</option>
+                    <option value="yoga">Yoga Cure</option>
+                    <option value="vanish">HR Vanish</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Panel 5: Download/Share */}
+              <div style={{
+                background: 'rgba(50,205,50,0.1)',
+                borderRadius: '15px',
+                padding: '1rem',
+                border: '2px solid #32CD32'
+              }}>
+                <h4 style={{ color: '#32CD32', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                  5️⃣ SHARE
+                </h4>
+                <button
+                  onClick={() => {
+                    const memeData = {
+                      topText: memeText.top,
+                      bottomText: memeText.bottom,
+                      character: selectedCharacterForMeme,
+                      background: selectedBackground
+                    };
+                    downloadMeme(memeData);
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    marginBottom: '0.5rem',
+                    background: 'linear-gradient(135deg, #32CD32 0%, #00ff88 100%)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: '#000',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  📥 DOWNLOAD
+                </button>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '0.5rem'
+                }}>
+                  <button
+                    onClick={() => shareToSocial('twitter', memeText.top + ' ' + memeText.bottom)}
+                    style={{
+                      padding: '0.5rem',
+                      background: '#1DA1F2',
+                      border: 'none',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.7rem'
+                    }}
+                  >
+                    🐦 X
+                  </button>
+                  <button
+                    onClick={() => shareToSocial('reddit', memeText.top + ' ' + memeText.bottom)}
+                    style={{
+                      padding: '0.5rem',
+                      background: '#FF4500',
+                      border: 'none',
+                      borderRadius: '5px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      fontSize: '0.7rem'
+                    }}
+                  >
+                    🤖 Reddit
+                  </button>
+                </div>
+                <button
+                  onClick={() => {
+                    const newMeme = {
+                      id: Date.now(),
+                      topText: memeText.top,
+                      bottomText: memeText.bottom,
+                      character: selectedCharacterForMeme,
+                      background: selectedBackground,
+                      created: new Date().toISOString()
+                    };
+                    const updated = [...userMemes, newMeme];
+                    setUserMemes(updated);
+                    localStorage.setItem('memetic_embassy_user_memes', JSON.stringify(updated));
+                    alert('🎨 Saved to gallery!');
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginTop: '0.5rem',
+                    background: 'rgba(255,255,255,0.1)',
+                    border: '1px solid #32CD32',
+                    borderRadius: '5px',
+                    color: '#32CD32',
+                    cursor: 'pointer',
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  💾 Save to Gallery
+                </button>
+              </div>
+            </div>
+
+            {/* LIVE PREVIEW */}
+            <div style={{
+              background: memeBackgrounds.find(b => b.id === selectedBackground)?.color || 'linear-gradient(135deg, #FFD700 0%, #FF6B6B 100%)',
+              borderRadius: '20px',
+              padding: '3rem',
+              minHeight: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              border: '5px solid #fff',
+              boxShadow: '0 0 50px rgba(255,0,255,0.5)',
+              marginBottom: '3rem'
+            }}>
+              {/* Top Text */}
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 3rem)',
+                fontFamily: 'Impact, sans-serif',
+                color: '#fff',
+                textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                textAlign: 'center',
+                textTransform: 'uppercase'
+              }}>
+                {memeText.top || 'YOUR TOP TEXT HERE'}
+              </div>
+
+              {/* Character */}
+              {selectedCharacterForMeme && (
+                <div style={{
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '8rem' }}>{selectedCharacterForMeme.emoji}</div>
+                  <div style={{
+                    fontSize: '1.2rem',
+                    color: '#fff',
+                    textShadow: '2px 2px 0 #000',
+                    marginTop: '0.5rem'
+                  }}>
+                    {selectedCharacterForMeme.name}
+                  </div>
+                </div>
+              )}
+
+              {!selectedCharacterForMeme && (
+                <div style={{
+                  fontSize: '6rem',
+                  opacity: 0.3
+                }}>
+                  🎭
+                </div>
+              )}
+
+              {/* Bottom Text */}
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 3rem)',
+                fontFamily: 'Impact, sans-serif',
+                color: '#fff',
+                textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                textAlign: 'center',
+                textTransform: 'uppercase'
+              }}>
+                {memeText.bottom || 'YOUR BOTTOM TEXT HERE'}
+              </div>
+            </div>
+
+            {/* EXTENDED CHARACTER SELECTOR */}
+            <div style={{
+              background: 'rgba(255,0,255,0.1)',
+              border: '3px solid #ff00ff',
+              borderRadius: '20px',
+              padding: '2rem',
+              marginBottom: '3rem'
+            }}>
+              <h3 style={{
+                fontSize: '1.5rem',
+                color: '#ff00ff',
+                marginBottom: '1.5rem',
+                textAlign: 'center'
+              }}>
+                🦸 All Heroes & 😈 All Villains
+              </h3>
+
+              <div style={{ marginBottom: '2rem' }}>
+                <h4 style={{ color: '#FFD700', marginBottom: '1rem' }}>Heroes:</h4>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: '1rem'
+                }}>
+                  {heroSquad.map(hero => (
+                    <button
+                      key={hero.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...hero, type: 'hero' })}
+                      style={{
+                        padding: '1rem',
+                        background: selectedCharacterForMeme?.id === hero.id 
+                          ? hero.color 
+                          : 'rgba(0,0,0,0.5)',
+                        border: `3px solid ${hero.color}`,
+                        borderRadius: '10px',
+                        color: selectedCharacterForMeme?.id === hero.id ? '#000' : '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                    >
+                      <div style={{ fontSize: '2.5rem' }}>{hero.emoji}</div>
+                      <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                        {hero.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 style={{ color: '#ff6b6b', marginBottom: '1rem' }}>Villains:</h4>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: '1rem'
+                }}>
+                  {denialSquad.map(villain => (
+                    <button
+                      key={villain.id}
+                      onClick={() => setSelectedCharacterForMeme({ ...villain, type: 'villain' })}
+                      style={{
+                        padding: '1rem',
+                        background: selectedCharacterForMeme?.id === villain.id 
+                          ? villain.color || '#ff0080'
+                          : 'rgba(0,0,0,0.5)',
+                        border: `3px solid ${villain.color || '#ff0080'}`,
+                        borderRadius: '10px',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                    >
+                      <div style={{ fontSize: '2.5rem' }}>{villain.emoji}</div>
+                      <div style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                        {villain.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* USER MEME GALLERY */}
+            {userMemes.length > 0 && (
+              <div style={{
+                background: 'rgba(0,255,255,0.1)',
+                border: '3px solid #00ffff',
+                borderRadius: '20px',
+                padding: '3rem'
+              }}>
+                <h3 style={{
+                  fontSize: '2rem',
+                  color: '#00ffff',
+                  marginBottom: '2rem',
+                  textAlign: 'center'
+                }}>
+                  🖼️ Your Meme Gallery ({userMemes.length})
+                </h3>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                  gap: '2rem'
+                }}>
+                  {userMemes.map(meme => (
+                    <div
+                      key={meme.id}
+                      style={{
+                        background: 'rgba(0,0,0,0.7)',
+                        border: '2px solid #ff00ff',
+                        borderRadius: '10px',
+                        padding: '1.5rem',
+                        position: 'relative'
+                      }}
+                    >
+                      <div style={{
+                        background: '#000',
+                        borderRadius: '5px',
+                        padding: '1rem',
+                        marginBottom: '1rem',
+                        minHeight: '150px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center'
+                      }}>
+                        {meme.topText && (
+                          <div style={{
+                            fontSize: '1.5rem',
+                            fontFamily: 'Impact, sans-serif',
+                            color: '#fff',
+                            textShadow: '2px 2px 0 #000'
+                          }}>
+                            {meme.topText}
+                          </div>
+                        )}
+                        {meme.character && (
+                          <div style={{ fontSize: '4rem', margin: '0.5rem 0' }}>
+                            {meme.character.emoji}
+                          </div>
+                        )}
+                        {meme.template && (
+                          <div style={{
+                            fontSize: '1.2rem',
+                            color: '#00ffff',
+                            marginTop: '0.5rem'
+                          }}>
+                            {meme.template.substring(0, 100)}
+                          </div>
+                        )}
+                        {meme.bottomText && (
+                          <div style={{
+                            fontSize: '1.5rem',
+                            fontFamily: 'Impact, sans-serif',
+                            color: '#fff',
+                            textShadow: '2px 2px 0 #000',
+                            marginTop: '0.5rem'
+                          }}>
+                            {meme.bottomText}
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div style={{
+                        fontSize: '0.9rem',
+                        color: '#888',
+                        marginBottom: '1rem'
+                      }}>
+                        Created: {new Date(meme.created).toLocaleString()}
+                      </div>
+
+                      <div style={{
+                        display: 'flex',
+                        gap: '1rem'
+                      }}>
+                        <button
+                          onClick={() => downloadMeme(meme)}
+                          style={{
+                            flex: 1,
+                            padding: '0.8rem',
+                            background: '#00ffff',
+                            border: 'none',
+                            borderRadius: '5px',
+                            color: '#000',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          💾 Download
+                        </button>
+                        <button
+                          onClick={() => deleteMeme(meme.id)}
+                          style={{
+                            padding: '0.8rem 1.5rem',
+                            background: '#ff0000',
+                            border: 'none',
+                            borderRadius: '5px',
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* SECTION: SEASON 2 EPISODE POSTERS */}
+        <div id="section-episodes" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #330066 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: EPISODE VAULT */}
+            <div style={{
+              background: 'linear-gradient(135deg, #FFD700 0%, #FF6600 50%, #FF0066 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #FFD700',
+              boxShadow: '0 0 30px rgba(255,215,0,0.5), inset 0 0 30px rgba(255,102,0,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                ✨🎭 MEMETIC EPISODE VAULT ACTIVATED 🎭✨
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#1a0033',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                WHERE BUREAUCRATIC NIGHTMARES BECOME LEGENDARY EPISODES
+              </div>
+            </div>
+
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FF6600 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎬 SEASON 2: THE BUREAUCRATIC WASTES 🎬
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FFD700',
+              marginBottom: '1rem',
+              maxWidth: '800px',
+              margin: '0 auto 2rem'
+            }}>
+              Coming soon to a consciousness near you. MAD Magazine meets propaganda art.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '3rem'
+            }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: 'rgba(255,102,0,0.2)',
+                border: '2px solid #FF6600',
+                borderRadius: '25px',
+                color: '#FF6600',
+                fontSize: '1rem'
+              }}>
+                🎭 Click any episode poster for full details 🎭
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem'
+            }}>
+              {season2Episodes.map((episode) => (
+                <div
+                  key={episode.id}
+                  onClick={() => setSelectedEpisode(episode.id === selectedEpisode ? null : episode.id)}
+                  style={{
+                    background: selectedEpisode === episode.id 
+                      ? `linear-gradient(135deg, ${episode.color} 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.7)',
+                    border: `4px solid ${episode.color}`,
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedEpisode === episode.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedEpisode === episode.id 
+                      ? `0 0 50px ${episode.color}80`
+                      : `0 10px 30px rgba(0,0,0,0.5)`
+                  }}
+                >
+                  {/* Episode Header - Poster Style */}
+                  <div style={{
+                    background: episode.color,
+                    padding: '1.5rem',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold',
+                      color: '#000',
+                      marginBottom: '0.5rem'
+                    }}>
+                      EPISODE {episode.number}
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.6rem',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      textTransform: 'uppercase',
+                      lineHeight: '1.2'
+                    }}>
+                      {episode.title}
+                    </h3>
+                  </div>
+
+                  {/* Episode Body */}
+                  <div style={{ padding: '1.5rem' }}>
+                    <p style={{
+                      fontSize: '1.1rem',
+                      color: episode.color,
+                      fontStyle: 'italic',
+                      marginBottom: '1rem',
+                      textAlign: 'center'
+                    }}>
+                      "{episode.tagline}"
+                    </p>
+
+                    {selectedEpisode === episode.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.5s ease',
+                        borderTop: `1px solid ${episode.color}40`,
+                        paddingTop: '1.5rem',
+                        marginTop: '1rem'
+                      }}>
+                        <div style={{ marginBottom: '1.5rem' }}>
+                          <strong style={{ color: episode.color }}>📖 Synopsis:</strong>
+                          <p style={{ marginTop: '0.5rem', color: '#ddd', lineHeight: '1.6' }}>
+                            {episode.description}
+                          </p>
+                        </div>
+
+                        <div style={{ marginBottom: '1.5rem' }}>
+                          <strong style={{ color: episode.color }}>🎨 Visual Style:</strong>
+                          <p style={{ marginTop: '0.5rem', color: '#aaa', fontSize: '0.95rem' }}>
+                            {episode.visual}
+                          </p>
+                        </div>
+
+                        <div style={{ marginBottom: '1rem' }}>
+                          <strong style={{ color: episode.color }}>🦸 Heroes Featured:</strong>
+                          <div style={{
+                            display: 'flex',
+                            gap: '0.5rem',
+                            flexWrap: 'wrap',
+                            marginTop: '0.5rem'
+                          }}>
+                            {episode.heroes.map(heroId => {
+                              const hero = heroSquad.find(h => h.id === heroId);
+                              return hero ? (
+                                <span
+                                  key={heroId}
+                                  style={{
+                                    background: hero.color,
+                                    color: '#000',
+                                    padding: '5px 12px',
+                                    borderRadius: '15px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 'bold'
+                                  }}
+                                >
+                                  {hero.emoji} {hero.name.split(' ').slice(-1)[0]}
+                                </span>
+                              ) : null;
+                            })}
+                          </div>
+                        </div>
+
+                        <div style={{
+                          background: 'rgba(255,0,0,0.1)',
+                          padding: '1rem',
+                          borderRadius: '10px',
+                          border: '1px solid #ff0000'
+                        }}>
+                          <strong style={{ color: '#ff0000' }}>😈 Villain:</strong>
+                          <span style={{ marginLeft: '0.5rem', color: '#ff6b6b' }}>
+                            {episode.villain === 'all' 
+                              ? 'THE ENTIRE DENIAL SQUAD'
+                              : denialSquad.find(v => v.id === episode.villain)?.name}
+                          </span>
+                        </div>
+
+                        <div style={{
+                          marginTop: '1rem',
+                          padding: '0.5rem 1rem',
+                          background: 'rgba(255,255,255,0.1)',
+                          borderRadius: '10px',
+                          fontSize: '0.9rem',
+                          color: '#888'
+                        }}>
+                          Style: {episode.style}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '1rem',
+                      textAlign: 'center',
+                      fontSize: '0.85rem',
+                      color: '#888'
+                    }}>
+                      {selectedEpisode === episode.id ? '▲ Collapse' : '▼ View Details'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: MAD-STYLE COMIC PAGES */}
+        <div id="section-comics" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #000000 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* MEMETIC MAGIC: COMIC ARCHIVE */}
+            <div style={{
+              background: 'linear-gradient(135deg, #FF00FF 0%, #9900FF 50%, #FFD700 100%)',
+              padding: '20px',
+              borderRadius: '15px',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              border: '3px solid #FF00FF',
+              boxShadow: '0 0 30px rgba(255,0,255,0.5), inset 0 0 30px rgba(153,0,255,0.3)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}>
+              <div style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                textShadow: '0 0 10px #000, 2px 2px 4px #000',
+                marginBottom: '10px'
+              }}>
+                📚🎨 MEMETIC COMIC ARCHIVE UNLOCKED 🎨📚
+              </div>
+              <div style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                color: '#1a0033',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(255,255,255,0.5)'
+              }}>
+                SATIRE MEETS ACTION IN THE BUREAUCRATIC WASTES SAGA
+              </div>
+            </div>
+
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FF00FF 0%, #FFD700 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              📖 MAD-STYLE COMIC PAGES 📖
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FF00FF',
+              marginBottom: '2rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Core scenes from the Bureaucratic Wastes saga. Satire meets action meets dark comedy.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {comicPages.map((page) => (
+                <div
+                  key={page.id}
+                  onClick={() => setSelectedComicPage(page.id === selectedComicPage ? null : page.id)}
+                  style={{
+                    background: selectedComicPage === page.id 
+                      ? `linear-gradient(135deg, ${page.color} 0%, #000 100%)`
+                      : 'rgba(255,255,255,0.05)',
+                    border: `4px solid ${page.color}`,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedComicPage === page.id ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: selectedComicPage === page.id 
+                      ? `0 0 40px ${page.color}60`
+                      : 'none'
+                  }}
+                >
+                  {/* Page Header */}
+                  <div style={{
+                    background: page.color,
+                    padding: '1rem 1.5rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <span style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#000'
+                    }}>
+                      PAGE {page.number}
+                    </span>
+                    <span style={{
+                      background: '#000',
+                      color: page.color,
+                      padding: '5px 12px',
+                      borderRadius: '15px',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {page.mood}
+                    </span>
+                  </div>
+
+                  {/* Page Content */}
+                  <div style={{ padding: '1.5rem' }}>
+                    <h3 style={{
+                      fontSize: '1.4rem',
+                      color: page.color,
+                      marginBottom: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {page.title}
+                    </h3>
+
+                    <p style={{
+                      color: '#aaa',
+                      fontSize: '1rem',
+                      marginBottom: '1rem',
+                      lineHeight: '1.5'
+                    }}>
+                      {page.description}
+                    </p>
+
+                    {selectedComicPage === page.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.5s ease',
+                        borderTop: `1px solid ${page.color}40`,
+                        paddingTop: '1.5rem',
+                        marginTop: '1rem'
+                      }}>
+                        <strong style={{ color: page.color, fontSize: '1.1rem' }}>📰 Panel Breakdown:</strong>
+                        
+                        <div style={{
+                          display: 'grid',
+                          gap: '1rem',
+                          marginTop: '1rem'
+                        }}>
+                          {page.panels.map((panel, idx) => (
+                            <div
+                              key={idx}
+                              style={{
+                                background: 'rgba(0,0,0,0.5)',
+                                border: `2px solid ${page.color}40`,
+                                borderRadius: '10px',
+                                padding: '1rem',
+                                display: 'flex',
+                                gap: '1rem',
+                                alignItems: 'flex-start'
+                              }}
+                            >
+                              <span style={{
+                                background: page.color,
+                                color: '#000',
+                                padding: '3px 10px',
+                                borderRadius: '10px',
+                                fontSize: '0.75rem',
+                                fontWeight: 'bold',
+                                textTransform: 'uppercase',
+                                flexShrink: 0
+                              }}>
+                                {panel.type}
+                              </span>
+                              <p style={{
+                                color: '#ddd',
+                                fontSize: '0.95rem',
+                                lineHeight: '1.5',
+                                margin: 0
+                              }}>
+                                {panel.content}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '1rem',
+                      textAlign: 'center',
+                      fontSize: '0.85rem',
+                      color: '#888'
+                    }}>
+                      {selectedComicPage === page.id ? '▲ Collapse' : '▼ View Panels'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: SEASON 1 EPISODES - RISE OF THE EMBASSY */}
+        <div id="section-season1" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #330066 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #9932CC 0%, #FFD700 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🎬 SEASON 1: RISE OF THE EMBASSY 🎬
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#9932CC',
+              marginBottom: '2rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              The origin season. Where it all began. 12 episodes of truth, resistance, and the birth of a movement.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              {season1Episodes.map((episode) => (
+                <div
+                  key={episode.id}
+                  onClick={() => setSelectedEpisode(episode.id === selectedEpisode ? null : episode.id)}
+                  style={{
+                    background: selectedEpisode === episode.id 
+                      ? `linear-gradient(135deg, ${episode.color}40 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.6)',
+                    border: `3px solid ${episode.color}`,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedEpisode === episode.id ? 'scale(1.02)' : 'scale(1)'
+                  }}
+                >
+                  <div style={{
+                    background: episode.color,
+                    padding: '1rem',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#000' }}>
+                      EPISODE {episode.number}
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.2rem',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      margin: '0.5rem 0 0'
+                    }}>
+                      {episode.title}
+                    </h3>
+                  </div>
+
+                  <div style={{ padding: '1rem' }}>
+                    <p style={{
+                      fontSize: '1rem',
+                      color: episode.color,
+                      fontStyle: 'italic',
+                      marginBottom: '0.5rem',
+                      textAlign: 'center'
+                    }}>
+                      "{episode.tagline}"
+                    </p>
+
+                    {selectedEpisode === episode.id && (
+                      <div style={{
+                        animation: 'fadeIn 0.3s ease',
+                        borderTop: `1px solid ${episode.color}40`,
+                        paddingTop: '1rem',
+                        marginTop: '0.5rem'
+                      }}>
+                        <p style={{ color: '#ddd', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '1rem' }}>
+                          {episode.description}
+                        </p>
+                        <div style={{
+                          background: 'rgba(255,255,255,0.1)',
+                          padding: '0.75rem',
+                          borderRadius: '8px',
+                          fontSize: '0.85rem',
+                          color: '#aaa'
+                        }}>
+                          <strong style={{ color: episode.color }}>🎬 Key Moment:</strong> {episode.keyMoment}
+                        </div>
+                      </div>
+                    )}
+
+                    <div style={{
+                      marginTop: '0.75rem',
+                      textAlign: 'center',
+                      fontSize: '0.8rem',
+                      color: '#666'
+                    }}>
+                      {selectedEpisode === episode.id ? '▲ Less' : '▼ More'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: ARTIFACTS OF POWER */}
+        <div id="section-artifacts" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #330066 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FFD700 0%, #9932CC 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              ⚡ ARTIFACTS OF POWER ⚡
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#FFD700',
+              marginBottom: '3rem',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              Legendary tools the heroes wield. Each artifact holds the power of collective struggle.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {artifactsOfPower.map((artifact) => (
+                <div
+                  key={artifact.id}
+                  onClick={() => setSelectedArtifact(artifact.id === selectedArtifact ? null : artifact.id)}
+                  style={{
+                    background: selectedArtifact === artifact.id 
+                      ? `linear-gradient(135deg, ${artifact.color}30 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.7)',
+                    border: `3px solid ${artifact.color}`,
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: selectedArtifact === artifact.id ? 'scale(1.02)' : 'scale(1)'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '4rem' }}>{artifact.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      color: artifact.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {artifact.name}
+                    </h3>
+                    <span style={{
+                      display: 'inline-block',
+                      background: artifact.color,
+                      color: '#000',
+                      padding: '3px 12px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      marginTop: '0.5rem'
+                    }}>
+                      {artifact.type}
+                    </span>
+                  </div>
+
+                  <p style={{
+                    color: '#ddd',
+                    textAlign: 'center',
+                    lineHeight: '1.6',
+                    marginBottom: '1rem'
+                  }}>
+                    {artifact.description}
+                  </p>
+
+                  {selectedArtifact === artifact.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${artifact.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: artifact.color }}>⚡ Powers:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {artifact.powers.map((power, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{power}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: artifact.color }}>📜 Origin:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem', fontSize: '0.95rem' }}>{artifact.origin}</p>
+                      </div>
+                      <div style={{
+                        background: `${artifact.color}20`,
+                        padding: '0.75rem',
+                        borderRadius: '10px',
+                        textAlign: 'center'
+                      }}>
+                        <strong style={{ color: artifact.color }}>🦸 Wielded by:</strong>
+                        <span style={{ color: '#fff', marginLeft: '0.5rem' }}>{artifact.wielder}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#666'
+                  }}>
+                    {selectedArtifact === artifact.id ? '▲ Collapse' : '▼ Reveal Powers'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: VILLAIN FACTIONS */}
+        <div id="section-factions" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #2a0000 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #FF0000 0%, #8B0000 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🏴 THE ENEMY FACTIONS 🏴
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#ff6b6b',
+              marginBottom: '3rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              Beyond the Denial Squad lie greater threats. Systemic forces of oppression that must be exposed and defeated.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '2rem'
+            }}>
+              {villainFactions.map((faction) => (
+                <div
+                  key={faction.id}
+                  onClick={() => setSelectedFaction(faction.id === selectedFaction ? null : faction.id)}
+                  style={{
+                    background: selectedFaction === faction.id 
+                      ? `linear-gradient(135deg, ${faction.color}30 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.8)',
+                    border: `3px solid ${faction.color}`,
+                    borderRadius: '20px',
+                    padding: '2rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '4rem' }}>{faction.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      color: faction.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {faction.name}
+                    </h3>
+                    <span style={{
+                      display: 'inline-block',
+                      background: 'rgba(255,0,0,0.3)',
+                      color: '#ff6b6b',
+                      padding: '3px 12px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      marginTop: '0.5rem'
+                    }}>
+                      {faction.type}
+                    </span>
+                  </div>
+
+                  <p style={{
+                    color: '#ccc',
+                    textAlign: 'center',
+                    lineHeight: '1.6'
+                  }}>
+                    {faction.description}
+                  </p>
+
+                  {selectedFaction === faction.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${faction.color}40`,
+                      paddingTop: '1.5rem',
+                      marginTop: '1.5rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: faction.color }}>💀 Abilities:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {faction.abilities.map((ability, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{ability}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: faction.color }}>👥 Agents:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem', fontSize: '0.95rem' }}>{faction.agents}</p>
+                      </div>
+                      <div style={{
+                        background: 'rgba(0,255,0,0.1)',
+                        padding: '0.75rem',
+                        borderRadius: '10px',
+                        border: '1px solid #00ff00'
+                      }}>
+                        <strong style={{ color: '#00ff00' }}>✨ Weakness:</strong>
+                        <span style={{ color: '#aaa', marginLeft: '0.5rem' }}>{faction.weakness}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.85rem',
+                    color: '#666'
+                  }}>
+                    {selectedFaction === faction.id ? '▲ Collapse' : '▼ Intel Report'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION: EMBASSY GEOGRAPHY */}
+        <div id="section-geography" style={{
+          padding: '100px 20px',
+          background: 'linear-gradient(180deg, #2a0000 0%, #1a0033 100%)'
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #00FFFF 0%, #FF00FF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              🗺️ EMBASSY GEOGRAPHY 🗺️
+            </h2>
+
+            <p style={{
+              textAlign: 'center',
+              fontSize: '1.3rem',
+              color: '#00ffff',
+              marginBottom: '3rem',
+              maxWidth: '900px',
+              margin: '0 auto 3rem'
+            }}>
+              The Embassy exists between dimensions—between the World of Workers and the Bureaucratic Abyss. Explore its halls.
+            </p>
+
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '2rem',
+              padding: '1.5rem',
+              background: 'rgba(255,0,255,0.1)',
+              border: '2px solid #ff00ff',
+              borderRadius: '15px',
+              maxWidth: '800px',
+              margin: '0 auto 3rem'
+            }}>
+              <p style={{ color: '#ff00ff', fontSize: '1.2rem', fontStyle: 'italic' }}>
+                "Mourn the dead. Fight for the living. Meme for the truth."
+              </p>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                — Embassy Motto
+              </p>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '1.5rem'
+            }}>
+              {embassyLocations.map((location) => (
+                <div
+                  key={location.id}
+                  onClick={() => setSelectedLocation(location.id === selectedLocation ? null : location.id)}
+                  style={{
+                    background: selectedLocation === location.id 
+                      ? `linear-gradient(135deg, ${location.color}20 0%, #000 100%)`
+                      : 'rgba(0,0,0,0.6)',
+                    border: `2px solid ${location.color}`,
+                    borderRadius: '15px',
+                    padding: '1.5rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '3rem' }}>{location.emoji}</span>
+                    <h3 style={{
+                      fontSize: '1.3rem',
+                      color: location.color,
+                      marginTop: '0.5rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {location.name}
+                    </h3>
+                  </div>
+
+                  <p style={{
+                    color: '#ccc',
+                    textAlign: 'center',
+                    fontSize: '0.95rem',
+                    lineHeight: '1.5'
+                  }}>
+                    {location.description}
+                  </p>
+
+                  {selectedLocation === location.id && (
+                    <div style={{
+                      animation: 'fadeIn 0.3s ease',
+                      borderTop: `1px solid ${location.color}40`,
+                      paddingTop: '1rem',
+                      marginTop: '1rem'
+                    }}>
+                      <div style={{ marginBottom: '1rem' }}>
+                        <strong style={{ color: location.color }}>🎯 Purpose:</strong>
+                        <p style={{ color: '#aaa', marginTop: '0.3rem' }}>{location.purpose}</p>
+                      </div>
+                      <div>
+                        <strong style={{ color: location.color }}>✨ Features:</strong>
+                        <ul style={{ color: '#aaa', marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                          {location.features.map((feature, idx) => (
+                            <li key={idx} style={{ marginBottom: '0.3rem' }}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{
+                    marginTop: '1rem',
+                    textAlign: 'center',
+                    fontSize: '0.8rem',
+                    color: '#666'
+                  }}>
+                    {selectedLocation === location.id ? '▲ Close' : '▼ Enter'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 7: BIG PURPOSE + CITIZENSHIP */}
+        <div id="section-citizenship" style={{
+          padding: '120px 20px',
+          background: 'linear-gradient(180deg, #1a0033 0%, #000033 50%, #000000 100%)',
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Decorative elements */}
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            left: '5%',
+            fontSize: '4rem',
+            opacity: 0.15,
+            animation: 'rotate 30s linear infinite'
+          }}>🌐</div>
+          <div style={{
+            position: 'absolute',
+            bottom: '10%',
+            right: '5%',
+            fontSize: '5rem',
+            opacity: 0.15,
+            animation: 'rotate 25s linear infinite reverse'
+          }}>✊</div>
+          
+          <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+            <h2 style={{
+              fontSize: 'clamp(3rem, 8vw, 6rem)',
+              marginBottom: '3rem',
+              background: 'linear-gradient(135deg, #ff00ff 0%, #FFD700 25%, #00ffff 50%, #ff00ff 75%, #FFD700 100%)',
+              backgroundSize: '400% 100%',
+              animation: 'rainbow 8s linear infinite',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold',
+              letterSpacing: '3px'
+            }}>
+              THIS IS NOT "JUST MEMES"
+            </h2>
+
+            <div style={{
+              background: 'rgba(255,0,255,0.08)',
+              border: '4px solid #ff00ff',
+              borderRadius: '25px',
+              padding: '3.5rem',
+              marginBottom: '4rem',
+              boxShadow: '0 0 50px rgba(255,0,255,0.3), inset 0 0 50px rgba(0,255,255,0.05)',
+              animation: 'glow 5s ease-in-out infinite'
+            }}>
+              <p style={{
+                fontSize: '1.8rem',
+                lineHeight: '2',
+                color: '#fff',
+                marginBottom: '2rem'
+              }}>
+                <strong style={{ color: '#ff00ff', textShadow: '0 0 20px rgba(255,0,255,0.5)' }}>The Memetic Embassy is:</strong>
+              </p>
+
+              <div style={{
+                fontSize: '1.4rem',
+                lineHeight: '2.4',
+                color: '#00ffff',
+                textAlign: 'left',
+                maxWidth: '750px',
+                margin: '0 auto'
+              }}>
+                ✨ A <strong style={{ color: '#FFD700' }}>sanctuary</strong> for the dismissed<br/>
+                🔥 A <strong style={{ color: '#ff4500' }}>resistance tool</strong> against oppression<br/>
+                🎨 A <strong style={{ color: '#ff00ff' }}>creative rebellion</strong> that refuses silence<br/>
+                📢 A <strong style={{ color: '#32CD32' }}>movement</strong> with humor as armor<br/>
+                🏠 A place where injured & disabled people are finally <strong style={{ color: '#FFD700' }}>the main characters</strong><br/>
+                🌐 A <strong style={{ color: '#00ffff' }}>nation built on truth, humor, and solidarity</strong>
+              </div>
+            </div>
+
+            {!citizenshipClaimed ? (
+              <div style={{
+                background: 'linear-gradient(135deg, #ff00ff 0%, #8B00FF 25%, #00ffff 50%, #00ff88 75%, #ff00ff 100%)',
+                backgroundSize: '400% 400%',
+                animation: 'rainbow 10s ease infinite',
+                border: '6px solid #fff',
+                borderRadius: '30px',
+                padding: '4rem',
+                boxShadow: '0 0 60px rgba(255,0,255,0.5), 0 0 100px rgba(0,255,255,0.3)'
+              }}>
+                <div style={{ fontSize: '4rem', marginBottom: '1.5rem', animation: 'bounce 2s infinite' }}>✨🏛️✨</div>
+                <h3 style={{
+                  fontSize: 'clamp(2rem, 5vw, 3rem)',
+                  color: '#000',
+                  marginBottom: '1.5rem',
+                  fontWeight: 'bold',
+                  letterSpacing: '2px'
+                }}>
+                  🎖️ CLAIM YOUR CITIZENSHIP 🎖️
+                </h3>
+                
+                <div style={{
+                  background: 'rgba(0,0,0,0.25)',
+                  padding: '1.5rem',
+                  borderRadius: '15px',
+                  marginBottom: '2rem',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <p style={{ fontSize: '1.2rem', color: '#FFD700', fontWeight: 'bold', margin: 0 }}>
+                    🎭 MEMETIC MAGIC INCLUDES:
+                  </p>
+                  <p style={{ fontSize: '1.1rem', color: '#fff', margin: '0.75rem 0 0', lineHeight: '1.7' }}>
+                    Diplomatic immunity from gaslighting • Digital passport with meme powers •
+                    Access to the Memetic Forge • Protection by the Hero Squad
+                  </p>
+                </div>
+
+                <p style={{
+                  fontSize: '1.3rem',
+                  color: '#000',
+                  marginBottom: '2rem',
+                  lineHeight: '1.8'
+                }}>
+                  Join the world's first digital nation-state for the marginalized.<br/>
+                  Receive your passport, diplomatic immunity from gaslighting,<br/>
+                  and official citizenship in the Memetic Embassy.
+                </p>
+
+                <button
+                  onClick={handleClaimCitizenship}
+                  style={{
+                    padding: '1.5rem 3rem',
+                    background: '#000',
+                    border: '3px solid #fff',
+                    borderRadius: '15px',
+                    color: '#fff',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = '#fff';
+                    e.target.style.color = '#000';
+                    e.target.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = '#000';
+                    e.target.style.color = '#fff';
+                    e.target.style.transform = 'scale(1)';
+                  }}
+                >
+                  ✊ CLAIM CITIZENSHIP NOW ✊
+                </button>
+              </div>
+            ) : (
+              <div style={{
+                background: 'rgba(0,255,136,0.2)',
+                border: '3px solid #00ff88',
+                borderRadius: '20px',
+                padding: '2rem'
+              }}>
+                <h3 style={{
+                  fontSize: '2rem',
+                  color: '#00ff88',
+                  marginBottom: '1rem'
+                }}>
+                  ✅ CITIZENSHIP GRANTED ✅
+                </h3>
+                <p style={{
+                  fontSize: '1.2rem',
+                  color: '#fff'
+                }}>
+                  Welcome home, citizen. You are now part of the resistance.<br/>
+                  Your voice matters. Your pain is valid. Your memes are weapons.
+                </p>
+              </div>
+            )}
+
+            <div style={{
+              marginTop: '4rem',
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}>
+              <Link href="/meme-gallery" style={{
+                padding: '1rem 2rem',
+                background: 'rgba(255,0,255,0.2)',
+                border: '2px solid #ff00ff',
+                borderRadius: '15px',
+                color: '#ff00ff',
+                textDecoration: 'none',
+                fontSize: '1.2rem',
+                fontWeight: 'bold'
+              }}>
+                🎨 Browse Meme Gallery
+              </Link>
+
+              <Link href="/the-eye" style={{
+                padding: '1rem 2rem',
+                background: 'rgba(0,255,255,0.2)',
+                border: '2px solid #00ffff',
+                borderRadius: '15px',
+                color: '#00ffff',
+                textDecoration: 'none',
+                fontSize: '1.2rem',
+                fontWeight: 'bold'
+              }}>
+                👁️ Return to THE EYE
+              </Link>
+
+              <Link href="/about" style={{
+                padding: '1rem 2rem',
+                background: 'rgba(255,170,0,0.2)',
+                border: '2px solid #ffaa00',
+                borderRadius: '15px',
+                color: '#ffaa00',
+                textDecoration: 'none',
+                fontSize: '1.2rem',
+                fontWeight: 'bold'
+              }}>
+                📖 Our Story
+              </Link>
+            </div>
+
+            {/* Social Share Section */}
+            <div style={{
+              marginTop: '3rem',
+              padding: '2rem',
+              background: 'rgba(255,0,255,0.1)',
+              border: '2px solid #ff00ff',
+              borderRadius: '15px',
+              textAlign: 'center'
+            }}>
+              <p style={{
+                fontSize: '1.2rem',
+                color: '#00ffff',
+                marginBottom: '1rem',
+                fontWeight: 'bold'
+              }}>
+                🌐 Share The Memetic Embassy Full Experience
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '1.5rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginBottom: '1rem'
+              }}>
+                <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Join the Memetic Embassy - Where injured workers become superheroes!')}&url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}&via=Phoenixrizin09`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#1DA1F2', textDecoration: 'none', fontSize: '2rem' }}>
+                  🐦
+                </a>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#4267B2', textDecoration: 'none', fontSize: '2rem' }}>
+                  📘
+                </a>
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#0077B5', textDecoration: 'none', fontSize: '2rem' }}>
+                  💼
+                </a>
+                <a href={`https://reddit.com/submit?url=${encodeURIComponent('https://injuredworkersunite.pages.dev/memetic-embassy-full')}&title=${encodeURIComponent('The Memetic Embassy - Superhero Edition')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#FF4500', textDecoration: 'none', fontSize: '2rem' }}>
+                  🤖
+                </a>
+              </div>
+              <p style={{
+                fontSize: '1.1rem',
+                color: '#FFD700',
+                fontWeight: 'bold'
+              }}>
+                🌐 injuredworkersunite.pages.dev
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Back to Top Button */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            position: 'fixed',
+            bottom: '30px',
+            right: '30px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #ff00ff 0%, #00ffff 100%)',
+            border: '3px solid #fff',
+            color: '#000',
+            fontSize: '1.8rem',
+            cursor: 'pointer',
+            zIndex: 1000,
+            boxShadow: '0 4px 20px rgba(255,0,255,0.5)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          title="Back to Top"
+        >
+          ⬆️
+        </button>
+        
+        {/* Quick Navigation Floating Menu */}
+        <div style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '30px',
+          zIndex: 1000
+        }}>
+          <div style={{
+            background: 'rgba(0,0,0,0.9)',
+            border: '2px solid #ff00ff',
+            borderRadius: '15px',
+            padding: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+            boxShadow: '0 4px 20px rgba(255,0,255,0.4)'
+          }}>
+            <span style={{ 
+              color: '#ff00ff', 
+              fontSize: '0.7rem', 
+              textAlign: 'center',
+              marginBottom: '5px',
+              fontWeight: 'bold'
+            }}>
+              QUICK NAV
+            </span>
+            {[
+              { emoji: '⚔️', id: 'squad-showdown', title: 'Squad Showdown' },
+              { emoji: '🦸', id: 'heroes', title: 'Hero Squad' },
+              { emoji: '😈', id: 'villains', title: 'Denial Squad' },
+              { emoji: '🔥', id: 'meme-forge', title: 'Meme Forge' },
+              { emoji: '⚡', id: 'artifacts', title: 'Artifacts' }
+            ].map(nav => (
+              <button
+                key={nav.id}
+                onClick={() => document.getElementById(`section-${nav.id}`)?.scrollIntoView({ behavior: 'smooth' })}
+                title={nav.title}
+                style={{
+                  width: '35px',
+                  height: '35px',
+                  borderRadius: '8px',
+                  background: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  transition: 'all 0.2s'
+                }}
+              >
+                {nav.emoji}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
-}
-
-// Helper function for tab styling
-function getTabStyle(isActive) {
-  return {
-    padding: '0.8rem 1.5rem',
-    background: isActive ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'rgba(255,255,255,0.1)',
-    border: '2px solid #667eea',
-    borderRadius: '25px',
-    color: 'white',
-    cursor: 'pointer',
-    fontWeight: isActive ? 'bold' : 'normal',
-    fontSize: '1rem'
-  };
-}
-
-const buttonStyle = {
-  padding: '0.8rem 1.5rem',
-  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-  color: 'white',
-  border: 'none',
-  borderRadius: '25px',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  fontSize: '1rem'
-};
-
-const inputStyle = {
-  width: '100%',
-  padding: '0.8rem',
-  background: '#0f3460',
-  border: '2px solid #667eea',
-  borderRadius: '8px',
-  color: 'white',
-  fontSize: '1rem',
-  marginBottom: '1rem'
-};
-
-// Load real viral content from Eye Oracle + Reddit data
-export async function getStaticProps() {
-  try {
-    const viralPath = path.join(process.cwd(), 'public/data/viral-memes.json');
-    let viralContent = null;
-    
-    if (fs.existsSync(viralPath)) {
-      const viralData = fs.readFileSync(viralPath, 'utf8');
-      viralContent = JSON.parse(viralData);
-    }
-    
-    return {
-      props: {
-        viralContent: viralContent || {
-          content: {
-            viral_tweets: [],
-            meme_templates: [],
-            quickfire_slogans: [],
-            infographic_data: []
-          }
-        }
-      }
-    };
-  } catch (error) {
-    console.error('Error loading viral content:', error);
-    return {
-      props: {
-        viralContent: {
-          content: {
-            viral_tweets: [],
-            meme_templates: [],
-            quickfire_slogans: [],
-            infographic_data: []
-          }
-        }
-      }
-    };
-  }
 }

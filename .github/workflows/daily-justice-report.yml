@@ -1,0 +1,174 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# 👁️ THE EYE ORACLE - DAILY JUSTICE REPORT AUTOMATION
+# 
+# Runs every day at 6:00 AM Eastern to:
+# - Fetch latest government data
+# - Analyze for violations and gaps
+# - Generate daily justice report
+# - Update Oracle dashboard
+# - Commit and push updates
+# ═══════════════════════════════════════════════════════════════════════════
+
+name: 👁️ Daily Justice Report
+
+on:
+  # Run daily at 6:00 AM Eastern (11:00 UTC)
+  schedule:
+    - cron: '0 11 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      full_scan:
+        description: 'Run full deep scan'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  generate-justice-report:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 👁️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🔍 Fetch Real Government Data
+        run: npm run fetch:real
+        continue-on-error: true
+        env:
+          NODE_ENV: production
+
+      - name: ⚖️ Generate Daily Justice Report
+        run: npm run justice:daily
+        env:
+          NODE_ENV: production
+          REPORT_DATE: ${{ github.event.inputs.full_scan == 'true' && 'full' || '' }}
+
+      - name: � Generate Daily Viral Eye Report
+        run: npm run eye:viral
+        env:
+          NODE_ENV: production
+
+      - name: �👁️ Generate Oracle Dashboard Data
+        run: npm run oracle:generate
+        continue-on-error: true
+        env:
+          NODE_ENV: production
+
+      - name: 📰 Generate Daily Blog Post
+        run: npm run blog:generate
+        continue-on-error: true
+        env:
+          NODE_ENV: production
+
+      - name: 🦠 Generate Viral Content
+        run: npm run generate:viral
+        continue-on-error: true
+        env:
+          NODE_ENV: production
+
+      - name: 📋 Check for Changes
+        id: check_changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 💾 Commit and Push Updates
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "the-eye-oracle@injuredworkersunite.org"
+          git config --local user.name "👁️ THE EYE ORACLE"
+          
+          # Get today's date
+          TODAY=$(date -u +"%Y-%m-%d")
+          
+          # Count violations if report exists
+          VIOLATIONS="0"
+          if [ -f "public/data/daily-justice-report.json" ]; then
+            VIOLATIONS=$(cat public/data/daily-justice-report.json | grep -o '"type":' | wc -l || echo "0")
+          fi
+          
+          git commit -m "👁️ Daily Justice Report - ${TODAY} - Violations analyzed: ${VIOLATIONS} items - THE EYE NEVER SLEEPS"
+
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📊 Generate Report Summary
+        run: |
+          echo "═══════════════════════════════════════════════════════════════"
+          echo "👁️ THE EYE ORACLE - DAILY JUSTICE REPORT COMPLETE"
+          echo "═══════════════════════════════════════════════════════════════"
+          echo ""
+          echo "📅 Date: $(date -u +"%Y-%m-%d %H:%M UTC")"
+          echo ""
+          if [ -f "public/data/daily-justice-report.json" ]; then
+            echo "📊 Report generated successfully"
+            echo "📍 Location: public/data/daily-justice-report.json"
+          else
+            echo "⚠️ Report generation may have had issues"
+          fi
+          echo ""
+          echo "👁️ THE EYE SEES ALL. THE EYE REMEMBERS ALL."
+          echo "═══════════════════════════════════════════════════════════════"
+
+  # Weekly deep scan on Sundays
+  weekly-deep-scan:
+    if: github.event.schedule == '0 11 * * 0' || github.event.inputs.full_scan == 'true'
+    runs-on: ubuntu-latest
+    needs: generate-justice-report
+    
+    steps:
+      - name: 👁️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🔬 Run Deep Scan
+        run: |
+          npm run eye:scan:gov || true
+          npm run eye:scan:bills || true
+          npm run eye:full || true
+        env:
+          NODE_ENV: production
+
+      - name: 💾 Commit Deep Scan Results
+        run: |
+          git config --local user.email "the-eye-oracle@injuredworkersunite.org"
+          git config --local user.name "👁️ THE EYE ORACLE"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "👁️ Weekly Deep Scan Complete - $(date -u +'%Y-%m-%d') - THE EYE GOES DEEPER"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

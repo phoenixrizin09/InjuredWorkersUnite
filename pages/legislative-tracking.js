@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 export default function LegislativeTracking() {
   const [activeBills, setActiveBills] = useState([]);
@@ -399,6 +400,7 @@ export default function LegislativeTracking() {
   return (
     <>
       <Header />
+      <SystemNavigation current="/legislative-tracking" />
       <div style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)',

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 export default function AlertsPage() {
   const [alerts, setAlerts] = useState([]);
@@ -161,77 +162,8 @@ export default function AlertsPage() {
     }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         
-        {/* System Integration Banner */}
-        <div style={{
-          background: 'rgba(79, 172, 254, 0.1)',
-          border: '2px solid #4facfe',
-          borderRadius: '15px',
-          padding: '1rem',
-          marginBottom: '1.5rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-          <div style={{ color: '#4facfe', fontWeight: 'bold' }}>
-            🔗 INTEGRATED SYSTEMS:
-          </div>
-          <Link href="/the-eye-oracle" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(255, 0, 128, 0.2)',
-            border: '1px solid #ff0080',
-            borderRadius: '8px',
-            color: '#ff0080',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            👁️ THE EYE v2.0
-          </Link>
-          <Link href="/automated-monitoring" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(79, 172, 254, 0.2)',
-            border: '1px solid #4facfe',
-            borderRadius: '8px',
-            color: '#4facfe',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            📡 24/7 Monitoring
-          </Link>
-          <Link href="/target-acquisition" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(255, 68, 68, 0.2)',
-            border: '1px solid #ff4444',
-            borderRadius: '8px',
-            color: '#ff4444',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            🎯 Target Dossiers
-          </Link>
-          {apiConnected && (
-            <Link href="/admin" style={{
-              padding: '0.5rem 1rem',
-              background: 'rgba(46, 213, 115, 0.2)',
-              border: '1px solid #2ed573',
-              borderRadius: '8px',
-              color: '#2ed573',
-              textDecoration: 'none',
-              fontSize: '0.9rem',
-              fontWeight: '600'
-            }}>
-              🔧 Admin Dashboard
-            </Link>
-          )}
-          <div style={{ color: '#2ed573', fontSize: '0.85rem', fontWeight: 'bold' }}>
-            ✅ RECEIVING REAL-TIME ALERTS FROM ALL SOURCES
-            {apiConnected && ' • API CONNECTED'}
-          </div>
-        </div>
+        {/* Unified System Navigation */}
+        <SystemNavigation current="/alerts" />
 
         {/* Header */}
         <div style={{ 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 export default function AutomatedMonitoring() {
   const [monitoringActive, setMonitoringActive] = useState(false);
@@ -365,72 +366,8 @@ export default function AutomatedMonitoring() {
     }}>
       <div style={{ maxWidth: '1600px', margin: '0 auto' }}>
         
-        {/* System Integration Banner */}
-        <div style={{
-          background: 'rgba(79, 172, 254, 0.1)',
-          border: '2px solid #4facfe',
-          borderRadius: '15px',
-          padding: '1rem',
-          marginBottom: '1.5rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-          <div style={{ color: '#4facfe', fontWeight: 'bold' }}>
-            🔗 INTEGRATED SYSTEMS:
-          </div>
-          <Link href="/the-eye" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(255, 0, 128, 0.2)',
-            border: '1px solid #ff0080',
-            borderRadius: '8px',
-            color: '#ff0080',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            👁️ THE EYE v2.0
-          </Link>
-          <Link href="/target-acquisition" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(255, 68, 68, 0.2)',
-            border: '1px solid #ff4444',
-            borderRadius: '8px',
-            color: '#ff4444',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            🎯 Target Dossiers
-          </Link>
-          <Link href="/alerts" style={{
-            padding: '0.5rem 1rem',
-            background: 'rgba(255, 204, 68, 0.2)',
-            border: '1px solid #ffcc44',
-            borderRadius: '8px',
-            color: '#ffcc44',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600'
-          }}>
-            ⚠️ Live Alerts
-          </Link>
-          <div style={{ color: '#2ed573', fontSize: '0.85rem', fontWeight: 'bold' }}>
-            ✅ DATA FEEDS: The Eye → Monitoring → Alerts → Targets
-          </div>
-        </div>
-
-        <Link href="/the-eye" style={{
-          display: 'inline-block',
-          color: '#4facfe',
-          textDecoration: 'none',
-          marginBottom: '1rem',
-          fontSize: '0.9rem'
-        }}>
-          ← Back to The EYE
-        </Link>
+        {/* Unified System Navigation */}
+        <SystemNavigation current="/automated-monitoring" />
 
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

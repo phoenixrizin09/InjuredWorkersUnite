@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
@@ -225,6 +226,11 @@ export default function TheEyeOracle() {
         color: 'white',
         fontFamily: 'system-ui, -apple-system, sans-serif'
       }}>
+        
+        {/* Unified System Navigation */}
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '1rem 1rem 0' }}>
+          <SystemNavigation current="/the-eye-oracle" />
+        </div>
         
         {/* Hero Section */}
         <div style={{

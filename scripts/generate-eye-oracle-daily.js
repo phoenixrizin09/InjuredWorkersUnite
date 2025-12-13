@@ -45,6 +45,14 @@ const {
   WEEKLY_THEMES 
 } = require('../utils/viral-hook-generator');
 
+// Import justice framework for integration
+let justiceFrameworkEngine;
+try {
+  justiceFrameworkEngine = require('../utils/justice-framework-engine');
+} catch (e) {
+  console.log('Justice framework not loaded - continuing without it');
+}
+
 /**
  * Load REAL cases from multiple verified sources
  * Priority: Real Data Generator (has evidence receipts) > Fresh API data > Hardcoded fallback
@@ -58,6 +66,36 @@ async function loadRealCases() {
     for (const issue of ALL_REAL_ISSUES) {
       cases.push(issue);
     }
+  }
+  
+  // 1.5. Load from daily justice report if available
+  try {
+    const justiceReportPath = path.join(__dirname, '../public/data/daily-justice-report.json');
+    if (fs.existsSync(justiceReportPath)) {
+      const justiceReport = JSON.parse(fs.readFileSync(justiceReportPath, 'utf8'));
+      console.log(`   ⚖️ Loading justice report data from ${justiceReport.date}...`);
+      // Add violation flags as potential cases
+      if (justiceReport.violationFlags) {
+        justiceReport.violationFlags.forEach(flag => {
+          cases.push({
+            title: flag.title,
+            source: flag.source,
+            url: flag.evidenceUrl || '#',
+            severity: flag.severity,
+            category: flag.category,
+            scope: flag.jurisdiction,
+            evidence: flag.description,
+            charter_violations: flag.charterViolations || [],
+            affected_count: flag.affectedPopulation || 'Unknown',
+            timestamp: justiceReport.date,
+            verified: true,
+            verificationBadge: '✅ VERIFIED - Justice Report'
+          });
+        });
+      }
+    }
+  } catch (e) {
+    console.log('   Note: Could not load justice report:', e.message);
   }
   
   // 2. Load additional cases from live alerts.json (from API fetches)

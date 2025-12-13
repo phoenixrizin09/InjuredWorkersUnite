@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
@@ -472,6 +473,7 @@ Signature: [YOUR SIGNATURE]`,
       </Head>
 
       <Header />
+      <SystemNavigation current="/template-letters" />
       
       <div style={{
         minHeight: '100vh',

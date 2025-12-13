@@ -1,0 +1,1648 @@
+{
+  "id": "daily_justice_1765604232038",
+  "generatedAt": "2025-12-13T05:37:12.038Z",
+  "date": "2025-12-13",
+  "title": "Daily Justice Report - Saturday, December 13, 2025",
+  "legalChanges": {
+    "newBills": [],
+    "amendments": [],
+    "policyUpdates": [],
+    "regulatoryChanges": []
+  },
+  "rightsAnalysis": [
+    {
+      "id": "12ee362d-f385-4c1e-a554-8ebc291b4385",
+      "title": "Employment by class of worker for persons with disabilities, aged 15 years and over, by age group and gender",
+      "description": "Differences in the number and proportion of persons with disabilities in terms of those who are employees or self-employed, by age group and gender, Canada.<br>",
+      "organization": "Statistics Canada | Statistique Canada",
+      "url": "https://open.canada.ca/data/en/dataset/12ee362d-f385-4c1e-a554-8ebc291b4385",
+      "lastUpdated": "2024-10-24T13:51:57.679077",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "worker"
+          ]
+        },
+        {
+          "name": "Seniors",
+          "icon": "👴",
+          "matchedKeywords": [
+            "aged"
+          ]
+        },
+        {
+          "name": "Women",
+          "icon": "👩",
+          "matchedKeywords": [
+            "gender"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "216b5913-4f8f-496c-971f-c892d5b62fc1",
+      "title": "Employment characteristics for persons with and without disabilities, annual",
+      "description": "Employment estimates by class of worker, province, gender, age group and disability, annual.<br>",
+      "organization": "Statistics Canada | Statistique Canada",
+      "url": "https://open.canada.ca/data/en/dataset/216b5913-4f8f-496c-971f-c892d5b62fc1",
+      "lastUpdated": "2025-05-14T19:04:59.893529",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "worker"
+          ]
+        },
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability"
+          ]
+        },
+        {
+          "name": "Women",
+          "icon": "👩",
+          "matchedKeywords": [
+            "gender"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2f97b32b-f20e-45be-825d-12d9f752d196",
+      "title": "2012/13 EI Monitoring and Assessment Report - EBSMs Data Table",
+      "description": "Monitoring and assessing the Employment Insurance (EI) program helps provide a clear understanding of its impact on the Canadian economy and its effectiveness in addressing the needs of Canadian workers, their families and their employers.\r\n\r\nThese files include data from Annex 3 EBSMs Data Tables.",
+      "organization": "Employment and Social Development Canada | Emploi et Développement social Canada",
+      "url": "https://open.canada.ca/data/en/dataset/2f97b32b-f20e-45be-825d-12d9f752d196",
+      "lastUpdated": "2024-11-21T01:09:12.997111",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "worker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2772d8c-48be-4d39-bcf2-dafca456d724",
+      "title": "Employer Records",
+      "description": "The data is based information reported to Workers’ Compensation Board by March 31 for employers who are required to have WCB accounts. The dataset contain employer-specific information on occupational fatality, lost-time and disabling injury claims and presented as counts and rates. This information allows for the tracking of workplace health and safety performance indicators over time.",
+      "organization": "Government of Alberta | Gouvernement de l'Alberta",
+      "url": "https://open.canada.ca/data/en/dataset/a2772d8c-48be-4d39-bcf2-dafca456d724",
+      "lastUpdated": "2025-01-22T19:32:08.694470",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "worker",
+            "wcb",
+            "workplace",
+            "injury",
+            "claim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "85f9fde1-6087-4d9b-9ee6-202ec1894c0f",
+      "title": "StatCan COVID-19: Data to Insights for a Better Canada",
+      "description": "A series of articles on various subjects which explore the impact of COVID-19 on the socio-economic landscape. New articles will be released periodically.",
+      "organization": "Statistics Canada | Statistique Canada",
+      "url": "https://open.canada.ca/data/en/dataset/85f9fde1-6087-4d9b-9ee6-202ec1894c0f",
+      "lastUpdated": "2021-03-12T19:31:26.055624",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [
+        {
+          "type": "benefitReductions",
+          "name": "Benefit Reductions",
+          "description": "Any reduction in disability or workers' compensation benefits",
+          "charterImplication": "Section 7 (security of person)",
+          "uncrpdArticle": "Article 28 (adequate standard of living)",
+          "matchedKeywords": [
+            "cap"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": []
+    },
+    {
+      "id": "a51bb45c-4f32-45e6-b04b-82100b4a8514",
+      "title": "Briefing materials for the Ministers at Employment and Social Development Canada – Fall 2019",
+      "description": "The information contains an overview of the department, its programs and initiatives, along with biographies of senior management. It also provides description of programs and services, including funding profile, as well as infographics to provide a visual depiction of Employment and Social Development Canada and the operating environment. ",
+      "organization": "Employment and Social Development Canada | Emploi et Développement social Canada",
+      "url": "https://open.canada.ca/data/en/dataset/a51bb45c-4f32-45e6-b04b-82100b4a8514",
+      "lastUpdated": "2020-02-21T20:11:59.789773",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Seniors",
+          "icon": "👴",
+          "matchedKeywords": [
+            "senior"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e9b7549f-6799-4320-bba4-3ff9dbd01bc9",
+      "title": "Federal Jurisdiction Workplace Survey 2015",
+      "description": "The purpose of the Federal Jurisdiction Workplace Survey is to produce statistical information on the characteristics of workplaces under federal labour jurisdiction. The data is used by Employment and Social Development Canada for policy research and development.",
+      "organization": "Employment and Social Development Canada | Emploi et Développement social Canada",
+      "url": "https://open.canada.ca/data/en/dataset/e9b7549f-6799-4320-bba4-3ff9dbd01bc9",
+      "lastUpdated": "2024-11-21T01:28:05.855918",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "workplace"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+      "title": "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+      "description": "The Youth Criminal Justice Act (YCJA) came into force on April 1, 2003 to assist in reducing the notably high Canadian youth custody rate. The YCJA promotes youth rehabilitation and reintegration into society through diversion from the formal justice system and greater community involvement in responding to youth crime. It also promotes responsibility and accountability through measures that are proportionate to the seriousness of the offence and the youth’s stage of development. In support of these goals, section 19 of the YCJA introduced conferences as a means to assist both decision makers and youth involved in the criminal justice system (CJS). Section 19 conferences provide an opportunity for various professionals and stakeholders, including the young person concerned and their family, to come together to discuss the matter in a more informal setting in order to formulate recommendations about the young person’s case.\r\n\r\nDespite the introduction of section 19 conferences almost 20 years ago, there has been little information gathered on the extent of their use, how they are being conducted, and the associated outcomes. In 2020, the Department of Justice Canada undertook a national survey to fill this knowledge gap. An invitation to complete the electronic survey was sent to provincial and territorial representatives of the Coordinating Committee of Senior Officials – Youth Justice. All 13 jurisdictions completed the survey.\r\n\r\nThe focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS.The focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS. Many aspects of section 19 conferences were examined, including:\r\n\r\nExtent of use of conferences;\r\nPurposes and processes of conferences;\r\nBenefits of conferences;\r\nChallenges of conferences; and\r\nData collection, evaluations and impact assessments.\r\nResults indicated that all jurisdictions convene section 19 conferences, with the exception of Quebec and the Yukon. Most jurisdictions reported having developed either rules, policies, guidelines and/or programs pertaining to the convening of conferences, although these varied widely.\r\n\r\nConferences were reported to be convened at all stages of the CJS, with most jurisdictions convening them at the post-charge/pre-finding of guilt, post-finding of guilt/pre-sentence and post-sentencing stages. Slightly fewer jurisdictions reported convening conferences at the pre-charge stage. Jurisdictions noted that conferences were convened for a variety of purposes, most notably as a means to attain advice on a sentencing plan or to assist in the process of developing a sentencing plan, to coordinate social services, to determine appropriate extrajudicial sanctions, as well as to determine conditions for judicial interim release (i.e., bail).\r\n\r\nJurisdictions described differing processes for convening section 19 conferences. Four jurisdictions reported having dedicated resources for organizing conferences. In terms of who convenes conferences, jurisdictions noted that various professionals may do so, such as provincial directors or delegates, probation officers, youth workers, mental-health workers, police officers, Crown prosecutors, Justices of the Peace, or defence counsels, among others. Further, several jurisdictions reported that conferences were convened by judges, which is consistent with section 41 of the YCJA.\r\n\r\nThose who took part in a conference (as participants) also varied by jurisdiction, but generally included the youth, family or other support people, probation officers, social workers, child welfare representatives, mental health workers, school representatives, as well as Elders or an Indigenous representative. Other less frequently noted types of participants included police officers, Crown prosecutors, the defence counsels, educators, interpreters, as well as victims and their family and other support people of the victim.\r\n\r\nAlberta was the only jurisdiction to report eligibility criteria to participate in a conference. These criteria pertained to youth and offence characteristics. However, a review of policy/guideline/program documents provided by other jurisdictions identified a number of situations or circumstances that lead to the consideration of a section 19 conference. These included, for example, complex cases where custody is considered or when dealing with chronic re-offending. Conversely, only the Northwest Territories prohibited the use of section 19 conferences in certain circumstances (i.e., when charges related to specific types of offences such as murder).\r\n\r\nNotable benefits of section 19 conferences were reported, such as:\r\n\r\nIncreasing involvement and buy-in of youth in their case;\r\nHelping address diverse and complex needs (e.g., youth who are under the jurisdictions of both child welfare services and the CJS, those with cognitive abilities);\r\nIncreasing collaboration between justice actors and between social systems for better case planning;\r\nProviding an opportunity for restorative justice; and,\r\nLeading to reduced charges and recidivism.\r\nFurther, many jurisdictions confirmed that conferences allowed accommodations and adaptions for diversity, which included accommodations specific to Indigenous identity, cultural and/or linguistic background, gender and lesbian, gay, bisexual, transgender, queer, intersex, and asexual (LGBTQIA+) identities, mental health and/or addiction issues, in addition to accommodations for cognitive disabilities.\r\n\r\nA number of challenges and areas for improvement pertaining to section 19 conferences were highlighted by jurisdictions. These included:\r\n\r\nScheduling, time requirements, and logistical issues (e.g., conflicting schedules, lack of dedicated coordinators; technological limitations around access to phones and internet);\r\nDifficulties getting people to support and participate in conferences; and,\r\nLimited availability of community programs, resources and supports for case planning.\r\nLess than half of jurisdictions reported collecting some form of administrative data on various aspects of section 19 conferences (e.g., number, youth characteristics, purposes, participants, outcome and cost). Three jurisdictions (Alberta, Saskatchewan, and New Brunswick) reported having conducted an evaluation or impact assessment. Similar benefits and challenges as those reported in this study were found by these assessments.\r\n\r\nDespite the widespread use of section 19 conferences across Canada, the current research has demonstrated that there are limited data collected across Canada on the use of section 19 conferences and their outcomes. However, the many benefits of section 19 conferences highlighted in this study provide support for further consideration of expanding the use of section 19 conferences across Canada. This could better support youth involved in the CJS and possibly help contribute to a reduction in the overrepresentation of Indigenous and racialized youth in custody.",
+      "organization": "Department of Justice Canada | Ministère de la Justice Canada",
+      "url": "https://open.canada.ca/data/en/dataset/c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+      "lastUpdated": "2023-05-17T20:25:24.551170",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "POTENTIAL_VIOLATION",
+          "issues": [
+            {
+              "section": "Section 7",
+              "right": "Life, Liberty, Security of Person",
+              "concern": "May deprive individuals of security of person through denial of essential support"
+            }
+          ]
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [
+        {
+          "type": "benefitReductions",
+          "name": "Benefit Reductions",
+          "description": "Any reduction in disability or workers' compensation benefits",
+          "charterImplication": "Section 7 (security of person)",
+          "uncrpdArticle": "Article 28 (adequate standard of living)",
+          "matchedKeywords": [
+            "reduce",
+            "cut"
+          ],
+          "severity": "high"
+        },
+        {
+          "type": "discriminatoryRules",
+          "name": "Discriminatory Eligibility Rules",
+          "description": "Rules that disproportionately exclude disabled persons",
+          "charterImplication": "Section 15 (equality rights)",
+          "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+          "matchedKeywords": [
+            "eligibility",
+            "criteria"
+          ],
+          "severity": "high"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "worker"
+          ]
+        },
+        {
+          "name": "Seniors",
+          "icon": "👴",
+          "matchedKeywords": [
+            "senior"
+          ]
+        },
+        {
+          "name": "Indigenous Peoples",
+          "icon": "🪶",
+          "matchedKeywords": [
+            "indigenous"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "welfare"
+          ]
+        },
+        {
+          "name": "Mental Health Community",
+          "icon": "🧠",
+          "matchedKeywords": [
+            "mental health"
+          ]
+        },
+        {
+          "name": "Women",
+          "icon": "👩",
+          "matchedKeywords": [
+            "gender"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child",
+            "youth",
+            "school"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "060a017e-3c68-4754-a0c7-91cd031b4480",
+      "title": "Staffing and Non-Partisanship Survey 2018",
+      "description": "The SNPS is an important tool for understanding public servants' perceptions of the public service staffing system as well as their awareness of their legal rights and responsibilities regarding political activities.\r\nThe information gathered in the survey will be used to identify current and emerging trends at government-wide and organizational levels, to inform potential improvements to staffing policies and practices, and better target efforts to safeguard non-partisanship within the federal public service.\r\nThe survey will provide vital information to managers, human resources advisors and Deputies to improve staffing within their own organizations, and to the Public Service Commission (PSC) on the staffing system as a whole. The information will also be used to support reporting to Parliament via the PSC's Annual Report.\r\n\r\nThe survey is conducted every two years.\r\n\r\nIn an effort to make our datasets more easily understood and user-friendly, the PSC has created an accompanying descriptive video, outlining the variables, key considerations and providing an example and demonstration of how the dataset can be used. The video can be found at the following link [Staffing and Non-Partisanship Survey (video)](https://www.youtube.com/watch?v=u4n1qwk7XZs). ",
+      "organization": "Public Service Commission of Canada | Commission de la fonction publique du Canada",
+      "url": "https://open.canada.ca/data/en/dataset/060a017e-3c68-4754-a0c7-91cd031b4480",
+      "lastUpdated": "2022-03-18T19:20:35.968276",
+      "verified": true,
+      "verificationSource": "open.canada.ca",
+      "scope": "federal",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        }
+      },
+      "violations": [],
+      "impactedPopulations": []
+    },
+    {
+      "id": "1d3e27dc-bc62-4aa5-9f79-0163a06da0a4",
+      "title": "Ontario Disability Support Program (ODSP) disability adjudication data",
+      "description": "The Ministry of Community and Social Services data set for Ontario Disability\nSupport Program (ODSP) adjudication contains ODSP disability adjudication\napplications and their outcomes (decisions, decision dates, type of\ndisability).\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-odsp-disability-adjudication-data",
+      "lastUpdated": "2021-01-14T13:46:13.923757",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6a84b330-f4b7-421b-b2b3-0dbc4404cf7d",
+      "title": "Ontario Disability Support Program (ODSP) Employment Supports Management System",
+      "description": "The Ontario Disability Support Program (ODSP) Employment Supports Management\r\nSystem (ESMS) uses portions of the Social Assistance Management System (SAMS)\r\ndataset to facilitate employment supports management functions that are not\r\ncurrently supported by the SAMS application. SAMS is a case management system\r\nfor social assistance clients.\r\n\r\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-odsp-employment-supports-management-system",
+      "lastUpdated": "2023-11-01T02:30:37.929039",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ebeb27b2-00c2-4f1b-b970-1890fb8ce62f",
+      "title": "Dental benefits for Ontario Disability Support Program (ODSP) clients",
+      "description": "The Ministry of Community and Social Services data set for the Ontario Dental\nAssociation benefits contains information on Ontario Disability Support\nProgram (ODSP) clients in receipt of dental benefits. It includes:\n\n  * claim number\n  * procedure number\n  * tooth code\n  * service date\n  * paid amount, etc.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/dental-benefits-for-ontario-disability-support-program-odsp-clients",
+      "lastUpdated": "2021-01-14T17:44:19.631750",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Injured Workers",
+          "icon": "👷",
+          "matchedKeywords": [
+            "claim"
+          ]
+        },
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "503114c1-18de-4e8e-8a62-06c583639d6b",
+      "title": "Ontario Disability Support Program (ODSP) / Ontario Works field office satisfaction survey",
+      "description": "These survey results contain staff satisfaction information from field offices\nregarding the Service Delivery Model Technology (SDMT) system. SDMT is the\nprovincial application system that, until October 2014, supported the delivery\nof social assistance under the Ontario Disability Support Program (ODSP) and\nOntario Works programs.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-odsp-ontario-works-field-office-satisfaction-survey",
+      "lastUpdated": "2021-01-14T13:44:41.698430",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d68bfa4-0ae9-4b1e-b995-66a806b3d1df",
+      "title": "Labour Market Agreement for Persons with Disabilities (LMAPD) Ontario Disability Support Program (ODSP) survey data (individual level)",
+      "description": "To improve the employment situation for Canadians with disabilities, the\nGovernment of Canada provides funding through a Labour Market Agreement for\nPersons with Disabilities (LMAPD) with the Government of Ontario.\n\nThe Ministry of Community and Social Services uses this yearly survey for\nOntario Disability Support Program (ODSP) clients for annual reporting to the\nGovernment of Canada. The survey reports on a number of indicators about ODSP\nincome and employment supports.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/labour-market-agreement-for-persons-with-disabilities-lmapd-ontario-disability-support-program-odsp",
+      "lastUpdated": "2021-01-15T00:31:51.368508",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "053e206d-5015-4e71-be42-5d33db5c6793",
+      "title": "Disability Adjudication Database",
+      "description": "The Disability Adjudication Database (DAD) has incorporated integrated\nworkflows and file staging customized to the ministry's Disability\nAdjudication Unit (DAU)'s business processes. It tracks what happens to a\nreferral for Ontario Disability Support Program (ODSP) benefits from the time\na disability determination package is received at the DAU. The database\nfollows the referral as it goes through the various stages of the adjudication\nprocess, including appeals to the Divisional Court.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/disability-adjudication-database",
+      "lastUpdated": "2021-01-14T17:32:36.260452",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e7022f68-b657-47e3-933a-037c47cafcc2",
+      "title": "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
+      "description": "These survey results track field office staff activities in the Service\nDelivery Model Technology (SDMT) system, including: client inquiry,\npreliminary assessment, client appointment, client interview and application,\neligibility determination, Disability Adjudication Unit (DAU) referral, grant\nsocial assistance, participation requirements, financial processing, ongoing\ncase management, financial eligibility review, appeals, and ODSP employment\nsupport.\n\nSDMT is the system that, until October 2014, supported the delivery of social\nassistance under the ODSP and Ontario Works programs.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-odsp-ontario-works-field-office-business-process-survey",
+      "lastUpdated": "2021-01-14T13:45:12.238673",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [
+        {
+          "type": "discriminatoryRules",
+          "name": "Discriminatory Eligibility Rules",
+          "description": "Rules that disproportionately exclude disabled persons",
+          "charterImplication": "Section 15 (equality rights)",
+          "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+          "matchedKeywords": [
+            "eligibility"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1066b2bf-702c-48ee-b51a-9ebb2a7ba606",
+      "title": "Ontario Disability Support Program cases and beneficiaries",
+      "description": "The Ministry of Community and Social Services reports the numbers of Ontario\nDisability Support Program (ODSP) cases and beneficiaries (by family\nstructure), the number of children and Assistance for Children with Severe\nDisabilities (ACSD) cases as of the end of month (April 2008 to present).\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-cases-and-beneficiaries",
+      "lastUpdated": "2021-01-15T00:41:46.779024",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "25f226da-fee7-4ab3-9c8c-04097e4fe375",
+      "title": "Ontario social assistance rates",
+      "description": "The Ministry of Community and Social Services compiles various Ontario\nWorks/Ontario Disability Support Program (ODSP) rates (basic needs, shelter,\netc.) and rates for federal and provincial income security and tax benefit\nprograms.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/ontario-social-assistance-rates",
+      "lastUpdated": "2021-01-15T00:42:48.078673",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "663cc487-31c4-471c-9745-16ab2b5462bd",
+      "title": "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
+      "description": "The Ministry of Community and Social Services reports monthly social\nassistance caseloads by Consolidated Municipal Service Manager/District Social\nServices Administration Board (CMSM/DSSAB) and First Nations delivery partner\nfor:\n\n  * Ontario Disability Support Program (ODSP)\n  * Assistance for Children with Severe Disabilities (ACSD)\n  * Ontario Works\n  * Temporary Care Assistance (TCA)\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-caseloads-by-consolidated-municipal-service-managerdistrict-social-services-admin",
+      "lastUpdated": "2021-01-14T01:56:24.386107",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Indigenous Peoples",
+          "icon": "🪶",
+          "matchedKeywords": [
+            "first nations"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8b2d095e-1099-44aa-a51c-85d5f74ec1de",
+      "title": "Social Assistance Caseloads",
+      "description": "Data prior to April 1998 includes recipients of:\r\n\r\n  * general welfare assistance\r\n  * family benefits\r\n  * foster care\r\n  * handicapped children benefits\r\n\r\nData from April 1, 1998 onward includes recipients of:\r\n\r\n  * Ontario Works\r\n  * Ontario Disability Support Program\r\n  * Temporary Care Assistance\r\n  * Assistance for Children with Severe Disabilities\r\n\r\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-caseloads",
+      "lastUpdated": "2025-09-18T19:01:08.671692",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [
+        {
+          "type": "benefitReductions",
+          "name": "Benefit Reductions",
+          "description": "Any reduction in disability or workers' compensation benefits",
+          "charterImplication": "Section 7 (security of person)",
+          "uncrpdArticle": "Article 28 (adequate standard of living)",
+          "matchedKeywords": [
+            "cap"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "welfare",
+            "social assistance"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0d250d63-5852-418f-91ea-4ab7a29edbac",
+      "title": "Social Assistance Legacy Information System",
+      "description": "The social assistance Legacy Information System (SALIS) contains an archive of\npersonal and financial information for all applicants and active recipients\nof:  \n• Ontario Works  \n• Ontario Disability Support Program (ODSP)  \n• Assistance for Children with Severe Disabilities (ACSD).\n\nThis dataset was used for the delivery of social assistance prior to the\nimplementation of the Social Assistance Management System (SAMS). SAMS is a\ncase management system for social assistance clients.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-legacy-information-system",
+      "lastUpdated": "2021-01-14T01:52:50.438747",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0d8d5783-73c5-4c63-b02b-62e99ecd62ea",
+      "title": "Short Term Training Services (STTS) service provider survey data",
+      "description": "The Ministry of Community and Social Services evaluated the Short Term\nTraining Services (STTS) pilot with this one-time survey of Ontario Disability\nSupport Program (ODSP) employment support service providers who received\nfunding as part of the STTS pilot.\n\nThe purpose of the pilot was to provide ODSP employment supports clients with\naccess to labour-market oriented short-term training to improve clients'\noverall employability and employment outcomes.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/short-term-training-services-stts-service-provider-survey-data",
+      "lastUpdated": "2021-01-14T02:00:29.515677",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "67b71060-9085-4a34-8a45-3fe8316161df",
+      "title": "Social assistance operational indicators data set",
+      "description": "The Ministry of Community and Social Services reports monthly information on\noperational indicators by Ontario Works Consolidated Municipal Service\nManager/District Social Services Administration Board (CMSM/DSSAB) and Ontario\nDisability Support Program (ODSP) region/local office, in the following areas:\n\n  * intake\n  * case management workload\n  * customer service\n  * accountability\n  * financial\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-operational-indicators-data-set",
+      "lastUpdated": "2021-01-14T01:50:17.148465",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "af569265-defd-4b01-9982-702562c156b3",
+      "title": "Social assistance operations performance report",
+      "description": "The Ministry of Community and Social Services compiles high priority\nperformance indicators, including indicators on:  \n• intake  \n• caseload  \n• client outcomes  \n• overpayments  \n• suspensions  \n• payments  \nThe ministry organizes the reports by Ontario Disability Support Program\n(ODSP) local office and Ontario Works Consolidated Municipal Service\nManager/District Social Services Administration Board (CMSM/DSSAB).\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-operations-performance-report",
+      "lastUpdated": "2021-01-14T01:49:46.668754",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Seniors",
+          "icon": "👴",
+          "matchedKeywords": [
+            "pension"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2e7d6a98-10f7-4dcf-b3ac-ef4e15b78534",
+      "title": "Social assistance program eligibility",
+      "description": "The Ministry of Community and Social Services data set for social assistance\n(SA) program eligibility contains information on SA clients that is used to\ndetermine eligibility for social assistance programs (Ontario Works (OW),\nOntario Disability Support Program (ODSP)). The dataset includes:  \n• case characteristics  \n• amount of allowances for which the benefit unit is eligible  \n• actual shelter cost  \n• aggregate income amount  \n• employment earnings  \n• aggregate asset amount  \n• the outcome of eligibility determination\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-program-eligibility",
+      "lastUpdated": "2021-01-14T01:48:14.834521",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [
+        {
+          "type": "discriminatoryRules",
+          "name": "Discriminatory Eligibility Rules",
+          "description": "Rules that disproportionately exclude disabled persons",
+          "charterImplication": "Section 15 (equality rights)",
+          "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+          "matchedKeywords": [
+            "eligibility"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26299a86-ab9a-4f6d-8290-734ad5bfc371",
+      "title": "Transitional aged youth reporting",
+      "description": "Transitional aged youth (TAY) reporting captures data for individuals in the\nNorth Region 14 years of age and older who may transfer to adult developmental\nservices. It includes:\n\n  * current service (group home, foster etc.)\n  * fiscal and annual costs (where available)\n  * confirmation status of adult developmental services eligibility\n  * completion status of the Application for Developmental Services and Supports (ADSS) & Support Intensity Scale (SIS)\n  * completion status of the Ontario Disability Support Program (ODSP) application\n\nThis reporting aids planning/forecasting for transitioning individuals.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/transitional-aged-youth-reporting",
+      "lastUpdated": "2021-01-14T00:39:35.102577",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [
+        {
+          "type": "benefitReductions",
+          "name": "Benefit Reductions",
+          "description": "Any reduction in disability or workers' compensation benefits",
+          "charterImplication": "Section 7 (security of person)",
+          "uncrpdArticle": "Article 28 (adequate standard of living)",
+          "matchedKeywords": [
+            "cap"
+          ],
+          "severity": "medium"
+        },
+        {
+          "type": "discriminatoryRules",
+          "name": "Discriminatory Eligibility Rules",
+          "description": "Rules that disproportionately exclude disabled persons",
+          "charterImplication": "Section 15 (equality rights)",
+          "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+          "matchedKeywords": [
+            "eligibility"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
+          ]
+        },
+        {
+          "name": "Seniors",
+          "icon": "👴",
+          "matchedKeywords": [
+            "aged"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "youth"
+          ]
+        }
+      ]
+    }
+  ],
+  "violations": {
+    "critical": [],
+    "high": [
+      {
+        "type": "benefitReductions",
+        "name": "Benefit Reductions",
+        "description": "Any reduction in disability or workers' compensation benefits",
+        "charterImplication": "Section 7 (security of person)",
+        "uncrpdArticle": "Article 28 (adequate standard of living)",
+        "matchedKeywords": [
+          "reduce",
+          "cut"
+        ],
+        "severity": "high",
+        "source": {
+          "id": "c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+          "title": "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+          "description": "The Youth Criminal Justice Act (YCJA) came into force on April 1, 2003 to assist in reducing the notably high Canadian youth custody rate. The YCJA promotes youth rehabilitation and reintegration into society through diversion from the formal justice system and greater community involvement in responding to youth crime. It also promotes responsibility and accountability through measures that are proportionate to the seriousness of the offence and the youth’s stage of development. In support of these goals, section 19 of the YCJA introduced conferences as a means to assist both decision makers and youth involved in the criminal justice system (CJS). Section 19 conferences provide an opportunity for various professionals and stakeholders, including the young person concerned and their family, to come together to discuss the matter in a more informal setting in order to formulate recommendations about the young person’s case.\r\n\r\nDespite the introduction of section 19 conferences almost 20 years ago, there has been little information gathered on the extent of their use, how they are being conducted, and the associated outcomes. In 2020, the Department of Justice Canada undertook a national survey to fill this knowledge gap. An invitation to complete the electronic survey was sent to provincial and territorial representatives of the Coordinating Committee of Senior Officials – Youth Justice. All 13 jurisdictions completed the survey.\r\n\r\nThe focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS.The focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS. Many aspects of section 19 conferences were examined, including:\r\n\r\nExtent of use of conferences;\r\nPurposes and processes of conferences;\r\nBenefits of conferences;\r\nChallenges of conferences; and\r\nData collection, evaluations and impact assessments.\r\nResults indicated that all jurisdictions convene section 19 conferences, with the exception of Quebec and the Yukon. Most jurisdictions reported having developed either rules, policies, guidelines and/or programs pertaining to the convening of conferences, although these varied widely.\r\n\r\nConferences were reported to be convened at all stages of the CJS, with most jurisdictions convening them at the post-charge/pre-finding of guilt, post-finding of guilt/pre-sentence and post-sentencing stages. Slightly fewer jurisdictions reported convening conferences at the pre-charge stage. Jurisdictions noted that conferences were convened for a variety of purposes, most notably as a means to attain advice on a sentencing plan or to assist in the process of developing a sentencing plan, to coordinate social services, to determine appropriate extrajudicial sanctions, as well as to determine conditions for judicial interim release (i.e., bail).\r\n\r\nJurisdictions described differing processes for convening section 19 conferences. Four jurisdictions reported having dedicated resources for organizing conferences. In terms of who convenes conferences, jurisdictions noted that various professionals may do so, such as provincial directors or delegates, probation officers, youth workers, mental-health workers, police officers, Crown prosecutors, Justices of the Peace, or defence counsels, among others. Further, several jurisdictions reported that conferences were convened by judges, which is consistent with section 41 of the YCJA.\r\n\r\nThose who took part in a conference (as participants) also varied by jurisdiction, but generally included the youth, family or other support people, probation officers, social workers, child welfare representatives, mental health workers, school representatives, as well as Elders or an Indigenous representative. Other less frequently noted types of participants included police officers, Crown prosecutors, the defence counsels, educators, interpreters, as well as victims and their family and other support people of the victim.\r\n\r\nAlberta was the only jurisdiction to report eligibility criteria to participate in a conference. These criteria pertained to youth and offence characteristics. However, a review of policy/guideline/program documents provided by other jurisdictions identified a number of situations or circumstances that lead to the consideration of a section 19 conference. These included, for example, complex cases where custody is considered or when dealing with chronic re-offending. Conversely, only the Northwest Territories prohibited the use of section 19 conferences in certain circumstances (i.e., when charges related to specific types of offences such as murder).\r\n\r\nNotable benefits of section 19 conferences were reported, such as:\r\n\r\nIncreasing involvement and buy-in of youth in their case;\r\nHelping address diverse and complex needs (e.g., youth who are under the jurisdictions of both child welfare services and the CJS, those with cognitive abilities);\r\nIncreasing collaboration between justice actors and between social systems for better case planning;\r\nProviding an opportunity for restorative justice; and,\r\nLeading to reduced charges and recidivism.\r\nFurther, many jurisdictions confirmed that conferences allowed accommodations and adaptions for diversity, which included accommodations specific to Indigenous identity, cultural and/or linguistic background, gender and lesbian, gay, bisexual, transgender, queer, intersex, and asexual (LGBTQIA+) identities, mental health and/or addiction issues, in addition to accommodations for cognitive disabilities.\r\n\r\nA number of challenges and areas for improvement pertaining to section 19 conferences were highlighted by jurisdictions. These included:\r\n\r\nScheduling, time requirements, and logistical issues (e.g., conflicting schedules, lack of dedicated coordinators; technological limitations around access to phones and internet);\r\nDifficulties getting people to support and participate in conferences; and,\r\nLimited availability of community programs, resources and supports for case planning.\r\nLess than half of jurisdictions reported collecting some form of administrative data on various aspects of section 19 conferences (e.g., number, youth characteristics, purposes, participants, outcome and cost). Three jurisdictions (Alberta, Saskatchewan, and New Brunswick) reported having conducted an evaluation or impact assessment. Similar benefits and challenges as those reported in this study were found by these assessments.\r\n\r\nDespite the widespread use of section 19 conferences across Canada, the current research has demonstrated that there are limited data collected across Canada on the use of section 19 conferences and their outcomes. However, the many benefits of section 19 conferences highlighted in this study provide support for further consideration of expanding the use of section 19 conferences across Canada. This could better support youth involved in the CJS and possibly help contribute to a reduction in the overrepresentation of Indigenous and racialized youth in custody.",
+          "organization": "Department of Justice Canada | Ministère de la Justice Canada",
+          "url": "https://open.canada.ca/data/en/dataset/c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+          "lastUpdated": "2023-05-17T20:25:24.551170",
+          "verified": true,
+          "verificationSource": "open.canada.ca"
+        }
+      },
+      {
+        "type": "discriminatoryRules",
+        "name": "Discriminatory Eligibility Rules",
+        "description": "Rules that disproportionately exclude disabled persons",
+        "charterImplication": "Section 15 (equality rights)",
+        "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+        "matchedKeywords": [
+          "eligibility",
+          "criteria"
+        ],
+        "severity": "high",
+        "source": {
+          "id": "c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+          "title": "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+          "description": "The Youth Criminal Justice Act (YCJA) came into force on April 1, 2003 to assist in reducing the notably high Canadian youth custody rate. The YCJA promotes youth rehabilitation and reintegration into society through diversion from the formal justice system and greater community involvement in responding to youth crime. It also promotes responsibility and accountability through measures that are proportionate to the seriousness of the offence and the youth’s stage of development. In support of these goals, section 19 of the YCJA introduced conferences as a means to assist both decision makers and youth involved in the criminal justice system (CJS). Section 19 conferences provide an opportunity for various professionals and stakeholders, including the young person concerned and their family, to come together to discuss the matter in a more informal setting in order to formulate recommendations about the young person’s case.\r\n\r\nDespite the introduction of section 19 conferences almost 20 years ago, there has been little information gathered on the extent of their use, how they are being conducted, and the associated outcomes. In 2020, the Department of Justice Canada undertook a national survey to fill this knowledge gap. An invitation to complete the electronic survey was sent to provincial and territorial representatives of the Coordinating Committee of Senior Officials – Youth Justice. All 13 jurisdictions completed the survey.\r\n\r\nThe focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS.The focus of this research was to better understand how provinces and territories are using section 19 of the YCJA (and other related sections). This research also aimed to gain insight into ways of addressing the overrepresentation of Indigenous and racialized youth in the CJS. Many aspects of section 19 conferences were examined, including:\r\n\r\nExtent of use of conferences;\r\nPurposes and processes of conferences;\r\nBenefits of conferences;\r\nChallenges of conferences; and\r\nData collection, evaluations and impact assessments.\r\nResults indicated that all jurisdictions convene section 19 conferences, with the exception of Quebec and the Yukon. Most jurisdictions reported having developed either rules, policies, guidelines and/or programs pertaining to the convening of conferences, although these varied widely.\r\n\r\nConferences were reported to be convened at all stages of the CJS, with most jurisdictions convening them at the post-charge/pre-finding of guilt, post-finding of guilt/pre-sentence and post-sentencing stages. Slightly fewer jurisdictions reported convening conferences at the pre-charge stage. Jurisdictions noted that conferences were convened for a variety of purposes, most notably as a means to attain advice on a sentencing plan or to assist in the process of developing a sentencing plan, to coordinate social services, to determine appropriate extrajudicial sanctions, as well as to determine conditions for judicial interim release (i.e., bail).\r\n\r\nJurisdictions described differing processes for convening section 19 conferences. Four jurisdictions reported having dedicated resources for organizing conferences. In terms of who convenes conferences, jurisdictions noted that various professionals may do so, such as provincial directors or delegates, probation officers, youth workers, mental-health workers, police officers, Crown prosecutors, Justices of the Peace, or defence counsels, among others. Further, several jurisdictions reported that conferences were convened by judges, which is consistent with section 41 of the YCJA.\r\n\r\nThose who took part in a conference (as participants) also varied by jurisdiction, but generally included the youth, family or other support people, probation officers, social workers, child welfare representatives, mental health workers, school representatives, as well as Elders or an Indigenous representative. Other less frequently noted types of participants included police officers, Crown prosecutors, the defence counsels, educators, interpreters, as well as victims and their family and other support people of the victim.\r\n\r\nAlberta was the only jurisdiction to report eligibility criteria to participate in a conference. These criteria pertained to youth and offence characteristics. However, a review of policy/guideline/program documents provided by other jurisdictions identified a number of situations or circumstances that lead to the consideration of a section 19 conference. These included, for example, complex cases where custody is considered or when dealing with chronic re-offending. Conversely, only the Northwest Territories prohibited the use of section 19 conferences in certain circumstances (i.e., when charges related to specific types of offences such as murder).\r\n\r\nNotable benefits of section 19 conferences were reported, such as:\r\n\r\nIncreasing involvement and buy-in of youth in their case;\r\nHelping address diverse and complex needs (e.g., youth who are under the jurisdictions of both child welfare services and the CJS, those with cognitive abilities);\r\nIncreasing collaboration between justice actors and between social systems for better case planning;\r\nProviding an opportunity for restorative justice; and,\r\nLeading to reduced charges and recidivism.\r\nFurther, many jurisdictions confirmed that conferences allowed accommodations and adaptions for diversity, which included accommodations specific to Indigenous identity, cultural and/or linguistic background, gender and lesbian, gay, bisexual, transgender, queer, intersex, and asexual (LGBTQIA+) identities, mental health and/or addiction issues, in addition to accommodations for cognitive disabilities.\r\n\r\nA number of challenges and areas for improvement pertaining to section 19 conferences were highlighted by jurisdictions. These included:\r\n\r\nScheduling, time requirements, and logistical issues (e.g., conflicting schedules, lack of dedicated coordinators; technological limitations around access to phones and internet);\r\nDifficulties getting people to support and participate in conferences; and,\r\nLimited availability of community programs, resources and supports for case planning.\r\nLess than half of jurisdictions reported collecting some form of administrative data on various aspects of section 19 conferences (e.g., number, youth characteristics, purposes, participants, outcome and cost). Three jurisdictions (Alberta, Saskatchewan, and New Brunswick) reported having conducted an evaluation or impact assessment. Similar benefits and challenges as those reported in this study were found by these assessments.\r\n\r\nDespite the widespread use of section 19 conferences across Canada, the current research has demonstrated that there are limited data collected across Canada on the use of section 19 conferences and their outcomes. However, the many benefits of section 19 conferences highlighted in this study provide support for further consideration of expanding the use of section 19 conferences across Canada. This could better support youth involved in the CJS and possibly help contribute to a reduction in the overrepresentation of Indigenous and racialized youth in custody.",
+          "organization": "Department of Justice Canada | Ministère de la Justice Canada",
+          "url": "https://open.canada.ca/data/en/dataset/c07dab27-6f6e-4217-8195-2d4e7aa92f12",
+          "lastUpdated": "2023-05-17T20:25:24.551170",
+          "verified": true,
+          "verificationSource": "open.canada.ca"
+        }
+      }
+    ],
+    "medium": [
+      {
+        "type": "benefitReductions",
+        "name": "Benefit Reductions",
+        "description": "Any reduction in disability or workers' compensation benefits",
+        "charterImplication": "Section 7 (security of person)",
+        "uncrpdArticle": "Article 28 (adequate standard of living)",
+        "matchedKeywords": [
+          "cap"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "85f9fde1-6087-4d9b-9ee6-202ec1894c0f",
+          "title": "StatCan COVID-19: Data to Insights for a Better Canada",
+          "description": "A series of articles on various subjects which explore the impact of COVID-19 on the socio-economic landscape. New articles will be released periodically.",
+          "organization": "Statistics Canada | Statistique Canada",
+          "url": "https://open.canada.ca/data/en/dataset/85f9fde1-6087-4d9b-9ee6-202ec1894c0f",
+          "lastUpdated": "2021-03-12T19:31:26.055624",
+          "verified": true,
+          "verificationSource": "open.canada.ca"
+        }
+      },
+      {
+        "type": "discriminatoryRules",
+        "name": "Discriminatory Eligibility Rules",
+        "description": "Rules that disproportionately exclude disabled persons",
+        "charterImplication": "Section 15 (equality rights)",
+        "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+        "matchedKeywords": [
+          "eligibility"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "e7022f68-b657-47e3-933a-037c47cafcc2",
+          "title": "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
+          "description": "These survey results track field office staff activities in the Service\nDelivery Model Technology (SDMT) system, including: client inquiry,\npreliminary assessment, client appointment, client interview and application,\neligibility determination, Disability Adjudication Unit (DAU) referral, grant\nsocial assistance, participation requirements, financial processing, ongoing\ncase management, financial eligibility review, appeals, and ODSP employment\nsupport.\n\nSDMT is the system that, until October 2014, supported the delivery of social\nassistance under the ODSP and Ontario Works programs.\n\n",
+          "organization": "Children, Community and Social Services",
+          "url": "https://data.ontario.ca/dataset/ontario-disability-support-program-odsp-ontario-works-field-office-business-process-survey",
+          "lastUpdated": "2021-01-14T13:45:12.238673",
+          "verified": true,
+          "verificationSource": "data.ontario.ca"
+        }
+      },
+      {
+        "type": "benefitReductions",
+        "name": "Benefit Reductions",
+        "description": "Any reduction in disability or workers' compensation benefits",
+        "charterImplication": "Section 7 (security of person)",
+        "uncrpdArticle": "Article 28 (adequate standard of living)",
+        "matchedKeywords": [
+          "cap"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "8b2d095e-1099-44aa-a51c-85d5f74ec1de",
+          "title": "Social Assistance Caseloads",
+          "description": "Data prior to April 1998 includes recipients of:\r\n\r\n  * general welfare assistance\r\n  * family benefits\r\n  * foster care\r\n  * handicapped children benefits\r\n\r\nData from April 1, 1998 onward includes recipients of:\r\n\r\n  * Ontario Works\r\n  * Ontario Disability Support Program\r\n  * Temporary Care Assistance\r\n  * Assistance for Children with Severe Disabilities\r\n\r\n",
+          "organization": "Children, Community and Social Services",
+          "url": "https://data.ontario.ca/dataset/social-assistance-caseloads",
+          "lastUpdated": "2025-09-18T19:01:08.671692",
+          "verified": true,
+          "verificationSource": "data.ontario.ca"
+        }
+      },
+      {
+        "type": "discriminatoryRules",
+        "name": "Discriminatory Eligibility Rules",
+        "description": "Rules that disproportionately exclude disabled persons",
+        "charterImplication": "Section 15 (equality rights)",
+        "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+        "matchedKeywords": [
+          "eligibility"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "2e7d6a98-10f7-4dcf-b3ac-ef4e15b78534",
+          "title": "Social assistance program eligibility",
+          "description": "The Ministry of Community and Social Services data set for social assistance\n(SA) program eligibility contains information on SA clients that is used to\ndetermine eligibility for social assistance programs (Ontario Works (OW),\nOntario Disability Support Program (ODSP)). The dataset includes:  \n• case characteristics  \n• amount of allowances for which the benefit unit is eligible  \n• actual shelter cost  \n• aggregate income amount  \n• employment earnings  \n• aggregate asset amount  \n• the outcome of eligibility determination\n\n",
+          "organization": "Children, Community and Social Services",
+          "url": "https://data.ontario.ca/dataset/social-assistance-program-eligibility",
+          "lastUpdated": "2021-01-14T01:48:14.834521",
+          "verified": true,
+          "verificationSource": "data.ontario.ca"
+        }
+      },
+      {
+        "type": "benefitReductions",
+        "name": "Benefit Reductions",
+        "description": "Any reduction in disability or workers' compensation benefits",
+        "charterImplication": "Section 7 (security of person)",
+        "uncrpdArticle": "Article 28 (adequate standard of living)",
+        "matchedKeywords": [
+          "cap"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "26299a86-ab9a-4f6d-8290-734ad5bfc371",
+          "title": "Transitional aged youth reporting",
+          "description": "Transitional aged youth (TAY) reporting captures data for individuals in the\nNorth Region 14 years of age and older who may transfer to adult developmental\nservices. It includes:\n\n  * current service (group home, foster etc.)\n  * fiscal and annual costs (where available)\n  * confirmation status of adult developmental services eligibility\n  * completion status of the Application for Developmental Services and Supports (ADSS) & Support Intensity Scale (SIS)\n  * completion status of the Ontario Disability Support Program (ODSP) application\n\nThis reporting aids planning/forecasting for transitioning individuals.\n\n",
+          "organization": "Children, Community and Social Services",
+          "url": "https://data.ontario.ca/dataset/transitional-aged-youth-reporting",
+          "lastUpdated": "2021-01-14T00:39:35.102577",
+          "verified": true,
+          "verificationSource": "data.ontario.ca"
+        }
+      },
+      {
+        "type": "discriminatoryRules",
+        "name": "Discriminatory Eligibility Rules",
+        "description": "Rules that disproportionately exclude disabled persons",
+        "charterImplication": "Section 15 (equality rights)",
+        "uncrpdArticle": "Article 5 (equality and non-discrimination)",
+        "matchedKeywords": [
+          "eligibility"
+        ],
+        "severity": "medium",
+        "source": {
+          "id": "26299a86-ab9a-4f6d-8290-734ad5bfc371",
+          "title": "Transitional aged youth reporting",
+          "description": "Transitional aged youth (TAY) reporting captures data for individuals in the\nNorth Region 14 years of age and older who may transfer to adult developmental\nservices. It includes:\n\n  * current service (group home, foster etc.)\n  * fiscal and annual costs (where available)\n  * confirmation status of adult developmental services eligibility\n  * completion status of the Application for Developmental Services and Supports (ADSS) & Support Intensity Scale (SIS)\n  * completion status of the Ontario Disability Support Program (ODSP) application\n\nThis reporting aids planning/forecasting for transitioning individuals.\n\n",
+          "organization": "Children, Community and Social Services",
+          "url": "https://data.ontario.ca/dataset/transitional-aged-youth-reporting",
+          "lastUpdated": "2021-01-14T00:39:35.102577",
+          "verified": true,
+          "verificationSource": "data.ontario.ca"
+        }
+      }
+    ]
+  },
+  "populationImpact": {
+    "injuredWorkers": {
+      "count": 7,
+      "issues": [
+        "Employment by class of worker for persons with disabilities, aged 15 years and over, by age group and gender",
+        "Employment characteristics for persons with and without disabilities, annual",
+        "2012/13 EI Monitoring and Assessment Report - EBSMs Data Table",
+        "Employer Records",
+        "Federal Jurisdiction Workplace Survey 2015",
+        "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+        "Dental benefits for Ontario Disability Support Program (ODSP) clients"
+      ]
+    },
+    "disabledPersons": {
+      "count": 18,
+      "issues": [
+        "Employment characteristics for persons with and without disabilities, annual",
+        "Ontario Disability Support Program (ODSP) disability adjudication data",
+        "Ontario Disability Support Program (ODSP) Employment Supports Management System",
+        "Dental benefits for Ontario Disability Support Program (ODSP) clients",
+        "Ontario Disability Support Program (ODSP) / Ontario Works field office satisfaction survey",
+        "Labour Market Agreement for Persons with Disabilities (LMAPD) Ontario Disability Support Program (ODSP) survey data (individual level)",
+        "Disability Adjudication Database",
+        "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
+        "Ontario Disability Support Program cases and beneficiaries",
+        "Ontario social assistance rates",
+        "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
+        "Social Assistance Caseloads",
+        "Social Assistance Legacy Information System",
+        "Short Term Training Services (STTS) service provider survey data",
+        "Social assistance operational indicators data set",
+        "Social assistance operations performance report",
+        "Social assistance program eligibility",
+        "Transitional aged youth reporting"
+      ]
+    },
+    "seniors": {
+      "count": 5,
+      "issues": [
+        "Employment by class of worker for persons with disabilities, aged 15 years and over, by age group and gender",
+        "Briefing materials for the Ministers at Employment and Social Development Canada – Fall 2019",
+        "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+        "Social assistance operations performance report",
+        "Transitional aged youth reporting"
+      ]
+    },
+    "indigenous": {
+      "count": 2,
+      "issues": [
+        "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+        "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner"
+      ]
+    },
+    "lowIncome": {
+      "count": 11,
+      "issues": [
+        "Section 19 of the Youth Criminal Justice Act: A look at the use of conferences across Canada",
+        "Ontario Disability Support Program (ODSP) Employment Supports Management System",
+        "Ontario Disability Support Program (ODSP) / Ontario Works field office satisfaction survey",
+        "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
+        "Ontario social assistance rates",
+        "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
+        "Social Assistance Caseloads",
+        "Social Assistance Legacy Information System",
+        "Social assistance operational indicators data set",
+        "Social assistance operations performance report",
+        "Social assistance program eligibility"
+      ]
+    }
+  },
+  "summary": {
+    "totalItemsAnalyzed": 37,
+    "violationsDetected": 8,
+    "charterConcerns": 1,
+    "uncrpdConcerns": 0,
+    "populationsAffected": [
+      {
+        "name": "Persons with Disabilities",
+        "count": 18
+      },
+      {
+        "name": "Low-Income Canadians",
+        "count": 11
+      },
+      {
+        "name": "Injured Workers",
+        "count": 7
+      },
+      {
+        "name": "Children",
+        "count": 6
+      },
+      {
+        "name": "Seniors",
+        "count": 5
+      },
+      {
+        "name": "Women",
+        "count": 3
+      },
+      {
+        "name": "Indigenous Peoples",
+        "count": 2
+      },
+      {
+        "name": "Mental Health Community",
+        "count": 1
+      }
+    ]
+  },
+  "sources": {
+    "federal": 9,
+    "ontario": 17,
+    "legislation": 11,
+    "fetchedAt": "2025-12-13T05:37:10.644Z"
+  }
+}

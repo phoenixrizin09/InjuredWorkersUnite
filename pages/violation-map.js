@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SystemNavigation from '../components/SystemNavigation';
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
@@ -140,6 +141,9 @@ export default function ViolationMap() {
         padding: '2rem 1rem 4rem'
       }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+          
+          {/* Unified System Navigation */}
+          <SystemNavigation current="/violation-map" />
           
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>

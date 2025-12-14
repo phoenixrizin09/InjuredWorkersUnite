@@ -1,8 +1,8 @@
 {
-  "id": "daily_justice_1765659987693",
-  "generatedAt": "2025-12-13T21:06:27.693Z",
-  "date": "2025-12-13",
-  "title": "Daily Justice Report - Saturday, December 13, 2025",
+  "id": "daily_justice_1765748957973",
+  "generatedAt": "2025-12-14T21:49:17.973Z",
+  "date": "2025-12-14",
+  "title": "Daily Justice Report - Sunday, December 14, 2025",
   "legalChanges": {
     "newBills": [],
     "amendments": [],
@@ -665,49 +665,6 @@
       ]
     },
     {
-      "id": "053e206d-5015-4e71-be42-5d33db5c6793",
-      "title": "Disability Adjudication Database",
-      "description": "The Disability Adjudication Database (DAD) has incorporated integrated\nworkflows and file staging customized to the ministry's Disability\nAdjudication Unit (DAU)'s business processes. It tracks what happens to a\nreferral for Ontario Disability Support Program (ODSP) benefits from the time\na disability determination package is received at the DAU. The database\nfollows the referral as it goes through the various stages of the adjudication\nprocess, including appeals to the Divisional Court.\n\n",
-      "organization": "Children, Community and Social Services",
-      "url": "https://data.ontario.ca/dataset/disability-adjudication-database",
-      "lastUpdated": "2021-01-14T17:32:36.260452",
-      "verified": true,
-      "verificationSource": "data.ontario.ca",
-      "scope": "provincial",
-      "jurisdiction": "Ontario",
-      "rightsAnalysis": {
-        "charterCompliance": {
-          "status": "REQUIRES_REVIEW",
-          "issues": []
-        },
-        "humanRightsCompliance": {
-          "status": "REQUIRES_REVIEW",
-          "issues": []
-        },
-        "uncrpdCompliance": {
-          "status": "REQUIRES_ASSESSMENT",
-          "issues": [
-            {
-              "article": "Article 28",
-              "right": "Adequate Standard of Living",
-              "concern": "Must ensure adequate standard of living for persons with disabilities"
-            }
-          ]
-        }
-      },
-      "violations": [],
-      "impactedPopulations": [
-        {
-          "name": "Persons with Disabilities",
-          "icon": "♿",
-          "matchedKeywords": [
-            "disability",
-            "odsp"
-          ]
-        }
-      ]
-    },
-    {
       "id": "e7022f68-b657-47e3-933a-037c47cafcc2",
       "title": "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
       "description": "These survey results track field office staff activities in the Service\nDelivery Model Technology (SDMT) system, including: client inquiry,\npreliminary assessment, client appointment, client interview and application,\neligibility determination, Disability Adjudication Unit (DAU) referral, grant\nsocial assistance, participation requirements, financial processing, ongoing\ncase management, financial eligibility review, appeals, and ODSP employment\nsupport.\n\nSDMT is the system that, until October 2014, supported the delivery of social\nassistance under the ODSP and Ontario Works programs.\n\n",
@@ -765,6 +722,49 @@
           "icon": "💰",
           "matchedKeywords": [
             "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "053e206d-5015-4e71-be42-5d33db5c6793",
+      "title": "Disability Adjudication Database",
+      "description": "The Disability Adjudication Database (DAD) has incorporated integrated\nworkflows and file staging customized to the ministry's Disability\nAdjudication Unit (DAU)'s business processes. It tracks what happens to a\nreferral for Ontario Disability Support Program (ODSP) benefits from the time\na disability determination package is received at the DAU. The database\nfollows the referral as it goes through the various stages of the adjudication\nprocess, including appeals to the Divisional Court.\n\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/disability-adjudication-database",
+      "lastUpdated": "2021-01-14T17:32:36.260452",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability",
+            "odsp"
           ]
         }
       ]
@@ -1551,8 +1551,8 @@
         "Dental benefits for Ontario Disability Support Program (ODSP) clients",
         "Ontario Disability Support Program (ODSP) / Ontario Works field office satisfaction survey",
         "Labour Market Agreement for Persons with Disabilities (LMAPD) Ontario Disability Support Program (ODSP) survey data (individual level)",
-        "Disability Adjudication Database",
         "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
+        "Disability Adjudication Database",
         "Ontario Disability Support Program cases and beneficiaries",
         "Ontario social assistance rates",
         "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
@@ -1643,6 +1643,6 @@
     "federal": 9,
     "ontario": 17,
     "legislation": 11,
-    "fetchedAt": "2025-12-13T21:06:26.308Z"
+    "fetchedAt": "2025-12-14T21:49:15.384Z"
   }
 }

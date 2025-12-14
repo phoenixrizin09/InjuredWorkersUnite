@@ -1,5 +1,54 @@
 [
   {
+    "id": "daily_justice_1765749311775",
+    "date": "2025-12-14",
+    "summary": {
+      "totalItemsAnalyzed": 37,
+      "violationsDetected": 8,
+      "charterConcerns": 1,
+      "uncrpdConcerns": 0,
+      "populationsAffected": [
+        {
+          "name": "Persons with Disabilities",
+          "count": 18
+        },
+        {
+          "name": "Low-Income Canadians",
+          "count": 11
+        },
+        {
+          "name": "Injured Workers",
+          "count": 7
+        },
+        {
+          "name": "Children",
+          "count": 6
+        },
+        {
+          "name": "Seniors",
+          "count": 5
+        },
+        {
+          "name": "Women",
+          "count": 3
+        },
+        {
+          "name": "Indigenous Peoples",
+          "count": 2
+        },
+        {
+          "name": "Mental Health Community",
+          "count": 1
+        }
+      ]
+    },
+    "violationCounts": {
+      "critical": 0,
+      "high": 2,
+      "medium": 6
+    }
+  },
+  {
     "id": "daily_justice_1765748957973",
     "date": "2025-12-14",
     "summary": {

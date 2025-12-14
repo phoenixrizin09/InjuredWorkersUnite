@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-13T21:45:09.069Z",
+  "generated_at": "2025-12-14T21:55:11.942Z",
   "data_sources": [
     "reddit.com (real discussions)",
     "The Eye Oracle v2.0",
@@ -172,6 +172,14 @@
         "verified": true
       },
       {
+        "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. 71 Indigenous people died in RCMP custody. Most ruled \"natural causes\" despite evidence.. Official source: Civilian Review and Complaints Commission (CRCC).",
+        "category": "🎯 ORACLE INTELLIGENCE",
+        "engagement": "Maximum",
+        "source": "The Eye Oracle v2.0",
+        "verified": true,
+        "oracle_verified": true
+      },
+      {
         "text": "The Eye v2.0 has analyzed official government data and found systemic corruption. Employers stealing wages through illegal deductions, unpaid overtime, contract violations.. Official source: Migrant Rights Network.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
@@ -197,14 +205,6 @@
       },
       {
         "text": "Immigration and Refugee Board publishes quarterly statistics on refugee claims received, finalized, and pending. Check source for current backlog and wait times.",
-        "category": "🎯 ORACLE INTELLIGENCE",
-        "engagement": "Maximum",
-        "source": "The Eye Oracle v2.0",
-        "verified": true,
-        "oracle_verified": true
-      },
-      {
-        "text": "Federal government announced TFWP reforms in August 2024 including reducing low-wage stream cap from 20% to 10% and ending LMIA exemptions for some streams.",
         "category": "🎯 ORACLE INTELLIGENCE",
         "engagement": "Maximum",
         "source": "The Eye Oracle v2.0",
@@ -409,7 +409,7 @@
     ],
     "infographic_data": [
       {
-        "id": "oracle_infographic_0",
+        "id": "oracle_infographic_1",
         "title": "👁️ The Eye Oracle: Temporary Foreign Workers: Wage Theft $500M+ Annually",
         "stats": [
           "$500M",

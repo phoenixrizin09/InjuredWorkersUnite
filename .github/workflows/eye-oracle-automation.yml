@@ -1,9 +1,11 @@
 # 👁️ THE EYE ORACLE - Daily Automation
 # 
-# Runs daily at 6 AM ET (11:00 UTC) to:
-# 1. Generate Eye Oracle reports
-# 2. Update data files
-# 3. Commit and push changes
+# Runs daily at 6 AM ET (11:00 UTC) and 6 PM ET (23:00 UTC) to:
+# 1. Generate Justice Report with violation analysis
+# 2. Generate Eye Oracle posts
+# 3. Generate viral content hooks
+# 4. Update data files
+# 5. Commit and push changes
 #
 # 🇨🇦 The Eye sees all. The Eye never sleeps.
 
@@ -11,11 +13,21 @@ name: Eye Oracle Daily Report
 
 on:
   schedule:
-    # Daily at 6 AM ET (11:00 UTC)
+    # Daily at 6 AM ET (11:00 UTC) - Morning report
     - cron: '0 11 * * *'
+    # Daily at 6 PM ET (23:00 UTC) - Evening backup/update
+    - cron: '0 23 * * *'
   
   # Manual trigger
   workflow_dispatch:
+  
+  # Also run on push to master (for testing)
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/generate-*.js'
+      - 'utils/real-data-generator.js'
+      - '.github/workflows/eye-oracle-automation.yml'
 
 permissions:
   contents: write
@@ -40,11 +52,25 @@ jobs:
         run: npm ci
         continue-on-error: false
 
+      - name: ⚖️ Generate Daily Justice Report
+        run: |
+          echo "⚖️ GENERATING DAILY JUSTICE REPORT..."
+          node scripts/generate-daily-justice-report.js || echo "⚠️ Justice report had warnings"
+          echo "✅ Justice report complete!"
+        continue-on-error: true
+
       - name: 👁️ Generate Eye Oracle Daily Report
         run: |
           echo "👁️ THE EYE ORACLE AWAKENS..."
           node scripts/generate-eye-oracle-daily.js || echo "⚠️ Daily report generation had warnings"
           echo "✅ Daily report step complete!"
+        continue-on-error: true
+
+      - name: 📱 Generate Daily Viral Report
+        run: |
+          echo "📱 GENERATING VIRAL SOCIAL CONTENT..."
+          node scripts/generate-daily-eye-viral-report.js || echo "⚠️ Viral report had warnings"
+          echo "✅ Viral report complete!"
         continue-on-error: true
 
       - name: 🔥 Generate viral content hooks

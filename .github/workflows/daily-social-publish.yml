@@ -1,0 +1,44 @@
+name: Daily Social Publish
+
+on:
+  schedule:
+    - cron: '15 11 * * *' # daily after morning runs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  social-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build daily social pack
+        run: npm run social:pack
+        env:
+          TONE: respectful
+
+      - name: Post to Discord
+        run: npm run social:post:discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Upload social pack artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-social-pack
+          path: public/data/daily-social-pack.json
+          if-no-files-found: error

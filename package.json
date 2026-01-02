@@ -49,6 +49,8 @@
     "viral:analytics": "node utils/social-analytics-tracker.js --report",
     "viral:status": "node utils/social-analytics-tracker.js --status",
     "viral:sample": "node utils/social-analytics-tracker.js --sample",
+    "social:pack": "node scripts/build-daily-social-pack.js",
+    "social:post:discord": "node scripts/post-discord-social.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

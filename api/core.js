@@ -32,7 +32,8 @@ const {
   AlertsEscalationAgent,
   CommunicationsMediaAgent,
   TemplatesAdvocacyAgent,
-  CommunityIntakeAgent
+  CommunityIntakeAgent,
+  SyncSentinelAgent
 } = require('../agents/orchestrator');
 const { AlertOrchestrator } = require('../utils/alert-orchestrator');
 const { TRANSP7Framework } = require('../utils/transp7-framework');
@@ -89,8 +90,38 @@ class EyeOracleAPI extends EventEmitter {
     this.agentManager = new AgentManager();
     this.alertOrchestrator = new AlertOrchestrator();
     this.transp7 = new TRANSP7Framework();
+    this.syncState = {
+      status: 'idle',
+      lastSync: null,
+      lastVerification: null,
+      lastWebhook: null,
+      lastError: null,
+      pending: [],
+      recentEvents: [],
+      config: {
+        defaultRemote: process.env.SYNC_REMOTE_URL || 'origin',
+        defaultBranch: process.env.SYNC_BRANCH || 'master'
+      }
+    };
+    this.contentState = {
+      schedulerEnabled: !IS_TEST && process.env.ENABLE_AUTOMATION !== 'false',
+      lastBlogPost: null,
+      lastReport: null,
+      recentEvents: []
+    };
+    this.automation = {
+      lastBlogRun: null,
+      lastReportRun: null,
+      lastSyncRun: null
+    };
+    this.schedulerIntervals = [];
     
     this.registerAgents();
+    this.agentManager.on('agent-event', (payload) => this.handleAgentEvent(payload));
+
+    if (this.contentState.schedulerEnabled) {
+      this.startSchedulers();
+    }
   }
   
   /**
@@ -105,9 +136,138 @@ class EyeOracleAPI extends EventEmitter {
       this.agentManager.registerAgent(new CommunicationsMediaAgent());
       this.agentManager.registerAgent(new TemplatesAdvocacyAgent());
       this.agentManager.registerAgent(new CommunityIntakeAgent());
+      this.agentManager.registerAgent(new SyncSentinelAgent({
+        defaultRemote: process.env.SYNC_REMOTE_URL,
+        defaultBranch: process.env.SYNC_BRANCH
+      }));
     } catch (error) {
       console.error('Failed to register agents:', error.message);
     }
+  }
+
+  handleAgentEvent(payload) {
+    if (!payload) {
+      return;
+    }
+
+    const event = {
+      ...payload,
+      processedAt: new Date().toISOString()
+    };
+
+    // Sync Sentinel events
+    if (payload.agent === 'Sync Sentinel') {
+      this.syncState.recentEvents.push(event);
+      if (this.syncState.recentEvents.length > 50) {
+        this.syncState.recentEvents = this.syncState.recentEvents.slice(-50);
+      }
+
+      if (payload.type === 'sync-completed' && payload.result) {
+        this.syncState.lastSync = payload.result;
+        this.syncState.status = 'idle';
+        this.syncState.pending = [];
+        this.automation.lastSyncRun = payload.result.completedAt;
+      }
+
+      if (payload.type === 'verification-completed' && payload.result) {
+        this.syncState.lastVerification = payload.result;
+        this.syncState.status = 'idle';
+        this.syncState.pending = [];
+      }
+
+      if (payload.type === 'webhook-received') {
+        this.syncState.lastWebhook = payload;
+      }
+
+      if (payload.type && payload.type.includes('failed')) {
+        this.syncState.status = 'error';
+        this.syncState.lastError = payload.error || 'Sync Sentinel reported failure';
+      }
+    }
+
+    // Communications & Media events
+    if (payload.agent === 'Communications & Media') {
+      this.contentState.recentEvents.push(event);
+      if (this.contentState.recentEvents.length > 50) {
+        this.contentState.recentEvents = this.contentState.recentEvents.slice(-50);
+      }
+
+      if (payload.type === 'blog-post-created') {
+        this.contentState.lastBlogPost = {
+          title: payload.title,
+          date: payload.postDate,
+          category: payload.category,
+          createdAt: payload.receivedAt
+        };
+        this.automation.lastBlogRun = payload.receivedAt;
+      }
+
+      if (payload.type === 'report-generated') {
+        this.contentState.lastReport = {
+          title: payload.title,
+          date: payload.date,
+          createdAt: payload.receivedAt
+        };
+        this.automation.lastReportRun = payload.receivedAt;
+      }
+    }
+  }
+
+  startSchedulers() {
+    const hourlyCheck = async () => {
+      const today = new Date().toISOString().split('T')[0];
+
+      // Daily blog post
+      if (this.automation.lastBlogRun?.startsWith(today) !== true) {
+        try {
+          await this.agentManager.sendTaskToAgent('Communications & Media', 'create-blog-post', {
+            reason: 'scheduler-daily',
+            requestedAt: new Date().toISOString()
+          });
+        } catch (error) {
+          console.error('Scheduler blog dispatch failed:', error.message);
+        }
+      }
+
+      // Daily Eye Oracle investigative report
+      if (this.automation.lastReportRun?.startsWith(today) !== true) {
+        try {
+          await this.agentManager.sendTaskToAgent('Communications & Media', 'generate-report', {
+            reportType: 'daily-eye-oracle',
+            reason: 'scheduler-daily',
+            requestedAt: new Date().toISOString()
+          });
+        } catch (error) {
+          console.error('Scheduler report dispatch failed:', error.message);
+        }
+      }
+
+      // Periodic repo sync (every 6 hours)
+      const hoursSinceSync = this.automation.lastSyncRun
+        ? (Date.now() - new Date(this.automation.lastSyncRun).getTime()) / 3600000
+        : Number.POSITIVE_INFINITY;
+      if (hoursSinceSync >= 6) {
+        try {
+          await this.agentManager.sendTaskToAgent('Sync Sentinel', 'sync-repo', {
+            mode: 'scheduled',
+            reason: 'hourly-sync',
+            pull: true
+          });
+        } catch (error) {
+          console.error('Scheduler sync dispatch failed:', error.message);
+        }
+      }
+    };
+
+    // Run immediately, then hourly
+    hourlyCheck();
+    const interval = setInterval(hourlyCheck, 60 * 60 * 1000);
+    this.schedulerIntervals.push(interval);
+  }
+
+  stopSchedulers() {
+    this.schedulerIntervals.forEach((interval) => clearInterval(interval));
+    this.schedulerIntervals = [];
   }
 
   getStatus() {
@@ -121,6 +281,9 @@ class EyeOracleAPI extends EventEmitter {
         taskQueueLength: this.taskQueue.length
       },
       daemon: this.daemonStatus,
+      sync: this.syncState,
+      content: this.contentState,
+      automation: this.automation,
       timestamp: new Date().toISOString()
     };
   }
@@ -551,6 +714,120 @@ EyeOracleAPI.prototype.sendEmail = async function(email, alert) {
 };
 
 // ============================================
+// SYNC SENTINEL ENDPOINTS
+// ============================================
+
+/**
+ * GET /api/sync/status
+ * Retrieve Sync Sentinel state
+ */
+app.get('/api/sync/status', (req, res) => {
+  res.json(eyeAPI.syncState);
+});
+
+/**
+ * POST /api/sync/run
+ * Kick off a repository sync cycle
+ */
+app.post('/api/sync/run', async (req, res) => {
+  try {
+    const { remote, branch, mode = 'manual', reason = 'api-request', filesChecked = 0 } = req.body || {};
+    const payload = {
+      remote: remote || eyeAPI.syncState.config.defaultRemote,
+      branch: branch || eyeAPI.syncState.config.defaultBranch,
+      mode,
+      reason,
+      filesChecked
+    };
+
+    const result = await eyeAPI.agentManager.sendTaskToAgent('Sync Sentinel', 'sync-repo', payload);
+    const taskId = result?.task?.id;
+
+    eyeAPI.syncState.status = 'running';
+    if (taskId) {
+      eyeAPI.syncState.pending.push(taskId);
+      if (eyeAPI.syncState.pending.length > 20) {
+        eyeAPI.syncState.pending = eyeAPI.syncState.pending.slice(-20);
+      }
+    }
+
+    res.status(202).json({
+      success: true,
+      message: 'Sync dispatched to Sync Sentinel',
+      taskId,
+      payload
+    });
+  } catch (error) {
+    eyeAPI.syncState.status = 'error';
+    eyeAPI.syncState.lastError = error.message;
+    res.status(400).json({ error: error.message });
+  }
+});
+
+/**
+ * POST /api/sync/verify
+ * Trigger integrity verification
+ */
+app.post('/api/sync/verify', async (req, res) => {
+  try {
+    const { scope = 'working-tree' } = req.body || {};
+    const payload = { scope };
+
+    const result = await eyeAPI.agentManager.sendTaskToAgent('Sync Sentinel', 'verify-integrity', payload);
+    const taskId = result?.task?.id;
+
+    eyeAPI.syncState.status = 'verifying';
+    if (taskId) {
+      eyeAPI.syncState.pending.push(taskId);
+      if (eyeAPI.syncState.pending.length > 20) {
+        eyeAPI.syncState.pending = eyeAPI.syncState.pending.slice(-20);
+      }
+    }
+
+    res.status(202).json({
+      success: true,
+      message: 'Verification dispatched to Sync Sentinel',
+      taskId,
+      payload
+    });
+  } catch (error) {
+    eyeAPI.syncState.status = 'error';
+    eyeAPI.syncState.lastError = error.message;
+    res.status(400).json({ error: error.message });
+  }
+});
+
+/**
+ * POST /api/sync/webhook
+ * Accept webhook notifications and forward to Sync Sentinel
+ */
+app.post('/api/sync/webhook', async (req, res) => {
+  try {
+    const payload = {
+      event: req.body?.event,
+      branch: req.body?.branch,
+      remote: req.body?.remote || eyeAPI.syncState.config.defaultRemote,
+      source: req.body?.source || 'webhook'
+    };
+
+    await eyeAPI.agentManager.sendTaskToAgent('Sync Sentinel', 'sync-webhook', payload);
+    eyeAPI.syncState.lastWebhook = {
+      ...payload,
+      receivedAt: new Date().toISOString()
+    };
+
+    res.status(202).json({
+      success: true,
+      message: 'Webhook dispatched to Sync Sentinel',
+      payload
+    });
+  } catch (error) {
+    eyeAPI.syncState.lastError = error.message;
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// ============================================
 // MULTI-AGENT ORCHESTRATION ENDPOINTS
 // ============================================
 
@@ -797,6 +1074,7 @@ THE EYE NEVER SLEEPS 👁️
 if (server) {
   process.on('SIGTERM', () => {
     console.log('SIGTERM received - shutting down gracefully');
+    eyeAPI.stopSchedulers();
     server.close(() => {
       console.log('API server closed');
       process.exit(0);
@@ -805,6 +1083,7 @@ if (server) {
 
   process.on('SIGINT', () => {
     console.log('SIGINT received - shutting down gracefully');
+    eyeAPI.stopSchedulers();
     server.close(() => {
       console.log('API server closed');
       process.exit(0);

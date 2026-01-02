@@ -35,6 +35,9 @@ permissions:
 jobs:
   generate-daily-report:
     runs-on: ubuntu-latest
+    concurrency:
+      group: eye-oracle-daily
+      cancel-in-progress: false
     
     steps:
       - name: 👁️ Checkout repository
@@ -45,7 +48,7 @@ jobs:
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: 📥 Install dependencies
@@ -66,6 +69,13 @@ jobs:
           echo "✅ Daily report step complete!"
         continue-on-error: true
 
+      - name: 📰 Generate Daily Blog Post
+        run: |
+          echo "📰 GENERATING DAILY BLOG POST..."
+          node scripts/generate-daily-blog-post.js || echo "⚠️ Blog generation had warnings"
+          echo "✅ Blog step complete!"
+        continue-on-error: true
+
       - name: 📱 Generate Daily Viral Report
         run: |
           echo "📱 GENERATING VIRAL SOCIAL CONTENT..."
@@ -77,6 +87,15 @@ jobs:
         run: |
           node scripts/generate-viral-content.js || echo "⚠️ Viral content already generated or had warnings"
         continue-on-error: true
+
+      - name: 📦 Upload data artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: eye-oracle-data
+          path: |
+            public/data/*.json
+            public/*.xml
+          if-no-files-found: warn
 
       - name: 📝 Commit and push changes
         run: |

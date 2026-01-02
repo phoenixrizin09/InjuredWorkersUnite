@@ -232,7 +232,7 @@ describe('Integration: Agents + Alerts + TRANSP7', () => {
       .get('/api/agents/status')
       .expect(200);
 
-    expect(agentStatus.body.totalAgents).toBe(7);
+    expect(agentStatus.body.totalAgents).toBe(8);
 
     // Verify transparency tracking
     const dashboard = await request(app)

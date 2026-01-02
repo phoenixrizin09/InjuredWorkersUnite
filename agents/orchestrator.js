@@ -33,6 +33,12 @@
 const EventEmitter = require('events');
 const path = require('path');
 const fs = require('fs');
+const { exec } = require('child_process');
+const util = require('util');
+
+const execAsync = util.promisify(exec);
+const IS_TEST = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID !== undefined;
+const SYNC_SIMULATE = process.env.SYNC_SIMULATE === 'true';
 
 // ============================================
 // AGENT BASE CLASS
@@ -515,13 +521,60 @@ class CommunicationsMediaAgent extends Agent {
   }
 
   async generateReport(task) {
-    this.log('INFO', 'Generating report', { type: task.data.reportType });
-    // Implement report generation
+    try {
+      const reportType = task.data.reportType || 'daily-eye-oracle';
+      this.log('INFO', 'Generating report', { type: reportType });
+
+      if (reportType === 'daily-eye-oracle') {
+        // Generate Eye Oracle daily investigative report and blog package
+        const { generateEyeOracleDaily } = require('../scripts/generate-eye-oracle-daily');
+        const result = await generateEyeOracleDaily();
+        this.log('INFO', 'Report generated', { title: result?.title, date: result?.date });
+        this.emit('agent-event', {
+          agent: this.name,
+          type: 'report-generated',
+          reportType,
+          title: result?.title,
+          date: result?.date || new Date().toISOString().split('T')[0],
+          receivedAt: new Date().toISOString()
+        });
+      } else {
+        this.log('WARN', 'Unknown report type requested', { reportType });
+      }
+    } catch (error) {
+      this.handleError(error, { task: 'generate-report' });
+      this.emit('agent-event', {
+        agent: this.name,
+        type: 'report-generation-failed',
+        error: error.message,
+        receivedAt: new Date().toISOString()
+      });
+    }
   }
 
   async createBlogPost(task) {
-    this.log('INFO', 'Creating blog post', { title: task.data.title });
-    // Implement blog generation
+    try {
+      this.log('INFO', 'Creating daily blog post');
+      const { generateDailyPost } = require('../scripts/generate-daily-blog-post');
+      const post = generateDailyPost();
+
+      this.emit('agent-event', {
+        agent: this.name,
+        type: 'blog-post-created',
+        postDate: post?.date,
+        title: post?.title,
+        category: post?.category,
+        receivedAt: new Date().toISOString()
+      });
+    } catch (error) {
+      this.handleError(error, { task: 'create-blog-post' });
+      this.emit('agent-event', {
+        agent: this.name,
+        type: 'blog-post-failed',
+        error: error.message,
+        receivedAt: new Date().toISOString()
+      });
+    }
   }
 }
 
@@ -585,6 +638,236 @@ class CommunityIntakeAgent extends Agent {
   }
 }
 
+/**
+ * Sync Sentinel Agent
+ * Maintains repository sync health, integrity checks, and webhook ingest
+ */
+class SyncSentinelAgent extends Agent {
+  constructor(config = {}) {
+    super('Sync Sentinel', {
+      responsibilities: ['Repository sync', 'Integrity verification', 'Webhook ingest'],
+      ...config
+    });
+    this.repoPath = config.repoPath || process.cwd();
+    this.defaultRemote = config.defaultRemote || process.env.SYNC_REMOTE_URL || 'origin';
+    this.defaultBranch = config.defaultBranch || process.env.SYNC_BRANCH || 'master';
+    this.recentEvents = [];
+    this.lastSync = null;
+    this.lastVerification = null;
+  }
+
+  async start() {
+    await super.start();
+
+    this.on('task:sync-repo', this.syncRepo.bind(this));
+    this.on('task:verify-integrity', this.verifyIntegrity.bind(this));
+    this.on('task:sync-webhook', this.handleWebhook.bind(this));
+  }
+
+  addEvent(event) {
+    this.recentEvents.push(event);
+    if (this.recentEvents.length > 50) {
+      this.recentEvents = this.recentEvents.slice(-50);
+    }
+    this.emit('agent-event', event);
+  }
+
+  async syncRepo(task) {
+    try {
+      const data = task.data || {};
+      const remote = data.remote || this.defaultRemote;
+      let branch = data.branch || this.defaultBranch || 'master';
+      const mode = data.mode || 'manual';
+      const startedAt = new Date().toISOString();
+      const doPull = data.pull !== false;
+
+      this.log('INFO', 'Starting repository sync', {
+        remote,
+        branch,
+        mode,
+        pull: doPull,
+        repoPath: this.repoPath
+      });
+
+      if (IS_TEST || SYNC_SIMULATE) {
+        const simulated = {
+          status: 'simulated',
+          remote,
+          branch,
+          mode,
+          pullAttempted: doPull,
+          repoPath: this.repoPath,
+          startedAt,
+          completedAt: new Date().toISOString(),
+          conflicts: [],
+          filesChecked: data.filesChecked || 0,
+          isClean: true,
+          head: 'SIMULATED_HEAD',
+          currentBranch: branch,
+          pullOutput: 'simulation'
+        };
+
+        this.lastSync = simulated;
+        this.addEvent({
+          agent: this.name,
+          type: 'sync-completed',
+          result: simulated,
+          receivedAt: new Date().toISOString()
+        });
+        return;
+      }
+
+        const currentBranchResult = await execAsync('git rev-parse --abbrev-ref HEAD', { cwd: this.repoPath, windowsHide: true });
+        branch = branch || currentBranchResult.stdout.trim();
+
+      // Fetch latest refs
+      await execAsync(`git fetch ${remote} ${branch}`, { cwd: this.repoPath, windowsHide: true });
+
+      // Check working tree cleanliness
+      const statusResult = await execAsync('git status --porcelain', { cwd: this.repoPath, windowsHide: true });
+      const isClean = statusResult.stdout.trim().length === 0;
+
+      let pullResult = null;
+      if (doPull && isClean) {
+        // Fast-forward only to avoid destructive updates
+        pullResult = await execAsync(`git pull --ff-only ${remote} ${branch}`, { cwd: this.repoPath, windowsHide: true });
+      }
+
+      const head = await execAsync('git rev-parse HEAD', { cwd: this.repoPath, windowsHide: true });
+
+      const result = {
+        status: 'success',
+        remote,
+        branch,
+        mode,
+        pullAttempted: doPull,
+        repoPath: this.repoPath,
+        startedAt,
+        completedAt: new Date().toISOString(),
+        conflicts: [],
+        filesChecked: data.filesChecked || 0,
+        isClean,
+        head: head.stdout.trim(),
+        currentBranch: currentBranchResult.stdout.trim(),
+        pullOutput: pullResult?.stdout || null
+      };
+
+      this.lastSync = result;
+      this.addEvent({
+        agent: this.name,
+        type: 'sync-completed',
+        result,
+        receivedAt: new Date().toISOString()
+      });
+    } catch (error) {
+      this.handleError(error, { task: 'sync-repo' });
+      this.addEvent({
+        agent: this.name,
+        type: 'sync-failed',
+        error: error.message,
+        receivedAt: new Date().toISOString()
+      });
+    }
+  }
+
+  async verifyIntegrity(task) {
+    try {
+      const data = task.data || {};
+      const startedAt = new Date().toISOString();
+
+      this.log('INFO', 'Verifying repository integrity', {
+        repoPath: this.repoPath,
+        scope: data.scope || 'working-tree'
+      });
+
+      if (IS_TEST || SYNC_SIMULATE) {
+        const simulated = {
+          status: 'clean',
+          repoPath: this.repoPath,
+          scope: data.scope || 'working-tree',
+          checkedAt: new Date().toISOString(),
+          startedAt,
+          issues: [],
+          head: 'SIMULATED_HEAD',
+          fsckOutput: null
+        };
+        this.lastVerification = simulated;
+        this.addEvent({
+          agent: this.name,
+          type: 'verification-completed',
+          result: simulated,
+          receivedAt: new Date().toISOString()
+        });
+        return;
+      }
+
+      const issues = [];
+      const statusResult = await execAsync('git status --porcelain', { cwd: this.repoPath, windowsHide: true });
+      if (statusResult.stdout.trim().length > 0) {
+        issues.push('Working tree has uncommitted changes');
+      }
+
+      const head = await execAsync('git rev-parse HEAD', { cwd: this.repoPath, windowsHide: true });
+      let fsckOutput = null;
+      try {
+        const fsckResult = await execAsync('git fsck --no-dangling', { cwd: this.repoPath, windowsHide: true });
+        fsckOutput = fsckResult.stdout.trim();
+      } catch (fsckError) {
+        issues.push(`git fsck reported issues: ${fsckError.message}`);
+      }
+
+      const result = {
+        status: issues.length === 0 ? 'clean' : 'issues-found',
+        repoPath: this.repoPath,
+        scope: data.scope || 'working-tree',
+        checkedAt: new Date().toISOString(),
+        startedAt,
+        issues,
+        head: head.stdout.trim(),
+        fsckOutput
+      };
+
+      this.lastVerification = result;
+      this.addEvent({
+        agent: this.name,
+        type: 'verification-completed',
+        result,
+        receivedAt: new Date().toISOString()
+      });
+    } catch (error) {
+      this.handleError(error, { task: 'verify-integrity' });
+      this.addEvent({
+        agent: this.name,
+        type: 'verification-failed',
+        error: error.message,
+        receivedAt: new Date().toISOString()
+      });
+    }
+  }
+
+  async handleWebhook(task) {
+    try {
+      const data = task.data || {};
+      this.log('INFO', 'Processing sync webhook', {
+        event: data.event || 'unknown',
+        branch: data.branch,
+        remote: data.remote || this.defaultRemote
+      });
+
+      this.addEvent({
+        agent: this.name,
+        type: 'webhook-received',
+        event: data.event,
+        branch: data.branch,
+        remote: data.remote || this.defaultRemote,
+        receivedAt: new Date().toISOString()
+      });
+    } catch (error) {
+      this.handleError(error, { task: 'sync-webhook' });
+    }
+  }
+}
+
 // ============================================
 // EXPORT
 // ============================================
@@ -598,5 +881,6 @@ module.exports = {
   AlertsEscalationAgent,
   CommunicationsMediaAgent,
   TemplatesAdvocacyAgent,
-  CommunityIntakeAgent
+  CommunityIntakeAgent,
+  SyncSentinelAgent
 };

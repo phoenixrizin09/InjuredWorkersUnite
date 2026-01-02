@@ -83,6 +83,15 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: 📦 Upload data artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-justice-data
+          path: |
+            public/data/*.json
+            public/*.xml
+          if-no-files-found: warn
+
       - name: 📋 Check for Changes
         id: check_changes
         run: |

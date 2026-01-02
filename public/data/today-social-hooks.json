@@ -1,14 +1,14 @@
 {
-  "date": "2025-12-14",
-  "title": "👁️ The Eye Oracle: RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-  "quirkyIntro": "Grab your tea/coffee/hydration of choice. Today's report is a doozy.",
-  "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
+  "date": "2026-01-02",
+  "title": "👁️ The Eye Oracle: WSIB Investment Profits While Workers Denied",
+  "quirkyIntro": "Happy Friday! Bad news: they're still at it. Good news: so are we.",
+  "quirkyClosing": "The fight continues. See you tomorrow with more receipts. 🧾",
   "hooks": {
     "twitter": {
-      "primary": "Invisible disability? Here's how to document what doctors can't \"see\": 👁️",
+      "primary": "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"? 👁️",
       "alternatives": [
         "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
-        "We ran the numbers on Royal Canadian Mounted Police (RCMP). What we found will shock you. 🧵 👁️"
+        "We traced the money. You won't believe where it leads. 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -18,10 +18,10 @@
       "toneNotes": "Punchy, provocative, thread-friendly. End with 🧵 or 👇 for threads."
     },
     "facebook": {
-      "primary": "Know your rights: What they MUST accommodate under Ontario Human Rights Code 🧵 👁️",
+      "primary": "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years. 👁️",
       "alternatives": [
-        "They denied $50M+ disability claims in ONE week. The reason? You won't believe it. 🧵 👁️",
-        "The document they tried to bury says it all. Thread 🧵 👁️"
+        "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
+        "We ran the numbers on WSIB Board of Directors. What we found will shock you. 🧵 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -32,10 +32,10 @@
       "toneNotes": "More personal, storytelling. Ask for shares explicitly."
     },
     "instagram": {
-      "primary": "FREE: The complete guide to FOI requests that get results 📁 👁️",
+      "primary": "\"Fraud prevention\" - That's their excuse for denying 67% of mental health claims. 👁️",
       "alternatives": [
-        "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
-        "We traced the money. You won't believe where it leads. 👁️"
+        "\"Just get a job\" they said to someone who can't leave their bed. The ableism is deafening. 👁️",
+        "Why do 67% of workers claims get denied? The answer isn't what you think... 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -58,10 +58,10 @@
       "toneNotes": "Hook in first line. Use line breaks. Caption should complement image."
     },
     "tiktok": {
-      "primary": "Chronic illness + disability claims: What you need to know that they won't tell you: 👁️",
+      "primary": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
       "alternatives": [
-        "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
-        "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+        "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
+        "The document they tried to bury says it all. Thread 🧵 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -74,10 +74,10 @@
       "toneNotes": "First 3 seconds MUST hook. Pattern interrupt. Relatable POV style."
     },
     "linkedin": {
-      "primary": "5 things you MUST document right now if you're filing a disability claim (thread):",
+      "primary": "CEO salary: $847,000. ODSP maximum: $1,308. Any questions?",
       "alternatives": [
-        "They told her chronic pain \"isn't a real disability.\" She's been bedridden for 3 years.",
-        "Why do 67% of indigenous_rights claims get denied? The answer isn't what you think..."
+        "They denied $4.7B disability claims in ONE week. The reason? You won't believe it. 🧵",
+        "There's a pattern they don't want you to notice. Here's what The Eye found:"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -91,15 +91,15 @@
     },
     "blog": {
       "headlines": [
-        "👁️ What The Government Doesn't Want You to Know About RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-        "🔥 EXPOSED: The Shocking Truth Behind RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-        "⚠️ 1+ Workers Affected: What You NEED to Know About RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-        "Why Are They Hiding This? The Real Story of RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-        "The Eye Sees All: RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023 - And It's Worse Than They're Telling You"
+        "👁️ What WSIB Doesn't Want You to Know About WSIB Investment Profits While Workers Denied",
+        "🔥 EXPOSED: The Shocking Truth Behind WSIB Investment Profits While Workers Denied",
+        "⚠️ 1+ Workers Affected: What You NEED to Know About WSIB Investment Profits While Workers Denied",
+        "Why Are They Hiding This? The Real Story of WSIB Investment Profits While Workers Denied",
+        "The Eye Sees All: WSIB Investment Profits While Workers Denied - And It's Worse Than They're Telling You"
       ],
-      "selectedHeadline": "👁️ What The Government Doesn't Want You to Know About RCMP Indigenous Deaths in Custody: 71 Deaths 2010-2023",
-      "introHook": "They denied another claim today. They'll deny another one tomorrow. But we're tracking every single one. Here's what the data shows:",
-      "ctaHook": "Share this with every injured worker you know. They're counting on us staying silent."
+      "selectedHeadline": "👁️ What WSIB Doesn't Want You to Know About WSIB Investment Profits While Workers Denied",
+      "introHook": "Here's the thing they don't want you to understand: WSIB Investment Profits While Workers Denied isn't a mistake. It's a pattern. And today, The Eye Oracle exposes exactly how deep it goes.",
+      "ctaHook": "This ends when we make it end. Share this report. Contact your MPP. File that FOI request. We've got the tools - use them."
     }
   }
 }

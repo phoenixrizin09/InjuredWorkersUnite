@@ -1,5 +1,7 @@
 # 👁️ THE EYE v2.0 - QUICK REFERENCE
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ## 🚀 ONE-COMMAND ANALYSIS
 
 ```javascript

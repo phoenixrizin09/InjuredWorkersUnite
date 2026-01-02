@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  the-eye-oracle:
+    build: .
+    container_name: the-eye-oracle
+    restart: always
+    environment:
+      NODE_ENV: production
+      NODE_OPTIONS: "--max-old-space-size=2048"
+    volumes:
+      - ./logs:/app/logs
+      - ./public/data:/app/public/data
+      - ./data:/app/data
+    networks:
+      - the-eye-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "try { require('./daemon/eye-oracle-daemon'); console.log('OK'); } catch(e) { process.exit(1); }"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "com.eye.system=oracle"
+      - "com.eye.component=daemon"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+
+  # Optional: Backend API (uncomment when ready)
+  # the-eye-api:
+  #   build:
+  #     context: .
+  #     dockerfile: api/Dockerfile
+  #   container_name: the-eye-api
+  #   restart: always
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     NODE_ENV: production
+  #     DATABASE_URL: postgresql://user:password@db:5432/the_eye
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - the-eye-network
+
+  # Optional: Database (uncomment when ready)
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: the-eye-db
+  #   restart: always
+  #   environment:
+  #     POSTGRES_DB: the_eye
+  #     POSTGRES_USER: eye_user
+  #     POSTGRES_PASSWORD: secure_password_here
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+  #   networks:
+  #     - the-eye-network
+
+networks:
+  the-eye-network:
+    driver: bridge
+
+# volumes:
+#   db_data:

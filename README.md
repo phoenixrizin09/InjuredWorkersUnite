@@ -2,6 +2,8 @@
 
 **Independent grassroots activist platform advocating for disability rights, workers' rights, and social justice in Canada.**
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 🌐 **Live Site**: [injuredworkersunite.pages.dev](https://injuredworkersunite.pages.dev)  
 📱 **Social**: [@PhoenixRizin09](https://twitter.com/Phoenixrizin09)  
 📧 **Contact**: injuredworker34@gmail.com

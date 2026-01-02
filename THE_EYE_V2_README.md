@@ -2,6 +2,8 @@
 
 **Incorruptible Evidence-Driven Investigative Intelligence**
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ## 🎯 What Is THE EYE?
 
 THE EYE is an AI-powered investigative system that analyzes documents and exposes:

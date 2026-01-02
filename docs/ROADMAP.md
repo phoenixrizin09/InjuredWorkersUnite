@@ -4,6 +4,8 @@
 **Last Updated**: November 21, 2025  
 **Vision**: Expose all corruption affecting vulnerable Canadians using 100% FREE tools
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ---
 
 ## ✅ COMPLETED FEATURES

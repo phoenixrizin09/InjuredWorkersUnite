@@ -4,6 +4,8 @@
 
 **THE EYE v2.0** - An incorruptible, evidence-driven investigative intelligence system that exposes corruption, constitutional violations, human rights abuses, and systemic discrimination across Canada.
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ---
 
 ## 📦 FILES CREATED

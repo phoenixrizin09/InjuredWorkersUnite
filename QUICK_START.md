@@ -7,6 +7,8 @@
 ✅ **AUTO-UPDATES** - GitHub Actions fetch fresh data every 6 hours  
 ✅ **VERIFIABLE** - Every data point links to official sources  
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ---
 
 ## Get Started in 3 Minutes

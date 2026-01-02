@@ -2,6 +2,8 @@
 
 ## For When You Need Results NOW
 
+**Scope:** Serving injured workers, persons with disabilities, and other vulnerable people at local, provincial, and Canada-wide levels.
+
 ---
 
 ## ⚡ IMMEDIATE ACTION PROTOCOLS

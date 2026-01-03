@@ -26,7 +26,7 @@ const CACHE_DURATION = 3600000; // 1 hour
  * 1. OPEN GOVERNMENT DATA (REAL API CALLS)
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class OpenGovernmentConnector {
+class OpenGovernmentConnector {
   constructor() {
     this.baseUrls = {
       federal: 'https://open.canada.ca/data/api/3/action',
@@ -152,7 +152,7 @@ export class OpenGovernmentConnector {
  * Note: These require scraping - links provided for manual access
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class FOIConnector {
+class FOIConnector {
   constructor() {
     this.sources = [
       {
@@ -208,7 +208,7 @@ export class FOIConnector {
  * 3. AUDITOR/OMBUDSMAN REPORTS
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class OversightConnector {
+class OversightConnector {
   constructor() {
     this.sources = [
       {
@@ -263,7 +263,7 @@ export class OversightConnector {
  * Note: CanLII has public search - API requires registration
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class LegalDatabaseConnector {
+class LegalDatabaseConnector {
   constructor() {
     this.baseUrl = 'https://www.canlii.org/en/';
     this.tribunals = [
@@ -323,7 +323,7 @@ export class LegalDatabaseConnector {
  * 5. MEDIA/NEWS FEEDS (RSS)
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class MediaConnector {
+class MediaConnector {
   constructor() {
     this.sources = [
       {
@@ -374,7 +374,7 @@ export class MediaConnector {
  * 6. SOCIAL LISTENING (Reddit - Public API)
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class SocialConnector {
+class SocialConnector {
   constructor() {
     this.subreddits = [
       'ontario',
@@ -468,7 +468,7 @@ export class SocialConnector {
  * UNIFIED MONITORING COORDINATOR
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export class SourceMonitor {
+class SourceMonitor {
   constructor() {
     this.connectors = {
       openGov: new OpenGovernmentConnector(),
@@ -582,9 +582,9 @@ export class SourceMonitor {
 /**
  * EXPORT DEFAULT INSTANCE
  */
-export const sourceMonitor = new SourceMonitor();
+const sourceMonitor = new SourceMonitor();
 
-export default {
+module.exports = {
   OpenGovernmentConnector,
   FOIConnector,
   OversightConnector,

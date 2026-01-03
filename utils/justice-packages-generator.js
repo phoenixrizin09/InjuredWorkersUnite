@@ -39,7 +39,7 @@
  * LEGAL CHALLENGE PACKAGE GENERATOR
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function generateLegalChallengePackage(issue, jurisdiction = 'Ontario') {
+function generateLegalChallengePackage(issue, jurisdiction = 'Ontario') {
   const pkg = {
     id: `legal_${Date.now()}`,
     generatedAt: new Date().toISOString(),
@@ -368,7 +368,7 @@ export function generateLegalChallengePackage(issue, jurisdiction = 'Ontario') {
  * MEDIA & INVESTIGATIVE PACKAGE GENERATOR
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function generateMediaPackage(issue) {
+function generateMediaPackage(issue) {
   const pkg = {
     id: `media_${Date.now()}`,
     generatedAt: new Date().toISOString(),
@@ -561,7 +561,7 @@ URL: ${issue.url || '[Website]'}`,
  * UNCRPD SHADOW REPORT PACKAGE GENERATOR
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function generateUNCRPDShadowReportPackage(issues) {
+function generateUNCRPDShadowReportPackage(issues) {
   const pkg = {
     id: `uncrpd_shadow_${Date.now()}`,
     generatedAt: new Date().toISOString(),
@@ -730,7 +730,7 @@ export function generateUNCRPDShadowReportPackage(issues) {
  * PUBLIC ACCOUNTABILITY PACKAGE GENERATOR
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function generatePublicAccountabilityPackage(issue, targets = null) {
+function generatePublicAccountabilityPackage(issue, targets = null) {
   const pkg = {
     id: `accountability_${Date.now()}`,
     generatedAt: new Date().toISOString(),
@@ -981,7 +981,7 @@ Sincerely,
  * MASTER PACKAGE GENERATOR - Generates all packages at once
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function generateAllJusticePackages(issue, jurisdiction = 'Ontario') {
+function generateAllJusticePackages(issue, jurisdiction = 'Ontario') {
   return {
     generatedAt: new Date().toISOString(),
     issue: issue.title,
@@ -995,7 +995,7 @@ export function generateAllJusticePackages(issue, jurisdiction = 'Ontario') {
   };
 }
 
-export default {
+module.exports = {
   generateLegalChallengePackage,
   generateMediaPackage,
   generateUNCRPDShadowReportPackage,

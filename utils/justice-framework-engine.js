@@ -29,7 +29,7 @@
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export const LEGAL_FRAMEWORK = {
+const LEGAL_FRAMEWORK = {
   // 🇨🇦 A) Canadian Constitution & Charter
   charter: {
     section7: {
@@ -235,7 +235,7 @@ export const LEGAL_FRAMEWORK = {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export function generateGapAnalysis(currentPractice, jurisdiction = 'Ontario') {
+function generateGapAnalysis(currentPractice, jurisdiction = 'Ontario') {
   const analysis = {
     generatedAt: new Date().toISOString(),
     jurisdiction,
@@ -387,7 +387,7 @@ export function generateGapAnalysis(currentPractice, jurisdiction = 'Ontario') {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export function runJusticeTest(jurisdiction = 'Ontario') {
+function runJusticeTest(jurisdiction = 'Ontario') {
   const testResult = {
     runAt: new Date().toISOString(),
     jurisdiction,
@@ -476,7 +476,7 @@ export function runJusticeTest(jurisdiction = 'Ontario') {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export const ACCOUNTABILITY_TARGETS = {
+const ACCOUNTABILITY_TARGETS = {
   federal: {
     ministries: [
       {
@@ -673,7 +673,7 @@ export const ACCOUNTABILITY_TARGETS = {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export const ACCOUNTABILITY_MAP = {
+const ACCOUNTABILITY_MAP = {
   generatedAt: new Date().toISOString(),
   regions: {
     federal: {
@@ -750,7 +750,7 @@ export const ACCOUNTABILITY_MAP = {
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-export default {
+module.exports = {
   LEGAL_FRAMEWORK,
   ACCOUNTABILITY_TARGETS,
   ACCOUNTABILITY_MAP,

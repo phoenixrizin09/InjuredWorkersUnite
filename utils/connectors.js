@@ -16,7 +16,7 @@ const fetchData = typeof fetch !== 'undefined' ? fetch : async (...args) => {
 // https://open.canada.ca/data/en/dataset
 // ============================================================================
 
-export class OpenGovernmentConnector {
+class OpenGovernmentConnector {
   constructor() {
     this.baseUrl = 'https://open.canada.ca/data/api/3';
     this.name = 'Open Government Canada';
@@ -105,7 +105,7 @@ export class OpenGovernmentConnector {
 // https://data.ontario.ca/
 // ============================================================================
 
-export class OntarioOpenDataConnector {
+class OntarioOpenDataConnector {
   constructor() {
     this.baseUrl = 'https://data.ontario.ca/api/3';
     this.name = 'Ontario Open Data';
@@ -155,7 +155,7 @@ export class OntarioOpenDataConnector {
 // https://www.parl.ca/legisinfo/
 // ============================================================================
 
-export class ParliamentConnector {
+class ParliamentConnector {
   constructor() {
     this.baseUrl = 'https://www.parl.ca';
     this.name = 'Parliament of Canada';
@@ -258,7 +258,7 @@ export class ParliamentConnector {
 // https://www.ola.org/
 // ============================================================================
 
-export class OntarioLegislatureConnector {
+class OntarioLegislatureConnector {
   constructor() {
     this.baseUrl = 'https://www.ola.org';
     this.name = 'Ontario Legislature';
@@ -314,7 +314,7 @@ export class OntarioLegislatureConnector {
 // https://www.canlii.org/
 // ============================================================================
 
-export class CanLIIConnector {
+class CanLIIConnector {
   constructor() {
     this.baseUrl = 'https://www.canlii.org';
     this.name = 'CanLII';
@@ -400,7 +400,7 @@ export class CanLIIConnector {
 // AUDITOR GENERAL REPORTS (FREE)
 // ============================================================================
 
-export class AuditorGeneralConnector {
+class AuditorGeneralConnector {
   constructor() {
     this.federalUrl = 'https://www.oag-bvg.gc.ca';
     this.ontarioUrl = 'https://www.auditor.on.ca';
@@ -444,7 +444,7 @@ export class AuditorGeneralConnector {
 // OMBUDSMAN REPORTS (FREE)
 // ============================================================================
 
-export class OmbudsmanConnector {
+class OmbudsmanConnector {
   constructor() {
     this.ontarioUrl = 'https://www.ombudsman.on.ca';
     this.federalUrl = 'https://www.ombudsman.gc.ca';
@@ -482,7 +482,7 @@ export class OmbudsmanConnector {
 // https://www.statcan.gc.ca/
 // ============================================================================
 
-export class StatCanConnector {
+class StatCanConnector {
   constructor() {
     this.baseUrl = 'https://www.statcan.gc.ca';
     this.name = 'Statistics Canada';
@@ -533,7 +533,7 @@ export class StatCanConnector {
 // INDIGENOUS SERVICES CANADA (FREE)
 // ============================================================================
 
-export class IndigenousServicesConnector {
+class IndigenousServicesConnector {
   constructor() {
     this.baseUrl = 'https://www.sac-isc.gc.ca';
     this.name = 'Indigenous Services Canada';
@@ -569,7 +569,7 @@ export class IndigenousServicesConnector {
 // UNIFIED SOURCE MONITOR
 // ============================================================================
 
-export class UnifiedSourceMonitor {
+class UnifiedSourceMonitor {
   constructor() {
     this.connectors = {
       openGov: new OpenGovernmentConnector(),
@@ -666,7 +666,7 @@ export class UnifiedSourceMonitor {
   }
 }
 
-export default {
+module.exports = {
   OpenGovernmentConnector,
   OntarioOpenDataConnector,
   ParliamentConnector,

@@ -14,7 +14,7 @@
  */
 
 // Verification levels
-export const VERIFICATION_LEVELS = {
+const VERIFICATION_LEVELS = {
   VERIFIED: {
     level: 'verified',
     badge: '✅ VERIFIED',
@@ -53,7 +53,7 @@ export const VERIFICATION_LEVELS = {
 };
 
 // Official verified sources
-export const VERIFIED_SOURCES = [
+const VERIFIED_SOURCES = [
   // Government
   'open.canada.ca',
   'data.ontario.ca',
@@ -87,7 +87,7 @@ export const VERIFIED_SOURCES = [
 ];
 
 // Sourced but not directly verified
-export const SOURCED_SOURCES = [
+const SOURCED_SOURCES = [
   'reddit.com',
   'twitter.com',
   'x.com',
@@ -102,7 +102,7 @@ export const SOURCED_SOURCES = [
 /**
  * Determine verification level for a data item
  */
-export function getVerificationLevel(item) {
+function getVerificationLevel(item) {
   // Check if explicitly marked
   if (item.verified === true && item.source_url) {
     return VERIFICATION_LEVELS.VERIFIED;
@@ -153,7 +153,7 @@ export function getVerificationLevel(item) {
 /**
  * Add verification badge to an item
  */
-export function addVerificationBadge(item) {
+function addVerificationBadge(item) {
   const verification = getVerificationLevel(item);
   
   return {
@@ -172,14 +172,14 @@ export function addVerificationBadge(item) {
 /**
  * Process an array of items and add verification badges
  */
-export function addVerificationBadges(items) {
+function addVerificationBadges(items) {
   return items.map(addVerificationBadge);
 }
 
 /**
  * Generate verification summary for a dataset
  */
-export function getVerificationSummary(items) {
+function getVerificationSummary(items) {
   const summary = {
     total: items.length,
     verified: 0,
@@ -229,7 +229,7 @@ function getCredibilityRating(score) {
 /**
  * Create verification badge HTML for display
  */
-export function createBadgeHTML(verification) {
+function createBadgeHTML(verification) {
   if (!verification) return '';
   
   return `
@@ -255,7 +255,7 @@ export function createBadgeHTML(verification) {
 /**
  * Create verification badge React component props
  */
-export function getBadgeProps(verification) {
+function getBadgeProps(verification) {
   if (!verification) {
     verification = VERIFICATION_LEVELS.UNVERIFIED;
   }
@@ -273,7 +273,7 @@ export function getBadgeProps(verification) {
 /**
  * Validate and enhance an alert with verification
  */
-export function validateAlert(alert) {
+function validateAlert(alert) {
   const enhanced = addVerificationBadge(alert);
   
   // Add specific validation for different alert types
@@ -293,7 +293,7 @@ export function validateAlert(alert) {
 /**
  * Generate trust report for entire system
  */
-export function generateTrustReport(allData) {
+function generateTrustReport(allData) {
   const report = {
     generatedAt: new Date().toISOString(),
     sections: {}
@@ -314,7 +314,7 @@ export function generateTrustReport(allData) {
   return report;
 }
 
-export default {
+module.exports = {
   VERIFICATION_LEVELS,
   VERIFIED_SOURCES,
   SOURCED_SOURCES,

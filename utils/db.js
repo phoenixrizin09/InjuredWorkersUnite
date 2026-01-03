@@ -10,9 +10,9 @@
  * - Local development
  */
 
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 
 // Data directory
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
@@ -61,7 +61,7 @@ function writeJsonFile(filename, data) {
 
 const CASES_FILE = 'cases.json';
 
-export function getCases(filters = {}) {
+function getCases(filters = {}) {
   const cases = readJsonFile(CASES_FILE) || [];
   
   return cases.filter(c => {
@@ -73,12 +73,12 @@ export function getCases(filters = {}) {
   });
 }
 
-export function getCaseById(id) {
+function getCaseById(id) {
   const cases = readJsonFile(CASES_FILE) || [];
   return cases.find(c => c.id === id);
 }
 
-export function createCase(caseData) {
+function createCase(caseData) {
   const cases = readJsonFile(CASES_FILE) || [];
   
   const newCase = {
@@ -116,7 +116,7 @@ export function createCase(caseData) {
   return newCase;
 }
 
-export function updateCase(id, updates) {
+function updateCase(id, updates) {
   const cases = readJsonFile(CASES_FILE) || [];
   const index = cases.findIndex(c => c.id === id);
   
@@ -141,7 +141,7 @@ export function updateCase(id, updates) {
   return cases[index];
 }
 
-export function approveCase(id, approvedBy) {
+function approveCase(id, approvedBy) {
   return updateCase(id, {
     status: 'APPROVED',
     approved_by: approvedBy,
@@ -149,7 +149,7 @@ export function approveCase(id, approvedBy) {
   });
 }
 
-export function publishCase(id, publishedBy) {
+function publishCase(id, publishedBy) {
   return updateCase(id, {
     status: 'PUBLISHED',
     published_at: new Date().toISOString(),
@@ -157,7 +157,7 @@ export function publishCase(id, publishedBy) {
   });
 }
 
-export function submitForReview(id, submittedBy) {
+function submitForReview(id, submittedBy) {
   return updateCase(id, {
     status: 'UNDER_REVIEW',
     updated_by: submittedBy,
@@ -170,7 +170,7 @@ export function submitForReview(id, submittedBy) {
 
 const ALERTS_FILE = 'alerts.json';
 
-export function getAlerts(filters = {}) {
+function getAlerts(filters = {}) {
   const alerts = readJsonFile(ALERTS_FILE) || [];
   
   return alerts.filter(a => {
@@ -182,12 +182,12 @@ export function getAlerts(filters = {}) {
   }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 }
 
-export function getAlertById(id) {
+function getAlertById(id) {
   const alerts = readJsonFile(ALERTS_FILE) || [];
   return alerts.find(a => a.id === id);
 }
 
-export function createAlert(alertData) {
+function createAlert(alertData) {
   const alerts = readJsonFile(ALERTS_FILE) || [];
   
   const newAlert = {
@@ -219,7 +219,7 @@ export function createAlert(alertData) {
   return newAlert;
 }
 
-export function acknowledgeAlert(id) {
+function acknowledgeAlert(id) {
   const alerts = readJsonFile(ALERTS_FILE) || [];
   const index = alerts.findIndex(a => a.id === id);
   
@@ -233,7 +233,7 @@ export function acknowledgeAlert(id) {
   return alerts[index];
 }
 
-export function updateAlertDelivery(id, channel) {
+function updateAlertDelivery(id, channel) {
   const alerts = readJsonFile(ALERTS_FILE) || [];
   const index = alerts.findIndex(a => a.id === id);
   
@@ -254,7 +254,7 @@ export function updateAlertDelivery(id, channel) {
 
 const TARGETS_FILE = 'targets.json';
 
-export function getTargets(filters = {}) {
+function getTargets(filters = {}) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   
   return targets.filter(t => {
@@ -266,17 +266,17 @@ export function getTargets(filters = {}) {
   });
 }
 
-export function getTargetById(id) {
+function getTargetById(id) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   return targets.find(t => t.id === id);
 }
 
-export function getTargetByName(name) {
+function getTargetByName(name) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   return targets.find(t => t.name.toLowerCase() === name.toLowerCase());
 }
 
-export function createTarget(targetData) {
+function createTarget(targetData) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   
   // Check if target already exists
@@ -316,7 +316,7 @@ export function createTarget(targetData) {
   return newTarget;
 }
 
-export function updateTarget(id, updates) {
+function updateTarget(id, updates) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   const index = targets.findIndex(t => t.id === id);
   
@@ -333,7 +333,7 @@ export function updateTarget(id, updates) {
   return targets[index];
 }
 
-export function linkCaseToTarget(targetId, caseId) {
+function linkCaseToTarget(targetId, caseId) {
   const targets = readJsonFile(TARGETS_FILE) || [];
   const index = targets.findIndex(t => t.id === targetId);
   
@@ -356,7 +356,7 @@ export function linkCaseToTarget(targetId, caseId) {
 
 const EVIDENCE_FILE = 'evidence.json';
 
-export function getEvidence(filters = {}) {
+function getEvidence(filters = {}) {
   const evidence = readJsonFile(EVIDENCE_FILE) || [];
   
   return evidence.filter(e => {
@@ -366,12 +366,12 @@ export function getEvidence(filters = {}) {
   });
 }
 
-export function getEvidenceById(id) {
+function getEvidenceById(id) {
   const evidence = readJsonFile(EVIDENCE_FILE) || [];
   return evidence.find(e => e.id === id);
 }
 
-export function createEvidence(evidenceData) {
+function createEvidence(evidenceData) {
   const evidence = readJsonFile(EVIDENCE_FILE) || [];
   
   const newEvidence = {
@@ -415,7 +415,7 @@ export function createEvidence(evidenceData) {
 
 const PROVENANCE_FILE = 'provenance.json';
 
-export function addProvenanceEntry(entityType, entityId, action, actor, metadata = {}) {
+function addProvenanceEntry(entityType, entityId, action, actor, metadata = {}) {
   const provenance = readJsonFile(PROVENANCE_FILE) || [];
   
   // Get previous entry for this entity
@@ -453,7 +453,7 @@ export function addProvenanceEntry(entityType, entityId, action, actor, metadata
   return entry;
 }
 
-export function getProvenanceChain(entityType, entityId) {
+function getProvenanceChain(entityType, entityId) {
   const provenance = readJsonFile(PROVENANCE_FILE) || [];
   
   return provenance
@@ -461,7 +461,7 @@ export function getProvenanceChain(entityType, entityId) {
     .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 }
 
-export function verifyProvenanceChain(entityType, entityId) {
+function verifyProvenanceChain(entityType, entityId) {
   const entries = getProvenanceChain(entityType, entityId);
   
   for (let i = 0; i < entries.length; i++) {
@@ -499,7 +499,7 @@ export function verifyProvenanceChain(entityType, entityId) {
 
 const SCANS_FILE = 'scan-history.json';
 
-export function recordScan(scanData) {
+function recordScan(scanData) {
   const scans = readJsonFile(SCANS_FILE) || [];
   
   const scan = {
@@ -527,7 +527,7 @@ export function recordScan(scanData) {
   return scan;
 }
 
-export function updateScan(id, updates) {
+function updateScan(id, updates) {
   const scans = readJsonFile(SCANS_FILE) || [];
   const index = scans.findIndex(s => s.id === id);
   
@@ -539,7 +539,7 @@ export function updateScan(id, updates) {
   return scans[index];
 }
 
-export function getRecentScans(limit = 20) {
+function getRecentScans(limit = 20) {
   const scans = readJsonFile(SCANS_FILE) || [];
   return scans.slice(0, limit);
 }
@@ -550,7 +550,7 @@ export function getRecentScans(limit = 20) {
 
 const SETTINGS_FILE = 'settings.json';
 
-export function getSettings() {
+function getSettings() {
   return readJsonFile(SETTINGS_FILE) || {
     telegram_enabled: false,
     telegram_chat_id: '',
@@ -565,7 +565,7 @@ export function getSettings() {
   };
 }
 
-export function updateSettings(updates) {
+function updateSettings(updates) {
   const settings = getSettings();
   const newSettings = { ...settings, ...updates };
   writeJsonFile(SETTINGS_FILE, newSettings);
@@ -576,7 +576,7 @@ export function updateSettings(updates) {
 // STATISTICS
 // ============================================================================
 
-export function getSystemStats() {
+function getSystemStats() {
   const cases = readJsonFile(CASES_FILE) || [];
   const alerts = readJsonFile(ALERTS_FILE) || [];
   const targets = readJsonFile(TARGETS_FILE) || [];
@@ -628,7 +628,7 @@ export function getSystemStats() {
 // MIGRATION: Import from real-data-generator
 // ============================================================================
 
-export async function migrateFromRealDataGenerator() {
+async function migrateFromRealDataGenerator() {
   try {
     // Dynamic import to handle ES modules
     const { ALL_REAL_ISSUES } = await import('./real-data-generator.js');
@@ -702,7 +702,7 @@ export async function migrateFromRealDataGenerator() {
   }
 }
 
-export default {
+module.exports = {
   // Cases
   getCases,
   getCaseById,

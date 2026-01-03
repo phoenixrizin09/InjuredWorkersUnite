@@ -22,7 +22,7 @@ const CACHE_DURATION = 1800000; // 30 minutes
  * API Docs: https://open.canada.ca/data/en/dataset/about
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchFederalData(keywords = ['disability', 'workers', 'WSIB']) {
+async function fetchFederalData(keywords = ['disability', 'workers', 'WSIB']) {
   const baseUrl = 'https://open.canada.ca/data/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -82,7 +82,7 @@ export async function fetchFederalData(keywords = ['disability', 'workers', 'WSI
  * API Docs: https://data.ontario.ca/pages/developers
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchOntarioData(keywords = ['WSIB', 'ODSP', 'disability']) {
+async function fetchOntarioData(keywords = ['WSIB', 'ODSP', 'disability']) {
   const baseUrl = 'https://data.ontario.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -140,7 +140,7 @@ export async function fetchOntarioData(keywords = ['WSIB', 'ODSP', 'disability']
  * API Docs: https://catalogue.data.gov.bc.ca/api/3/action/package_search
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchBCData(keywords = ['WorkSafeBC', 'disability', 'workers', 'employment']) {
+async function fetchBCData(keywords = ['WorkSafeBC', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://catalogue.data.gov.bc.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -194,7 +194,7 @@ export async function fetchBCData(keywords = ['WorkSafeBC', 'disability', 'worke
  * API Docs: https://open.alberta.ca/opendata
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchAlbertaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchAlbertaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://open.alberta.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -248,7 +248,7 @@ export async function fetchAlbertaData(keywords = ['WCB', 'disability', 'workers
  * API Docs: https://www.donneesquebec.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchQuebecData(keywords = ['CNESST', 'disability', 'workers', 'employment', 'handicap']) {
+async function fetchQuebecData(keywords = ['CNESST', 'disability', 'workers', 'employment', 'handicap']) {
   const baseUrl = 'https://www.donneesquebec.ca/recherche/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -302,7 +302,7 @@ export async function fetchQuebecData(keywords = ['CNESST', 'disability', 'worke
  * API Docs: https://data.novascotia.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchNovaScotiaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchNovaScotiaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://data.novascotia.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -356,7 +356,7 @@ export async function fetchNovaScotiaData(keywords = ['WCB', 'disability', 'work
  * API Docs: https://geoportal.gov.mb.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchManitobaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchManitobaData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   // Manitoba uses ArcGIS Hub
   const baseUrl = 'https://geoportal.gov.mb.ca/api/v2/datasets';
   const query = keywords.join(' ');
@@ -407,7 +407,7 @@ export async function fetchManitobaData(keywords = ['WCB', 'disability', 'worker
  * API Docs: https://data.saskatchewan.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchSaskatchewanData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchSaskatchewanData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://data.saskatchewan.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -461,7 +461,7 @@ export async function fetchSaskatchewanData(keywords = ['WCB', 'disability', 'wo
  * API Docs: http://www.snb.ca/geonb1/e/DC/catalogue-E.asp
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchNewBrunswickData(keywords = ['WorkSafeNB', 'disability', 'workers', 'employment']) {
+async function fetchNewBrunswickData(keywords = ['WorkSafeNB', 'disability', 'workers', 'employment']) {
   // New Brunswick uses GeoNB - simplified approach
   const baseUrl = 'http://geonb.snb.ca/arcgis/rest/services';
   
@@ -515,7 +515,7 @@ export async function fetchNewBrunswickData(keywords = ['WorkSafeNB', 'disabilit
  * API Docs: https://data.princeedwardisland.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchPEIData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchPEIData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://data.princeedwardisland.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -569,7 +569,7 @@ export async function fetchPEIData(keywords = ['WCB', 'disability', 'workers', '
  * API Docs: https://opendata.gov.nl.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchNewfoundlandData(keywords = ['WorkplaceNL', 'disability', 'workers', 'employment']) {
+async function fetchNewfoundlandData(keywords = ['WorkplaceNL', 'disability', 'workers', 'employment']) {
   const baseUrl = 'https://opendata.gov.nl.ca/api/3/action/package_search';
   const query = keywords.join(' OR ');
   
@@ -623,7 +623,7 @@ export async function fetchNewfoundlandData(keywords = ['WorkplaceNL', 'disabili
  * API Docs: https://yukon.ca/open-data
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchYukonData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
+async function fetchYukonData(keywords = ['WCB', 'disability', 'workers', 'employment']) {
   // Yukon uses federal portal with territorial filter
   const federalUrl = 'https://open.canada.ca/data/api/3/action/package_search';
   const query = `Yukon ${keywords.join(' ')}`;
@@ -674,7 +674,7 @@ export async function fetchYukonData(keywords = ['WCB', 'disability', 'workers',
  * API Docs: https://www.gov.nt.ca/open-data
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchNWTData(keywords = ['WSCC', 'disability', 'workers', 'employment']) {
+async function fetchNWTData(keywords = ['WSCC', 'disability', 'workers', 'employment']) {
   // NWT uses federal portal with territorial filter
   const federalUrl = 'https://open.canada.ca/data/api/3/action/package_search';
   const query = `Northwest Territories ${keywords.join(' ')}`;
@@ -725,7 +725,7 @@ export async function fetchNWTData(keywords = ['WSCC', 'disability', 'workers', 
  * API Docs: https://www.gov.nu.ca/
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchNunavutData(keywords = ['WSCC', 'disability', 'workers', 'employment']) {
+async function fetchNunavutData(keywords = ['WSCC', 'disability', 'workers', 'employment']) {
   // Nunavut uses federal portal with territorial filter
   const federalUrl = 'https://open.canada.ca/data/api/3/action/package_search';
   const query = `Nunavut ${keywords.join(' ')}`;
@@ -776,7 +776,7 @@ export async function fetchNunavutData(keywords = ['WSCC', 'disability', 'worker
  * API Docs: https://www.parl.ca/legisinfo/en/open-data
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchLegislation() {
+async function fetchLegislation() {
   // LEGISinfo provides XML/JSON feeds
   const feedUrl = 'https://www.parl.ca/legisinfo/en/bills/json';
   
@@ -833,7 +833,7 @@ export async function fetchLegislation() {
  * 4. MUNICIPAL/LOCAL OPEN DATA (Major Canadian Cities)
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchMunicipalData(city = 'toronto') {
+async function fetchMunicipalData(city = 'toronto') {
   const cityApis = {
     // ONTARIO
     toronto: {
@@ -991,7 +991,7 @@ const OFFICIAL_RSS_FEEDS = [
   }
 ];
 
-export async function fetchRSSFeed(feedInfo) {
+async function fetchRSSFeed(feedInfo) {
   try {
     const response = await fetch(feedInfo.url);
     
@@ -1041,7 +1041,7 @@ export async function fetchRSSFeed(feedInfo) {
   }
 }
 
-export async function fetchAllRSSFeeds() {
+async function fetchAllRSSFeeds() {
   const results = [];
   
   for (const feed of OFFICIAL_RSS_FEEDS) {
@@ -1059,7 +1059,7 @@ export async function fetchAllRSSFeeds() {
  * 6. COMBINED FETCH - All Real Data Sources (ALL 13 PROVINCES/TERRITORIES)
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export async function fetchAllRealData() {
+async function fetchAllRealData() {
   console.log('👁️ THE EYE ORACLE: Fetching COMPREHENSIVE REAL data from ALL 13 PROVINCES/TERRITORIES...');
   
   const results = {
@@ -1171,7 +1171,7 @@ export async function fetchAllRealData() {
  * Transform real data into the format THE EYE ORACLE displays
  * ═══════════════════════════════════════════════════════════════════════════
  */
-export function convertToInsights(realData) {
+function convertToInsights(realData) {
   const insights = [];
   
   // Convert federal datasets
@@ -1331,7 +1331,7 @@ function formatTimestamp(dateString) {
 let dataCache = null;
 let lastFetchTime = 0;
 
-export async function getCachedRealData() {
+async function getCachedRealData() {
   const now = Date.now();
   
   if (dataCache && (now - lastFetchTime) < CACHE_DURATION) {
@@ -1346,7 +1346,32 @@ export async function getCachedRealData() {
   return dataCache;
 }
 
-export async function getRealInsights() {
+async function getRealInsights() {
   const realData = await getCachedRealData();
   return convertToInsights(realData);
 }
+
+module.exports = {
+  fetchFederalData,
+  fetchOntarioData,
+  fetchBCData,
+  fetchAlbertaData,
+  fetchQuebecData,
+  fetchNovaScotiaData,
+  fetchManitobaData,
+  fetchSaskatchewanData,
+  fetchNewBrunswickData,
+  fetchPEIData,
+  fetchNewfoundlandData,
+  fetchYukonData,
+  fetchNWTData,
+  fetchNunavutData,
+  fetchLegislation,
+  fetchMunicipalData,
+  fetchRSSFeed,
+  fetchAllRSSFeeds,
+  fetchAllRealData,
+  convertToInsights,
+  getCachedRealData,
+  getRealInsights
+};

@@ -15,7 +15,7 @@
  * INPUT: {raw_text_or_url, fetch_date, source_type, raw_metadata}
  * OUTPUT: Full JSON investigation report
  */
-export async function processDocument(input) {
+async function processDocument(input) {
   const startTime = Date.now();
   
   // 1. Extract structured metadata
@@ -715,7 +715,7 @@ function compileProvenance(input, corroborated) {
 /**
  * 8. SAFETY & FORENSICS
  */
-export function applySafetyChecks(output) {
+function applySafetyChecks(output) {
   // Privacy protection
   output.privacy_check = {
     contains_personal_data: checkForPersonalData(output),
@@ -800,7 +800,7 @@ function simpleHash(str) {
 /**
  * EXPORT FOR USE IN BROWSER OR NODE
  */
-export default {
+module.exports = {
   processDocument,
   applySafetyChecks
 };

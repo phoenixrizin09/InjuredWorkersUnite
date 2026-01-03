@@ -4,7 +4,7 @@
  * Real-time processing and cross-system coordination
  */
 
-import { initializeWithRealData, generateRealAlerts, generateRealTargets } from './real-data-generator';
+const { initializeWithRealData, generateRealAlerts, generateRealTargets } = require('./real-data-generator');
 
 // Automation state stored in localStorage for persistence
 const AUTOMATION_KEY = 'iwu_automation_state';
@@ -12,7 +12,7 @@ const ALERTS_KEY = 'iwu_active_alerts';
 const TARGETS_KEY = 'iwu_tracked_targets';
 const SCAN_HISTORY_KEY = 'iwu_scan_history';
 
-export class AutomationEngine {
+class AutomationEngine {
   constructor() {
     this.isActive = false;
     this.scanInterval = null;
@@ -846,4 +846,6 @@ export class AutomationEngine {
 }
 
 // Singleton instance
-export const automationEngine = new AutomationEngine();
+const automationEngine = new AutomationEngine();
+
+module.exports = { AutomationEngine, automationEngine };

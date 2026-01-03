@@ -18,7 +18,7 @@
  */
 
 // Insurance companies we're tracking
-export const TRACKED_COMPANIES = [
+const TRACKED_COMPANIES = [
   {
     name: 'Manulife Financial Corporation',
     ticker: 'MFC',
@@ -103,7 +103,7 @@ const RELEVANT_FILING_TYPES = [
  * Search SEDAR+ for company filings
  * Uses the public website search since API requires registration
  */
-export async function searchSedarFilings(companyName, options = {}) {
+async function searchSedarFilings(companyName, options = {}) {
   const { 
     daysBack = 90,
     filingTypes = RELEVANT_FILING_TYPES 
@@ -301,7 +301,7 @@ function parseSedarFilings(data) {
 /**
  * Fetch ALL tracked companies filings
  */
-export async function fetchAllTrackedCompanyFilings() {
+async function fetchAllTrackedCompanyFilings() {
   console.log('📊 Fetching SEDAR+ filings for all tracked companies...');
   
   const results = [];
@@ -334,7 +334,7 @@ export async function fetchAllTrackedCompanyFilings() {
 /**
  * Generate alerts from corporate filings
  */
-export function generateFilingAlerts(filings) {
+function generateFilingAlerts(filings) {
   const alerts = [];
   
   for (const companyData of filings.companies || []) {
@@ -371,7 +371,7 @@ export function generateFilingAlerts(filings) {
   return alerts;
 }
 
-export default {
+module.exports = {
   TRACKED_COMPANIES,
   searchSedarFilings,
   fetchAllTrackedCompanyFilings,

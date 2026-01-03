@@ -10,7 +10,7 @@
  * Uses JSZip (free, browser + Node compatible)
  */
 
-import crypto from 'crypto';
+const crypto = require('crypto');
 
 // Browser-compatible imports
 let JSZip;
@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
 // EVIDENCE BUNDLE GENERATOR
 // ============================================================================
 
-export class EvidenceBundler {
+class EvidenceBundler {
   constructor(db) {
     this.db = db;
   }
@@ -535,4 +535,4 @@ transparency and accountability in government and corporate entities.`;
   }
 }
 
-export default EvidenceBundler;
+module.exports = EvidenceBundler;

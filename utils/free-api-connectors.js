@@ -9,7 +9,7 @@
  * 1. REDDIT API - Completely Free (JSON endpoints)
  * Monitor Canadian subreddits for corruption discussions
  */
-export class RedditConnector {
+class RedditConnector {
   constructor() {
     this.subreddits = [
       'ontario', 'toronto', 'canada', 'onguardforthee',
@@ -66,7 +66,7 @@ export class RedditConnector {
  * 2. ONTARIO OPEN DATA - Free API
  * Government datasets on WSIB, ODSP, healthcare
  */
-export class OntarioOpenDataConnector {
+class OntarioOpenDataConnector {
   constructor() {
     this.baseUrl = 'https://data.ontario.ca/api/3/action';
   }
@@ -114,7 +114,7 @@ export class OntarioOpenDataConnector {
  * 3. FEDERAL OPEN DATA - Free API
  * Federal government datasets
  */
-export class FederalOpenDataConnector {
+class FederalOpenDataConnector {
   constructor() {
     this.baseUrl = 'https://open.canada.ca/data/api/3/action';
   }
@@ -162,7 +162,7 @@ export class FederalOpenDataConnector {
  * 4. CANLII API - Free Legal Database
  * Requires free API key: https://www.canlii.org/en/info/api.html
  */
-export class CanLIIConnector {
+class CanLIIConnector {
   constructor(apiKey = null) {
     this.baseUrl = 'https://api.canlii.org/v1';
     this.apiKey = apiKey; // Get free at: https://www.canlii.org/en/info/api.html
@@ -214,7 +214,7 @@ export class CanLIIConnector {
  * 5. ONTARIO LEGISLATURE - Free XML/RSS
  * Track bills and hansard
  */
-export class OntarioLegislatureConnector {
+class OntarioLegislatureConnector {
   constructor() {
     this.baseUrl = 'https://www.ola.org';
   }
@@ -254,7 +254,7 @@ export class OntarioLegislatureConnector {
  * 6. FEDERAL PARLIAMENT - Free Open Data
  * Track federal bills and debates
  */
-export class ParliamentConnector {
+class ParliamentConnector {
   constructor() {
     this.baseUrl = 'https://www.ourcommons.ca';
     this.openParliamentUrl = 'https://openparliament.ca/api';
@@ -310,7 +310,7 @@ export class ParliamentConnector {
  * 7. STATISTICS CANADA - Free Data
  * Economic and social statistics
  */
-export class StatCanConnector {
+class StatCanConnector {
   constructor() {
     this.baseUrl = 'https://www150.statcan.gc.ca/t1/wds/rest';
   }
@@ -347,7 +347,7 @@ export class StatCanConnector {
  * UNIFIED FREE API MONITOR
  * Coordinates all free data sources
  */
-export class FreeAPIMonitor {
+class FreeAPIMonitor {
   constructor() {
     this.connectors = {
       reddit: new RedditConnector(),
@@ -421,9 +421,9 @@ export class FreeAPIMonitor {
   }
 }
 
-export const freeAPIMonitor = new FreeAPIMonitor();
+const freeAPIMonitor = new FreeAPIMonitor();
 
-export default {
+module.exports = {
   RedditConnector,
   OntarioOpenDataConnector,
   FederalOpenDataConnector,

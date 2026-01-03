@@ -20,7 +20,7 @@
  */
 
 // Key tribunals and courts we monitor
-export const MONITORED_COURTS = [
+const MONITORED_COURTS = [
   {
     id: 'onwsiat',
     name: 'Workplace Safety and Insurance Appeals Tribunal',
@@ -121,7 +121,7 @@ const RELEVANCE_KEYWORDS = [
 /**
  * Fetch recent decisions from a court via RSS
  */
-export async function fetchCourtDecisions(courtId) {
+async function fetchCourtDecisions(courtId) {
   const court = MONITORED_COURTS.find(c => c.id === courtId);
   
   if (!court) {
@@ -372,7 +372,7 @@ function getKnownPrecedents(courtId) {
 /**
  * Fetch decisions from ALL monitored courts
  */
-export async function fetchAllCourtDecisions() {
+async function fetchAllCourtDecisions() {
   console.log('⚖️ Fetching CanLII court decisions from all monitored tribunals...');
   
   const results = [];
@@ -402,7 +402,7 @@ export async function fetchAllCourtDecisions() {
 /**
  * Search CanLII for specific terms
  */
-export async function searchCanLII(query, options = {}) {
+async function searchCanLII(query, options = {}) {
   const { jurisdiction = 'on', court = '', limit = 20 } = options;
   
   try {
@@ -428,7 +428,7 @@ export async function searchCanLII(query, options = {}) {
 /**
  * Generate alerts from court decisions
  */
-export function generateCourtAlerts(allDecisions) {
+function generateCourtAlerts(allDecisions) {
   const alerts = [];
   
   for (const courtData of allDecisions.courts || []) {
@@ -472,7 +472,7 @@ export function generateCourtAlerts(allDecisions) {
   return alerts;
 }
 
-export default {
+module.exports = {
   MONITORED_COURTS,
   fetchCourtDecisions,
   fetchAllCourtDecisions,

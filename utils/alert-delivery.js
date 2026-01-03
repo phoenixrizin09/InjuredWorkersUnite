@@ -1,19 +1,29 @@
 /**
  * ALERT DELIVERY SYSTEM - The Eye / Oracle
+ * ENHANCED VERSION 2.0
  * 
- * FREE alert delivery using:
+ * Multi-channel alert delivery with advanced features:
  * - Telegram Bot API (FREE, unlimited)
  * - Discord Webhooks (FREE)
- * - Email via Resend free tier (100/day) or custom SMTP
- * - Browser notifications
+ * - Slack Webhooks (FREE)
+ * - Email via Resend free tier or custom SMTP
+ * - SMS via Twilio
+ * - Browser push notifications
+ * - Rate limiting & delivery confirmation
+ * - User preferences & notification management
  */
+
+const { SlackDelivery, SMSDelivery, PushNotificationDelivery } = require('./advanced-channels');
+const { EmailTemplateFactory } = require('./email-templates');
+const { NotificationPreferencesManager } = require('./notification-preferences');
+const { DeliveryTracker, AlertRateLimiter } = require('./delivery-confirmation');
 
 // ============================================================================
 // TELEGRAM BOT (FREE - Unlimited messages)
 // Create bot at https://t.me/BotFather
 // ============================================================================
 
-export class TelegramDelivery {
+class TelegramDelivery {
   constructor(botToken, chatId) {
     this.botToken = botToken || process.env.TELEGRAM_BOT_TOKEN;
     this.chatId = chatId || process.env.TELEGRAM_CHAT_ID;
@@ -161,7 +171,7 @@ ${this.escapeMarkdown(summary.topAlert.title)}
 // DISCORD WEBHOOK (FREE - Unlimited)
 // ============================================================================
 
-export class DiscordDelivery {
+class DiscordDelivery {
   constructor(webhookUrl) {
     this.webhookUrl = webhookUrl || process.env.DISCORD_WEBHOOK_URL;
     this.name = 'discord';
@@ -234,7 +244,7 @@ export class DiscordDelivery {
 // EMAIL (Using Resend FREE tier - 100/day, or custom SMTP)
 // ============================================================================
 
-export class EmailDelivery {
+class EmailDelivery {
   constructor(config = {}) {
     this.resendApiKey = config.resendApiKey || process.env.RESEND_API_KEY;
     this.fromEmail = config.fromEmail || process.env.FROM_EMAIL || 'alerts@injuredworkersunite.org';
@@ -330,7 +340,7 @@ export class EmailDelivery {
 // WEBHOOK DELIVERY (For custom integrations)
 // ============================================================================
 
-export class WebhookDelivery {
+class WebhookDelivery {
   constructor(webhookUrl) {
     this.webhookUrl = webhookUrl || process.env.CUSTOM_WEBHOOK_URL;
     this.name = 'webhook';
@@ -381,7 +391,7 @@ export class WebhookDelivery {
 // UNIFIED ALERT DISPATCHER
 // ============================================================================
 
-export class AlertDispatcher {
+class AlertDispatcher {
   constructor(config = {}) {
     this.channels = [];
     
@@ -489,7 +499,7 @@ export class AlertDispatcher {
 // BROWSER NOTIFICATION HELPER (For frontend)
 // ============================================================================
 
-export function createBrowserNotification(alert) {
+function createBrowserNotification(alert) {
   if (typeof window === 'undefined') return null;
   
   if (!('Notification' in window)) {
@@ -515,11 +525,343 @@ export function createBrowserNotification(alert) {
   return null;
 }
 
-export default {
+// ============================================================================
+// ENHANCED ALERT DISPATCHER WITH ALL FEATURES
+// ============================================================================
+
+/**
+ * Enhanced dispatcher with preferences, rate limiting, and delivery tracking
+ */
+class EnhancedAlertDispatcher {
+  constructor(config = {}) {
+    this.config = config;
+    this.basicChannels = [];
+    this.advancedChannels = [];
+    
+    // Core channels
+    const telegram = new TelegramDelivery(config.telegramToken, config.telegramChatId);
+    if (telegram.isConfigured()) {
+      this.basicChannels.push(telegram);
+    }
+    
+    const discord = new DiscordDelivery(config.discordWebhook);
+    if (discord.isConfigured()) {
+      this.basicChannels.push(discord);
+    }
+    
+    const email = new EmailDelivery(config.email);
+    if (email.isConfigured()) {
+      this.basicChannels.push(email);
+    }
+    
+    const webhook = new WebhookDelivery(config.webhookUrl);
+    if (webhook.isConfigured()) {
+      this.basicChannels.push(webhook);
+    }
+    
+    // Advanced channels
+    const slack = new SlackDelivery(config.slack);
+    if (slack.isConfigured()) {
+      this.advancedChannels.push(slack);
+    }
+    
+    const sms = new SMSDelivery(config.sms);
+    if (sms.isConfigured()) {
+      this.advancedChannels.push(sms);
+    }
+    
+    const push = new PushNotificationDelivery(config.push);
+    if (push.isConfigured()) {
+      this.advancedChannels.push(push);
+    }
+    
+    // Initialize managers
+    this.preferencesManager = new NotificationPreferencesManager(config.dataDir || './data');
+    this.deliveryTracker = new DeliveryTracker(config.dataDir || './data');
+    this.rateLimiter = new AlertRateLimiter();
+  }
+
+  /**
+   * Get all configured channels
+   */
+  getConfiguredChannels() {
+    return [
+      ...this.basicChannels.map(c => c.name),
+      ...this.advancedChannels.map(c => c.name),
+    ];
+  }
+
+  /**
+   * Enhanced dispatch with preferences, tracking, and rate limiting
+   */
+  async dispatchWithPreferences(alert, userId, options = {}) {
+    const startTime = Date.now();
+    const result = {
+      alertId: alert.id,
+      userId,
+      timestamp: new Date().toISOString(),
+      channels: [],
+      rateLimited: false,
+      success: false,
+    };
+
+    // Get user preferences
+    const prefs = this.preferencesManager.getPreferences(userId);
+    
+    // Check quiet hours
+    if (this.preferencesManager.isInQuietHours(userId) && alert.severity !== 'critical') {
+      result.blocked = true;
+      result.reason = 'User in quiet hours';
+      return result;
+    }
+
+    // Get appropriate channels based on preferences
+    const channelsToUse = this.preferencesManager.getChannelsForAlert(userId, alert);
+
+    // Dispatch to each channel with rate limiting
+    for (const channelConfig of channelsToUse) {
+      const channelName = channelConfig.name;
+      
+      // Check rate limit
+      if (!this.rateLimiter.canSendAlert(userId, channelName, prefs.rateLimit)) {
+        result.rateLimited = true;
+        result.channels.push({
+          name: channelName,
+          success: false,
+          error: 'Rate limit exceeded',
+        });
+        continue;
+      }
+
+      // Send alert via channel
+      const channel = this.getChannel(channelName);
+      if (channel) {
+        let deliveryResult;
+        try {
+          if (channelName === 'email') {
+            const emailTemplate = EmailTemplateFactory.createEmailFromAlert(alert, { email: prefs.email });
+            deliveryResult = await this.sendEmail(emailTemplate);
+          } else if (channelName === 'sms') {
+            // Note: SMS would need phone number from user profile
+            deliveryResult = { success: false, error: 'Phone number not configured' };
+          } else if (channelName === 'push') {
+            deliveryResult = await channel.send(alert, [userId]);
+          } else {
+            deliveryResult = await channel.send(alert);
+          }
+
+          // Record delivery
+          if (deliveryResult.success) {
+            this.rateLimiter.recordAlert(userId, channelName);
+            this.deliveryTracker.recordDelivery({
+              alertId: alert.id,
+              userId,
+              channel: channelName,
+              status: 'sent',
+              externalId: deliveryResult.messageId || deliveryResult.id,
+            });
+          } else {
+            this.deliveryTracker.recordDelivery({
+              alertId: alert.id,
+              userId,
+              channel: channelName,
+              status: 'failed',
+              error: deliveryResult.error,
+            });
+          }
+
+          result.channels.push({
+            name: channelName,
+            ...deliveryResult,
+          });
+        } catch (error) {
+          console.error(`Error delivering via ${channelName}:`, error);
+          result.channels.push({
+            name: channelName,
+            success: false,
+            error: error.message,
+          });
+        }
+      }
+    }
+
+    result.success = result.channels.some(c => c.success);
+    result.elapsedMs = Date.now() - startTime;
+
+    return result;
+  }
+
+  /**
+   * Dispatch with batching/throttling
+   */
+  async dispatchWithBatching(alert, userId, options = {}) {
+    const prefs = this.preferencesManager.getPreferences(userId);
+    
+    // Check if alert should be batched
+    if (this.preferencesManager.shouldBatchAlert(userId, alert)) {
+      const batchDelay = this.preferencesManager.getBatchDelay(userId, alert);
+      
+      const batchResult = this.rateLimiter.addToBatch(userId, alert, {
+        maxBatchSize: prefs.rateLimit.batchAfterMinutes || 10,
+        maxWaitMinutes: batchDelay / 60 / 1000,
+        channel: 'email',
+      });
+
+      if (batchResult.shouldSendNow && batchResult.alerts) {
+        // Send batched alerts
+        return await this.dispatchBatch(batchResult.alerts, userId, options);
+      }
+
+      return {
+        alertId: alert.id,
+        batched: true,
+        batchSize: batchResult.batchSize,
+      };
+    }
+
+    // Send immediately
+    return await this.dispatchWithPreferences(alert, userId, options);
+  }
+
+  /**
+   * Dispatch batch of alerts
+   */
+  async dispatchBatch(alerts, userId, options = {}) {
+    const emailTemplate = EmailTemplateFactory.templateDigest(alerts, {
+      email: this.preferencesManager.getPreferences(userId).email,
+    });
+
+    const email = this.getChannel('email');
+    if (email) {
+      const result = await this.sendEmail(emailTemplate);
+      
+      // Record all deliveries
+      for (const alert of alerts) {
+        this.deliveryTracker.recordDelivery({
+          alertId: alert.id,
+          userId,
+          channel: 'email',
+          status: result.success ? 'sent' : 'failed',
+          externalId: result.id,
+          metadata: { batchSize: alerts.length },
+        });
+      }
+
+      return {
+        batchSize: alerts.length,
+        success: result.success,
+        sentVia: 'email',
+      };
+    }
+
+    return { success: false, error: 'Email channel not configured' };
+  }
+
+  /**
+   * Get channel by name
+   */
+  getChannel(name) {
+    return [
+      ...this.basicChannels,
+      ...this.advancedChannels,
+    ].find(c => c.name === name);
+  }
+
+  /**
+   * Send email via Resend
+   */
+  async sendEmail(emailConfig) {
+    const resendApiKey = process.env.RESEND_API_KEY;
+    
+    if (!resendApiKey) {
+      return { success: false, error: 'Resend API key not configured' };
+    }
+
+    try {
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: emailConfig.from,
+          to: emailConfig.to,
+          subject: emailConfig.subject,
+          html: emailConfig.html,
+          text: emailConfig.text,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Resend API error');
+      }
+
+      return { success: true, id: result.id };
+    } catch (error) {
+      console.error('Email send error:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Get user delivery history
+   */
+  getUserDeliveryHistory(userId, limit = 50) {
+    return this.deliveryTracker.getUserDeliveryHistory(userId, limit);
+  }
+
+  /**
+   * Get delivery statistics
+   */
+  getDeliveryStats(timeframeHours = 24) {
+    return this.deliveryTracker.getDeliveryStats(timeframeHours);
+  }
+
+  /**
+   * Update user preferences
+   */
+  updateUserPreferences(userId, updates) {
+    return this.preferencesManager.updatePreferences(userId, updates);
+  }
+
+  /**
+   * Get user preferences
+   */
+  getUserPreferences(userId) {
+    return this.preferencesManager.getPreferences(userId);
+  }
+
+  /**
+   * Get unsubscribe link for user
+   */
+  getUnsubscribeLink(userId) {
+    return this.preferencesManager.generateUnsubscribeLink(userId);
+  }
+
+  /**
+   * Process unsubscribe
+   */
+  processUnsubscribe(token) {
+    return this.preferencesManager.processUnsubscribe(token);
+  }
+}
+
+module.exports = {
   TelegramDelivery,
   DiscordDelivery,
   EmailDelivery,
   WebhookDelivery,
   AlertDispatcher,
+  EnhancedAlertDispatcher,
   createBrowserNotification,
+  SlackDelivery,
+  SMSDelivery,
+  PushNotificationDelivery,
+  EmailTemplateFactory,
+  NotificationPreferencesManager,
+  DeliveryTracker,
+  AlertRateLimiter,
 };

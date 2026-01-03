@@ -3,7 +3,7 @@
  * Universal search and filter functions for all pages
  */
 
-export class SearchEngine {
+class SearchEngine {
   constructor() {
     this.index = new Map();
   }
@@ -83,7 +83,7 @@ export class SearchEngine {
  * FILTER ENGINE
  * Multi-criteria filtering
  */
-export class FilterEngine {
+class FilterEngine {
   static applyFilters(items, filters) {
     return items.filter(item => {
       return Object.entries(filters).every(([key, value]) => {
@@ -145,7 +145,7 @@ export class FilterEngine {
  * SORT ENGINE
  * Multi-criteria sorting
  */
-export class SortEngine {
+class SortEngine {
   static sort(items, sortBy, direction = 'asc') {
     return [...items].sort((a, b) => {
       const aVal = this.getNestedValue(a, sortBy);
@@ -188,7 +188,7 @@ export class SortEngine {
 /**
  * PAGINATION ENGINE
  */
-export class PaginationEngine {
+class PaginationEngine {
   static paginate(items, page = 1, pageSize = 20) {
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
@@ -209,7 +209,7 @@ export class PaginationEngine {
  * UNIFIED SEARCH & FILTER HOOK
  * For use in React components
  */
-export function useSearchAndFilter(initialData, searchFields) {
+function useSearchAndFilter(initialData, searchFields) {
   if (typeof window === 'undefined') {
     return {
       data: initialData,
@@ -298,7 +298,7 @@ export function useSearchAndFilter(initialData, searchFields) {
   };
 }
 
-export default {
+module.exports = {
   SearchEngine,
   FilterEngine,
   SortEngine,

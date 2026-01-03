@@ -21,7 +21,7 @@
  */
 
 // FOI Request Categories
-export const FOI_CATEGORIES = {
+const FOI_CATEGORIES = {
   WSIB: {
     name: 'Workplace Safety and Insurance Board',
     jurisdiction: 'Ontario',
@@ -83,7 +83,7 @@ export const FOI_CATEGORIES = {
 };
 
 // Pre-written FOI request templates
-export const FOI_TEMPLATES = {
+const FOI_TEMPLATES = {
   // WSIB Templates
   claim_denial_statistics: {
     title: 'WSIB Claim Denial Statistics by Condition Type',
@@ -336,7 +336,7 @@ Fee waiver requested under public interest provisions.
 /**
  * Generate a complete FOI request ready for submission
  */
-export function generateFOIRequest(templateId, options = {}) {
+function generateFOIRequest(templateId, options = {}) {
   const template = FOI_TEMPLATES[templateId];
   
   if (!template) {
@@ -483,7 +483,7 @@ STRATEGIC VALUE: ${template.strategicValue}
 /**
  * Get all available templates for a category
  */
-export function getTemplatesForCategory(category) {
+function getTemplatesForCategory(category) {
   return Object.entries(FOI_TEMPLATES)
     .filter(([_, template]) => template.category === category)
     .map(([id, template]) => ({
@@ -498,7 +498,7 @@ export function getTemplatesForCategory(category) {
 /**
  * Generate a batch of related FOI requests (coordinated campaign)
  */
-export function generateFOIBlitz(targetEntity, options = {}) {
+function generateFOIBlitz(targetEntity, options = {}) {
   const blitzTemplates = [];
   
   // Determine relevant templates based on target
@@ -552,7 +552,7 @@ strategic information warfare.
 /**
  * Track FOI request status
  */
-export const FOI_STATUS = {
+const FOI_STATUS = {
   GENERATED: 'generated',
   SUBMITTED: 'submitted',
   ACKNOWLEDGED: 'acknowledged',
@@ -564,7 +564,7 @@ export const FOI_STATUS = {
   APPEALING: 'appealing'
 };
 
-export default {
+module.exports = {
   FOI_CATEGORIES,
   FOI_TEMPLATES,
   FOI_STATUS,

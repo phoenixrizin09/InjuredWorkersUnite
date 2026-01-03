@@ -71,7 +71,7 @@ describe('API Connectors', () => {
 
 describe('Configuration', () => {
   test('next.config.js should export static site', () => {
-    const nextConfig = require('../next.config.js');
+    const nextConfig = require('../config/next.config.js');
     expect(nextConfig.output).toBe('export');
     expect(nextConfig.images.unoptimized).toBe(true);
   });

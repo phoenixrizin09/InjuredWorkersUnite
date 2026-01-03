@@ -305,23 +305,6 @@ export default function About() {
                   >
                     🎓 Alumni & Board Member — Speakers School
                   </a>
-                  <a 
-                    href="http://thunderbayinjuredworkers.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      background: 'rgba(255, 215, 0, 0.15)',
-                      border: '1px solid #FFD700',
-                      padding: '0.5rem 1rem',
-                      borderRadius: '20px',
-                      fontSize: '0.85rem',
-                      color: '#FFD700',
-                      textDecoration: 'none',
-                      transition: 'all 0.3s'
-                    }}
-                  >
-                    ⚡ Injured Worker & Board Member — TBDIWSG
-                  </a>
                 </div>
 
                 <div style={{

@@ -6747,6 +6747,85 @@ export default function MemeticEmbassyFull() {
               borderRadius: '15px',
               textAlign: 'center'
             }}>
+              {/* Community Spotlight - Lissa Beaulieu */}
+              <div style={{
+                padding: '2rem',
+                background: 'linear-gradient(135deg, rgba(153, 50, 204, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%)',
+                borderRadius: '20px',
+                border: '2px solid rgba(153, 50, 204, 0.5)',
+                textAlign: 'center',
+                marginBottom: '2rem'
+              }}>
+                <h2 style={{ 
+                  fontSize: '1.8rem', 
+                  marginBottom: '0.5rem',
+                  color: '#ff8c00'
+                }}>
+                  🔥 Featured Voice
+                </h2>
+                <h3 style={{ 
+                  fontSize: '1.5rem', 
+                  marginBottom: '1rem',
+                  color: '#4facfe',
+                  fontWeight: '700'
+                }}>
+                  Lissa Beaulieu — The Phoenix
+                </h3>
+                <p style={{ 
+                  fontSize: '1rem', 
+                  marginBottom: '1.5rem',
+                  lineHeight: '1.6'
+                }}>
+                  Founder of <strong>3mpwr App</strong> • Injured Worker Advocate • Memetic Warrior
+                </p>
+                <div style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                  marginBottom: '1rem'
+                }}>
+                  <a 
+                    href="https://injuredworkersunite.pages.dev/about" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.75rem 1.5rem',
+                      background: 'linear-gradient(135deg, #9932CC 0%, #ff8c00 100%)',
+                      color: '#fff',
+                      textDecoration: 'none',
+                      borderRadius: '25px',
+                      fontWeight: 'bold',
+                      fontSize: '0.9rem',
+                      boxShadow: '0 0 15px rgba(153, 50, 204, 0.4)',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    📖 Full Profile →
+                  </a>
+                  <a 
+                    href="https://3mpwrapp.pages.dev/about" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.75rem 1.5rem',
+                      background: 'linear-gradient(135deg, #4facfe 0%, #00ffff 100%)',
+                      color: '#000',
+                      textDecoration: 'none',
+                      borderRadius: '25px',
+                      fontWeight: 'bold',
+                      fontSize: '0.9rem',
+                      boxShadow: '0 0 15px rgba(79, 172, 254, 0.4)',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    ⚡ 3mpwr App →
+                  </a>
+                </div>
+              </div>
+
               <p style={{
                 fontSize: '1.2rem',
                 color: '#00ffff',

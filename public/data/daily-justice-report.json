@@ -1,8 +1,8 @@
 {
-  "id": "daily_justice_1767385052807",
-  "generatedAt": "2026-01-02T20:17:32.807Z",
-  "date": "2026-01-02",
-  "title": "Daily Justice Report - Friday, January 2, 2026",
+  "id": "daily_justice_1767470158875",
+  "generatedAt": "2026-01-03T19:55:58.875Z",
+  "date": "2026-01-03",
+  "title": "Daily Justice Report - Saturday, January 3, 2026",
   "legalChanges": {
     "newBills": [],
     "amendments": [],
@@ -1643,6 +1643,6 @@
     "federal": 9,
     "ontario": 17,
     "legislation": 11,
-    "fetchedAt": "2026-01-02T20:17:30.895Z"
+    "fetchedAt": "2026-01-03T19:55:56.536Z"
   }
 }

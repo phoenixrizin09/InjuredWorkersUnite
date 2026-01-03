@@ -1,6 +1,23 @@
 [
   {
     "id": null,
+    "date": "2026-01-03",
+    "category": "Eye Oracle",
+    "emoji": "📰",
+    "title": "Eye Oracle: Daily Corruption Reports",
+    "excerpt": "Every day, we publish a report on real government corruption. All cases from official sources. Every claim has a link so you can verify it yourself.",
+    "keyFeatures": [
+      "New report published daily",
+      "Only real cases with official sources",
+      "Simple language, no jargon",
+      "Every claim has a verification link",
+      "Tells you what action to take"
+    ],
+    "ctaText": "Read Reports →",
+    "ctaLink": "/eye-oracle"
+  },
+  {
+    "id": null,
     "date": "2026-01-02",
     "category": "The EYE",
     "emoji": "👁️",

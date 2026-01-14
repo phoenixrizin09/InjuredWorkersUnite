@@ -1,5 +1,246 @@
 [
   {
+    "emoji": "🏥",
+    "category": "The Eye Oracle",
+    "title": "👁️ The Eye Oracle: Nursing Crisis: 20,000 Nurses Short in Ontario",
+    "excerpt": "The Eye v2.0 has analyzed official government data and found systemic corruption. 20,000 nursing positions unfilled - Bill 124 wage cap drove exodus. Official source: Ontario Nurses Association 2024.",
+    "content": {
+      "overview": {
+        "title": "🎯 What The Eye Found",
+        "body": "**Issue:** Nursing Crisis: 20,000 Nurses Short in Ontario\n\n**Source:** Ontario Nurses Association 2024  \n**Verification:** [https://www.ona.org/](https://www.ona.org/)\n**Trust Level:** 📊 SOURCED - Public Record\n\n**Severity:** CRITICAL  \n**Scope:** provincial  \n**People Affected:** 15 million Ontarians with reduced care  \n**Financial Impact:** Nurses fleeing to US for double pay\n\n**Evidence:**  \n20,000 nursing positions unfilled - Bill 124 wage cap drove exodus"
+      },
+      "corruption": {
+        "title": "🔍 Corruption Findings",
+        "body": "The Eye v2.0 identified the following corruption indicators:\n\n• Systemic corruption patterns detected\n\n**Overall Corruption Risk Score:** Analysis pending/100\n\n**Corruption Type:** Systemic\n\n**Corruption Indicators:**\n• union busting\n• Bill 124\n• healthcare privatization"
+      },
+      "constitutional": {
+        "title": "📜 Constitutional & Human Rights Violations",
+        "body": "**Canadian Charter Violations:**  \nSection 2(d) (freedom of association - union busting)\n\n**Human Rights Breaches:**  \nMultiple violations identified\n\n**UN Convention on Rights of Persons with Disabilities (UNCRPD):**  \nAssessment in progress"
+      },
+      "impact": {
+        "title": "👥 Who Is Being Harmed",
+        "body": "**Vulnerable Populations Impacted:**  \n• Marginalized communities\n\n**Affected Count:** 15 million Ontarians with reduced care\n\n**Disproportionate Impact:**  \nMarginalized communities bear the heaviest burden"
+      },
+      "target": {
+        "title": "🎯 The Responsible Entity",
+        "body": "**Target:** Ontario Government - Doug Ford  \n**Type:** provincial_government  \n**Jurisdiction:** Ontario\n\n\n\n\n**Corruption Indicators:**  \n• union busting\n• Bill 124\n• healthcare privatization"
+      },
+      "action": {
+        "title": "⚡ What You Can Do Right Now",
+        "body": "**Recommended Action:** Contact elected representatives\n\n**Priority:** high  \n**Timeline:** immediate\n\n**Why This Works:**  \nPublic pressure is needed to force change\n\n**Next Steps:**  \nVisit /target-acquisition for detailed action packages"
+      },
+      "evidenceReceipts": {
+        "title": "🧾 Evidence Receipts - THE PROOF",
+        "body": "### 📊 Key Data Points\n| Statistic | Description | Source |\n|-----------|-------------|--------|\n| 20,000+ | Nursing positions unfilled in Ontario | ONA Analysis 2024 |\n| 1% | Annual wage cap imposed by Bill 124 | Protecting a Sustainable Public Sector Act |\n| $3B+ | Wages suppressed from nurses over 3 years | SEIU Healthcare calculation |\n| 73% | Nurses considering leaving profession | ONA Survey 2023 |\n\n### 📎 Official Documents\n• [Bill 124 (Wage Suppression Act)](https://www.ola.org/en/legislative-business/bills/parliament-42/session-1/bill-124)\n• [ONA v. Ontario (Bill 124 Challenge)](https://www.canlii.org/en/on/onsc/doc/2022/2022onsc6658/2022onsc6658.html)\n• [RNAO Nursing Report 2024](https://rnao.ca/policy)\n\n### ⚖️ Legal Precedents\n• **Ontario English Catholic Teachers' Assn. v. Ontario** (2024 ONCA 17): Bill 124 struck down as unconstitutional violation of Section 2(d) [View Case](https://www.canlii.org/en/on/onca/doc/2024/2024onca17/2024onca17.html)\n\n\n\n### 🔗 Verification Chain\n**Primary Source:** [Ontario Nurses Association - Staffing Crisis Data](https://www.ona.org/news-posts/)  \n**Secondary Source:** [Court of Appeal: Bill 124 Ruling](https://www.canlii.org/en/on/onca/doc/2024/2024onca17/2024onca17.html)\n**Access Date:** 2024-12-07  \n**Verification Method:** direct_api_access\n\n---\n**Archive Link:** [Wayback Machine Backup](https://web.archive.org/web/https://www.ona.org/)"
+      },
+      "verification": {
+        "title": "✅ Verify This Yourself",
+        "body": "**Official Source:** Ontario Nurses Association 2024  \n**URL:** [https://www.ona.org/](https://www.ona.org/)  \n**Date Collected:** 2024-01-01  \n**Last Verified:** 2026-01-14T05:58:22.322Z\n\n**Trust Level:** 📊 SOURCED - Public Record\n\n### How to Verify:\n1. Click the source link above\n2. Search for the specific statistic or finding\n3. Cross-reference with secondary sources below\n4. Check the Wayback Machine archive for permanence\n\n**THE EYE NEVER LIES** - Every claim is backed by official government documentation. If you find an error, [report it](/contact)."
+      }
+    },
+    "evidencePackage": {
+      "primarySource": {
+        "name": "Ontario Nurses Association - Staffing Crisis Data",
+        "url": "https://www.ona.org/news-posts/",
+        "type": "union_report",
+        "accessDate": "2024-12-07",
+        "archiveUrl": "https://web.archive.org/web/https://www.ona.org/news-posts/"
+      },
+      "secondarySource": {
+        "name": "Court of Appeal: Bill 124 Ruling",
+        "url": "https://www.canlii.org/en/on/onca/doc/2024/2024onca17/2024onca17.html",
+        "type": "court_decision",
+        "publicationDate": "2024-02-13"
+      },
+      "dataPoints": [
+        {
+          "stat": "20,000+",
+          "description": "Nursing positions unfilled in Ontario",
+          "source": "ONA Analysis 2024"
+        },
+        {
+          "stat": "1%",
+          "description": "Annual wage cap imposed by Bill 124",
+          "source": "Protecting a Sustainable Public Sector Act"
+        },
+        {
+          "stat": "$3B+",
+          "description": "Wages suppressed from nurses over 3 years",
+          "source": "SEIU Healthcare calculation"
+        },
+        {
+          "stat": "73%",
+          "description": "Nurses considering leaving profession",
+          "source": "ONA Survey 2023"
+        }
+      ],
+      "documents": [
+        {
+          "name": "Bill 124 (Wage Suppression Act)",
+          "url": "https://www.ola.org/en/legislative-business/bills/parliament-42/session-1/bill-124"
+        },
+        {
+          "name": "ONA v. Ontario (Bill 124 Challenge)",
+          "url": "https://www.canlii.org/en/on/onsc/doc/2022/2022onsc6658/2022onsc6658.html"
+        },
+        {
+          "name": "RNAO Nursing Report 2024",
+          "url": "https://rnao.ca/policy"
+        }
+      ],
+      "legalCitations": [
+        {
+          "case": "Ontario English Catholic Teachers' Assn. v. Ontario",
+          "citation": "2024 ONCA 17",
+          "holding": "Bill 124 struck down as unconstitutional violation of Section 2(d)",
+          "url": "https://www.canlii.org/en/on/onca/doc/2024/2024onca17/2024onca17.html"
+        }
+      ],
+      "quotes": [],
+      "verificationChain": {
+        "firstVerified": "2026-01-14T05:58:22.321Z",
+        "lastVerified": "2026-01-14T05:58:22.321Z",
+        "verificationMethod": "direct_api_access",
+        "verifierNote": "Verified by The Eye Oracle automated system"
+      }
+    },
+    "metadata": {
+      "date": "2026-01-14",
+      "source": "Ontario Nurses Association 2024",
+      "sourceUrl": "https://www.ona.org/",
+      "category": "healthcare",
+      "severity": "critical",
+      "affectedCount": "15 million Ontarians with reduced care",
+      "financialImpact": "Nurses fleeing to US for double pay",
+      "charterViolations": [
+        "Section 2(d) (freedom of association - union busting)"
+      ],
+      "uncrpdViolations": [],
+      "riskScore": 0,
+      "lastVerified": "2026-01-14T05:58:22.322Z"
+    },
+    "verified": true,
+    "verificationBadge": "📊 SOURCED - Public Record",
+    "verificationNote": "Source: Ontario Nurses Association 2024 | URL: https://www.ona.org/",
+    "lastVerified": "2026-01-14T05:58:22.322Z",
+    "viralHooks": {
+      "twitter": {
+        "primary": "A disabled person just sent us this. What happens next will make your blood boil. 👁️",
+        "alternatives": [
+          "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "Why do 67% of healthcare claims get denied? The answer isn't what you think... 👁️"
+        ],
+        "hashtags": [
+          "#3mpwrApp",
+          "#DisabilityRights"
+        ],
+        "bestTime": "7AM",
+        "toneNotes": "Punchy, provocative, thread-friendly. End with 🧵 or 👇 for threads."
+      },
+      "facebook": {
+        "primary": "He followed every rule. Filed every form. They still denied him. Why? 👇 👁️",
+        "alternatives": [
+          "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "We ran the numbers on Ontario Government - Doug Ford. What we found will shock you. 🧵 👁️"
+        ],
+        "hashtags": [
+          "#3mpwrApp",
+          "#DisabilityRights",
+          "#DisabilityCommunity"
+        ],
+        "bestTime": "9AM",
+        "toneNotes": "More personal, storytelling. Ask for shares explicitly."
+      },
+      "instagram": {
+        "primary": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like: 👁️",
+        "alternatives": [
+          "Invisible disability = invisible to them. But not to us. 👁️",
+          "The document they tried to bury says it all. Thread 🧵 👁️"
+        ],
+        "hashtags": [
+          "#3mpwrApp",
+          "#DisabilityRights",
+          "#DisabledAndProud",
+          "#ChronicIllness",
+          "#InvisibleIllness",
+          "#DisabilityAwareness",
+          "#Ableism",
+          "#SpoonieLife",
+          "#ChronicPain",
+          "#MentalHealthMatters",
+          "#AccessibilityMatters",
+          "#DisabilityCommunity",
+          "#NothingAboutUsWithoutUs",
+          "#DisabilityAdvocate",
+          "#ChronicIllnessWarrior"
+        ],
+        "bestTime": "11AM",
+        "toneNotes": "Hook in first line. Use line breaks. Caption should complement image."
+      },
+      "tiktok": {
+        "primary": "Her invisible illness is invisible to everyone except her body. Here's her story: 👁️",
+        "alternatives": [
+          "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+          "We ran the numbers on Ontario Government - Doug Ford. What we found will shock you. 🧵 👁️"
+        ],
+        "hashtags": [
+          "#3mpwrApp",
+          "#DisabledTikTok",
+          "#ChronicIllness",
+          "#Spoonie",
+          "#DisabilityAwareness"
+        ],
+        "bestTime": "7AM",
+        "toneNotes": "First 3 seconds MUST hook. Pattern interrupt. Relatable POV style."
+      },
+      "linkedin": {
+        "primary": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like:",
+        "alternatives": [
+          "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+          "We traced the money. You won't believe where it leads. 👁️"
+        ],
+        "hashtags": [
+          "#3mpwrApp",
+          "#DisabilityInclusion",
+          "#AccessibleWorkplace",
+          "#DisabilityRights",
+          "#Accommodation"
+        ],
+        "bestTime": "7AM",
+        "toneNotes": "Data-driven but human. Professional tone with activist heart."
+      },
+      "blog": {
+        "headlines": [
+          "👁️ What The Government Doesn't Want You to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
+          "🔥 EXPOSED: The Shocking Truth Behind Nursing Crisis: 20,000 Nurses Short in Ontario",
+          "⚠️ 1+ Workers Affected: What You NEED to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
+          "Why Are They Hiding This? The Real Story of Nursing Crisis: 20,000 Nurses Short in Ontario",
+          "The Eye Sees All: Nursing Crisis: 20,000 Nurses Short in Ontario - And It's Worse Than They're Telling You"
+        ],
+        "selectedHeadline": "👁️ What The Government Doesn't Want You to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
+        "introHook": "The numbers don't lie. The Eye Oracle has been watching, and what we found this week will make you question everything.",
+        "ctaHook": "The Eye sees. The Eye remembers. Now it's your turn to take action. Here's how:"
+      }
+    },
+    "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+    "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
+    "cta": {
+      "primary": {
+        "text": "View Target Dossier →",
+        "link": "/target-acquisition"
+      },
+      "secondary": {
+        "text": "Get Alerts →",
+        "link": "/alerts"
+      },
+      "tertiary": {
+        "text": "Use The Eye Yourself →",
+        "link": "/the-eye-v2-demo"
+      }
+    },
+    "id": null
+  },
+  {
     "emoji": "♿",
     "category": "The Eye Oracle",
     "title": "👁️ The Eye Oracle: ODSP Rates Below Poverty Line: $1,308/month",

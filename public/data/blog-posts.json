@@ -1,6 +1,23 @@
 [
   {
     "id": null,
+    "date": "2026-01-14",
+    "category": "Alerts",
+    "emoji": "🚨",
+    "title": "Get Alerts for Policy Changes",
+    "excerpt": "Track changes to WSIB, ODSP, disability benefits, and new laws. When something changes that affects you, you'll see it here with links to official sources.",
+    "keyFeatures": [
+      "WSIB policy changes",
+      "ODSP and benefit updates",
+      "New bills and laws",
+      "Filter by topic",
+      "Links to official sources"
+    ],
+    "ctaText": "View Alerts →",
+    "ctaLink": "/alerts"
+  },
+  {
+    "id": null,
     "date": "2026-01-03",
     "category": "Eye Oracle",
     "emoji": "📰",

@@ -1,8 +1,8 @@
 {
-  "id": "daily_justice_1767474899205",
-  "generatedAt": "2026-01-03T21:14:59.205Z",
-  "date": "2026-01-03",
-  "title": "Daily Justice Report - Saturday, January 3, 2026",
+  "id": "daily_justice_1768370348932",
+  "generatedAt": "2026-01-14T05:59:08.932Z",
+  "date": "2026-01-14",
+  "title": "Daily Justice Report - Wednesday, January 14, 2026",
   "legalChanges": {
     "newBills": [],
     "amendments": [],
@@ -934,75 +934,6 @@
       ]
     },
     {
-      "id": "8b2d095e-1099-44aa-a51c-85d5f74ec1de",
-      "title": "Social Assistance Caseloads",
-      "description": "Data prior to April 1998 includes recipients of:\r\n\r\n  * general welfare assistance\r\n  * family benefits\r\n  * foster care\r\n  * handicapped children benefits\r\n\r\nData from April 1, 1998 onward includes recipients of:\r\n\r\n  * Ontario Works\r\n  * Ontario Disability Support Program\r\n  * Temporary Care Assistance\r\n  * Assistance for Children with Severe Disabilities\r\n\r\n",
-      "organization": "Children, Community and Social Services",
-      "url": "https://data.ontario.ca/dataset/social-assistance-caseloads",
-      "lastUpdated": "2025-09-18T19:01:08.671692",
-      "verified": true,
-      "verificationSource": "data.ontario.ca",
-      "scope": "provincial",
-      "jurisdiction": "Ontario",
-      "rightsAnalysis": {
-        "charterCompliance": {
-          "status": "REQUIRES_REVIEW",
-          "issues": []
-        },
-        "humanRightsCompliance": {
-          "status": "REQUIRES_REVIEW",
-          "issues": []
-        },
-        "uncrpdCompliance": {
-          "status": "REQUIRES_ASSESSMENT",
-          "issues": [
-            {
-              "article": "Article 28",
-              "right": "Adequate Standard of Living",
-              "concern": "Must ensure adequate standard of living for persons with disabilities"
-            }
-          ]
-        }
-      },
-      "violations": [
-        {
-          "type": "benefitReductions",
-          "name": "Benefit Reductions",
-          "description": "Any reduction in disability or workers' compensation benefits",
-          "charterImplication": "Section 7 (security of person)",
-          "uncrpdArticle": "Article 28 (adequate standard of living)",
-          "matchedKeywords": [
-            "cap"
-          ],
-          "severity": "medium"
-        }
-      ],
-      "impactedPopulations": [
-        {
-          "name": "Persons with Disabilities",
-          "icon": "♿",
-          "matchedKeywords": [
-            "disability"
-          ]
-        },
-        {
-          "name": "Low-Income Canadians",
-          "icon": "💰",
-          "matchedKeywords": [
-            "welfare",
-            "social assistance"
-          ]
-        },
-        {
-          "name": "Children",
-          "icon": "👶",
-          "matchedKeywords": [
-            "child"
-          ]
-        }
-      ]
-    },
-    {
       "id": "0d250d63-5852-418f-91ea-4ab7a29edbac",
       "title": "Social Assistance Legacy Information System",
       "description": "The social assistance Legacy Information System (SALIS) contains an archive of\npersonal and financial information for all applicants and active recipients\nof:  \n• Ontario Works  \n• Ontario Disability Support Program (ODSP)  \n• Assistance for Children with Severe Disabilities (ACSD).\n\nThis dataset was used for the delivery of social assistance prior to the\nimplementation of the Social Assistance Management System (SAMS). SAMS is a\ncase management system for social assistance clients.\n\n",
@@ -1205,6 +1136,75 @@
           "icon": "💰",
           "matchedKeywords": [
             "social assistance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8b2d095e-1099-44aa-a51c-85d5f74ec1de",
+      "title": "Social Assistance Caseloads",
+      "description": "Data prior to April 1998 includes recipients of:\r\n\r\n  * general welfare assistance\r\n  * family benefits\r\n  * foster care\r\n  * handicapped children benefits\r\n\r\nData from April 1, 1998 onward includes recipients of:\r\n\r\n  * Ontario Works\r\n  * Ontario Disability Support Program\r\n  * Temporary Care Assistance\r\n  * Assistance for Children with Severe Disabilities\r\n\r\n",
+      "organization": "Children, Community and Social Services",
+      "url": "https://data.ontario.ca/dataset/social-assistance-caseloads",
+      "lastUpdated": "2026-01-13T21:15:14.520976",
+      "verified": true,
+      "verificationSource": "data.ontario.ca",
+      "scope": "provincial",
+      "jurisdiction": "Ontario",
+      "rightsAnalysis": {
+        "charterCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "humanRightsCompliance": {
+          "status": "REQUIRES_REVIEW",
+          "issues": []
+        },
+        "uncrpdCompliance": {
+          "status": "REQUIRES_ASSESSMENT",
+          "issues": [
+            {
+              "article": "Article 28",
+              "right": "Adequate Standard of Living",
+              "concern": "Must ensure adequate standard of living for persons with disabilities"
+            }
+          ]
+        }
+      },
+      "violations": [
+        {
+          "type": "benefitReductions",
+          "name": "Benefit Reductions",
+          "description": "Any reduction in disability or workers' compensation benefits",
+          "charterImplication": "Section 7 (security of person)",
+          "uncrpdArticle": "Article 28 (adequate standard of living)",
+          "matchedKeywords": [
+            "cap"
+          ],
+          "severity": "medium"
+        }
+      ],
+      "impactedPopulations": [
+        {
+          "name": "Persons with Disabilities",
+          "icon": "♿",
+          "matchedKeywords": [
+            "disability"
+          ]
+        },
+        {
+          "name": "Low-Income Canadians",
+          "icon": "💰",
+          "matchedKeywords": [
+            "welfare",
+            "social assistance"
+          ]
+        },
+        {
+          "name": "Children",
+          "icon": "👶",
+          "matchedKeywords": [
+            "child"
           ]
         }
       ]
@@ -1459,7 +1459,7 @@
           "description": "Data prior to April 1998 includes recipients of:\r\n\r\n  * general welfare assistance\r\n  * family benefits\r\n  * foster care\r\n  * handicapped children benefits\r\n\r\nData from April 1, 1998 onward includes recipients of:\r\n\r\n  * Ontario Works\r\n  * Ontario Disability Support Program\r\n  * Temporary Care Assistance\r\n  * Assistance for Children with Severe Disabilities\r\n\r\n",
           "organization": "Children, Community and Social Services",
           "url": "https://data.ontario.ca/dataset/social-assistance-caseloads",
-          "lastUpdated": "2025-09-18T19:01:08.671692",
+          "lastUpdated": "2026-01-13T21:15:14.520976",
           "verified": true,
           "verificationSource": "data.ontario.ca"
         }
@@ -1556,11 +1556,11 @@
         "Ontario Disability Support Program cases and beneficiaries",
         "Ontario social assistance rates",
         "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
-        "Social Assistance Caseloads",
         "Social Assistance Legacy Information System",
         "Short Term Training Services (STTS) service provider survey data",
         "Social assistance operational indicators data set",
         "Social assistance operations performance report",
+        "Social Assistance Caseloads",
         "Social assistance program eligibility",
         "Transitional aged youth reporting"
       ]
@@ -1591,10 +1591,10 @@
         "Ontario Disability Support Program (ODSP) / Ontario Works field office business process survey",
         "Ontario social assistance rates",
         "Social assistance caseloads by Consolidated Municipal Service Manager/District Social Services Administration Board (CMSM/DSSAB) and First Nations (FN) delivery partner",
-        "Social Assistance Caseloads",
         "Social Assistance Legacy Information System",
         "Social assistance operational indicators data set",
         "Social assistance operations performance report",
+        "Social Assistance Caseloads",
         "Social assistance program eligibility"
       ]
     }
@@ -1643,6 +1643,6 @@
     "federal": 9,
     "ontario": 17,
     "legislation": 11,
-    "fetchedAt": "2026-01-03T21:14:58.158Z"
+    "fetchedAt": "2026-01-14T05:58:55.171Z"
   }
 }

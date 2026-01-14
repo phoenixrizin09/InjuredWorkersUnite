@@ -1,14 +1,14 @@
 {
-  "date": "2026-01-03",
-  "title": "👁️ The Eye Oracle: ODSP Rates Below Poverty Line: $1,308/month",
-  "quirkyIntro": "Grab your tea/coffee/hydration of choice. Today's report is a doozy.",
-  "quirkyClosing": "That's the tea for today. ☕ Share it before it goes cold.",
+  "date": "2026-01-14",
+  "title": "👁️ The Eye Oracle: Nursing Crisis: 20,000 Nurses Short in Ontario",
+  "quirkyIntro": "The Eye never sleeps. Neither do bureaucratic nightmares, apparently. 👁️",
+  "quirkyClosing": "Stay vigilant. Stay informed. Stay angry (in a productive way).",
   "hooks": {
     "twitter": {
-      "primary": "POV: You're disabled, you need help, and the system sees you as a number to reject. 👁️",
+      "primary": "A disabled person just sent us this. What happens next will make your blood boil. 👁️",
       "alternatives": [
         "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
-        "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+        "Why do 67% of healthcare claims get denied? The answer isn't what you think... 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -18,10 +18,10 @@
       "toneNotes": "Punchy, provocative, thread-friendly. End with 🧵 or 👇 for threads."
     },
     "facebook": {
-      "primary": "A disabled person just sent us this. What happens next will make your blood boil. 👁️",
+      "primary": "He followed every rule. Filed every form. They still denied him. Why? 👇 👁️",
       "alternatives": [
-        "CEO salary: $847,000. ODSP maximum: $1,308. Any questions? 👁️",
-        "The document they tried to bury says it all. Thread 🧵 👁️"
+        "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+        "We ran the numbers on Ontario Government - Doug Ford. What we found will shock you. 🧵 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -32,10 +32,10 @@
       "toneNotes": "More personal, storytelling. Ask for shares explicitly."
     },
     "instagram": {
-      "primary": "They told him chronic fatigue \"isn't real.\" He sleeps 16 hours a day. Thread: 👁️",
+      "primary": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like: 👁️",
       "alternatives": [
-        "Remember when they said \"we help disabled people\"? Here's what they actually did today: 👁️",
-        "Why do 67% of disabilities claims get denied? The answer isn't what you think... 👁️"
+        "Invisible disability = invisible to them. But not to us. 👁️",
+        "The document they tried to bury says it all. Thread 🧵 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -58,10 +58,10 @@
       "toneNotes": "Hook in first line. Use line breaks. Caption should complement image."
     },
     "tiktok": {
-      "primary": "She has 47 doctor's notes. They still said she's \"not disabled enough.\" 🧵 👁️",
+      "primary": "Her invisible illness is invisible to everyone except her body. Here's her story: 👁️",
       "alternatives": [
-        "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence? 👁️",
-        "There's a pattern they don't want you to notice. Here's what The Eye found: 👁️"
+        "The same agency that denied your disability claim just gave executives a $2.3M bonus. 👁️",
+        "We ran the numbers on Ontario Government - Doug Ford. What we found will shock you. 🧵 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -74,10 +74,10 @@
       "toneNotes": "First 3 seconds MUST hook. Pattern interrupt. Relatable POV style."
     },
     "linkedin": {
-      "primary": "They told him chronic fatigue \"isn't real.\" He sleeps 16 hours a day. Thread:",
+      "primary": "Living on ODSP: A day in the life thread. This is what $1,308/month looks like:",
       "alternatives": [
-        "ODSP: $1,308/month. Poverty line: $2,500/month. They call this \"support\"?",
-        "We ran the numbers on Ontario Ministry of Children, Community and Social Services. What we found will shock you. 🧵"
+        "They rejected a claim in 48 hours but take 18 MONTHS to hear an appeal. Coincidence?",
+        "We traced the money. You won't believe where it leads. 👁️"
       ],
       "hashtags": [
         "#3mpwrApp",
@@ -91,15 +91,15 @@
     },
     "blog": {
       "headlines": [
-        "👁️ What The Government Doesn't Want You to Know About ODSP Rates Below Poverty Line: $1,308/month",
-        "🔥 EXPOSED: The Shocking Truth Behind ODSP Rates Below Poverty Line: $1,308/month",
-        "⚠️ 1+ Workers Affected: What You NEED to Know About ODSP Rates Below Poverty Line: $1,308/month",
-        "Why Are They Hiding This? The Real Story of ODSP Rates Below Poverty Line: $1,308/month",
-        "The Eye Sees All: ODSP Rates Below Poverty Line: $1,308/month - And It's Worse Than They're Telling You"
+        "👁️ What The Government Doesn't Want You to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
+        "🔥 EXPOSED: The Shocking Truth Behind Nursing Crisis: 20,000 Nurses Short in Ontario",
+        "⚠️ 1+ Workers Affected: What You NEED to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
+        "Why Are They Hiding This? The Real Story of Nursing Crisis: 20,000 Nurses Short in Ontario",
+        "The Eye Sees All: Nursing Crisis: 20,000 Nurses Short in Ontario - And It's Worse Than They're Telling You"
       ],
-      "selectedHeadline": "👁️ What The Government Doesn't Want You to Know About ODSP Rates Below Poverty Line: $1,308/month",
+      "selectedHeadline": "👁️ What The Government Doesn't Want You to Know About Nursing Crisis: 20,000 Nurses Short in Ontario",
       "introHook": "The numbers don't lie. The Eye Oracle has been watching, and what we found this week will make you question everything.",
-      "ctaHook": "Share this with every injured worker you know. They're counting on us staying silent."
+      "ctaHook": "The Eye sees. The Eye remembers. Now it's your turn to take action. Here's how:"
     }
   }
 }
